@@ -51,7 +51,7 @@
 
   // the url is a link to game.json
   // test url: https://aucchen.github.io/social_democracy_mods/v0.1.json
-  // TODO; 
+  // TODO;
   window.loadMod = function(url) {
       ui.loadGame(url);
   };
@@ -73,7 +73,10 @@
   }
   // End Day header link
   const endDayLink = document.getElementById('cyprus-end-day-link');
-  if (endDayLink) endDayLink.style.display = isCyprus ? 'inline-block' : 'none';
+  if (endDayLink) {
+    endDayLink.style.display = isCyprus ? 'inline-block' : 'none';
+    endDayLink.textContent = AnatolianRules.cyprusAtilla1.scene(Q) ? 'Continue operation' : 'Skip Day';
+  }
 };
   window.setupCyprusMapClicks = function() {
   var buttonsBox = document.getElementById('cyprus-action-buttons');
@@ -81,7 +84,7 @@
   if (!buttonsBox || !mapWrap) return; // map isn't on this passage right now
 
   var selected = null; // { id, label }
-    
+
   function selectDistrict(el) {
     mapWrap.querySelectorAll('.district.selected').forEach(function(s) {
       s.classList.remove('selected');
@@ -106,6 +109,8 @@
   function doAction(sceneName) {
     if (!selected) return;
     var Q = window.dendryUI.dendryEngine.state.qualities;
+    var operationScene = AnatolianRules.cyprusAtilla1.scene(Q);
+    if (operationScene) { window.dendryUI.dendryEngine.goToScene(operationScene); return; }
     Q.cyprus_target_district = selected.id;
     Q.cyprus_target_district_label = selected.label;
     window.dendryUI.dendryEngine.goToScene(sceneName);
@@ -123,17 +128,16 @@
 };
   window.cyprusAdvanceDay = function() {
   var Q = window.dendryUI.dendryEngine.state.qualities;
-  var daysInMonth = { 7: 31, 8: 31, 9: 30 };
-
-  Q.cyprus_day += 1;
-  if (Q.cyprus_day > daysInMonth[Q.cyprus_month]) {
-    Q.cyprus_day = 1;
-    Q.cyprus_month += 1;
-    if (Q.cyprus_month > 12) {
-      Q.cyprus_month = 1;
-      Q.cyprus_year += 1;
-    }
+  if (!Q.cyprus_mode || Q.cyprus_end_shown) return;
+  var operationScene = AnatolianRules.cyprusAtilla1.scene(Q);
+  if (operationScene) {
+    window.dendryUI.dendryEngine.goToScene(operationScene);
+    return;
   }
+  var nextDate = new Date(Date.UTC(Q.cyprus_year, Q.cyprus_month - 1, Q.cyprus_day + 1));
+  Q.cyprus_day = nextDate.getUTCDate();
+  Q.cyprus_month = nextDate.getUTCMonth() + 1;
+  Q.cyprus_year = nextDate.getUTCFullYear();
 
   var monthNames = ['', 'January','February','March','April','May','June','July',
                      'August','September','October','November','December'];
@@ -144,23 +148,50 @@
 
   window.updateCyprusDisplay();
 
+  // Crossing a half-month advances the normal simulation exactly once.
+  var calendarWeek = Q.cyprus_day <= 15 ? 1 : 2;
+  if (Q.year !== Q.cyprus_year || Q.month !== Q.cyprus_month || Q.week !== calendarWeek) {
+    Q.month_actions = 1;
+    window.dendryUI.dendryEngine.goToScene('post_event');
+  }
+  if (Q.cyprus_year > 1974 || (Q.cyprus_year === 1974 && Q.cyprus_month >= 9)) {
+    Q.cyprus_end_shown = 1;
+    window.dendryUI.dendryEngine.goToScene('kibrisson');
+    return;
+  }
+
+  function showDateEvent(id) {
+    var engine = window.dendryUI.dendryEngine;
+    var scene = engine.game.scenes[id];
+    if (scene && engine._runPredicate(scene.viewIf, true)) engine.goToScene(id);
+  }
+
+  operationScene = AnatolianRules.cyprusAtilla1.scene(Q);
+  if (operationScene) {
+    // Preserve the existing optional stories before the relevant daily decision.
+    if (Q.flavour_events && Q.cyprus_day === 21) showDateEvent('ayse');
+    else if (Q.flavour_events && Q.cyprus_day === 24) showDateEvent('plane');
+    else window.dendryUI.dendryEngine.goToScene(operationScene);
+    return;
+  }
+
   // Explicit date-triggered event check
   if (Q.cyprus_day === 16 && Q.cyprus_month === 7 && Q.cyprus_year === 1974) {
-    window.dendryUI.dendryEngine.goToScene('meetingopposition');
+    showDateEvent('meetingopposition');
     return;
   }
   if (Q.cyprus_day === 17 && Q.cyprus_month === 7 && Q.cyprus_year === 1974) {
-    window.dendryUI.dendryEngine.goToScene('cyprusintro');
+    showDateEvent('cyprusintro');
     return;
   }
   if (Q.cyprus_day === 21 && Q.cyprus_month === 7 && Q.cyprus_year === 1974) {
-    window.dendryUI.dendryEngine.goToScene('ayse');
+    showDateEvent('ayse');
     return;
   }
   if (Q.cyprus_day === 24 && Q.cyprus_month === 7 && Q.cyprus_year === 1974) {
-    window.dendryUI.dendryEngine.goToScene('plane');
+    showDateEvent('plane');
     return;
-  }  
+  }
 };
 
 window.updateCyprusTabVisibility = function() {
@@ -169,7 +200,7 @@ window.updateCyprusTabVisibility = function() {
   if (!tab) return;
   tab.style.display = (Q.cyprus_mode || 0) != 0 ? '' : 'none';
 };
-    
+
     window.updateCyprusDisplay = function() {
   var Q = window.dendryUI.dendryEngine.state.qualities;
   var map = {
@@ -189,14 +220,14 @@ window.updateCyprusTabVisibility = function() {
 window.updateTitleScreenImages = function() {
   const sceneId = window.dendryUI.dendryEngine.state.sceneId;
   const isTitleScreen = (sceneId === 'root.start_menu_2');
- 
+
   const statsTabs = document.getElementById('stats_tab_container');
   const qualities = document.getElementById('qualities');
   const partyTabs = document.getElementById('party_tab_container');
   const partyQualities = document.getElementById('party_qualities');
   const leftImg = document.getElementById('cyprus-title-left-img');
   const rightImg = document.getElementById('cyprus-title-right-img');
- 
+
   if (statsTabs) statsTabs.style.display = isTitleScreen ? 'none' : '';
   if (qualities) qualities.style.display = isTitleScreen ? 'none' : '';
   if (partyTabs) partyTabs.style.display = isTitleScreen ? 'none' : '';
@@ -204,7 +235,7 @@ window.updateTitleScreenImages = function() {
   if (leftImg) leftImg.style.display = isTitleScreen ? '' : 'none';
   if (rightImg) rightImg.style.display = isTitleScreen ? '' : 'none';
 };
-  
+
   window.showStats = function() {
     if (window.dendryUI.dendryEngine.state.sceneId.startsWith('library')) {
         window.dendryUI.dendryEngine.goToScene('backSpecialScene');
@@ -221,7 +252,7 @@ window.updateTitleScreenImages = function() {
         window.dendryUI.dendryEngine.goToScene('mod_loader');
     }
   };
-  
+
   window.showOptions = function() {
       var save_element = document.getElementById('options');
       window.populateOptions();
@@ -412,7 +443,7 @@ window.updateTitleScreenImages = function() {
     }
   };
 
-  
+
   // This function allows you to modify the text before it's displayed.
   // E.g. wrapping chat-like messages in spans.
 
@@ -442,8 +473,8 @@ window.updateTitleScreenImages = function() {
 window.displayText = function (text) {
         return applyWholesome(text);
     };
-  
-    //To get a value 
+
+    //To get a value
     function getRelationshipText(value) {
         if (value === undefined || value === null) return '';
         if (value <= 5) return '<span style="color: #FF0000;">Hostile</span>';
@@ -455,7 +486,7 @@ window.displayText = function (text) {
         if (value <= 74.9) return '<span style="color: #32CD32;">Friendly</span>';
         return '<span style="color: #008000;">Very friendly</span>';
     }
-  
+
     function getMilitancyText(value) {
         if (value === undefined || value === null) return 'Unknown';
         if (value <= 0.05) return '<span style="color: #008000;">Nonexistent</span>';
@@ -466,7 +497,7 @@ window.displayText = function (text) {
         if (value <= 1) return '<span style="color: #FF4500;">High</span>';
         return '<span style="color: #FF0000;">Very high</span>';
     }
-    
+
     // Helper function to convert loyalty/morale number to text
     function getLoyaltyText(value) {
         if (value === undefined || value === null) return 'Unknown';
@@ -502,7 +533,7 @@ function getPartyIdeology(party, Q) {
             if (Q.CGP_party_leader === "Feyzioğlu") return '<span style="color: #484863;">Center-Center Right</span> (Right Kemalism)';
             return 'Unknown';
         case 'AP':
-            if (Q.z_party_leader === "Demirel") return '<span style="color: #4344af;">Center Right-Right</span> (Conservative Liberalism)';
+            if (Q.AP_party_leader === "Demirel") return '<span style="color: #4344af;">Center Right-Right</span> (Conservative Liberalism)';
             return 'Unknown';
         case 'CHP':
             if (Q.CHP_party_leader === "İnönü") return '<span style="color: #803c53;">Center-Center Left</span> (Kemalism)';
@@ -525,11 +556,11 @@ function getPartyIdeology(party, Q) {
 
     //To check if extra dynamic or not
     function getDynamicTooltipContent(searchString, baseTooltip) {
-        var Q = window.dendryUI && window.dendryUI.dendryEngine && window.dendryUI.dendryEngine.state ? 
+        var Q = window.dendryUI && window.dendryUI.dendryEngine && window.dendryUI.dendryEngine.state ?
                 window.dendryUI.dendryEngine.state.qualities : null;
-        
+
         if (!Q) return baseTooltip.explanationText;
-        
+
         if (searchString === 'TIP' && Q['TIP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);
             var relationText = getRelationshipText(Q['TIP_relation']);
@@ -568,9 +599,9 @@ function getPartyIdeology(party, Q) {
             var relationText = getRelationshipText(Q['CGP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
-        if (searchString === 'AP' && Q['z_relation'] !== undefined) {
+        if (searchString === 'AP' && Q['AP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);
-            var relationText = getRelationshipText(Q['z_relation']);
+            var relationText = getRelationshipText(Q['AP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
         if (searchString === 'MSP' && Q['MSP_relation'] !== undefined) {
@@ -608,13 +639,13 @@ function getPartyIdeology(party, Q) {
             var militancy = getMilitancyText(Q['paramilitary-name_militancy']);
             return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization: ' + militancy;
         }
-      
+
         if (searchString === 'THKP-C' && Q.thkpc_strength !== undefined) {
             var strength = Q.thkpc_strength ? Q.thkpc_strength : '0';
             var morale = getMilitancyText(Q.thkpc_militancy);
             return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
         }
-       
+
         if (searchString === 'TKP/ML' && Q.tkpml_strength !== undefined) {
             var strength = Q.tkpml_strength ? Q.tkpml_strength : '0';
             var morale = getMilitancyText(Q.tkpml_militancy);
@@ -642,7 +673,7 @@ function getPartyIdeology(party, Q) {
         }
         return baseTooltip.explanationText;
     }
-  
+
     function applyWholesome(str) {
         const allWords = new Set([
             ...tooltipList.map(t => t.searchString),
@@ -678,25 +709,34 @@ function getPartyIdeology(party, Q) {
     }
   // TODO: have some code for tabbed sidebar browsing.
   window.updateSidebar = function() {
-      $('#qualities').empty();
       var scene = dendryUI.game.scenes[window.statusTab];
-      dendryUI.dendryEngine._runActions(scene.onArrival);
+      var baseStatus = dendryUI.game.scenes.status;
+      dendryUI.dendryEngine._runActions(baseStatus.onArrival);
+      if (scene !== baseStatus) dendryUI.dendryEngine._runActions(scene.onArrival);
       var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
-      $('#qualities').append(dendryUI.contentToHTML.convert(displayContent));
+      var html = dendryUI.contentToHTML.convert(displayContent);
+      if (window._sidebarHTML !== html) {
+          $('#qualities').html(html);
+          window._sidebarHTML = html;
+      }
   };
 
   window.updatePartySidebar = function() {
-      $('#party_qualities').empty();
       var newTab = window.statusTabRight || 'status.the_party';
       var scene = dendryUI.game.scenes[newTab];
       if (!scene) return;
       if (!dendryUI.dendryEngine._runPredicate(scene.viewIf, true)) {
-          $('#party_qualities').append('<p>This tab is not currently available.</p>');
+          $('#party_qualities').html('<p>This tab is not currently available.</p>');
+          window._partySidebarHTML = null;
           return;
       }
       dendryUI.dendryEngine._runActions(scene.onArrival);
       var displayContent = dendryUI.dendryEngine._makeDisplayContent(scene.content, true);
-      $('#party_qualities').append(dendryUI.contentToHTML.convert(displayContent));
+      var html = dendryUI.contentToHTML.convert(displayContent);
+      if (window._partySidebarHTML !== html) {
+          $('#party_qualities').html(html);
+          window._partySidebarHTML = html;
+      }
       // Render d3 parliament diagram after DOM update, only when the party tab is active
       if (newTab === 'status.the_party') {
           window.renderPartyParliament();
@@ -711,13 +751,16 @@ function getPartyIdeology(party, Q) {
       if (!svgEl || !window.partyParliamentData || window.partyParliamentData.length === 0) return;
 
       // Build a key from the current data to detect changes
-      var dataKey = JSON.stringify(window.partyParliamentData.map(function(p) {
+      var width = svgEl.parentElement ? svgEl.parentElement.offsetWidth : 220;
+      if (width <= 0) width = 220;
+      var dataKey = width + ':' + JSON.stringify(window.partyParliamentData.map(function(p) {
           return { id: p.id, seats: p.seats, color: p.color, outline: p.outline };
       }));
 
       // If data hasn't changed and we have cached SVG content, reuse it
       if (dataKey === window._lastParliamentDataKey && window._cachedParliamentSVGContent) {
-          svgEl.innerHTML = window._cachedParliamentSVGContent;
+          // The story's SVG contains whitespace even when it has no chart elements.
+          if (!svgEl.firstElementChild) svgEl.innerHTML = window._cachedParliamentSVGContent;
           return;
       }
 
@@ -726,8 +769,6 @@ function getPartyIdeology(party, Q) {
       // Always clear SVG and interrupt any running D3 transitions
       d3.select("#party-parliament").selectAll("*").interrupt().remove();
 
-      var width = svgEl.parentElement ? svgEl.parentElement.offsetWidth : 220;
-      if (width <= 0) width = 220;
       var parliament = d3.parliament();
       parliament.width(width).height(width).innerRadiusCoef(0.4);
       parliament.enter.fromCenter(isFirstRender).smallToBig(isFirstRender);
@@ -744,12 +785,13 @@ function getPartyIdeology(party, Q) {
           // First render has animations; cache after they complete
           setTimeout(function() {
               var el = document.getElementById('party-parliament');
-              if (el) {
+              if (el && el === svgEl && dataKey === window._currentParliamentDataKey) {
                   window._lastParliamentDataKey = dataKey;
                   window._cachedParliamentSVGContent = el.innerHTML;
               }
           }, 2000);
       }
+      window._currentParliamentDataKey = dataKey;
   };
 
   window.changeTab = function(newTab, tabId) {
@@ -779,8 +821,18 @@ function getPartyIdeology(party, Q) {
   };
 
   window.onDisplayContent = function() {
-      window.updateSidebar();
-      window.updatePartySidebar();
+      // Title screens have no initialized simulation or portraits to display.
+      if (window.dendryUI.dendryEngine.state.qualities.started) {
+          window.updateSidebar();
+          if (window.statusTabRight === 'status.cyprus' && !window.dendryUI.dendryEngine.state.qualities.cyprus_mode) {
+              window.statusTabRight = 'status.the_party';
+              var partyTab = document.getElementById('the_party_tab');
+              var cyprusTab = document.getElementById('cyprus_tab');
+              if (partyTab) partyTab.classList.add('active');
+              if (cyprusTab) cyprusTab.classList.remove('active');
+          }
+          window.updatePartySidebar();
+      }
       updateCyprusWidth();
       window.updateCyprusTabVisibility();
       window.setupCyprusMapClicks();
@@ -906,7 +958,7 @@ function getPartyIdeology(party, Q) {
       var $caption = window.jQuery("<span>").addClass("card-caption").text(card.title);
 
       if (card.image) {
-        var $img = window.jQuery("<img>").addClass("card-img").attr({src: card.image});
+        var $img = window.jQuery("<img>").addClass("card-img").attr({src: card.image, loading: 'lazy', decoding: 'async'});
         $a.append($img);
       }
       if (card.subtitle) {
@@ -931,9 +983,21 @@ function getPartyIdeology(party, Q) {
 
 }());
 
-document.addEventListener('mousemove', e => {
-    document.querySelectorAll('.mytooltiptext').forEach(el => {
-        el.style.setProperty('--mouse-x', e.clientX + 'px');
-        el.style.setProperty('--mouse-y', e.clientY + 'px');
+// Position only the hovered tooltip, at most once per paint frame.
+(function () {
+    var pending = false, tooltip = null, x = 0, y = 0;
+    document.addEventListener('mousemove', function (event) {
+        var target = event.target instanceof Element ? event.target.closest('.mytooltip') : null;
+        tooltip = target ? target.querySelector('.mytooltiptext') : null;
+        if (!tooltip) return;
+        x = event.clientX; y = event.clientY;
+        if (pending) return;
+        pending = true;
+        window.requestAnimationFrame(function () {
+            pending = false;
+            if (!tooltip || !tooltip.isConnected) return;
+            tooltip.style.setProperty('--mouse-x', x + 'px');
+            tooltip.style.setProperty('--mouse-y', y + 'px');
+        });
     });
-});
+}());

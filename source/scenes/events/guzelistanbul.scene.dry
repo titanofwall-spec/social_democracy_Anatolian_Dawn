@@ -37,6 +37,6 @@ on-arrival: MSP_relation -= 5; coalition_dissent += 1; q4_lk_str += 1; q2_lk_str
 We refuse to accept the demands of the Islamists. Even though our relations with MSP and the stability of the coalition takes a hit, we defend our progressive credentials which reaffirms the belief of the intellectuals and our base in the Left of Center movement. 
 
 @giveup
-on-arrival: kemalist_marxists_dissent += 5; left_kemalist_dissent += 5; orthodox_kemalists_dissent += 5; state_employees_chp -= 2; q4_lk_str -= 1
+on-arrival: kemalist_marxists_dissent += 5; left_kemalists_dissent += 5; orthodox_kemalists_dissent += 5; state_employees_chp -= 2; q4_lk_str -= 1
 
 With prime minister Ecevit's orders, the statue was withdrawn from public and placed in an isolated part of the park and left sideways next to a tree. The Islamists claim victory and its claimed in the Sabah newspaper that 'the operation has been successful' and that 'the will of the people have spoken'. Many artists express disappointment with the party leadership for not defending its values and ethics, a comment virtually all factions in the party also agree with.

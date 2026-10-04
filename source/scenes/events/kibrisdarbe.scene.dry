@@ -8,6 +8,8 @@ set-bg: img/kibriss.jpg
 audio: music/gercekkibris1.m4a
 on-arrival: {!
 Q.cyprus_mode = 1;
+AnatolianRules.cyprusAtilla1.initialize(Q);
+Q.cyprus_end_shown = 0;
 Q._last_cyprus_mode = 1;
 Q.cyprus_day = 15;
 Q.cyprus_month = 7;
@@ -20,7 +22,7 @@ updateCyprusWidth();
 
 Bülent Ecevit was speaking in a mass rally in the rural province of Afyon. The masses, of a quantity Afyon may have never seen before, carried colored placards with slogans such as "Halkçı Ecevit", "Umudumuz Karaoğlan", "Ne ezen ne ezilen" and "insanca hakça bir düzen". Ecevit's bus advanced through the crowd admist a rain of praise and love, and when Ecevit began to speak through the microphone, he struggled a few seconds to make his voice heard amongst cries of support and sympathy.
 
-It was a hot and relatively calm day across the nation. [? if justice_ministry_party == "MSP" : The governor of Çorum had ordered the banning a magazine which displayed so called "inappropriate imagery" on its front page in accordance with the orders from the Justice Minister Kazan of the MSP. ?] As the newspapers wrote, "people threw themselves into the sea even from the roads". The Mayor of Ankara Vedat Dalokay from our party had suggested importing cows as the solution for increasing milk prices. [? if justice_ministry_party == "MSP" : The CHP-MSP coalition considered an oddity by the many was completing its first 6 months and negotiations over its legislative agenda were taking place. ?] Overall, there was a calm atmosphere over national politics and many among the crowd circling Ecevit's campaign bus constantly wiped off sweat off their forehead.  
+It was a hot and relatively calm day across the nation. [? if justice_minister_party == "MSP" : The governor of Çorum had ordered the banning a magazine which displayed so called "inappropriate imagery" on its front page in accordance with the orders from the Justice Minister Kazan of the MSP. ?] As the newspapers wrote, "people threw themselves into the sea even from the roads". The Mayor of Ankara Vedat Dalokay from our party had suggested importing cows as the solution for increasing milk prices. [? if justice_minister_party == "MSP" : The CHP-MSP coalition considered an oddity by the many was completing its first 6 months and negotiations over its legislative agenda were taking place. ?] Overall, there was a calm atmosphere over national politics and many among the crowd circling Ecevit's campaign bus constantly wiped off sweat off their forehead.  
  
 Ecevit in his speech called on the farmers of Afyon to assist the state with combating poppy smugglers and promised further financial support for the struggling ruralty. During his speech however, one of his advisors kept making hand signals for him to cut the speech short and enter the campaign bus. As he ended his speech with a salutation, he entered the bus amid a sparkling and burning applause.         
 

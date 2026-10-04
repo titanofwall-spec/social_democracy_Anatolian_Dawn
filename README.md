@@ -1,17 +1,22 @@
-# Social Democracy: An Alternate History
+# Anatolian Dawn: An Alternate History
 
-## Included Libraries
+A political strategy game about CHP in 1970s Turkey, adapted from Autumn Chen’s Social Democracy: An Alternate History.
 
-[jquery v1.11.1](https://releases.jquery.com/)
+## Build
 
-[d3.js v7](https://d3js.org)
+Use Node.js 24. Install dependencies with `npm ci`, then run `npm run build` and `npm test`.
+The playable build is `out/html/index.html`. GitHub Pages uses `.github/workflows/build.yaml`.
+Most narrative and state live in `source/`. Custom interface code and media live in `out/html/`; preserve them when building.
 
-[d3-parliament](https://github.com/geoffreybr/d3-parliament)
+`out/html/rules.js` shares economy, faction, cabinet-reset and vote calculations between story actions and displays. Register new literal quality names in `scripts/state-keys.json`; `npm run check` validates compiled Dendry state references, card images and the checked economy helper. See `REPAIR_NOTES.md` for the repair scope and validation.
 
-## Building the game
+## Credits
 
-1. Install [dendrynexus](https://github.com/aucchen/dendrynexus)
+Original game and DendryNexus: Autumn Chen. Turkish adaptation: Egehan.
+Upstream repository: https://github.com/aucchen/social_democracy_alternate_history
+See LICENSE, the in-game credits, credits_images.txt and credits_music.txt for attribution.
+The historical changes.txt file records upstream development and is retained as provenance.
 
-2. Run `dendrynexus make-html` in this folder.
+## Save compatibility
 
-To update dendrynexus in `package-lock.json`, run `npm install --upgrade https://github.com/aucchen/dendrynexus`
+The Weimar-remnant cleanup renames state and scene IDs. Start a new playthrough after updating; pre-cleanup saves are not supported.

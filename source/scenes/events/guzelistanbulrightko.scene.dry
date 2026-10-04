@@ -1,6 +1,6 @@
 title: The 'Güzel İstanbul' Affair
-subtitle: The affair regarding a statue... or perhaps more? 
-view-if: year = 1974 and month = 3 and week = 2 and MSP_in_government == 1 and z_in_government == 1
+subtitle: The affair regarding a statue... or perhaps more?
+view-if: year = 1974 and month = 3 and week = 2 and MSP_in_government == 1 and AP_in_government == 1
 max-visits: 1
 tags: event
 new-page: true
@@ -31,4 +31,4 @@ However the Demirel government seems to have bowed down to the whims of the fund
 - @yes: The 'moderate' right bowing to the radicals? Surely its not a long trend...
 
 @yes
-on-arrival: z_relation -= 4
+on-arrival: AP_relation -= 4

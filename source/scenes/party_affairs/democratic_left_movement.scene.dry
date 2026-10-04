@@ -1,0 +1,26 @@
+title: The Democratic Left Movement
+new-page: true
+is-card: true
+card-image: img/portraits/ecevit3.jpg
+view-if: CHP_party_leader == "Ecevit" and democratic_left_movement == 0
+on-arrival: shuffle_leadership_timer = 0
+tags: party_affairs
+max-visits: 1
+
+= The Democratic Left Movement
+
+Our party must decide how to turn the Left of Center movement into a broader democratic programme. We can organize around workers, small farmers and other people who earn their living through their own labour, while defending parliamentary democracy.
+
+- @support: Support a broader Democratic Left movement.
+- @decline: Keep our current approach.
+- @easy_discard
+
+@support
+on-arrival: democratic_left_movement = 1; peoples_party_support += 3; left_kemalists_dissent -= 5
+
+We support the movement and begin building support for a broader party programme.
+
+@decline
+on-arrival: democratic_left_movement = -1
+
+We keep the current party programme.

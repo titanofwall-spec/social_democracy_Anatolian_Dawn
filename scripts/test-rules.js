@@ -1,0 +1,338 @@
+const fs = require('fs'), path = require('path'), assert = require('assert'), vm = require('vm');
+const lib = require('dendrynexus/lib/engine.js');
+const rules = require('../out/html/rules.js');
+require('../out/html/cyprus-atilla1.js');
+const check = require('./check.js');
+const root = path.resolve(__dirname, '..');
+const noop = () => {};
+const node = {style:{setProperty:noop}, appendChild:noop, setAttribute:noop, addEventListener:noop,
+    offsetWidth:600, classList:{add:noop, remove:noop, toggle:noop}, querySelector:()=>node,
+    querySelectorAll:()=>[], getAttribute:()=>'', getElementsByClassName:()=>[], innerHTML:'', textContent:''};
+global.document = {createElement:()=>({...node}), getElementById:()=>node, querySelector:()=>node,
+    querySelectorAll:()=>[], addEventListener:noop, body:node};
+global.Image = function () { return {...node}; };
+global.window = {}; global.d3 = null; global.updateCyprusWidth = noop;
+global.localStorage = {getItem:()=>null, setItem:noop};
+const engineErrors = [], log = console.log;
+console.log = (...args) => { if (String(args[0]).startsWith('Error')) engineErrors.push(args.join(' ')); };
+function near(actual, expected, label) { assert(Math.abs(actual - expected) < 1e-8, `${label}: ${actual} != ${expected}`); }
+function numeric(Q) { for (const [key, value] of Object.entries(Q)) if (typeof value === 'number') assert(Number.isFinite(value), key + ' must remain finite'); }
+lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'), (error, game) => {
+    if (error) throw error;
+    const passed = [];
+    function fresh() {
+        const ui = new lib.NullUserInterface(); ui.show_portraits = false;
+        const engine = new lib.DendryEngine(ui, game);
+        window.dendryUI = global.dendryUI = {dendryEngine:engine};
+        engine.beginGame([1,2,3,4,5]); engine.goToScene('root.start'); engine.goToScene('root.start_main');
+        return engine;
+    }
+    function test(name, run) {
+        engineErrors.length = 0;
+        const e = fresh();
+        run(e, e.state.qualities);
+        assert.deepEqual(engineErrors, [], name + ': engine error');
+        numeric(e.state.qualities);
+        passed.push(name);
+    }
+    function action(e, id) { assert(game.scenes[id], id); e._runActions(game.scenes[id].onArrival); }
+    function pick(e, id) {
+        const choices = e.getCurrentChoices(), index = choices.findIndex(choice => choice.id === id);
+        assert(index >= 0, id + ' unavailable in ' + choices.map(choice => choice.id).join(', '));
+        assert(!choices[index].unavailable, id + ' must be selectable');
+        e.choose(index);
+    }
+    function tick(e, Q) { Q.month_actions = 1; e.goToScene('post_event'); }
+    test('Stable dissent and no progression on navigation', (e,Q) => {
+        const keys = ['time','year','month','week','dissent','democracystatus','disk_turkis_conflict','coup_timer','workers_chp','rural_chp','forex_pressure'];
+        e.goToScene('post_event');
+        const before = keys.map(key => Q[key]), history = Q.economic_records.length;
+        for (let i=0;i<20;i++) e.goToScene('post_event');
+        assert.deepEqual(keys.map(key=>Q[key]), before); assert.equal(Q.economic_records.length, history);
+        const dissent = Q.dissent; tick(e,Q); near(Q.dissent, dissent, 'dissent');
+    });
+    test('Unhealthy economy changes support only when time passes', (e,Q) => {
+        Q.CHP_in_government=1; Q.prime_minister_party='CHP'; Q.base_inflation=100; Q.inflation_modifier=0;
+        Q.base_growth=-3; Q.base_unemployment=15; Q.last_economy_month=Q.year*12+Q.month;
+        e.goToScene('post_event'); const before=Q.workers_chp;
+        for(let i=0;i<5;i++) e.goToScene('post_event'); near(Q.workers_chp,before,'workers support');
+        tick(e,Q); assert(Q.workers_chp < before);
+    });
+    test('Monthly coup chance is not rerolled by navigation', (e,Q) => {
+        Q.democracystatus=5; Q.army_in_government=0; Q.tsk_pacified=0; Q.coup_timer=0;
+        const random=Math.random; let rolls=0;
+        try {
+            Math.random=()=>{rolls++; return 0.99;};
+            for(let i=0;i<5;i++) e.goToScene('post_event'); assert.equal(rolls,0);
+            tick(e,Q); assert.equal(rolls,0); tick(e,Q); assert.equal(rolls,1);
+            for(let i=0;i<5;i++) e.goToScene('post_event'); assert.equal(rolls,1);
+        } finally { Math.random=random; }
+    });
+    test('Industrial investment survives turns and charges stated costs', (e,Q) => {
+        Q.budget=10; const population=Q.petty_bourgeoisie, supporters=Q.capitalists_chp;
+        action(e,'industrial_policy.industry1'); assert.equal(Q.budget,7);
+        assert.equal(Q.industrial_production_index,110); assert.equal(Q.capitalists_chp,supporters+5);
+        near(Q.petty_bourgeoisie,population,'demographic weight'); tick(e,Q); assert.equal(Q.industrial_production_index,110);
+        action(e,'industrial_policy.elektronik'); assert.equal(Q.budget,5);
+        action(e,'industrial_policy.koykentindustry'); assert.equal(Q.budget,4);
+    });
+    test('Economic and military modifier aliases reach production', (e,Q) => {
+        const before=Q.industrial_production_index;
+        action(e,'economic_policy.importban'); assert.equal(Q.industrial_production_index,before+3);
+        tick(e,Q); assert.equal(Q.industrial_production_index,before+3);
+        assert(!('industrial_production_index_modifier' in Q));
+    });
+    test('Labour inflation is retained when the sidebar prepares its display', (e,Q) => {
+        const before=Q.inflation; action(e,'labor_affairs.national'); near(Q.inflation,before+0.5,'collective bargaining');
+        action(e,'status'); near(Q.inflation,before+0.5,'sidebar must not erase inflation');
+        const dp=Q.DP_relation,msp=Q.MSP_relation; action(e,'labor_affairs.kit');
+        near(Q.DP_relation,dp-8,'DP relations'); near(Q.MSP_relation,msp-4,'MSP relations');
+    });
+    test('Structural economic policy survives monthly baseline refresh', (e,Q) => {
+        Q.oil=2; e.goToScene('post_event'); near(Q.oil_inflation_effect,15,'oil benefit');
+        for(let i=0;i<4;i++) tick(e,Q);
+        near(Q.inflation,Q.base_inflation+Q.inflation_modifier-15,'persistent oil benefit');
+        Q.year=1978; Q.Tiger=2; e.goToScene('post_event');
+        for(let i=0;i<2;i++) tick(e,Q);
+        near(Q.inflation,Q.base_inflation+Q.inflation_modifier-45,'Tiger and oil inflation');
+        near(Q.economic_growth,Q.base_growth+Q.growth_modifier+3,'Tiger growth');
+    });
+    test('Cooldowns decrement once per month', (e,Q) => {
+        action(e,'intrapartyinfluence'); assert.equal(Q.intraparty_timer,8);
+        tick(e,Q); assert.equal(Q.intraparty_timer,8); tick(e,Q); assert.equal(Q.intraparty_timer,7);
+        for(let i=0;i<16;i++) tick(e,Q); assert.equal(Q.intraparty_timer,0);
+        Q.CHP_party_leader='Ecevit'; assert(e._runPredicate(game.scenes.intrapartyinfluence.viewIf,true));
+    });
+    test('Every cabinet formation clears the previous cabinet', (e,Q) => {
+        Q.AP_in_government=1; Q.MSP_in_government=1; Q.TIP_in_government=1; Q.in_left_front=1;
+        Q.education_minister_party='MSP'; Q.chp_seats=260; e.goToScene('national_elections.CHP_majority');
+        assert.equal(Q.CHP_in_government,1); assert.equal(Q.AP_in_government,0); assert.equal(Q.MSP_in_government,0);
+        assert.equal(Q.TIP_in_government,0); assert.equal(Q.in_left_front,0);
+        assert(e._runPredicate(game.scenes['industrial_policy.kredi'].chooseIf,true));
+        action(e,'vote_of_no_confidence.caretaker');
+        for(const minister of ['foreign','interior','justice','labor','defense','economic','finance','agriculture','education','trade','industrial'])
+            assert.equal(Q[minister+'_minister_party'],'I',minister);
+        assert.equal(Q.prime_minister_party,'I'); assert.equal(Q.CHP_in_government,0);
+    });
+    test('Alternative coalition collapses clear ministries and align election clocks', (e,Q) => {
+        Q.education_minister_party='CHP'; Q.TIP_in_government=1;
+        Q.year=1974; Q.month=11; Q.next_election_time=Q.time+100;
+        action(e,'coalition_affairs.bring_down2');
+        assert.equal(Q.next_election_time-Q.time,6); assert.equal(Q.next_election_year,1975); assert.equal(Q.next_election_month,2);
+        assert.equal(Q.education_minister_party,'I'); assert.equal(Q.TIP_in_government,0);
+        Q.education_minister_party='CHP'; action(e,'coalition_affairs.bring_down');
+        assert.equal(Q.education_minister_party,'I'); assert.equal(Q.AP_in_government,1);
+    });
+    test('Action gates use canonical economic, cabinet and leader fields', (e,Q) => {
+        Q.economicreform=1; Q.inflation=10; Q.economic_growth=8; Q.unemployed=4;
+        Q.west_relation=80; Q.cyprus_problem=2;
+        assert(e._runPredicate(game.scenes['foreign_policy.aet'].chooseIf,true));
+        Q.AP_in_government=1; assert(!e._runPredicate(game.scenes['foreign_policy.east'].chooseIf,true));
+        Q.CHP_party_leader='Ecevit'; Q.dissent=0.5;
+        assert(e._runPredicate(game.scenes.party_disunity.viewIf,true));
+        Q.year=1974; Q.advisor_action_timer=3; assert(!e._runPredicate(game.scenes['avcioglu.devrim'].chooseIf,true));
+    });
+    test('Advisor education route reaches a working reform', (e,Q) => {
+        Q.CHP_in_government=1; Q.education_minister_party='CHP'; Q.budget=10;
+        e.goToScene('ustundag'); pick(e,'ustundag.ministry'); assert.equal(e.state.sceneId,'education_science.ed_menu');
+        pick(e,'education_science.onetime'); pick(e,'education_science.curriculum');
+        assert.equal(Q.curriculumm,1); assert.equal(Q.budget,8); assert.equal(Q.advisor_action_timer,3);
+    });
+    test('Avcioglu economy route reaches a working policy', (e,Q) => {
+        Q.CHP_in_government=1; Q.economic_minister_party='CHP';
+        e.goToScene('avcioglu'); pick(e,'avcioglu.economicpolicy'); assert.equal(e.state.sceneId,'economic_policy.economy_menu');
+        const before=Q.inflation; pick(e,'economic_policy.short'); pick(e,'economic_policy.pricecontrols');
+        near(Q.inflation,before-3,'price controls'); assert.equal(Q.economic_minister,'Avcıoğlu');
+    });
+    test('Aksoy records an AET application once', (e,Q) => {
+        Q.CHP_in_government=1; Q.west_relation=90;
+        e.goToScene('aksoy'); pick(e,'aksoy.AET'); assert.equal(Q.aet,1);
+        Q.advisor_action_timer=0; e.goToScene('aksoy'); assert(!e.getCurrentChoices().some(choice=>choice.id==='aksoy.AET'));
+    });
+    test('Faction gains change congress seats and preserve quarter proportions', (e,Q) => {
+        action(e,'status'); action(e,'status.the_party');
+        const seats=Q.lk_congress_seats, strength=Q.left_kemalists_strength;
+        const model=rules.factionModel(Q), ratio=model.effective(0,'lk')/model.effective(1,'lk');
+        action(e,'gunes.theory'); action(e,'status'); action(e,'status.the_party');
+        assert(Q.lk_congress_seats>seats); near(Q.left_kemalists_strength,strength+5,'five percentage points');
+        const next=rules.factionModel(Q); near(next.effective(0,'lk')/next.effective(1,'lk'),ratio,'quarter proportions');
+        assert.equal(['km','lk','ok','rk','tw'].reduce((sum,f)=>sum+Q[f+'_congress_seats'],0),1200);
+    });
+    test('Polls and elections share the preserved TIP transfer rule', (e,Q) => {
+        Q.classes=['workers']; Q.parties=['chp','TIP','AP','other']; Q.workers=1;
+        Q.workers_chp=40; Q.workers_TIP=20; Q.workers_AP=40; Q.workers_other=0;
+        for(const [banned,endorsement,expectedCHP,expectedTIP] of [[0,0,40,20],[1,0,50,0],[1,1,100*50/90,0]]) {
+            Q.TIP_banned=banned; Q.disk_endorsement=endorsement;
+            const projection=rules.projectVotes(Q); near(projection.transfer,banned&&endorsement?10:0,'partial transfer');
+            near(projection.fractions.chp*100,expectedCHP,'CHP vote'); near(projection.fractions.TIP*100,expectedTIP,'TIP vote');
+            rules.refreshVotes(Q); action(e,'status.polls'); const poll=[Q.chp_votes,Q.TIP_votes];
+            action(e,'election_algorithm'); assert.deepEqual([Q.chp_votes,Q.TIP_votes],poll);
+        }
+    });
+    test('Zero displays, deflation and minimum unemployment remain valid', (e,Q) => {
+        Q.forex_pressure=0; Q.industrial_production_index=0; Q.agricultural_production_index=0; action(e,'status');
+        assert.equal(Q.forex_pressure_formatted,'0.0'); assert.equal(Q.industrial_index_formatted,'0.0'); assert.equal(Q.agricultural_index_formatted,'0.0');
+        Q.inflation_score=-6; Q.base_inflation=-1; Q.inflation_modifier=0; Q.base_unemployment=-5; Q.apply_economy_effects=0;
+        action(e,'economy_health_calculator'); assert.equal(Q.inflation_score,-1); assert.equal(Q.unemployed,0.5);
+        Q.agriculture_modifier=-1000; action(e,'modify_production_indices'); assert(Number.isFinite(Q.agricultural_product_prices));
+    });
+    test('Cyprus daily calendar reaches the existing exit without an extra turn', (e,Q) => {
+        Q.year=1974; Q.month=7; Q.week=2; Q.flavour_events=0; e.goToScene('kibrisdarbe');
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
+        const time=Q.time;
+        for(let i=0;i<48;i++) {
+            if(Q.cyprus_atilla1_complete && !Q.cyprus_atilla1_ending_seen) {
+                e.goToScene('cyprus_atilla1_ending'); pick(e,'cyprus_atilla1_ending.root');
+            }
+            if(Q.cyprus_month===7 && Q.cyprus_day>=20 && Q.cyprus_day<=24) {
+                e.goToScene('cyprus_atilla1_'+Q.cyprus_day);
+                pick(e,'cyprus_atilla1_'+Q.cyprus_day+'.historical');
+            } else window.cyprusAdvanceDay();
+        }
+        assert.equal(Q.cyprus_date_display,'September 1, 1974'); assert.deepEqual([Q.year,Q.month,Q.week],[1974,9,1]);
+        assert.equal(Q.time-time,3); assert.equal(e.state.sceneId,'kibrisson');
+        const endTime=Q.time; pick(e,'kibrisson.root'); e.goToScene('post_event');
+        assert.equal(Q.cyprus_mode,0); assert.equal(Q.time,endTime);
+    });
+    test('Cyprus date events respect flavour settings and calendar covers October', (e,Q) => {
+        Q.year=1974; Q.month=7; Q.week=2; Q.flavour_events=0; e.goToScene('kibrisdarbe');
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
+        Q.cyprus_day=23; window.cyprusAdvanceDay(); assert.notEqual(e.state.sceneId,'plane');
+        Q.cyprus_day=31; Q.cyprus_month=10; Q.cyprus_year=1974; Q.year=1974; Q.month=10; Q.week=2;
+        window.cyprusAdvanceDay(); assert.deepEqual([Q.cyprus_year,Q.cyprus_month,Q.cyprus_day],[1974,11,1]);
+    });
+    test('Atilla I tier and inclusive roll boundaries follow the agreed rules', () => {
+        const cyprus=rules.cyprusAtilla1;
+        for(const [value,tier] of [[0,0],[0.199,0],[0.2,1],[0.399,1],[0.4,2],[0.599,2],[0.6,3],[0.799,3],[0.8,4],[1,4]]) {
+            assert.equal(cyprus.militaryTier({army_land_strength:value,army_aerial_strength:value,army_naval_strength:value}),tier);
+        }
+        for(let tier=0;tier<5;tier++) for(let requirement=1;requirement<4;requirement++) {
+            const below=tier<requirement, bonus=Math.max(0,tier-requirement)*5;
+            assert.equal(cyprus.roll(tier,requirement,()=>0),below?0:Math.min(80,50+bonus));
+            assert.equal(cyprus.roll(tier,requirement,()=>1),below?60:80);
+        }
+        for(const [score,index] of [[0,0],[19,0],[20,1],[39,1],[40,2],[59,2],[60,3],[80,3]]) assert.equal(cyprus.resultIndex(score),index);
+    });
+    test('All eleven decisions expose four results and advance exactly one day', () => {
+        const cyprus=rules.cyprusAtilla1;
+        for(const day of [20,21,22,23,24]) for(const option of Object.keys(cyprus.days[day].actions)) for(let result=0;result<4;result++) {
+            const e=fresh(), Q=e.state.qualities;
+            Q.year=1974;Q.month=7;Q.week=2;Q.flavour_events=0;e.goToScene('kibrisdarbe');
+            Q.cyprus_day=20;Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=0;
+            for(let prior=20;prior<day;prior++) assert(cyprus.resolve(Q,prior,'alternative',()=>0));
+            e.goToScene('cyprus_atilla1_'+day);e.random.random=()=>result*20/61;
+            const before=Q.time;
+            pick(e,'cyprus_atilla1_'+day+'.'+option);
+            assert.equal(Q.cyprus_atilla1_last_outcome,cyprus.outcomes[result]);
+            assert.equal(Q.cyprus_atilla1_results.at(-1).score,result*20);
+            assert.equal(Q.cyprus_day,day+1);assert.equal(Q.time,before);
+            assert(Q.cyprus_atilla1_last_text.length>30);
+            const score=Q.cyprus_atilla1_score, leverage=Q.leverage_points;
+            let rerolls=0;assert.equal(cyprus.resolve(Q,day,option,()=>{rerolls++;return 1;}),false);
+            e.goToScene('cyprus_atilla1_'+day+'.'+option);
+            assert.equal(Q.cyprus_atilla1_score,score);assert.equal(Q.leverage_points,leverage);assert.equal(rerolls,0);
+            pick(e,'cyprus_atilla1_continue');
+            assert.equal(e.state.sceneId,day===24?'cyprus_atilla1_ending':'cyprus_atilla1_'+(day+1));
+        }
+    });
+    test('Atilla I preserves junction and defensive branches through the merge', () => {
+        const cyprus=rules.cyprusAtilla1;
+        for(const earlyJunction of [false,true]) for(const halt of [false,true]) {
+            const Q={cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:20,army_land_strength:0,army_naval_strength:0,army_aerial_strength:0};
+            cyprus.initialize(Q);cyprus.resolve(Q,20,'historical',()=>1);
+            cyprus.resolve(Q,21,earlyJunction?'historical':'alternative',()=>1);
+            assert.equal(Q.cyprus_atilla1_junction,earlyJunction?1:0);
+            assert(cyprus.briefing(Q,22).includes(earlyJunction?'connected':'separated'));
+            cyprus.resolve(Q,22,halt?'alternative':'historical',()=>1);
+            assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
+            cyprus.resolve(Q,23,'historical',()=>1);
+            assert(Q.cyprus_atilla1_last_text.includes(halt?'severely depleted':'broader defensive perimeter'));
+            if(halt) assert(!Q.cyprus_atilla1_frontline.includes('perimeter gained'));
+            cyprus.resolve(Q,24,'alternative',()=>1);
+            assert.equal(Q.cyprus_atilla1_score,300);assert.equal(Q.cyprus_atilla1_reward,4);
+            assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
+        }
+    });
+    test('Atilla I endings cover 199/200/299/300/400 and award leverage once', () => {
+        const cyprus=rules.cyprusAtilla1;
+        for(const [total,ending,reward] of [[199,'Failure',0],[200,'Successful',2],[299,'Successful',2],[300,'Massive',4],[400,'Massive',4]]) {
+            const Q={cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:20,leverage_points:7,army_land_strength:0,army_naval_strength:0,army_aerial_strength:0};
+            cyprus.initialize(Q);
+            const scores=total===400?[80,80,80,80,80]:total===300?[60,60,60,60,60]:total===299?[60,60,60,59,60]:total===200?[40,40,40,40,40]:[40,40,40,39,40];
+            for(let i=0;i<5;i++) {
+                const score=scores[i];Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=score>60?1:0;
+                cyprus.resolve(Q,20+i,'historical',()=>score>60?1:score/61);
+            }
+            assert.equal(Q.cyprus_atilla1_score,total);assert.equal(Q.cyprus_atilla1_ending,ending);
+            assert.equal(Q.cyprus_atilla1_reward,reward);assert.equal(Q.leverage_points,7+reward);
+            assert.equal(cyprus.resolve(Q,24,'historical',()=>1),false);assert.equal(Q.leverage_points,7+reward);
+            assert.equal(Q.cyprus_day,25);
+        }
+    });
+    test('Atilla I decisions survive save/restore and cannot be skipped', (e,Q) => {
+        Q.year=1974;Q.month=7;Q.week=2;Q.flavour_events=0;e.goToScene('kibrisdarbe');Q.cyprus_day=20;
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
+        window.cyprusAdvanceDay();assert.equal(Q.cyprus_day,20);assert.equal(e.state.sceneId,'cyprus_atilla1_20');
+        const before=JSON.parse(JSON.stringify(e.getExportableState()));
+        pick(e,'cyprus_atilla1_20.alternative');const first=Q.cyprus_atilla1_results[0];
+        const after=JSON.parse(JSON.stringify(e.getExportableState()));
+        e.setState(before);pick(e,'cyprus_atilla1_20.alternative');assert.deepEqual(e.state.qualities.cyprus_atilla1_results[0],first);
+        e.setState(after);assert.equal(e.state.qualities.cyprus_day,21);assert.deepEqual(e.state.qualities.cyprus_atilla1_results[0],first);
+        window.cyprusAdvanceDay();assert.equal(e.state.qualities.cyprus_day,21);assert.equal(e.state.sceneId,'cyprus_atilla1_21');
+    });
+    test('Atilla I preserves optional stories before the next daily decision', (e,Q) => {
+        Q.year=1974;Q.month=7;Q.week=2;Q.flavour_events=1;e.goToScene('kibrisdarbe');Q.cyprus_day=20;
+        e.goToScene('cyprus_atilla1_20');pick(e,'cyprus_atilla1_20.historical');pick(e,'cyprus_atilla1_continue');
+        assert.equal(e.state.sceneId,'ayse');pick(e,'ayse.root');assert.equal(e.state.sceneId,'cyprus_atilla1_21');
+        pick(e,'cyprus_atilla1_21.alternative');pick(e,'cyprus_atilla1_continue');
+        pick(e,'cyprus_atilla1_22.alternative');pick(e,'cyprus_atilla1_continue');
+        pick(e,'cyprus_atilla1_23.alternative');pick(e,'cyprus_atilla1_continue');
+        assert.equal(e.state.sceneId,'plane');pick(e,'plane.root');assert.equal(e.state.sceneId,'cyprus_atilla1_24');
+    });
+    test('Eight years of controlled half-month updates remain finite', (e,Q) => {
+        for(let i=0;i<192;i++) { tick(e,Q); numeric(Q); }
+        assert.deepEqual([Q.year,Q.month],[1980,1]);
+    });
+    test('Cyprus return restores the normal panel and a chart with a whitespace placeholder', (e,Q) => {
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
+        window.statusTabRight='status.cyprus'; Q.cyprus_mode=0;
+        window.updateSidebar=window.updatePartySidebar=window.setupCyprusMapClicks=window.updateTitleScreenImages=noop;
+        window.onDisplayContent(); assert.equal(window.statusTabRight,'status.the_party');
+        Q.started=0; let uninitializedRenders=0;
+        window.updateSidebar=window.updatePartySidebar=()=>{uninitializedRenders++;};
+        window.onDisplayContent(); assert.equal(uninitializedRenders,0,'title screen must not render hidden game panels');
+        Q.started=1;
+        const lookup=document.getElementById;
+        const svg={parentElement:{offsetWidth:600}, firstElementChild:null, innerHTML:' ', hasChildNodes:()=>true};
+        document.getElementById=id=>id==='party-parliament'?svg:node;
+        try {
+            window.partyParliamentData=[{id:'lk',seats:1200,color:'red',outline:'black'}];
+            window._lastParliamentDataKey='600:'+JSON.stringify(window.partyParliamentData);
+            window._cachedParliamentSVGContent='<circle></circle>';
+            window.renderPartyParliament(); assert.equal(svg.innerHTML,'<circle></circle>');
+            svg.firstElementChild={}; svg.innerHTML='existing chart';
+            window.renderPartyParliament(); assert.equal(svg.innerHTML,'existing chart');
+        } finally {document.getElementById=lookup;}
+    });
+    test('State checker catches unknown names and ignores comments and text', () => {
+        const uses=new Map(check.stateKeys('// Q.ignore_me\nQ.AP_in_goverment = 1; Q["TIP_relation"] += 2; const label="Q.text";').map(key=>[key,new Set()]));
+        assert.deepEqual(check.unknownKeys(uses,new Set(['TIP_relation'])),['AP_in_goverment']);
+    });
+    test('History chart uses actual data dates and accepts empty records', () => {
+        let domain, calls=0;
+        const chain=new Proxy({}, {get:()=>()=>chain});
+        const line=()=>{const fn=()=>'';fn.x=fn.y=()=>fn;return fn;};
+        global.d3={select:()=>chain,selectAll:()=>chain,max:(data,fn)=>data.reduce((a,b)=>a===undefined||(fn?fn(b):b)>(fn?fn(a):a)?b:a,undefined),
+            min:data=>data.reduce((a,b)=>a===undefined||b<a?b:a,undefined),scaleUtc:(dates)=>{domain=dates;calls++;return ()=>0;},
+            scaleLinear:()=>()=>0,axisBottom:()=>chain,axisLeft:()=>chain,timeFormat:()=>noop,line,scaleOrdinal:()=>noop,schemeCategory10:[]};
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/d3-linegraph.js'),'utf8'));
+        const chart=d3.linegraph(false,true,['chp'],{chp:'red'},{chp:'CHP'},100,0,1);
+        chart({each:callback=>callback.call({},[])}); assert.equal(calls,0);
+        chart({each:callback=>callback.call({},[{date:'1973-10-01',chp:30},{date:'1969-10-01',chp:20}])});
+        assert.equal(domain[0].getFullYear(),1969); assert.equal(domain[1].getFullYear(),1973);
+        global.d3=null;
+    });
+    console.log=log;
+    log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');
+    if(process.env.REPAIR_RESULTS) fs.writeFileSync(process.env.REPAIR_RESULTS,JSON.stringify({passed,scenes:Object.keys(game.scenes).length},null,2));
+});

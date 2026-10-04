@@ -65,7 +65,7 @@ subtitle: A party without a vision is not a party but a gathering
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the spread of unorthodox ideas.
 view-if: I_government == 0
-on-arrival: marxist_kemalists_strength += 5; workers_chp += 1; newideas += 1
+on-arrival: {! AnatolianRules.adjustFactionStrength(Q, 'km', 5); !}  workers_chp += 1; newideas += 1
 
 We are happy to hear new voices raising their visions for a new Turkey.
 

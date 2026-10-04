@@ -1,0 +1,37 @@
+title: A ceasefire without security
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 23 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 23); !}
+
+= 23 July 1974 — A ceasefire without security
+
+[+ cyprus_atilla1_briefing +]
+
+Previous report: [+ cyprus_atilla1_last_text +]
+
+- @historical: Historical course: Continue consolidation while entering diplomatic talks.
+- @alternative: Alternative: Halt offensive movement and seek UN protection for exposed communities.
+
+@historical
+title: Historical course: Continue consolidation while entering diplomatic talks.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 23 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 23, 'historical', this.random.random.bind(this.random)); !}
+
+= 23 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
+
+@alternative
+title: Alternative: Halt offensive movement and seek UN protection for exposed communities.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 23 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 23, 'alternative', this.random.random.bind(this.random)); !}
+
+= 23 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].

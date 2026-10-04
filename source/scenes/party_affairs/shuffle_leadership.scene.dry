@@ -462,7 +462,7 @@ subtitle: Kemal Satır is a former doctor and one of the prominent names among t
 is-card: true
 card-image: img/portraits/KemalSatir.png
 tags: orthodox_kemalist_advisor
-view-if: chp_party_leader == "İnönü" and satir_advisor = 0 and n_advisors < 2 and party_leader_id != "satir" and party_secretary_id != "satir"
+view-if: CHP_party_leader == "İnönü" and satir_advisor = 0 and n_advisors < 2 and party_leader_id != "satir" and party_secretary_id != "satir"
 on-arrival: satir_advisor = 1; n_advisors += 1
 go-to: advisor_menu
 
@@ -488,7 +488,7 @@ title: Ali İhsan Göğüs
 subtitle: Ali İhsan Göğüs is a staunch opponent of the left of center movement and has served as the minister of tourism in the Nihat Erim cabinet.
 is-card: true
 card-image: img/portraits/AliIhsanGogus.jpg
-view-if: chp_party_leader == "İnönü" and gogus_advisor = 0 and n_advisors < 2 and party_leader_id != "gogus" and party_secretary_id != "gogus"
+view-if: CHP_party_leader == "İnönü" and gogus_advisor = 0 and n_advisors < 2 and party_leader_id != "gogus" and party_secretary_id != "gogus"
 on-arrival: gogus_advisor = 1; n_advisors += 1
 go-to: advisor_menu
 tags: right_kemalist_advisor
@@ -500,7 +500,7 @@ title: Emin Paksüt
 subtitle: Emin Paksüt is a Right Kemalist intellectual and former minister of public works.
 is-card: true
 card-image: img/portraits/Eminpaksut.jpeg
-view-if: chp_party_leader == "İnönü" and paksut_advisor = 0 and n_advisors < 2 and party_leader_id != "paksut" and party_secretary_id != "paksut"
+view-if: CHP_party_leader == "İnönü" and paksut_advisor = 0 and n_advisors < 2 and party_leader_id != "paksut" and party_secretary_id != "paksut"
 on-arrival: paksut_advisor = 1; n_advisors += 1
 go-to: advisor_menu
 tags: right_kemalist_advisor
@@ -512,7 +512,7 @@ title: Fethi Çelikbaş
 subtitle: Fethi Çelikbaş is a pragmatist Right Kemalist politician and former minister of Industry and economy.
 is-card: true
 card-image: img/portraits/FethiCelikbas.jpeg
-view-if: chp_party_leader == "İnönü" and celikbas_advisor = 0 and n_advisors < 2 and party_leader_id != "celikbas" and party_secretary_id != "celikbas"
+view-if: CHP_party_leader == "İnönü" and celikbas_advisor = 0 and n_advisors < 2 and party_leader_id != "celikbas" and party_secretary_id != "celikbas"
 on-arrival: celikbas_advisor = 1; n_advisors += 1
 go-to: advisor_menu
 tags: right_kemalist_advisor

@@ -1,7 +1,7 @@
 title: Vote of No Confidence
 subtitle: Our coalition partners call for our removal
 new-page: true
-view-if: CHP_in_government = 1 and (in_weimar_coalition = 1 or in_grand_coalition = 1 or in_popular_front = 1 or in_msp_coalition = 1) and coalition_dissent >= 4 and chp_votes < 50 and not constructive_vonc
+view-if: CHP_in_government = 1 and (in_democratic_coalition = 1 or in_grand_coalition = 1 or in_popular_front = 1 or in_msp_coalition = 1) and coalition_dissent >= 4 and chp_votes < 50 and not constructive_vonc
 tags: event
 on-arrival: coalition_dissent = 2 if coalition_dissent > 2
 go-to: vonc_menu
@@ -19,13 +19,15 @@ go-to: nationalist_front if in_msp_coalition = 1; caretaker
 
 @nationalist_front
 on-arrival: {!
+    AnatolianRules.resetCabinet(Q);
     Q.CHP_in_government = 0;
     Q.in_msp_coalition = 0;
     Q.coalition_dissent = 0;
-    Q.chancellor = "Süleyman Demirel";
-    Q.chancellor_party = "AP";
-    Q.z_in_government = 1;
+    Q.prime_minister = "Süleyman Demirel";
+    Q.prime_minister_party = "AP";
+    Q.AP_in_government = 1;
     Q.MHP_in_government = 1;
+    Q.in_right_coalition = 1;
     Q.MSP_in_government = 1;
     Q.CGP_in_government = 1;
     Q.democracystatus -= 5;
@@ -35,12 +37,14 @@ The vote succeeds and our government falls. However, the right wing parties, see
 
 @caretaker
 on-arrival: {!
+    AnatolianRules.resetCabinet(Q);
+    Q.I_in_government = 1;
     Q.CHP_in_government = 0;
-    Q.in_weimar_coalition = 0;
+    Q.in_democratic_coalition = 0;
     Q.in_grand_coalition = 0;
     Q.in_popular_front = 0;
     Q.coalition_dissent = 0;
-    Q.next_election_time = Q.time + 3;
+    Q.next_election_time = Q.time + 6;
     Q.next_election_month = Q.month + 3;
     Q.next_election_year = Q.year;
     if (Q.next_election_month > 12) {

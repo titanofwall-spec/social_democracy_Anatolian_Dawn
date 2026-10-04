@@ -34,33 +34,33 @@ Our relations with the labour movement also depends on the actions we will take 
 - @labour_menu: Return to the Labour Menu.
 
 @national
-on-arrival: nationall += 1; disk_relation += 5; unemployment_modifier += 0.2; growth_modifier -= 0.2; inflation += 0.5; workers_chp += 4; democracystatus += 1
+on-arrival: nationall += 1; disk_relation += 5; unemployment_modifier += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.5; workers_chp += 4; democracystatus += 1; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: nationall < 1
 unavailable-subtitle: We have already implemented collective bargaining!
 
-Until now the employers were able to avoid paying their employees their rightful salaries by singling them out and forcing them to sign inhumane contracts. We shall allow that no more. Through collective bargaining the workers will stand as a united block against monopolist pressure. 
+Until now the employers were able to avoid paying their employees their rightful salaries by singling them out and forcing them to sign inhumane contracts. We shall allow that no more. Through collective bargaining the workers will stand as a united block against monopolist pressure.
 
 Due to the regularization of salaries inflation has slightly increased but this is nothing compared to its benefits.
 
 @kit
-on-arrival: kitt += 1; disk_relation += 5; inflation_modifier += 0.5; unemployment_modifier += 0.2; z_relation -= 8; dp_relation -= 8; msp_relation -= 4; democracystatus += 1; workers_chp += 4
+on-arrival: kitt += 1; disk_relation += 5; inflation_modifier += 0.5; unemployment_modifier += 0.2; AP_relation -= 8; DP_relation -= 8; MSP_relation -= 4; democracystatus += 1; workers_chp += 4; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: kitt < 1
 unavailable-subtitle: We have already passed workplace democracy reforms!
 
 Though we are against Marxism and claim to be an indigenous leftist movement, the workers' lack of control over the goods they produce with their labour just as concerns us as the Marxists. Though not full management, electing worker advisor represenatives for the management of the state corporations will both improve labour conditions and foster beneficial connections between the company administrators and workers.
 
-However the right sees this as an attempt at bringing 'ungodly' Socialism and our relations visibly deteriorate. 
+However the right sees this as an attempt at bringing 'ungodly' Socialism and our relations visibly deteriorate.
 
 @ikincilgrev
 subtitle: Secondary strikes are additional strikes launched by labourers of other industries to support the workers striking in the case of exploitation.
-on-arrival: ikincilgrevv += 1; disk_relation += 8; inflation_modifier += 0.2; growth_modifier -= 0.2; unemployment_modifier += 0.2; z_relation -= 5; workers_chp += 4
+on-arrival: ikincilgrevv += 1; disk_relation += 8; inflation_modifier += 0.2; growth_modifier -= 0.2; unemployment_modifier += 0.2; AP_relation -= 5; workers_chp += 4; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: ikincilgrevv < 1
 unavailable-subtitle: We have already legalized secondary strikes to some extent!
 
 Even though secondary strikes have been banned until now, we foster loopholes enabling the workers to support their brothers in need. AP accuses of creating class conflict and calls our actions unlawful.
 
 @healthinspections
-on-arrival: healthinspectionss += 1; disk_relation += 5; democracystatus += 1; inflation_modifier += 0.2; unemployment_modifier += 0.2; growth_modifier -= 0.1
+on-arrival: healthinspectionss += 1; disk_relation += 5; democracystatus += 1; inflation_modifier += 0.2; unemployment_modifier += 0.2; growth_modifier -= 0.1; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: healthinspectionss < 1
 unavailable-subtitle: We have already made health inspections mandatory in large factories!
 
@@ -68,7 +68,7 @@ Major factories have often been able to avoid workplace safety and health inspec
 
 @lokavt
 subtitle: Employer lockouts are the inverse of worker strikes; in times of disagreement the employers lock their workplaces out and refuse to pay the workers their salaries until the workers succumb to their demands.
-on-arrival: lokavtt += 1; disk_relation += 8; z_relation -= 5; democracystatus += 1; inflation_modifier += 0.5; unemployment_modifier -= 0.2
+on-arrival: lokavtt += 1; disk_relation += 8; AP_relation -= 5; democracystatus += 1; inflation_modifier += 0.5; unemployment_modifier -= 0.2; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: lokavtt < 1
 unavailable-subtitle: We have already hardened justification of employer lockouts!
 
@@ -84,12 +84,12 @@ We are preventing employers from cheating through negotiations of wage and many 
 - @labour_menu: Return to the Labour Menu.
 
 @hukukikoruma
-on-arrival: disk_relation += 4; inflation_modifier += 0.2; unemployment_modifier -= 0.2; democracystatus += 1
+on-arrival: disk_relation += 4; inflation_modifier += 0.2; unemployment_modifier -= 0.2; democracystatus += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 Syndicate representatives, often from the left wing DİSK, are often harassed by both owners of big business and the sycophant state officials following the lead of their de-facto financers. We are preventing this onslaught by increasing legal protections for the union representatives.
 
 @workplaceinspections
-on-arrival: disk_relation += 2; workers_chp += 3; unemployment_modifier += 0.2; inflation_modifier += 0.2
+on-arrival: disk_relation += 2; workers_chp += 3; unemployment_modifier += 0.2; inflation_modifier += 0.2; {! AnatolianRules.refreshEconomy(Q); !}
 
 Workplace investigations regarding violation of the labour laws is one of the important responsibilities of the Labour Ministry. The workers appreciate us finally taking action on this front.
 
@@ -102,7 +102,7 @@ Some of our smaller syndicates have struggled with getting recognition from the 
 subtitle: -1 budget. A lot of our workers depend on state support to make it to the end of the month!
 choose-if: budget >= 1
 unavailable-subtitle: Requires 1 budget.
-on-arrival: disk_relation += 4; budget -= 1; inflation += 0.2; unemployment += 0.5; workers_chp += 6 * (1 - dissent)
+on-arrival: disk_relation += 4; budget -= 1; inflation_modifier += 0.2; unemployment_modifier += 0.5; workers_chp += 6 * (1 - dissent); {! AnatolianRules.refreshEconomy(Q); !}
 
 We increased spending for the Social Security Institute. Our labourers appreciate this greatly.
 
@@ -110,6 +110,6 @@ We increased spending for the Social Security Institute. Our labourers appreciat
 subtitle: -1 budget.
 choose-if: budget >= 1
 unavailable-subtitle: Requires 1 budget.
-on-arrival: disk_relation += 2; police_loyalty -= 0.05; growth_modifier += 0.5; inflation_modifier += 0.5; unemployment_modifier -= 1.5
+on-arrival: disk_relation += 2; police_loyalty -= 0.05; growth_modifier += 0.5; inflation_modifier += 0.5; unemployment_modifier -= 1.5; {! AnatolianRules.refreshEconomy(Q); !}
 
 We recruit many of our unemployed citizens in various state institutions. These efforts boost our growth and employment values, though police loyalty is impacted to some extent.

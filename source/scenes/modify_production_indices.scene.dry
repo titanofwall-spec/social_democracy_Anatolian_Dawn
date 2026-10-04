@@ -33,16 +33,7 @@ if (Q.agricultural_consumption_change && Q.agricultural_consumption_change !== 0
     Q.agricultural_consumption_change = 0;
 }
 
-// Recalculate production indices without forex pressure impact
-var baseIndustry = (typeof Q.base_industry_index === 'number') ? Q.base_industry_index : (Q.historical_industrial_index[Q.year] !== undefined ? Q.historical_industrial_index[Q.year] : 100);
-var baseAgriculture = (typeof Q.base_agriculture_index === 'number') ? Q.base_agriculture_index : (Q.historical_agricultural_index[Q.year] !== undefined ? Q.historical_agricultural_index[Q.year] : 100);
-Q.industrial_production_index = baseIndustry + (Q.industry_modifier || 0);
-Q.agricultural_production_index = baseAgriculture + (Q.agriculture_modifier || 0);
-if (Q.industrial_production_index < 0) { Q.industrial_production_index = 0; }
-if (Q.agricultural_production_index < 0) { Q.agricultural_production_index = 0; }
-
-// Recalculate Agricultural Product Prices after any changes
-Q.agricultural_product_prices = Q.agricultural_consumption / Q.agricultural_production_index;
+AnatolianRules.refreshEconomy(Q);
 
 // Update agricultural price status text
 if (Q.agricultural_product_prices > 1.20) {

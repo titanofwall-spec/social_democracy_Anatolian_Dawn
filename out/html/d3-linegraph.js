@@ -16,13 +16,13 @@ function addMonths(date, months) {
 d3.linegraph = function(noTicks, noDots, parties, partyColors, partyNames, dataMax, dataMin, additionalMonths) {
     /* params */
     if (!parties) {
-        parties = ['chp', 'TIP', 'CGP', 'z', 'DP', 'MSP', 'MHP', 'other'];
+        parties = ['chp', 'TIP', 'CGP', 'AP', 'DP', 'MSP', 'MHP', 'other'];
     }
     if (!partyColors) {
-        partyColors = {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5a5f63', 'z': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'};
+        partyColors = {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5a5f63', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'};
     }
     if (!partyNames) {
-        partyNames = {'chp': 'CHP', 'TIP': 'TIP', 'CGP': 'CGP', 'z': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others'};
+        partyNames = {'chp': 'CHP', 'TIP': 'TIP', 'CGP': 'CGP', 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others'};
     }
     if (!additionalMonths) {
         additionalMonths = 10;
@@ -38,13 +38,16 @@ d3.linegraph = function(noTicks, noDots, parties, partyColors, partyNames, dataM
 
     function linegraph(dataset) {
      dataset.each(function (data) {
+      data = data.filter(d => Number.isFinite(new Date(d.date).getTime())).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      d3.select(this).selectAll('*').remove();
+      if (!data.length) return;
       const dates = data.map(d => new Date(d.date));
       // Map the data to an array of arrays of {x, y} tuples.
       const series = parties.map(party => data.map(d => ({'x': new Date(d.date), 'y': d[party], 'series': party})));
 
       // Declare the x (horizontal position) scale.
       const maxDate = d3.max(dates);
-      const xScale = d3.scaleUtc([new Date(1928, 0), addMonths(maxDate, additionalMonths)], [marginLeft, width - marginRight]);
+      const xScale = d3.scaleUtc([d3.min(dates), addMonths(maxDate, additionalMonths)], [marginLeft, width - marginRight]);
 
       var xaxis = d3.axisBottom()
         .tickFormat(d3.timeFormat('%b %Y'))
@@ -121,7 +124,7 @@ d3.linegraph = function(noTicks, noDots, parties, partyColors, partyNames, dataM
       }
 
       // draw nodes
-      const z = d3.scaleOrdinal(d3.schemeCategory10);
+      const AP = d3.scaleOrdinal(d3.schemeCategory10);
       if (!noDots) {
           svg.selectAll(".series")
               .data(series)

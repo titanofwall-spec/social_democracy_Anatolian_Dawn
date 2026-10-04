@@ -1,0 +1,37 @@
+title: Before the ceasefire
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 22); !}
+
+= 22 July 1974 — Before the ceasefire
+
+[+ cyprus_atilla1_briefing +]
+
+Previous report: [+ cyprus_atilla1_last_text +]
+
+- @historical: Historical: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.
+- @alternative: Alternative: Accept the ceasefire and halt offensive movement immediately.
+
+@historical
+title: Historical: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'historical', this.random.random.bind(this.random)); !}
+
+= 22 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
+
+@alternative
+title: Alternative: Accept the ceasefire and halt offensive movement immediately.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'alternative', this.random.random.bind(this.random)); !}
+
+= 22 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].

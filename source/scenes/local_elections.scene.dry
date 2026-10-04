@@ -13,7 +13,7 @@ The municipal contests are upon us. Control of the provinces—and the services 
 - @start: Tally the municipal vote.
 
 @start
-on-arrival: {! 
+on-arrival: {!
 Q.local_total_seats = Q.local_total_seats || 67;
 Q.local_election_threshold = (typeof Q.local_election_threshold !== 'undefined') ? Q.local_election_threshold : 8;
 !}
@@ -21,18 +21,18 @@ go-to: local_election_algorithm
 set-jump: local_results
 
 @local_results
-on-arrival: {! 
+on-arrival: {!
 var partyDisplayNames = {
 	'chp': 'CHP',
 	'TIP': 'TİP',
-	'z': 'AP',
+	'AP': 'AP',
 	'CGP': Q.CGP_name || 'CGP',
 	'DP': 'DP',
 	'MSP': 'MSP',
 	'MHP': 'MHP',
 	'other': 'Other'
 };
-var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'z', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 var lines = [];
 for (var party of parties) {
 	var displayName = partyDisplayNames[party] || party.toUpperCase();

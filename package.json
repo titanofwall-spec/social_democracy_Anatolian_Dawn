@@ -1,24 +1,23 @@
 {
-  "name": " social_democracy_alternate_history",
+  "name": "anatolian-dawn",
   "version": "0.11.1",
-  "description": "Building the game:",
+  "description": "An alternate-history political strategy game about CHP in 1970s Turkey.",
   "main": "out/html/index.html",
   "scripts": {
-    "dendrynexus": "dendrynexus"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://aucchen@github.com/aucchen/social_democracy_alternate_history.git"
+    "dendrynexus": "dendrynexus",
+    "build": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "test": "npm run check && node scripts/test-cleanup.js && node scripts/test-rules.js"
   },
   "keywords": [],
-  "author": "Autumn Chen",
+  "author": "Egehan, based on the original game by Autumn Chen",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/aucchen/social_democracy_alternate_history/issues"
-  },
-  "homepage": "https://github.com/aucchen/social_democracy_alternate_history",
   "dependencies": {
-    "dendrynexus": "github:aucchen/dendrynexus",
+    "dendrynexus": "https://github.com/aucchen/dendrynexus#aa4287ed2c03940c52b190c0a8c102b795ac1c79",
     "parliament-svg": "^3.0.0"
+  },
+  "devDependencies": {
+    "acorn": "8.18.0",
+    "typescript": "7.0.2"
   }
 }

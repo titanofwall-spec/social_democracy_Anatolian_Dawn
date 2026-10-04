@@ -30,7 +30,7 @@ Shall the voting begin?
 
 @commence
 go-to: aftervote
-on-display: {! 
+on-display: {!
 data = [
   {
       "id": "CHP-Nay",
@@ -104,25 +104,25 @@ data = [
   },
 ];
 if (window && d3) {
-    var width = 500; 
+    var width = 500;
     var height = 500;
     var screenWidth = document.getElementById('content').offsetWidth;
     if (screenWidth < width - 50) {
-        width = screenWidth - 50; 
+        width = screenWidth - 50;
         height = width;
-        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
-    } 
+        document.getElementById("parliament").style.height = screenWidth/2 + "px";
+    }
 
     var parliament = d3.parliament();
     parliament.width(width).height(height).innerRadiusCoef(0.4);
     parliament.enter.fromCenter(true).smallToBig(true);
     parliament.exit.toCenter(false).bigToSmall(true);
-    d3.select("#reichstag").datum(data).call(parliament);
+    d3.select("#parliament").datum(data).call(parliament);
     // Calculate green and red votes
     var greenVotes = 0, redVotes = 0;
     data.forEach(function(d) {
-        if (d.color === "#158e33") greenVotes += d.seats;
-        if (d.color === "#c51313") redVotes += d.seats;
+        if (d.color === "#158e33") { greenVotes += d.seats; }
+        if (d.color === "#c51313") { redVotes += d.seats; }
     });
     // Store result for DendryNexus (must use Q. for persistent state)
     Q.gezmisVoteAye = (greenVotes > redVotes);
@@ -130,14 +130,14 @@ if (window && d3) {
   var isAye = (greenVotes > redVotes);
 
   // Expose to Dendry view-if:
-  gezmisVoteAye = isAye;                  
+  gezmisVoteAye = isAye;
 
   // Also persist if Q exists (won't break if it doesn't)
   try { if (typeof Q !== "undefined") Q.gezmisVoteAye = isAye; } catch (e) {}
 }
 !}
 
-{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+{!<svg id="parliament" style="width: 500px; height: 250px;"> </svg>!}
 
 @aftervote
 view-if: true
@@ -153,7 +153,7 @@ view-if: gezmisVoteAye
 
 Dad;
 
-By the time this letter reaches you, I will be dead. I know that you will be saddened no matter how much I would tell you to not. However I want you to face this situation with fortitude. People are born, they live, and they die. What is important is not to live long, but to live meaningfully. For this reason I dont regret going away this quickly and my friends who have gone the same path before never feared death. You can be sure that I wont fear it either. Your son is not helpless or desparate in the face of death. He went through this path willingly and he knew that this would be his end. Our beliefs are different, however I think you will understand me. And not only you, I believe the entire Turkish and Kurdish peoples living in Turkey will do so too. I gave the necessary orders for my funeral to my lawyers. Also I will tell the prosecutor too. I want to be buried in Ankara alongside my friend Taylan Özgür who died in 1969. For this reason dont try to take my funeral to İstanbul. Its up to you now to comfort my mom. I am leaving my books to my little brother. Warn him especially, I want him to become a man of science. He shall work with science and should never forget, working for science is too in some way service for humanity. 
+By the time this letter reaches you, I will be dead. I know that you will be saddened no matter how much I would tell you to not. However I want you to face this situation with fortitude. People are born, they live, and they die. What is important is not to live long, but to live meaningfully. For this reason I dont regret going away this quickly and my friends who have gone the same path before never feared death. You can be sure that I wont fear it either. Your son is not helpless or desparate in the face of death. He went through this path willingly and he knew that this would be his end. Our beliefs are different, however I think you will understand me. And not only you, I believe the entire Turkish and Kurdish peoples living in Turkey will do so too. I gave the necessary orders for my funeral to my lawyers. Also I will tell the prosecutor too. I want to be buried in Ankara alongside my friend Taylan Özgür who died in 1969. For this reason dont try to take my funeral to İstanbul. Its up to you now to comfort my mom. I am leaving my books to my little brother. Warn him especially, I want him to become a man of science. He shall work with science and should never forget, working for science is too in some way service for humanity.
 
 I would like to express I have no regrets for what I did in the end, and I salute you, my mother, my older brother and younger brother with the burning passion of my revolutionarism.
 

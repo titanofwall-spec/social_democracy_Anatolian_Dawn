@@ -1,0 +1,35 @@
+title: A foothold, not a front
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
+
+= 20 July 1974 — A foothold, not a front
+
+[+ cyprus_atilla1_briefing +]
+
+- @historical: Historical: Advance toward a junction with the airborne forces.
+- @alternative: Alternative: Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.
+
+@historical
+title: Historical: Advance toward a junction with the airborne forces.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'historical', this.random.random.bind(this.random)); !}
+
+= 20 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
+
+@alternative
+title: Alternative: Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'alternative', this.random.random.bind(this.random)); !}
+
+= 20 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].

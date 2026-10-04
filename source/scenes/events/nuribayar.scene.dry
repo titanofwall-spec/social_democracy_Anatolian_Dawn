@@ -1,6 +1,6 @@
 title: The right parties reach an agreement!
 subtitle: Nuri Bayar is being proposed as an interim prime minister.
-view-if: year = 1972 and month = 6 and week = 2 and not chancellor = "Ferit Melen"
+view-if: year = 1972 and month = 6 and week = 2 and not prime_minister = "Ferit Melen"
 max-visits: 1
 tags: event
 new-page: true
@@ -13,9 +13,13 @@ After days of negotiation, CGP, AP and DP have come to an agreement about a poss
 - @accept: Is there really anything we can do?
 
 @accept
-on-arrival: {! 
-  Q.chancellor = "Nuri Bayar";
-  Q.chancellor_party = "AP";
+on-arrival: {!
+  AnatolianRules.resetCabinet(Q);
+  Q.AP_in_government = 1;
+  Q.CGP_in_government = 1;
+  Q.DP_in_government = 1;
+  Q.prime_minister = "Nuri Bayar";
+  Q.prime_minister_party = "AP";
 !}
 
 The Nuri Bayar government has begun.

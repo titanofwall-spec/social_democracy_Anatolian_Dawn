@@ -10,7 +10,7 @@ go-to: fiscal_menu
 
 = Fiscal Policy
 
-Fiscal policy involves issues of taxation and budget. 
+Fiscal policy involves issues of taxation and budget.
 
 
 @fiscal_menu
@@ -35,17 +35,17 @@ Lower-income tax rates: [+ lower_tax_rates : taxation +]
 
 @vergidilimi
 subtitle: This will benefit groups with low income and hurt the higher income bracket.
-on-arrival: worker_chp += 4*(dissent - 1); rural_chp += 1*(dissent - 1); state_employees_chp += 2*(dissent - 1); z_relation -= 5; DP_relation -= 5; vergidilimii += 1
+on-arrival: worker_chp += 4*(dissent - 1); rural_chp += 1*(dissent - 1); state_employees_chp += 2*(dissent - 1); AP_relation -= 5; DP_relation -= 5; vergidilimii += 1
 choose-if: vergidilimii == 0
-unavailable-subtitle: [? if vergidilimii == 1 : We have already reformed the tax brackets! ?] 
+unavailable-subtitle: [? if vergidilimii == 1 : We have already reformed the tax brackets! ?]
 
 Due to the rampant inflation of the last few years, many lower income families have been pushed into the higher taxed income brackets without any actual improvement in their purchasing power. We adjust the tax brackets accordingly with inflation and make up for the lost tax revenue by creating a new tax bracket for the highest earning individuals.
 
 @speculative
-subtitle: Speculative loans are used by companies to buy each others' stocks which creates the façade of growth without any improvement in production. 
-on-arrival: industrial_production_index += 5; growth_modifier += 0.5;  west_relation -= 5; us_relation -= 5; capitalist_chp -= 10; unemployment_modifier -= 0.5; speculativee += 1
-choose-if: speculativee == 0 and z_in_government == 0
-unavailable-subtitle: [? if speculativee == 1 : We have already implemented restrictions on speculative loans! ?] [? if z_in_government == 1 : AP is against any tax reform undermining the rich! ?]
+subtitle: Speculative loans are used by companies to buy each others' stocks which creates the façade of growth without any improvement in production.
+on-arrival: industry_modifier += 5; growth_modifier += 0.5;  west_relation -= 5; us_relation -= 5; capitalists_chp -= 10; unemployment_modifier -= 0.5; speculativee += 1; {! AnatolianRules.refreshEconomy(Q); !}
+choose-if: speculativee == 0 and AP_in_government == 0
+unavailable-subtitle: [? if speculativee == 1 : We have already implemented restrictions on speculative loans! ?] [? if AP_in_government == 1 : AP is against any tax reform undermining the rich! ?]
 
 Our regulation of speculative loans have forced companies to divert funds towards expansion instead of stocks dealing, pushing real growth up and unemployment down. However the international bankers are irritated by us disciplining our financial market which worsens our relation with Western governments.
 
@@ -65,7 +65,7 @@ Freezing the funds hurts our governmental services.
 
 @avans
 subtitle: +1 budget.
-on-arrival: avans_timer += 12; budget += 1; inflation_modifier += 1.5
+on-arrival: avans_timer += 12; budget += 1; inflation_modifier += 1.5; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: avans_timer == 0
 unavailable-subtitle: We have already borrowed treasure loans this year!
 
@@ -73,8 +73,8 @@ Borrowing from the treasury increases inflation but perhaps it can be worth it d
 
 @repeatable
 
-- @istikraz: Borrow domestic loans. 
-- @denetim: Increase tax payments inspections. 
+- @istikraz: Borrow domestic loans.
+- @denetim: Increase tax payments inspections.
 - @raise_rich: Increase taxes on the rich.
 - @raise_poor
 - @raise_overall: Increase overall taxes.
@@ -90,8 +90,8 @@ Borrowing from the treasury increases inflation but perhaps it can be worth it d
 
 
 @istikraz
-subtitle: +1 budget. 
-on-arrival: budget += 1; kurds_chp -= 1; alevis_chp -= 1; rural_chp -= 1; workers_chp -= 1; state_employees_chp -= 1; petty_bourgeoisie_chp -= 1; inflation_modifier += 1.2
+subtitle: +1 budget.
+on-arrival: budget += 1; kurds_chp -= 1; alevis_chp -= 1; rural_chp -= 1; workers_chp -= 1; state_employees_chp -= 1; petty_bourgeoisie_chp -= 1; inflation_modifier += 1.2; {! AnatolianRules.refreshEconomy(Q); !}
 
 Domestic loans boost our budget in the short term but increase discontentment and inflation.
 
@@ -104,7 +104,7 @@ We tighten our supervision over tax payments. However it appears so that a huge 
 @raise_progressive
 subtitle: This does not change overall revenue. [? if lower_tax_rates < -5 : Lower-class tax rates are too low to cut anymore. ?] [? if upper_tax_rates > 5 : Upper-class tax rates are too high to increase. ?]
 choose-if: lower_tax_rates >= -5 and upper_tax_rates <= 5
-on-arrival: workers_chp += 4*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 2*(1-dissent); capitalists_chp -= 5; coalition_dissent += 1 if in_grand_coalition; z_relation -= 4; upper_tax_rates += 1; lower_tax_rates -= 1; capital_strike_progress += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 3; capitalists_chp -= 2 if upper_tax_rates > 1
+on-arrival: workers_chp += 4*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 2*(1-dissent); capitalists_chp -= 5; coalition_dissent += 1 if in_grand_coalition; AP_relation -= 4; upper_tax_rates += 1; lower_tax_rates -= 1; capital_strike_progress += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 3; capitalists_chp -= 2 if upper_tax_rates > 1
 
 Making the tax system more progressive is popular among our base, but it upsets our bourgeois coalition partners, as well as our minimal number of bourgeois voters.
 
@@ -112,7 +112,7 @@ Making the tax system more progressive is popular among our base, but it upsets 
 subtitle: +1 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5
-on-arrival: upper_tax_rates += 1; capital_strike_progress += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 3; capitalists_chp -= 4; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if capital_strike_progress >= 5; budget += 1; yearly_budget += 1; DP_relation -= 4; unemployed -= 0.5; finance_goal_completed += 1; inflation -= 0.6; economic_growth -= 0.4; capitalists_chp -= 2 if upper_tax_rates > 1; left_dissent -= 3; labor_dissent -= 3
+on-arrival: upper_tax_rates += 1; capital_strike_progress += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 3; capitalists_chp -= 4; coalition_dissent += 1 if in_grand_coalition; coalition_dissent += 1 if capital_strike_progress >= 5; budget += 1; yearly_budget += 1; DP_relation -= 4; unemployment_modifier -= 0.5; finance_goal_completed += 1; inflation_modifier -= 0.6; growth_modifier -= 0.4; capitalists_chp -= 2 if upper_tax_rates > 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 Raising taxes on the rich is popular among our base, but it alienates the bourgeoisie. Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
@@ -122,7 +122,7 @@ title: Raise consumption taxes, which disproportionately affect the poor.
 subtitle: +1 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: lower_tax_rates <= 5
-on-arrival: budget += 1; yearly_budget += 1; workers_CHP -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; TIP_coalition_dissent += 1; lower_tax_rates += 1; workers_CHP -= 5 if lower_tax_rates >= 2; inflation -= 0.5; economic_growth -= 0.3; unemployed += 1; labor_dissent += 3; left_dissent += 3
+on-arrival: budget += 1; yearly_budget += 1; workers_chp -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; TIP_coalition_dissent += 1; lower_tax_rates += 1; workers_chp -= 5 if lower_tax_rates >= 2; inflation_modifier -= 0.5; growth_modifier -= 0.3; unemployment_modifier += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 We have raised taxes for the poor and working class. This hurts our support among the workers.
 
@@ -131,7 +131,7 @@ We have raised taxes for the poor and working class. This hurts our support amon
 subtitle: -2 budget
 unavailable-subtitle: -2 budget - [? if upper_tax_rates < -5 or lower_tax_rates < -5 : Tax rates are already too low. ?]
 choose-if: budget >= 2 and upper_tax_rates >= -5 and lower_tax_rates >= -5
-on-arrival: budget -= 2; yearly_budget -= 2; upper_tax_rates -= 1; lower_tax_rates -= 1; new_middle_CHP += 5*(1-dissent); old_middle_CHP += 4*(1-dissent); workers_CHP += 3*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); DP_relation += 5*(1-dissent);z_relation += 5*(1-dissent); unemployed -= 1.5 if unemployed >= 5; capital_strike_progress -= 1 if upper_tax_rates < 0; inflation += 1; economic_growth += 0.6;
+on-arrival: budget -= 2; yearly_budget -= 2; upper_tax_rates -= 1; lower_tax_rates -= 1; state_employees_chp += 5*(1-dissent); petty_bourgeoisie_chp += 4*(1-dissent); workers_chp += 3*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); DP_relation += 5*(1-dissent);AP_relation += 5*(1-dissent); unemployment_modifier -= 1.5 if unemployed >= 5; capital_strike_progress -= 1 if upper_tax_rates < 0; inflation_modifier += 1; growth_modifier += 0.6;; {! AnatolianRules.refreshEconomy(Q); !}
 
 Cutting taxes benefits most the rich and middle-class, who pay more taxes than the working class. Our coalition partners are happy at our orthodox economic course.
 
@@ -140,7 +140,7 @@ title: Cut consumption taxes for the poor.
 subtitle: -1 budget
 unavailable-subtitle: -1 budget - [? if lower_tax_rates < -5: Tax rates are already too low. ?]
 choose-if: budget >= 1 and lower_tax_rates >= -5
-on-arrival: budget -= 1; yearly_budget -= 1; lower_tax_rates -= 1; workers_CHP += 5*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); unemployed -= 0.7 if unemployed >= 5; inflation += 0.6; economic_growth += 0.4; finance_goal_completed += 1; left_kemalist_dissent -= 3; kemalist_marxist_dissent -= 3;
+on-arrival: budget -= 1; yearly_budget -= 1; lower_tax_rates -= 1; workers_chp += 5*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); unemployment_modifier -= 0.7 if unemployed >= 5; inflation_modifier += 0.6; growth_modifier += 0.4; finance_goal_completed += 1; left_kemalists_dissent -= 3; kemalist_marxists_dissent -= 3;; {! AnatolianRules.refreshEconomy(Q); !}
 
 Our tax cuts disproportionately benefit the poor and working class.
 
@@ -150,7 +150,7 @@ title: Cut income taxes for the rich.
 subtitle: -1 budget
 unavailable-subtitle: -1 budget - [? if upper_tax_rates < -5: Tax rates are already too low. ?]
 choose-if: budget >= 1 and upper_tax_rates >= -5
-on-arrival: budget -= 1; yearly_budget -= 1; upper_tax_rates -= 1; capitalists_chp += 5*(1-dissent); DP_relation += 4*(1-dissent);z_relation += 4*(1-dissent); unemployed += 0.7; capital_strike_progress -= 1 if upper_tax_rates < 0; inflation += 0.6; economic_growth += 0.4; labor_dissent += 3; left_dissent += 3
+on-arrival: budget -= 1; yearly_budget -= 1; upper_tax_rates -= 1; capitalists_chp += 5*(1-dissent); DP_relation += 4*(1-dissent);AP_relation += 4*(1-dissent); unemployment_modifier += 0.7; capital_strike_progress -= 1 if upper_tax_rates < 0; inflation_modifier += 0.6; growth_modifier += 0.4; {! AnatolianRules.refreshEconomy(Q); !}
 
 We have reduced income and property taxes for the rich and middle class. The bourgeois parties approve of this orthodox economic course.
 
@@ -159,15 +159,15 @@ We have reduced income and property taxes for the rich and middle class. The bou
 subtitle: +2 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5 and lower_tax_rates <= 5
-on-arrival: budget += 2; yearly_budget += 2; new_middle_CHP -= 4; old_middle_CHP -= 4; workers_CHP -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp -= 3; unemployed += 2; TIP_coalition_dissent += 1; lower_tax_rates += 1; upper_tax_rates += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 2; workers_CHP -= 5 if lower_tax_rates > 1; inflation -= 1.1; economic_growth -= 0.6; new_middle_CHP -= 2 if upper_tax_rates > 1; old_middle_CHP -= 2 if upper_tax_rates > 1;
+on-arrival: budget += 2; yearly_budget += 2; state_employees_chp -= 4; petty_bourgeoisie_chp -= 4; workers_chp -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp -= 3; unemployment_modifier += 2; TIP_coalition_dissent += 1; lower_tax_rates += 1; upper_tax_rates += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 2; workers_chp -= 5 if lower_tax_rates > 1; inflation_modifier -= 1.1; growth_modifier -= 0.6; state_employees_chp -= 2 if upper_tax_rates > 1; petty_bourgeoisie_chp -= 2 if upper_tax_rates > 1;; {! AnatolianRules.refreshEconomy(Q); !}
 
-Raising taxes hurts our support among all those who pay taxes. [? if in_grand_coalition or in_weimar_coalition : However, our coalition partners are more supportive of the idea of "shared sacrifice" than simply taxing the rich. ?] Increasing taxes also decreases economic demand, which may lead to more unemployment.
+Raising taxes hurts our support among all those who pay taxes. [? if in_grand_coalition or in_democratic_coalition : However, our coalition partners are more supportive of the idea of "shared sacrifice" than simply taxing the rich. ?] Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
 @regressive
 title: Lower taxes on the rich, while increasing consumption taxes (which affect the working class more).
 subtitle: This does not change overall revenue. [? if upper_tax_rates < -5 : Rich tax rates are too low to cut anymore. ?] [? if lower_tax_rates > 5 : Lower-class tax rates are too high to increase. ?]
 choose-if: lower_tax_rates <= 5 and upper_tax_rates >= -5
-on-arrival: workers_CHP -= 6; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp += 5*(1-dissent); DP_relation += 5;z_relation += 4; coalition_dissent -= 1 if in_grand_coalition and coalition_dissent > 0; TIP_coalition_dissent += 1; upper_tax_rates -= 1; lower_tax_rates += 1; workers_CHP -= 5 if lower_tax_rates >= 2; capital_strike_progress -= 1 if upper_tax_rates < 0; labor_dissent += 5; left_dissent += 5
+on-arrival: workers_chp -= 6; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp += 5*(1-dissent); DP_relation += 5;AP_relation += 4; coalition_dissent -= 1 if in_grand_coalition and coalition_dissent > 0; TIP_coalition_dissent += 1; upper_tax_rates -= 1; lower_tax_rates += 1; workers_chp -= 5 if lower_tax_rates >= 2; capital_strike_progress -= 1 if upper_tax_rates < 0
 
 Our regressive taxation policy benefits the rich while hurting the poor and working-class. Our bourgeois coalition partners approve of this orthodox economic course.
 
@@ -190,17 +190,17 @@ Current tariff level: [+ tariffs : taxation +]
 
 @luxury_tariffs
 subtitle: +1 budget.
-choose-if: z_in_government == 0
+choose-if: AP_in_government == 0
 unavailable-subtitle: AP prevents us raising luxury tariffs!
 on-arrival: capitalists_chp -= 4; west_relation -= 3; budget += 1
 
-We raise tariffs on luxury products. 
+We raise tariffs on luxury products.
 
 @raise_tariffs
 title: Raise tariffs on imports.
 subtitle: +2 budget. Other countries will retaliate by increasing tariffs of their own. [? if tariffs > 5 : Further increases in tariffs will not raise revenue, as we have already nearly reached econonmic autarky. ?]
 choose-if: tariffs <= 5
-on-arrival: tariffs += 1; inflation += 3 if inflation > 0; inflation += 0.5 if inflation <= 0; unemployed += 1.5; budget += 2; workers_chp -= 5; rural_chp += 4*(1-dissent); state_employees_chp -= 5; petty_bourgeoisie_chp += 4*(1 - dissent); CGP_relation -= 5; DP_relation -= 5; z_relation -= 5; west_relation -= 5; us_relation -= 5; peoples_party_support += 1; growth_modifier -= 1; capital_strike_progress += 1 if tariffs >= 3
+on-arrival: tariffs += 1; inflation_modifier += 3 if inflation > 0; inflation_modifier += 0.5 if inflation <= 0; unemployment_modifier += 1.5; budget += 2; workers_chp -= 5; rural_chp += 4*(1-dissent); state_employees_chp -= 5; petty_bourgeoisie_chp += 4*(1 - dissent); CGP_relation -= 5; DP_relation -= 5; AP_relation -= 5; west_relation -= 5; us_relation -= 5; peoples_party_support += 1; growth_modifier -= 1; capital_strike_progress += 1 if tariffs >= 3; {! AnatolianRules.refreshEconomy(Q); !}
 
 Raising tariffs make our local industries more profitable which results in higher growth and lower unemployment.
 
@@ -209,8 +209,8 @@ title: Lower tariffs on imports.
 choose-if: budget >= 2 and tariffs > -5
 subtitle: -2 budget. [? if tariffs <= -5 : There are no tariffs left to cut. ?]
 unavailable-subtitle: [? if budget < 2 : We don't have enough budget! ?] [? if tariffs <= -5 : There are no tariffs left to cut. ?]
-on-arrival: tariffs -= 1; budget -= 2; inflation -= 2; workers_CHP += 4*(1-dissent); state_employees_chp += 4*(1-dissent); rural_chp -= 4; old_middle_CHP -= 3; west_relation += 5; us_relation += 5; east_relation += 1; economic_growth -= 0.5; unemployment_modifier += 0.5
+on-arrival: tariffs -= 1; budget -= 2; inflation_modifier -= 2; workers_chp += 4*(1-dissent); state_employees_chp += 4*(1-dissent); rural_chp -= 4; petty_bourgeoisie_chp -= 3; west_relation += 5; us_relation += 5; east_relation += 1; growth_modifier -= 0.5; unemployment_modifier += 0.5; {! AnatolianRules.refreshEconomy(Q); !}
 
-Lowering tariffs hurts our local industries which depend on state privilages. 
+Lowering tariffs hurts our local industries which depend on state privilages.
 
 Farmers are hurt by this policy, as cheap imported grain leads to ruin for some small producers.

@@ -3,7 +3,7 @@ new-page: true
 on-arrival: month_actions += 1
 max-visits: 6
 is-card: true
-card-image: img/rural.jpg
+card-image: img/portraits/AliTopuz.jpeg
 frequency: 100
 tags: government_affairs
 

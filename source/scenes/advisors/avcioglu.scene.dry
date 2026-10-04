@@ -23,9 +23,10 @@ go-to: land_reform
 
 @economicpolicy
 subtitle: If chosen the economy minister, Avcıoğlu will begin a transition towards a planned and socialist economy.
-choose-if: CHP_in_government = 1 and advisor_action_timer = 0
-unavailable-subtitle: CHP is not in government. [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+choose-if: CHP_in_government = 1 and economic_minister_party == "CHP" and advisor_action_timer = 0
+unavailable-subtitle: [? if CHP_in_government == 0 : CHP is not in government. ?] [? if economic_minister_party != "CHP" : CHP does not hold the economy ministry. ?] [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 3; economic_minister_party = "CHP"; economic_minister = "Avcıoğlu"; economic_policy_timer -= 6; last_advisor_action = 1
+go-to: economic_policy
 
 @devrim
 choose-if: (year == 1973 and month >= 10) or year == 1974 or year == 1975 and advisor_action_timer = 0

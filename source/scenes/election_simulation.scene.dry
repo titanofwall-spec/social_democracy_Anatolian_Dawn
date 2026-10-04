@@ -2,15 +2,15 @@ title: Election Simulation
 set-jump: post_election
 
 
-- @1928: 1973 historical scenario
-- @1930: 1977 historical scenario
-- @1932: 1979 historical scenario(by-election)
+- @scenario_1973: 1973 historical scenario
+- @scenario_1977: 1977 historical scenario
+- @scenario_1979: 1979 historical scenario(by-election)
 
-@1928
+@scenario_1973
 on-arrival: {!
 // Turkish demographic groups with accurate percentages
 Q.rural = 45; // Rural population
-Q.workers = 15; // Industrial workers  
+Q.workers = 15; // Industrial workers
 Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
@@ -18,7 +18,7 @@ Q.alevis = 10; // Alevi religious minority
 Q.kurds = 5; // Kurdish political movement
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
-Q.parties = ['chp', 'TIP', 'z', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 Q.disk_endorsement = false;
 Q.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;
 Q.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election
@@ -35,7 +35,7 @@ if (typeof Q.CGP_name === 'undefined') {
 for (var c of Q.classes) {
     Q[c + '_chp'] = 33;
     Q[c + '_TIP'] = 0;
-    Q[c + '_z'] = 30; // AP uses 'z' variable
+    Q[c + '_AP'] = 30; // AP uses 'AP' variable
     Q[c + '_DP'] = 12;
     Q[c + '_MSP'] = 12;
     Q[c + '_CGP'] = 5;
@@ -46,11 +46,11 @@ for (var c of Q.classes) {
 go-to: election_algorithm
 set-jump: post_election
 
-@1930
+@scenario_1977
 on-arrival: {!
-// Turkish demographic groups with accurate percentages - 1930 variation
+// Turkish demographic groups with accurate percentages - 1977 variation
 Q.rural = 45; // Rural population
-Q.workers = 15; // Industrial workers  
+Q.workers = 15; // Industrial workers
 Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
@@ -58,7 +58,7 @@ Q.alevis = 10; // Alevi religious minority
 Q.kurds = 5; // Kurdish political movement
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
-Q.parties = ['chp', 'TIP', 'z', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 Q.disk_endorsement = false;
 Q.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;
 Q.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election
@@ -75,7 +75,7 @@ if (typeof Q.CGP_name === 'undefined') {
 for (var c of Q.classes) {
     Q[c + '_chp'] = 41;
     Q[c + '_TIP'] = 0.1;
-    Q[c + '_z'] = 37; // AP uses 'z' variable
+    Q[c + '_AP'] = 37; // AP uses 'AP' variable
     Q[c + '_MSP'] = 9;
     Q[c + '_MHP'] = 6;
     Q[c + '_DP'] = 2;
@@ -86,11 +86,11 @@ for (var c of Q.classes) {
 go-to: election_algorithm
 set-jump: post_election
 
-@1932
+@scenario_1979
 on-arrival: {!
-// Turkish demographic groups with accurate percentages - 1932 crisis scenario
+// Turkish demographic groups with accurate percentages - 1979 by-election scenario
 Q.rural = 45; // Rural population
-Q.workers = 15; // Industrial workers  
+Q.workers = 15; // Industrial workers
 Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
@@ -98,7 +98,7 @@ Q.alevis = 10; // Alevi religious minority
 Q.kurds = 5; // Kurdish political movement
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
-Q.parties = ['chp', 'TIP', 'z', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 Q.disk_endorsement = false;
 Q.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;
 Q.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election
@@ -114,7 +114,7 @@ if (typeof Q.CGP_name === 'undefined') {
 // MSP 7%, MHP 5%, CGP 2%, DP 0%, Others 1% (remainder).
 // Applied uniformly across every demographic group so the simulated national result matches exactly.
 for (var c of Q.classes) {
-    Q[c + '_z'] = 54; // AP uses 'z' variable
+    Q[c + '_AP'] = 54; // AP uses 'AP' variable
     Q[c + '_chp'] = 29;
     Q[c + '_TIP'] = 2; // Socialist Left, covered in the same color as TIP
     Q[c + '_MSP'] = 7;
@@ -137,8 +137,8 @@ if (typeof Q.sim_prev_TIP_banned !== 'undefined') {
 }
 // set congress proportion to votes
 Q.chp_r = Q.chp_votes;
-Q.z_r = Q.z_votes;
-Q.z_r = Q.z_votes; // AP display variable matches z_votes
+Q.AP_r = Q.AP_votes;
+Q.AP_r = Q.AP_votes; // AP display variable matches AP_votes
 Q.TIP_r = Q.TIP_votes;
 Q.CGP_r = Q.CGP_votes;
 Q.DP_r = Q.DP_votes;
@@ -147,7 +147,7 @@ Q.MHP_r = Q.MHP_votes;
 Q.other_r = Q.other_votes;
 
 // Tiered proportional apportionment, mirroring the algorithm used for the actual
-// Grand National Assembly election (see post_election_1928 in election_1928.scene.dry):
+// Grand National Assembly election (see post_national_elections in national_elections.scene.dry):
 // each party's vote share is weighted more heavily the larger it is (in brackets),
 // seats are then apportioned out of a fixed 450-seat assembly, and any leftover
 // seats from rounding down are settled between CHP and AP.
@@ -192,18 +192,17 @@ for (var party of Q.parties) {
     Q[party + '_seats'] = seats;
     Q.total_seats += seats;
 }
-Q.sapd_seats = 0;
 var seatRemainder = totalSeatsTarget - Q.total_seats;
 if (seatRemainder < 0) {
     Q.chp_seats += seatRemainder;
 } else if (seatRemainder > 0) {
-    Q.z_seats += seatRemainder;
+    Q.AP_seats += seatRemainder;
 }
 Q.total_seats = totalSeatsTarget;
 var partyDisplayNames = {
     'chp': 'CHP',
     'TIP': 'TIP',
-    'z': 'AP',
+    'AP': 'AP',
     'CGP': Q.CGP_name,
     'DP': 'DP',
     'MSP': 'MSP',
@@ -216,14 +215,14 @@ if (Q.largest_party_key) {
     Q.largest_party = 'CHP';
 }
 
-// Coalition options mirrored from the actual Grand National Assembly election scene (election_1928.scene.dry).
+// Coalition options mirrored from the actual Grand National Assembly election scene (national_elections.scene.dry).
 Q.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);
 Q.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);
-Q.grand_coalition = (Q.chp_seats || 0) + (Q.z_seats || 0);
+Q.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);
 Q.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);
-Q.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.z_seats || 0) + (Q.DP_seats || 0);
-Q.right_coalition = (Q.z_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);
-Q.nationalist_front_coalition = (Q.z_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
+Q.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);
+Q.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);
+Q.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
 Q.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
 // Socialist Left breakdown for the 1979 simulation result, mirroring the split used
 // for the main game's aggregate TIP_r breakdown (see status.scene.dry).
@@ -238,12 +237,12 @@ if (Q.sim_year == 1979) {
 
 The electoral system uses a tiered proportional apportionment, weighting each party's vote share more heavily the larger it is, out of a 450-seat assembly.
 A working majority in this simulation requires 226 seats.
- 
+
 **Election results:**
 
 **CHP (Cumhuriyet Halk Partisi):** [+ chp_r +]%
 
-**AP (Adalet Partisi):** [+ z_r +]%
+**AP (Adalet Partisi):** [+ AP_r +]%
 
 **[? if sim_year == 1979: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_r +]%<br>TKP: [+ TKP_r +]%<br>TSİP: [+ TSIP_r +]%<br>TEP: [+ TEP_r +]%<br>SDP: [+ SDP_r +]%</span></span>?][? if sim_year != 1979: TİP (Türkiye İşçi Partisi)?]:** [+ TIP_r +]%
 

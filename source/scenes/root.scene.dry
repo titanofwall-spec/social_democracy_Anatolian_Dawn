@@ -43,7 +43,7 @@ Q.difficulty = 0;
 Q.historical_mode = 0;
 // old demographics
 Q.old_demographics = 0;
-// use decimals for reichstag seats
+// use decimals for parliament seats
 Q.use_decimals = 1; // Enable decimal display for Turkish election results
 // Show narrative-only flavour events by default
 Q.flavour_events = 1;
@@ -84,38 +84,6 @@ Q.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str 
 // km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional
 Q._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';
 
-// Compute initial global strengths as weighted averages of per-quarter values
-// q2 effective values = q2 base + party leadership bonus (computed dynamically)
-var _qW = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];
-var _fKeys = ['km', 'lk', 'ok', 'rk', 'tw'];
-var _fGlobals = ['kemalist_marxists_strength', 'left_kemalists_strength', 'orthodox_kemalists_strength', 'right_kemalists_strength', 'third_worldists_strength'];
-
-// Compute party leadership bonus for q2
-var _afMap = {};
-Q._advisor_factions.split(',').forEach(function(e) { var p = e.split(':'); _afMap[p[0]] = p[1]; });
-var _q2Bonus = {km: 0, lk: 0, ok: 0, rk: 0, tw: 0};
-var _advisorList = Object.keys(_afMap);
-for (var _ai = 0; _ai < _advisorList.length; _ai++) {
-    var _aName = _advisorList[_ai];
-    if (Q[_aName + '_advisor'] === 1) {
-        var _aFaction = _afMap[_aName];
-        if (_aFaction !== 'nf') {
-            _q2Bonus[_aFaction] += 1;
-        }
-    }
-}
-
-for (var _fi = 0; _fi < _fKeys.length; _fi++) {
-    var _sum = 0;
-    for (var _qi = 0; _qi < 6; _qi++) {
-        var _val = Q['q' + _qi + '_' + _fKeys[_fi] + '_str'];
-        if (_qi === 2) _val = Math.max(0, _val + _q2Bonus[_fKeys[_fi]]); // add leadership bonus to q2, clamp >= 0
-        _sum += _qW[_qi] * _val;
-    }
-    Q[_fGlobals[_fi]] = _sum;
-    Q['_last_' + _fKeys[_fi] + '_str'] = _sum;
-}
-
 Q.kemalist_marxists_dissent = 20;
 Q.left_kemalists_dissent = 20;
 Q.orthodox_kemalists_dissent = 5;
@@ -153,25 +121,17 @@ Q.paramilitary_pressure_timer = 0;
 
 // crisis_urgency indicates how seriously the <span style="color: #E3000F;">**CHP**</span> is taking the economic crisis - scale from 0 to 10.
 Q.crisis_urgency = 0;
-// nazi_urgency indicates how seriously the <span style="color: #E3000F;">**CHP**</span> takes the nazis - scale from 0 to 10.
-Q.nazi_urgency = 0;
+Q.far_right_urgency = 0;
 // radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.
 Q.radicalization = 0;
-// Support for the WTB plan and proto-Keynesian works creation plans in general
-Q.wtb_support = 0;
-// Support for Pacifism within the <span style="color: #E3000F;">**CHP**</span> relative to 1928
+Q.public_works_support = 0;
 Q.pacifism = 0;
-// Support for democratic reform within the <span style="color: #E3000F;">**CHP**</span> relative to 1928
 Q.democratization = 0;
-// Support for a communist coalition relative to 1928
 Q.communist_coalition = 0;
 // economic_plan: have we adopted *any* economic plan?
-// 1 - WTB plan, 2 - AfA-bund plan, 3 - radical plan (mass nationalization of industries)
 Q.economic_plan = 0;
-// have we officially adopted the WTB plan?
-Q.wtb_adopted = 0;
+Q.public_works_adopted = 0;
 // have we formed the iron front?
-Q.iron_front_formed = 0;
 // people's party support
 Q.peoples_party_support = 0;
 // support for nationalizations
@@ -183,6 +143,7 @@ Q.moderate_plan_adopted = 0;
 
 // Cyprus
 Q.cyprus_mode = 0;
+AnatolianRules.cyprusAtilla1.initialize(Q);
 Q._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching
 
 
@@ -191,7 +152,7 @@ Q._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for mus
 // inter-party relations
 Q.TIP_relation = 40;
 Q.CGP_relation = 35;
-Q.z_relation = 30;
+Q.AP_relation = 30;
 Q.DP_relation = 20;
 // MSP and MHP are invariably hostile
 Q.MSP_relation = 10;
@@ -203,8 +164,8 @@ Q.DP_collapse = 0;
 Q.TIP_leader = "Unorganized";
 // alternative TIP leaders: Mehmet Ali Aybar, Behice Boran
 Q.TIP_party_leader = "Unorganized";
-Q.z_leader = "Demirel";
-Q.z_party_leader = "Demirel";
+Q.AP_leader = "Demirel";
+Q.AP_party_leader = "Demirel";
 Q.DP_leader = "Bozbeyli";
 Q.DP_party_leader = "Bozbeyli";
 Q.CGP_leader = "Feyzioğlu";
@@ -215,7 +176,6 @@ Q.MSP_party_leader = "Süleyman Arif";
 Q.CHP_leader = "İnönü";
 // alternative <span style="color: #E3000F;">**CHP**</span> leader: Ecevit
 Q.CHP_party_leader = "İnönü";
-Q.chp_party_leader = "İnönü";
 Q.party_leader_id = "inonu";
 Q.party_secretary = "Kırıkoğlu";
 Q.party_secretary_id = "kirikoglu";
@@ -248,26 +208,17 @@ Q.womens_workplace_level = 0;
 Q.household_violence_level = 0;
 Q.language_rights_level = 0;
 
-// hmm... maybe we can play nice with Hindenburg???
-Q.hindenburg_relation = 25;
-
-
-// Does the <span style="color: #E3000F;">**CHP**</span> lead in Prussia?
-Q.CHP_prussia = 1;
-// Options: CHP, z, MSP, papen, MHP
-Q.prussian_government = "CHP";
-
 // The array of forces - Turkish paramilitary groups
 // Number of members (in thousands)
 // Far Left organizations
 Q.thkpc_strength = 2;
 Q.thkpc_militancy = 0.5;
 Q.thkpc_destroyed = 0;
-Q.thkpc_banned = 0;	
+Q.thkpc_banned = 0;
 
 Q.tkpml_strength = 0.1;
-Q.tkpml_militancy = 0.8;	
-Q.tkpml_formed = 0;	
+Q.tkpml_militancy = 0.8;
+Q.tkpml_formed = 0;
 Q.tkpml_banned = 0;
 
 Q.devyol_strength = 55;
@@ -286,7 +237,7 @@ Q.police_strength = 60;
 Q.police_militancy = 0.8;
 Q.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)
 
-// Far Right organizations  
+// Far Right organizations
 Q.grey_wolves_strength = 25;
 Q.grey_wolves_militancy = 0.1;
 Q.grey_wolves_banned = 0;
@@ -301,13 +252,7 @@ Q.tit_militancy = 0.9;
 Q.tit_banned = 0;
 
 // Keep these for compatibility with existing events, but set to 0 for Turkish context
-Q.interior_police_strength = 0;
-Q.interior_police_militancy = 1;
-Q.interior_police_loyalty = 0.45;
 
-Q.prussian_police_strength = 0;
-Q.prussian_police_militancy = 1;
-Q.prussian_police_loyalty = 0.5;
 
 // Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)
 Q.army_land_strength = 0.4;
@@ -365,10 +310,8 @@ Q.far_right_force += Q.tit_force;
 
 // State forces calculation (strength × militancy)
 Q.police_force = Q.police_strength * Q.police_militancy;
-Q.interior_police_force = Q.interior_police_strength * Q.interior_police_militancy; // 0 for Turkish context
-Q.prussian_police_force = Q.prussian_police_strength * Q.prussian_police_militancy; // 0 for Turkish context
 
-Q.state_force = Q.police_force + Q.interior_police_force + Q.prussian_police_force;
+Q.state_force = Q.police_force;
 
 // Democratic forces (state forces when not controlled by extremists)
 Q.democracy_force = Q.state_force;
@@ -383,7 +326,7 @@ if (Q.total_forces > 0) {
     Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);
     Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);
     Q.democracy_force_percent = Q.state_force_percent;
-    
+
     // Individual organization force percentages
     if (!Q.thkpc_destroyed) {
         Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);
@@ -393,7 +336,7 @@ if (Q.total_forces > 0) {
     }
     if (Q.devyol_formed) {
         Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);
-    }	
+    }
     if (Q.tkpml_formed) {
         Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);
     }
@@ -402,10 +345,8 @@ if (Q.total_forces > 0) {
         Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);
     }
     Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);
-    
+
     Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);
-    Q.interior_police_force_percent = Math.round((Q.interior_police_force / Q.total_forces) * 100);
-    Q.prussian_police_force_percent = Math.round((Q.prussian_police_force / Q.total_forces) * 100);
 }
 
 // Determine street control levels
@@ -449,9 +390,9 @@ if (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_p
 }
 
 // strength includes actual military and de facto reserves?
-Q.reichswehr_strength = 100;
-Q.reichswehr_militancy = 5;
-Q.reichswehr_loyalty = 0.2;
+Q.armed_forces_strength = 100;
+Q.armed_forces_militancy = 5;
+Q.armed_forces_loyalty = 0.2;
 
 // The state of the country
 
@@ -466,7 +407,7 @@ Q.pro_republic = 86;
 
 Q.emergency_rule = 0;
 
-// minimum percentage of votes to be represented in the Reichstag
+// minimum percentage of votes to be represented in the Grand National Assembly
 Q.electoral_threshold = 0;
 // constitutional reform level
 Q.constitutional_reform = 0;
@@ -514,8 +455,8 @@ Q.disk_relation = 35; // Starting at "cool" (29.9-39.9 range)
 Q.disk_turkis_conflict = 0.50; // Starting at "Balanced" (0.40-0.60)
 Q.union_reform = "no";
 
-// Update army_in_government based on chancellor_party
-if (Q.chancellor_party == 'I') {
+// Update army_in_government based on prime_minister_party
+if (Q.prime_minister_party == 'I') {
     Q.army_in_government = 1;
 } else {
     Q.army_in_government = 0;
@@ -526,7 +467,7 @@ Q.yearly_budget = 0;
 
 // Proportion of different social groups - Turkish demographics circa 1972-1977
 Q.rural = 45; // Rural population
-Q.workers = 15; // Industrial workers  
+Q.workers = 15; // Industrial workers
 Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
@@ -549,7 +490,7 @@ if (Q.kurdish_political_consciousness < 0.05) {
     Q.kurds = 15; // Very high - 15%
 }
 
-// income for industrial workers 
+// income for industrial workers
 Q.income = 1600;
 
 // Historical economic baseline data by year (Turkish context)
@@ -690,10 +631,7 @@ Q.alevis_qol = 100;
 Q.kurds_qol = 100;
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
-Q.parties = ['chp', 'TIP', 'z', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
-
-// TODO: add 'sapd' later on
-Q.sapd_formed = 0;
+Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 
 // Land Reform mechanics
 Q.koykent_progress = 0;
@@ -704,7 +642,7 @@ Q.cooperative_progress = 0;
 // Rural (45% of population)
 Q.rural_TIP = 0.4;
 Q.rural_chp = 13;
-Q.rural_z = 44; // AP uses 'z' variable
+Q.rural_AP = 44; // AP uses 'AP' variable
 Q.rural_CGP = 4;
 Q.rural_DP = 22;
 Q.rural_MSP = 9.6;
@@ -714,7 +652,7 @@ Q.rural_other = 3;
 // Workers (15% of population)
 Q.workers_TIP = 14;
 Q.workers_chp = 42;
-Q.workers_z = 18; // AP
+Q.workers_AP = 18; // AP
 Q.workers_CGP = 3;
 Q.workers_DP = 7;
 Q.workers_MSP = 10;
@@ -724,16 +662,16 @@ Q.workers_other = 3;
 // Apply union effects to worker support
 if (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {
     // TÜRK-İŞ leaning: Worker support AP +5%
-    Q.workers_z += 5;
+    Q.workers_AP += 5;
 } else if (Q.disk_turkis_conflict >= 0.80) {
     // Total TÜRK-İŞ Dominance: Worker support AP +10%
-    Q.workers_z += 10;
+    Q.workers_AP += 10;
 }
 
 // Petty Bourgeoisie (15% of population)
 Q.petty_bourgeoisie_TIP = 0;
 Q.petty_bourgeoisie_chp = 15;
-Q.petty_bourgeoisie_z = 36; // AP
+Q.petty_bourgeoisie_AP = 36; // AP
 Q.petty_bourgeoisie_CGP = 9;
 Q.petty_bourgeoisie_DP = 15;
 Q.petty_bourgeoisie_MSP = 16;
@@ -743,7 +681,7 @@ Q.petty_bourgeoisie_other = 2;
 // State Employees (7% of population)
 Q.state_employees_TIP = 0;
 Q.state_employees_chp = 41;
-Q.state_employees_z = 18; // AP
+Q.state_employees_AP = 18; // AP
 Q.state_employees_CGP = 27;
 Q.state_employees_DP = 8;
 Q.state_employees_MSP = 0;
@@ -753,7 +691,7 @@ Q.state_employees_other = 3;
 // Capitalists and Land Owners (3% of population)
 Q.capitalists_TIP = 0;
 Q.capitalists_chp = 7;
-Q.capitalists_z = 55; // AP
+Q.capitalists_AP = 55; // AP
 Q.capitalists_CGP = 8;
 Q.capitalists_DP = 25;
 Q.capitalists_MSP = 5;
@@ -763,7 +701,7 @@ Q.capitalists_other = 0;
 // Alevis (10% of population)
 Q.alevis_TIP = 8;
 Q.alevis_chp = 63;
-Q.alevis_z = 8; // AP
+Q.alevis_AP = 8; // AP
 Q.alevis_CGP = 1;
 Q.alevis_DP = 1;
 Q.alevis_MSP = 0;
@@ -773,7 +711,7 @@ Q.alevis_other = 18;
 // Kurdish Political Movement (5% of population)
 Q.kurds_TIP = 8;
 Q.kurds_chp = 33;
-Q.kurds_z = 32; // AP
+Q.kurds_AP = 32; // AP
 Q.kurds_CGP = 3;
 Q.kurds_DP = 2;
 Q.kurds_MSP = 3;
@@ -785,7 +723,7 @@ Q.kurds_other = 19;
 // Based on weighted demographic calculations
 Q.chp_r = 27.3;
 Q.TIP_r = 2.6;
-Q.z_r = 46.5; // AP (Justice Party)  
+Q.AP_r = 46.5; // AP (Justice Party)
 Q.CGP_r = 6.5;
 Q.DP_r = 0;
 Q.MSP_r = 0;
@@ -795,7 +733,7 @@ Q.other_r = 14.1;
 // diff from prev
 Q.old_chp_r = 27.3;
 Q.old_TIP_r = 2.6;
-Q.old_z_r = 46.5; // AP
+Q.old_AP_r = 46.5; // AP
 Q.old_CGP_r = 6.5;
 Q.old_DP_r = 0;
 Q.old_MSP_r = 0;
@@ -803,9 +741,9 @@ Q.old_MHP_r = 3.0;
 Q.old_other_r = 14.1;
 
 // Parliament seat distribution (initial TBMM composition, updates via elections)
-Q.total_seats = 450;   
+Q.total_seats = 450;
 Q.chp_seats = 143;
-Q.z_seats = 224;
+Q.AP_seats = 224;
 Q.TIP_seats = 2;
 Q.CGP_seats = 26;
 Q.DP_seats = 36;
@@ -813,27 +751,22 @@ Q.MSP_seats = 0;
 Q.MHP_seats = 1;
  Q.other_seats = 18;
 Q.majority_threshold = 226;
-Q.largest_party_key = 'z';
+Q.largest_party_key = 'AP';
 Q.largest_party = 'AP';
 
-var sapdSeats = Q.sapd_seats || 0;
-Q.weimar_coalition = Q.chp_seats + Q.CGP_seats + Q.z_seats;
-Q.grand_coalition = Q.weimar_coalition + Q.DP_seats;
-Q.bourgeois_coalition = Q.CGP_seats + Q.z_seats + Q.DP_seats + Q.other_seats;
-Q.center_right_coalition = Q.z_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;
-Q.right_coalition = Q.z_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;
+Q.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;
+Q.grand_coalition = Q.democratic_coalition + Q.DP_seats;
+Q.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;
+Q.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;
+Q.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;
 Q.far_right_coalition = Q.MSP_seats + Q.MHP_seats;
-Q.left_coalition = Q.chp_seats + Q.TIP_seats + sapdSeats;
-Q.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.z_seats + Q.CGP_seats + sapdSeats;
+Q.left_coalition = Q.chp_seats + Q.TIP_seats;
+Q.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;
 Q.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;
-Q.neo_weimar_coalition = Q.chp_seats + Q.CGP_seats + Q.z_seats + Q.DP_seats + Q.other_seats;
-Q.hitler_right_coalition = Q.z_seats + Q.MSP_seats + Q.MHP_seats;
-Q.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats + sapdSeats;
+Q.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;
+Q.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;
+Q.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;
 Q.leverage = Q.chp_seats/1.5;
-
-// sapd isn't formed yet, but it may be formed
-Q.sapd_r = 0;
-Q.old_sapd_r = 0;
 
 // Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.
 // Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into
@@ -870,12 +803,12 @@ Q.strategy_socfas = 0;
 
 // State of the government
 Q.president = "Cevdet Sunay";
-// starting chancellor: Nihat Erim
+// starting prime_minister: Nihat Erim
 // starting prime minister: Nihat Erim
-Q.chancellor = "Nihat Erim";
-Q.chancellor_party = 'I';
+Q.prime_minister = "Nihat Erim";
+Q.prime_minister_party = 'I';
 Q.CHP_in_government = 0;
-Q.z_in_government = 0;
+Q.AP_in_government = 0;
 Q.CGP_in_government = 0;
 Q.DP_in_government = 0;
 Q.MSP_in_government = 0;
@@ -885,8 +818,7 @@ Q.I_in_government = 1;
 Q.generalstaff = "Memduh Tağmaç";
 
 Q.in_right_coalition = 0;
-// Weimar coalition = <span style="color: #E3000F;">**CHP**</span> + Z + CGP
-Q.in_weimar_coalition = 0;
+Q.in_democratic_coalition = 0;
 // Grand coalition = <span style="color: #E3000F;">**CHP**</span> + Z + CGP + DP
 // also includes the "new grand coalition" of <span style="color: #E3000F;">**CHP**</span> + Z + CGP + DP + Others
 Q.in_grand_coalition = 0;
@@ -896,7 +828,6 @@ Q.in_popular_front = 0;
 Q.in_left_front = 0;
 // unholy coalition = <span style="color: #E3000F;">**CHP**</span> + MSP
 Q.in_msp_coalition = 0;
-// emergency government containing the CHP: only president Braun can do this.
 Q.in_emergency_government = 0;
 Q.in_CHP_majority = 0;
 Q.grand_coalition_failed = 0;
@@ -916,39 +847,33 @@ Q.CHP_toleration = 0;
 Q.minority_government = 0;
 
 // ministries - which parties control the ministries?
-// starting with the 4th Marx cabinet https://en.wikipedia.org/wiki/Fourth_Marx_cabinet
 // is the agricultural ministry useful at all?
-Q.foreign_minister = 'Streseman';
-Q.foreign_minister_party = 'DP';
-Q.interior_minister = 'von Keudell';
-Q.interior_minister_party = 'MSP';
-Q.justice_minister = 'Hergt';
-Q.justice_minister_party = 'MSP';
-Q.labor_minister = 'Brauns';
-Q.labor_minister_party = 'AP';
-Q.reichswehr_minister = 'Groener';
-Q.reichswehr_minister_party = 'I';
-Q.economic_minister = 'Curtius';
-Q.economic_minister_party = 'DP';
-Q.agriculture_minister = 'Schiele';
-Q.agriculture_minister_party = 'MSP';
-Q.industrial_minister = 'x';
-Q.industrial_minister_party = 'AP';
-Q.trade_minister = 'y';
-Q.trade_minister_party = 'AP';
-Q.education_minister = 'w';
-Q.education_minister_party = 'AP';
+Q.foreign_minister = 'Independent minister';
+Q.foreign_minister_party = 'I';
+Q.interior_minister = 'Independent minister';
+Q.interior_minister_party = 'I';
+Q.justice_minister = 'Independent minister';
+Q.justice_minister_party = 'I';
+Q.labor_minister_party = 'I';
+Q.defense_minister = 'Independent minister';
+Q.defense_minister_party = 'I';
+Q.economic_minister = 'Independent minister';
+Q.economic_minister_party = 'I';
+Q.agriculture_minister = 'Independent minister';
+Q.agriculture_minister_party = 'I';
+Q.industrial_minister = 'Independent minister';
+Q.industrial_minister_party = 'I';
+Q.trade_minister = 'Independent minister';
+Q.trade_minister_party = 'I';
+Q.education_minister = 'Independent minister';
+Q.education_minister_party = 'I';
 
 // Events: what has occurred?
-Q.panzerkreuzer_seen = 0;
-Q.panzerkreuzer_funded = 0;
-Q.panzerkreuzer_failed = 0;
 Q.unemployment_insurance_seen = 0;
 // unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...
 Q.unemployment_insurance_threshold = 10;
-Q.blutmai = 0;
 
-// 
+//
 Q.economicreform = 0
 Q.aet = 0
 Q.oil = 0
@@ -970,18 +895,17 @@ Q.judicial_reform = 0;
 Q.bureaucratic_reform = 0;
 Q.military_reform = 0;
 Q.womens_rights = 0;
-// level of welfare relative to 1928 (can go negative)
+// Level of welfare relative to the starting situation (can go negative)
 Q.welfare = 0;
 // level of support for farmers
 Q.agricultural_policy = 0;
 Q.land_reform = 0;
 Q.rural_land_reform_policy = 0;
-// works-creation programs (i.e. WTB-plan) - how much have they implemented?
 Q.works_program = 0;
-Q.wtb_implemented = 0;
+Q.public_works_implemented = 0;
 // Relations with the Western countries (France, UK).
 Q.west_relation = 45;
-// Relations with the Eastern countries (Poland, Czechoslovakia)
+// Relations with Eastern Bloc countries
 Q.east_relation = 0;
 // Relations with the Soviet Union
 Q.soviet_relation = 20;
@@ -996,13 +920,9 @@ Q.denktasplan = 0
 Q.armsembargo = 0
 // Cyprus effects tracking
 Q.cyprus_last_status = 0; // Track previous status to detect changes
-Q.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60 months = 5 years)
-Q.cyprus_divided_timer = 0; // Timer for divided positive effects (60 months = 5 years)
+Q.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)
+Q.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)
 // How much have we exposed the secret rearmament programs?
-Q.rearmament_exposed = 0;
-// reparations vs baseline: young plan is -1.
-Q.reparations = 0;
-Q.reparations_negotiation = 0;
 // nationalization_progress is part of the left economic plan.
 Q.nationalization_progress = 0;
 // socializations is part of the economic democracy card.
@@ -1019,7 +939,7 @@ Q.eu_progress = 0;
 Q.science = 0;
 Q.education_science = 0;
 
-// Tax rates relative to 1928 baseline
+// Tax rates relative to the starting situation
 Q.lower_tax_rates = 0;
 Q.upper_tax_rates = 0;
 Q.tariffs = 5;
@@ -1030,7 +950,7 @@ Q.electoral_threshold = 0;
 // did the <span style="color: #E3000F;">**CHP**</span> vote against the previous government in a vote of no confidence?
 Q.CHP_no_confidence = 0;
 // was the last <span style="color: #E3000F;">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?
-Q.no_confidence_against_CHP = 0;
+Q.no_confidence_against_chp = 0;
 
 // Advisors/Leaders
 // n_advisors counts only swappable member slots (not leader or secretary)
@@ -1038,31 +958,30 @@ Q.n_advisors = 2;
 // timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.
 // let's just put all of the timers here...
 // most party affairs and government affairs cards are on a timer.
-Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
-            'fundraising', 'ideology',
+Q.timers = ['advisor_action',  'crisis_program',
+            'fundraising', 'ideology', 'intraparty',
             'inter_party_relationships', 'international_relations',
-            'iron_front', 'media', 'enemies',
+             'media', 'enemies',
             'party_organizations', 'rally',
-            'shuffle_leadership', 'streetfighting', 'peoples_party',
+            'shuffle_leadership',  'peoples_party',
             'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',
             // govt
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
             'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',
-            'police', 'prussian_affairs', 'shuffle_cabinet', 'social_welfare',
+            'police',  'shuffle_cabinet', 'social_welfare',
             'homosexual_rights', 'economic_policy', 'coalition_affairs',
-            'war_guilt', 'womens_rights', 'economic_democracy',
+            'womens_rights', 'economic_democracy',
             'dealing_with_toleration',
             'constitutional_reform', 'labor_rights',
             'education_science', 'curriculum', 'avans', 'cutspending',
             // events
             'emergency_cuts', 'unemployment_insurance',
-            'sa_ban', 'sh_ban', 'papen_chancellor',
+
             'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',
-            'high_inflation', 'banking_crisis', 'march_on_berlin',
-            'understanding_enemy', 'schleichers_schemes'];
+            'high_inflation', 'banking_crisis',
+            'understanding_enemy', ];
 Q.advisor_action_timer = 0;
 // party affairs timers
-Q.confronting_nazis_timer = 0;
 Q.crisis_program_timer = 0;
 Q.fundraising_timer = 0;
 Q.ideology_timer = 0;
@@ -1074,7 +993,6 @@ Q.inter_party_relationships_timer = 0;
 Q.international_relations_timer = 0;
 Q.western_socialist_contacts = 0;
 Q.socialist_international_member = 0;
-Q.iron_front_timer = 0;
 Q.avans_timer = 0;
 Q.remnants_of_inonu_timer = 0;
 Q.cutspending_timer = 0;
@@ -1083,7 +1001,6 @@ Q.enemies_timer = 0;
 Q.party_organizations_timer =  0;
 Q.rally_timer = 0;
 Q.kemalizm_timer = 0;
-Q.reichsbanner_timer = 0;
 Q.shuffle_leadership_timer = 0;
 Q.streetfighting_timer = 0;
 Q.peoples_party_timer = 0;
@@ -1121,10 +1038,8 @@ Q.judiciary_timer = 0;
 Q.labor_affairs_timer = 0;
 Q.military_policy_timer = 0;
 Q.police_timer = 0;
-Q.prussian_affairs_timer = 0;
 Q.shuffle_cabinet_timer = 0;
 Q.social_welfare_timer = 0;
-Q.war_guilt_timer = 0;
 Q.womens_rights_timer = 0;
 Q.homosexual_rights_timer = 0;
 Q.municipality_timer = 0;
@@ -1137,6 +1052,7 @@ Q.imf_agreement = 0;
 
 // Tracking flags for one-time effects
 Q.oil_effect_applied = false;
+Q.oil_inflation_effect = 0;
 Q.land_reform_effect_applied = false;
 Q.cooperative_effect_applied = false;
 Q.koykent_effect_applied = false;
@@ -1147,10 +1063,7 @@ Q.tiger_1980_effect_applied = false;
 // event timers
 Q.emergency_cuts_timer = 0;
 Q.unemployment_insurance_timer = 0;
-Q.sa_ban_timer = 0;
-Q.sh_ban_timer = 0;
 Q.TIP_ultimatum_timer = 0;
-Q.march_on_berlin_timer = 0;
 
 //Cyprus attitudes
 Q.greece_attitude = 4;
@@ -1164,46 +1077,19 @@ Q.inonu_advisor = 1; // İsmet İnönü (Party Leader — not in n_advisors)
 Q.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary — not in n_advisors)
 Q.ecevit_advisor = 1; // Bülent Ecevit (Member — counted in n_advisors)
 Q.satir_advisor = 1; // Kemal Satır (Member — counted in n_advisors)
-Q.wels_advisor = 0; // Otto Wels
-Q.muller_advisor = 0; // Hermann Müller
-Q.muller_dead = 0;
-// okay I know Arthur Crispien was a leader irl but i couldn't find much interesting about him...
-Q.crispien_advisor = 0; // Arthur Crispien
-Q.hilferding_advisor = 0; // Rudolf Hilferding
 
 // left advisors
-Q.sender_advisor = 0; // Toni Sender
-Q.levi_advisor = 0; // Paul Levi
-Q.levi_dead = 0;
-Q.rosenfeld_advisor = 0; // Kurt Rosenfeld
-Q.seydewitz_advisor = 0; // Max Seydewitz
 
 // centrist alternate advisors
-Q.pfulf_advisor = 0; // Antonie Pfülf
-Q.breitscheid_advisor = 0; // Rudolf Breitscheid
 
 // Reformist advisors
-Q.severing_advisor = 0; // Carl Severing
-Q.braun_advisor = 0; // Otto Braun
-Q.juchacz_advisor = 0; // Marie Juchacz
-Q.baade_advisor = 0; // Fritz Baade
 
 // Labor advisors
-Q.leipart_advisor = 0; // Theodor Leipart
-Q.aufhauser_advisor = 0; // Siegfried Aufhäuser
-Q.woytinsky_advisor = 0; // Wladimir Woytinsky (post-1930)
-Q.wissell_advisor = 0; // Rudolf Wissell
 
 // Revisionist advisors
-Q.mierendorff_advisor = 0; // Carlo Mierendorf (post-1930)
 
-Q.leber_advisor = 0; // Julius Leber (post-1930)
-Q.schumacher_advisor = 0; // Kurt Schumacher (post-1930)
 
 // Nonfactional advisors
-Q.hirschfeld_advisor = 0; // Magnus Hirschfeld
-Q.radbruch_advisor = 0; // Gustav Radbruch
-Q.stampfer_advisor = 0; // Friedrich Stampfer
 
 // Turkish Right Kemalist advisors
 Q.gogus_advisor = 0; // Ali İhsan Göğüs (existing)
@@ -1241,6 +1127,9 @@ Q.municipality_control_level = getMunicipalityControlLevel();
 function updateMunicipalityControlLevel() {
     Q.municipality_control_level = getMunicipalityControlLevel();
 }
+AnatolianRules.refreshEconomy(Q);
+AnatolianRules.refreshFactions(Q);
+AnatolianRules.refreshVotes(Q);
 !}
 set-bg: img/map_4.jpg
 new-page: true
@@ -1255,20 +1144,20 @@ This is a game of alternate history. While historical accuracy is a major concer
 For more information on the politics and government of the Turkish Republic, see the "Library" page on the top left. If this is your first time playing the game, it is strongly recommended that you read the information presented there.
 
 - @tutorial: Tutorial
-- @1928_easy: Begin (easy difficulty)
-- @1928_main: Begin (normal difficulty)
-- @1928_hard: Begin (hard difficulty)
-- @1928_historical: Begin (historical mode)
+- @start_easy: Begin (easy difficulty)
+- @start_main: Begin (normal difficulty)
+- @start_hard: Begin (hard difficulty)
+- @start_historical: Begin (historical mode)
 
-@1928_easy
-on-arrival: difficulty = -1; resources = 4; dues = 3; police_strength = 50; TIP_relation = 40;z_relation = 40; DP_relation = 40; budget = 5;
-go-to: 1928_main
+@start_easy
+on-arrival: difficulty = -1; resources = 4; dues = 3; police_strength = 50; TIP_relation = 40;AP_relation = 40; DP_relation = 40; budget = 5;
+go-to: start_main
 
-@1928_hard
-on-arrival: difficulty = 1; resources = 0; dues = 1; police_strength = 40; reformist_dissent = 25; left_dissent = 30; labor_dissent = 25; center_dissent = 25;z_relation = 41; TIP_relation = 16; DP_relation = 31; budget = 3; grey_wolves_strength = 25; tit_strength = 0.8;
-go-to: 1928_main
+@start_hard
+on-arrival: difficulty = 1; resources = 0; dues = 1; police_strength = 40; left_kemalists_dissent = 25; kemalist_marxists_dissent = 30; right_kemalists_dissent = 25; orthodox_kemalists_dissent = 25;AP_relation = 41; TIP_relation = 16; DP_relation = 31; budget = 3; grey_wolves_strength = 25; tit_strength = 0.8;
+go-to: start_main
 
-@1928_historical
+@start_historical
 subtitle: Saving, loading, and polls will be disabled. [? if not achievement_game_completed: Not recommended for a first playthrough. ?]
 on-arrival: {!
 Q.difficulty = 2;
@@ -1276,45 +1165,45 @@ Q.historical_mode = 1;
 Q.resources = 2;
 Q.dues = 1;
 Q.police_strength = 45;
-Q.reformist_dissent = 25;
-Q.left_dissent = 30;
-Q.labor_dissent = 25;
-Q.center_dissent = 25;
-Q.z_relation = 35;
+Q.left_kemalists_dissent = 25;
+Q.kemalist_marxists_dissent = 30;
+Q.right_kemalists_dissent = 25;
+Q.orthodox_kemalists_dissent = 25;
+Q.AP_relation = 35;
 Q.TIP_relation = 35;
 Q.DP_relation = 30;
 Q.budget = 2;
 this.state.disableSaves = true;
 !}
-go-to: 1928_main
+go-to: start_main
 
 @tutorial
 
-To start off, on the left side of the screen, one will encounter various tabs that will display information about the political, social and economic situation of the nation. 
+To start off, on the left side of the screen, one will encounter various tabs that will display information about the political, social and economic situation of the nation.
 
 = Main
 
-The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who is the president, who is the prime minister and so on. One crucial value shown in this tab is the attitude of TSK(acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they cant prevent or conduct coups on their own, they can determine the nature of a coup done by the military hierarchy, for an example if a coup only has the purpose of resetting the political status or to reshape the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970's in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. Thats where you, the player need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.	
+The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who is the president, who is the prime minister and so on. One crucial value shown in this tab is the attitude of TSK(acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they cant prevent or conduct coups on their own, they can determine the nature of a coup done by the military hierarchy, for an example if a coup only has the purpose of resetting the political status or to reshape the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970's in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. Thats where you, the player need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.
 
 = Politics
 
-The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which shows how close our ties are with the labour movement and what whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipalities control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully. 	
+The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which shows how close our ties are with the labour movement and what whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipalities control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
 
 = Defense
- 
-The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics neither and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fightings become unmanagable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces, land, sea and the air which has the potential to influence the outcome of many of the inter-national situations that the nation will face throughout the 1970's.	
+
+The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics neither and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fightings become unmanagable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces, land, sea and the air which has the potential to influence the outcome of many of the inter-national situations that the nation will face throughout the 1970's.
 
 = Polls
 
-The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.	
+The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.
 
 = Exterior Affairs
 
-The 'Exterior Affairs' tab shows the international relations of our nation and the status of the various diplomatic crises that the nation will encounter. 
+The 'Exterior Affairs' tab shows the international relations of our nation and the status of the various diplomatic crises that the nation will encounter.
 
 = Economics
 
-The 'Economics' tab is one of the most striking points of the game and presents a complex economic simulation that will need to be managed by the players. The general health of the economy is a parameter affected by the other variables that affects everything ranging from party popularity to political violence. The Turkish economy is very vulnerable to the possible turbulances in the world economy and the fundamental issues that cause this weakness need to be resolved before another crisis hits and wracks the nation like a train.	
+The 'Economics' tab is one of the most striking points of the game and presents a complex economic simulation that will need to be managed by the players. The general health of the economy is a parameter affected by the other variables that affects everything ranging from party popularity to political violence. The Turkish economy is very vulnerable to the possible turbulances in the world economy and the fundamental issues that cause this weakness need to be resolved before another crisis hits and wracks the nation like a train.
 
 = Party Leadership
 
@@ -1325,7 +1214,7 @@ The Party Leadership represents the top figures of the CHP. The Party Leader and
 @returnn
 go-to: start
 
-@1928_main
+@start_main
 on-arrival: {!
 if (Q.cyprus_mode == 1) {
     this.ui.audio('shuffle music/gercekkibris1.m4a music/12.mp3');

@@ -57,7 +57,7 @@ We have increased funding to the women's branch of the party.
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; youth += 1; workers_chp += 3; state_employees_chp += 2; petty_bourgeoisie += 2; kemalist_marxists_strength += 2; left_kemalists_strength += 3
+on-arrival: resources -= 1; youth += 1; workers_chp += 3; state_employees_chp += 2; petty_bourgeoisie += 2; {! AnatolianRules.adjustFactionStrength(Q, 'km', 2); !}  {! AnatolianRules.adjustFactionStrength(Q, 'lk', 3); !}
 
 "O Turkish Youth! Your first duty is ever to preserve and defend the National independence, the Turkish Republic".
 

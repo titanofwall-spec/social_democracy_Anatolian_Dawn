@@ -1,6 +1,6 @@
 title: The end of the Cyprus Minigame
 subtitle: 
-view-if: year == 1974 and month = 9 and week = 1
+view-if: cyprus_mode = 1 and (cyprus_year > 1974 or (cyprus_year == 1974 and cyprus_month >= 9))
 max-visits: 1
 tags: event
 new-page: true

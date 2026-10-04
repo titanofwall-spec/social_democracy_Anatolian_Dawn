@@ -5,74 +5,13 @@ tags: party_affairs
 view-if: rally_timer <= 0
 on-arrival: month_actions += 1; rally_timer = 6
 card-image: img/ecevitmiting3.jpg
-go-to: main_rally; sa_disrupt if sa_strength > 180 and not sa_banned and not return_to_normalcy
-
-@sa_disrupt
-
-The Nazi SA has disrupted our rally! Their street troops are preventing us from meeting.
-
-- @police_protect: Call the police to protect our rally.
-- @rb_protect: Use the Reichsbanner to protect our rally.
-- @both_protect: The police and Reichsbanner should work together to protect our rally.
-- @cancel: Cancel the rally.
-
-@police_protect
-view-if: CHP_prussia == 1
-on-arrival: police_protect_success = prussian_police_loyalty * prussian_police_militancy * prussian_police_strength*2 - sa_militancy*sa_strength;
-go-to: police_protect_win if police_protect_success >= 0; police_protect_lose if police_protect_success < 0
-
-@police_protect_win
 go-to: main_rally
-
-The police successfully protected our rally, so it can go ahead as usual.
-
-@police_protect_lose
-on-arrival: strife += 1; workers_MHP += 3
-
-Unfortunately, the police were unable or unwilling to hold back the SA mob. The Nazis have won this show of strength.
-
-@rb_protect
-on-arrival: rb_success = rb_strength*rb_militancy - sa_strength*sa_militancy; strife += 1
-go-to: rb_protect_win if rb_success >= 0; rb_protect_lose if rb_success < 0
-
-@rb_protect_win
-go-to: main_rally
-
-The Reichsbanner has successfully protected our rally against the SA! Our meeting can go ahead as usual.
-
-@rb_protect_lose
-on-arrival: workers_MHP += 3; rb_strength -= 50
-
-Unfortunately, the Reichsbanner was not able to hold back the SA mob. The Nazis have won this show of strength.
-
-@both_protect
-view-if: CHP_prussia
-choose-if: prussian_police_training > 0
-unavailable-subtitle: The loyal sections of the police have never coordinated with the Reichsbanner before.
-on-arrival: rb_success = rb_strength*rb_militancy - sa_strength*sa_militancy + prussian_police_loyalty*prussian_police_militancy*prussian_police_strength*2; strife += 1
-go-to: both_protect_win if rb_success >= 0; both_protect_lose if rb_success < 0
-
-@both_protect_win
-go-to: main_rally
-
-The police and Reichsbanner have successfully protected our rally against the SA! Our meeting can go ahead as usual.
-
-@both_protect_lose
-on-arrival: workers_MHP += 3; rb_strength -= 50
-
-Unfortunately, the police and Reichsbanner were not able to hold back the SA mob. The Nazis have won this show of strength.
-
-
-@cancel
-on-arrival: workers_MHP += 3;
-
-The SA have won this show of strength.
 
 @main_rally
 
 Mass rallies are a common feature of multi party democracies, especially in the lead-up to an election. What is the primary theme of this rally?
 
-- @class_struggle: The class struggle of the proletariat against the bourgeoisie.	
+- @class_struggle: The class struggle of the proletariat against the bourgeoisie.
 - @leftofcenter: With the new direction our party has taken, economic inequality and social justice have become a rallying point for the labourers of this nation.
 - @kemalism: We inherit a great message, the message of modernity and progress, from our founder Atatürk. We are the party of Atatürk first and foremost.
 - @social_programs: Turkish society has historically always been one with great state presence, with the state taking care of many needs of its citizens. We can exploit this situation with our new social programs.
@@ -81,22 +20,22 @@ Mass rallies are a common feature of multi party democracies, especially in the 
 - @local: A mixture of various local and national concerns that resonate most with the audience.
 - @easy_discard
 
-@class_struggle	
-view-if: kemalist_marxists_strength >= 25 and chp_party_leader == "Ecevit" 
-on-arrival: workers_chp += 1*(1-dissent); state_employees_chp -= 5; rural_chp -= 3; petty_bourgeoisie_chp -= 5; capitalists_chp -= 10; kemalist_marxists_strength += 10; left_kemalists_dissent += 10; orthodox_kemalists_dissent += 20; right_kemalists_dissent += 30; disk_relation += 10; coup_timer += 3
+@class_struggle
+view-if: kemalist_marxists_strength >= 25 and CHP_party_leader == "Ecevit"
+on-arrival: workers_chp += 1*(1-dissent); state_employees_chp -= 5; rural_chp -= 3; petty_bourgeoisie_chp -= 5; capitalists_chp -= 10; {! AnatolianRules.adjustFactionStrength(Q, 'km', 10); !}  left_kemalists_dissent += 10; orthodox_kemalists_dissent += 20; right_kemalists_dissent += 30; disk_relation += 10; coup_timer += 3
 
 Even though <span style="color: #E3000F;">**CHP**</span> stands for the working class, it preaches for justice, not worker domination. The Marxist rhetoric generally fall on deaf ears and gathers serious backlash from even the Leftist Kemalists within the party. Our enemies are quick to capitalize on this, calling us "unnational" and "godless marxists".
-	
-@leftofcenter	
+
+@leftofcenter
 view-if: CHP_party_leader == "Ecevit"
-on-arrival: workers_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent); left_kemalists_strength += 3
-	
+on-arrival: workers_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent); {! AnatolianRules.adjustFactionStrength(Q, 'lk', 3); !}
+
 We emphasize our social democratic ideals.
 
 @kemalism
 choose-if: kemalizm_timer <= 0
-unavailable-subtitle: We cant rely on Kemalist rhetoric only, people expect us to bring real change! 
-on-arrival: workers_chp += 2*(1-dissent); state_employees_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); alevis_chp += 2*(1-dissent); left_kemalists_dissent -= 5; orthodox_kemalists_dissent -= 5; orthodox_kemalists_strength += 3; kemalizm_timer = 6
+unavailable-subtitle: We cant rely on Kemalist rhetoric only, people expect us to bring real change!
+on-arrival: workers_chp += 2*(1-dissent); state_employees_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); alevis_chp += 2*(1-dissent); left_kemalists_dissent -= 5; orthodox_kemalists_dissent -= 5; {! AnatolianRules.adjustFactionStrength(Q, 'ok', 3); !}  kemalizm_timer = 6
 
 The Turkish nation, except for some radicals in the far away sections of the political spectrum, unite in their love for Atatürk. We have been using this rhetoric for the last 50 years though, and we cant gather enough votes by simply recalling Atatürk, we need to follow in his footsteps through policy platforms and actions.
 
@@ -106,26 +45,26 @@ on-arrival: workers_chp += 4*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent)
 Social programs are one of our most popular policies and we make this fact very clear.
 
 @pacifism
-view-if: CHP_party_leader == "Ecevit" 
+view-if: CHP_party_leader == "Ecevit"
 choose-if: army_in_government == 1
 unavailable-subtitle: The army has withdrawn their hand over the fragile democracy, for now.
-on-arrival: z_relation += 2; nationalism -= 2*(1 - dissent); workers_CHP += 4*(1 - dissent) if pacifism >= 3; unemployed_CHP += 3*(1-dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; new_middle_CHP += 4*(1-dissent) if pacifism >= 3
+on-arrival: AP_relation += 2; nationalism -= 2*(1 - dissent); workers_chp += 4*(1 - dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; state_employees_chp += 4*(1-dissent) if pacifism >= 3
 
 Our speakers denounce the military establishment and all their hegemony over the political affairs. Opposition to the military establishment is one of the few ideas we share with AP.
 
 [? if pacifism < 3 : Given the volume of militarist indoctrination in our society, it is difficult to argue so vehemently against the military. ?]
 [? if pacifism >= 3 : Since we have consistently made pacifism a theme of our campaign, the workers are enthusiastic about our message. ?]
 
-@wtb
-view-if: wtb_adopted = 1
+@public_works
+view-if: public_works_adopted = 1
 choose-if: return_to_normalcy = 0
 unavailable-subtitle: The economic crisis is largely over now, and the public is no longer interested in hearing about it.
-on-arrival: wtb_support += 1; workers_CHP += 6*(1-dissent); unemployed_CHP += 6*(1-dissent); rural_CHP += 3*(1-dissent); new_middle_CHP += 3*(1-dissent); old_middle_CHP += 3*(1-dissent);
+on-arrival: public_works_support += 1; workers_chp += 6*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent);
 
-The WTB plan has become a popular rallying cry for our party. The workers are eager to go back to work, and that is exactly what the plan promises.
+The public works programme has become a popular rallying cry for our party. The workers are eager to go back to work, and that is exactly what the plan promises.
 
 
 @local
-on-arrival: workers_CHP += 3*(1-dissent); old_middle_CHP += 1*(1-dissent); new_middle_CHP += 2*(1-dissent); unemployed_CHP += 3*(1-dissent);
+on-arrival: workers_chp += 3*(1-dissent); petty_bourgeoisie_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent)
 
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.

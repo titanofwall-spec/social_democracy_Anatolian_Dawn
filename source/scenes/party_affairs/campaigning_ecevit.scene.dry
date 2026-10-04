@@ -11,11 +11,11 @@ card-image: img/ecevit_campaigning.jpg
 
 Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?
 
-- @workers: The rising urban working class, attracted by our shift in policy. 
+- @workers: The rising urban working class, attracted by our shift in policy.
 - @petty_bourgeoisie: The middle class of artisans, shopkeepers and alike, normally affiliated with liberal parties.
 - @state_employees: Citizens employed by the state and bureaucracy.
 - @rural: Rural workers and small farmers, who have felt neglected by us in the past.
-- @alevis: The Shiite minority that is generally grateful for saving them from the grasp of the Sunni Ottomans. 
+- @alevis: The Shiite minority that is generally grateful for saving them from the grasp of the Sunni Ottomans.
 - @kurds: Kurds, who lack a mainstream political affiliation
 - @capitalists: Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords..?
 - @root: We either don't want to or cannot campaign right now.
@@ -25,9 +25,9 @@ Whether or not we are in an electoral campaign, the party is always trying to br
 subtitle: Resources will decrease by 1. Workers' support will increase.
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: workers_chp += 6*(1-dissent); workers_chp -= 2 if unemployed >= 15; workers_chp -= 2 if unemployed >= 25; workers_chp += 6*(1-dissent) if wtb_adopted = 1; resources -= 1; workers_chp += 3*(1-dissent) if nationalization_progress >= 1;
+on-arrival: workers_chp += 6*(1-dissent); workers_chp -= 2 if unemployed >= 15; workers_chp -= 2 if unemployed >= 25; workers_chp += 6*(1-dissent) if public_works_adopted = 1; resources -= 1; workers_chp += 3*(1-dissent) if nationalization_progress >= 1;
 
-We have increased our campaigning among the workers. [? if unemployed >= 15: The high levels of unemployment make our campaign more difficult. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract workers. ?]
+We have increased our campaigning among the workers. [? if unemployed >= 15: The high levels of unemployment make our campaign more difficult. ?][? if public_works_adopted = 1 : Adopting the public works programme gives us a new rallying point around which to attract workers. ?]
 
 @petty_bourgeoisie
 subtitle: Resources will decrease by 1. Petty-bourgeois support will increase.

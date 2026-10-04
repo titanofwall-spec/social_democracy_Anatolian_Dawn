@@ -40,7 +40,7 @@ data = [
       "name": "Ecevit",
       "seats": ecevitSeats,
       "color": "#ca1010",
-  },  
+  },
   {
       "id": "inonuists",
       "legend": "inonuists",
@@ -50,20 +50,20 @@ data = [
   },
 ];
 if (window && d3) {
-    var width = 500; 
+    var width = 500;
     var height = 500;
     var screenWidth = document.getElementById('content').offsetWidth;
     if (screenWidth < width - 50) {
-        width = screenWidth - 50; 
+        width = screenWidth - 50;
         height = width;
-        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
-    } 
+        document.getElementById("parliament").style.height = screenWidth/2 + "px";
+    }
 
     var parliament = d3.parliament();
     parliament.width(width).height(height).innerRadiusCoef(0.4);
     parliament.enter.fromCenter(true).smallToBig(true);
     parliament.exit.toCenter(false).bigToSmall(true);
-    d3.select("#reichstag").datum(data).call(parliament);
+    d3.select("#parliament").datum(data).call(parliament);
 
     // Expose result
     ecevitVictory = (ecevitSeats > inonuSeats);
@@ -71,7 +71,7 @@ if (window && d3) {
 }
 !}
 
-{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+{!<svg id="parliament" style="width: 500px; height: 250px;"> </svg>!}
 
 @aftervote
 view-if: true
@@ -81,7 +81,7 @@ The delegates have voted. The hall is filled with cheers and groans alike. The r
 - @ecevit_wins: Sırrı Atalay wins from the Reformist camp!
 - @inonu_wins: The old guard surprisingly hold on with Hüdai Oral, albeit barely.
 
-@ecevit_wins	
+@ecevit_wins
 view-if: ecevitVictory
 
 The election of Sırrı Atalay has made the party's future direction clear. It won't be one of elitism but of idealism and populism. Now we must look forward to the grand congress next week- wait what?!
@@ -89,10 +89,9 @@ The election of Sırrı Atalay has made the party's future direction clear. It w
 - @inonu_resigns: Seeing the results of the preliminary congress, İnönü has resigned from the post of party leadership!
 
 @inonu_resigns
-on-arrival: {! 
+on-arrival: {!
 Q.congress_upcoming = 0;
 Q.CHP_party_leader = "Ecevit";
-Q.chp_party_leader = "Ecevit";
 Q.party_leader_id = "ecevit";
 Q.left_kemalists_dissent -= 20;
 Q.kemalist_marxists_dissent -= 10;
@@ -140,6 +139,6 @@ go-to: shuffle_leadership
 
 @inonu_wins
 view-if: not ecevitVictory
-on-arrival: {! Q.orthodox_kemalists_strength += 10; Q.congress_upcoming = 0; !}
+on-arrival: {! AnatolianRules.adjustFactionStrength(Q, 'ok', 10); Q.congress_upcoming = 0; !}
 
 The old guard has somehow managed to pull a victory with this vote. The Left is heavily demoralized over losing their intra-party majority and many of them focus their criticism on Ecevit, and his perceived romanticism.

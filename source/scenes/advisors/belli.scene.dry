@@ -39,7 +39,7 @@ Many Socialists report undergoing horrible tortures after being arrested.
 view-if: (year == 1973 and month >= 10) or year == 1974
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; tip_relations += 2
+on-arrival: advisor_action_timer = 3; TIP_relation += 2
 
 With the army pressure lessening, it seems many Socialist intellectuals are preparing to create a renewed TİP.
 

@@ -2,9 +2,9 @@ title: Cabinet
 is-pinned-card: true
 tags: advisor
 card-image: img/ecevitcabinet.jpg
-view-if: difficulty < 0 and CHP_in_government and chancellor_party = "CHP"
+view-if: difficulty < 0 and CHP_in_government and prime_minister_party = "CHP"
 on-arrival: last_cabinet_action = 1
-new-page: true 
+new-page: true
 
 = Cabinet
 

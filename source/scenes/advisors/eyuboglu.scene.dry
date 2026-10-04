@@ -17,7 +17,7 @@ Orhan Eyüboğlu is the vice secretary of the <span style="color: #E3000F;">**CH
 @orthodoxdissent
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; orthodox_kemalist_dissent -= 7
+on-arrival: advisor_action_timer = 3; orthodox_kemalists_dissent -= 7
 
 Eyüboğlu assures key Orthodox figures and decreases dissent.
 

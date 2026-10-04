@@ -21,7 +21,7 @@ We are the self proclaimed party of positivism, the party of science and arts. H
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; west_relation += 2; state_employees_chp += 3; state_employees_tip += 1; petty_bourgeoisie_chp += 3
+on-arrival: resources -= 1; west_relation += 2; state_employees_chp += 3; state_employees_TIP += 1; petty_bourgeoisie_chp += 3
 	
 The epic theatre culture had been flourishing before the Memorandum of 12 March. Even though a small assistance may be needed to revitalize it, these stages can once again be a voice for progressive ideas and democratic culture.
 

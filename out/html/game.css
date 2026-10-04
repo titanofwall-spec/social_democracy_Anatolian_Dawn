@@ -10,8 +10,8 @@ body {
   --tab-bg-color: #dedede;
   --tab-color: #ddd;
   --tab-hover-color: #ececec;
-  --card-border-color: #ccc; 
-  --card-bg-color: #ddd; 
+  --card-border-color: #ccc;
+  --card-bg-color: #ddd;
   --tooltip-bg-color: #fff;
   --tooltip-border-color: #888;
   --tooltip-shadow-color: rgba(0, 0, 0, 0.4);
@@ -63,7 +63,7 @@ header, #content, footer {
 
 .normal-mode {
   max-width: 540px;
-} 
+}
 #content {
   position: relative;
   background-color: var(--content-bg-color);
@@ -227,7 +227,7 @@ ul.choices a {
   opacity: 0;
   width: max-content;
   max-width: min(420px, calc(100vw - 2em));
-  z-index: 9999;
+  AP-index: 9999;
   bottom: calc(100% + 0.4em);
   left: 50%;
   transform: translateX(-50%);
@@ -368,7 +368,7 @@ blockquote + blockquote.attribution {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 2;
+    AP-index: 2;
     overflow: scroll;
 }
 .overlay_top {
@@ -401,14 +401,14 @@ blockquote + blockquote.attribution {
  * only transition on fade-in
  * */
 #bg2 {
-    z-index: -100;
+    AP-index: -100;
 }
 #bg1 {
-    z-index: -99;
+    AP-index: -99;
 }
 /*
  * Card stuff for dendrynexus
- * 
+ *
  */
 
 ul.decks, ul.hand, ul.pinned-cards {
@@ -481,7 +481,7 @@ div.blank-card {
   opacity: 0;
   width: max-content;
   max-width: min(420px, calc(100vw - 2em));
-  z-index: 9999;
+  AP-index: 9999;
   bottom: calc(100% + 0.4em);
   left: 50%;
   transform: translateX(-50%);
@@ -606,7 +606,7 @@ img {
   left: 0;
   right: 0;
   margin: 0 auto;
-  z-index: -97;
+  AP-index: -97;
 }
 .sprite {
     position: absolute;
@@ -656,7 +656,7 @@ img {
 
 .mytooltip .mytooltiptext {
   position: fixed;
-  z-index: 999999;
+  AP-index: 999999;
   width: 120px;
   background: #fff4e6;
   color: #3b1f0a;
@@ -765,7 +765,7 @@ table {
 .seat.CGP {
     fill: #5a5f63;
 }
-.seat.z {
+.seat.AP {
     fill: #750a6f;
 }
 .seat.DP {
@@ -807,7 +807,7 @@ table {
     position: fixed;
     top: 10px;
     right: 10px;
-    z-index: 3;
+    AP-index: 3;
     background: rgba(255, 255, 255, 0.9);
     border: 2px solid #555;
     border-radius: 8px;
@@ -837,22 +837,22 @@ table {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  z-index: 9999; 
-  width: max-content; 
-  max-width: 220px; 
-  
+  AP-index: 9999;
+  width: max-content;
+  max-width: 220px;
+
   top: 100%;
-  left: 0; 
+  left: 0;
   margin-top: 0.4em;
   padding: 0.6em;
   font-size: 0.85em;
   text-align: center;
   text-decoration: none;
-  
+
   border: 1px solid var(--border-color);
   background-color: var(--content-bg-color);
   box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
-  
+
   transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
@@ -915,7 +915,7 @@ table {
     font-family: "Minion Pro", Georgia, serif;
     font-weight: 700;
     margin-top: 2px;
-} 
+}
 .cyprus-title-img {
   width: 100%;
   height: 332px;
@@ -960,7 +960,7 @@ table {
   clip-path: polygon(18% 0, 100% 0, 100% 100%, 22% 100%, 0 62%, 20% 35%);
 }
 .cold-war-map-overlay {
-  z-index: 10;
+  AP-index: 10;
   background: rgba(0, 0, 0, 0.84);
 }
 .cold-war-map-overlay.cold-war-map-opening {
@@ -1050,7 +1050,7 @@ table {
  * through the eagle, as requested.
  */
 .cold-war-region-canada {
-    z-index: 30;
+    AP-index: 30;
 
     clip-path: polygon(
         5.08% 23.44%,
@@ -1103,7 +1103,7 @@ table {
  * through the obscured eagle area.
  */
 .cold-war-region-united-states {
-    z-index: 20;
+    AP-index: 20;
 
     clip-path: polygon(
         6.25% 37.50%,
@@ -1154,7 +1154,7 @@ table {
 
 /* Mexico */
 .cold-war-region-mexico {
-    z-index: 25;
+    AP-index: 25;
 
     clip-path: polygon(
         18.36% 37.89%,
@@ -1177,7 +1177,7 @@ table {
 
 /* Cuba */
 .cold-war-region-cuba {
-    z-index: 25;
+    AP-index: 25;
 
     clip-path: polygon(
         30.47% 43.75%,
@@ -1199,7 +1199,7 @@ table {
 
 /* United Kingdom */
 .cold-war-region-united-kingdom {
-    z-index: 40;
+    AP-index: 40;
 
     clip-path: polygon(
         37.34% 58.98%,
@@ -1219,7 +1219,7 @@ table {
 
 /* France */
 .cold-war-region-france {
-    z-index: 40;
+    AP-index: 40;
 
     clip-path: polygon(
         35.16% 66.41%,
@@ -1241,7 +1241,7 @@ table {
 
 /* West Germany */
 .cold-war-region-west-germany {
-    z-index: 45;
+    AP-index: 45;
 
     clip-path: polygon(
         41.80% 64.06%,
@@ -1257,7 +1257,7 @@ table {
 
 /* East Germany */
 .cold-war-region-east-germany {
-    z-index: 46;
+    AP-index: 46;
 
     clip-path: polygon(
         44.92% 62.50%,
@@ -1273,7 +1273,7 @@ table {
 
 /* Italy */
 .cold-war-region-italy {
-    z-index: 45;
+    AP-index: 45;
 
     clip-path: polygon(
         43.36% 68.36%,
@@ -1296,7 +1296,7 @@ table {
 
 /* Poland */
 .cold-war-region-poland {
-    z-index: 46;
+    AP-index: 46;
 
     clip-path: polygon(
         47.27% 62.89%,
@@ -1313,7 +1313,7 @@ table {
 
 /* Czechoslovakia */
 .cold-war-region-czechoslovakia {
-    z-index: 47;
+    AP-index: 47;
 
     clip-path: polygon(
         44.92% 65.62%,
@@ -1338,7 +1338,7 @@ table {
  * therefore remain clickable over the USSR region.
  */
 .cold-war-region-soviet-union {
-    z-index: 10;
+    AP-index: 10;
 
     clip-path: polygon(
         48.83% 12.50%,
@@ -1409,7 +1409,7 @@ table {
 
 /* China */
 .cold-war-region-china {
-    z-index: 35;
+    AP-index: 35;
 
     clip-path: polygon(
         59.38% 53.12%,
@@ -1439,7 +1439,7 @@ table {
 
 /* North Korea */
 .cold-war-region-north-korea {
-    z-index: 50;
+    AP-index: 50;
 
     clip-path: polygon(
         61.33% 48.05%,
@@ -1456,7 +1456,7 @@ table {
 
 /* North Vietnam */
 .cold-war-region-north-vietnam {
-    z-index: 50;
+    AP-index: 50;
 
     clip-path: polygon(
         64.45% 66.41%,

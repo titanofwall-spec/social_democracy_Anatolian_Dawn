@@ -16,4 +16,6 @@ He had feared death a lot, yet feared his fear of death being known ever more. H
 As the plane warped through the clouds and the rocky ground became visible, the pilot began imagining. He wrapped the steering wheel and flew upwards. He passed through the clouds and left the fear of death and violence and bloodshed and many more fucking atrocities behind. He flew up through the blue sky that the redness behind the clouds could not penetrate. He flew, flew and flew and finally arrived at his imaginary homeland where there were no bombing campaigns, no anti air guns, no split families, no children left fatherless and where no young men were sent to die in preventable conflicts. 
 
 - @root: And thus he imagined himself on an iron bird.
-  
+
+@root
+go-to: cyprus_atilla1_24 if cyprus_mode != 0 and cyprus_atilla1_complete == 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24; post_event if cyprus_mode == 0 or cyprus_atilla1_complete == 1 or cyprus_year != 1974 or cyprus_month != 7 or cyprus_day != 24

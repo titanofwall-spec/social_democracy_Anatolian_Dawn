@@ -8,11 +8,11 @@ go-to: menu
 Herein contains relevant information about the government and politics of the Turkish republic.
 
 @menu
-	
+
 - @howtoplay: Mechanics and how to play
 - @government: Turkey's system of government
 - @kemalism: Kemalist Revolution and CHP
-- @weimar_timeline: Timeline of the Ottoman Empire and the Turkish Republic before 1972	
+- @turkish_timeline: Timeline of the Ottoman Empire and the Turkish Republic before 1972
 - @12march: 12 March Memorandum and Modern Turkish Politics
 - @curr_gov: Current government details
 - @demographics: Demographics
@@ -23,25 +23,25 @@ Herein contains relevant information about the government and politics of the Tu
 - @factions: Internal factions
 - @figures: Figures and charts
 - @backSpecialScene: Exit library.
-	
-@howtoplay	
-go-to: menu	
 
-'Anatolian Dawn' is a text-based political simulator about a significant period marked by political instability and violence in Turkish history, the 1970's. Just like in the original 'Social Democracy, An Alternate History' game that this simulator is based on, the game moves forward through turns that last for two weeks and the turns progress with cards that can be selected from the various decks that one will encounter through their playtime. As the turns progress, the players will encounter events that they will have to maneuver through. Designed to be a both complex and enjoyable simulation of the 1970's, various mechanics and features the players will get to experience are displayed down below.	
+@howtoplay
+go-to: menu
 
-To start off, on the left side of the screen, one will encounter various tabs that will display information about the political, social and economic situation of the nation. 	
+'Anatolian Dawn' is a text-based political simulator about a significant period marked by political instability and violence in Turkish history, the 1970's. Just like in the original 'Social Democracy, An Alternate History' game that this simulator is based on, the game moves forward through turns that last for two weeks and the turns progress with cards that can be selected from the various decks that one will encounter through their playtime. As the turns progress, the players will encounter events that they will have to maneuver through. Designed to be a both complex and enjoyable simulation of the 1970's, various mechanics and features the players will get to experience are displayed down below.
 
-The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who is the president, who is the prime minister and so on. One crucial value shown in this tab is the attitude of TSK(acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they cant prevent or conduct coups on their own, they can determine the nature of a coup done by the military hierarchy, for an example if a coup only has the purpose of resetting the political status or to reshape the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970's in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. Thats where you, the player need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.	
+To start off, on the left side of the screen, one will encounter various tabs that will display information about the political, social and economic situation of the nation.
 
-The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which shows how close our ties are with the labour movement and what whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipalities control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully. 	
+The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who is the president, who is the prime minister and so on. One crucial value shown in this tab is the attitude of TSK(acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they cant prevent or conduct coups on their own, they can determine the nature of a coup done by the military hierarchy, for an example if a coup only has the purpose of resetting the political status or to reshape the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970's in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. Thats where you, the player need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.
 
-The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics neither and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fightings become unmanagable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces, land, sea and the air which has the potential to influence the outcome of many of the inter-national situations that the nation will face throughout the 1970's.	
+The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which shows how close our ties are with the labour movement and what whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipalities control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
 
-The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.	
+The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics neither and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fightings become unmanagable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces, land, sea and the air which has the potential to influence the outcome of many of the inter-national situations that the nation will face throughout the 1970's.
 
-The 'Exterior Affairs' tab shows the international relations of our nation and the status of the various diplomatic crises that the nation will encounter. 	
+The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.
 
-The 'Economics' tab is one of the most striking points of the game and presents a complex economic simulation that will need to be managed by the players. The general health of the economy is a parameter affected by the other variables that affects everything ranging from party popularity to political violence. The Turkish economy is very vulnerable to the possible turbulances in the world economy and the fundamental issues that cause this weakness need to be resolved before another crisis hits and wracks the nation like a train.	
+The 'Exterior Affairs' tab shows the international relations of our nation and the status of the various diplomatic crises that the nation will encounter.
+
+The 'Economics' tab is one of the most striking points of the game and presents a complex economic simulation that will need to be managed by the players. The general health of the economy is a parameter affected by the other variables that affects everything ranging from party popularity to political violence. The Turkish economy is very vulnerable to the possible turbulances in the world economy and the fundamental issues that cause this weakness need to be resolved before another crisis hits and wracks the nation like a train.
 
 Advisors are the influential politicians aligned with the party that take part in its governance and are able to take unique actions that varies from advisor to advisor. With actions being able to be taken one in specific periods of time, the players need to make the best of the actions that their advisors can provide, and create the suitable combination that will help them forward their cause and the party.
 
@@ -63,12 +63,12 @@ new-page: true
 
 Kemalism, as the name suggests, is based on the principles laid out by the founding father of the republic, Mustafa Kemal Atatürk. Viewing itself as the antidote to the decadance of the Ottoman Empire, the ideals of Kemalism have given birth to the young Republic of Turkey
 
-@weimar_timeline
+@turkish_timeline
 go-to: menu
 
 = Timeline of the Republic and <span style="color: #E3000F;">**CHP**</span> (until 1972)
 
-**1470~**: The Ottoman Empire is given its Absolutist system with the centralizing reforms of Mehmed II. These reforms consolidated power solely in the hands of the Sultan and made it impossible for a land owning class separate from the whims of the Padisah to arise. This act will turn the Ottomans into a conquest machine but the system lacks the necessary class divisions which would normally as society develops limit the power of the Monarch and foster social progression through the replacement of the monarch as the highest power with justice. However the centralization of power firmly stabilizes the Ottoman class affairs and renders the Ottomans deficient of social progression. 
+**1470~**: The Ottoman Empire is given its Absolutist system with the centralizing reforms of Mehmed II. These reforms consolidated power solely in the hands of the Sultan and made it impossible for a land owning class separate from the whims of the Padisah to arise. This act will turn the Ottomans into a conquest machine but the system lacks the necessary class divisions which would normally as society develops limit the power of the Monarch and foster social progression through the replacement of the monarch as the highest power with justice. However the centralization of power firmly stabilizes the Ottoman class affairs and renders the Ottomans deficient of social progression.
 
 **1510~-1610~**: Due to the discovery of the Americas putting the Ottoman finances under pressure with the inflation of gold, the Ottoman quasi-feudality system under the name of "Tımar" begins to break down. As masses are pushed away from their villages and are unable to be integrated into urban life due to the lack of industrialized means of production, banditry and thuggery under small gangs spread significantly. The rejected masses find the solution to be raiding their former villages in search of wealth, causing the Turkish villagery to be pushed to remote places where agriculture is limited, firmly preventing any progression into the later stages of production.
 
@@ -106,7 +106,7 @@ The Liberals, still believing in the potential survival of the Ottoman identity,
 
 **1913**: The Unionists coup the Liberal government and turn the state into a one-party dictatorship rooted in their belief of political power being a tool for furthering social progress. A tripartite of Cemal, Talat and Enver Pashas begin which would last until the end of World War 1.
 
-**1915**: After failure in trying to join the Entente powers, the Ottomans join the Central Powers and join the war after bombarding the Russian port of Sevastopol. This opportunity is used to sever the financial ties with the Entente Powers and economic advantages named capitulations given to these states as part of the Liberal shock therapy to capitalize the Ottoman economy.  
+**1915**: After failure in trying to join the Entente powers, the Ottomans join the Central Powers and join the war after bombarding the Russian port of Sevastopol. This opportunity is used to sever the financial ties with the Entente Powers and economic advantages named capitulations given to these states as part of the Liberal shock therapy to capitalize the Ottoman economy.
 
 The Gallipoli Campaign takes place in which a new star, Mustafa Kemal Pasha, arises and becomes popular among the public. He would go on to write this in a letter to the families of the perished Anzac troops in Gallipoli in 1934;
 
@@ -140,21 +140,21 @@ Become our sons as well”.
 
 **1918**: The war ends in favor of the Entente powers. The empire is in collapse. Entente forces infiltrate each and every institution of the state and the state loses its sovereignty. The Nationalists are worried of a total annihilation of the Turkish Nation.
 
-The CUP dissolves itself and many of its higher ranking officials run away. 
+The CUP dissolves itself and many of its higher ranking officials run away.
 
 Sultan Mehmed Resad V. dies and is replaced with the passive sultan Vahdettin.
 
-**1919**: The Ottoman Army is dissolved, some officers disband their army while others retreat to more defensible positions within Anatolia or distribute their weapons among the Turkish population. 
+**1919**: The Ottoman Army is dissolved, some officers disband their army while others retreat to more defensible positions within Anatolia or distribute their weapons among the Turkish population.
 
-The Greek Army lands in Smyrna. This act is seen as a total embarassment and national dishonor by the Turkish public whose Nationalism is fueled by ethnic conflict. 
+The Greek Army lands in Smyrna. This act is seen as a total embarassment and national dishonor by the Turkish public whose Nationalism is fueled by ethnic conflict.
 
-Thanks to the weapons distributed by the army, local militias led by notables and landlords called "Kuvayi Milliye" are formed against the approaching Entente armies. 
+Thanks to the weapons distributed by the army, local militias led by notables and landlords called "Kuvayi Milliye" are formed against the approaching Entente armies.
 
 Mustafa Kemal, with the excuse of "disarming" the Kuvayi Milliye troops in Pontus arrives in Samsun. He starts holing conferences with other senior military officers and resistance leaning local notables.
 
 **1920**: The Sultanate is forced to accept the disastrous treaty of Sevres which strips the Ottoman state of roughly 80% of its territory and splits the remaining part into zones of interest for the Entente powers. The Turkish public is furious and the sultan Vahdettin is accused of treason and starts to be seen as a puppet of Western hegemony.
 
-The Ottoman parliament declares the proposed borders for the Turkish nation(Misak-ı Milli) which was from Edirne to Halab and Musul. 
+The Ottoman parliament declares the proposed borders for the Turkish nation(Misak-ı Milli) which was from Edirne to Halab and Musul.
 
 Constantinople is invaded by the Entente powers and the Ottoman parliament is dissolved. The need for a central authority to lead the national resistance becomes clear.
 
@@ -210,7 +210,7 @@ Wanting to create a civic administration, Kemal orders all military leaders many
 
 **1934**: The surname law is passed, all Turkish citizens are to adopt a surname which was previously not present in Ottoman society. Mustafa Kemal is given the surname "Atatürk" meaning "Father of the Turks" by the Grand Assembly.
 
-**1936**: Due to alcoholism and past diseases, Ataturk's health begins to deteriorate. 
+**1936**: Due to alcoholism and past diseases, Ataturk's health begins to deteriorate.
 
 Thanks to Ataturk's efforts, the Sababad pact is signed with in the East with Iran, Iraq and Afghanistan reaffirming regional neutrality while the Balkan Pact is signed between the Balkan nations except for Bulgaria.
 
@@ -263,7 +263,7 @@ while I died soaked in blood—
 
      so you wouldn't hear my screams.
 
-           your legs fled you into your car 
+           your legs fled you into your car
 
 But I follow you, Mr. Adnan,
 
@@ -331,7 +331,7 @@ If there had been one hundred Turkeys
 
             And sell them a hundred times!
 
-The most unfortunate night of my nation 
+The most unfortunate night of my nation
 
      was the one in which you were born"
 
@@ -351,9 +351,9 @@ After the coupers gave him 24 hours to think, he responded;
 
 And the coup proceeded.
 
-The military junta contacted various academicians and professors to create a council for the preparation of a democratic constitution that would prevent someone like Menderes rising again. 
+The military junta contacted various academicians and professors to create a council for the preparation of a democratic constitution that would prevent someone like Menderes rising again.
 
-**1961**: The constitution is prepared and completely satisfies the expectations of the public, even being called "too democratic" by some. 
+**1961**: The constitution is prepared and completely satisfies the expectations of the public, even being called "too democratic" by some.
 
 Menderes is executed by hanging due to "treason against the nation". This is definitely not well received by the public and Menderes transforms in the eyes of the people from a shady but charismatic politician to a national hero and martyr of democracy. His last words reinforce this sentiment as well;
 
@@ -381,17 +381,17 @@ Aydemir was demoted but not trialed in accordance with the agreement. However, a
 
 **March 12 1971**: Due to AP's inability to find a solution for the inter-class conflicts and put an end to the student movements, the military sends a memorandum to the Demirel government, calling it to resign in favor of a technocratic military directed government. The names behind the 9 March attempt have been jailed and no one exactly knows where they are, or what has happened to them exactly.
 
-@12march	
+@12march
 
-The current state of Turkish politics is shaped by the Memorandum of March 12 1971 and the ensuing military-dictated technocratic governments.		
+The current state of Turkish politics is shaped by the Memorandum of March 12 1971 and the ensuing military-dictated technocratic governments.
 
-After the 60 coup and the constitution of 61, Turkish Republic entered a state of liberalization and democratization. With a constitution that can set an example 'even for Western Europe' as Ertuğrul Soymaz, the spokesman of the industrialists of Istanbul, left wing ideas started to appear in public life for the fırst time in the young republic's life. As the AP governments of the 60's opened up the Turkish market and many state corporations were privatized, With the effect of unregulated labour conditions and the rise of the working class, socialist and left wing ideas quickly spread through the unions and the now autonomous higher education. With the formation of TİP which managed to get a significant 3% of the vote in a nation where politics is dominated by the progressive and conservative camps, TİP and the Socialist movement set the first example of labour politics.	
+After the 60 coup and the constitution of 61, Turkish Republic entered a state of liberalization and democratization. With a constitution that can set an example 'even for Western Europe' as Ertuğrul Soymaz, the spokesman of the industrialists of Istanbul, left wing ideas started to appear in public life for the fırst time in the young republic's life. As the AP governments of the 60's opened up the Turkish market and many state corporations were privatized, With the effect of unregulated labour conditions and the rise of the working class, socialist and left wing ideas quickly spread through the unions and the now autonomous higher education. With the formation of TİP which managed to get a significant 3% of the vote in a nation where politics is dominated by the progressive and conservative camps, TİP and the Socialist movement set the first example of labour politics.
 
-However these event worried the political right and the Kemalist military greatly and many from these camps began to argue that 'the constitution was too liberal for a nation as economically backward as ours'. In the late 1960's, a splinter party of the ultranational CKMP, MHP formed a militia called 'Ülkü Ocakları' otherwise known as the 'Grey wolves' and started to terrorize the Socialist intelligentsia without state interference. Admist rising political violence, between the Grey Wolves and DEV-GENÇ(a socialist student movement) and worsening economically conditions, after the failed coup attempt of the Socialist Kemalists within the army, the general command launched its own semi-coup on March 12 1971.	
+However these event worried the political right and the Kemalist military greatly and many from these camps began to argue that 'the constitution was too liberal for a nation as economically backward as ours'. In the late 1960's, a splinter party of the ultranational CKMP, MHP formed a militia called 'Ülkü Ocakları' otherwise known as the 'Grey wolves' and started to terrorize the Socialist intelligentsia without state interference. Admist rising political violence, between the Grey Wolves and DEV-GENÇ(a socialist student movement) and worsening economically conditions, after the failed coup attempt of the Socialist Kemalists within the army, the general command launched its own semi-coup on March 12 1971.
 
-Forcing the AP government of Süleyman Demirel to resign, the military offered the <span style="color: #E3000F;">**CHP**</span> delegate Nihat Erim to form the government, with the condition of leaving his party. Nihat Erim, already sympathetic to the cause of the military accepted the offer and formed his government, which despite collapsing once in late 1971 still holds on.	
-	
-Despite İnönü's silence and the view of the coup as a means for finally bringing <span style="color: #E3000F;">**CHP**</span> to government, not all of <span style="color: #E3000F;">**CHP**</span> approves the coup, and certainly not Bülent Ecevit.	
+Forcing the AP government of Süleyman Demirel to resign, the military offered the <span style="color: #E3000F;">**CHP**</span> delegate Nihat Erim to form the government, with the condition of leaving his party. Nihat Erim, already sympathetic to the cause of the military accepted the offer and formed his government, which despite collapsing once in late 1971 still holds on.
+
+Despite İnönü's silence and the view of the coup as a means for finally bringing <span style="color: #E3000F;">**CHP**</span> to government, not all of <span style="color: #E3000F;">**CHP**</span> approves the coup, and certainly not Bülent Ecevit.
 
 Some in <span style="color: #E3000F;">**CHP**</span> began to see the necessity of adapting to the times, including the young labour minister Bülent Ecevit. Arguing that Atatürk's vision for Turkey isn't inherently conflicted with Social Democracy, they began advocating for a synthesis of Kemalism and Social Democracy, one that accepts and approves all of the targets of Kemalism but rejects the notion of top-down revolutionarism and the forceful implementation of it. Leading a largely populist movement, Ecevit first rose to the rank of the party secretary and then set his eyes on the party leadership.
 
@@ -404,30 +404,22 @@ go-to: cabinet if CHP_in_government; menu if not CHP_in_government
 
 President: [+ president +]
 
-Prime Minister: [+ chancellor +] ([+ chancellor_party +])
+Prime Minister: [+ prime_minister +] ([+ prime_minister_party +])
 
-Reichstag composition:
+Grand National Assembly composition:
 
-# 1928: 30, 1930: 25, 1932: 22
 CHP: [+ chp_r +]%
-[? if sapd_formed and sapd_r > 0: SAPD: [+ sapd_r +]% ?]
-# 1928: 15, 1930: 15, 1932: 
-AP: [+z_r +]%
-# 1928: 10, 1930: 13
+
+AP: [+AP_r +]%
 TIP: [+ TIP_r +]%
-# 1928: 5, 1930: 4 (as DstP)
 [+ CGP_name +]: [+ CGP_r +]%
-# 1928: 9, 1930: 5
 DP: [+ DP_r +]%
-# 1928: 14, 1930: 7
 MSP: [+ MSP_r +]%
-# 1928: 3, 1930: 18
 MHP: [+ MHP_r +]%
-# 1928: 9, 1930: 10
 Others: [+ other_r +]%
 
 <span style="color: #E3000F;">**CHP**</span> position: [? if CHP_toleration : toleration ?][? if CHP_in_government : in government - ?][? if CHP_toleration == 0 and CHP_in_government == 0 and CHP_caretaker == 0 : opposition ?][? if CHP_caretaker : caretaker government ?]
-[? if in_weimar_coalition and CHP_in_government: Weimar Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_popular_front and CHP_in_government: Popular Front ?][? if in_left_front and CHP_in_government: Left Front ?][? if in_msp_coalition and CHP_in_government: Unholy Coalition ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
+[? if in_democratic_coalition and CHP_in_government: Democratic Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_popular_front and CHP_in_government: Popular Front ?][? if in_left_front and CHP_in_government: Left Front ?][? if in_msp_coalition and CHP_in_government: Unholy Coalition ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
 
 [? if CHP_in_government and not in_CHP_majority and not in_left_front : Coalition dissent: [+ coalition_dissent : dissent +] ?]
 
@@ -450,7 +442,7 @@ Justice: [+ justice_minister_party +]
 
 Foreign: [+ foreign_minister_party +]
 
-National Defence: [+ reichswehr_minister_party +]
+National Defence: [+ defense_minister_party +]
 
 Agriculture: [+ agriculture_minister_party +]
 
@@ -503,45 +495,35 @@ go-to: menu
 
 **Projected election results** (if the election were to be held now):
 
-# 1928: 30, 1930: 25, 1932: 22
 CHP: [+ chp_votes +]%
 
-[? if sapd_formed: SAPD: [+ sapd_votes +]% ?]
 
-# 1928: 15, 1930: 15, 1932: 
-AP: [+z_votes +]%
 
-# 1928: 10, 1930: 13
+AP: [+AP_votes +]%
+
 TIP: [+ TIP_votes +]%
 
-# 1928: 5, 1930: 4 (as DstP)
 [+ CGP_name +]: [+ CGP_votes +]%
 
-# 1928: 9, 1930: 5
 DP: [+ DP_votes +]%
 
-# 1928: 14, 1930: 7
 MSP: [+ MSP_votes +]%
 
-# 1928: 3, 1930: 18
 MHP: [+ MHP_votes +]%
 
-# 1928: 9, 1930: 10
 Others: [+ other_votes +]%
 
 **Detailed results for each demographic**
 
-Workers: CHP: [+ workers_CHP_display +]%, AP: [+ workers_z_display +]%, TIP: [+ workers_TIP_display +]%, [+ CGP_name +]: [+ workers_CGP_display +]%, DP: [+ workers_DP_display +]%; MSP: [+ workers_MSP_display +]%, MHP: [+ workers_MHP_display +]%, Others: [+ workers_other_display +]% [? if sapd_formed: SAPD: [+ workers_sapd_display +]% ?]
+Workers: CHP: [+ workers_chp_display +]%, AP: [+ workers_AP_display +]%, TIP: [+ workers_TIP_display +]%, [+ CGP_name +]: [+ workers_CGP_display +]%, DP: [+ workers_DP_display +]%; MSP: [+ workers_MSP_display +]%, MHP: [+ workers_MHP_display +]%, Others: [+ workers_other_display +]%
 
-New Middle Class: CHP: [+ new_middle_CHP_display +]%, AP: [+ new_middle_z_display +]%, TIP: [+ new_middle_TIP_display +]%, [+ CGP_name +]: [+ new_middle_CGP_display +]%, DP: [+ new_middle_DP_display +]%; MSP: [+ new_middle_MSP_display +]%, MHP: [+ new_middle_MHP_display +]%, Others: [+ new_middle_other_display +]% [? if sapd_formed: SAPD: [+ new_middle_sapd_display +]% ?]
+Public employees: CHP: [+ state_employees_chp_display +]%, AP: [+ state_employees_AP_display +]%, TIP: [+ state_employees_TIP_display +]%, [+ CGP_name +]: [+ state_employees_CGP_display +]%, DP: [+ state_employees_DP_display +]%; MSP: [+ state_employees_MSP_display +]%, MHP: [+ state_employees_MHP_display +]%, Others: [+ state_employees_other_display +]%
 
-Old Middle Class: CHP: [+ old_middle_CHP_display +]%, AP: [+ old_middle_z_display +]%, TIP: [+ old_middle_TIP_display +]%, [+ CGP_name +]: [+ old_middle_CGP_display +]%, DP: [+ old_middle_DP_display +]%; MSP: [+ old_middle_MSP_display +]%, MHP: [+ old_middle_MHP_display +]%, Others: [+ old_middle_other_display +]% [? if sapd_formed: SAPD: [+ old_middle_sapd_display +]% ?]
+Small business and artisans: CHP: [+ petty_bourgeoisie_chp_display +]%, AP: [+ petty_bourgeoisie_AP_display +]%, TIP: [+ petty_bourgeoisie_TIP_display +]%, [+ CGP_name +]: [+ petty_bourgeoisie_CGP_display +]%, DP: [+ petty_bourgeoisie_DP_display +]%; MSP: [+ petty_bourgeoisie_MSP_display +]%, MHP: [+ petty_bourgeoisie_MHP_display +]%, Others: [+ petty_bourgeoisie_other_display +]%
 
-Rural: CHP: [+ rural_CHP_display +]%, AP: [+ rural_z_display +]%, TIP: [+ rural_TIP_display +]%, [+ CGP_name +]: [+ rural_CGP_display +]%, DP: [+ rural_DP_display +]%; MSP: [+ rural_MSP_display +]%, MHP: [+ rural_MHP_display +]%, Others: [+ rural_other_display +]% [? if sapd_formed: SAPD: [+ rural_sapd_display +]% ?]
+Rural: CHP: [+ rural_chp_display +]%, AP: [+ rural_AP_display +]%, TIP: [+ rural_TIP_display +]%, [+ CGP_name +]: [+ rural_CGP_display +]%, DP: [+ rural_DP_display +]%; MSP: [+ rural_MSP_display +]%, MHP: [+ rural_MHP_display +]%, Others: [+ rural_other_display +]%
 
-Unemployed: CHP: [+ unemployed_CHP_display +]%, AP: [+ unemployed_z_display +]%, TIP: [+ unemployed_TIP_display +]%, [+ CGP_name +]: [+ unemployed_CGP_display +]%, DP: [+ unemployed_DP_display +]%; MSP: [+ unemployed_MSP_display +]%, MHP: [+ unemployed_MHP_display +]%, Others: [+ unemployed_other_display +]% [? if sapd_formed: SAPD: [+ unemployed_sapd_display +]% ?]
 
-Catholics: CHP: [+ catholics_CHP_display +]%, AP: [+ catholics_z_display +]%, TIP: [+ catholics_TIP_display +]%, [+ CGP_name +]: [+ catholics_CGP_display +]%, DP: [+ catholics_DP_display +]%; MSP: [+ catholics_MSP_display +]%, MHP: [+ catholics_MHP_display +]%, Others: [+ catholics_other_display +]% [? if sapd_formed: SAPD: [+ catholics_sapd_display +]% ?]
 
 @parties
 go-to: menu
@@ -550,9 +532,8 @@ go-to: menu
 
 **AP** - *Adalet Partisi* (Justice Party) - a center right party that considers itself the continuation of DP after it was banned. They are led by Süleyman Demirel, a former engineer who likely wouldn't have been involved with politics his whole life if it wasnt for the coup. They have been our primary opponent for the past two decades.
 
-Current relations: [+ z_relation : relationships +]
+Current relations: [+ AP_relation : relationships +]
 
-# TODO: replace this with the german state party after 1930
 **CGP** - *Cumhuriyetçi Güven Partisi* (Republican Trust Party) - a splinter party of CHP, led by Turhan Feyzioğlu. After the pivot of the party to the left of center, many of the right wing Kemalists have resigned from <span style="color: #E3000F;">**CHP**</span> and formed their own party.
 
 Current relations: [+ CGP_relation : relationships +]
@@ -569,9 +550,9 @@ Current relations: [+ MSP_relation : relationships +]
 
 Current relations: [+ TIP_relation : relationships +]
 
-[? if sapd_formed: SAPD - Sozialistische Arbeiterpartei Deutschlands (Socialist Worker's Party of Germany) - a party recently formed in a split from the CHP, the SAPD is essentially an agglomeration of various left-wing splinter groups between the <span style="color: #E3000F;">**CHP**</span> and TIP. ?]
 
-**MHP** - *Milliyetçi Hareket Partisi* - (Nationalist Movement Party) - a far-right ultranationalist party. Born as a reformation of the old ultranationalist tradition along a synthesis of Turkic and Islamic elements, MHP is more of a paramilitary than it is a parliamentary party. Even though it was banned in the recent memorandum, its membership within the ranks of the Grey Wolves count in the tens of thousands and its rumored that more of them are being trained in the rural portions of Anatolia, commanded by Muzaffer Özdağ and Alparslan Türkeş as its "supreme leader" or "Başbuğ". 
+
+**MHP** - *Milliyetçi Hareket Partisi* - (Nationalist Movement Party) - a far-right ultranationalist party. Born as a reformation of the old ultranationalist tradition along a synthesis of Turkic and Islamic elements, MHP is more of a paramilitary than it is a parliamentary party. Even though it was banned in the recent memorandum, its membership within the ranks of the Grey Wolves count in the tens of thousands and its rumored that more of them are being trained in the rural portions of Anatolia, commanded by Muzaffer Özdağ and Alparslan Türkeş as its "supreme leader" or "Başbuğ".
 
 Current relations: [+ MHP_relation : relationships +]
 
@@ -579,9 +560,6 @@ Current relations: [+ MHP_relation : relationships +]
 
 @paramilitaries
 on-arrival: {!
-Q.rb_strength = Math.round(Q.rb_strength);
-Q.sh_strength = Math.round(Q.sh_strength);
-Q.sa_strength = Math.round(Q.sa_strength); 
 !}
 go-to: menu
 
@@ -653,7 +631,7 @@ Dissent: [+ left_kemalists_dissent : dissent +]
 
 **Reformist Kemalists**
 
-The Reformist Kemalists' perception of Atatürk and Kemalism is much more solid and impervious. Continuing the one party era ideology of "for the people, in spite of the people" Reformist Kemalists keep advocating for a top-down modernization and reject any motion of class differences or conflict. 
+The Reformist Kemalists' perception of Atatürk and Kemalism is much more solid and impervious. Continuing the one party era ideology of "for the people, in spite of the people" Reformist Kemalists keep advocating for a top-down modernization and reject any motion of class differences or conflict.
 
 Strength: [+ ok_strength_label +]
 
@@ -670,7 +648,7 @@ Dissent: [+ right_kemalists_dissent : dissent +]
 @figures
 title: Figures and Charts
 go-to: menu
-on-arrival: z_minus_bvp_r = z_r;
+on-arrival: AP_last_vote_share = AP_r;
 on-display: {!
 data = [
     {
@@ -679,14 +657,7 @@ data = [
         "name": "TIP",
         "seats": Q.TIP_r*4.5,
     }];
-if (Q.sapd_formed && Q.sapd_r) {
-    data.push({
-            "id": "sapd",
-            "legend": "SAPD",
-            "name": "SAPD",
-            "seats": Math.round(Q.sapd_r*4.5),
-            });
-}
+
 data = data.concat([
     {
         "id": "chp",
@@ -704,7 +675,7 @@ data = data.concat([
         "id": "AP",
         "legend": "Center",
         "name": "Center",
-        "seats": Q.z_r*4.5,
+        "seats": Q.AP_r*4.5,
     },
     {
         "id": "DP",
@@ -739,18 +710,18 @@ if (d3 && window) {
     if (screenWidth < width - 50) {
         width = screenWidth - 50;
         height = width;
-        document.getElementById("reichstag").style.height = screenWidth/2 + "px";
+        document.getElementById("parliament").style.height = screenWidth/2 + "px";
     }
     var parliament = d3.parliament();
     parliament.width(width).height(height).innerRadiusCoef(0.4);
     parliament.enter.fromCenter(true).smallToBig(true);
     parliament.exit.toCenter(false).bigToSmall(true);
-    d3.select("#reichstag").datum(data).call(parliament);
+    d3.select("#parliament").datum(data).call(parliament);
 
     var lines = d3.linegraph(false, false,
             Q.parties,
-            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5a5f63', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0', 'sapd': '#c40000'},
-            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others', 'sapd': 'SAPD'});
+            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5a5f63', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},
+            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others'});
     lines.width(width).height(400);
     //var svg = lines(Q.election_records);
     if (Q.election_records.length > 0) {
@@ -762,8 +733,8 @@ if (d3 && window) {
     if (!Q.historical_mode || Q.game_over) {
         var lines_2 = d3.linegraph(true, true,
             Q.parties,
-            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5a5f63', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0', 'sapd': '#c40000'},
-            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others', 'sapd': 'SAPD'});
+            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5a5f63', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},
+            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others'});
         lines_2.width(width).height(400);
         d3.select("#party_support_history").datum(Q.party_support_records).call(lines_2);
     }
@@ -780,20 +751,20 @@ if (d3 && window) {
 }
 !}
 
-= Reichstag composition
+= Grand National Assembly composition
 
-{!<svg id="reichstag" style="width: 500px; height: 250px;"> </svg>!}
+{!<svg id="parliament" style="width: 500px; height: 250px;"> </svg>!}
 
 {!<table>!}
 {!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div></td><td>!} **CHP:** {!</td><td>!} **[+ chp_r +]%** {!</td></tr>!}
 
-[? if sapd_formed : {!<tr><td><div class="box" style='background-color:#C40000'> </div></td> <td> !}SAPD: {!</td><td>!} [+ sapd_r +]% {!</td></tr>!} ?]
+
 
 {!<tr><td><div class="box" style='background-color:#8B0000'> </div></td> <td>!}TIP: {!</td><td>!} [+ TIP_r +]% {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#5a5f63'> </div></td><td>!} [+ CGP_name +]: {!</td><td>!} [+ CGP_r +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#750a6f'> </div></td><td>!} AP: {!</td><td>!} [+z_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#750a6f'> </div></td><td>!} AP: {!</td><td>!} [+AP_r +]% {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#4a4d04'> </div></td><td>!} DP: {!</td><td>!} [+ DP_r +]% {!</td></tr>!}
 
@@ -806,7 +777,6 @@ if (d3 && window) {
 
 = Election history
 
-[? if year = 1928 and month < 5 : No new elections yet. ?]
 
 {!<svg id="election_history" style="width: 500px; height: 400px;"> </svg>!}
 
@@ -835,8 +805,8 @@ Leader: [+ CHP_party_leader +]
 [? if CHP_party_leader == "Ecevit" : Bülent Ecevit represents a more progressive wing of the party, advocating for social democracy and populism. ?]
 
 **AP (Justice Party)**
-Leader: [+ z_party_leader +]
-[? if z_party_leader == "Demirel" : Süleyman Demirel, known for his pragmatic approach and economic focus, leads the center-right Justice Party. ?]
+Leader: [+ AP_party_leader +]
+[? if AP_party_leader == "Demirel" : Süleyman Demirel, known for his pragmatic approach and economic focus, leads the center-right Justice Party. ?]
 
 **TIP (Workers' Party of Turkey)**
 Leader: [+ TIP_party_leader +]

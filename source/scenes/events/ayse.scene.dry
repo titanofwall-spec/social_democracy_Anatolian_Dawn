@@ -40,3 +40,4 @@ When he finally gathered himself enough to look, he saw the young man with a sta
 - @root: And such, another addition to the things they carried.
 
 @root
+go-to: cyprus_atilla1_21 if cyprus_mode != 0 and cyprus_atilla1_complete == 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21; post_event if cyprus_mode == 0 or cyprus_atilla1_complete == 1 or cyprus_year != 1974 or cyprus_month != 7 or cyprus_day != 21

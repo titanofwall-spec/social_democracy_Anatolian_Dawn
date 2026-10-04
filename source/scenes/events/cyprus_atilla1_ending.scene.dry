@@ -1,0 +1,31 @@
+title: Atilla I — The result
+view-if: cyprus_mode != 0 and cyprus_atilla1_complete == 1
+new-page: true
+
+= 25 July 1974 — Atilla I: [+ cyprus_atilla1_ending +]
+
+[? if cyprus_atilla1_ending == "Failure" : The operation has fallen short of its overall objectives. Turkey enters Geneva with an uneven military position and little additional bargaining strength. ?]
+[? if cyprus_atilla1_ending == "Successful" : The operation has achieved the historical benchmark of overall success. Turkey enters Geneva with greater bargaining strength, shaped by the territory actually held and the commitments made during the ceasefire. ?]
+[? if cyprus_atilla1_ending == "Massive" : The operation has achieved exceptional overall success. Turkey enters Geneva with substantial bargaining strength, though military gains and diplomatic costs still depend on the decisions taken. ?]
+
+Combined operation score: [+ cyprus_atilla1_score +] / 400.
+
+Diplomatic leverage gained: +[+ cyprus_atilla1_reward +]. Total leverage: [+ leverage_points +].
+
+Final frontline: [+ cyprus_atilla1_frontline +].
+
+Junction: [? if cyprus_atilla1_junction == 1 : Established. ?][? if cyprus_atilla1_junction == 0 : Incomplete; coastal and airborne forces remain separated. ?]
+
+Opposing forces: [+ cyprus_atilla1_enemy_damage +].
+
+Airport: [+ cyprus_atilla1_access +].
+
+Diplomatic position: [+ cyprus_atilla1_credibility +].
+
+Geneva I begins today. Turkey, Greece and Britain turn to the ceasefire, the security of the communities and the island’s political future.
+
+- @root: Continue.
+
+@root
+on-arrival: cyprus_atilla1_ending_seen = 1
+go-to: post_event

@@ -33,11 +33,13 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 24
       - name: Install
-        run: npm install
+        run: npm ci
       - name: Build game
-        run: npm run dendrynexus make-html -- --pretty
+        run: npm run build
+      - name: Validate game
+        run: npm test
       - name: Copy game.json to output
         run: cp out/game.json out/html/
       - name: Upload artifact

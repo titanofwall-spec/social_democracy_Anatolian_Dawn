@@ -1,0 +1,50 @@
+title: The airport confrontation
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 24); !}
+
+= 24 July 1974 — The airport confrontation
+
+[+ cyprus_atilla1_briefing +]
+
+Previous report: [+ cyprus_atilla1_last_text +]
+
+- @historical: Historical: Promise not to seize the airport by force.
+- @alternative: Alternative: Negotiate UN-supervised arrangements for the approaches and access.
+- @pressure: Alternative: Maintain the demand for control, risking escalation.
+
+@historical
+title: Historical: Promise not to seize the airport by force.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'historical', this.random.random.bind(this.random)); !}
+
+= 24 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
+
+@alternative
+title: Alternative: Negotiate UN-supervised arrangements for the approaches and access.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'alternative', this.random.random.bind(this.random)); !}
+
+= 24 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
+
+@pressure
+title: Alternative: Maintain the demand for control, risking escalation.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'pressure', this.random.random.bind(this.random)); !}
+
+= 24 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].

@@ -1,6 +1,6 @@
 title: Nihat Erim resigns from prime ministership!
 subtitle: The first of the many?
-view-if: year = 1972 and month = 6 and week = 1 and chancellor = "Nihat Erim" and CHP_party_leader = "Ecevit"
+view-if: year = 1972 and month = 6 and week = 1 and prime_minister = "Nihat Erim" and CHP_party_leader = "Ecevit"
 max-visits: 1
 tags: event
 priority: 0
@@ -19,16 +19,18 @@ Nihat Erim's cabinet had inspired hope within the ranks of the military and the 
 subtitle: The alternative offered by the army may be more radical.
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: İnönü seems willing to tolerate another technocratic government and has prevented us from taking action.
-on-arrival: coup_timer += 5; rural_chp += 2; workers_chp += 2; petty_bourgeoisie_chp += 2; state_employees_chp += 2; capitalists_chp -= 4; alevis_chp += 2; kurds_chp += 2; chancellor = ""; chancellor_party = ""
+on-arrival: {! AnatolianRules.resetCabinet(Q); !} coup_timer += 5; rural_chp += 2; workers_chp += 2; petty_bourgeoisie_chp += 2; state_employees_chp += 2; capitalists_chp -= 4; alevis_chp += 2; kurds_chp += 2; prime_minister = ""; prime_minister_party = ""
 
 The masses applaud our choice. The Ferit Melen government, unable to have a parliamentary majority, falls quickly. The army is said to be furious however, as many report the lights of the army headquarters were on the whole night of the vote..
 
 We are now without a prime minister and we will see who the army will pick in the next few days.
 
 @vote
-on-arrival: {! 
-  Q.chancellor = "Ferit Melen";
-  Q.chancellor_party = "CGP";
+on-arrival: {!
+  AnatolianRules.resetCabinet(Q);
+  Q.CGP_in_government = 1;
+  Q.prime_minister = "Ferit Melen";
+  Q.prime_minister_party = "CGP";
 !}
 
 Ferit Melen begins his govenment with the parliamentary support of CHP, CGP and AP.

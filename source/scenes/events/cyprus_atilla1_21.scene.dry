@@ -1,0 +1,37 @@
+title: The second wave
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 21); !}
+
+= 21 July 1974 — The second wave
+
+[+ cyprus_atilla1_briefing +]
+
+Previous report: [+ cyprus_atilla1_last_text +]
+
+- @historical: Historical: Dispatch reinforcements and prioritize the junction.
+- @alternative: Alternative: Dispatch reinforcements to secure existing positions.
+
+@historical
+title: Historical: Dispatch reinforcements and prioritize the junction.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'historical', this.random.random.bind(this.random)); !}
+
+= 21 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
+
+@alternative
+title: Alternative: Dispatch reinforcements to secure existing positions.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'alternative', this.random.random.bind(this.random)); !}
+
+= 21 July 1974 — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].

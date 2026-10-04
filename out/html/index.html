@@ -13,6 +13,8 @@
     <script src="d3-parliament.js"></script>
     <script src="d3-linegraph.js"></script>
     <script src="data.js"></script>
+    <script src="rules.js"></script>
+    <script src="cyprus-atilla1.js"></script>
     <script src="core.js"></script>
     <script src="game.js"></script>
   </head>
@@ -90,7 +92,7 @@
                 <tr>
                     <td> <hr> </td>
                 </tr>
- 
+
                 <tr>
                     <td>
                         Animations:
@@ -224,7 +226,7 @@
                     <button class="b export_button" id="export_button_a1">Export</button>
                 </td>
             </tr>
-            
+
             <tr>
                 <td>0</td>
                 <td>
@@ -333,7 +335,7 @@
                 <td colspan="5">
                     <label for="import_save">Import save file:</label> <input type="file" id="import_save" onchange="dendryUI.importSave('import_save');"></input>
                 </td>
-            </tr> 
+            </tr>
             <tr>
                 <td>
                     <button onclick="dendryUI.hideSaveSlots();">Close</button>

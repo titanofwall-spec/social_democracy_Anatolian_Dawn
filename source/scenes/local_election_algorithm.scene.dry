@@ -1,6 +1,6 @@
 title: Local Election Algorithm
 on-arrival: {!
-var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'z', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 var classes = Array.isArray(Q.classes) ? Q.classes.slice() : ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 var totalSeats = Q.local_total_seats || Q.total_municipalities || 67;
 var threshold = (typeof Q.local_election_threshold !== 'undefined') ? Q.local_election_threshold : (Q.local_threshold || 8);

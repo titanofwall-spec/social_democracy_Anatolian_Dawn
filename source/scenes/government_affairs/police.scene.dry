@@ -8,7 +8,7 @@ card-image: img/portraits/necdetugur2.png
 
 = Internal Security
 
-The Interior Ministry controls internal security throughout the Turkish Republic. 
+The Interior Ministry controls internal security throughout the Turkish Republic.
 
 - @loyalty: Improve the loyalty of the Interior Ministry forces.
 - @recruit: Recruit more police forces.
@@ -17,7 +17,6 @@ The Interior Ministry controls internal security throughout the Turkish Republic
 - @investigate_far_right: Investigate illegal activity among the far right.
 - @investigate_separatists: Investigate illegal activity among separatists.
 - @domestic_enemies: Investigate or ban our domestic enemies.
-- @deport_hitler
 - @easterncrime: Strike against the drug smugglers and organized crime along the Southeastern Border.
 - @ohal: Declare OHAL(state of emergency) to put an end to the street fighting.
 - @root: Take no action for now.
@@ -48,7 +47,7 @@ The police forces have been supplemented with better weapons and trainings, impr
 go-to: investigate_corruption_success if police_loyalty >= 0.5; investigate_corruption_failure if police_loyalty < 0.5
 
 @investigate_corruption_success
-on-arrival: investigate_corruption += 1; workers_chp += 5*(1-dissent); inflation -= 0.1 if inflation > 3; inflation -= 0.2 if inflation >= 8
+on-arrival: investigate_corruption += 1; workers_chp += 5*(1-dissent); inflation_modifier -= 0.1 if inflation > 3; inflation_modifier -= 0.2 if inflation >= 8; {! AnatolianRules.refreshEconomy(Q); !}
 
 Corruption in big business is rampant, of course. We have uncovered a number of scandals, and publicizing them brings new attention to the work of Interior Minister [+ interior_minister +], building up his popular appeal and that of the CHP.
 
@@ -61,12 +60,12 @@ Unfortunately, our investigations have failed to turn up anything. Rumors are th
 go-to: investigate_far_right_success if police_loyalty >= 0.55; investigate_far_right_failure if police_loyalty < 0.55
 
 @investigate_far_right_success
-on-arrival: investigate_far_right += 1; grey_wolves_strength -= 5; workers_MHP -= 3; new_middle_MHP -= 3; nazi_urgency += 1 if investigate_far_right == 2; nazi_urgency += 2 if investigate_far_right == 3; workers_MHP -= 3 if investigate_far_right == 3; new_middle_MHP -= 3 if investigate_far_right == 3; old_middle_MHP -= 3 if investigate_far_right == 3; unemployed_CHP -= 3 if investigate_far_right == 3; coup_progress -= 1 if coup_progress >= 7
+on-arrival: investigate_far_right += 1; grey_wolves_strength -= 5; workers_MHP -= 3; state_employees_MHP -= 3; far_right_urgency += 1 if investigate_far_right == 2; far_right_urgency += 2 if investigate_far_right == 3; workers_MHP -= 3 if investigate_far_right == 3; state_employees_MHP -= 3 if investigate_far_right == 3; petty_bourgeoisie_MHP -= 3 if investigate_far_right == 3; coup_progress -= 1 if coup_progress >= 7
 
-[? if investigate_far_right == 1 : We have discovered collusion between Hjalmar Schacht, president of the Reichsbank, and the Nazis. This is very useful information. ?]
-[? if investigate_far_right == 2 : We have discovered illegal arms smuggling by the SA, the Nazi paramilitary. ?]
+[? if investigate_far_right == 1 : We have uncovered financial links between armed far-right groups and their supporters. ?]
+[? if investigate_far_right == 2 : We have uncovered illegal arms networks supplying far-right militants. ?]
 [? if investigate_far_right == 3 : We have discovered a secret cache of documents from the MHP detailing their plan to violently take over the country if they enter into power. This is an anti-constitutional plot, and will be publicized and persecuted. ?]
-[? if investigate_far_right > 3 : Of course the Nazis are doing crimes; everyone knows that. Now, we finally have proof. ?]
+[? if investigate_far_right > 3 : Further investigations gather evidence for prosecutions of political violence. ?]
 
 [? if coup_progress >= 6: There are reports of an imminent coup by the far-right. We have attempted to disrupt some of these plans, but the threat is still present. ?]
 
@@ -100,9 +99,9 @@ on-arrival: police_militancy -= 0.08; eastern_crime -= 1; kurds_chp += 3
 [? if eastern_crime = 0 : The region has been completely neutralized; the region at last enjoy lasting order and stability. Many are grateful at our party for ending the lawlessness which has persisted for centuries. ?]
 
 @ohal
-choose-if: OHAL = 0 and state_force_percent <= 49 or year >= 1978 
+choose-if: OHAL = 0 and state_force_percent <= 49 or year >= 1978
 subtitle: Though a drastic move and something we are ideologically opposed to, we may be forced to declare a state of emergency and and restrict the civil rights in order to bring peace to the streets.
 unavailable-subtitle: The situation in the streets still can be managed through conventional means.
-on-arrival: grey_wolves_militancy -= 0.1; grey_wolves_strength -= 8; dev_yol_militancy -= 0.1; dev_yol_strength -= 8; raiders_strength -= 8; workers_chp -= 5; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; kurds_chp -= 3; alevis_chp -= 3; OHAL += 1
+on-arrival: grey_wolves_militancy -= 0.1; grey_wolves_strength -= 8; devyol_militancy -= 0.1; devyol_strength -= 8; raiders_strength -= 8; workers_chp -= 5; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; kurds_chp -= 3; alevis_chp -= 3; OHAL += 1
 
 Our voters are deeply irritated by our decision to initiate the militarization of the streets when we were the party promising to stop it. Ecevit's persona as the uncorrupted fighter for democracy breaks down as we resort to pragmatic actions we normally despise. However, hopefully this will be worth it for the motherland.

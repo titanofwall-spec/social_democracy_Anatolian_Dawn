@@ -34,7 +34,7 @@ Q.tip_abstain_count = Math.round(Q.TIP_seats * tip_abstain);
 
 Q.center_yes = Math.round(center_present * center_support);
 Q.center_no = Math.round(center_present * (1 - center_support));
-Q.center_abstain_count = Math.round(Q.z_seats * center_abstain);
+Q.center_abstain_count = Math.round(Q.AP_seats * center_abstain);
 
 Q.cgp_yes = Math.round(cgp_present * cgp_support);
 Q.cgp_no = Math.round(cgp_present * (1 - cgp_support));
@@ -80,7 +80,7 @@ Q.other_color = seatColor(Q.other_yes, Q.other_no);
 // Calculate seat counts for each party based on actual percentages
 // CHP: 27.3%, AP: 46.5%, TIP: 2.6%, CGP: 6.5%, DP: 0%, MSP: 0%, MHP: 3%, Others: 14.1%
 Q.chp_seats = Math.round(450 * 0.273);  // 123 seats
-Q.z_seats = Math.round(450 * 0.465);    // 209 seats (AP/Center)
+Q.AP_seats = Math.round(450 * 0.465);    // 209 seats (AP/Center)
 Q.TIP_seats = Math.round(450 * 0.026);  // 12 seats
 Q.CGP_seats = Math.round(450 * 0.065);  // 29 seats
 Q.DP_seats = 0;                         // 0 seats
@@ -112,7 +112,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.1;     // Religious conservatives oppose
     mhp_support = 0.05;    // Nationalists oppose socialist policies
     other_support = 0.4;   // Mixed
-    
+
     // Abstention rates - parties abstain when unsure or want to avoid taking sides
     tip_abstain = 0.05;    // TIP rarely abstains on progressive issues
     center_abstain = Q.coalition_dissent > 15 ? 0.3 : 0.1;  // Abstain more if tensions high
@@ -131,7 +131,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.2;     // Prefer traditional authority
     mhp_support = 0.1;     // Prefer strong executive
     other_support = 0.5;   // Mixed
-    
+
     tip_abstain = Q.TIP_relation >= 50 ? 0.1 : 0.4; // Revolutionary faction may abstain if we have poor relations
     center_abstain = 0.1;  // Usually take clear positions on constitutional issues
     cgp_abstain = 0.05;    // Strong pro-democracy stance
@@ -148,7 +148,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.1;     // Support private enterprise
     mhp_support = 0.2;     // Nationalist economics
     other_support = 0.25;  // Generally oppose
-    
+
     tip_abstain = 0.02;    // Almost never abstain on economic issues
     center_abstain = 0.2;  // Sometimes abstain on complex economic policy
     cgp_abstain = 0.25;    // Often torn between social and market concerns
@@ -165,7 +165,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.9;     // Strongly support traditional values
     mhp_support = 0.8;     // Support nationalist conservatism
     other_support = 0.5;   // Mixed
-    
+
     tip_abstain = 0.1;     // Usually oppose conservative policies directly
     center_abstain = 0.15; // Sometimes abstain on divisive social issues
     cgp_abstain = 0.2;     // Moderate abstention on conservative issues
@@ -182,7 +182,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.0;     // MSP abstains completely
     mhp_support = 0.85;    // Other parties vote YES
     other_support = 0.85;  // Other parties vote YES
-    
+
     // Special abstention patterns for this vote
     tip_abstain = 0.0;     // TIP doesn't abstain, votes NO
     center_abstain = 0.05; // Minimal abstention for other parties
@@ -191,7 +191,7 @@ if (Q.vote_type === "progressive") {
     msp_abstain = 1.0;     // MSP abstains completely
     mhp_abstain = 0.05;    // Minimal abstention for other parties
     other_abstain = 0.05;  // Minimal abstention for other parties
-    
+
     // Override CHP voting pattern: 1/3 YES, 1/3 NO, 1/3 ABSTAIN
     chp_support = 0.33;    // 1/3 vote YES
     chp_abstain = 0.33;    // 1/3 abstain
@@ -205,7 +205,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.6;     // Support religious nationalism
     mhp_support = 0.95;    // Strongly support
     other_support = 0.4;   // Mixed
-    
+
     tip_abstain = 0.15;    // Sometimes abstain on nationalist issues
     center_abstain = 0.25; // Often abstain on nationalist controversies
     cgp_abstain = 0.3;     // Frequently abstain on nationalist issues
@@ -222,7 +222,7 @@ if (Q.vote_type === "progressive") {
     msp_support = 0.5;
     mhp_support = 0.5;
     other_support = 0.5;
-    
+
     tip_abstain = 0.2;
     center_abstain = 0.2;
     cgp_abstain = 0.2;
@@ -238,10 +238,10 @@ yes_votes += Math.round(tip_present * tip_support);
 no_votes += Math.round(tip_present * (1 - tip_support));
 abstentions += Math.round(Q.TIP_seats * tip_abstain);
 
-var center_present = Math.round(Q.z_seats * (1 - center_abstain));
+var center_present = Math.round(Q.AP_seats * (1 - center_abstain));
 yes_votes += Math.round(center_present * center_support);
 no_votes += Math.round(center_present * (1 - center_support));
-abstentions += Math.round(Q.z_seats * center_abstain);
+abstentions += Math.round(Q.AP_seats * center_abstain);
 
 var cgp_present = Math.round(Q.CGP_seats * (1 - cgp_abstain));
 yes_votes += Math.round(cgp_present * cgp_support);
@@ -289,7 +289,7 @@ Q.other_position = other_support > 0.5 ? "YES" : "NO";
 
 [? if chp_seats > 0 : <span style="color: [+ chp_color +];">CHP: [+ chp_seats +] seats</span> ?]
 [? if tip_seats > 0 : <span style="color: [+ tip_color +];">TIP: [+ tip_seats +] seats</span> ?]
-[? if z_seats > 0 : <span style="color: [+ center_color +];">AP: [+ z_seats +] seats</span> ?]
+[? if AP_seats > 0 : <span style="color: [+ center_color +];">AP: [+ AP_seats +] seats</span> ?]
 [? if cgp_seats > 0 : <span style="color: [+ cgp_color +];">CGP: [+ cgp_seats +] seats</span> ?]
 [? if dp_seats > 0 : <span style="color: [+ dp_color +];">DP: [+ dp_seats +] seats</span> ?]
 [? if msp_seats > 0 : <span style="color: [+ msp_color +];">MSP: [+ msp_seats +] seats</span> ?]
@@ -304,7 +304,7 @@ Q.other_position = other_support > 0.5 ? "YES" : "NO";
 **How Each Party Voted:**
 - **CHP** ([+ chp_seats +] seats): **[+ chp_position +]** - <span style="color: #158e33;">[+ chp_yes +] YES</span>, <span style="color: #c51313;">[+ chp_no +] NO</span>[? if chp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ chp_abstain_count +] ABSTAIN</span>?]
 - **TIP** ([+ tip_seats +] seats): **[+ tip_position +]** - <span style="color: #158e33;">[+ tip_yes +] YES</span>, <span style="color: #c51313;">[+ tip_no +] NO</span>[? if tip_abstain_count > 0:, <span style="color: #9e9e9e;">[+ tip_abstain_count +] ABSTAIN</span>?]
-- **AP** ([+ z_seats +] seats): **[+ center_position +]** - <span style="color: #158e33;">[+ center_yes +] YES</span>, <span style="color: #c51313;">[+ center_no +] NO</span>[? if center_abstain_count > 0:, <span style="color: #9e9e9e;">[+ center_abstain_count +] ABSTAIN</span>?]
+- **AP** ([+ AP_seats +] seats): **[+ center_position +]** - <span style="color: #158e33;">[+ center_yes +] YES</span>, <span style="color: #c51313;">[+ center_no +] NO</span>[? if center_abstain_count > 0:, <span style="color: #9e9e9e;">[+ center_abstain_count +] ABSTAIN</span>?]
 - **CGP** ([+ cgp_seats +] seats): **[+ cgp_position +]** - <span style="color: #158e33;">[+ cgp_yes +] YES</span>, <span style="color: #c51313;">[+ cgp_no +] NO</span>[? if cgp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ cgp_abstain_count +] ABSTAIN</span>?]
 [? if dp_seats > 0:- **DP** ([+ dp_seats +] seats): **[+ dp_position +]** - <span style="color: #158e33;">[+ dp_yes +] YES</span>, <span style="color: #c51313;">[+ dp_no +] NO</span>[? if dp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ dp_abstain_count +] ABSTAIN</span>?]?]
 [? if msp_seats > 0:- **MSP** ([+ msp_seats +] seats): **[+ msp_position +]** - <span style="color: #158e33;">[+ msp_yes +] YES</span>, <span style="color: #c51313;">[+ msp_no +] NO</span>[? if msp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ msp_abstain_count +] ABSTAIN</span>?]?]

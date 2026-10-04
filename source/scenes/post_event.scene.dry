@@ -1,6 +1,9 @@
 title: Post Event
 new-page: true
 on-arrival: {!
+var turnAdvanced = Q.month_actions >= 1;
+AnatolianRules.refreshEconomy(Q);
+AnatolianRules.refreshFactions(Q);
 Q.last_advisor_action = 0;
 Q.last_cabinet_action = 0;
 // make sure no stat is below 0.
@@ -22,108 +25,9 @@ if (Q.pro_republic < 0) {
 if (Q.pro_republic >= 100) {
     Q.pro_republic = 99;
 }
-// re-calculate party support
-// calculate normalized class voting for the achievements
-for (var c of Q.classes) {
-    var class_votes = 0;
-    for (var party of Q.parties) {
-        if (Q[c+'_'+party] < 0) {
-            Q[c+'_'+party] = 0;
-        }
-        class_votes += Q[c+'_'+party];
-    }
-    for (var party of Q.parties) {
-        Q[c + '_' + party + '_normalized'] = 100*Q[c+'_'+party]/class_votes;
-        Q[c + '_' + party + '_display'] = Math.round(100*Q[c+'_'+party]/class_votes);
-    }
-}
-// calculate support for each of the parties
-var total_support = 0; 
-for (var party of Q.parties) {
-    var party_support = 0;
-    for (var c of Q.classes) {
-        if (Q.old_demographics) { 
-            party_support += Q[c]*Q[c+'_'+party];
-        } else  { 
-            party_support += Q[c]*Q[c+'_'+party+'_normalized'];
-        } 
-    }
-    Q[party + '_support'] = party_support;
-    total_support += party_support; 
-}
-// 2. normalize support (fraction)
-for (var party of Q.parties) {
-    Q[party+'_normalized'] = Q[party + '_support']/total_support;
-    Q[party+'_votes'] = Math.round(Q[party+'_normalized']*100);
-    Q[party+'_votes_display'] = Math.round(Q[party+'_normalized']*100);
-}
-
-
-// set faction strength/dissent to 0
-for (var c of Q.factions) {
-    if (Q[c+'_dissent'] < 0) {
-        Q[c+'_dissent'] = 0;
-    } else if (Q[c+'_dissent'] >= 100) {
-        Q[c+'_dissent'] = 99;
-    }
-    if (Q[c+'_strength'] < 0) {
-        Q[c+'_strength'] = 0;
-    }
-}
-
-// Ensure unemployment doesn't go below minimum threshold
-if (Q.unemployed <= 0.5) {
-    Q.unemployed = 0.5;
-}
-
-// Ensure forex pressure doesn't go below 0
-if ((Q.forex_pressure || 0) < 0) {
-    Q.forex_pressure = 0;
-}
-
-// re-calculate dissent.
-// Calculate total strength, excluding right_kemalists if they have resigned or split
-var total_strength = Q.kemalist_marxists_strength + Q.left_kemalists_strength + Q.orthodox_kemalists_strength;
-if (!Q.right_kemalists_resign && !Q.right_kemalist_split) {
-    total_strength += Q.right_kemalists_strength;
-}
-
-// Guard against division by zero and normalize strength for the different factions
-if (total_strength > 0) {
-    Q.kemalist_marxists_strength = 100*Q.kemalist_marxists_strength/total_strength;
-    Q.left_kemalists_strength = 100*Q.left_kemalists_strength/total_strength;
-    Q.orthodox_kemalists_strength = 100*Q.orthodox_kemalists_strength/total_strength;
-    if (!Q.right_kemalists_resign && !Q.right_kemalist_split) {
-        Q.right_kemalists_strength = 100*Q.right_kemalists_strength/total_strength;
-    }
-
-    // Calculate total dissent, excluding right_kemalists if they have resigned or split
-    var total_dissent = Q.kemalist_marxists_strength*Q.kemalist_marxists_dissent + Q.left_kemalists_strength*Q.left_kemalists_dissent + Q.orthodox_kemalists_strength*Q.orthodox_kemalists_dissent;
-    if (!Q.right_kemalists_resign && !Q.right_kemalist_split) {
-        total_dissent += Q.right_kemalists_strength*Q.right_kemalists_dissent;
-    }
-
-    Q.dissent = 0.01*total_dissent/total_strength;
-} else {
-    // If no factions exist, set all strengths to 0 and dissent to 0
-    Q.kemalist_marxists_strength = 0;
-    Q.left_kemalists_strength = 0;
-    Q.orthodox_kemalists_strength = 0;
-    Q.right_kemalists_strength = 0;
-    Q.dissent = 0;
-}
-Q.dissent_percent = Q.dissent*100;
-console.log('new dissent: ' + Q.dissent);
-
-if (Q.dissent < 0) {
-    Q.dissent = 0;
-} else if (Q.dissent > 0.95) {
-    Q.dissent = 0.95;
-}
-
 // Utility helpers for economic model
 var clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };
-var FOREX_DRIFT_PER_YEAR = Q.forex_pressure_drift || 2;
+var FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);
 var MONTHS_PER_YEAR = 12;
 var FOREX_DRIFT_PER_MONTH = FOREX_DRIFT_PER_YEAR / MONTHS_PER_YEAR;
 var forexFactors = Q.getForexFactors ? Q.getForexFactors() : {industry: 0.6, agriculture: 0.2, ratio: 3};
@@ -148,11 +52,6 @@ var preferNumber = function(candidate, fallback) {
 var applyDecay = function(value, negativeRate, positiveRate) {
     return value < 0 ? value * negativeRate : value * positiveRate;
 };
-var calculateCurrentEconomy = function() {
-    Q.inflation = (Q.base_inflation || 0) + (Q.inflation_modifier || 0);
-    Q.economic_growth = (Q.base_growth || 0) + (Q.growth_modifier || 0);
-    Q.unemployed = (Q.base_unemployment || 0) + (Q.unemployment_modifier || 0);
-};
 var refreshBaseEconomicValues = function() {
     var currentYear = Q.year;
     if (Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }
@@ -162,47 +61,7 @@ var refreshBaseEconomicValues = function() {
     if (Q.historical_agricultural_index[currentYear] !== undefined) { Q.base_agriculture_index = Q.historical_agricultural_index[currentYear]; }
 };
 
-var syncDirectEconomicChangesToModifiers = function(skipYearChange) {
-    Q.inflation_modifier = preferNumber(Q.inflation_modifier, 0);
-    Q.growth_modifier = preferNumber(Q.growth_modifier, 0);
-    Q.unemployment_modifier = preferNumber(Q.unemployment_modifier, 0);
-    Q.industry_modifier = preferNumber(Q.industry_modifier, preferNumber(Q.industrial_player_modifier, 0));
-    Q.agriculture_modifier = preferNumber(Q.agriculture_modifier, preferNumber(Q.agricultural_player_modifier, 0));
-    // Translate any direct edits from cards into modifiers (only when staying in the same year baseline)
-    if (!skipYearChange && typeof Q.inflation === 'number' && typeof Q.base_inflation === 'number') {
-        var expectedInflation = Q.base_inflation + Q.inflation_modifier;
-        if (Q.inflation !== expectedInflation) {
-            Q.inflation_modifier += (Q.inflation - expectedInflation);
-        }
-    }
-    if (!skipYearChange && typeof Q.economic_growth === 'number' && typeof Q.base_growth === 'number') {
-        var expectedGrowth = Q.base_growth + Q.growth_modifier;
-        if (Q.economic_growth !== expectedGrowth) {
-            Q.growth_modifier += (Q.economic_growth - expectedGrowth);
-        }
-    }
-    if (!skipYearChange && typeof Q.unemployed === 'number' && typeof Q.base_unemployment === 'number') {
-        var expectedUnemployment = Q.base_unemployment + Q.unemployment_modifier;
-        if (Q.unemployed !== expectedUnemployment) {
-            Q.unemployment_modifier += (Q.unemployed - expectedUnemployment);
-        }
-    }
-    Q.industrial_player_modifier = Q.industry_modifier;
-    Q.agricultural_player_modifier = Q.agriculture_modifier;
-};
-
-var recalcProductionAndHeadlineValues = function() {
-    var forexPressure = clamp(Q.forex_pressure || 0, 0, 100);
-    Q.forex_pressure = forexPressure;
-    var currentYear = Q.year;
-    var baseIndustry = (typeof Q.base_industry_index === 'number') ? Q.base_industry_index : (Q.historical_industrial_index[currentYear] !== undefined ? Q.historical_industrial_index[currentYear] : 100);
-    var baseAgriculture = (typeof Q.base_agriculture_index === 'number') ? Q.base_agriculture_index : (Q.historical_agricultural_index[currentYear] !== undefined ? Q.historical_agricultural_index[currentYear] : 100);
-    Q.industrial_production_index = baseIndustry + (Q.industry_modifier || 0);
-    Q.agricultural_production_index = baseAgriculture + (Q.agriculture_modifier || 0);
-    if (Q.industrial_production_index < 0) { Q.industrial_production_index = 0; }
-    if (Q.agricultural_production_index < 0) { Q.agricultural_production_index = 0; }
-    calculateCurrentEconomy();
-};
+var recalcProductionAndHeadlineValues = function() { AnatolianRules.refreshEconomy(Q); };
 
 var runMonthlyEconomicSimulation = function() {
     // This simulation now runs monthly; rates are scaled to preserve annual totals.
@@ -225,14 +84,14 @@ var runMonthlyEconomicSimulation = function() {
 
 if (Q.last_economy_month === null) {
     refreshBaseEconomicValues();
-    syncDirectEconomicChangesToModifiers(true);
+    Q.last_economy_month = Q.month + Q.year * 12;
 }
 
 // 1. update dates
-if (Q.month_actions >= 1) {
+if (turnAdvanced) {
     Q.time += 1;
     Q.month_actions = 0;
-    
+
     // Advance by 2 weeks (bi-weekly system)
     if (Q.week == 1) {
         // Move from week 1 to week 3 of same month
@@ -252,26 +111,25 @@ if (Q.month_actions >= 1) {
             }
         }
     }
-    
+
     // decrement timers (only when month actually changes for monthly timers)
     if (Q.week == 1) {
-        for (timer of Q.timers) {
+        for (var timer of Q.timers) {
             if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
                 Q[timer+'_timer'] -= 1;
             }
         }
     }
-    
+
     // Run monthly economic simulation to keep values current once per month (when the month flips)
     if (Q.week == 1) {
         refreshBaseEconomicValues();
-        syncDirectEconomicChangesToModifiers(true);
-        runMonthlyEconomicSimulation();
+            runMonthlyEconomicSimulation();
         Q.last_economy_month = Q.month + Q.year * 12;
     } else {
         recalcProductionAndHeadlineValues();
     }
-    
+
     // Switch the background music playlist when cyprus_mode changes
     if (Q.cyprus_mode != Q._last_cyprus_mode) {
         if (Q.cyprus_mode == 1) {
@@ -292,7 +150,7 @@ if (Q.month_actions >= 1) {
         if (Q.cyprus_divided_timer > 0) {
             Q.cyprus_divided_timer = 0;
         }
-        
+
         // Apply new effects based on current status
         if (Q.cyprus_problem == 1) { // Status Quo
             // -3% votershare drop in all demographics except Kurds and Capitalists
@@ -312,7 +170,7 @@ if (Q.month_actions >= 1) {
             Q.state_employees_chp += 2;
             Q.alevis_chp += 2;
             // Start 5-year timer for effects to wane
-            Q.cyprus_confederation_timer = 60; // 5 years = 60 months
+            Q.cyprus_confederation_timer = 60; // 5; years = 60 months
         } else if (Q.cyprus_problem == 3) { // Divided
             // +10% votershare increase among all demographics except Kurds and Capitalists
             Q.rural_chp += 10;
@@ -327,14 +185,14 @@ if (Q.month_actions >= 1) {
             Q.coup_timer -= 1;
             if (Q.coup_timer < 0) Q.coup_timer = 0;
             // Start 5-year timer for positive effects to wane
-            Q.cyprus_divided_timer = 60; // 5 years = 60 months
+            Q.cyprus_divided_timer = 60; // 5; years = 60 months
         }
-        
+
         Q.cyprus_last_status = Q.cyprus_problem;
     }
-    
+
     // Handle gradual waning of Cyprus positive effects over 5 years
-    if (Q.cyprus_confederation_timer > 0) {
+    if (Q.week == 1 && Q.cyprus_confederation_timer > 0) {
         Q.cyprus_confederation_timer -= 1;
         if (Q.cyprus_confederation_timer == 0) {
             // Remove confederation bonuses gradually
@@ -345,8 +203,8 @@ if (Q.month_actions >= 1) {
             Q.alevis_chp -= 2;
         }
     }
-    
-    if (Q.cyprus_divided_timer > 0) {
+
+    if (Q.week == 1 && Q.cyprus_divided_timer > 0) {
         Q.cyprus_divided_timer -= 1;
         if (Q.cyprus_divided_timer == 0) {
             // Remove divided bonuses gradually
@@ -357,17 +215,17 @@ if (Q.month_actions >= 1) {
             Q.alevis_chp -= 10;
         }
     }
-    
+
     // DP Collapse - if enabled, DP loses 80% of its support to AP between 1974 and 1977
     if (Q.DP_collapse && Q.year >= 1974 && Q.year <= 1977) {
-        // Transfer 80% of DP support to AP (z) over 3 years (1974-1977 inclusive)
+        // Transfer 80% of DP support to AP (AP) over 3 years (1974-1977 inclusive)
         // Game runs in bi-weekly turns: 3 years × 24 turns/year = 72 turns
         var TOTAL_TRANSFER_PERCENTAGE = 0.90;
         var YEARS_OF_TRANSFER = 3;
         var TURNS_PER_YEAR = 24;
         var TOTAL_TURNS = YEARS_OF_TRANSFER * TURNS_PER_YEAR;
         var dp_transfer_rate = TOTAL_TRANSFER_PERCENTAGE / TOTAL_TURNS;
-        
+
         // Calculate amount to transfer from each demographic
         var rural_transfer = Q.rural_DP * dp_transfer_rate;
         var workers_transfer = Q.workers_DP * dp_transfer_rate;
@@ -376,33 +234,33 @@ if (Q.month_actions >= 1) {
         var capitalists_transfer = Q.capitalists_DP * dp_transfer_rate;
         var alevis_transfer = Q.alevis_DP * dp_transfer_rate;
         var kurds_transfer = Q.kurds_DP * dp_transfer_rate;
-        
-        // Transfer support from DP to AP (z)
+
+        // Transfer support from DP to AP (AP)
         Q.rural_DP -= rural_transfer;
-        Q.rural_z += rural_transfer;
-        
+        Q.rural_AP += rural_transfer;
+
         Q.workers_DP -= workers_transfer;
-        Q.workers_z += workers_transfer;
-        
+        Q.workers_AP += workers_transfer;
+
         Q.petty_bourgeoisie_DP -= petty_bourgeoisie_transfer;
-        Q.petty_bourgeoisie_z += petty_bourgeoisie_transfer;
-        
+        Q.petty_bourgeoisie_AP += petty_bourgeoisie_transfer;
+
         Q.state_employees_DP -= state_employees_transfer;
-        Q.state_employees_z += state_employees_transfer;
-        
+        Q.state_employees_AP += state_employees_transfer;
+
         Q.capitalists_DP -= capitalists_transfer;
-        Q.capitalists_z += capitalists_transfer;
-        
+        Q.capitalists_AP += capitalists_transfer;
+
         Q.alevis_DP -= alevis_transfer;
-        Q.alevis_z += alevis_transfer;
-        
+        Q.alevis_AP += alevis_transfer;
+
         Q.kurds_DP -= kurds_transfer;
-        Q.kurds_z += kurds_transfer;
+        Q.kurds_AP += kurds_transfer;
     }
-    
+
     // Calculate Agricultural Product Prices (Consumption/Production ratio)
-    Q.agricultural_product_prices = Q.agricultural_consumption / Q.agricultural_production_index;
-    
+    Q.agricultural_product_prices = Q.agricultural_consumption / Math.max(1, Q.agricultural_production_index);
+
     // Set agricultural price status text
     if (Q.agricultural_product_prices > 1.20) {
         Q.agricultural_price_status = "Very High";
@@ -415,10 +273,10 @@ if (Q.month_actions >= 1) {
     } else {
         Q.agricultural_price_status = "Very Low";
     }
-    
+
     // Increment agricultural price timer
     Q.agricultural_price_timer += 1;
-    
+
     // Apply agricultural price effects based on timer intervals
     if (Q.agricultural_product_prices > 1.20 && Q.agricultural_price_timer >= 2) {
         // Very High: -2% to workers, petty bourgeoisie, state employees every 2 months
@@ -427,10 +285,10 @@ if (Q.month_actions >= 1) {
             Q.workers_chp -= 2;
             Q.petty_bourgeoisie_chp -= 2;
             Q.state_employees_chp -= 2;
-        } else if (Q.z_in_government) {
-            Q.workers_z -= 2;
-            Q.petty_bourgeoisie_z -= 2;
-            Q.state_employees_z -= 2;
+        } else if (Q.AP_in_government) {
+            Q.workers_AP -= 2;
+            Q.petty_bourgeoisie_AP -= 2;
+            Q.state_employees_AP -= 2;
         }
     } else if (Q.agricultural_product_prices >= 1.10 && Q.agricultural_product_prices <= 1.20 && Q.agricultural_price_timer >= 3) {
         // High: -1% to workers, petty bourgeoisie, state employees every 3 months
@@ -439,43 +297,33 @@ if (Q.month_actions >= 1) {
             Q.workers_chp -= 1;
             Q.petty_bourgeoisie_chp -= 1;
             Q.state_employees_chp -= 1;
-        } else if (Q.z_in_government) {
-            Q.workers_z -= 1;
-            Q.petty_bourgeoisie_z -= 1;
-            Q.state_employees_z -= 1;
+        } else if (Q.AP_in_government) {
+            Q.workers_AP -= 1;
+            Q.petty_bourgeoisie_AP -= 1;
+            Q.state_employees_AP -= 1;
         }
     } else if (Q.agricultural_product_prices >= 0.80 && Q.agricultural_product_prices < 0.90 && Q.agricultural_price_timer >= 3) {
         // Low: -1% to rural every 3 months
         Q.agricultural_price_timer = 0;
         if (Q.CHP_in_government) {
             Q.rural_chp -= 1;
-        } else if (Q.z_in_government) {
-            Q.rural_z -= 1;
+        } else if (Q.AP_in_government) {
+            Q.rural_AP -= 1;
         }
     } else if (Q.agricultural_product_prices < 0.80 && Q.agricultural_price_timer >= 2) {
         // Very Low: -2% to rural every 2 months
         Q.agricultural_price_timer = 0;
         if (Q.CHP_in_government) {
             Q.rural_chp -= 2;
-        } else if (Q.z_in_government) {
-            Q.rural_z -= 2;
+        } else if (Q.AP_in_government) {
+            Q.rural_AP -= 2;
         }
     }
-    
+
     // Reset timer if prices are sufficient (no effects)
     if (Q.agricultural_product_prices >= 0.90 && Q.agricultural_product_prices < 1.10) {
         Q.agricultural_price_timer = 0;
     }
-    
-    // append to historical party support records
-    var party_support_results = {'date': new Date(Q.year, Q.month - 1)};
-    for (var party of Q.parties) {
-        party_support_results[party] = Q[party + '_normalized']*100;
-    }
-    Q.party_support_records.push(party_support_results);
-    Q.economic_records.push({'date': new Date(Q.year, Q.month - 1),
-                             'inflation': Q.inflation,
-                             'unemployment': Q.unemployed});
 
 // Kurdish Nationalism
 // Political Consciousness
@@ -522,10 +370,10 @@ if (Q.CHP_kurdish_attitude == 2) {
         Q.kurdish_radicalism  -= 0.001;
 }
 // tip ban
-if (Q.tip_banned == 1) {
+if (Q.TIP_banned == 1) {
         Q.kurdish_radicalism  += 0.001;
 }
-if (Q.tip_banned == 0) {
+if (Q.TIP_banned == 0) {
         Q.kurdish_radicalism  -= 0.001;
 }
 // ddkd
@@ -536,7 +384,7 @@ if (Q.ddkd_formed == 1) {
         Q.kurdish_radicalism  -= 0.001;
 }
 // army in government
-if (Q.chancellor_party == "I") {
+if (Q.prime_minister_party == "I") {
         Q.kurdish_radicalism  += 0.002;
 }
 
@@ -555,12 +403,12 @@ if (Q.chancellor_party == "I") {
     if (Q.major_curriculum && Q.major_curriculum == "democratic") {
         if (Q.pro_republic < 60) {
             Q.pro_republic += 0.5;
-        } 
+        }
     }
     if (Q.minor_curriculum && Q.minor_curriculum == "democratic") {
         if (Q.pro_republic < 60) {
             Q.pro_republic += 0.3;//
-        } 
+        }
     }
     // science bonus to economic growth
     // education bonus
@@ -588,15 +436,16 @@ if (Q.chancellor_party == "I") {
     // this is kinda messy but basically more science -> higher levels of baseline growth
     if (Q.science_bonus >= 1) {
         if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus + 3) {
-            Q.economic_growth += 0.1;
+            Q.growth_modifier += 0.1;
         }
         if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus) {
-            Q.economic_growth += 0.1;
+            Q.growth_modifier += 0.1;
         }
         if (Q.economic_growth < Q.science_bonus - 3) {
-            Q.economic_growth += 0.1;
+            Q.growth_modifier += 0.1;
         }
     }
+    AnatolianRules.refreshEconomy(Q);
     // accumulated economic growth/decline
     // Maybe there should be differences for positive/negative growth?
     if (Q.economic_growth < 0) {
@@ -606,9 +455,7 @@ if (Q.chancellor_party == "I") {
             Q.economic_expansion += Q.economic_growth;
         }
     }
-    if (Q.economic_growth > 0 && Q.reparations <= -2 && Q.CHP_in_government) {
-        Q.economic_expansion += Q.economic_growth;
-    } else if (Q.economic_growth > 0 && Q.CHP_in_government) {
+ else if (Q.economic_growth > 0 && Q.CHP_in_government) {
         Q.economic_expansion += Q.economic_growth/2;
     }
     /////////////////////////////// update opinions based on economy
@@ -622,7 +469,7 @@ if (Q.chancellor_party == "I") {
         Q.pro_republic -= 1;
     }
 
-    
+
     ////////////////////////// annual support changes
     // Economic health multiplier for paramilitary membership growth
     var econ_paramilitary_multiplier;
@@ -635,7 +482,7 @@ if (Q.chancellor_party == "I") {
     } else {
         econ_paramilitary_multiplier = 2;
     }
-    if (Q.year == 1974) {      
+    if (Q.year == 1974) {
         // increase MHP vote share
         Q.rural_MHP += 1/24;
         Q.petty_bourgeoisie_MHP += 2/12;
@@ -676,95 +523,8 @@ if (Q.chancellor_party == "I") {
         Q.raiders_militancy += 0.05/24
         Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;
         Q.devyol_militancy += 0.1/24
-    } else if (Q.year == 1932) {
-        Q.old_middle_other -= 7/12;
-        Q.rural_other -= 7/12;
-        Q.old_middle_MHP += 7/12;
-        Q.rural_MHP += 7/12;
-        Q.unemployed_MHP += 4/12;
-        if (!Q.works_program) {
-            Q.unemployed += 5/12;
-            Q.inflation -= 2/12;
-            Q.catholics_z += 2/12;
-            Q.workers -= 4/12;
-            Q.rural_MSP -= 4/12;
-            Q.rural_MHP += 8/12;
-            Q.new_middle_MHP += 10/12;
-            Q.old_middle_MHP += 10/12;
-            Q.unemployed_MHP += 8/12;
-            Q.unemployed_TIP += 2/12;
-            Q.workers_MHP += 3/12;
-            Q.workers_TIP += 3/12;
-            Q.sa_strength += (200/12) * econ_paramilitary_multiplier;
-            Q.new_middle_MSP += 4/12;
-            Q.new_middle_MSP += 4/12;
-            Q.new_middle_DP -= 4/12;
-            Q.old_middle_DP -= 4/12;
-            Q.rural_DP -= 4/12;
-        } else if (Q.unemployed > 25) {
-            Q.rural_MHP += 5/12;
-            Q.unemployed_MHP += 5/12;
-            Q.old_middle_MHP += 5/12;
-            Q.new_middle_MHP += 4/12;
-            Q.sa_strength += (50/12) * econ_paramilitary_multiplier;
-        } else if (Q.unemployed > 20) {
-            Q.rural_MHP += 2/12;
-            Q.unemployed_MHP += 3/12;
-            Q.old_middle_MHP += 3/12;
-            Q.new_middle_MHP += 2/12;
-        }
-    } else if (Q.year >= 1933) {
-        if (Q.return_to_normalcy) {
-            // return to normalcy -> voters return to the base
-            if (Q.new_middle_CGP_normalized < 40) {
-                Q.new_middle_CGP += 6/12;
-            }
-            if (Q.new_middle_DP_normalized < 25) {
-                Q.new_middle_DP += 3/12;
-            }
-            if (Q.old_middle_DP_normalized < 40) {
-                Q.old_middle_DP += 6/12;
-            }
-            if (Q.rural_MSP_normalized < 40) {
-                Q.rural_MSP += 6/12;
-            }
-            if (Q.catholics_z_normalized < 40) {
-                Q.catholics_z += 6/12;
-            }
-        }
-        if (Q.unemployed > 20) {
-            Q.rural_MHP += 2/12;
-            Q.unemployed_MHP += 2/12;
-            Q.old_middle_MHP += 2/12;
-            Q.new_middle_MHP += 2/12;
-            if (Q.CHP_in_government) {
-                Q.workers_CHP -= 4/12;
-            }
-        }
-    }
-    // prevent forever support if the economy is bad
-    if (Q.year >= 1934 && (Q.inflation >= 8 || Q.unemployed >= 20) && Q.pro_republic <= 45 && Q.CHP_in_government) {
-        if (Q.workers_CHP_normalized > 40) {
-            Q.workers_CHP -= 6/12;
-        }
-        if (Q.unemployed_CHP_normalized > 20) {
-            Q.unemployed_CHP -= 6/12;
-        }
-        if (Q.new_middle_CHP_normalized > 20) {
-            Q.new_middle_CHP -= 6/12;
-        }
-        if (Q.old_middle_CHP_normalized > 20) {
-            Q.old_middle_CHP -= 6/12;
-        }
-        if (Q.rural_CHP_normalized > 20) {
-            Q.rural_CHP -= 6/12;
-        }
-        if (Q.catholics_CHP_normalized > 20) {
-            Q.catholics_CHP -= 6/12;
-        }
     }
     // Ensure economic values remain tied to base paths and modifiers after all adjustments
-    syncDirectEconomicChangesToModifiers(false);
     recalcProductionAndHeadlineValues();
 
     // MSP coalition decay (only applied once per turn, not on every arrival/navigation)
@@ -775,33 +535,6 @@ if (Q.chancellor_party == "I") {
         Q.coalition_dissent += 10/24
     }
 }
-Q.has_event = 0;
-Q.calculate_economy_health = 1; // Run economy health calculator every turn
-// Apply economy health effects every turn for gradual changes
-Q.apply_economy_effects = 1;
-// check if there are any cards in #event, and then go to main if not.
-var scene = this.game.scenes['post_event.events_choice'];
-var choices = this._compileChoices(scene);
-if (choices && choices[0].title != "Continue...") {
-    Q.has_event = 1;
-} else {
-    Q.has_event = 0;
-}
-// pre-load all of the event images
-if (this.ui && this.ui.show_portraits) {
-    for (var choice of choices) {
-        var cc = this.game.scenes[choice.id];
-        if (cc.faceImage) {
-            var im = new Image();
-            im.url = cc.faceImage;
-        }
-    }
-}
-
-if (typeof window !== "undefined" && window.generateBar) {
-}
-
-// Recalculate paramilitary force effectiveness (strength × militancy) every turn
 Q.far_left_force = 0;
 Q.far_right_force = 0;
 Q.separatist_force = 0;
@@ -850,10 +583,8 @@ Q.far_right_force += Q.tit_force;
 
 // State forces calculation (strength × militancy)
 Q.police_force = Q.police_strength * Q.police_militancy;
-Q.interior_police_force = Q.interior_police_strength * Q.interior_police_militancy; // 0 for Turkish context
-Q.prussian_police_force = Q.prussian_police_strength * Q.prussian_police_militancy; // 0 for Turkish context
 
-Q.state_force = Q.police_force + Q.interior_police_force + Q.prussian_police_force;
+Q.state_force = Q.police_force;
 
 // Democratic forces (state forces when not controlled by extremists)
 Q.democracy_force = Q.state_force;
@@ -868,7 +599,7 @@ if (Q.total_forces > 0) {
     Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);
     Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);
     Q.democracy_force_percent = Q.state_force_percent;
-    
+
     // Individual organization force percentages
     if (!Q.thkpc_destroyed) {
         Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);
@@ -887,10 +618,8 @@ if (Q.total_forces > 0) {
         Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);
     }
     Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);
-    
+
     Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);
-    Q.interior_police_force_percent = Math.round((Q.interior_police_force / Q.total_forces) * 100);
-    Q.prussian_police_force_percent = Math.round((Q.prussian_police_force / Q.total_forces) * 100);
 }
 
 // Determine street control levels
@@ -939,6 +668,7 @@ if (Q.state_paramilitary) {
     else Q.state_paramilitary_low = 1;
 }
 
+if (turnAdvanced) {
 if (Q.democracy_paramilitary_low == 1) Q.coup_timer += 2/12;
 if (Q.far_left_paramilitary == 1) Q.coup_timer += 1/12;
 if (Q.grand_coalition == 1) Q.coup_timer -= 1/12;
@@ -953,7 +683,7 @@ if (Q.economy_health < -5) {
 }
 
 // 2. Street fighting attrition: yearly decrease of democracystatus based on state control tier.
-if (Q.year >= 1930 && !Q.streetfighting_joever) {
+if (Q.year >= 1972 && !Q.streetfighting_joever) {
     if (Q.state_force_percent > 80) {
         // street fightings are scarce: no decrease
     } else if (Q.state_force_percent >= 70) {
@@ -1012,22 +742,14 @@ if (Q.kurdish_radicalism >= 0.69) {
 Q.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));
 
 // ─────────────────────────────────────────────────────────────────────────
+}
+
 // ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached
 
 // Oil effects (applied once)
 if (Q.oil >= 1 && !Q.oil_effect_applied) {
-    if (Q.oil == 1) {
-        Q.base_inflation -= 7.5;
-    }
-    if (Q.oil == 2) {
-        Q.base_inflation -= 15;
-    }
-    if (Q.oil == 3) {
-        Q.base_inflation -= 22.5;
-    }
-    if (Q.oil >= 4) {
-        Q.base_inflation -= 30;
-    }
+    // Preserve the original once-only threshold benefit across baseline refreshes.
+    Q.oil_inflation_effect = 7.5 * Math.min(Q.oil, 4);
     Q.oil_effect_applied = true;
 }
 
@@ -1061,18 +783,12 @@ if (!Q.labour_rights_reform) {
 
 // Tiger economic reform effects (year-specific, applied once per year)
 if (Q.Tiger >= 2 && Q.year == 1978 && !Q.tiger_1978_effect_applied) {
-    Q.base_inflation -= 30;
-    Q.base_growth += 3;
     Q.tiger_1978_effect_applied = true;
 }
 if (Q.Tiger >= 2 && Q.year == 1979 && !Q.tiger_1979_effect_applied) {
-    Q.base_inflation -= 30;
-    Q.base_growth += 3;
     Q.tiger_1979_effect_applied = true;
 }
 if (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {
-    Q.base_inflation -= 30;
-    Q.base_growth += 3;
     Q.tiger_1980_effect_applied = true;
 }
 
@@ -1081,7 +797,7 @@ if (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {
 // Coup trigger: fires automatically when TSK is mutinous and acting (coup_timer >= 15),
 // or with a 25% monthly chance when democracystatus drops below 10.
 Q.coup_roll_success = 0;
-if (Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {
+if (turnAdvanced && Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {
     if (Q.coup_timer >= 15) {
         Q.coup_roll_success = 1;
     } else if (Q.democracystatus < 10 && Math.random() < 0.25) {
@@ -1089,6 +805,52 @@ if (Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {
         Q.coup_timer = 15;
     }
 }
+AnatolianRules.refreshEconomy(Q);
+Q.apply_economy_effects = turnAdvanced ? 1 : 0;
+this._runActions(this.game.scenes['economy_health_calculator'].onArrival);
+AnatolianRules.refreshVotes(Q);
+AnatolianRules.refreshFactions(Q);
+if (turnAdvanced) {
+    // append to historical party support records
+    var party_support_results = {'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16)};
+    for (var party of Q.parties) {
+        party_support_results[party] = Q[party + '_normalized']*100;
+    }
+    Q.party_support_records.push(party_support_results);
+    Q.economic_records.push({'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16),
+                             'inflation': Q.inflation,
+                             'unemployment': Q.unemployed});
+
+}
+Q.has_event = 0;
+Q.calculate_economy_health = 0;
+// Apply economy health effects every turn for gradual changes
+Q.apply_economy_effects = 0;
+// check if there are any cards in #event, and then go to main if not.
+var scene = this.game.scenes['post_event.events_choice'];
+var choices = this._compileChoices(scene);
+if (choices && choices[0].title != "Continue...") {
+    Q.has_event = 1;
+} else {
+    Q.has_event = 0;
+}
+// pre-load all of the event images
+if (this.ui && this.ui.show_portraits) {
+    for (var choice of choices) {
+        var cc = this.game.scenes[choice.id];
+        if (!cc || !cc.cardImage) continue;
+        if (cc.faceImage) {
+            var im = new Image();
+            im.url = cc.faceImage;
+        }
+    }
+}
+
+if (typeof window !== "undefined" && window.generateBar) {
+}
+
+// Recalculate paramilitary force effectiveness (strength × militancy) every turn
+
 !}
 go-to: game_over if coup_roll_success = 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0; main.main_easy if has_event = 0 and difficulty < 0
 
