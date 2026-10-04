@@ -13,6 +13,16 @@
     ui = dendryUI;
     game = ui.game;
 
+    // Dendry restores scene styles after returning from special screens.
+    // Keep the calendar-dependent layout when that clears content classes.
+    var setStyle = ui.setStyle.bind(ui);
+    ui.setStyle = function(style) {
+      setStyle(style);
+      if (window.dendryUI && window.dendryUI.dendryEngine) {
+        window.updateCyprusWidth();
+      }
+    };
+
     // Add optional styled tooltips to choice buttons without changing subtitles.
     window.buttonTooltips = {
       'campaigning.workers': 'Build support among urban workers.',
