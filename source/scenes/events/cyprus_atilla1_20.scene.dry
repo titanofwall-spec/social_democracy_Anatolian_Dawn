@@ -1,7 +1,7 @@
 title: A foothold, not a front
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
 new-page: true
-on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
+on-arrival: {! Q.cyprus_operation_started = 1; Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
 
 = 20 July 1974 — A foothold, not a front
 

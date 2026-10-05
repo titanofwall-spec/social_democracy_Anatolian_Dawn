@@ -156,13 +156,14 @@
     if(!svg || !record || !record.context || svg.querySelector('#basemap image').getAttribute('href')!==record.source)return;
     var side=window.dendryUI.dendryEngine.state.qualities.cyprus_target_side;
     var overlay=svg.querySelector('#cyprus-territory-highlight');
+    if(!AnatolianRules.cyprusAtilla1.operationStarted(window.dendryUI.dendryEngine.state.qualities)){if(overlay)overlay.remove();return;}
     if(side!=='turkish'&&side!=='greek'){if(overlay)overlay.remove();return;}
     if(!record.highlights)record.highlights={};
     if(!record.highlights[side]){
       var canvas=document.createElement('canvas');canvas.width=1063;canvas.height=644;
       var ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(record.context.canvas,0,0,canvas.width,canvas.height);
       var pixels=ctx.getImageData(0,0,canvas.width,canvas.height),d=pixels.data;
-      var color=side==='turkish'?[255,203,90]:[110,218,255];
+      var color=[255,203,90];
       for(var i=0;i<d.length;i+=4){var hit=side==='turkish'?d[i]>d[i+2]*1.15&&d[i]>d[i+1]*1.15:d[i+2]>d[i]*1.05&&d[i+2]>35;d[i]=color[0];d[i+1]=color[1];d[i+2]=color[2];d[i+3]=hit?45:0;}
       ctx.putImageData(pixels,0,0);
       ctx.globalCompositeOperation='destination-out';ctx.fillStyle='black';ctx.strokeStyle='black';ctx.lineWidth=4;
@@ -172,8 +173,8 @@
       for(var y=1;y<canvas.height-1;y++)for(var x=1;x<canvas.width-1;x++){var k=y*canvas.width+x;if(alpha[k]&&(!alpha[k-1]||!alpha[k+1]||!alpha[k-canvas.width]||!alpha[k+canvas.width]))d[k*4+3]=210;}
       ctx.globalCompositeOperation='source-over';ctx.putImageData(pixels,0,0);record.highlights[side]=canvas.toDataURL();
     }
-    if(!overlay){overlay=document.createElementNS('http://www.w3.org/2000/svg','image');overlay.id='cyprus-territory-highlight';overlay.setAttribute('width','4250');overlay.setAttribute('height','2573');overlay.setAttribute('pointer-events','none');overlay.style.filter='drop-shadow(0 0 3px '+(side==='turkish'?'#ffd66b':'#8ae5ff')+')';svg.appendChild(overlay);}
-    overlay.dataset.side=side;overlay.setAttribute('href',record.highlights[side]);overlay.style.filter='drop-shadow(0 0 3px '+(side==='turkish'?'#ffd66b':'#8ae5ff')+')';
+    if(!overlay){overlay=document.createElementNS('http://www.w3.org/2000/svg','image');overlay.id='cyprus-territory-highlight';overlay.setAttribute('width','4250');overlay.setAttribute('height','2573');overlay.setAttribute('pointer-events','none');overlay.style.filter='drop-shadow(0 0 3px '+'#ffd66b'+')';svg.appendChild(overlay);}
+    overlay.dataset.side=side;overlay.setAttribute('href',record.highlights[side]);overlay.style.filter='drop-shadow(0 0 3px '+'#ffd66b'+')';
   };
   window.setupCyprusSideClicks = function() {
     var svg = document.getElementById('cyprus-map-svg');
@@ -191,11 +192,12 @@
       ['turkish','greek'].forEach(function(side){var b=document.createElement('button');b.type='button';b.className='cyprus-action-btn';b.dataset.side=side;b.textContent=side==='turkish'?'Turkish positions (red)':'Greek positions (blue)';chooser.appendChild(b);});
       panel.querySelector('#cyprus-map-wrap').appendChild(chooser);
     }
-    function select(side) {window.dendryUI.dendryEngine.state.qualities.cyprus_target_side=side;window.updateCyprusTerritoryHighlight();window.setupCyprusMapClicks();chooser.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.side===side?'true':'false');});}
-    chooser.querySelectorAll('button').forEach(function(b){b.onclick=function(){select(b.dataset.side);};b.setAttribute('aria-pressed',window.dendryUI.dendryEngine.state.qualities.cyprus_target_side===b.dataset.side?'true':'false');});
-    svg.style.cursor='pointer';
+    function select(side) {if(!AnatolianRules.cyprusAtilla1.operationStarted(window.dendryUI.dendryEngine.state.qualities))return;window.dendryUI.dendryEngine.state.qualities.cyprus_target_side=side;window.updateCyprusTerritoryHighlight();window.setupCyprusMapClicks();chooser.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.side===side?'true':'false');});}
+    chooser.querySelectorAll('button').forEach(function(b){b.disabled=!AnatolianRules.cyprusAtilla1.operationStarted(window.dendryUI.dendryEngine.state.qualities);b.onclick=function(){select(b.dataset.side);};b.setAttribute('aria-pressed',window.dendryUI.dendryEngine.state.qualities.cyprus_target_side===b.dataset.side?'true':'false');});
+    svg.style.cursor=AnatolianRules.cyprusAtilla1.operationStarted(window.dendryUI.dendryEngine.state.qualities)?'pointer':'default';
     svg.setAttribute('aria-label','Click Turkish red territory or Greek blue territory to select a side.');
     svg.onclick=function(event){
+      if(!AnatolianRules.cyprusAtilla1.operationStarted(window.dendryUI.dendryEngine.state.qualities))return;
       var point=new DOMPoint(event.clientX,event.clientY).matrixTransform(svg.getScreenCTM().inverse());
       var record=window.cyprusSidePixels;if(!record || record.source!==source)return;
       function choose(){
@@ -231,9 +233,10 @@
     var panel = document.getElementById('cyprus-command-panel');
     if (!panel) return;
     var Q = window.dendryUI.dendryEngine.state.qualities, rules = AnatolianRules.cyprusAtilla1;
-    var selected = ['turkish','greek'].indexOf(Q.cyprus_target_side) >= 0 ? Q.cyprus_target_side : '';
+    var started=rules.operationStarted(Q);
+    var selected = started && ['turkish','greek'].indexOf(Q.cyprus_target_side) >= 0 ? Q.cyprus_target_side : '';
     var chosen = selected === 'turkish' ? 'Turkish positions' : selected === 'greek' ? 'Greek positions' : '';
-    document.getElementById('cyprus-selected-district').textContent = chosen ? 'Selected: ' + chosen : 'Select Turkish (red) or Greek (blue) positions to prepare support.';
+    document.getElementById('cyprus-selected-district').textContent = !started ? 'Military actions unlock when the July 20 operation begins.' : chosen ? 'Selected: ' + chosen : 'Select Turkish (red) or Greek (blue) positions to prepare support.';
     panel.querySelectorAll('[data-branch]').forEach(function(button) {
       button.disabled = !selected;
       button.setAttribute('aria-expanded',window.cyprusSupportBranch === button.dataset.branch ? 'true' : 'false');

@@ -257,6 +257,7 @@
         Q.military_strength = startingResources(Q);
         Q.cyprus_support_bonus = 0;
         Q.cyprus_target_side = '';
+        Q.cyprus_operation_started = 0;
         Q.cyprus_intro_seen = 0;
         Q.cyprus_opposition_seen = 0;
         Q.cyprus_preop_resume = 0;
@@ -286,9 +287,15 @@
         var last = Q.cyprus_support_used && Q.cyprus_support_used[key];
         return typeof last === 'number' ? Math.max(0,3 - (calendarDay(Q) - last)) : 0;
     }
+    /** @param {State} Q */
+    function operationStarted(Q) {
+        if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month < 7 || (Q.cyprus_month === 7 && Q.cyprus_day < 20)) return false;
+        return !!(Q.cyprus_operation_started || Q.cyprus_month > 7 || Q.cyprus_day > 20 || (Array.isArray(Q.cyprus_atilla1_results) && Q.cyprus_atilla1_results.length));
+    }
     /** @param {State} Q @param {string} key @param {string} district */
     function supportUnavailable(Q,key,district) {
         if (!Object.prototype.hasOwnProperty.call(supportActions,key)) return 'Unknown support action.';
+        if (!operationStarted(Q)) return 'Military actions unlock when the July 20 operation begins.';
         if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month < 7 || Q.cyprus_month > 8 || (Q.cyprus_month === 7 && Q.cyprus_day < 15) || (Q.cyprus_month === 8 && Q.cyprus_day > 13)) return 'No upcoming operation roll.';
         if (district !== 'turkish' && district !== 'greek' && districts.indexOf(district) < 0) return 'Select Turkish or Greek positions.';
         if ((district === 'turkish' || district === 'greek') && supportActions[key].side !== district) return 'This action is for the other side.';
@@ -661,7 +668,7 @@
     rules.cyprusAtilla1 = {supportActions:supportActions,districts:districts,startingResources:startingResources,
         dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,
         replenishResources:replenishResources,cooldown:cooldown,supportUnavailable:supportUnavailable,useSupport:useSupport,
-        finishBriefingDay:finishBriefingDay,mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
+        operationStarted:operationStarted,finishBriefingDay:finishBriefingDay,mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
         days:days,levels:levels,outcomes:outcomes,militaryTier:militaryTier,roll:roll,
         resultIndex:resultIndex,initialize:initialize,briefingScene:briefingScene,scene:scene,briefing:briefing,resolve:resolve,advanceDate:advanceDate};
     if (typeof module !== 'undefined' && module.exports) module.exports = rules.cyprusAtilla1;

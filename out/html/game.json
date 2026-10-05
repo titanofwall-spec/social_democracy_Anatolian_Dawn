@@ -13092,7 +13092,7 @@
       "newPage": true,
       "onArrival": [
         {
-          "$code": "Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20);"
+          "$code": "Q.cyprus_operation_started = 1; Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20);"
         }
       ],
       "options": [
