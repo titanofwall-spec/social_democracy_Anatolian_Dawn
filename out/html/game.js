@@ -129,8 +129,7 @@
       panel = document.createElement('section');
       panel.id = 'cyprus-command-panel';
       panel.className = 'cyprus-command-panel';
-      panel.innerHTML = '<h2 id="cyprus-date-display"></h2>' +
-        '<div id="cyprus-map-wrap">' + window.cyprusMapMarkup + '</div>' +
+      panel.innerHTML = '<div id="cyprus-map-wrap">' + window.cyprusMapMarkup + '</div>' +
         '<p id="cyprus-selected-district">Select a district on the map to prepare support.</p>' +
         '<div id="cyprus-action-buttons">' +
         '<button type="button" id="cyprus-btn-smuggle" class="cyprus-action-btn" data-branch="land"><img src="img/icon_smuggling.png" alt="">Turkish Land Forces</button>' +
@@ -140,7 +139,6 @@
     }
     // Dendry appends choices after rendering text. Move controls below those choices.
     content.appendChild(panel);
-    document.getElementById('cyprus-date-display').textContent = Q.cyprus_date_display;
     window.setupCyprusMapClicks();
   };
   window.setupCyprusMapClicks = function() {
@@ -177,24 +175,45 @@
     var actions = document.getElementById('cyprus-support-actions');
     actions.replaceChildren();
     if (!selected || !window.cyprusSupportBranch) return;
+    var media = document.createElement('div');
+    media.className = 'cyprus-force-media';
+    var image = document.createElement('img');
+    var visuals = {land:{src:'img/landforces.webp',alt:'Turkish Land Forces'},
+      air:{src:'img/icon_aerial.webp',alt:'Turkish Air Forces'},
+      naval:{src:'img/icon_naval.webp',alt:'Turkish Naval Forces'}};
+    var visual = visuals[window.cyprusSupportBranch];
+    image.src = visual.src; image.alt = visual.alt;
+    media.appendChild(image); actions.appendChild(media);
     var title = document.createElement('p');
     title.textContent = 'Support in ' + chosen + '. Applies to the next roll; each action has a three-day cooldown across all districts.';
     actions.appendChild(title);
+    var choices = document.createElement('ul');
+    choices.className = 'choices';
+    actions.appendChild(choices);
     Object.keys(rules.supportActions).forEach(function(key) {
       var action = rules.supportActions[key];
       if (action.branch !== window.cyprusSupportBranch) return;
       var reason = rules.supportUnavailable(Q,key,selected);
-      var button = document.createElement('button');
-      button.type = 'button'; button.dataset.supportAction = key;
-      button.className = 'cyprus-support-action'; button.disabled = !!reason;
-      button.textContent = action.label + ' — ' + action.cost + ' resources, +' + action.bonus + ' next roll' + (reason ? ' (' + reason + ')' : '');
-      button.onclick = function() {
-        if (!rules.useSupport(Q,key,Q.cyprus_target_district)) return;
-        window.updatePartySidebar();
-        window.setupCyprusMapClicks();
-        window.dendryUI.autosave();
-      };
-      actions.appendChild(button);
+      var row = document.createElement('li');
+      var label = document.createElement(reason ? 'span' : 'a');
+      label.textContent = action.label + '.';
+      if (reason) {
+        row.className = 'unavailable'; row.dataset.supportAction = key;
+        row.setAttribute('aria-disabled','true');
+        row.onclick = function(event) { event.preventDefault(); event.stopPropagation(); };
+      } else {
+        label.href = '#'; label.dataset.supportAction = key;
+        label.onclick = function(event) {
+          // Inline support uses the shared choice styling without invoking an event choice.
+          event.preventDefault(); event.stopPropagation();
+          if (!rules.useSupport(Q,key,Q.cyprus_target_district)) return;
+          window.updatePartySidebar(); window.setupCyprusMapClicks(); window.dendryUI.autosave();
+        };
+      }
+      row.appendChild(label);
+      var subtitle = document.createElement('div'); subtitle.className = 'subtitle';
+      subtitle.textContent = action.cost + ' resources; +' + action.bonus + ' to the next roll.' + (reason ? ' ' + reason : '');
+      row.appendChild(subtitle); choices.appendChild(row);
     });
   };
   window.cyprusAdvanceDay = function() {

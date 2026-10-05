@@ -1501,9 +1501,9 @@ table {
 #cyprus-action-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .cyprus-action-btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px; }
 .cyprus-action-btn img { width: 32px; height: 32px; object-fit: contain; }
-.cyprus-action-btn:disabled, .cyprus-support-action:disabled { opacity: .55; cursor: default; }
-.cyprus-support-action { display: block; width: 100%; padding: 9px; margin: 7px 0; text-align: left; }
+.cyprus-action-btn:disabled { opacity: .55; cursor: default; }
 #cyprus-resource-status { line-height: 1.6; text-align: center; }
 #cyprus-selected-district { text-align: center; }
 
-.cyprus-support-action:disabled { opacity: 1; color: #665740; background: #e9e6df; border: 1px solid #bcb7ad; }
+
+.cyprus-force-media img { display: block; max-width: 100%; width: auto; max-height: 240px; margin: 12px auto; }
