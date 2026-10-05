@@ -2075,10 +2075,10 @@
     "ayse": {
       "id": "ayse",
       "type": "scene",
-      "title": "The Democratic Party",
-      "subtitle": "An introduction to the right wing periphary of republican politics.",
+      "title": "A Star Shaped Hole",
+      "subtitle": "A story from the Cyprus operation.",
       "viewIf": {
-        "$code": "return (((((Q['cyprus_day'] || 0) == 21) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974)) && (((Q['flavour_events'] || 0)) !== 0));"
+        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974)) && (((Q['flavour_events'] || 0)) !== 0));"
       },
       "maxVisits": 1,
       "tags": [
@@ -3722,7 +3722,7 @@
       "audio": "music/gercekkibris1.m4a",
       "onArrival": [
         {
-          "$code": "Q.cyprus_mode = 1;\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ.cyprus_end_shown = 0;\nQ._last_cyprus_mode = 1;\nQ.cyprus_day = 15;\nQ.cyprus_month = 7;\nQ.cyprus_year = 1974;\nQ.cyprus_date_display = 'July 15, 1974';\nupdateCyprusWidth();"
+          "$code": "Q.cyprus_mode = 1;\nQ.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ.cyprus_end_shown = 0;\nQ._last_cyprus_mode = 1;\nQ.cyprus_day = 15;\nQ.cyprus_month = 7;\nQ.cyprus_year = 1974;\nQ.cyprus_date_display = 'July 15, 1974';\nupdateCyprusWidth();"
         }
       ],
       "options": [
@@ -4038,10 +4038,10 @@
     "meetingopposition": {
       "id": "meetingopposition",
       "type": "scene",
-      "title": "The Democratic Party",
-      "subtitle": "An introduction to the right wing periphary of republican politics.",
+      "title": "Meetings with the Opposition",
+      "subtitle": "Ecevit consults opposition leaders after the coup in Cyprus.",
       "viewIf": {
-        "$code": "return ((((Q['cyprus_day'] || 0) == 16) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974));"
+        "$code": "return (((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_day'] || 0) == 16)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974));"
       },
       "maxVisits": 1,
       "tags": [
@@ -5367,10 +5367,10 @@
     "plane": {
       "id": "plane",
       "type": "scene",
-      "title": "The Democratic Party",
-      "subtitle": "An introduction to the right wing periphary of republican politics.",
+      "title": "To Fly Away",
+      "subtitle": "A pilot faces danger over Cyprus.",
       "viewIf": {
-        "$code": "return (((((Q['cyprus_day'] || 0) == 24) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974)) && (((Q['flavour_events'] || 0)) !== 0));"
+        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974)) && (((Q['flavour_events'] || 0)) !== 0));"
       },
       "maxVisits": 1,
       "tags": [
@@ -10127,7 +10127,7 @@
       "newPage": true,
       "onArrival": [
         {
-          "$code": "var turnAdvanced = Q.month_actions >= 1;\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nQ.last_advisor_action = 0;\nQ.last_cabinet_action = 0;\n// make sure no stat is below 0.\nfor (var c of Q.classes) {\n    for (var party of Q.parties) {\n        if (Q[c+'_'+party] < 0) {\n            Q[c+'_'+party] = 0;\n        }\n    }\n}\n\nQ.pro_republic = Math.round(Q.pro_republic);\nQ.nationalism = Math.round(Q.nationalism);\nQ.socialism = Math.round(Q.socialism);\n\nif (Q.pro_republic < 0) {\n    Q.pro_republic = 0;\n}\nif (Q.pro_republic >= 100) {\n    Q.pro_republic = 99;\n}\n// Utility helpers for economic model\nvar clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };\nvar FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);\nvar MONTHS_PER_YEAR = 12;\nvar FOREX_DRIFT_PER_MONTH = FOREX_DRIFT_PER_YEAR / MONTHS_PER_YEAR;\nvar forexFactors = Q.getForexFactors ? Q.getForexFactors() : {industry: 0.6, agriculture: 0.2, ratio: 3};\nvar FOREX_INDUSTRY_FACTOR = forexFactors.industry;\nvar AGRICULTURE_TO_INDUSTRY_RATIO = forexFactors.ratio;\nvar FOREX_AGRICULTURE_FACTOR = forexFactors.agriculture;\nvar INFLATION_DECAY_NEG = 0.5;\nvar INFLATION_DECAY_POS = 0.9;\nvar GROWTH_DECAY_POS = 0.8;\nvar GROWTH_DECAY_NEG = 0.95;\nvar UNEMPLOYMENT_DECAY_NEG = 0.7;\nvar UNEMPLOYMENT_DECAY_POS = 0.9;\nvar INFLATION_DECAY_NEG_MONTHLY = Math.pow(INFLATION_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar INFLATION_DECAY_POS_MONTHLY = Math.pow(INFLATION_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_POS_MONTHLY = Math.pow(GROWTH_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_NEG_MONTHLY = Math.pow(GROWTH_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_NEG_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_POS_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar preferNumber = function(candidate, fallback) {\n    return (typeof candidate === 'number') ? candidate : fallback;\n};\nvar applyDecay = function(value, negativeRate, positiveRate) {\n    return value < 0 ? value * negativeRate : value * positiveRate;\n};\nvar refreshBaseEconomicValues = function() {\n    var currentYear = Q.year;\n    if (Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }\n    if (Q.historical_gdp_growth[currentYear] !== undefined) { Q.base_growth = Q.historical_gdp_growth[currentYear]; }\n    if (Q.historical_unemployment[currentYear] !== undefined) { Q.base_unemployment = Q.historical_unemployment[currentYear]; }\n    if (Q.historical_industrial_index[currentYear] !== undefined) { Q.base_industry_index = Q.historical_industrial_index[currentYear]; }\n    if (Q.historical_agricultural_index[currentYear] !== undefined) { Q.base_agriculture_index = Q.historical_agricultural_index[currentYear]; }\n};\n\nvar recalcProductionAndHeadlineValues = function() { AnatolianRules.refreshEconomy(Q); };\n\nvar runMonthlyEconomicSimulation = function() {\n    // This simulation now runs monthly; rates are scaled to preserve annual totals.\n    // Step 1: automatic forex pressure drift\n    var delayedReduction = (Q.forex_pressure_delayed_reduction || 0);\n    var forexAdjustment = FOREX_DRIFT_PER_MONTH - (delayedReduction / MONTHS_PER_YEAR);\n    Q.forex_pressure = clamp((Q.forex_pressure || 0) + forexAdjustment, 0, 100);\n    if (delayedReduction) {\n        // clear once applied to avoid repeated division\n        Q.forex_pressure_delayed_reduction = 0;\n    }\n    // Step 2: card effects already stored in modifiers\n    // Step 3: structural resistance with asymmetric decay\n    Q.inflation_modifier = applyDecay(Q.inflation_modifier, INFLATION_DECAY_NEG_MONTHLY, INFLATION_DECAY_POS_MONTHLY);\n    Q.growth_modifier = applyDecay(Q.growth_modifier, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);\n    Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);\n    // Step 4/5: recompute production indices and headline figures\n    recalcProductionAndHeadlineValues();\n};\n\nif (Q.last_economy_month === null) {\n    refreshBaseEconomicValues();\n    Q.last_economy_month = Q.month + Q.year * 12;\n}\n\n// 1. update dates\nif (turnAdvanced) {\n    Q.time += 1;\n    Q.month_actions = 0;\n\n    // Advance by 2 weeks (bi-weekly system)\n    if (Q.week == 1) {\n        // Move from week 1 to week 3 of same month\n        Q.week = 2;\n    } else {\n        // Move from week 3 to week 1 of next month\n        Q.week = 1;\n        Q.month += 1;\n        if (Q.month >= 13) {\n            Q.month = 1;\n            Q.year += 1;\n            if (Q.CHP_in_government) {\n                Q.budget += 4 + (Q.yearly_budget || 0);\n            }\n            if (Q.historical_mode) {\n                Q.resources += 2;\n            }\n        }\n    }\n\n    // decrement timers (only when month actually changes for monthly timers)\n    if (Q.week == 1) {\n        for (var timer of Q.timers) {\n            if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {\n                Q[timer+'_timer'] -= 1;\n            }\n        }\n    }\n\n    // Run monthly economic simulation to keep values current once per month (when the month flips)\n    if (Q.week == 1) {\n        refreshBaseEconomicValues();\n            runMonthlyEconomicSimulation();\n        Q.last_economy_month = Q.month + Q.year * 12;\n    } else {\n        recalcProductionAndHeadlineValues();\n    }\n\n    // Switch the background music playlist when cyprus_mode changes\n    if (Q.cyprus_mode != Q._last_cyprus_mode) {\n        if (Q.cyprus_mode == 1) {\n            this.ui.audio('clear shuffle music/gercekkibris1.m4a music/12.mp3 music/notalarsavasinca.mp3 music/demirkirat.mp3');\n        } else {\n            this.ui.audio('clear shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3');\n        }\n        Q._last_cyprus_mode = Q.cyprus_mode;\n    }\n\n    // Cyprus Problem effects\n    // Check if Cyprus status has changed and apply immediate effects\n    if (Q.cyprus_problem != Q.cyprus_last_status) {\n        // Remove previous positive effects if any\n        if (Q.cyprus_confederation_timer > 0) {\n            Q.cyprus_confederation_timer = 0;\n        }\n        if (Q.cyprus_divided_timer > 0) {\n            Q.cyprus_divided_timer = 0;\n        }\n\n        // Apply new effects based on current status\n        if (Q.cyprus_problem == 1) { // Status Quo\n            // -3% votershare drop in all demographics except Kurds and Capitalists\n            Q.rural_chp -= 3;\n            Q.workers_chp -= 3;\n            Q.state_employees_chp -= 3;\n            Q.alevis_chp -= 3;\n            // -7% among petty bourgeoisie (total -10% for petty bourgeoisie)\n            Q.petty_bourgeoisie_chp -= 10;\n            // Coup timer goes up by 1\n            Q.coup_timer += 1;\n        } else if (Q.cyprus_problem == 2) { // Confederation\n            // +2% votershare increase in all demographics except Kurds and Capitalists\n            Q.rural_chp += 2;\n            Q.workers_chp += 2;\n            Q.petty_bourgeoisie_chp += 2;\n            Q.state_employees_chp += 2;\n            Q.alevis_chp += 2;\n            // Start 5-year timer for effects to wane\n            Q.cyprus_confederation_timer = 60; // 5; years = 60 months\n        } else if (Q.cyprus_problem == 3) { // Divided\n            // +10% votershare increase among all demographics except Kurds and Capitalists\n            Q.rural_chp += 10;\n            Q.workers_chp += 10;\n            Q.petty_bourgeoisie_chp += 10;\n            Q.state_employees_chp += 10;\n            Q.alevis_chp += 10;\n            // Relations penalties\n            Q.us_relation -= 30;\n            Q.west_relation -= 20;\n            // Coup timer goes down by 1\n            Q.coup_timer -= 1;\n            if (Q.coup_timer < 0) Q.coup_timer = 0;\n            // Start 5-year timer for positive effects to wane\n            Q.cyprus_divided_timer = 60; // 5; years = 60 months\n        }\n\n        Q.cyprus_last_status = Q.cyprus_problem;\n    }\n\n    // Handle gradual waning of Cyprus positive effects over 5 years\n    if (Q.week == 1 && Q.cyprus_confederation_timer > 0) {\n        Q.cyprus_confederation_timer -= 1;\n        if (Q.cyprus_confederation_timer == 0) {\n            // Remove confederation bonuses gradually\n            Q.rural_chp -= 2;\n            Q.workers_chp -= 2;\n            Q.petty_bourgeoisie_chp -= 2;\n            Q.state_employees_chp -= 2;\n            Q.alevis_chp -= 2;\n        }\n    }\n\n    if (Q.week == 1 && Q.cyprus_divided_timer > 0) {\n        Q.cyprus_divided_timer -= 1;\n        if (Q.cyprus_divided_timer == 0) {\n            // Remove divided bonuses gradually\n            Q.rural_chp -= 10;\n            Q.workers_chp -= 10;\n            Q.petty_bourgeoisie_chp -= 10;\n            Q.state_employees_chp -= 10;\n            Q.alevis_chp -= 10;\n        }\n    }\n\n    // DP Collapse - if enabled, DP loses 80% of its support to AP between 1974 and 1977\n    if (Q.DP_collapse && Q.year >= 1974 && Q.year <= 1977) {\n        // Transfer 80% of DP support to AP (AP) over 3 years (1974-1977 inclusive)\n        // Game runs in bi-weekly turns: 3 years × 24 turns/year = 72 turns\n        var TOTAL_TRANSFER_PERCENTAGE = 0.90;\n        var YEARS_OF_TRANSFER = 3;\n        var TURNS_PER_YEAR = 24;\n        var TOTAL_TURNS = YEARS_OF_TRANSFER * TURNS_PER_YEAR;\n        var dp_transfer_rate = TOTAL_TRANSFER_PERCENTAGE / TOTAL_TURNS;\n\n        // Calculate amount to transfer from each demographic\n        var rural_transfer = Q.rural_DP * dp_transfer_rate;\n        var workers_transfer = Q.workers_DP * dp_transfer_rate;\n        var petty_bourgeoisie_transfer = Q.petty_bourgeoisie_DP * dp_transfer_rate;\n        var state_employees_transfer = Q.state_employees_DP * dp_transfer_rate;\n        var capitalists_transfer = Q.capitalists_DP * dp_transfer_rate;\n        var alevis_transfer = Q.alevis_DP * dp_transfer_rate;\n        var kurds_transfer = Q.kurds_DP * dp_transfer_rate;\n\n        // Transfer support from DP to AP (AP)\n        Q.rural_DP -= rural_transfer;\n        Q.rural_AP += rural_transfer;\n\n        Q.workers_DP -= workers_transfer;\n        Q.workers_AP += workers_transfer;\n\n        Q.petty_bourgeoisie_DP -= petty_bourgeoisie_transfer;\n        Q.petty_bourgeoisie_AP += petty_bourgeoisie_transfer;\n\n        Q.state_employees_DP -= state_employees_transfer;\n        Q.state_employees_AP += state_employees_transfer;\n\n        Q.capitalists_DP -= capitalists_transfer;\n        Q.capitalists_AP += capitalists_transfer;\n\n        Q.alevis_DP -= alevis_transfer;\n        Q.alevis_AP += alevis_transfer;\n\n        Q.kurds_DP -= kurds_transfer;\n        Q.kurds_AP += kurds_transfer;\n    }\n\n    // Calculate Agricultural Product Prices (Consumption/Production ratio)\n    Q.agricultural_product_prices = Q.agricultural_consumption / Math.max(1, Q.agricultural_production_index);\n\n    // Set agricultural price status text\n    if (Q.agricultural_product_prices > 1.20) {\n        Q.agricultural_price_status = \"Very High\";\n    } else if (Q.agricultural_product_prices >= 1.10) {\n        Q.agricultural_price_status = \"High\";\n    } else if (Q.agricultural_product_prices >= 0.90) {\n        Q.agricultural_price_status = \"Sufficient\";\n    } else if (Q.agricultural_product_prices >= 0.80) {\n        Q.agricultural_price_status = \"Low\";\n    } else {\n        Q.agricultural_price_status = \"Very Low\";\n    }\n\n    // Increment agricultural price timer\n    Q.agricultural_price_timer += 1;\n\n    // Apply agricultural price effects based on timer intervals\n    if (Q.agricultural_product_prices > 1.20 && Q.agricultural_price_timer >= 2) {\n        // Very High: -2% to workers, petty bourgeoisie, state employees every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 2;\n            Q.petty_bourgeoisie_chp -= 2;\n            Q.state_employees_chp -= 2;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 2;\n            Q.petty_bourgeoisie_AP -= 2;\n            Q.state_employees_AP -= 2;\n        }\n    } else if (Q.agricultural_product_prices >= 1.10 && Q.agricultural_product_prices <= 1.20 && Q.agricultural_price_timer >= 3) {\n        // High: -1% to workers, petty bourgeoisie, state employees every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 1;\n            Q.petty_bourgeoisie_chp -= 1;\n            Q.state_employees_chp -= 1;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 1;\n            Q.petty_bourgeoisie_AP -= 1;\n            Q.state_employees_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices >= 0.80 && Q.agricultural_product_prices < 0.90 && Q.agricultural_price_timer >= 3) {\n        // Low: -1% to rural every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 1;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices < 0.80 && Q.agricultural_price_timer >= 2) {\n        // Very Low: -2% to rural every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 2;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 2;\n        }\n    }\n\n    // Reset timer if prices are sufficient (no effects)\n    if (Q.agricultural_product_prices >= 0.90 && Q.agricultural_product_prices < 1.10) {\n        Q.agricultural_price_timer = 0;\n    }\n\n// Kurdish Nationalism\n// Political Consciousness\n// Eastern crime\nif (Q.eastern_crime == 5) {\n        Q.kurdish_political_consciousness  += 0.005;\n}\nif (Q.eastern_crime == 4) {\n        Q.kurdish_political_consciousness  += 0.004;\n}\nif (Q.eastern_crime == 3) {\n        Q.kurdish_political_consciousness  += 0.003;\n}\nif (Q.eastern_crime == 2) {\n        Q.kurdish_political_consciousness  += 0.002;\n}\nif (Q.eastern_crime == 1) {\n        Q.kurdish_political_consciousness  += 0.001;\n}\nif (Q.eastern_crime <= 0) {\n        Q.kurdish_political_consciousness  -= 0.002;\n}\n// CHP attitude\nif (Q.CHP_kurdish_attitude == 0) {\n        Q.kurdish_political_consciousness  -= 0.001;\n}\nif (Q.CHP_kurdish_attitude == 1) {\n        Q.kurdish_political_consciousness  += 0.001;\n}\nif (Q.CHP_kurdish_attitude == 2) {\n        Q.kurdish_political_consciousness  += 0.002;\n}\n//ddkd\nif (Q.ddkd_formed == 1) {\n        Q.kurdish_political_consciousness  += 0.001;\n}\n\n// Kurdish Radicalism\n// CHP attitude\nif (Q.CHP_kurdish_attitude == 0) {\n        Q.kurdish_radicalism  += 0.001;\n}\nif (Q.CHP_kurdish_attitude == 2) {\n        Q.kurdish_radicalism  -= 0.001;\n}\n// tip ban\nif (Q.TIP_banned == 1) {\n        Q.kurdish_radicalism  += 0.001;\n}\nif (Q.TIP_banned == 0) {\n        Q.kurdish_radicalism  -= 0.001;\n}\n// ddkd\nif (Q.ddkd_formed == 0) {\n        Q.kurdish_radicalism  += 0.002;\n}\nif (Q.ddkd_formed == 1) {\n        Q.kurdish_radicalism  -= 0.001;\n}\n// army in government\nif (Q.prime_minister_party == \"I\") {\n        Q.kurdish_radicalism  += 0.002;\n}\n\n// Factors affecting Kurdish Nationalism\n// Consciousness\n// chp attitude\n// eastern crime\n// ddkd formed or not\n\n// Radicalism\n// CHP attitude here too\n// tip being banned\n// ddkd here too\n// army in government\n//////////////////////////////// Education & Science support/economic changes\n    if (Q.major_curriculum && Q.major_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.5;\n        }\n    }\n    if (Q.minor_curriculum && Q.minor_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.3;//\n        }\n    }\n    // science bonus to economic growth\n    // education bonus\n    Q.science_bonus = 0;\n    if (Q.education_science) {\n        Q.science_bonus += Q.education_science;\n    }\n    if (Q.science) {\n        if (Q.science >= 1) {\n            Q.science_bonus += 1;\n        } else if (Q.science >= 3) {\n            Q.science_bonus += 2;\n        } else if (Q.science >= 5) {\n            Q.science_bonus += 3;\n        }\n    }\n    if (Q.applied_research && Q.applied_research >= 1) {\n        Q.science_bonus += 0.5*Q.applied_research;\n    }\n    // cap the science bonus at 6\n    if (Q.science_bonus > 6) {\n        Q.science_bonus = 6;\n    }\n    console.log(Q.science_bonus);\n    // this is kinda messy but basically more science -> higher levels of baseline growth\n    if (Q.science_bonus >= 1) {\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus + 3) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.economic_growth < Q.science_bonus - 3) {\n            Q.growth_modifier += 0.1;\n        }\n    }\n    AnatolianRules.refreshEconomy(Q);\n    // accumulated economic growth/decline\n    // Maybe there should be differences for positive/negative growth?\n    if (Q.economic_growth < 0) {\n        if (Q.economic_expansion > 0) {\n            Q.economic_expansion = 0;\n        } else {\n            Q.economic_expansion += Q.economic_growth;\n        }\n    }\n else if (Q.economic_growth > 0 && Q.CHP_in_government) {\n        Q.economic_expansion += Q.economic_growth/2;\n    }\n    /////////////////////////////// update opinions based on economy\n    if (Q.unemployed > 15 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.unemployed > 30 && Q.pro_republic > 20) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.inflation >= 30 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n\n\n    ////////////////////////// annual support changes\n    // Economic health multiplier for paramilitary membership growth\n    var econ_paramilitary_multiplier;\n    if (Q.economy_health > 3) {\n        econ_paramilitary_multiplier = -0.5;\n    } else if (Q.economy_health >= 0) {\n        econ_paramilitary_multiplier = 1;\n    } else if (Q.economy_health >= -5) {\n        econ_paramilitary_multiplier = 1.5;\n    } else {\n        econ_paramilitary_multiplier = 2;\n    }\n    if (Q.year == 1974) {\n        // increase MHP vote share\n        Q.rural_MHP += 1/24;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (12/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1975) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1976) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n        Q.raiders_strength += (15/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1977) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.08/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1978) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/12) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.08/24\n    } else if (Q.year == 1979) {\n        Q.rural_MHP += 2/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.1/24\n    }\n    // Ensure economic values remain tied to base paths and modifiers after all adjustments\n    recalcProductionAndHeadlineValues();\n\n    // MSP coalition decay (only applied once per turn, not on every arrival/navigation)\n    if (Q.MSP_in_government == 1 && Q.CHP_in_government == 1 && Q.cyprus_problem == 0) {\n        Q.coalition_dissent += 5/24\n    }\n    if (Q.MSP_in_government == 1 && Q.CHP_in_government == 1 && Q.cyprus_problem !== 0) {\n        Q.coalition_dissent += 10/24\n    }\n}\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.separatist_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Separatist forces calculation (strength × militancy)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.pkk_formed = 1;\n    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);\n    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;\n    Q.separatist_force += Q.pkk_force;\n} else {\n    Q.pkk_formed = 0;\n    Q.pkk_strength = 0;\n    Q.pkk_force = 0;\n}\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.pkk_formed) {\n        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\n// Reset all control intensity flags first\nQ.far_right_paramilitary_highest = 0;\nQ.far_right_paramilitary_high = 0;\nQ.far_right_paramilitary_med = 0;\nQ.far_right_paramilitary_low = 0;\n\nQ.democracy_paramilitary_highest = 0;\nQ.democracy_paramilitary_high = 0;\nQ.democracy_paramilitary_med = 0;\nQ.democracy_paramilitary_low = 0;\n\nQ.state_paramilitary_highest = 0;\nQ.state_paramilitary_high = 0;\nQ.state_paramilitary_med = 0;\nQ.state_paramilitary_low = 0;\n\n// Set appropriate flags based on current control levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\nif (turnAdvanced) {\nif (Q.democracy_paramilitary_low == 1) Q.coup_timer += 2/12;\nif (Q.far_left_paramilitary == 1) Q.coup_timer += 1/12;\nif (Q.grand_coalition == 1) Q.coup_timer -= 1/12;\n\n// ── democracystatus modifiers ──────────────────────────────────────────────\n\n// 1. Economy: per-tick drain (−10/yr in crisis, −5/yr if unhealthy)\nif (Q.economy_health < -5) {\n    Q.democracystatus -= 10/24;\n} else if (Q.economy_health >= -5 && Q.economy_health < 0) {\n    Q.democracystatus -= 5/24;\n}\n\n// 2. Street fighting attrition: yearly decrease of democracystatus based on state control tier.\nif (Q.year >= 1972 && !Q.streetfighting_joever) {\n    if (Q.state_force_percent > 80) {\n        // street fightings are scarce: no decrease\n    } else if (Q.state_force_percent >= 70) {\n        // street fightings are under control: -1 per year\n        Q.democracystatus -= 1/24;\n    } else if (Q.state_force_percent >= 60) {\n        // street fightings are increasing: -2 per year\n        Q.democracystatus -= 2/24;\n    } else if (Q.state_force_percent >= 50) {\n        // street fightings are slipping out of control: -4 per year\n        Q.democracystatus -= 4/24;\n    } else if (Q.state_force_percent >= 30) {\n        // street fightings have split neighborhoods: -6 per year\n        Q.democracystatus -= 6/24;\n    } else if (Q.state_force_percent >= 20) {\n        // street fightings at critical levels: -8 per year\n        Q.democracystatus -= 8/24;\n    } else {\n        // street fightings are anarchic: -12 per year\n        Q.democracystatus -= 12/24;\n    }\n}\n\n// 3. DİSK vs TÜRK-İŞ balance\nif (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance → overwhelming DİSK weakness\n    Q.democracystatus -= 4/24;\n} else if (Q.disk_turkis_conflict >= 0.60) {\n    // TÜRK-İŞ leaning → slightly weaker DİSK\n    Q.democracystatus -= 2/24;\n} else if (Q.disk_turkis_conflict < 0.20) {\n    // Total DİSK Dominance → overwhelming DİSK strength\n    Q.democracystatus += 4/24;\n} else if (Q.disk_turkis_conflict < 0.40) {\n    // DİSK leaning → slightly stronger DİSK\n    Q.democracystatus += 2/24;\n}\n\n// DİSK-TÜRK-İŞ power dynamic yearly drift\nif (!Q.CHP_in_government) {\n    // CHP not in government: drift towards TÜRK-İŞ by 8/year\n    Q.disk_turkis_conflict += 0.08/24;\n} else if (Q.labor_minister_party == 'CHP') {\n    // CHP holds labour ministry: drift towards DİSK by 8/year\n    Q.disk_turkis_conflict -= 0.08/24;\n}\n// CHP in government but not controlling labour ministry: no change\nQ.disk_turkis_conflict = Math.max(0, Math.min(1, Q.disk_turkis_conflict));\n\n// 4. High Kurdish radicalism (−2/yr)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.democracystatus -= 2/24;\n}\n\n// Clamp democracystatus to [0, 100]\nQ.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));\n\n// ─────────────────────────────────────────────────────────────────────────\n}\n\n// ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached\n\n// Oil effects (applied once)\nif (Q.oil >= 1 && !Q.oil_effect_applied) {\n    // Preserve the original once-only threshold benefit across baseline refreshes.\n    Q.oil_inflation_effect = 7.5 * Math.min(Q.oil, 4);\n    Q.oil_effect_applied = true;\n}\n\n// Land reform effects (applied once)\nif (Q.land_reform_progress >= 3 && !Q.land_reform_effect_applied) {\n    Q.rural_chp += 10;\n    Q.democracystatus += 5;\n    Q.land_reform_effect_applied = true;\n}\n\n// Cooperative effects (applied once)\nif (Q.cooperative_progress >= 3 && !Q.cooperative_effect_applied) {\n    Q.rural_chp += 5;\n    Q.cooperative_effect_applied = true;\n}\n\n// Köykent effects (applied once)\nif (Q.koykent_progress >= 5 && !Q.koykent_effect_applied) {\n    Q.rural_chp += 15;\n    Q.democracystatus += 10;\n    Q.koykent_effect_applied = true;\n}\n\n// Labour rights reform: set once when at least 3 one-time labour ministry reforms are passed\nif (!Q.labour_rights_reform) {\n    var labour_reforms_count = (Q.nationall ? 1 : 0) + (Q.kitt ? 1 : 0) + (Q.ikincilgrevv ? 1 : 0) + (Q.healthinspectionss ? 1 : 0) + (Q.lokavtt ? 1 : 0);\n    if (labour_reforms_count >= 3) {\n        Q.labour_rights_reform = 1;\n    }\n}\n\n// Tiger economic reform effects (year-specific, applied once per year)\nif (Q.Tiger >= 2 && Q.year == 1978 && !Q.tiger_1978_effect_applied) {\n    Q.tiger_1978_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1979 && !Q.tiger_1979_effect_applied) {\n    Q.tiger_1979_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {\n    Q.tiger_1980_effect_applied = true;\n}\n\n// ─────────────────────────────────────────────────────────────────────────\n\n// Coup trigger: fires automatically when TSK is mutinous and acting (coup_timer >= 15),\n// or with a 25% monthly chance when democracystatus drops below 10.\nQ.coup_roll_success = 0;\nif (turnAdvanced && Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {\n    if (Q.coup_timer >= 15) {\n        Q.coup_roll_success = 1;\n    } else if (Q.democracystatus < 10 && Math.random() < 0.25) {\n        Q.coup_roll_success = 1;\n        Q.coup_timer = 15;\n    }\n}\nAnatolianRules.refreshEconomy(Q);\nQ.apply_economy_effects = turnAdvanced ? 1 : 0;\nthis._runActions(this.game.scenes['economy_health_calculator'].onArrival);\nAnatolianRules.refreshVotes(Q);\nAnatolianRules.refreshFactions(Q);\nif (turnAdvanced) {\n    // append to historical party support records\n    var party_support_results = {'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16)};\n    for (var party of Q.parties) {\n        party_support_results[party] = Q[party + '_normalized']*100;\n    }\n    Q.party_support_records.push(party_support_results);\n    Q.economic_records.push({'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16),\n                             'inflation': Q.inflation,\n                             'unemployment': Q.unemployed});\n\n}\nQ.has_event = 0;\nQ.calculate_economy_health = 0;\n// Apply economy health effects every turn for gradual changes\nQ.apply_economy_effects = 0;\n// check if there are any cards in #event, and then go to main if not.\nvar scene = this.game.scenes['post_event.events_choice'];\nvar choices = this._compileChoices(scene);\nif (choices && choices[0].title != \"Continue...\") {\n    Q.has_event = 1;\n} else {\n    Q.has_event = 0;\n}\n// pre-load all of the event images\nif (this.ui && this.ui.show_portraits) {\n    for (var choice of choices) {\n        var cc = this.game.scenes[choice.id];\n        if (!cc || !cc.cardImage) continue;\n        if (cc.faceImage) {\n            var im = new Image();\n            im.url = cc.faceImage;\n        }\n    }\n}\n\nif (typeof window !== \"undefined\" && window.generateBar) {\n}\n\n// Recalculate paramilitary force effectiveness (strength × militancy) every turn"
+          "$code": "var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);\nif (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nQ.last_advisor_action = 0;\nQ.last_cabinet_action = 0;\n// make sure no stat is below 0.\nfor (var c of Q.classes) {\n    for (var party of Q.parties) {\n        if (Q[c+'_'+party] < 0) {\n            Q[c+'_'+party] = 0;\n        }\n    }\n}\n\nQ.pro_republic = Math.round(Q.pro_republic);\nQ.nationalism = Math.round(Q.nationalism);\nQ.socialism = Math.round(Q.socialism);\n\nif (Q.pro_republic < 0) {\n    Q.pro_republic = 0;\n}\nif (Q.pro_republic >= 100) {\n    Q.pro_republic = 99;\n}\n// Utility helpers for economic model\nvar clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };\nvar FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);\nvar MONTHS_PER_YEAR = 12;\nvar FOREX_DRIFT_PER_MONTH = FOREX_DRIFT_PER_YEAR / MONTHS_PER_YEAR;\nvar forexFactors = Q.getForexFactors ? Q.getForexFactors() : {industry: 0.6, agriculture: 0.2, ratio: 3};\nvar FOREX_INDUSTRY_FACTOR = forexFactors.industry;\nvar AGRICULTURE_TO_INDUSTRY_RATIO = forexFactors.ratio;\nvar FOREX_AGRICULTURE_FACTOR = forexFactors.agriculture;\nvar INFLATION_DECAY_NEG = 0.5;\nvar INFLATION_DECAY_POS = 0.9;\nvar GROWTH_DECAY_POS = 0.8;\nvar GROWTH_DECAY_NEG = 0.95;\nvar UNEMPLOYMENT_DECAY_NEG = 0.7;\nvar UNEMPLOYMENT_DECAY_POS = 0.9;\nvar INFLATION_DECAY_NEG_MONTHLY = Math.pow(INFLATION_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar INFLATION_DECAY_POS_MONTHLY = Math.pow(INFLATION_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_POS_MONTHLY = Math.pow(GROWTH_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_NEG_MONTHLY = Math.pow(GROWTH_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_NEG_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_POS_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar preferNumber = function(candidate, fallback) {\n    return (typeof candidate === 'number') ? candidate : fallback;\n};\nvar applyDecay = function(value, negativeRate, positiveRate) {\n    return value < 0 ? value * negativeRate : value * positiveRate;\n};\nvar refreshBaseEconomicValues = function() {\n    var currentYear = Q.year;\n    if (Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }\n    if (Q.historical_gdp_growth[currentYear] !== undefined) { Q.base_growth = Q.historical_gdp_growth[currentYear]; }\n    if (Q.historical_unemployment[currentYear] !== undefined) { Q.base_unemployment = Q.historical_unemployment[currentYear]; }\n    if (Q.historical_industrial_index[currentYear] !== undefined) { Q.base_industry_index = Q.historical_industrial_index[currentYear]; }\n    if (Q.historical_agricultural_index[currentYear] !== undefined) { Q.base_agriculture_index = Q.historical_agricultural_index[currentYear]; }\n};\n\nvar recalcProductionAndHeadlineValues = function() { AnatolianRules.refreshEconomy(Q); };\n\nvar runMonthlyEconomicSimulation = function() {\n    // This simulation now runs monthly; rates are scaled to preserve annual totals.\n    // Step 1: automatic forex pressure drift\n    var delayedReduction = (Q.forex_pressure_delayed_reduction || 0);\n    var forexAdjustment = FOREX_DRIFT_PER_MONTH - (delayedReduction / MONTHS_PER_YEAR);\n    Q.forex_pressure = clamp((Q.forex_pressure || 0) + forexAdjustment, 0, 100);\n    if (delayedReduction) {\n        // clear once applied to avoid repeated division\n        Q.forex_pressure_delayed_reduction = 0;\n    }\n    // Step 2: card effects already stored in modifiers\n    // Step 3: structural resistance with asymmetric decay\n    Q.inflation_modifier = applyDecay(Q.inflation_modifier, INFLATION_DECAY_NEG_MONTHLY, INFLATION_DECAY_POS_MONTHLY);\n    Q.growth_modifier = applyDecay(Q.growth_modifier, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);\n    Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);\n    // Step 4/5: recompute production indices and headline figures\n    recalcProductionAndHeadlineValues();\n};\n\nif (Q.last_economy_month === null) {\n    refreshBaseEconomicValues();\n    Q.last_economy_month = Q.month + Q.year * 12;\n}\n\n// 1. update dates\nif (turnAdvanced) {\n    Q.time += 1;\n    Q.month_actions = 0;\n\n    // Advance by 2 weeks (bi-weekly system)\n    if (Q.week == 1) {\n        // Move from week 1 to week 3 of same month\n        Q.week = 2;\n    } else {\n        // Move from week 3 to week 1 of next month\n        Q.week = 1;\n        Q.month += 1;\n        if (Q.month >= 13) {\n            Q.month = 1;\n            Q.year += 1;\n            if (Q.CHP_in_government) {\n                Q.budget += 4 + (Q.yearly_budget || 0);\n            }\n            if (Q.historical_mode) {\n                Q.resources += 2;\n            }\n        }\n    }\n\n    // decrement timers (only when month actually changes for monthly timers)\n    if (Q.week == 1) {\n        for (var timer of Q.timers) {\n            if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {\n                Q[timer+'_timer'] -= 1;\n            }\n        }\n    }\n\n    // Run monthly economic simulation to keep values current once per month (when the month flips)\n    if (Q.week == 1) {\n        refreshBaseEconomicValues();\n            runMonthlyEconomicSimulation();\n        Q.last_economy_month = Q.month + Q.year * 12;\n    } else {\n        recalcProductionAndHeadlineValues();\n    }\n\n    // Switch the background music playlist when cyprus_mode changes\n    if (Q.cyprus_mode != Q._last_cyprus_mode) {\n        if (Q.cyprus_mode == 1) {\n            this.ui.audio('clear shuffle music/gercekkibris1.m4a music/12.mp3 music/notalarsavasinca.mp3 music/demirkirat.mp3');\n        } else {\n            this.ui.audio('clear shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3');\n        }\n        Q._last_cyprus_mode = Q.cyprus_mode;\n    }\n\n    // Cyprus Problem effects\n    // Check if Cyprus status has changed and apply immediate effects\n    if (Q.cyprus_problem != Q.cyprus_last_status) {\n        // Remove previous positive effects if any\n        if (Q.cyprus_confederation_timer > 0) {\n            Q.cyprus_confederation_timer = 0;\n        }\n        if (Q.cyprus_divided_timer > 0) {\n            Q.cyprus_divided_timer = 0;\n        }\n\n        // Apply new effects based on current status\n        if (Q.cyprus_problem == 1) { // Status Quo\n            // -3% votershare drop in all demographics except Kurds and Capitalists\n            Q.rural_chp -= 3;\n            Q.workers_chp -= 3;\n            Q.state_employees_chp -= 3;\n            Q.alevis_chp -= 3;\n            // -7% among petty bourgeoisie (total -10% for petty bourgeoisie)\n            Q.petty_bourgeoisie_chp -= 10;\n            // Coup timer goes up by 1\n            Q.coup_timer += 1;\n        } else if (Q.cyprus_problem == 2) { // Confederation\n            // +2% votershare increase in all demographics except Kurds and Capitalists\n            Q.rural_chp += 2;\n            Q.workers_chp += 2;\n            Q.petty_bourgeoisie_chp += 2;\n            Q.state_employees_chp += 2;\n            Q.alevis_chp += 2;\n            // Start 5-year timer for effects to wane\n            Q.cyprus_confederation_timer = 60; // 5; years = 60 months\n        } else if (Q.cyprus_problem == 3) { // Divided\n            // +10% votershare increase among all demographics except Kurds and Capitalists\n            Q.rural_chp += 10;\n            Q.workers_chp += 10;\n            Q.petty_bourgeoisie_chp += 10;\n            Q.state_employees_chp += 10;\n            Q.alevis_chp += 10;\n            // Relations penalties\n            Q.us_relation -= 30;\n            Q.west_relation -= 20;\n            // Coup timer goes down by 1\n            Q.coup_timer -= 1;\n            if (Q.coup_timer < 0) Q.coup_timer = 0;\n            // Start 5-year timer for positive effects to wane\n            Q.cyprus_divided_timer = 60; // 5; years = 60 months\n        }\n\n        Q.cyprus_last_status = Q.cyprus_problem;\n    }\n\n    // Handle gradual waning of Cyprus positive effects over 5 years\n    if (Q.week == 1 && Q.cyprus_confederation_timer > 0) {\n        Q.cyprus_confederation_timer -= 1;\n        if (Q.cyprus_confederation_timer == 0) {\n            // Remove confederation bonuses gradually\n            Q.rural_chp -= 2;\n            Q.workers_chp -= 2;\n            Q.petty_bourgeoisie_chp -= 2;\n            Q.state_employees_chp -= 2;\n            Q.alevis_chp -= 2;\n        }\n    }\n\n    if (Q.week == 1 && Q.cyprus_divided_timer > 0) {\n        Q.cyprus_divided_timer -= 1;\n        if (Q.cyprus_divided_timer == 0) {\n            // Remove divided bonuses gradually\n            Q.rural_chp -= 10;\n            Q.workers_chp -= 10;\n            Q.petty_bourgeoisie_chp -= 10;\n            Q.state_employees_chp -= 10;\n            Q.alevis_chp -= 10;\n        }\n    }\n\n    // DP Collapse - if enabled, DP loses 80% of its support to AP between 1974 and 1977\n    if (Q.DP_collapse && Q.year >= 1974 && Q.year <= 1977) {\n        // Transfer 80% of DP support to AP (AP) over 3 years (1974-1977 inclusive)\n        // Game runs in bi-weekly turns: 3 years × 24 turns/year = 72 turns\n        var TOTAL_TRANSFER_PERCENTAGE = 0.90;\n        var YEARS_OF_TRANSFER = 3;\n        var TURNS_PER_YEAR = 24;\n        var TOTAL_TURNS = YEARS_OF_TRANSFER * TURNS_PER_YEAR;\n        var dp_transfer_rate = TOTAL_TRANSFER_PERCENTAGE / TOTAL_TURNS;\n\n        // Calculate amount to transfer from each demographic\n        var rural_transfer = Q.rural_DP * dp_transfer_rate;\n        var workers_transfer = Q.workers_DP * dp_transfer_rate;\n        var petty_bourgeoisie_transfer = Q.petty_bourgeoisie_DP * dp_transfer_rate;\n        var state_employees_transfer = Q.state_employees_DP * dp_transfer_rate;\n        var capitalists_transfer = Q.capitalists_DP * dp_transfer_rate;\n        var alevis_transfer = Q.alevis_DP * dp_transfer_rate;\n        var kurds_transfer = Q.kurds_DP * dp_transfer_rate;\n\n        // Transfer support from DP to AP (AP)\n        Q.rural_DP -= rural_transfer;\n        Q.rural_AP += rural_transfer;\n\n        Q.workers_DP -= workers_transfer;\n        Q.workers_AP += workers_transfer;\n\n        Q.petty_bourgeoisie_DP -= petty_bourgeoisie_transfer;\n        Q.petty_bourgeoisie_AP += petty_bourgeoisie_transfer;\n\n        Q.state_employees_DP -= state_employees_transfer;\n        Q.state_employees_AP += state_employees_transfer;\n\n        Q.capitalists_DP -= capitalists_transfer;\n        Q.capitalists_AP += capitalists_transfer;\n\n        Q.alevis_DP -= alevis_transfer;\n        Q.alevis_AP += alevis_transfer;\n\n        Q.kurds_DP -= kurds_transfer;\n        Q.kurds_AP += kurds_transfer;\n    }\n\n    // Calculate Agricultural Product Prices (Consumption/Production ratio)\n    Q.agricultural_product_prices = Q.agricultural_consumption / Math.max(1, Q.agricultural_production_index);\n\n    // Set agricultural price status text\n    if (Q.agricultural_product_prices > 1.20) {\n        Q.agricultural_price_status = \"Very High\";\n    } else if (Q.agricultural_product_prices >= 1.10) {\n        Q.agricultural_price_status = \"High\";\n    } else if (Q.agricultural_product_prices >= 0.90) {\n        Q.agricultural_price_status = \"Sufficient\";\n    } else if (Q.agricultural_product_prices >= 0.80) {\n        Q.agricultural_price_status = \"Low\";\n    } else {\n        Q.agricultural_price_status = \"Very Low\";\n    }\n\n    // Increment agricultural price timer\n    Q.agricultural_price_timer += 1;\n\n    // Apply agricultural price effects based on timer intervals\n    if (Q.agricultural_product_prices > 1.20 && Q.agricultural_price_timer >= 2) {\n        // Very High: -2% to workers, petty bourgeoisie, state employees every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 2;\n            Q.petty_bourgeoisie_chp -= 2;\n            Q.state_employees_chp -= 2;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 2;\n            Q.petty_bourgeoisie_AP -= 2;\n            Q.state_employees_AP -= 2;\n        }\n    } else if (Q.agricultural_product_prices >= 1.10 && Q.agricultural_product_prices <= 1.20 && Q.agricultural_price_timer >= 3) {\n        // High: -1% to workers, petty bourgeoisie, state employees every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 1;\n            Q.petty_bourgeoisie_chp -= 1;\n            Q.state_employees_chp -= 1;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 1;\n            Q.petty_bourgeoisie_AP -= 1;\n            Q.state_employees_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices >= 0.80 && Q.agricultural_product_prices < 0.90 && Q.agricultural_price_timer >= 3) {\n        // Low: -1% to rural every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 1;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices < 0.80 && Q.agricultural_price_timer >= 2) {\n        // Very Low: -2% to rural every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 2;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 2;\n        }\n    }\n\n    // Reset timer if prices are sufficient (no effects)\n    if (Q.agricultural_product_prices >= 0.90 && Q.agricultural_product_prices < 1.10) {\n        Q.agricultural_price_timer = 0;\n    }\n\n// Kurdish Nationalism\n// Political Consciousness\n// Eastern crime\nif (Q.eastern_crime == 5) {\n        Q.kurdish_political_consciousness  += 0.005;\n}\nif (Q.eastern_crime == 4) {\n        Q.kurdish_political_consciousness  += 0.004;\n}\nif (Q.eastern_crime == 3) {\n        Q.kurdish_political_consciousness  += 0.003;\n}\nif (Q.eastern_crime == 2) {\n        Q.kurdish_political_consciousness  += 0.002;\n}\nif (Q.eastern_crime == 1) {\n        Q.kurdish_political_consciousness  += 0.001;\n}\nif (Q.eastern_crime <= 0) {\n        Q.kurdish_political_consciousness  -= 0.002;\n}\n// CHP attitude\nif (Q.CHP_kurdish_attitude == 0) {\n        Q.kurdish_political_consciousness  -= 0.001;\n}\nif (Q.CHP_kurdish_attitude == 1) {\n        Q.kurdish_political_consciousness  += 0.001;\n}\nif (Q.CHP_kurdish_attitude == 2) {\n        Q.kurdish_political_consciousness  += 0.002;\n}\n//ddkd\nif (Q.ddkd_formed == 1) {\n        Q.kurdish_political_consciousness  += 0.001;\n}\n\n// Kurdish Radicalism\n// CHP attitude\nif (Q.CHP_kurdish_attitude == 0) {\n        Q.kurdish_radicalism  += 0.001;\n}\nif (Q.CHP_kurdish_attitude == 2) {\n        Q.kurdish_radicalism  -= 0.001;\n}\n// tip ban\nif (Q.TIP_banned == 1) {\n        Q.kurdish_radicalism  += 0.001;\n}\nif (Q.TIP_banned == 0) {\n        Q.kurdish_radicalism  -= 0.001;\n}\n// ddkd\nif (Q.ddkd_formed == 0) {\n        Q.kurdish_radicalism  += 0.002;\n}\nif (Q.ddkd_formed == 1) {\n        Q.kurdish_radicalism  -= 0.001;\n}\n// army in government\nif (Q.prime_minister_party == \"I\") {\n        Q.kurdish_radicalism  += 0.002;\n}\n\n// Factors affecting Kurdish Nationalism\n// Consciousness\n// chp attitude\n// eastern crime\n// ddkd formed or not\n\n// Radicalism\n// CHP attitude here too\n// tip being banned\n// ddkd here too\n// army in government\n//////////////////////////////// Education & Science support/economic changes\n    if (Q.major_curriculum && Q.major_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.5;\n        }\n    }\n    if (Q.minor_curriculum && Q.minor_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.3;//\n        }\n    }\n    // science bonus to economic growth\n    // education bonus\n    Q.science_bonus = 0;\n    if (Q.education_science) {\n        Q.science_bonus += Q.education_science;\n    }\n    if (Q.science) {\n        if (Q.science >= 1) {\n            Q.science_bonus += 1;\n        } else if (Q.science >= 3) {\n            Q.science_bonus += 2;\n        } else if (Q.science >= 5) {\n            Q.science_bonus += 3;\n        }\n    }\n    if (Q.applied_research && Q.applied_research >= 1) {\n        Q.science_bonus += 0.5*Q.applied_research;\n    }\n    // cap the science bonus at 6\n    if (Q.science_bonus > 6) {\n        Q.science_bonus = 6;\n    }\n    console.log(Q.science_bonus);\n    // this is kinda messy but basically more science -> higher levels of baseline growth\n    if (Q.science_bonus >= 1) {\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus + 3) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.economic_growth < Q.science_bonus - 3) {\n            Q.growth_modifier += 0.1;\n        }\n    }\n    AnatolianRules.refreshEconomy(Q);\n    // accumulated economic growth/decline\n    // Maybe there should be differences for positive/negative growth?\n    if (Q.economic_growth < 0) {\n        if (Q.economic_expansion > 0) {\n            Q.economic_expansion = 0;\n        } else {\n            Q.economic_expansion += Q.economic_growth;\n        }\n    }\n else if (Q.economic_growth > 0 && Q.CHP_in_government) {\n        Q.economic_expansion += Q.economic_growth/2;\n    }\n    /////////////////////////////// update opinions based on economy\n    if (Q.unemployed > 15 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.unemployed > 30 && Q.pro_republic > 20) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.inflation >= 30 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n\n\n    ////////////////////////// annual support changes\n    // Economic health multiplier for paramilitary membership growth\n    var econ_paramilitary_multiplier;\n    if (Q.economy_health > 3) {\n        econ_paramilitary_multiplier = -0.5;\n    } else if (Q.economy_health >= 0) {\n        econ_paramilitary_multiplier = 1;\n    } else if (Q.economy_health >= -5) {\n        econ_paramilitary_multiplier = 1.5;\n    } else {\n        econ_paramilitary_multiplier = 2;\n    }\n    if (Q.year == 1974) {\n        // increase MHP vote share\n        Q.rural_MHP += 1/24;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (12/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1975) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1976) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n        Q.raiders_strength += (15/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1977) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.08/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1978) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/12) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.08/24\n    } else if (Q.year == 1979) {\n        Q.rural_MHP += 2/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.1/24\n    }\n    // Ensure economic values remain tied to base paths and modifiers after all adjustments\n    recalcProductionAndHeadlineValues();\n\n    // MSP coalition decay (only applied once per turn, not on every arrival/navigation)\n    if (Q.MSP_in_government == 1 && Q.CHP_in_government == 1 && Q.cyprus_problem == 0) {\n        Q.coalition_dissent += 5/24\n    }\n    if (Q.MSP_in_government == 1 && Q.CHP_in_government == 1 && Q.cyprus_problem !== 0) {\n        Q.coalition_dissent += 10/24\n    }\n}\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.separatist_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Separatist forces calculation (strength × militancy)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.pkk_formed = 1;\n    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);\n    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;\n    Q.separatist_force += Q.pkk_force;\n} else {\n    Q.pkk_formed = 0;\n    Q.pkk_strength = 0;\n    Q.pkk_force = 0;\n}\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.pkk_formed) {\n        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\n// Reset all control intensity flags first\nQ.far_right_paramilitary_highest = 0;\nQ.far_right_paramilitary_high = 0;\nQ.far_right_paramilitary_med = 0;\nQ.far_right_paramilitary_low = 0;\n\nQ.democracy_paramilitary_highest = 0;\nQ.democracy_paramilitary_high = 0;\nQ.democracy_paramilitary_med = 0;\nQ.democracy_paramilitary_low = 0;\n\nQ.state_paramilitary_highest = 0;\nQ.state_paramilitary_high = 0;\nQ.state_paramilitary_med = 0;\nQ.state_paramilitary_low = 0;\n\n// Set appropriate flags based on current control levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\nif (turnAdvanced) {\nif (Q.democracy_paramilitary_low == 1) Q.coup_timer += 2/12;\nif (Q.far_left_paramilitary == 1) Q.coup_timer += 1/12;\nif (Q.grand_coalition == 1) Q.coup_timer -= 1/12;\n\n// ── democracystatus modifiers ──────────────────────────────────────────────\n\n// 1. Economy: per-tick drain (−10/yr in crisis, −5/yr if unhealthy)\nif (Q.economy_health < -5) {\n    Q.democracystatus -= 10/24;\n} else if (Q.economy_health >= -5 && Q.economy_health < 0) {\n    Q.democracystatus -= 5/24;\n}\n\n// 2. Street fighting attrition: yearly decrease of democracystatus based on state control tier.\nif (Q.year >= 1972 && !Q.streetfighting_joever) {\n    if (Q.state_force_percent > 80) {\n        // street fightings are scarce: no decrease\n    } else if (Q.state_force_percent >= 70) {\n        // street fightings are under control: -1 per year\n        Q.democracystatus -= 1/24;\n    } else if (Q.state_force_percent >= 60) {\n        // street fightings are increasing: -2 per year\n        Q.democracystatus -= 2/24;\n    } else if (Q.state_force_percent >= 50) {\n        // street fightings are slipping out of control: -4 per year\n        Q.democracystatus -= 4/24;\n    } else if (Q.state_force_percent >= 30) {\n        // street fightings have split neighborhoods: -6 per year\n        Q.democracystatus -= 6/24;\n    } else if (Q.state_force_percent >= 20) {\n        // street fightings at critical levels: -8 per year\n        Q.democracystatus -= 8/24;\n    } else {\n        // street fightings are anarchic: -12 per year\n        Q.democracystatus -= 12/24;\n    }\n}\n\n// 3. DİSK vs TÜRK-İŞ balance\nif (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance → overwhelming DİSK weakness\n    Q.democracystatus -= 4/24;\n} else if (Q.disk_turkis_conflict >= 0.60) {\n    // TÜRK-İŞ leaning → slightly weaker DİSK\n    Q.democracystatus -= 2/24;\n} else if (Q.disk_turkis_conflict < 0.20) {\n    // Total DİSK Dominance → overwhelming DİSK strength\n    Q.democracystatus += 4/24;\n} else if (Q.disk_turkis_conflict < 0.40) {\n    // DİSK leaning → slightly stronger DİSK\n    Q.democracystatus += 2/24;\n}\n\n// DİSK-TÜRK-İŞ power dynamic yearly drift\nif (!Q.CHP_in_government) {\n    // CHP not in government: drift towards TÜRK-İŞ by 8/year\n    Q.disk_turkis_conflict += 0.08/24;\n} else if (Q.labor_minister_party == 'CHP') {\n    // CHP holds labour ministry: drift towards DİSK by 8/year\n    Q.disk_turkis_conflict -= 0.08/24;\n}\n// CHP in government but not controlling labour ministry: no change\nQ.disk_turkis_conflict = Math.max(0, Math.min(1, Q.disk_turkis_conflict));\n\n// 4. High Kurdish radicalism (−2/yr)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.democracystatus -= 2/24;\n}\n\n// Clamp democracystatus to [0, 100]\nQ.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));\n\n// ─────────────────────────────────────────────────────────────────────────\n}\n\n// ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached\n\n// Oil effects (applied once)\nif (Q.oil >= 1 && !Q.oil_effect_applied) {\n    // Preserve the original once-only threshold benefit across baseline refreshes.\n    Q.oil_inflation_effect = 7.5 * Math.min(Q.oil, 4);\n    Q.oil_effect_applied = true;\n}\n\n// Land reform effects (applied once)\nif (Q.land_reform_progress >= 3 && !Q.land_reform_effect_applied) {\n    Q.rural_chp += 10;\n    Q.democracystatus += 5;\n    Q.land_reform_effect_applied = true;\n}\n\n// Cooperative effects (applied once)\nif (Q.cooperative_progress >= 3 && !Q.cooperative_effect_applied) {\n    Q.rural_chp += 5;\n    Q.cooperative_effect_applied = true;\n}\n\n// Köykent effects (applied once)\nif (Q.koykent_progress >= 5 && !Q.koykent_effect_applied) {\n    Q.rural_chp += 15;\n    Q.democracystatus += 10;\n    Q.koykent_effect_applied = true;\n}\n\n// Labour rights reform: set once when at least 3 one-time labour ministry reforms are passed\nif (!Q.labour_rights_reform) {\n    var labour_reforms_count = (Q.nationall ? 1 : 0) + (Q.kitt ? 1 : 0) + (Q.ikincilgrevv ? 1 : 0) + (Q.healthinspectionss ? 1 : 0) + (Q.lokavtt ? 1 : 0);\n    if (labour_reforms_count >= 3) {\n        Q.labour_rights_reform = 1;\n    }\n}\n\n// Tiger economic reform effects (year-specific, applied once per year)\nif (Q.Tiger >= 2 && Q.year == 1978 && !Q.tiger_1978_effect_applied) {\n    Q.tiger_1978_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1979 && !Q.tiger_1979_effect_applied) {\n    Q.tiger_1979_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {\n    Q.tiger_1980_effect_applied = true;\n}\n\n// ─────────────────────────────────────────────────────────────────────────\n\n// Coup trigger: fires automatically when TSK is mutinous and acting (coup_timer >= 15),\n// or with a 25% monthly chance when democracystatus drops below 10.\nQ.coup_roll_success = 0;\nif (turnAdvanced && Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {\n    if (Q.coup_timer >= 15) {\n        Q.coup_roll_success = 1;\n    } else if (Q.democracystatus < 10 && Math.random() < 0.25) {\n        Q.coup_roll_success = 1;\n        Q.coup_timer = 15;\n    }\n}\nAnatolianRules.refreshEconomy(Q);\nQ.apply_economy_effects = turnAdvanced ? 1 : 0;\nthis._runActions(this.game.scenes['economy_health_calculator'].onArrival);\nAnatolianRules.refreshVotes(Q);\nAnatolianRules.refreshFactions(Q);\nif (turnAdvanced) {\n    // append to historical party support records\n    var party_support_results = {'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16)};\n    for (var party of Q.parties) {\n        party_support_results[party] = Q[party + '_normalized']*100;\n    }\n    Q.party_support_records.push(party_support_results);\n    Q.economic_records.push({'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16),\n                             'inflation': Q.inflation,\n                             'unemployment': Q.unemployed});\n\n}\nQ.has_event = 0;\nQ.calculate_economy_health = 0;\n// Apply economy health effects every turn for gradual changes\nQ.apply_economy_effects = 0;\n// check if there are any cards in #event, and then go to main if not.\nvar scene = this.game.scenes['post_event.events_choice'];\nvar choices = this._compileChoices(scene);\nif (choices && choices[0].title != \"Continue...\") {\n    Q.has_event = 1;\n} else {\n    Q.has_event = 0;\n}\n// Cyprus stories are dispatched by their daily dates, not the domestic pool.\nif (Q.cyprus_mode) Q.has_event = 0;\n// pre-load all of the event images\nif (this.ui && this.ui.show_portraits) {\n    for (var choice of choices) {\n        var cc = this.game.scenes[choice.id];\n        if (!cc || !cc.cardImage) continue;\n        if (cc.faceImage) {\n            var im = new Image();\n            im.url = cc.faceImage;\n        }\n    }\n}\n\nif (typeof window !== \"undefined\" && window.generateBar) {\n}\n\n// Recalculate paramilitary force effectiveness (strength × militancy) every turn"
         }
       ],
       "goTo": [
@@ -17041,10 +17041,10 @@
     "cyprusintro": {
       "id": "cyprusintro",
       "type": "scene",
-      "title": "The Democratic Party",
-      "subtitle": "An introduction to the right wing periphary of republican politics.",
+      "title": "A Chill Evening",
+      "subtitle": "The government and military commanders discuss the Cyprus crisis.",
       "viewIf": {
-        "$code": "return ((((Q['cyprus_day'] || 0) == 17) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974));"
+        "$code": "return (((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_day'] || 0) == 17)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_year'] || 0) == 1974));"
       },
       "maxVisits": 1,
       "tags": [
@@ -31018,12 +31018,7 @@
                     "type": "insert",
                     "insert": 1
                   },
-                  " ",
-                  {
-                    "type": "insert",
-                    "insert": 2
-                  },
-                  " (Week 1) "
+                  " "
                 ],
                 "predicate": 0
               },
@@ -31033,16 +31028,33 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 4
+                    "insert": 3
                   },
                   " ",
                   {
                     "type": "insert",
-                    "insert": 5
+                    "insert": 4
+                  },
+                  " (Week 1) "
+                ],
+                "predicate": 2
+              },
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "insert",
+                    "insert": 6
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 7
                   },
                   " (Week 3) "
                 ],
-                "predicate": 3
+                "predicate": 5
               },
               ""
             ]
@@ -31053,7 +31065,7 @@
               "Resources available: ",
               {
                 "type": "insert",
-                "insert": 6
+                "insert": 8
               },
               ""
             ]
@@ -31070,22 +31082,22 @@
               {
                 "type": "conditional",
                 "content": "toleration ",
-                "predicate": 7
-              },
-              {
-                "type": "conditional",
-                "content": "in government - ",
-                "predicate": 8
-              },
-              {
-                "type": "conditional",
-                "content": "opposition ",
                 "predicate": 9
               },
               {
                 "type": "conditional",
-                "content": "caretaker government ",
+                "content": "in government - ",
                 "predicate": 10
+              },
+              {
+                "type": "conditional",
+                "content": "opposition ",
+                "predicate": 11
+              },
+              {
+                "type": "conditional",
+                "content": "caretaker government ",
+                "predicate": 12
               },
               ""
             ]
@@ -31096,27 +31108,27 @@
               {
                 "type": "conditional",
                 "content": "Democratic Coalition ",
-                "predicate": 11
-              },
-              {
-                "type": "conditional",
-                "content": "Grand Coalition ",
-                "predicate": 12
-              },
-              {
-                "type": "conditional",
-                "content": "Popular Front ",
                 "predicate": 13
               },
               {
                 "type": "conditional",
-                "content": "Left Front ",
+                "content": "Grand Coalition ",
                 "predicate": 14
               },
               {
                 "type": "conditional",
-                "content": "Unholy Coalition ",
+                "content": "Popular Front ",
                 "predicate": 15
+              },
+              {
+                "type": "conditional",
+                "content": "Left Front ",
+                "predicate": 16
+              },
+              {
+                "type": "conditional",
+                "content": "Unholy Coalition ",
+                "predicate": 17
               },
               {
                 "type": "conditional",
@@ -31128,17 +31140,17 @@
                   },
                   "</span> majority "
                 ],
-                "predicate": 16
+                "predicate": 18
               },
               {
                 "type": "conditional",
                 "content": "minority government ",
-                "predicate": 17
+                "predicate": 19
               },
               {
                 "type": "conditional",
                 "content": "emergency government ",
-                "predicate": 18
+                "predicate": 20
               },
               ""
             ]
@@ -31150,24 +31162,6 @@
                 "type": "conditional",
                 "content": [
                   "Coalition dissent: ",
-                  {
-                    "type": "insert",
-                    "insert": 20
-                  },
-                  " "
-                ],
-                "predicate": 19
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "TIP coalition dissent: ",
                   {
                     "type": "insert",
                     "insert": 22
@@ -31182,10 +31176,28 @@
           {
             "type": "paragraph",
             "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "TIP coalition dissent: ",
+                  {
+                    "type": "insert",
+                    "insert": 24
+                  },
+                  " "
+                ],
+                "predicate": 23
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               "Internal dissent: ",
               {
                 "type": "insert",
-                "insert": 23
+                "insert": 25
               },
               ""
             ]
@@ -31196,7 +31208,7 @@
               "Status of the Turkish Democracy: ",
               {
                 "type": "insert",
-                "insert": 24
+                "insert": 26
               },
               ""
             ]
@@ -31215,11 +31227,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 26
+                    "insert": 28
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/cevdetsunay.jpg\">President Cevdet Sunay. A conservative and a staunch anti communist, he has been president of the republic since 1966 and is currently directing the military junta strangling our democracy.</span></span> "
                 ],
-                "predicate": 25
+                "predicate": 27
               },
               {
                 "type": "conditional",
@@ -31227,11 +31239,11 @@
                   "<span class=\"wide_tooltip-wrap\"><span style=\"color: #929292;\">",
                   {
                     "type": "insert",
-                    "insert": 28
+                    "insert": 30
                   },
                   "</span><span class=\"wide_tooltip-tip\"><img src=\"img/fahrikoruturk.jpg\">President Fahri Korutürk. Even though he is a military man like all the others, perhaps he will be more moderate...</span></span> "
                 ],
-                "predicate": 27
+                "predicate": 29
               },
               " ",
               {
@@ -31240,11 +31252,11 @@
                   "<span class=\"wide_tooltip-wrap\"> <span style=\"color: #70386D;\">",
                   {
                     "type": "insert",
-                    "insert": 30
+                    "insert": 32
                   },
                   "</span><span class=\"wide_tooltip-tip\"><img src=\"img/tekinariburun.jpg\">President Tekin Arıburun. A conservative and a nominal AP ally, his election is a bad signal for us. </span></span> "
                 ],
-                "predicate": 29
+                "predicate": 31
               },
               {
                 "type": "conditional",
@@ -31252,11 +31264,11 @@
                   "<span class=\"wide_tooltip-wrap\"><span style=\"color: #584404;\">",
                   {
                     "type": "insert",
-                    "insert": 32
+                    "insert": 34
                   },
                   "</span><span class=\"wide_tooltip-tip\"><img src=\"img/farukgurler.png\">President Faruk Gürler. He became the favourite of the junta after refusing to participate in the earlier Left Kemalist coup. Even though he is more left wing than many of his peers, his presidency still signals the continuation of military oversight over parliamentary democracy.</span></span> "
                 ],
-                "predicate": 31
+                "predicate": 33
               },
               ""
             ]
@@ -31271,22 +31283,9 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 34
-                  },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> "
-                ],
-                "predicate": 33
-              },
-              " ",
-              {
-                "type": "conditional",
-                "content": [
-                  "<span class=\"wide_tooltip-wrap\">",
-                  {
-                    "type": "insert",
                     "insert": 36
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A Right Kemalist and one of the founders of CGP, he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> "
                 ],
                 "predicate": 35
               },
@@ -31299,7 +31298,7 @@
                     "type": "insert",
                     "insert": 38
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/NaimTalu.jpg\">Prime Minister Naim Talu. Supported by CGP and AP, he has vowed to lead a \"nonpartisan\" government whose purpose is to lead the nation to the general elections. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A Right Kemalist and one of the founders of CGP, he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
                 ],
                 "predicate": 37
               },
@@ -31312,7 +31311,7 @@
                     "type": "insert",
                     "insert": 40
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/NuriBayar.jpg\">Prime Minister Nuri Bayar. A conservative and the former spokesperson of the AP, he is leading the current center right wing government formed by CGP, AP and DP. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/NaimTalu.jpg\">Prime Minister Naim Talu. Supported by CGP and AP, he has vowed to lead a \"nonpartisan\" government whose purpose is to lead the nation to the general elections. </span></span> "
                 ],
                 "predicate": 39
               },
@@ -31325,11 +31324,11 @@
                     "type": "insert",
                     "insert": 42
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim1.webp\">Karaoğlan Ecevit. The leader of our new CHP, a lot about the future of our country and democracy depends on his shoulders shaking with energy. Türk Halkına Layık Ol Karaoğlan! </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/NuriBayar.jpg\">Prime Minister Nuri Bayar. A conservative and the former spokesperson of the AP, he is leading the current center right wing government formed by CGP, AP and DP. </span></span> "
                 ],
                 "predicate": 41
               },
-              "  ",
+              " ",
               {
                 "type": "conditional",
                 "content": [
@@ -31338,11 +31337,11 @@
                     "type": "insert",
                     "insert": 44
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim.jpg\">Karaoğlan Ecevit. Even though circumstances are deteriorating and the system is resisting not to change, he cant give up now. <br> \"the deer that was shot in the depths of the forest <br>the animals are silent with your pain <br> in their horns, hoofs and eyes, <br> is the love the hunter couldn't extinguish\"</span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim1.webp\">Karaoğlan Ecevit. The leader of our new CHP, a lot about the future of our country and democracy depends on his shoulders shaking with energy. Türk Halkına Layık Ol Karaoğlan! </span></span> "
                 ],
                 "predicate": 43
               },
-              " ",
+              "  ",
               {
                 "type": "conditional",
                 "content": [
@@ -31351,9 +31350,22 @@
                     "type": "insert",
                     "insert": 46
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/demirell.jpg\">Prime Minister Süleyman Demirel. An expert of political survival who by collaboration with the far right is currently killing the democracy for it.</span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim.jpg\">Karaoğlan Ecevit. Even though circumstances are deteriorating and the system is resisting not to change, he cant give up now. <br> \"the deer that was shot in the depths of the forest <br>the animals are silent with your pain <br> in their horns, hoofs and eyes, <br> is the love the hunter couldn't extinguish\"</span></span> "
                 ],
                 "predicate": 45
+              },
+              " ",
+              {
+                "type": "conditional",
+                "content": [
+                  "<span class=\"wide_tooltip-wrap\">",
+                  {
+                    "type": "insert",
+                    "insert": 48
+                  },
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/demirell.jpg\">Prime Minister Süleyman Demirel. An expert of political survival who by collaboration with the far right is currently killing the democracy for it.</span></span> "
+                ],
+                "predicate": 47
               },
               " ",
               {
@@ -31362,16 +31374,16 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 48
+                    "insert": 50
                   },
                   " "
                 ],
-                "predicate": 47
+                "predicate": 49
               },
               " (",
               {
                 "type": "insert",
-                "insert": 49
+                "insert": 51
               },
               ")"
             ]
@@ -31386,22 +31398,9 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 51
-                  },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Memduh Tağmaç. He is the man who coordinated the 12 March 1971 Memorandum as a reaction to the Socialist-Kemalist coup attempt on 9 March. Afterwards, he is known to have purged all the members of the Left Kemalist clique in the army. </span></span> "
-                ],
-                "predicate": 50
-              },
-              " ",
-              {
-                "type": "conditional",
-                "content": [
-                  "<span class=\"wide_tooltip-wrap\">",
-                  {
-                    "type": "insert",
                     "insert": 53
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/farukgurler.png\">Chief of Staff Faruk Gürler. Normally having leftist tendencies, he nevertheless refused to participate in the coup attempt on 9 March which made him a favourite of the junta.</span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Memduh Tağmaç. He is the man who coordinated the 12 March 1971 Memorandum as a reaction to the Socialist-Kemalist coup attempt on 9 March. Afterwards, he is known to have purged all the members of the Left Kemalist clique in the army. </span></span> "
                 ],
                 "predicate": 52
               },
@@ -31414,7 +31413,7 @@
                     "type": "insert",
                     "insert": 55
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/portraits/SemihSancar.jpg\">Chief of Staff Semih Sancar. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/farukgurler.png\">Chief of Staff Faruk Gürler. Normally having leftist tendencies, he nevertheless refused to participate in the coup attempt on 9 March which made him a favourite of the junta.</span></span> "
                 ],
                 "predicate": 54
               },
@@ -31427,9 +31426,22 @@
                     "type": "insert",
                     "insert": 57
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Kenan Evren. Even though appointed on the premise of being a nonpartisan figure, not much is known about his true intentions. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/portraits/SemihSancar.jpg\">Chief of Staff Semih Sancar. </span></span> "
                 ],
                 "predicate": 56
+              },
+              " ",
+              {
+                "type": "conditional",
+                "content": [
+                  "<span class=\"wide_tooltip-wrap\">",
+                  {
+                    "type": "insert",
+                    "insert": 59
+                  },
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Kenan Evren. Even though appointed on the premise of being a nonpartisan figure, not much is known about his true intentions. </span></span> "
+                ],
+                "predicate": 58
               },
               ""
             ]
@@ -31446,37 +31458,37 @@
               {
                 "type": "conditional",
                 "content": "is currently in government ",
-                "predicate": 58
-              },
-              {
-                "type": "conditional",
-                "content": "is currently pacified ",
-                "predicate": 59
-              },
-              {
-                "type": "conditional",
-                "content": "is currently hopeful ",
                 "predicate": 60
               },
               {
                 "type": "conditional",
-                "content": "is currently observing the political situation ",
+                "content": "is currently pacified ",
                 "predicate": 61
               },
               {
                 "type": "conditional",
-                "content": "TSK is currently irritated ",
+                "content": "is currently hopeful ",
                 "predicate": 62
               },
               {
                 "type": "conditional",
-                "content": "is currently agitated ",
+                "content": "is currently observing the political situation ",
                 "predicate": 63
               },
               {
                 "type": "conditional",
-                "content": "is currently alarmed ",
+                "content": "TSK is currently irritated ",
                 "predicate": 64
+              },
+              {
+                "type": "conditional",
+                "content": "is currently agitated ",
+                "predicate": 65
+              },
+              {
+                "type": "conditional",
+                "content": "is currently alarmed ",
+                "predicate": 66
               },
               {
                 "type": "conditional",
@@ -31488,7 +31500,7 @@
                   },
                   " "
                 ],
-                "predicate": 65
+                "predicate": 67
               },
               {
                 "type": "conditional",
@@ -31500,7 +31512,7 @@
                   },
                   " "
                 ],
-                "predicate": 66
+                "predicate": 68
               },
               ""
             ]
@@ -31520,7 +31532,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 67
+                "insert": 69
               },
               ""
             ]
@@ -31536,7 +31548,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 68
+                "insert": 70
               },
               ""
             ]
@@ -31552,7 +31564,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 69
+                "insert": 71
               },
               ""
             ]
@@ -31567,7 +31579,7 @@
                   {
                     "type": "conditional",
                     "content": "CGP",
-                    "predicate": 70
+                    "predicate": 72
                   },
                   {
                     "type": "conditional",
@@ -31575,10 +31587,10 @@
                       "",
                       {
                         "type": "insert",
-                        "insert": 72
+                        "insert": 74
                       }
                     ],
-                    "predicate": 71
+                    "predicate": 73
                   }
                 ]
               },
@@ -31589,7 +31601,7 @@
               ": ",
               {
                 "type": "insert",
-                "insert": 73
+                "insert": 75
               },
               ""
             ]
@@ -31605,7 +31617,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 74
+                "insert": 76
               },
               ""
             ]
@@ -31621,7 +31633,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 75
+                "insert": 77
               },
               ""
             ]
@@ -31637,7 +31649,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 76
+                "insert": 78
               },
               ""
             ]
@@ -31648,7 +31660,7 @@
               "Others: ",
               {
                 "type": "insert",
-                "insert": 77
+                "insert": 79
               },
               ""
             ]
@@ -31662,11 +31674,11 @@
                   "Majority required: ",
                   {
                     "type": "insert",
-                    "insert": 79
+                    "insert": 81
                   },
                   " seats "
                 ],
-                "predicate": 78
+                "predicate": 80
               },
               ""
             ]
@@ -31686,7 +31698,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 80
+                "insert": 82
               },
               "%"
             ]
@@ -31702,7 +31714,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 81
+                "insert": 83
               },
               "%"
             ]
@@ -31716,36 +31728,36 @@
                   "<span class=\"wide_tooltip-wrap\">Socialist Left<span class=\"wide_tooltip-tip\">TİP: ",
                   {
                     "type": "insert",
-                    "insert": 83
+                    "insert": 85
                   },
                   "%<br>TKP: ",
                   {
                     "type": "insert",
-                    "insert": 84
+                    "insert": 86
                   },
                   "%<br>TSİP: ",
                   {
                     "type": "insert",
-                    "insert": 85
+                    "insert": 87
                   },
                   "%<br>TEP: ",
                   {
                     "type": "insert",
-                    "insert": 86
+                    "insert": 88
                   },
                   "%<br>SDP: ",
                   {
                     "type": "insert",
-                    "insert": 87
+                    "insert": 89
                   },
                   "%</span></span>: ",
                   {
                     "type": "insert",
-                    "insert": 88
+                    "insert": 90
                   },
                   "% "
                 ],
-                "predicate": 82
+                "predicate": 84
               },
               {
                 "type": "conditional",
@@ -31758,11 +31770,11 @@
                   "</span>: ",
                   {
                     "type": "insert",
-                    "insert": 90
+                    "insert": 92
                   },
                   "% "
                 ],
-                "predicate": 89
+                "predicate": 91
               },
               ""
             ]
@@ -31777,7 +31789,7 @@
                   {
                     "type": "conditional",
                     "content": "CGP",
-                    "predicate": 91
+                    "predicate": 93
                   },
                   {
                     "type": "conditional",
@@ -31785,10 +31797,10 @@
                       "",
                       {
                         "type": "insert",
-                        "insert": 93
+                        "insert": 95
                       }
                     ],
-                    "predicate": 92
+                    "predicate": 94
                   }
                 ]
               },
@@ -31799,7 +31811,7 @@
               ": ",
               {
                 "type": "insert",
-                "insert": 94
+                "insert": 96
               },
               "%"
             ]
@@ -31815,7 +31827,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 95
+                "insert": 97
               },
               "%"
             ]
@@ -31831,7 +31843,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 96
+                "insert": 98
               },
               "%"
             ]
@@ -31847,7 +31859,7 @@
               "</span>: ",
               {
                 "type": "insert",
-                "insert": 97
+                "insert": 99
               },
               "%"
             ]
@@ -31858,7 +31870,7 @@
               "Others: ",
               {
                 "type": "insert",
-                "insert": 98
+                "insert": 100
               },
               "%"
             ]
@@ -31872,11 +31884,11 @@
                   "Budget: ",
                   {
                     "type": "insert",
-                    "insert": 100
+                    "insert": 102
                   },
                   " "
                 ],
-                "predicate": 99
+                "predicate": 101
               },
               ""
             ]
@@ -31887,12 +31899,12 @@
               "Next general election: ",
               {
                 "type": "insert",
-                "insert": 101
+                "insert": 103
               },
               " ",
               {
                 "type": "insert",
-                "insert": 102
+                "insert": 104
               },
               ""
             ]
@@ -31906,16 +31918,16 @@
                   "Next municipal election: ",
                   {
                     "type": "insert",
-                    "insert": 104
+                    "insert": 106
                   },
                   " ",
                   {
                     "type": "insert",
-                    "insert": 105
+                    "insert": 107
                   },
                   " "
                 ],
-                "predicate": 103
+                "predicate": 105
               },
               ""
             ]
@@ -31925,7 +31937,19 @@
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['week'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_mode'] || 0) != 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_date_display'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['cyprus_mode'] || 0)===0) && ((Q['week'] || 0) == 1));"
             }
           },
           {
@@ -31944,7 +31968,7 @@
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['week'] || 0) == 2);"
+              "$code": "return (((Q['cyprus_mode'] || 0)===0) && ((Q['week'] || 0) == 2));"
             }
           },
           {

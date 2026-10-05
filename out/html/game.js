@@ -13,6 +13,25 @@
     ui = dendryUI;
     game = ui.game;
 
+    // Preserve hands while the Cyprus calendar owns play; do not draw/play
+    // domestic cards or show leadership actions until normal play resumes.
+    ['displayDecks', 'displayHand', 'displayPinnedCards'].forEach(function(method) {
+      var display = ui[method].bind(ui);
+      ui[method] = function() {
+        if (ui.dendryEngine.state.qualities.cyprus_mode) return;
+        return display.apply(ui, arguments);
+      };
+    });
+    ['drawCard', 'playCard', 'playPinnedCard'].forEach(function(method) {
+      var engine = ui.dendryEngine, action = engine[method].bind(engine);
+      engine[method] = function() {
+        if (engine.state.qualities.cyprus_mode) {
+          return method === 'drawCard' ? {id:null,title:'no_card_in_deck'} : engine;
+        }
+        return action.apply(engine, arguments);
+      };
+    });
+
     // Dendry restores scene styles after returning from special screens.
     // Keep the calendar-dependent layout when that clears content classes.
     var setStyle = ui.setStyle.bind(ui);
@@ -158,12 +177,23 @@
 
   window.updateCyprusDisplay();
 
-  // Crossing a half-month advances the normal simulation exactly once.
+  // Only a daily crossing into a new half-month may advance domestic time.
+  // Repair the calendar coordinates of saves that drifted through card play,
+  // without applying extra domestic turns to catch up with that drift.
   var calendarWeek = Q.cyprus_day <= 15 ? 1 : 2;
-  if (Q.year !== Q.cyprus_year || Q.month !== Q.cyprus_month || Q.week !== calendarWeek) {
-    Q.month_actions = 1;
-    window.dendryUI.dendryEngine.goToScene('post_event');
+  var boundary = Q.cyprus_day === 1 || Q.cyprus_day === 16;
+  var expectedPrevious = new Date(Date.UTC(Q.cyprus_year, Q.cyprus_month - 1, Q.cyprus_day - 1));
+  var previousWeek = expectedPrevious.getUTCDate() <= 15 ? 1 : 2;
+  var calendarMatches = Q.year === expectedPrevious.getUTCFullYear() &&
+    Q.month === expectedPrevious.getUTCMonth() + 1 && Q.week === previousWeek;
+  // Entry happens in July's second normal period, already accounted for.
+  var alreadyCurrent = Q.year === Q.cyprus_year && Q.month === Q.cyprus_month && Q.week === calendarWeek;
+  Q.cyprus_calendar_advance = boundary && calendarMatches && !alreadyCurrent ? 1 : 0;
+  Q.month_actions = Q.cyprus_calendar_advance;
+  if (!Q.cyprus_calendar_advance) {
+    Q.year = Q.cyprus_year; Q.month = Q.cyprus_month; Q.week = calendarWeek;
   }
+  window.dendryUI.dendryEngine.goToScene('post_event');
   if (Q.cyprus_year > 1974 || (Q.cyprus_year === 1974 && Q.cyprus_month >= 9)) {
     Q.cyprus_end_shown = 1;
     window.dendryUI.dendryEngine.goToScene('kibrisson');

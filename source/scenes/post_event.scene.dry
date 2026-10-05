@@ -1,7 +1,9 @@
 title: Post Event
 new-page: true
 on-arrival: {!
-var turnAdvanced = Q.month_actions >= 1;
+var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
+if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
+Q.cyprus_calendar_advance = 0;
 AnatolianRules.refreshEconomy(Q);
 AnatolianRules.refreshFactions(Q);
 Q.last_advisor_action = 0;
@@ -834,6 +836,8 @@ if (choices && choices[0].title != "Continue...") {
 } else {
     Q.has_event = 0;
 }
+// Cyprus stories are dispatched by their daily dates, not the domestic pool.
+if (Q.cyprus_mode) Q.has_event = 0;
 // pre-load all of the event images
 if (this.ui && this.ui.show_portraits) {
     for (var choice of choices) {

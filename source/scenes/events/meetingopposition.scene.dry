@@ -1,6 +1,6 @@
-title: The Democratic Party
-subtitle: An introduction to the right wing periphary of republican politics.
-view-if: cyprus_day == 16 and cyprus_month == 7 and cyprus_year == 1974
+title: Meetings with the Opposition
+subtitle: Ecevit consults opposition leaders after the coup in Cyprus.
+view-if: cyprus_mode != 0 and cyprus_day == 16 and cyprus_month == 7 and cyprus_year == 1974
 max-visits: 1
 tags: event
 new-page: true

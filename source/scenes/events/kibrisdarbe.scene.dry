@@ -8,6 +8,8 @@ set-bg: img/kibriss.jpg
 audio: music/gercekkibris1.m4a
 on-arrival: {!
 Q.cyprus_mode = 1;
+Q.month_actions = 0;
+Q.cyprus_calendar_advance = 0;
 AnatolianRules.cyprusAtilla1.initialize(Q);
 Q.cyprus_end_shown = 0;
 Q._last_cyprus_mode = 1;

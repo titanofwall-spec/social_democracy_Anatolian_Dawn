@@ -176,6 +176,26 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         action(e,'economy_health_calculator'); assert.equal(Q.inflation_score,-1); assert.equal(Q.unemployed,0.5);
         Q.agriculture_modifier=-1000; action(e,'modify_production_indices'); assert(Number.isFinite(Q.agricultural_product_prices));
     });
+    test('Cyprus suppresses domestic turn consumption and the domestic event pool', (e,Q) => {
+        Q.year=1974; Q.month=7; Q.week=2;
+        e.goToScene('kibrisdarbe');
+        const before=[Q.time,Q.year,Q.month,Q.week,Q.economic_records.length];
+        Q.month_actions=1;
+        e.goToScene('post_event');
+        assert.deepEqual([Q.time,Q.year,Q.month,Q.week,Q.economic_records.length],before);
+        assert.equal(Q.month_actions,0); assert.equal(Q.has_event,0);
+        assert(['main','main.main_easy'].includes(e.state.sceneId));
+        for(const id of ['meetingopposition','cyprusintro','ayse','plane']) {
+            assert.notEqual(game.scenes[id].title,'The Democratic Party');
+            assert(!String(game.scenes[id].subtitle).includes('periphary'));
+        }
+        Q.month=9;Q.week=2;
+        const time=Q.time;
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
+        window.cyprusAdvanceDay();
+        assert.equal(Q.time,time);
+        assert.deepEqual([Q.year,Q.month,Q.week,Q.cyprus_day],[1974,7,2,16]);
+    });
     test('Cyprus daily calendar reaches the existing exit without an extra turn', (e,Q) => {
         Q.year=1974; Q.month=7; Q.week=2; Q.flavour_events=0; e.goToScene('kibrisdarbe');
         vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
