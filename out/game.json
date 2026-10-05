@@ -2758,67 +2758,73 @@
       "type": "scene",
       "title": "Continue Atilla I",
       "viewIf": {
-        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) >= 20)) && ((Q['cyprus_day'] || 0) <= 25)) && ((Q['cyprus_atilla1_ending_seen'] || 0) == 0));"
+        "$code": "return !!(AnatolianRules.cyprusAtilla1.briefingScene(Q) || AnatolianRules.cyprusAtilla1.historyScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q));"
       },
       "goTo": [
         {
-          "id": "cyprus_briefing_20",
+          "id": "cyprus_briefing_continue",
           "predicate": {
-            "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_20\";"
+            "$code": "return !!AnatolianRules.cyprusAtilla1.briefingScene(Q);"
+          }
+        },
+        {
+          "id": "cyprus_history_continue",
+          "predicate": {
+            "$code": "return !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !!AnatolianRules.cyprusAtilla1.historyScene(Q);"
           }
         },
         {
           "id": "cyprus_atilla1_ending",
           "predicate": {
-            "$code": "return (((Q['cyprus_atilla1_complete'] || 0) == 1) && ((Q['cyprus_atilla1_ending_seen'] || 0) == 0));"
+            "$code": "return !AnatolianRules.cyprusAtilla1.historyScene(Q) && AnatolianRules.cyprusAtilla1.endingReady(Q);"
           }
         },
         {
           "id": "cyprus_atilla1_20",
           "predicate": {
-            "$code": "return Q.cyprus_day === 20 && !Q.cyprus_atilla1_complete && !AnatolianRules.cyprusAtilla1.briefingScene(Q);"
+            "$code": "return Q.cyprus_month === 7 && Q.cyprus_day === 20 && !Q.cyprus_atilla1_complete && !AnatolianRules.cyprusAtilla1.briefingScene(Q);"
           }
         },
         {
           "id": "ayse",
           "predicate": {
-            "$code": "return ((((Q['cyprus_day'] || 0) == 21) && (((Q['flavour_events'] || 0)) !== 0)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return (((((Q['cyprus_month'] || 0) == 7) && ((Q['cyprus_day'] || 0) == 21)) && (((Q['flavour_events'] || 0)) !== 0)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
           }
         },
         {
           "id": "cyprus_atilla1_21",
           "predicate": {
-            "$code": "return ((((Q['cyprus_day'] || 0) == 21) && (!(((Q['flavour_events'] || 0)) !== 0))) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return (((((Q['cyprus_month'] || 0) == 7) && ((Q['cyprus_day'] || 0) == 21)) && (!(((Q['flavour_events'] || 0)) !== 0))) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
           }
         },
         {
           "id": "cyprus_atilla1_22",
           "predicate": {
-            "$code": "return (((Q['cyprus_day'] || 0) == 22) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return ((((Q['cyprus_month'] || 0) == 7) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
           }
         },
         {
           "id": "cyprus_atilla1_23",
           "predicate": {
-            "$code": "return (((Q['cyprus_day'] || 0) == 23) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return ((((Q['cyprus_month'] || 0) == 7) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
           }
         },
         {
           "id": "plane",
           "predicate": {
-            "$code": "return ((((Q['cyprus_day'] || 0) == 24) && (((Q['flavour_events'] || 0)) !== 0)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return (((((Q['cyprus_month'] || 0) == 7) && ((Q['cyprus_day'] || 0) == 24)) && (((Q['flavour_events'] || 0)) !== 0)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
           }
         },
         {
           "id": "cyprus_atilla1_24",
           "predicate": {
-            "$code": "return ((((Q['cyprus_day'] || 0) == 24) && (!(((Q['flavour_events'] || 0)) !== 0))) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return (((((Q['cyprus_month'] || 0) == 7) && ((Q['cyprus_day'] || 0) == 24)) && (!(((Q['flavour_events'] || 0)) !== 0))) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
           }
         },
         {
           "id": "root",
           "predicate": {
-            "$code": "return ((((Q['cyprus_atilla1_ending_seen'] || 0) == 1) || ((Q['cyprus_day'] || 0) < 20)) || ((Q['cyprus_day'] || 0) > 25));"
+            "$code": "return !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !AnatolianRules.cyprusAtilla1.historyScene(Q) && !AnatolianRules.cyprusAtilla1.scene(Q);"
           }
         }
       ],
@@ -2831,7 +2837,7 @@
       "id": "cyprus_atilla1_ending.root",
       "onArrival": [
         {
-          "$code": "Q['cyprus_atilla1_ending_seen'] = 1;"
+          "$code": "AnatolianRules.cyprusAtilla1.continueEnding(Q);"
         }
       ],
       "goTo": [
@@ -2849,9 +2855,22 @@
       "type": "scene",
       "title": "Atilla I — The result",
       "viewIf": {
-        "$code": "return (((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_atilla1_complete'] || 0) == 1));"
+        "$code": "return AnatolianRules.cyprusAtilla1.endingReady(Q) && !AnatolianRules.cyprusAtilla1.historyScene(Q);"
       },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.awardEnding(Q);"
+        }
+      ],
       "newPage": true,
+      "goTo": [
+        {
+          "id": "cyprus_support_return",
+          "predicate": {
+            "$code": "return !AnatolianRules.cyprusAtilla1.endingReady(Q) || !!AnatolianRules.cyprusAtilla1.historyScene(Q);"
+          }
+        }
+      ],
       "options": [
         {
           "id": "@cyprus_atilla1_ending.root",
@@ -2863,7 +2882,7 @@
           {
             "type": "heading",
             "content": [
-              "25 July 1974 — Atilla I: ",
+              "30 July 1974 — Atilla I: ",
               {
                 "type": "insert",
                 "insert": 0
@@ -2876,7 +2895,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The operation has fallen short of its overall objectives. Turkey enters Geneva with an uneven military position and little additional bargaining strength. ",
+                "content": "The operation has fallen short of its overall objectives. Turkey concludes Geneva I with an uneven military position and little additional bargaining strength. ",
                 "predicate": 1
               },
               ""
@@ -2887,7 +2906,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The operation has achieved the historical benchmark of overall success. Turkey enters Geneva with greater bargaining strength, shaped by the territory actually held and the commitments made during the ceasefire. ",
+                "content": "The operation has achieved the historical benchmark of overall success. Turkey concludes Geneva I with greater bargaining strength, shaped by the territory actually held and the commitments made during the ceasefire. ",
                 "predicate": 2
               },
               ""
@@ -2898,7 +2917,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The operation has achieved exceptional overall success. Turkey enters Geneva with substantial bargaining strength, though military gains and diplomatic costs still depend on the decisions taken. ",
+                "content": "The operation has achieved exceptional overall success. Turkey concludes Geneva I with substantial bargaining strength, though military gains and diplomatic costs still depend on the decisions taken. ",
                 "predicate": 3
               },
               ""
@@ -2907,12 +2926,17 @@
           {
             "type": "paragraph",
             "content": [
-              "Combined operation score: ",
+              "Combined Atilla I score: ",
               {
                 "type": "insert",
                 "insert": 4
               },
-              " / 400."
+              " / ",
+              {
+                "type": "insert",
+                "insert": 5
+              },
+              "."
             ]
           },
           {
@@ -2921,12 +2945,12 @@
               "Diplomatic leverage gained: +",
               {
                 "type": "insert",
-                "insert": 5
+                "insert": 6
               },
               ". Total leverage: ",
               {
                 "type": "insert",
-                "insert": 6
+                "insert": 7
               },
               "."
             ]
@@ -2934,10 +2958,10 @@
           {
             "type": "paragraph",
             "content": [
-              "Final frontline: ",
+              "Position established by campaign decisions: ",
               {
                 "type": "insert",
-                "insert": 7
+                "insert": 8
               },
               "."
             ]
@@ -2949,12 +2973,12 @@
               {
                 "type": "conditional",
                 "content": "Established. ",
-                "predicate": 8
+                "predicate": 9
               },
               {
                 "type": "conditional",
                 "content": "Incomplete; coastal and airborne forces remain separated. ",
-                "predicate": 9
+                "predicate": 10
               },
               ""
             ]
@@ -2965,7 +2989,7 @@
               "Opposing forces: ",
               {
                 "type": "insert",
-                "insert": 10
+                "insert": 11
               },
               "."
             ]
@@ -2976,7 +3000,7 @@
               "Airport: ",
               {
                 "type": "insert",
-                "insert": 11
+                "insert": 12
               },
               "."
             ]
@@ -2987,14 +3011,14 @@
               "Diplomatic position: ",
               {
                 "type": "insert",
-                "insert": 12
+                "insert": 13
               },
               "."
             ]
           },
           {
             "type": "paragraph",
-            "content": "Geneva I begins today. Turkey, Greece and Britain turn to the ceasefire, the security of the communities and the island’s political future."
+            "content": "Geneva I concludes today. Its declaration requires that controlled areas not be extended and sets out arrangements for a UN-supervised security zone and protection of Turkish Cypriot enclaves. This closes the Atilla I chapter; local fighting and disputed positions may still continue before the next phase."
           }
         ],
         "stateDependencies": [
@@ -3026,6 +3050,12 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['cyprus_atilla1_score'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_atilla1_max_score'] || 0);"
             }
           },
           {
@@ -3575,6 +3605,474 @@
         "type": "paragraph"
       }
     },
+    "cyprus_history_august1.historical": {
+      "id": "cyprus_history_august1.historical",
+      "title": "Secure southern Alsancak and consolidate the Bellapais approaches.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august1';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august1','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "1 August 1974 — Into southern Alsancak — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_august213.historical": {
+      "id": "cyprus_history_august213.historical",
+      "title": "Prepare the reinforced army for renewed operations if Geneva fails.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "2–13 August 1974 — The uneasy ceasefire — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_continue": {
+      "id": "cyprus_history_continue",
+      "type": "scene",
+      "title": "Continue the field report.",
+      "viewIf": {
+        "$code": "return !!AnatolianRules.cyprusAtilla1.historyScene(Q);"
+      },
+      "goTo": [
+        {
+          "id": "cyprus_history_july25",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
+          }
+        },
+        {
+          "id": "cyprus_history_july26",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26';"
+          }
+        },
+        {
+          "id": "cyprus_history_july2728",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728';"
+          }
+        },
+        {
+          "id": "cyprus_history_july2930",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930';"
+          }
+        },
+        {
+          "id": "cyprus_history_july31",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july31';"
+          }
+        },
+        {
+          "id": "cyprus_history_august1",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august1';"
+          }
+        },
+        {
+          "id": "cyprus_history_august213",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213';"
+          }
+        },
+        {
+          "id": "root",
+          "predicate": {
+            "$code": "return !AnatolianRules.cyprusAtilla1.historyScene(Q);"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_history_july25.historical": {
+      "id": "cyprus_history_july25.historical",
+      "title": "Continue consolidating positions while opening the Geneva talks.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "25 July 1974 — Geneva opens amid continued fighting — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july26.historical": {
+      "id": "cyprus_history_july26.historical",
+      "title": "Secure Alayköy and improve the western and eastern approaches to the enclave.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july26','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "26 July 1974 — The enclave expands — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july2728.historical": {
+      "id": "cyprus_history_july2728.historical",
+      "title": "Consolidate the western positions and press the mountain and coastal approaches.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2728','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "27–28 July 1974 — Fighting on the flanks — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july2930.historical": {
+      "id": "cyprus_history_july2930.historical",
+      "title": "Conclude Geneva I and accept the declaration against further territorial expansion.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2930','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "29–30 July 1974 — Geneva I concludes — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july31.historical": {
+      "id": "cyprus_history_july31.historical",
+      "title": "Continue limited advances around Şirinevler and the western Lefkoşa approaches.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july31';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july31','historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "31 July 1974 — Local advances after Geneva — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
     "cyprus_naval_bombard.bombard": {
       "id": "cyprus_naval_bombard.bombard",
       "chooseIf": {
@@ -3623,21 +4121,21 @@
       "title": "Return to the operation.",
       "goTo": [
         {
-          "id": "cyprus_briefing_continue",
+          "id": "root",
           "predicate": {
-            "$code": "return !!AnatolianRules.cyprusAtilla1.briefingScene(Q);"
+            "$code": "return ((Q['cyprus_calendar_advance'] || 0) == 1);"
           }
         },
         {
           "id": "cyprus_atilla1_continue",
           "predicate": {
-            "$code": "return !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !!AnatolianRules.cyprusAtilla1.scene(Q);"
+            "$code": "return !Q.cyprus_calendar_advance && !!(AnatolianRules.cyprusAtilla1.briefingScene(Q) || AnatolianRules.cyprusAtilla1.historyScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q));"
           }
         },
         {
           "id": "root",
           "predicate": {
-            "$code": "return !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !AnatolianRules.cyprusAtilla1.scene(Q);"
+            "$code": "return !Q.cyprus_calendar_advance && !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !AnatolianRules.cyprusAtilla1.historyScene(Q) && !AnatolianRules.cyprusAtilla1.scene(Q);"
           }
         }
       ],
@@ -13137,6 +13635,647 @@
           }
         ]
       }
+    },
+    "cyprus_history_august1.alternative": {
+      "id": "cyprus_history_august1.alternative",
+      "title": "Maintain the existing line and pursue monitored access instead of new entry into disputed areas.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august1';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august1','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "1 August 1974 — Into southern Alsancak — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_august1": {
+      "id": "cyprus_history_august1",
+      "type": "scene",
+      "title": "1 August 1974 — Into southern Alsancak",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august1';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_august1.historical",
+          "title": "Secure southern Alsancak and consolidate the Bellapais approaches."
+        },
+        {
+          "id": "@cyprus_history_august1.alternative",
+          "title": "Maintain the existing line and pursue monitored access instead of new entry into disputed areas."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "1 August 1974 — Into southern Alsancak"
+        },
+        {
+          "type": "paragraph",
+          "content": "Turkish troops enter the southern part of Alsancak/Karavas, but remain outside Lapta/Lapithos. Firing and shelling continue to the west and southwest of Girne."
+        },
+        {
+          "type": "paragraph",
+          "content": "In the evening, Turkish forces enter Bellapais. This is the entry recorded in the UN's account of 1 August; earlier reports had already described Greek Cypriots there under UN protection. The airport in Lefkoşa remains outside Turkish control."
+        }
+      ]
+    },
+    "cyprus_history_august213.alternative": {
+      "id": "cyprus_history_august213.alternative",
+      "title": "Prioritize defensive readiness and give negotiations more time under a strict territorial freeze.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "2–13 August 1974 — The uneasy ceasefire — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_august213": {
+      "id": "cyprus_history_august213",
+      "type": "scene",
+      "title": "2–13 August 1974 — The uneasy ceasefire",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_august213.historical",
+          "title": "Prepare the reinforced army for renewed operations if Geneva fails."
+        },
+        {
+          "id": "@cyprus_history_august213.alternative",
+          "title": "Prioritize defensive readiness and give negotiations more time under a strict territorial freeze."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "2–13 August 1974 — The uneasy ceasefire"
+        },
+        {
+          "type": "paragraph",
+          "content": "The ceasefire has reduced fighting across much of the island, but has not frozen every local position. In the Alsancak–Lapta area, Turkish troops move their forward line approximately three hundred metres west on 4 August. A larger assault follows on 6 August, with Turkish troops entering Lapta and fighting continuing around both towns into 7 August."
+        },
+        {
+          "type": "paragraph",
+          "content": "Along the Lefkoşa Green Line, Turkish Cypriot fighters move into houses beyond the line and erect roadblocks on 7 August. Later exchanges of fire occur around the Kythrea forest, the northeastern edge of the enclave and the Lefkoşa–Larnaca district boundary. These incidents do not establish the capture of Değirmenlik/Kythrea."
+        },
+        {
+          "type": "paragraph",
+          "content": "On 11–12 August, the National Guard withdraws from several Turkish Cypriot villages and town sectors in the south and west. UNFICYP assumes their protection; these withdrawals are not advances by the Turkish Army. Apart from the Alsancak–Lapta operation and small movements within Lefkoşa, the UN's retrospective account records no broad new expansion before 14 August. Negotiations continue while the island remains divided by an uneasy ceasefire."
+        }
+      ]
+    },
+    "cyprus_history_july25.alternative": {
+      "id": "cyprus_history_july25.alternative",
+      "title": "Freeze offensive movement and seek UN-monitored protection and supply arrangements.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "25 July 1974 — Geneva opens amid continued fighting — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july25": {
+      "id": "cyprus_history_july25",
+      "type": "scene",
+      "title": "25 July 1974 — Geneva opens amid continued fighting",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_july25.historical",
+          "title": "Continue consolidating positions while opening the Geneva talks."
+        },
+        {
+          "id": "@cyprus_history_july25.alternative",
+          "title": "Freeze offensive movement and seek UN-monitored protection and supply arrangements."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "25 July 1974 — Geneva opens amid continued fighting"
+        },
+        {
+          "type": "paragraph",
+          "content": "Geneva I opens with Turkey, Greece and Britain negotiating the ceasefire and the island's future. The airport remains under UN control, with Turkish troops to its north and National Guard troops to its south."
+        },
+        {
+          "type": "paragraph",
+          "content": "The latest UN account describes gains made during 24 July around northern Lefkoşa, including the Omorphita and Trakhonas areas, Hermes Street and positions near the British High Commission. These are local changes within the city, not the capture of British military bases. West of Lefkoşa, troops have reached the vicinity of Alayköy/Gerolakkos; this report does not yet establish occupation of the village."
+        }
+      ]
+    },
+    "cyprus_history_july26.alternative": {
+      "id": "cyprus_history_july26.alternative",
+      "title": "Concentrate reinforcements on a coherent defensive perimeter rather than extending the advance.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july26','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "26 July 1974 — The enclave expands — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july26": {
+      "id": "cyprus_history_july26",
+      "type": "scene",
+      "title": "26 July 1974 — The enclave expands",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_july26.historical",
+          "title": "Secure Alayköy and improve the western and eastern approaches to the enclave."
+        },
+        {
+          "id": "@cyprus_history_july26.alternative",
+          "title": "Concentrate reinforcements on a coherent defensive perimeter rather than extending the advance."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "26 July 1974 — The enclave expands"
+        },
+        {
+          "type": "paragraph",
+          "content": "Reports covering the evening of 25 July and the morning of 26 July confirm Alayköy/Gerolakkos under Turkish occupation. Most of the remaining salient in the Trakhonas–Omorphita area of northern Lefkoşa has also been occupied."
+        },
+        {
+          "type": "paragraph",
+          "content": "Tanks and troops move south along the Girne road and then east towards Değirmenlik/Kythrea. Other troops reach the vicinity of Çamlıbel/Myrtou, while parts of the road towards Alayköy come under Turkish control. These movements do not establish the capture of Çamlıbel or Değirmenlik. The ceasefire holds more steadily elsewhere on the island."
+        }
+      ]
+    },
+    "cyprus_history_july2728.alternative": {
+      "id": "cyprus_history_july2728.alternative",
+      "title": "Stop new assaults and fortify the positions already held while seeking local ceasefire arrangements.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2728','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "27–28 July 1974 — Fighting on the flanks — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july2728": {
+      "id": "cyprus_history_july2728",
+      "type": "scene",
+      "title": "27–28 July 1974 — Fighting on the flanks",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_july2728.historical",
+          "title": "Consolidate the western positions and press the mountain and coastal approaches."
+        },
+        {
+          "id": "@cyprus_history_july2728.alternative",
+          "title": "Stop new assaults and fortify the positions already held while seeking local ceasefire arrangements."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "27–28 July 1974 — Fighting on the flanks"
+        },
+        {
+          "type": "paragraph",
+          "content": "Turkish positions are consolidated around Photta, while Ayios Ermolaos/Şirinevler is reported Turkish-held. Buffavento Castle has also been occupied. The reports confirm these positions by 28 July without identifying an exact capture time for each."
+        },
+        {
+          "type": "paragraph",
+          "content": "Heavy fighting begins around Koutsoventis on the evening of 27 July, but the village remains in National Guard hands on the afternoon of 28 July. Fighting then develops along the coast near Ayios Epiktitos/Çatalköy. Alsancak/Karavas, Lapta/Lapithos and Çamlıbel/Myrtou remain outside Turkish control in this account."
+        }
+      ]
+    },
+    "cyprus_history_july2930.alternative": {
+      "id": "cyprus_history_july2930.alternative",
+      "title": "Prioritize joint verification of local positions and reciprocal adjustments under UN supervision.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2930','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "29–30 July 1974 — Geneva I concludes — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july2930": {
+      "id": "cyprus_history_july2930",
+      "type": "scene",
+      "title": "29–30 July 1974 — Geneva I concludes",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_july2930.historical",
+          "title": "Conclude Geneva I and accept the declaration against further territorial expansion."
+        },
+        {
+          "id": "@cyprus_history_july2930.alternative",
+          "title": "Prioritize joint verification of local positions and reciprocal adjustments under UN supervision."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "29–30 July 1974 — Geneva I concludes"
+        },
+        {
+          "type": "paragraph",
+          "content": "Fighting continues near Ayios Epiktitos/Çatalköy on 29 July. On 30 July, the UN reports only sporadic shooting around the edges of the main enclave; it does not identify a substantial new advance for that day."
+        },
+        {
+          "type": "paragraph",
+          "content": "Geneva I concludes with a declaration requiring the areas controlled by opposing armed forces not to be extended. The ministers agree on a UN-supervised security zone around the Turkish-held area and the evacuation of Greek or Greek Cypriot forces from Turkish Cypriot enclaves, which are to receive UN protection. The declaration records the existence in practice of two autonomous administrations, while leaving the wider constitutional settlement for further negotiations."
+        }
+      ]
+    },
+    "cyprus_history_july31.alternative": {
+      "id": "cyprus_history_july31.alternative",
+      "title": "Hold the Geneva positions and request UN verification of opposing withdrawals.",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july31';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july31','alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_support_return",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "31 July 1974 — Local advances after Geneva — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_history_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_history_july31": {
+      "id": "cyprus_history_july31",
+      "type": "scene",
+      "title": "31 July 1974 — Local advances after Geneva",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july31';"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_history_july31.historical",
+          "title": "Continue limited advances around Şirinevler and the western Lefkoşa approaches."
+        },
+        {
+          "id": "@cyprus_history_july31.alternative",
+          "title": "Hold the Geneva positions and request UN verification of opposing withdrawals."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "31 July 1974 — Local advances after Geneva"
+        },
+        {
+          "type": "paragraph",
+          "content": "Renewed fighting west of Girne is followed by the National Guard's withdrawal from Alsancak/Karavas and Lapta/Lapithos. Withdrawal does not by itself establish that Turkish troops have occupied both towns completely."
+        },
+        {
+          "type": "paragraph",
+          "content": "Turkish forces advance approximately one kilometre west from Ayios Ermolaos/Şirinevler, and approximately five hundred metres south near the Lefkoşa racecourse. These are local adjustments to the frontline, rather than a general breakout across northern Cyprus."
+        }
+      ]
     },
     "cyprus_naval_bombard.blockade": {
       "id": "cyprus_naval_bombard.blockade",
@@ -30827,14 +31966,42 @@
                     "type": "insert",
                     "insert": 11
                   },
-                  " / 400). Leverage reward: +",
+                  " / ",
                   {
                     "type": "insert",
                     "insert": 12
                   },
+                  "). Leverage reward: +",
+                  {
+                    "type": "insert",
+                    "insert": 13
+                  },
                   ". "
                 ],
                 "predicate": 9
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "Ceasefire-period score: ",
+                  {
+                    "type": "insert",
+                    "insert": 15
+                  },
+                  " / ",
+                  {
+                    "type": "insert",
+                    "insert": 16
+                  },
+                  ". "
+                ],
+                "predicate": 14
               },
               ""
             ]
@@ -30901,7 +32068,7 @@
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_atilla1_complete'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_atilla1_ending_seen'] || 0) == 1);"
             }
           },
           {
@@ -30919,7 +32086,31 @@
           {
             "type": "insert",
             "fn": {
+              "$code": "return (Q['cyprus_atilla1_max_score'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
               "$code": "return (Q['cyprus_atilla1_reward'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_post_atilla1_count'] || 0) > 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_post_atilla1_score'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_post_atilla1_max_score'] || 0);"
             }
           }
         ]

@@ -229,13 +229,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
         Q.cyprus_briefings_seen=[15,16,17,18,19,20]; // This scenario isolates calendar progression.
         const time=Q.time;
-        for(let i=0;i<48;i++) {
-            if(Q.cyprus_atilla1_complete && !Q.cyprus_atilla1_ending_seen) {
-                e.goToScene('cyprus_atilla1_ending'); pick(e,'cyprus_atilla1_ending.root');
-            }
-            if(Q.cyprus_month===7 && Q.cyprus_day>=20 && Q.cyprus_day<=24) {
-                e.goToScene('cyprus_atilla1_'+Q.cyprus_day);
-                pick(e,'cyprus_atilla1_'+Q.cyprus_day+'.historical');
+        for(let i=0;i<100 && !Q.cyprus_end_shown;i++) {
+            const c=rules.cyprusAtilla1, history=c.historyScene(Q);
+            if(history) {e.goToScene(history);pick(e,history+'.historical');pick(e,'cyprus_support_return');}
+            else if(c.endingReady(Q)) {e.goToScene('cyprus_atilla1_ending');pick(e,'cyprus_atilla1_ending.root');}
+            else if(Q.cyprus_month===7 && Q.cyprus_day>=20 && Q.cyprus_day<=24) {
+                e.goToScene('cyprus_atilla1_'+Q.cyprus_day);pick(e,'cyprus_atilla1_'+Q.cyprus_day+'.historical');
             } else window.cyprusAdvanceDay();
         }
         assert.equal(Q.cyprus_date_display,'September 1, 1974'); assert.deepEqual([Q.year,Q.month,Q.week],[1974,9,1]);
@@ -287,7 +286,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert(c.useSupport(Q,'smuggle','paphos'));assert.equal(Q.military_strength,23);assert.equal(Q.cyprus_support_bonus,3);
         assert(c.useSupport(Q,'paratrooper','limassol'));assert.equal(Q.military_strength,16);assert.equal(Q.cyprus_support_bonus,6);
         assert(!c.useSupport(Q,'bombard','famagusta'));assert.equal(Q.military_strength,16);
-        Q.cyprus_atilla1_complete=1;Q.cyprus_support_bonus=0;assert(!c.useSupport(Q,'bombard','famagusta'));
+        Q.cyprus_month=8;Q.cyprus_day=14;Q.cyprus_support_bonus=0;assert(!c.useSupport(Q,'bombard','famagusta'));
     });
     test('Next-roll support is consumed once, survives saves, and respects the 80-point ceiling', (e,Q) => {
         const c=rules.cyprusAtilla1;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;
@@ -332,7 +331,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             e.goToScene('cyprus_atilla1_'+day+'.'+option);
             assert.equal(Q.cyprus_atilla1_score,score);assert.equal(Q.leverage_points,leverage);assert.equal(rerolls,0);
             pick(e,'cyprus_atilla1_continue');
-            assert.equal(e.state.sceneId,day===24?'cyprus_atilla1_ending':'cyprus_atilla1_'+(day+1));
+            assert.equal(e.state.sceneId,day===24?'cyprus_history_july25':'cyprus_atilla1_'+(day+1));
         }
     });
     test('Atilla I preserves junction and defensive branches through the merge', () => {
@@ -349,25 +348,69 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             assert(Q.cyprus_atilla1_last_text.includes(halt?'severely depleted':'broader defensive perimeter'));
             if(halt) assert(!Q.cyprus_atilla1_frontline.includes('perimeter gained'));
             cyprus.resolve(Q,24,'alternative',()=>1);
-            assert.equal(Q.cyprus_atilla1_score,300);assert.equal(Q.cyprus_atilla1_reward,4);
+            assert.equal(Q.cyprus_atilla1_score,300);assert.equal(Q.cyprus_atilla1_reward,0);
+            for(const key of ['july25','july26','july2728','july2930']) {Q.cyprus_day=cyprus.historyEvents[key].day;assert(cyprus.resolveHistory(Q,key,'historical',()=>1));}
+            assert.equal(Q.cyprus_atilla1_score,540);assert.equal(Q.cyprus_atilla1_reward,4);
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
         }
     });
-    test('Atilla I endings cover 199/200/299/300/400 and award leverage once', () => {
-        const cyprus=rules.cyprusAtilla1;
-        for(const [total,ending,reward] of [[199,'Failure',0],[200,'Successful',2],[299,'Successful',2],[300,'Massive',4],[400,'Massive',4]]) {
+    test('Expanded endings cover 359/360/539/540/720 and pay only at the July 30 ending', () => {
+        const c=rules.cyprusAtilla1;
+        for(const [total,ending,reward] of [[359,'Failure',0],[360,'Successful',2],[539,'Successful',2],[540,'Massive',4],[720,'Massive',4]]) {
             const Q={cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:20,leverage_points:7,army_land_strength:0,army_naval_strength:0,army_aerial_strength:0};
-            cyprus.initialize(Q);
-            const scores=total===400?[80,80,80,80,80]:total===300?[60,60,60,60,60]:total===299?[60,60,60,59,60]:total===200?[40,40,40,40,40]:[40,40,40,39,40];
-            for(let i=0;i<5;i++) {
+            c.initialize(Q);const scores=Array(9).fill(total===720?80:total>=539?60:40);scores[8]=total-scores.slice(0,8).reduce((a,b)=>a+b,0);
+            for(let i=0;i<9;i++) {
                 const score=scores[i];Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=score>60?1:0;
-                cyprus.resolve(Q,20+i,'historical',()=>score>60?1:score/61);
+                if(i<5) {assert(c.resolve(Q,20+i,'historical',()=>score>60?1:score/61));assert.equal(c.awardEnding(Q),false);}
+                else {const key=['july25','july26','july2728','july2930'][i-5];Q.cyprus_day=c.historyEvents[key].day;assert(c.resolveHistory(Q,key,'historical',()=>score>60?1:score/61));}
+                assert.equal(Q.leverage_points,7);
             }
-            assert.equal(Q.cyprus_atilla1_score,total);assert.equal(Q.cyprus_atilla1_ending,ending);
-            assert.equal(Q.cyprus_atilla1_reward,reward);assert.equal(Q.leverage_points,7+reward);
-            assert.equal(cyprus.resolve(Q,24,'historical',()=>1),false);assert.equal(Q.leverage_points,7+reward);
-            assert.equal(Q.cyprus_day,25);
+            assert.equal(Q.cyprus_atilla1_score,total);assert.equal(Q.cyprus_atilla1_max_score,720);assert.equal(Q.cyprus_atilla1_ending,ending);
+            assert.equal(Q.cyprus_atilla1_reward,reward);assert.equal(Q.cyprus_day,30);assert(c.awardEnding(Q));assert.equal(Q.leverage_points,7+reward);
+            assert.equal(c.awardEnding(Q),false);assert.equal(Q.leverage_points,7+reward);assert(c.continueEnding(Q));assert.equal(Q.cyprus_day,31);
+            assert(c.continueEnding(Q));assert.equal(Q.cyprus_day,31);
         }
+    });
+    test('All fourteen late decisions expose four outcomes and resolve once on the scheduled date', () => {
+        const c=rules.cyprusAtilla1;
+        for(const [key,event] of Object.entries(c.historyEvents)) for(const action of Object.keys(event.actions)) for(let result=0;result<4;result++) {
+            const e=fresh(),Q=e.state.qualities;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');
+            Q.cyprus_day=event.day;Q.cyprus_month=event.month;Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=0;
+            e.goToScene('cyprus_history_'+key);e.random.random=()=>result*20/61;
+            pick(e,'cyprus_history_'+key+'.'+action);
+            assert.equal(Q.cyprus_history_last_outcome,c.outcomes[result]);assert.equal(Q.cyprus_history_last_text,event.actions[action].text[result]);
+            const records=event.stage==='atilla1'?Q.cyprus_atilla1_results:Q.cyprus_post_atilla1_results;
+            assert.equal(records.at(-1).score,result*20);assert.equal(Q.cyprus_day,key==='july2930'?30:new Date(Date.UTC(1974,event.month-1,event.day+1)).getUTCDate());
+            assert(Q.cyprus_history_seen.includes(key));const before=JSON.stringify(e.getExportableState());
+            let rerolls=0;assert.equal(c.resolveHistory(Q,key,action,()=>{rerolls++;return 1;}),false);
+            assert.equal(rerolls,0);assert.equal(JSON.stringify(e.getExportableState()),before);
+        }
+    });
+    test('Later rolls keep the July 30 assessment fixed and support survives a saved report choice', (e,Q) => {
+        const c=rules.cyprusAtilla1;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;
+        for(let d=20;d<=24;d++)assert(c.resolve(Q,d,'historical',()=>1));
+        for(const key of ['july25','july26','july2728','july2930']) {Q.cyprus_day=c.historyEvents[key].day;assert(c.resolveHistory(Q,key,'historical',()=>1));}
+        assert(c.awardEnding(Q));assert(c.continueEnding(Q));const ending=[Q.cyprus_atilla1_score,Q.cyprus_atilla1_ending,Q.leverage_points];
+        for(const key of ['july31','august1','august213']) {
+            const event=c.historyEvents[key];Q.cyprus_month=event.month;Q.cyprus_day=event.day;Q.military_strength=30;
+            assert(c.useSupport(Q,key==='july31'?'reinforce':key==='august1'?'strike':'bombard','nicosia'));
+            e.goToScene('cyprus_history_'+key);const saved=JSON.parse(JSON.stringify(e.getExportableState()));
+            pick(e,'cyprus_history_'+key+'.alternative');const first=JSON.stringify(e.state.qualities.cyprus_post_atilla1_results.at(-1));
+            e.setState(saved);pick(e,'cyprus_history_'+key+'.alternative');Q=e.state.qualities;
+            assert.equal(JSON.stringify(Q.cyprus_post_atilla1_results.at(-1)),first);
+            assert.equal(Q.cyprus_post_atilla1_results.at(-1).supportBonus,2);assert.equal(Q.cyprus_support_bonus,0);
+            assert.deepEqual([Q.cyprus_atilla1_score,Q.cyprus_atilla1_ending,Q.leverage_points],ending);
+        }
+        assert.equal(Q.cyprus_post_atilla1_results.length,3);assert.equal(Q.cyprus_post_atilla1_max_score,240);assert.equal(Q.cyprus_day,14);
+    });
+    test('Older completed five-day saves extend active chapters without double-paying leverage', () => {
+        const c=rules.cyprusAtilla1,Q={cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:25,leverage_points:9,army_land_strength:1,army_naval_strength:1,army_aerial_strength:1};
+        c.initialize(Q);delete Q.cyprus_extended_version;
+        Q.cyprus_atilla1_results=Array.from({length:5},(_,i)=>({day:20+i,score:60}));Q.cyprus_atilla1_score=300;
+        Q.cyprus_atilla1_complete=1;Q.cyprus_atilla1_ending_seen=1;Q.cyprus_atilla1_reward=2;
+        for(const key of ['july25','july26','july2728','july2930']) {Q.cyprus_day=c.historyEvents[key].day;assert(c.resolveHistory(Q,key,'historical',()=>1));}
+        assert.equal(Q.cyprus_atilla1_ending_seen,0);assert.equal(Q.cyprus_atilla1_reward,4);
+        assert(c.awardEnding(Q));assert.equal(Q.leverage_points,11);assert(!c.awardEnding(Q));assert.equal(Q.leverage_points,11);
     });
     test('Atilla I decisions survive save/restore and cannot be skipped', (e,Q) => {
         Q.year=1974;Q.month=7;Q.week=2;Q.flavour_events=0;e.goToScene('kibrisdarbe');Q.cyprus_day=20;Q.cyprus_briefings_seen=[15,16,17,18,19,20];

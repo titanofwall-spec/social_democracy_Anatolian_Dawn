@@ -1,0 +1,36 @@
+title: 27–28 July 1974 — Fighting on the flanks
+view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728'; !}
+new-page: true
+
+= 27–28 July 1974 — Fighting on the flanks
+
+Turkish positions are consolidated around Photta, while Ayios Ermolaos/Şirinevler is reported Turkish-held. Buffavento Castle has also been occupied. The reports confirm these positions by 28 July without identifying an exact capture time for each.
+
+Heavy fighting begins around Koutsoventis on the evening of 27 July, but the village remains in National Guard hands on the afternoon of 28 July. Fighting then develops along the coast near Ayios Epiktitos/Çatalköy. Alsancak/Karavas, Lapta/Lapithos and Çamlıbel/Myrtou remain outside Turkish control in this account.
+
+- @historical: Consolidate the western positions and press the mountain and coastal approaches.
+- @alternative: Stop new assaults and fortify the positions already held while seeking local ceasefire arrangements.
+
+@historical
+title: Consolidate the western positions and press the mountain and coastal approaches.
+choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728'; !}
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2728','historical',this.random.random.bind(this.random)); !}
+
+= 27–28 July 1974 — Fighting on the flanks — [+ cyprus_history_last_outcome +]
+
+[+ cyprus_history_last_text +]
+
+- @cyprus_support_return: Continue.
+
+@alternative
+title: Stop new assaults and fortify the positions already held while seeking local ceasefire arrangements.
+choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728'; !}
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2728','alternative',this.random.random.bind(this.random)); !}
+
+= 27–28 July 1974 — Fighting on the flanks — [+ cyprus_history_last_outcome +]
+
+[+ cyprus_history_last_text +]
+
+- @cyprus_support_return: Continue.

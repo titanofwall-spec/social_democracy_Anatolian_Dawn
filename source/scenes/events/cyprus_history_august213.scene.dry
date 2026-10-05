@@ -1,0 +1,38 @@
+title: 2–13 August 1974 — The uneasy ceasefire
+view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213'; !}
+new-page: true
+
+= 2–13 August 1974 — The uneasy ceasefire
+
+The ceasefire has reduced fighting across much of the island, but has not frozen every local position. In the Alsancak–Lapta area, Turkish troops move their forward line approximately three hundred metres west on 4 August. A larger assault follows on 6 August, with Turkish troops entering Lapta and fighting continuing around both towns into 7 August.
+
+Along the Lefkoşa Green Line, Turkish Cypriot fighters move into houses beyond the line and erect roadblocks on 7 August. Later exchanges of fire occur around the Kythrea forest, the northeastern edge of the enclave and the Lefkoşa–Larnaca district boundary. These incidents do not establish the capture of Değirmenlik/Kythrea.
+
+On 11–12 August, the National Guard withdraws from several Turkish Cypriot villages and town sectors in the south and west. UNFICYP assumes their protection; these withdrawals are not advances by the Turkish Army. Apart from the Alsancak–Lapta operation and small movements within Lefkoşa, the UN's retrospective account records no broad new expansion before 14 August. Negotiations continue while the island remains divided by an uneasy ceasefire.
+
+- @historical: Prepare the reinforced army for renewed operations if Geneva fails.
+- @alternative: Prioritize defensive readiness and give negotiations more time under a strict territorial freeze.
+
+@historical
+title: Prepare the reinforced army for renewed operations if Geneva fails.
+choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213'; !}
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','historical',this.random.random.bind(this.random)); !}
+
+= 2–13 August 1974 — The uneasy ceasefire — [+ cyprus_history_last_outcome +]
+
+[+ cyprus_history_last_text +]
+
+- @cyprus_support_return: Continue.
+
+@alternative
+title: Prioritize defensive readiness and give negotiations more time under a strict territorial freeze.
+choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213'; !}
+new-page: true
+on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','alternative',this.random.random.bind(this.random)); !}
+
+= 2–13 August 1974 — The uneasy ceasefire — [+ cyprus_history_last_outcome +]
+
+[+ cyprus_history_last_text +]
+
+- @cyprus_support_return: Continue.

@@ -987,4 +987,6 @@ view-if: cyprus_mode != 0
 
 Diplomatic Leverage: [+ leverage_points +]
 
-[? if cyprus_atilla1_complete == 1 : Atilla I: [+ cyprus_atilla1_ending +] ([+ cyprus_atilla1_score +] / 400). Leverage reward: +[+ cyprus_atilla1_reward +]. ?]
+[? if cyprus_atilla1_ending_seen == 1 : Atilla I: [+ cyprus_atilla1_ending +] ([+ cyprus_atilla1_score +] / [+ cyprus_atilla1_max_score +]). Leverage reward: +[+ cyprus_atilla1_reward +]. ?]
+
+[? if cyprus_post_atilla1_count > 0 : Ceasefire-period score: [+ cyprus_post_atilla1_score +] / [+ cyprus_post_atilla1_max_score +]. ?]

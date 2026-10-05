@@ -90,7 +90,7 @@
     return AnatolianRules.cyprusAtilla1.briefingScene(Q);
   };
   window.cyprusPendingScene = function(Q) {
-    return window.cyprusBriefingScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q);
+    return window.cyprusBriefingScene(Q) || AnatolianRules.cyprusAtilla1.historyScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q);
   };
   window.updateCyprusWidth = function() {
   const content = document.getElementById('content');
