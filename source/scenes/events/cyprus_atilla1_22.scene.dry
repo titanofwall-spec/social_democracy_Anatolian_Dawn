@@ -5,15 +5,16 @@ on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing
 
 = 22 July 1974 — Before the ceasefire
 
-[+ cyprus_atilla1_briefing +]
+In Cyprus, the pressure of the previous night had been relieved, but the Greek Cypriots were again becoming active after dark. The KYRENIA–GÖNYELİ–NICOSIA link had been established, however inadequately. Yet resistance continued inside Kyrenia, and fighting continued in the pockets in the Beşparmak Mountains. The airborne troops and those who had landed from the sea were about to join up. The General Staff was very pleased that the force, which had been fighting on the island for two days without reinforcements, had achieved this—in fact, this was the real success. The second-wave forces had set out on Sunday night, 21 July, and were about to reach the island. There were heavy tanks and armoured vehicles, and they would consolidate control over the area that had been captured.
 
-Previous report: [+ cyprus_atilla1_last_text +]
+Mehmet Ali Birand, 30 Sıcak Gün, PDF page 228 — English translation of the source excerpt.
 
-- @historical: Historical: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.
-- @alternative: Alternative: Accept the ceasefire and halt offensive movement immediately.
+
+- @historical: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.
+- @alternative: Accept the ceasefire and halt offensive movement immediately.
 
 @historical
-title: Historical: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.
+title: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'historical', this.random.random.bind(this.random)); !}
@@ -25,7 +26,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Alternative: Accept the ceasefire and halt offensive movement immediately.
+title: Accept the ceasefire and halt offensive movement immediately.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'alternative', this.random.random.bind(this.random)); !}

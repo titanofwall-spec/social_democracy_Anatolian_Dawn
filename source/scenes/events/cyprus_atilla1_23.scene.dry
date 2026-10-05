@@ -5,15 +5,20 @@ on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing
 
 = 23 July 1974 — A ceasefire without security
 
-[+ cyprus_atilla1_briefing +]
+In Turkey, Karamanlis's arrival, followed immediately by Sampson's overthrow and his replacement by Clerides, was met with mixed feelings. In every Turk's mind, Karamanlis was known as a man who had signed the London–Zurich agreements despite Makarios and believed in Turkish–Greek friendship... Clerides too had always inspired sympathy with his moderate and reasonable attitude. These two leaders' accession increased hopes that “the way to a solution in Cyprus would open”... In government circles, the boast “We have brought democracy to Greece” prevailed. A softer atmosphere had emerged... With Karamanlis's arrival, an entirely new and wide-ranging cooperation could be established between Turkey and Greece...
 
-Previous report: [+ cyprus_atilla1_last_text +]
+Mehmet Ali Birand, 30 Sıcak Gün, PDF page 255 — English translation of the source excerpt.
 
-- @historical: Historical course: Continue consolidation while entering diplomatic talks.
-- @alternative: Alternative: Halt offensive movement and seek UN protection for exposed communities.
+In Cyprus, however, the ceasefire existed only in words. Turkey was continually massing troops to make up the shortfall and trying to establish itself fully on the territory it held and ensure its security. The Beşparmak Mountains could not be cleared. Even in Kyrenia there was still resistance—contrary to what the newspapers were saying. The Turkish army was advancing little by little, both to silence the fire coming from the other side and to secure its own safety. The troops in Nicosia had also begun approaching the airport. From time to time, these expansions did go too far... The Turkish units were trying to make up the shortfall...
+
+Mehmet Ali Birand, 30 Sıcak Gün, PDF page 255 — English translation of the source excerpt.
+
+
+- @historical: Continue consolidation while entering diplomatic talks.
+- @alternative: Halt offensive movement and seek UN protection for exposed communities.
 
 @historical
-title: Historical course: Continue consolidation while entering diplomatic talks.
+title: Continue consolidation while entering diplomatic talks.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 23 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 23, 'historical', this.random.random.bind(this.random)); !}
@@ -25,7 +30,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 23, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Alternative: Halt offensive movement and seek UN protection for exposed communities.
+title: Halt offensive movement and seek UN protection for exposed communities.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 23 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 23, 'alternative', this.random.random.bind(this.random)); !}

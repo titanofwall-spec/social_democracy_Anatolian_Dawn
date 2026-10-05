@@ -341,7 +341,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             cyprus.initialize(Q);cyprus.resolve(Q,20,'historical',()=>1);
             cyprus.resolve(Q,21,earlyJunction?'historical':'alternative',()=>1);
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction?1:0);
-            assert(cyprus.briefing(Q,22).includes(earlyJunction?'connected':'separated'));
+            assert(cyprus.briefing(Q,22).includes('PDF page 228')); // Historical evidence remains fixed; the actual junction is tracked separately.
             cyprus.resolve(Q,22,halt?'alternative':'historical',()=>1);
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
             cyprus.resolve(Q,23,'historical',()=>1);
@@ -353,6 +353,28 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             assert.equal(Q.cyprus_atilla1_score,540);assert.equal(Q.cyprus_atilla1_reward,4);
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
         }
+    });
+    test('Military choice tooltips match roll requirements and descriptions match attributed source passages', () => {
+        const c=rules.cyprusAtilla1, passages=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_MILITARY_SOURCE_PASSAGES.json'),'utf8'));
+        let count=0;
+        for(const [key,parts] of Object.entries(passages)) {
+            const id=key==='ending'?'cyprus_atilla1_ending':/^\d+$/.test(key)?'cyprus_atilla1_'+key:'cyprus_history_'+key;
+            const source=fs.readFileSync(path.join(root,'source/scenes/events',id+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');
+            for(const part of parts) {
+                assert(source.includes(part.kind==='quotation'?part.text.replace(/\n\n/g,' … '):part.text),id);
+                assert(part.kind==='quotation'?source.includes(part.document):source.includes('PDF page '+part.pdf_page),id);
+            }
+            if(key==='ending')continue;
+            const actions=/^\d+$/.test(key)?c.days[Number(key)].actions:c.historyEvents[key].actions;
+            for(const [action,record] of Object.entries(actions)) {
+                const tooltip=c.choiceTooltip(id+'.'+action);
+                assert(tooltip.includes(action==='historical'?'This is the historical choice.':'This is an alternative choice.'));
+                assert(tooltip.includes(['critical','outdated','adequate','good','excellent'][record.requirement]+' state.'));
+                assert(tooltip.includes('average land, naval and aerial strength'));
+                assert(!/^(Historical|Historical course|Alternative):/.test(record.label));count++;
+            }
+        }
+        assert.equal(count,25);assert.equal(c.choiceTooltip('campaigning.workers'),'');assert.equal(c.choiceTooltip('cyprus_history_missing.historical'),'');
     });
     test('Expanded endings cover 359/360/539/540/720 and pay only at the July 30 ending', () => {
         const c=rules.cyprusAtilla1;
@@ -479,3 +501,4 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');
     if(process.env.REPAIR_RESULTS) fs.writeFileSync(process.env.REPAIR_RESULTS,JSON.stringify({passed,scenes:Object.keys(game.scenes).length},null,2));
 });
+

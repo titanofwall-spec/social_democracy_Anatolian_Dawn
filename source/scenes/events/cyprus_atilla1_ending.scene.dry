@@ -6,9 +6,13 @@ go-to: cyprus_support_return if {! return !AnatolianRules.cyprusAtilla1.endingRe
 
 = 30 July 1974 — Atilla I: [+ cyprus_atilla1_ending +]
 
-[? if cyprus_atilla1_ending == "Failure" : The operation has fallen short of its overall objectives. Turkey concludes Geneva I with an uneven military position and little additional bargaining strength. ?]
-[? if cyprus_atilla1_ending == "Successful" : The operation has achieved the historical benchmark of overall success. Turkey concludes Geneva I with greater bargaining strength, shaped by the territory actually held and the commitments made during the ceasefire. ?]
-[? if cyprus_atilla1_ending == "Massive" : The operation has achieved exceptional overall success. Turkey concludes Geneva I with substantial bargaining strength, though military gains and diplomatic costs still depend on the decisions taken. ?]
+Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand:
+
+“Agreed, Mr. Güneş.”
+
+It was not easy to believe, but the First Geneva Conference really had ended...
+
+Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the source excerpt.
 
 Combined Atilla I score: [+ cyprus_atilla1_score +] / [+ cyprus_atilla1_max_score +].
 
@@ -23,8 +27,6 @@ Opposing forces: [+ cyprus_atilla1_enemy_damage +].
 Airport: [+ cyprus_atilla1_access +].
 
 Diplomatic position: [+ cyprus_atilla1_credibility +].
-
-Geneva I concludes today. Its declaration requires that controlled areas not be extended and sets out arrangements for a UN-supervised security zone and protection of Turkish Cypriot enclaves. This closes the Atilla I chapter; local fighting and disputed positions may still continue before the next phase.
 
 - @root: Continue.
 

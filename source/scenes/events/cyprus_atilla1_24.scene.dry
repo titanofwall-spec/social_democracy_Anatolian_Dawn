@@ -5,16 +5,21 @@ on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing
 
 = 24 July 1974 — The airport confrontation
 
-[+ cyprus_atilla1_briefing +]
+Callaghan had made the incident a matter of prestige. In this way, he could both give the passive British a role to play and “save” the airport, which had great symbolic value. As Turkish commanders pressed the peacekeeping forces, made up of British troops, to “leave the airport,” Secretary-General Waldheim not only telephoned Ecevit but then went to Washington and asked Kissinger to help on the matter...
 
-Previous report: [+ cyprus_atilla1_last_text +]
+NATO Secretary-General Luns telephoned Deputy Permanent Representative Turgut Tülümen in Brussels and said, “Please do not take the airport. It turns out it is not in your hands, as you have claimed. If you advance, there may be a clash with the British in the peacekeeping force.”
 
-- @historical: Historical: Promise not to seize the airport by force.
-- @alternative: Alternative: Negotiate UN-supervised arrangements for the approaches and access.
-- @pressure: Alternative: Maintain the demand for control, risking escalation.
+The airport really was not in our hands. When it had been surrounded, a message saying “it is ours” had been sent... The situation could not be understood with certainty.
+
+Mehmet Ali Birand, 30 Sıcak Gün, PDF page 261 — English translation of the source excerpt.
+
+
+- @historical: Promise not to seize the airport by force.
+- @alternative: Negotiate UN-supervised arrangements for the approaches and access.
+- @pressure: Maintain the demand for control, risking escalation.
 
 @historical
-title: Historical: Promise not to seize the airport by force.
+title: Promise not to seize the airport by force.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'historical', this.random.random.bind(this.random)); !}
@@ -26,7 +31,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Alternative: Negotiate UN-supervised arrangements for the approaches and access.
+title: Negotiate UN-supervised arrangements for the approaches and access.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'alternative', this.random.random.bind(this.random)); !}
@@ -38,7 +43,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'alternative', this.r
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @pressure
-title: Alternative: Maintain the demand for control, risking escalation.
+title: Maintain the demand for control, risking escalation.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'pressure', this.random.random.bind(this.random)); !}

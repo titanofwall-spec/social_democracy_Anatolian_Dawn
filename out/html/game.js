@@ -57,12 +57,12 @@
       var tooltips = window.buttonTooltips || {};
       choices.forEach(function(choice, index) {
         var choiceId = String(choice.id || '');
-        var tooltip = tooltips[choiceId] || tooltips[choiceId.replace(/^@/, '')];
+        var tooltip = AnatolianRules.cyprusAtilla1.choiceTooltip(choiceId.replace(/^@/, '')) || tooltips[choiceId] || tooltips[choiceId.replace(/^@/, '')];
         if (!tooltip) return;
-        var button = document.querySelector('ul.choices a[data-choice="' + index + '"]');
+        var button = document.querySelector('#content > ul.choices a[data-choice="' + index + '"]');
         if (button) {
           var tooltipId = 'choice-tooltip-' + index;
-          button.setAttribute('aria-label', tooltip);
+          button.setAttribute('aria-label', button.textContent.trim() + ' ' + tooltip);
           button.setAttribute('aria-describedby', tooltipId);
           var tooltipElement = document.createElement('span');
           tooltipElement.className = 'choice-tooltip';

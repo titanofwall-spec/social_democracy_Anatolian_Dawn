@@ -5,15 +5,16 @@ on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing
 
 = 21 July 1974 — The second wave
 
-[+ cyprus_atilla1_briefing +]
+The bombardment that had begun on the island in the morning broke the first night's blockage, and the advance resumed... But the troop reinforcements—the second wave—would reach the island the following morning. The Kyrenia–Nicosia road still had not been brought under control. Fire continued from the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless.
 
-Previous report: [+ cyprus_atilla1_last_text +]
+Mehmet Ali Birand, 30 Sıcak Gün, PDF page 188–189 — English translation of the source excerpt.
 
-- @historical: Historical: Dispatch reinforcements and prioritize the junction.
-- @alternative: Alternative: Dispatch reinforcements to secure existing positions.
+
+- @historical: Dispatch reinforcements and prioritize the junction.
+- @alternative: Dispatch reinforcements to secure existing positions.
 
 @historical
-title: Historical: Dispatch reinforcements and prioritize the junction.
+title: Dispatch reinforcements and prioritize the junction.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'historical', this.random.random.bind(this.random)); !}
@@ -25,7 +26,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Alternative: Dispatch reinforcements to secure existing positions.
+title: Dispatch reinforcements to secure existing positions.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'alternative', this.random.random.bind(this.random)); !}

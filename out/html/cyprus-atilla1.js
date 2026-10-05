@@ -12,7 +12,7 @@
         "month": 7,
         "day": 25,
         "title": "25 July 1974 — Geneva opens amid continued fighting",
-        "text": "Geneva I opens with Turkey, Greece and Britain negotiating the ceasefire and the island's future. The airport remains under UN control, with Turkish troops to its north and National Guard troops to its south.\n\nThe latest UN account describes gains made during 24 July around northern Lefkoşa, including the Omorphita and Trakhonas areas, Hermes Street and positions near the British High Commission. These are local changes within the city, not the capture of British military bases. West of Lefkoşa, troops have reached the vicinity of Alayköy/Gerolakkos; this report does not yet establish occupation of the village.",
+        "text": "Mert Zorlu described what he had seen in those days, during the ceasefire, as follows:\n\n“They brought us down from Ankara in a day and left us on the island by helicopter on 22 July. There was continual fighting. The Beşparmak Mountains were swarming with Greek Cypriot and Greek soldiers. Throughout the ceasefire this situation continued. Whenever fire came from somewhere, we immediately advanced and took the hill... The Greek soldiers in particular were big, giant-like men. They fought fiercely, but the Greek Cypriots immediately ran away...”\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 272–273 — English translation of the source excerpt.",
         "actions": {
             "historical": {
                 "label": "Continue consolidating positions while opening the Geneva talks.",
@@ -43,7 +43,7 @@
         "month": 7,
         "day": 26,
         "title": "26 July 1974 — The enclave expands",
-        "text": "Reports covering the evening of 25 July and the morning of 26 July confirm Alayköy/Gerolakkos under Turkish occupation. Most of the remaining salient in the Trakhonas–Omorphita area of northern Lefkoşa has also been occupied.\n\nTanks and troops move south along the Girne road and then east towards Değirmenlik/Kythrea. Other troops reach the vicinity of Çamlıbel/Myrtou, while parts of the road towards Alayköy come under Turkish control. These movements do not establish the capture of Çamlıbel or Değirmenlik. The ceasefire holds more steadily elsewhere on the island.",
+        "text": "“Gentlemen, the news reaching us is extremely worrying. Turkey has embarked on another major occupation in Cyprus. Clerides can no longer bear it. The situation is extremely critical. Look at the maps: you will see the Turks' expansion of nearly one hundred square kilometres since 22 July. In these circumstances, the conference will continue without me. The Greek government cannot remain at this conference any longer...”\n\nMavros, quoted in Mehmet Ali Birand, 30 Sıcak Gün, PDF page 295 — English translation of the source excerpt.",
         "actions": {
             "historical": {
                 "label": "Secure Alayköy and improve the western and eastern approaches to the enclave.",
@@ -74,7 +74,7 @@
         "month": 7,
         "day": 28,
         "title": "27–28 July 1974 — Fighting on the flanks",
-        "text": "Turkish positions are consolidated around Photta, while Ayios Ermolaos/Şirinevler is reported Turkish-held. Buffavento Castle has also been occupied. The reports confirm these positions by 28 July without identifying an exact capture time for each.\n\nHeavy fighting begins around Koutsoventis on the evening of 27 July, but the village remains in National Guard hands on the afternoon of 28 July. Fighting then develops along the coast near Ayios Epiktitos/Çatalköy. Alsancak/Karavas, Lapta/Lapithos and Çamlıbel/Myrtou remain outside Turkish control in this account.",
+        "text": "At the experts' meeting, which lasted until seven on Sunday morning, the parties had done no more than maintain their positions. Important articles were still unsettled. For example, the Greeks wanted the peacekeeping force placed in the security zone and, in direct opposition to Turkey's proposal, wanted the zone to be very narrow. They wanted the withdrawal, supply and non-increase of all foreign troops on the island explicitly included in the agreement, and insisted that the refugees return to their homes... The most useful aspect of this meeting, which lasted until morning, was that the disputed points had been identified on paper. The Greek delegation would not make concessions. It had not departed from the view that constitutional issues should be settled between the Cypriots.\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 317 — English translation of the source excerpt.\n\n“The villages of Karavas, Lapithos and Myrtou remain in National Guard hands. … Buffavento Castle has been occupied by Turkish forces.”\n\n[S/11353/Add.10, paragraph 2–3 — UN report excerpt.](https://digitallibrary.un.org/record/484479/files/S_11353_Add.10-EN.pdf)",
         "actions": {
             "historical": {
                 "label": "Consolidate the western positions and press the mountain and coastal approaches.",
@@ -105,7 +105,7 @@
         "month": 7,
         "day": 30,
         "title": "29–30 July 1974 — Geneva I concludes",
-        "text": "Fighting continues near Ayios Epiktitos/Çatalköy on 29 July. On 30 July, the UN reports only sporadic shooting around the edges of the main enclave; it does not identify a substantial new advance for that day.\n\nGeneva I concludes with a declaration requiring the areas controlled by opposing armed forces not to be extended. The ministers agree on a UN-supervised security zone around the Turkish-held area and the evacuation of Greek or Greek Cypriot forces from Turkish Cypriot enclaves, which are to receive UN protection. The declaration records the existence in practice of two autonomous administrations, while leaving the wider constitutional settlement for further negotiations.",
+        "text": "At the conference, the airport question was being discussed, and the British were insisting that their formula be accepted. Güneş intervened:\n\n“This conference must end. Mr. Callaghan, let us leave the airport question to the technicians and take it up at the second conference... If you accept this, I would like to speak privately with Mr. Mavros.”\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 357 — English translation of the source excerpt.",
         "actions": {
             "historical": {
                 "label": "Conclude Geneva I and accept the declaration against further territorial expansion.",
@@ -136,7 +136,7 @@
         "month": 7,
         "day": 31,
         "title": "31 July 1974 — Local advances after Geneva",
-        "text": "Renewed fighting west of Girne is followed by the National Guard's withdrawal from Alsancak/Karavas and Lapta/Lapithos. Withdrawal does not by itself establish that Turkish troops have occupied both towns completely.\n\nTurkish forces advance approximately one kilometre west from Ayios Ermolaos/Şirinevler, and approximately five hundred metres south near the Lefkoşa racecourse. These are local adjustments to the frontline, rather than a general breakout across northern Cyprus.",
+        "text": "“Turkish forces advanced approximately 1000 metres west from Ayios Ermolaos … approximately 500 metres south from a point near the Nicosia race course”\n\n[S/11353/Add.12, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484532/files/S_11353_Add.12-EN.pdf)",
         "actions": {
             "historical": {
                 "label": "Continue limited advances around Şirinevler and the western Lefkoşa approaches.",
@@ -167,7 +167,7 @@
         "month": 8,
         "day": 1,
         "title": "1 August 1974 — Into southern Alsancak",
-        "text": "Turkish troops enter the southern part of Alsancak/Karavas, but remain outside Lapta/Lapithos. Firing and shelling continue to the west and southwest of Girne.\n\nIn the evening, Turkish forces enter Bellapais. This is the entry recorded in the UN's account of 1 August; earlier reports had already described Greek Cypriots there under UN protection. The airport in Lefkoşa remains outside Turkish control.",
+        "text": "“Turkish forces had entered the southern part of Karavas but remained outside Lapithos … in the evening of 1 August entered Bellapais.”\n\n[S/11353/Add.13, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484550/files/S_11353_Add.13-EN.pdf)",
         "actions": {
             "historical": {
                 "label": "Secure southern Alsancak and consolidate the Bellapais approaches.",
@@ -198,7 +198,7 @@
         "month": 8,
         "day": 13,
         "title": "2–13 August 1974 — The uneasy ceasefire",
-        "text": "The ceasefire has reduced fighting across much of the island, but has not frozen every local position. In the Alsancak–Lapta area, Turkish troops move their forward line approximately three hundred metres west on 4 August. A larger assault follows on 6 August, with Turkish troops entering Lapta and fighting continuing around both towns into 7 August.\n\nAlong the Lefkoşa Green Line, Turkish Cypriot fighters move into houses beyond the line and erect roadblocks on 7 August. Later exchanges of fire occur around the Kythrea forest, the northeastern edge of the enclave and the Lefkoşa–Larnaca district boundary. These incidents do not establish the capture of Değirmenlik/Kythrea.\n\nOn 11–12 August, the National Guard withdraws from several Turkish Cypriot villages and town sectors in the south and west. UNFICYP assumes their protection; these withdrawals are not advances by the Turkish Army. Apart from the Alsancak–Lapta operation and small movements within Lefkoşa, the UN's retrospective account records no broad new expansion before 14 August. Negotiations continue while the island remains divided by an uneasy ceasefire.",
+        "text": "“Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”\n\n[S/11353/Add.15, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484572/files/S_11353_Add.15-EN.pdf)\n\n“On 12 August, the National Guard evacuated the Turkish sectors of Larnaca/Scala and Paphos/Ktima.”\n\n[S/11353/Add.20, paragraph 3 — UN report excerpt.](https://digitallibrary.un.org/record/484623/files/S_11353_Add.20-EN.pdf)\n\nTurkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Turkish, Greek, British, Turkish Cypriot and Greek Cypriot delegations had sat down at the table for peace in the United Nations Palace in Geneva.\n\nMehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt.",
         "actions": {
             "historical": {
                 "label": "Prepare the reinforced army for renewed operations if Geneva fails.",
@@ -315,66 +315,66 @@
     function resultIndex(score) { return score < 20 ? 0 : score < 40 ? 1 : score < 60 ? 2 : 3; }
     /** @type {Record<number, {title:string,briefing:string,actions:Record<string,{label:string,requirement:number,text:string[]}>}>} */
     var days = {
-        20: {title:'A foothold, not a front', briefing:'Troops have landed near Pentemili, Pınarbaşı and Gönyeli, but remain separated. Resistance and unloading difficulties threaten the beachhead.', actions:{
-            historical:{label:'Historical: Advance toward a junction with the airborne forces.',requirement:1,text:[
+        20: {title:'A foothold, not a front', briefing:"As the 6th Marine Regiment held the road immediately behind the beach, the soldiers of the 50th Infantry Regiment began moving forward and organizing themselves. Scattered machine-gun fire started from the surrounding area, but it was not difficult to silence it. Landing thirty-one ships one after another on the tiny beach was no easy task. The fleet had already begun taking up positions for shore bombardment... Turkish jets were sweeping the areas around Kyrenia and Nicosia, but dropping far fewer bombs than expected. The order “Do not fire unless fired upon” was still in their ears... Two landing ships that had run aground were left where they were... Scattered fire was answered.\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 135 — English translation of the source excerpt.\n\nThe Commando Brigade was increasingly making parachute landings in the area at Boğaz held by the Turkish Cypriot fighters. Although they encountered scattered gunfire, their landing and assembly were fairly easy. General Ersin, commanding them, used the fighters' radios to send “We have arrived safely” to Akıncı, the Commander of the Land Forces, in Adana. The following order came from Adana: “Join the forces landing from the sea without losing any time.”\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 136 — English translation of the source excerpt.", actions:{
+            historical:{label:'Advance toward a junction with the airborne forces.',requirement:1,text:[
                 'The advance stalls before reaching the airborne forces. Casualties and congested landing approaches slow reinforcement, leaving a small, lightly equipped coastal force on the island.',
                 'Troops gain some ground inland, but the junction remains incomplete. Reinforcements continue landing unevenly; enough arrive to sustain the foothold, though heavy support remains limited.',
                 'The coastal force advances while holding the landing area. A substantial force and essential equipment come ashore, but unloading remains difficult and the airborne troops are still separated from the beachhead.',
                 'The advance secures the beachhead’s immediate approaches and eases pressure on unloading. More troops, armour and supplies reach the island than expected, giving the next day’s operation a strong starting position. The full junction remains unfinished.']},
-            alternative:{label:'Alternative: Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.',requirement:3,text:[
+            alternative:{label:'Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.',requirement:3,text:[
                 'The beachhead holds narrowly, but attempts to organize unloading achieve little. Only limited reinforcements and equipment come ashore, while the delay leaves inland troops under increasing pressure.',
                 'The landing area becomes more orderly and additional supplies reach the coast. Some heavy equipment is unloaded, but slower progress limits the buildup and leaves the airborne forces facing another night without relief.',
                 'The beachhead is secured and unloading proceeds steadily. Reinforcements, armour and supplies establish a well-supported coastal force, although the airborne troops remain isolated and must hold their positions until the advance resumes.',
                 'Strong coordination secures the landing area and clears unloading bottlenecks. A large, well-equipped force assembles ashore with ample supplies for the next advance. The airborne troops remain isolated, but the coastal force is exceptionally well prepared to reach them.']}
         }},
-        21: {title:'The second wave',briefing:'Overnight fighting has exposed the disconnected positions. Reinforcements await departure from Mersin as ceasefire pressure grows.',actions:{
-            historical:{label:'Historical: Dispatch reinforcements and prioritize the junction.',requirement:1,text:[
+        21: {title:'The second wave',briefing:"The bombardment that had begun on the island in the morning broke the first night's blockage, and the advance resumed... But the troop reinforcements—the second wave—would reach the island the following morning. The Kyrenia–Nicosia road still had not been brought under control. Fire continued from the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless.\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 188–189 — English translation of the source excerpt.",actions:{
+            historical:{label:'Dispatch reinforcements and prioritize the junction.',requirement:1,text:[
                 'Resistance and poor coordination stall the advance. Forward units withdraw from exposed ground, leaving the coastal and airborne positions separated. The frontline gains little and contracts in places.',
                 'Turkish forces capture several approaches between the landing positions, but resistance prevents a continuous corridor. The frontline expands modestly, while isolated units remain vulnerable.',
                 'Turkish forces make substantial progress toward joining the beachhead with the airborne positions. Key approaches are secured, but gaps and contested ground leave the junction unfinished.',
                 'The advance establishes an early corridor between the coastal and airborne forces. Turkish troops secure its immediate approaches, creating a broader, connected frontline before ceasefire pressure brings further constraints.']},
-            alternative:{label:'Alternative: Dispatch reinforcements to secure existing positions.',requirement:2,text:[
+            alternative:{label:'Dispatch reinforcements to secure existing positions.',requirement:2,text:[
                 'Reinforcements are drawn into defensive fighting before positions can be strengthened. Exposed outposts are abandoned, narrowing the frontline while the coastal and airborne forces remain separated.',
                 'Reinforcements stabilize the existing positions and secure a few nearby approaches. The frontline expands slightly, but the gap between coastal and airborne forces remains unresolved.',
                 'Reinforced units secure surrounding heights, villages and defensive approaches through limited advances. The frontline broadens into more defensible positions, although a continuous corridor remains incomplete.',
                 'Well-coordinated local advances secure commanding ground and substantially enlarge the defended positions. The gap between coastal and airborne forces narrows, leaving a strong basis for completing the junction, but less territorial reach than an equally successful advance focused on linking them.']}
         }},
-        22: {title:'Before the ceasefire',briefing:'',actions:{
-            historical:{label:'Historical: Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.',requirement:1,text:[
+        22: {title:'Before the ceasefire',briefing:"In Cyprus, the pressure of the previous night had been relieved, but the Greek Cypriots were again becoming active after dark. The KYRENIA–GÖNYELİ–NICOSIA link had been established, however inadequately. Yet resistance continued inside Kyrenia, and fighting continued in the pockets in the Beşparmak Mountains. The airborne troops and those who had landed from the sea were about to join up. The General Staff was very pleased that the force, which had been fighting on the island for two days without reinforcements, had achieved this—in fact, this was the real success. The second-wave forces had set out on Sunday night, 21 July, and were about to reach the island. There were heavy tanks and armoured vehicles, and they would consolidate control over the area that had been captured.\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 228 — English translation of the source excerpt.",actions:{
+            historical:{label:'Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.',requirement:1,text:[
                 'The advance stalls with losses and little additional ground secured.',
                 'Turkish forces capture some approaches before the deadline.',
                 'Turkish forces establish the junction before the deadline.',
                 'Turkish forces complete the junction and secure additional ground protecting it.']},
-            alternative:{label:'Alternative: Accept the ceasefire and halt offensive movement immediately.',requirement:2,text:[
+            alternative:{label:'Accept the ceasefire and halt offensive movement immediately.',requirement:2,text:[
                 'The halt is poorly coordinated, leaving forward units exposed and forcing withdrawals from some positions. No further expansion occurs, and either the remaining gap or the existing corridor’s vulnerability worsens.',
                 'Most units halt in place, but uneven coordination forces small local withdrawals. The frontline changes little.',
                 'Units establish a coordinated defensive line across the ground already held. No further territory is gained, but existing positions are preserved.',
                 'A disciplined halt preserves virtually all gains and allows rapid fortification and redistribution of support. No offensive expansion occurs, but Turkey retains its strongest available defensive line.']}
         }},
-        23: {title:'A ceasefire without security',briefing:'The regime in Athens collapses: the Greek junta decides to hand power to Karamanlis, while Clerides replaces Sampson in Cyprus. Fighting continues despite the ceasefire, leaving insecure approaches and exposed communities. The political transition opens new diplomatic opportunities, but further Turkish advances risk damaging ceasefire credibility.',actions:{
-            historical:{label:'Historical course: Continue consolidation while entering diplomatic talks.',requirement:1,text:[
+        23: {title:'A ceasefire without security',briefing:"In Turkey, Karamanlis's arrival, followed immediately by Sampson's overthrow and his replacement by Clerides, was met with mixed feelings. In every Turk's mind, Karamanlis was known as a man who had signed the London–Zurich agreements despite Makarios and believed in Turkish–Greek friendship... Clerides too had always inspired sympathy with his moderate and reasonable attitude. These two leaders' accession increased hopes that “the way to a solution in Cyprus would open”... In government circles, the boast “We have brought democracy to Greece” prevailed. A softer atmosphere had emerged... With Karamanlis's arrival, an entirely new and wide-ranging cooperation could be established between Turkey and Greece...\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 255 — English translation of the source excerpt.\n\nIn Cyprus, however, the ceasefire existed only in words. Turkey was continually massing troops to make up the shortfall and trying to establish itself fully on the territory it held and ensure its security. The Beşparmak Mountains could not be cleared. Even in Kyrenia there was still resistance—contrary to what the newspapers were saying. The Turkish army was advancing little by little, both to silence the fire coming from the other side and to secure its own safety. The troops in Nicosia had also begun approaching the airport. From time to time, these expansions did go too far... The Turkish units were trying to make up the shortfall...\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 255 — English translation of the source excerpt.",actions:{
+            historical:{label:'Continue consolidation while entering diplomatic talks.',requirement:1,text:[
                 'Local operations become disorganized, causing losses and weakening Turkey’s bargaining position.',
                 'Turkey gains limited military advantage while opening contacts with the new governments.',
                 'Turkey enters diplomatic exchanges from a stronger position.',
                 'Turkey gains substantial bargaining strength as opposing forces struggle to reorganize.']},
-            alternative:{label:'Alternative: Halt offensive movement and seek UN protection for exposed communities.',requirement:2,text:[
+            alternative:{label:'Halt offensive movement and seek UN protection for exposed communities.',requirement:2,text:[
                 'Protection arrangements fail to materialize, while confused defensive orders allow opposing forces to exploit exposed positions. Turkey loses military advantage and receives little practical benefit from its restraint.',
                 'The halt improves diplomatic contacts, but UN protection remains limited. Defensive engagements inflict some losses on opposing units, while exposed communities and insecure approaches remain unresolved.',
                 'Turkey maintains the halt and repels attacks with crippling losses to the formations involved. UN cooperation brings protection to some exposed communities, strengthening Turkey’s diplomatic position without further territorial expansion.',
                 'Well-coordinated defenses inflict severe losses on attacking formations while Turkish forces hold their ground. Effective UN protection arrangements reduce threats to exposed communities, giving Turkey a substantial military and diplomatic advantage as the new governments seek negotiations.']}
         }},
-        24: {title:'The airport confrontation',briefing:'Karamanlis takes office in Greece as the ceasefire is being cemented. Where Turkish advances have reached Nicosia airport, troops face UN-held positions; elsewhere, Ankara presses its demands through diplomatic channels. Britain opposes any seizure, raising the risk of confrontation before Geneva.',actions:{
-            historical:{label:'Historical: Promise not to seize the airport by force.',requirement:1,text:[
+        24: {title:'The airport confrontation',briefing:"Callaghan had made the incident a matter of prestige. In this way, he could both give the passive British a role to play and “save” the airport, which had great symbolic value. As Turkish commanders pressed the peacekeeping forces, made up of British troops, to “leave the airport,” Secretary-General Waldheim not only telephoned Ecevit but then went to Washington and asked Kissinger to help on the matter...\n\nNATO Secretary-General Luns telephoned Deputy Permanent Representative Turgut Tülümen in Brussels and said, “Please do not take the airport. It turns out it is not in your hands, as you have claimed. If you advance, there may be a clash with the British in the peacekeeping force.”\n\nThe airport really was not in our hands. When it had been surrounded, a message saying “it is ours” had been sent... The situation could not be understood with certainty.\n\nMehmet Ali Birand, 30 Sıcak Gün, PDF page 261 — English translation of the source excerpt.",actions:{
+            historical:{label:'Promise not to seize the airport by force.',requirement:1,text:[
                 'Orders reach forward units unevenly, provoking confrontations and diplomatic pressure. Turkey pulls back from exposed approaches to prevent further escalation, leaving a less favorable final frontline.',
                 'The assurance prevents a major confrontation, but uncertainty over local boundaries leaves some positions difficult to supply or defend. Turkey retains most of its ground without resolving access.',
                 'Clear orders prevent clashes with UN troops. Turkish forces retain their defensible positions outside the airport, establishing a stable final frontline while the airport remains under UN control.',
                 'Close coordination with UN commanders settles disputed local boundaries and reduces the need for withdrawals. Turkey preserves its strongest defensible positions outside the airport and enters Geneva with improved ceasefire credibility. Airport access remains subject to separate agreement.']},
-            alternative:{label:'Alternative: Negotiate UN-supervised arrangements for the approaches and access.',requirement:2,text:[
+            alternative:{label:'Negotiate UN-supervised arrangements for the approaches and access.',requirement:2,text:[
                 'Talks break down over withdrawals and inspection rights. Turkish troops leave some exposed approaches under pressure, weakening the final frontline without obtaining access guarantees.',
                 'Temporary arrangements reduce confrontation, but only limited liaison or humanitarian movement is agreed. Most positions remain intact, while broader access and disputed approaches remain unresolved.',
                 'Negotiators secure monitored routes and clearly defined positions around the airport. Turkey accepts limited local adjustments while preserving its main frontline and obtaining agreed humanitarian and supply access.',
                 'A workable agreement establishes monitored access, reciprocal local withdrawals and clear separation from UN positions. Turkey retains a strong final frontline with more reliable supply arrangements, though the airport remains under UN control.']},
-            pressure:{label:'Alternative: Maintain the demand for control, risking escalation.',requirement:3,text:[
+            pressure:{label:'Maintain the demand for control, risking escalation.',requirement:3,text:[
                 'Pressure on the airport triggers a confrontation and a firm British response. Turkey abandons exposed forward positions to contain the crisis, entering Geneva with a weaker frontline and damaged credibility.',
                 'The demand produces a tense standoff without concessions. Turkish forces hold most existing positions, but troops committed to the confrontation leave other sectors harder to defend. Airport control and access remain unresolved.',
                 'Turkey sustains pressure without opening fire and obtains negotiations over disputed approaches. Limited reciprocal adjustments improve its final defensive line, but the demand for airport control remains unmet and diplomatic relations deteriorate.',
@@ -518,11 +518,23 @@
         }
         return true;
     }
+    /** @param {string} choiceId */
+    function choiceTooltip(choiceId) {
+        var match = /^cyprus_atilla1_(20|21|22|23|24)\.([a-z]+)$/.exec(choiceId);
+        var action = match ? days[Number(match[1])].actions[match[2]] : undefined;
+        if (!match) {
+            match = /^cyprus_history_([a-z0-9]+)\.([a-z]+)$/.exec(choiceId);
+            if (match && Object.prototype.hasOwnProperty.call(historyEvents,match[1])) action = historyEvents[match[1]].actions[match[2]];
+        }
+        if (!match || !action) return '';
+        var tier = ['critical','outdated','adequate','good','excellent'][action.requirement];
+        var article = /^[aeiou]/.test(tier) ? 'an' : 'a';
+        return (match[2] === 'historical' ? 'This is the historical choice.' : 'This is an alternative choice.') +
+            ' This operation would require our forces to be in ' + article + ' ' + tier + ' state.' +
+            ' This requirement uses average land, naval and aerial strength.';
+    }
     /** @param {State} Q @param {number} day */
     function briefing(Q, day) {
-        if (day === 22) return Q.cyprus_atilla1_junction ?
-            'Coastal and airborne forces are connected, but the corridor’s flanks remain exposed. The afternoon ceasefire leaves little time to secure nearby heights and widen the narrow position.' :
-            'Reinforcements are arriving, but coastal and airborne forces remain separated. The afternoon ceasefire leaves little time to establish a continuous corridor.';
         return days[day].briefing;
     }
     /** @param {State} Q @param {number} day @param {string} action @param {number} index */
@@ -619,7 +631,7 @@
     rules.cyprusAtilla1 = {supportActions:supportActions,districts:districts,startingResources:startingResources,
         dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,
         replenishResources:replenishResources,cooldown:cooldown,supportUnavailable:supportUnavailable,useSupport:useSupport,
-        historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
+        choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
         days:days,levels:levels,outcomes:outcomes,militaryTier:militaryTier,roll:roll,
         resultIndex:resultIndex,initialize:initialize,briefingScene:briefingScene,scene:scene,briefing:briefing,resolve:resolve,advanceDate:advanceDate};
     if (typeof module !== 'undefined' && module.exports) module.exports = rules.cyprusAtilla1;
