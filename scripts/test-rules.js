@@ -201,9 +201,9 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         Q.year=1974;Q.month=7;Q.week=2;Q.flavour_events=0;e.goToScene('kibrisdarbe');
         const time=Q.time,score=Q.cyprus_atilla1_score;
         pick(e,'kibrisdarbe.root');assert.equal(e.state.sceneId,'cyprus_briefing_15');
-        pick(e,'cyprus_briefing_15.continue');assert.equal(Q.cyprus_day,16);assert.equal(e.state.sceneId,'cyprus_briefing_16');
-        pick(e,'cyprus_briefing_16.continue');assert.equal(Q.cyprus_day,16);assert.equal(e.state.sceneId,'meetingopposition');
-        pick(e,'meetingopposition.root');assert.equal(Q.cyprus_day,17);assert.equal(e.state.sceneId,'cyprusintro');
+        pick(e,'cyprus_briefing_15.continue');assert.equal(Q.cyprus_day,16);assert.equal(e.state.sceneId,'meetingopposition');
+        pick(e,'meetingopposition.root');assert.equal(Q.cyprus_day,16);assert.equal(e.state.sceneId,'cyprus_briefing_16');
+        pick(e,'cyprus_briefing_16.continue');assert.equal(Q.cyprus_day,17);assert.equal(e.state.sceneId,'cyprusintro');
         pick(e,'cyprusintro.a');pick(e,'cyprusintro.b');assert.equal(Q.cyprus_day,17);
         pick(e,'cyprusintro.root');assert.equal(e.state.sceneId,'cyprus_briefing_17');assert.equal(Q.cyprus_day,17);
         for(let day=17;day<20;day++){pick(e,'cyprus_briefing_'+day+'.continue');assert.equal(Q.cyprus_day,day+1);assert.equal(e.state.sceneId,'cyprus_briefing_'+(day+1));}

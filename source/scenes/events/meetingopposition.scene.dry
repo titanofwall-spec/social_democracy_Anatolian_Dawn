@@ -45,5 +45,5 @@ As Ecevit prepared to answer each one of these reactions, he wondered how almost
 
 
 @root
-on-arrival: {! AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16); !}
-go-to: post_event
+on-arrival: {! Q.cyprus_opposition_seen = 1; !}
+go-to: cyprus_briefing_16

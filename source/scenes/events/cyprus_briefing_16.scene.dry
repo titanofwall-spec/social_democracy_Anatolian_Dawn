@@ -14,6 +14,6 @@ At the end of the cabinet meeting, it was decided to approach Britain immediatel
 on-arrival: {!
 if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
 if (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);
-if (this.state.visits['meetingopposition'] > 0) AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);
+AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);
 !}
-go-to: meetingopposition if {! return !(this.state.visits['meetingopposition'] > 0); !}; post_event if {! return this.state.visits['meetingopposition'] > 0; !}
+go-to: post_event

@@ -3132,21 +3132,12 @@
       "id": "cyprus_briefing_16.continue",
       "onArrival": [
         {
-          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);\nif (this.state.visits['meetingopposition'] > 0) AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);"
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);\nAnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);"
         }
       ],
       "goTo": [
         {
-          "id": "meetingopposition",
-          "predicate": {
-            "$code": "return !(this.state.visits['meetingopposition'] > 0);"
-          }
-        },
-        {
-          "id": "post_event",
-          "predicate": {
-            "$code": "return this.state.visits['meetingopposition'] > 0;"
-          }
+          "id": "post_event"
         }
       ],
       "content": {
@@ -3516,6 +3507,12 @@
       },
       "goTo": [
         {
+          "id": "meetingopposition",
+          "predicate": {
+            "$code": "return (((Q['cyprus_day'] || 0) == 16) && (!(((Q['cyprus_opposition_seen'] || 0)) !== 0)));"
+          }
+        },
+        {
           "id": "cyprusintro",
           "predicate": {
             "$code": "return (((Q['cyprus_day'] || 0) == 17) && (!(((Q['cyprus_intro_seen'] || 0)) !== 0)));"
@@ -3530,7 +3527,7 @@
         {
           "id": "cyprus_briefing_16",
           "predicate": {
-            "$code": "return ((Q['cyprus_day'] || 0) == 16);"
+            "$code": "return (((Q['cyprus_day'] || 0) == 16) && (((Q['cyprus_opposition_seen'] || 0)) !== 0));"
           }
         },
         {
@@ -5048,12 +5045,12 @@
       "id": "meetingopposition.root",
       "onArrival": [
         {
-          "$code": "AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);"
+          "$code": "Q.cyprus_opposition_seen = 1;"
         }
       ],
       "goTo": [
         {
-          "id": "post_event"
+          "id": "cyprus_briefing_16"
         }
       ],
       "content": {

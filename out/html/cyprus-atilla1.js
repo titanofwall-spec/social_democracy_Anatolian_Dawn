@@ -258,6 +258,7 @@
         Q.cyprus_support_bonus = 0;
         Q.cyprus_target_side = '';
         Q.cyprus_intro_seen = 0;
+        Q.cyprus_opposition_seen = 0;
         Q.cyprus_preop_resume = 0;
         Q.cyprus_support_used = {};
         Q.cyprus_resources_initialized = 1;
@@ -434,6 +435,7 @@
         if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month !== 7 ||
             Q.cyprus_day < 15 || Q.cyprus_day > 20) return null;
         var seen = Array.isArray(Q.cyprus_briefings_seen) ? Q.cyprus_briefings_seen : [];
+        if (Q.cyprus_day === 16 && seen.indexOf(16) < 0 && !Q.cyprus_opposition_seen) return 'meetingopposition';
         if (Q.cyprus_day === 17 && seen.indexOf(17) < 0 && !Q.cyprus_intro_seen) return 'cyprusintro';
         return seen.indexOf(Q.cyprus_day) < 0 ? 'cyprus_briefing_' + Q.cyprus_day : null;
     }
