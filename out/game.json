@@ -2774,6 +2774,12 @@
       },
       "goTo": [
         {
+          "id": "cyprus_briefing_20",
+          "predicate": {
+            "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_20\";"
+          }
+        },
+        {
           "id": "cyprus_atilla1_ending",
           "predicate": {
             "$code": "return (((Q['cyprus_atilla1_complete'] || 0) == 1) && ((Q['cyprus_atilla1_ending_seen'] || 0) == 0));"
@@ -2782,7 +2788,7 @@
         {
           "id": "cyprus_atilla1_20",
           "predicate": {
-            "$code": "return (((Q['cyprus_day'] || 0) == 20) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+            "$code": "return Q.cyprus_day === 20 && !Q.cyprus_atilla1_complete && !AnatolianRules.cyprusAtilla1.briefingScene(Q);"
           }
         },
         {
@@ -3083,6 +3089,502 @@
             }
           }
         ]
+      }
+    },
+    "cyprus_briefing_15.continue": {
+      "id": "cyprus_briefing_15.continue",
+      "onArrival": [
+        {
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(15) < 0) Q.cyprus_briefings_seen.push(15);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_briefing_15": {
+      "id": "cyprus_briefing_15",
+      "type": "scene",
+      "title": "15 July 1974",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_15\";"
+      },
+      "options": [
+        {
+          "id": "@cyprus_briefing_15.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "15 July 1974"
+        },
+        {
+          "type": "paragraph",
+          "content": "Immediately after news of the coup, the eyes of the whole world turned to Ankara. Messages began pouring into the Foreign Ministry by telegram, telephone and visits from ambassadors. Led by UN Secretary-General Waldheim and NATO Secretary-General Luns, Britain, America, France and all the allies repeated the scenario familiar from years past: \"Please act calmly.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Ecevit concluded the discussions as follows:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"To invoke Article 4 of the Treaty of Guarantee, drawn up for the independence of Cyprus, and to change the Sampson regime, a Turkish military presence on the island is necessary. In this way, we can protect both Turkey's security and that of the Turkish Cypriots. Preparations must begin. Meanwhile, we shall also contact Britain, the other guarantor country, and try to achieve our objectives without bloodshed. If we obtain no result from Britain, we shall have completed our preparations to exercise our right in practice.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "That night, Ecevit told his ministers that Greece could no longer be regarded as a guarantor country and that he would therefore hold talks with Britain. Even those who understood that intervention lay at the end of the road had countless questions. What would the Greek reaction be? What if a Turkish-Greek war broke out? And so on, and so on."
+        },
+        {
+          "type": "paragraph",
+          "content": "At around 2.30 in the morning, the ministers gave the prime minister \"full authority\". This authority covered conducting diplomatic contacts with Britain and other countries, as well as following the recommendations of the National Security Council."
+        }
+      ]
+    },
+    "cyprus_briefing_16.continue": {
+      "id": "cyprus_briefing_16.continue",
+      "onArrival": [
+        {
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "meetingopposition",
+          "predicate": {
+            "$code": "return !(this.state.visits['meetingopposition'] > 0);"
+          }
+        },
+        {
+          "id": "root",
+          "predicate": {
+            "$code": "return this.state.visits['meetingopposition'] > 0;"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_briefing_16": {
+      "id": "cyprus_briefing_16",
+      "type": "scene",
+      "title": "16 July 1974",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_16\";"
+      },
+      "options": [
+        {
+          "id": "@cyprus_briefing_16.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "16 July 1974"
+        },
+        {
+          "type": "paragraph",
+          "content": "He settled on the following strategy: he would call on Britain to activate the machinery of the Treaty of Guarantee, conduct the relevant contacts, go to London if necessary, and show that he had \"tried every avenue\"."
+        },
+        {
+          "type": "paragraph",
+          "content": "At the end of the cabinet meeting, it was decided to approach Britain immediately. Since the British ambassador was then on his summer holiday, a note was handed to the counsellor, requesting a reply within twenty-four hours. The note formally requested \"immediate talks to invoke the Treaty of Guarantee\"."
+        }
+      ]
+    },
+    "cyprus_briefing_17.continue": {
+      "id": "cyprus_briefing_17.continue",
+      "onArrival": [
+        {
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(17) < 0) Q.cyprus_briefings_seen.push(17);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprusintro",
+          "predicate": {
+            "$code": "return !(this.state.visits['cyprusintro'] > 0);"
+          }
+        },
+        {
+          "id": "root",
+          "predicate": {
+            "$code": "return this.state.visits['cyprusintro'] > 0;"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_briefing_17": {
+      "id": "cyprus_briefing_17",
+      "type": "scene",
+      "title": "17 July 1974",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_17\";"
+      },
+      "options": [
+        {
+          "id": "@cyprus_briefing_17.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "17 July 1974"
+        },
+        {
+          "type": "paragraph",
+          "content": "The prime minister made a fairly long speech. He said that if Sampson became established, no organization or country would be able to bring about a change in Cyprus, whereas such a situation would be unacceptable to Turkey and to the Turkish community there."
+        },
+        {
+          "type": "paragraph",
+          "content": "Wilson listened attentively. The prime minister made it clear that Turkey could not remain a spectator to the coup and put forward his proposal:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"If you do not want bloodshed and an irreparable wound in NATO, let us conduct the operation together. Agree to allow Turkish forces to use the British bases. If we enter the island from your bases, it will be bloodless. I am calling on you to fulfil your duty under the Treaty of Guarantee.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Wilson said they knew what sort of man Sampson was and shared their concerns:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"The opportunity to restore the old order has not yet been lost.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Every passing hour makes matters a little more difficult. Sampson must be removed and a new order established in Cyprus. The balance has been completely upset. We are determined to secure the Turkish community's safety. For that, the Turks must be given an outlet to the sea...\""
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Let us invite Greece too and hold a tripartite meeting here. Kissinger is continuing his efforts as well. The United Nations is meeting. There is no need for military action.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "\"The balance in Cyprus has been upset beyond restoration. This cannot be put right by platonic statements or resolutions. Greece is responsible for the coup and cannot be accepted as a party.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "The talks continued. Wilson wanted to steer matters towards negotiations:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"We are in contact with Greece. We have asked for the replacement of the officers responsible for the coup and are awaiting a reply.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Ecevit was conciliatory and made no threats. As a diplomat at the meeting put it, he did not use grand declarations such as \"if you do not do this, I shall go\", as had happened in the past."
+        },
+        {
+          "type": "paragraph",
+          "content": "\"We must think humanely. The present Sampson regime will change. If Turkey is forced to act, it will have to do so alone. Blood will be shed, whereas we could settle this by creating as little conflict as possible. The only way to do that is to use your bases.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "This time Callaghan interjected:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"There will be war with Greece. Athens cannot stand by and watch. NATO will be shaken.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Having tried every avenue without obtaining a result, the British prime minister ended the talks:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"The status of the bases has been defined quite clearly... There is no possibility of sending Turkish troops out from them... Nor do we accept the view that the Treaty of Guarantee gives Britain the right to armed intervention.\""
+        }
+      ]
+    },
+    "cyprus_briefing_18.continue": {
+      "id": "cyprus_briefing_18.continue",
+      "onArrival": [
+        {
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(18) < 0) Q.cyprus_briefings_seen.push(18);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_briefing_18": {
+      "id": "cyprus_briefing_18",
+      "type": "scene",
+      "title": "18 July 1974",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_18\";"
+      },
+      "options": [
+        {
+          "id": "@cyprus_briefing_18.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "18 July 1974"
+        },
+        {
+          "type": "paragraph",
+          "content": "Immediately after Ecevit repeated what he had said to Wilson and Callaghan, Sisco took the floor and began speaking quite forcefully to dissuade Turkey. He had also brought a message from Kissinger to the same effect:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"America opposes a Turkish intervention because of the coup. We think this could lead to war between two NATO members.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "After stating that Turkey had no intention of going to war with Greece, Ecevit tried to dispel the American administration's concerns. Beginning with the decision on poppy cultivation, he discussed Turkish-American relations and the periods through which they had passed. He even said that friendships could endure as long as they rested on sound and equal foundations. He said that even the Sixth Fleet could now visit Turkish ports more safely, because relations rested on a healthy foundation:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"...But it is impossible for Turkey to turn a blind eye to a fait accompli in Cyprus.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "\"But you are not considering Greece's reaction. They will not leave this unanswered. War will break out and the region will be thrown into turmoil. You should know that your relations with the United States will also deteriorate.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "\"That is for them to decide.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "The end of the meeting with Sisco, which had been interrupted after lunch and resumed for half an hour in the afternoon, was very interesting. Sisco, known as Kissinger's closest associate, had spoken with Callaghan and returned to Ecevit. He persisted in his position and seemed to have realized that the danger of intervention was much greater than he had estimated. According to those who witnessed it, the following exchange took place:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Mr. Ecevit, I am going from here to Athens. Give me your conditions in writing. We shall take them to the Greeks. I shall then return to Ankara and inform you of their answers.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Ecevit dictated them one by one:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Our conditions are quite clear. To restore the balance and secure the Turkish community's safety, the presence of Turkish troops on the island must be accepted. Sampson must be replaced immediately, the Greek officers withdrawn, the Turkish community granted an area with an outlet to the sea, and a system established to control entry to and exit from the island. In other words, Turkey must be granted the opportunities the Greeks currently possess.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "In a speech many described as \"clear and resolute\", Deniz Baykal explained the Ecevit government's \"crisis diplomacy\" (Realpolitik) and made it clear to the leaders that intervention was approaching."
+        },
+        {
+          "type": "paragraph",
+          "content": "\"How does the government view events? In our view, the London and Zurich agreements had lost their validity even before the coup. They continued in practice. The Treaty of Guarantee was also losing its effectiveness, and Turkey was unable to protect its rights arising from the agreements. This is the underlying cause of the latest events. We must now do more than explain our rights; we must take matters further. We shall seek our rights on the basis of an independent Cyprus. Our first objective is to ensure that the Turkish community obtains at least one port. There is a movement in the world to bring Makarios back. But that is not our objective. If we act, paths beyond London and Zurich may open before us. We do not regard the latest developments as a simple coup...\""
+        }
+      ]
+    },
+    "cyprus_briefing_19.continue": {
+      "id": "cyprus_briefing_19.continue",
+      "onArrival": [
+        {
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(19) < 0) Q.cyprus_briefings_seen.push(19);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_briefing_19": {
+      "id": "cyprus_briefing_19",
+      "type": "scene",
+      "title": "19 July 1974",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_19\";"
+      },
+      "options": [
+        {
+          "id": "@cyprus_briefing_19.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "19 July 1974"
+        },
+        {
+          "type": "paragraph",
+          "content": "The Sisco-Ioannidis meeting was very heated."
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Ioannidis absolutely did not believe in a Turkish intervention. Despite all Sisco's efforts, he did not change his attitude. When he read the conditions sent by Ecevit, he became angry and said, 'They might as well have asked for Athens too; if they are so confident, let them make a landing.' He said that in such a case war would certainly break out and Greece would attack Turkey. These words probably had to be taken seriously. Ioannidis continually spoke of Makarios's immorality and his cooperation with the Russians. He said that Sampson's arrival had settled the Cyprus problem at its root. He was in a strange state of mind. He did not want to listen to anyone and told Sisco to stop the Turks, otherwise NATO would collapse.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Greece was not accepting the Turkish proposals. Tasca, the American ambassador in Athens, suggested to Kissinger that in these circumstances the Sixth Fleet must move between Cyprus and Turkey and prevent an intervention. There was no other way out. Kissinger's reply was categorical:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"NO. Do not become hysterical.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Foremost among the reasons was the possibility of the Soviet Union becoming involved. Moreover, this would amount to \"a second Johnson letter\" and the complete loss of Turkey."
+        },
+        {
+          "type": "paragraph",
+          "content": "Sisco began speaking like a businessman:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"I have spoken with the Greek authorities. There are important changes in their position. In particular, they agree to replace the officers involved in the coup. Moreover, after a certain transitional period, it appears possible that Sampson could be replaced by someone more moderate. They promise elections and have stated in particular that no harm will come to the Turks' safety. Sampson has also made statements to this effect. They guarantee that intercommunal talks will begin immediately.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "An icy atmosphere swept through the room. Athens had rejected every point on which Turkey insisted: placing some important sea and air ports under joint administration, accepting the presence of Turkish forces there and providing them with entry and exit facilities like those of the Greeks, immediately changing the present regime, and granting the Turkish community an outlet to the sea. It was content with verbal guarantees alone."
+        }
+      ]
+    },
+    "cyprus_briefing_20.continue": {
+      "id": "cyprus_briefing_20.continue",
+      "onArrival": [
+        {
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(20) < 0) Q.cyprus_briefings_seen.push(20);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_atilla1_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_briefing_20": {
+      "id": "cyprus_briefing_20",
+      "type": "scene",
+      "title": "20 July 1974",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_20\";"
+      },
+      "options": [
+        {
+          "id": "@cyprus_briefing_20.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "20 July 1974"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"The Turkish Armed Forces' airborne and landing operation in Cyprus has begun. May God make it beneficial to our nation, to all Cypriots and to humanity. We believe that in this way we shall have rendered a great service to humanity and peace. I hope that our forces will not be fired upon and that there will be no bloody clash. We are going to the island not for war but for peace, to bring peace not only to the Turks but also to the Greeks. We reached this decision only after trying every political and diplomatic avenue and being compelled to do so. I consider it my duty to express my gratitude to all friendly countries, including our friends and allies the United States and Britain, with whom we have recently been in close consultation, for their well-intentioned efforts to settle the matter without intervention, through diplomatic means. If these efforts produced no result, the responsibility certainly does not lie with the states that made these well-intentioned efforts. Once again, I hope that this action will be beneficial to humanity, to our nation and to all Cypriots. I pray that God protects our nation and all humanity from disasters.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Sisco, who was in Athens at the time, was aware of this panic. He had been unable to stop Turkey, but he had at least to prevent a Turkish-Greek war. What Kissinger, and therefore America, categorically did not want, and was ready to use every threat to prevent, was war between two NATO members."
+        },
+        {
+          "type": "paragraph",
+          "content": "Turan Güneş opened the door and entered the prime minister's office, looking around. As he went out as though he had failed to find what he was looking for, he said to the person typing at the desk opposite, \"Look, have you seen the prime minister?\" and burst into laughter. Bülent Ecevit was at his typewriter, writing the speech he would make in parliament that afternoon."
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Mr. Bülent, Sisco has sent a message from Athens. He wants to come today. We have nothing left to say... I do not want to see him.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "\"The operation has begun now. I too think there is nothing to discuss.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "Güneş asked his aides to inform the US embassy that, because the region was very dangerous, the General Staff was not granting landing permission for Sisco's aircraft."
+        },
+        {
+          "type": "paragraph",
+          "content": "The operation had begun only a few hours earlier, but telephone calls were pouring in from the most unexpected places: please cease fire! From the UN secretary-general's message and the NATO secretary-general's telephone call to French pressure at embassy level and German interventions, the Foreign Ministry and the prime minister's office hummed like a beehive with messages saying, \"Please stop. War with Greece could break out.\""
+        }
+      ]
+    },
+    "cyprus_briefing_continue": {
+      "id": "cyprus_briefing_continue",
+      "type": "scene",
+      "title": "Continue.",
+      "viewIf": {
+        "$code": "return !!AnatolianRules.cyprusAtilla1.briefingScene(Q);"
+      },
+      "goTo": [
+        {
+          "id": "cyprus_briefing_15",
+          "predicate": {
+            "$code": "return ((Q['cyprus_day'] || 0) == 15);"
+          }
+        },
+        {
+          "id": "cyprus_briefing_16",
+          "predicate": {
+            "$code": "return ((Q['cyprus_day'] || 0) == 16);"
+          }
+        },
+        {
+          "id": "cyprus_briefing_17",
+          "predicate": {
+            "$code": "return ((Q['cyprus_day'] || 0) == 17);"
+          }
+        },
+        {
+          "id": "cyprus_briefing_18",
+          "predicate": {
+            "$code": "return ((Q['cyprus_day'] || 0) == 18);"
+          }
+        },
+        {
+          "id": "cyprus_briefing_19",
+          "predicate": {
+            "$code": "return ((Q['cyprus_day'] || 0) == 19);"
+          }
+        },
+        {
+          "id": "cyprus_briefing_20",
+          "predicate": {
+            "$code": "return ((Q['cyprus_day'] || 0) == 20);"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
       }
     },
     "cyprus_naval_bombard.bombard": {
@@ -3700,6 +4202,11 @@
     },
     "kibrisdarbe.root": {
       "id": "kibrisdarbe.root",
+      "goTo": [
+        {
+          "id": "cyprus_briefing_15"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -3722,7 +4229,7 @@
       "audio": "music/gercekkibris1.m4a",
       "onArrival": [
         {
-          "$code": "Q.cyprus_mode = 1;\nQ.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ.cyprus_end_shown = 0;\nQ._last_cyprus_mode = 1;\nQ.cyprus_day = 15;\nQ.cyprus_month = 7;\nQ.cyprus_year = 1974;\nQ.cyprus_date_display = 'July 15, 1974';\nupdateCyprusWidth();"
+          "$code": "Q.cyprus_mode = 1;\nQ.cyprus_briefings_seen = [];\nQ.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ.cyprus_end_shown = 0;\nQ._last_cyprus_mode = 1;\nQ.cyprus_day = 15;\nQ.cyprus_month = 7;\nQ.cyprus_year = 1974;\nQ.cyprus_date_display = 'July 15, 1974';\nupdateCyprusWidth();"
         }
       ],
       "options": [
@@ -9015,6 +9522,9 @@
       ],
       "maxCards": 4,
       "options": [
+        {
+          "id": "@cyprus_briefing_continue"
+        },
         {
           "id": "@cyprus_atilla1_continue"
         },
@@ -18718,7 +19228,7 @@
       "id": "root.start",
       "onArrival": [
         {
-          "$code": "Q.started = 1;\n// time elapsed (in half-months/bi-weekly periods)\nQ.time = 1;\nQ.year = 1972;\nQ.month = 1;\nQ.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)\n// how many actions have been taken this period?\nQ.month_actions = 0;\n\n// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves\nQ.difficulty = 0;\nQ.historical_mode = 0;\n// old demographics\nQ.old_demographics = 0;\n// use decimals for parliament seats\nQ.use_decimals = 1; // Enable decimal display for Turkish election results\n// Show narrative-only flavour events by default\nQ.flavour_events = 1;\n\n// party resources\nQ.resources = 2;\n// party dues\nQ.dues = 2;\n\n// the state of the party\n// overall dissent reduces every increase in party support.\nQ.dissent = 0.05;\nQ.dissent_percent = 5;\n\n// factions\nQ.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'right_kemalists', 'third_worldists'];\n\n// Third Worldists: a minor faction, disabled by default. Toggle Q.third_worldists_enabled\n// to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,\n// Internal Factions list), where it is positioned to the right of the Kemalist Marxists.\nQ.third_worldists_enabled = 0;\nQ.third_worldists_color = '#5f0f91';\nQ.third_worldists_dissent = 20;\n\n// Per-quarter faction strengths (source of truth)\n// Quarters: Grassroots(20%), Base(15%), Bureaucracy(25%), TBMM(20%), Intelligentsia(10%), Local Leadership(10%)\n// q2 (Bureaucracy) base values are lower because party leadership figures add +1 each dynamically.\n// Starting leadership: İnönü(ok), Kırıkoğlu(km), Ecevit(lk), Satır(ok) → bonus km=1, lk=1, ok=2, rk=0\n// So q2 base + bonus = effective: km(-1+1=0), lk(1+1=2), ok(2+2=4), rk(1+0=1)\nQ.q0_km_str = 2; Q.q0_lk_str = 4; Q.q0_ok_str = 2; Q.q0_rk_str = 1; Q.q0_tw_str = 3;\nQ.q1_km_str = 1; Q.q1_lk_str = 4; Q.q1_ok_str = 2; Q.q1_rk_str = 1; Q.q1_tw_str = 2;\nQ.q2_km_str = 0; Q.q2_lk_str = 1; Q.q2_ok_str = 2; Q.q2_rk_str = 1; Q.q2_tw_str = 1;\nQ.q3_km_str = 1; Q.q3_lk_str = 3; Q.q3_ok_str = 3; Q.q3_rk_str = 2; Q.q3_tw_str = 2;\nQ.q4_km_str = 2; Q.q4_lk_str = 4; Q.q4_ok_str = 2; Q.q4_rk_str = 1; Q.q4_tw_str = 2;\nQ.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str = 1;\n\n// Advisor-to-faction mapping for dynamic Bureaucracy quarter (q2) computation.\n// km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional\nQ._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';\n\nQ.kemalist_marxists_dissent = 20;\nQ.left_kemalists_dissent = 20;\nQ.orthodox_kemalists_dissent = 5;\nQ.right_kemalists_dissent = 10;\nQ.right_kemalist_deal = 0;\nQ.right_kemalists_resign = 0;\nQ.right_kemalist_split = 0;\nQ.orthodox_kemalist_destruction = 0;\n\n// Congress tracking\nQ.congress_upcoming = 1;\nQ.congress_year = 1972;\nQ.congress_month = 5;\nQ.congress_candidate_1 = \"ecevit\";\nQ.congress_candidate_2 = \"inonu\";\n// Faction support: 1 = candidate_1 (Ecevit), 2 = candidate_2 (İnönü), 0 = undecided\nQ.kemalist_marxists_support = 0;\nQ.left_kemalists_support = 1;\nQ.orthodox_kemalists_support = 2;\nQ.right_kemalists_support = 2;\nQ.third_worldists_support = 0;\n\n// secret events...\nQ.unions_independent = 0;\nQ.centrists_resign = 0;\nQ.left_split = 0;\nQ.reformists_resigned = 0;\n\n// Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)\nQ.inonu_stay = 0;\n\n// Status of the Turkish Democracy\nQ.democracystatus = 30\nQ.paramilitary_pressure_timer = 0;\n\n// crisis_urgency indicates how seriously the <span style=\"color: #E3000F;\">**CHP**</span> is taking the economic crisis - scale from 0 to 10.\nQ.crisis_urgency = 0;\nQ.far_right_urgency = 0;\n// radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.\nQ.radicalization = 0;\nQ.public_works_support = 0;\nQ.pacifism = 0;\nQ.democratization = 0;\nQ.communist_coalition = 0;\n// economic_plan: have we adopted *any* economic plan?\nQ.economic_plan = 0;\nQ.public_works_adopted = 0;\n// have we formed the iron front?\n// people's party support\nQ.peoples_party_support = 0;\n// support for nationalizations\nQ.nationalization_support = 0;\nQ.nationalization_adopted = 0;\n// moderate economic plan\nQ.moderate_plan_support = 0;\nQ.moderate_plan_adopted = 0;\n\n// Cyprus\nQ.cyprus_mode = 0;\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching\n\n\n// organizations\n\n// inter-party relations\nQ.TIP_relation = 40;\nQ.CGP_relation = 35;\nQ.AP_relation = 30;\nQ.DP_relation = 20;\n// MSP and MHP are invariably hostile\nQ.MSP_relation = 10;\nQ.MHP_relation = 10;\n\n// DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977\nQ.DP_collapse = 0;\n\nQ.TIP_leader = \"Unorganized\";\n// alternative TIP leaders: Mehmet Ali Aybar, Behice Boran\nQ.TIP_party_leader = \"Unorganized\";\nQ.AP_leader = \"Demirel\";\nQ.AP_party_leader = \"Demirel\";\nQ.DP_leader = \"Bozbeyli\";\nQ.DP_party_leader = \"Bozbeyli\";\nQ.CGP_leader = \"Feyzioğlu\";\nQ.CGP_party_leader = \"Feyzioğlu\";\nQ.MSP_leader = \"Süleyman Arif\";\n// alternative MSP leader: Erbakan\nQ.MSP_party_leader = \"Süleyman Arif\";\nQ.CHP_leader = \"İnönü\";\n// alternative <span style=\"color: #E3000F;\">**CHP**</span> leader: Ecevit\nQ.CHP_party_leader = \"İnönü\";\nQ.party_leader_id = \"inonu\";\nQ.party_secretary = \"Kırıkoğlu\";\nQ.party_secretary_id = \"kirikoglu\";\nQ.MHP_leader = \"Alparslan Türkeş\"\nQ.MHP_party_leader = \"Alparslan Türkeş\"\n\n// Municipality control system\nQ.municipalities_controlled = 21;\nQ.total_municipalities = 67;\nQ.municipality_control_level = 1; // 0=Terrible, 1=Poor, 2=Divided, 3=Satisfactory, 4=Overwhelming\nQ.local_total_seats = 67;\nQ.local_election_threshold = 8;\n\n// Interior affairs policy baselines (numeric: 0 = worst/bad start)\nQ.land_reform_level = 0;\nQ.natural_resources_level = 0;\nQ.workplace_democracy_level = 0;\nQ.peoples_sector_level = 0;\nQ.workplace_safety_level = 0;\nQ.minimum_wage_level = 0;\nQ.judicial_reform_level = 0;\nQ.counter_guerilla_discovered = 0;\nQ.counter_guerilla_level = 0;\nQ.education_funding_level = 0;\nQ.education_curriculum_level = 0;\nQ.university_freedom_level = 0;\nQ.university_prestige_level = 0;\nQ.womens_legal_level = 2;\nQ.womens_workplace_level = 0;\nQ.household_violence_level = 0;\nQ.language_rights_level = 0;\n\n// The array of forces - Turkish paramilitary groups\n// Number of members (in thousands)\n// Far Left organizations\nQ.thkpc_strength = 2;\nQ.thkpc_militancy = 0.5;\nQ.thkpc_destroyed = 0;\nQ.thkpc_banned = 0;\n\nQ.tkpml_strength = 0.1;\nQ.tkpml_militancy = 0.8;\nQ.tkpml_formed = 0;\nQ.tkpml_banned = 0;\n\nQ.devyol_strength = 55;\nQ.devyol_militancy = 0.25;\nQ.devyol_formed = 0;\nQ.devyol_banned = 0;\n\n// Separatist organizations\nQ.pkk_base_strength = 8;\nQ.pkk_militancy = 0.5;\nQ.pkk_formed = 0;\nQ.pkk_strength = 0;\n\n// State forces\nQ.police_strength = 60;\nQ.police_militancy = 0.8;\nQ.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)\n\n// Far Right organizations\nQ.grey_wolves_strength = 25;\nQ.grey_wolves_militancy = 0.1;\nQ.grey_wolves_banned = 0;\n\nQ.raiders_strength = 30;\nQ.raiders_militancy = 0.05;\nQ.raiders_formed = 0;\nQ.raiders_banned = 0;\n\nQ.tit_strength = 0.5;\nQ.tit_militancy = 0.9;\nQ.tit_banned = 0;\n\n// Keep these for compatibility with existing events, but set to 0 for Turkish context\n\n\n// Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)\nQ.army_land_strength = 0.4;\nQ.army_naval_strength = 0.4;\nQ.army_aerial_strength = 0.4;\n\n// Political Violence Calculation System\nQ.streetfighting_joever = 0;\n\n// Calculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.separatist_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Separatist forces calculation (strength × militancy)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.pkk_formed = 1;\n    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);\n    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;\n    Q.separatist_force += Q.pkk_force;\n} else {\n    Q.pkk_formed = 0;\n    Q.pkk_strength = 0;\n    Q.pkk_force = 0;\n}\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.pkk_formed) {\n        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\n// Grey Wolves street control vote bonus for middle class (petty bourgeoisie)\n// Applied at initialization only - recalculations happen elsewhere\nif (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_percent > Q.far_left_force_percent && Q.grey_wolves_force_percent > 30) {\n    Q.grey_wolves_control_bonus = Math.floor((Q.grey_wolves_force_percent - 30) / 10) * 4;\n    Q.petty_bourgeoisie_MHP += Q.grey_wolves_control_bonus;\n    // Ensure we don't exceed 100% and redistribute proportionally if needed\n    if (Q.petty_bourgeoisie_MHP > 100) {\n        Q.petty_bourgeoisie_MHP = 100;\n    }\n}\n\n// strength includes actual military and de facto reserves?\nQ.armed_forces_strength = 100;\nQ.armed_forces_militancy = 5;\nQ.armed_forces_loyalty = 0.2;\n\n// The state of the country\n\n// popular opinion\n// national ideology - on a binary scale\n// nationalism vs internationalism or pacifism or non-nationalism\nQ.nationalism = 80;\n// socialism vs capitalism\nQ.socialism = 6;\n// pro-republic vs anti-republic\nQ.pro_republic = 86;\n\nQ.emergency_rule = 0;\n\n// minimum percentage of votes to be represented in the Grand National Assembly\nQ.electoral_threshold = 0;\n// constitutional reform level\nQ.constitutional_reform = 0;\n// constructive vote of no confidence\nQ.constructive_vonc = 0;\n// reduction in presidential powers\nQ.presidential_powers = 0;\n// allows banning of non-constitutional parties\nQ.constitutional_protection = 0;\nQ.TIP_banned = 1;\nQ.MHP_banned = 0;\n\n// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.\n// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.\nQ.coup_progress = 0;\nQ.capital_strike_progress = 0;\n\n// TSK (Turkish Armed Forces) coup timer system (0-15)\nQ.coup_timer = 0;\n\n// TSK status tracking\nQ.army_in_government = 1; // Starting with Nihat Erim military government\nQ.tsk_pacified = 0;\n\n// Kurdish Nationalism system\nQ.kurdish_political_consciousness = 0.20; // Starting position: Low (0.14-0.24)\nQ.kurdish_radicalism = 0.25; // Starting position: Medium-low (0.24-0.44)\n\n// Women's Rights\nQ.women_reform = 0\n\n// Factors affecting Kurdish Nationalism\n// Consciousness\nQ.eastern_crime = 5\nQ.CHP_kurdish_attitude = 0\nQ.ddkd_formed = 0\n\n// Radicalism\n// CHP attitude here too\n// tip being banned\n// ddkd here too\n\n// Union Relations system\nQ.disk_relation = 35; // Starting at \"cool\" (29.9-39.9 range)\nQ.disk_turkis_conflict = 0.50; // Starting at \"Balanced\" (0.40-0.60)\nQ.union_reform = \"no\";\n\n// Update army_in_government based on prime_minister_party\nif (Q.prime_minister_party == 'I') {\n    Q.army_in_government = 1;\n} else {\n    Q.army_in_government = 0;\n}\n\nQ.budget = 1;\nQ.yearly_budget = 0;\n\n// Proportion of different social groups - Turkish demographics circa 1972-1977\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\n\n// Kurdish demographic percentage based on political consciousness level\nif (Q.kurdish_political_consciousness < 0.05) {\n    Q.kurds = 0; // Nonexistent - 0%\n} else if (Q.kurdish_political_consciousness >= 0.05 && Q.kurdish_political_consciousness < 0.14) {\n    Q.kurds = 3; // Very low - 3%\n} else if (Q.kurdish_political_consciousness >= 0.14 && Q.kurdish_political_consciousness < 0.24) {\n    Q.kurds = 5; // Low - 5%\n} else if (Q.kurdish_political_consciousness >= 0.24 && Q.kurdish_political_consciousness < 0.44) {\n    Q.kurds = 7; // Medium-low - 7%\n} else if (Q.kurdish_political_consciousness >= 0.44 && Q.kurdish_political_consciousness < 0.69) {\n    Q.kurds = 9; // Medium - 9%\n} else if (Q.kurdish_political_consciousness >= 0.69 && Q.kurdish_political_consciousness < 0.89) {\n    Q.kurds = 11; // High - 11%\n} else {\n    Q.kurds = 15; // Very high - 15%\n}\n\n// income for industrial workers\nQ.income = 1600;\n\n// Historical economic baseline data by year (Turkish context)\nQ.historical_inflation = {\n    1972: 15.3,\n    1973: 15.8,\n    1974: 15.4,\n    1975: 19.0,\n    1976: 16.4,\n    1977: 22.5,\n    1978: 53.3,\n    1979: 62.0\n};\n\nQ.historical_gdp_growth = {\n    1972: 9.2,\n    1973: 4.9,\n    1974: 3.3,\n    1975: 6.1,\n    1976: 9.0,\n    1977: 3.0,\n    1978: 1.2,\n    1979: -0.5\n};\n\nQ.historical_unemployment = {\n    1972: 4.6,\n    1973: 6.5,\n    1974: 8.0,\n    1975: 7.5,\n    1976: 8.5,\n    1977: 9.7,\n    1978: 10.1,\n    1979: 8.9\n};\n\n// Set base economic values based on starting year (1972)\nQ.base_inflation = Q.historical_inflation[Q.year] || 15.3;\nQ.base_growth = Q.historical_gdp_growth[Q.year] || 9.2;\nQ.base_unemployment = Q.historical_unemployment[Q.year] || 4.6;\n\n// Player deviation variables (only these change via player actions)\nQ.inflation_modifier = 0;\nQ.growth_modifier = 0;\nQ.unemployment_modifier = 0;\nQ.industry_modifier = 0;\nQ.agriculture_modifier = 0;\nQ.forex_pressure_delayed_reduction = 0;\n\n// Set initial economic values from base + modifiers\nQ.inflation = Q.base_inflation + Q.inflation_modifier;\nQ.economic_growth = Q.base_growth + Q.growth_modifier;\nQ.unemployed = Q.base_unemployment + Q.unemployment_modifier;\n\n// Historical Industrial Production Index (base year 1972 = 100)\nQ.historical_industrial_index = {\n    1972: 100,\n    1973: 110,\n    1974: 120,\n    1975: 132,\n    1976: 145,\n    1977: 158,\n    1978: 150,\n    1979: 142\n};\n\n// Historical Agricultural Production Index (base year 1972 = 100)\nQ.historical_agricultural_index = {\n    1972: 100,\n    1973: 102,\n    1974: 105,\n    1975: 108,\n    1976: 111,\n    1977: 113,\n    1978: 115,\n    1979: 117\n};\n\nQ.base_industry_index = Q.historical_industrial_index[Q.year] || 100;\nQ.base_agriculture_index = Q.historical_agricultural_index[Q.year] || 100;\n\nQ.getForexFactors = function() {\n    var industry = Q.forex_industry_penalty || 0.6;\n    var ratio = Q.forex_agriculture_ratio || 3;\n    var agriculture = Q.forex_agriculture_penalty || industry / ratio;\n    return {industry: industry, agriculture: agriculture, ratio: ratio};\n};\n\n// Current Production Indices\nQ.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;\nQ.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;\n\n// Player modifications to production indices (cumulative effects from player actions)\nQ.industrial_player_modifier = 0;\nQ.agricultural_player_modifier = 0;\n\n// Variables for making production changes (used by government actions)\nQ.industrial_change = 0;\nQ.agricultural_change = 0;\nQ.agricultural_consumption_change = 0;\n\n// Agricultural Product Prices System\nQ.agricultural_consumption = 100; // Base consumption level (can be modified by player actions)\nQ.agricultural_product_prices = 1.0; // Consumption/Production ratio\nQ.agricultural_price_status = \"Sufficient\"; // Text status for display\nQ.agricultural_price_timer = 0; // Timer for applying political effects\n\n// Economic Health System\nQ.economy_health = 0;\nQ.economy_health_raw = 0;\nQ.economy_health_timer = 0;\nQ.inflation_score = 0;\nQ.unemployment_score = 0;\nQ.growth_score = 0;\nQ.health_economy_status = \"Stable\";\nQ.apply_economy_effects = 0;\n\n// Foreign Exchange Pressure System\nQ.forex_pressure = 45;\nQ.forex_multiplier = 1;\nQ.crisis_forex_flag = 0;\nQ.forex_pressure_drift = 2;\nQ.forex_industry_penalty = 0.6;\nQ.forex_agriculture_ratio = 3;\nQ.forex_agriculture_penalty = Q.forex_industry_penalty/Q.forex_agriculture_ratio;\nQ.last_economy_year = null;\n\n// economic expansion timer\nQ.economic_expansion = 0;\n\n// quality of life (as % of base year - currently unused)\nQ.rural_qol = 100;\nQ.workers_qol = 100;\nQ.petty_bourgeoisie_qol = 100;\nQ.state_employees_qol = 100;\nQ.capitalists_qol = 100;\nQ.alevis_qol = 100;\nQ.kurds_qol = 100;\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\n\n// Land Reform mechanics\nQ.koykent_progress = 0;\nQ.land_reform_progress = 0;\nQ.cooperative_progress = 0;\n\n// Support for party by social group - Turkish political alignment baseline (1972)\n// Rural (45% of population)\nQ.rural_TIP = 0.4;\nQ.rural_chp = 13;\nQ.rural_AP = 44; // AP uses 'AP' variable\nQ.rural_CGP = 4;\nQ.rural_DP = 22;\nQ.rural_MSP = 9.6;\nQ.rural_MHP = 4;\nQ.rural_other = 3;\n\n// Workers (15% of population)\nQ.workers_TIP = 14;\nQ.workers_chp = 42;\nQ.workers_AP = 18; // AP\nQ.workers_CGP = 3;\nQ.workers_DP = 7;\nQ.workers_MSP = 10;\nQ.workers_MHP = 3;\nQ.workers_other = 3;\n\n// Apply union effects to worker support\nif (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {\n    // TÜRK-İŞ leaning: Worker support AP +5%\n    Q.workers_AP += 5;\n} else if (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance: Worker support AP +10%\n    Q.workers_AP += 10;\n}\n\n// Petty Bourgeoisie (15% of population)\nQ.petty_bourgeoisie_TIP = 0;\nQ.petty_bourgeoisie_chp = 15;\nQ.petty_bourgeoisie_AP = 36; // AP\nQ.petty_bourgeoisie_CGP = 9;\nQ.petty_bourgeoisie_DP = 15;\nQ.petty_bourgeoisie_MSP = 16;\nQ.petty_bourgeoisie_MHP = 7;\nQ.petty_bourgeoisie_other = 2;\n\n// State Employees (7% of population)\nQ.state_employees_TIP = 0;\nQ.state_employees_chp = 41;\nQ.state_employees_AP = 18; // AP\nQ.state_employees_CGP = 27;\nQ.state_employees_DP = 8;\nQ.state_employees_MSP = 0;\nQ.state_employees_MHP = 5;\nQ.state_employees_other = 3;\n\n// Capitalists and Land Owners (3% of population)\nQ.capitalists_TIP = 0;\nQ.capitalists_chp = 7;\nQ.capitalists_AP = 55; // AP\nQ.capitalists_CGP = 8;\nQ.capitalists_DP = 25;\nQ.capitalists_MSP = 5;\nQ.capitalists_MHP = 0;\nQ.capitalists_other = 0;\n\n// Alevis (10% of population)\nQ.alevis_TIP = 8;\nQ.alevis_chp = 63;\nQ.alevis_AP = 8; // AP\nQ.alevis_CGP = 1;\nQ.alevis_DP = 1;\nQ.alevis_MSP = 0;\nQ.alevis_MHP = 1;\nQ.alevis_other = 18;\n\n// Kurdish Political Movement (5% of population)\nQ.kurds_TIP = 8;\nQ.kurds_chp = 33;\nQ.kurds_AP = 32; // AP\nQ.kurds_CGP = 3;\nQ.kurds_DP = 2;\nQ.kurds_MSP = 3;\nQ.kurds_MHP = 0;\nQ.kurds_other = 19;\n\n\n// Current Parliament composition - Turkish baseline (1972)\n// Based on weighted demographic calculations\nQ.chp_r = 27.3;\nQ.TIP_r = 2.6;\nQ.AP_r = 46.5; // AP (Justice Party)\nQ.CGP_r = 6.5;\nQ.DP_r = 0;\nQ.MSP_r = 0;\nQ.MHP_r = 3.0;\nQ.other_r = 14.1;\n\n// diff from prev\nQ.old_chp_r = 27.3;\nQ.old_TIP_r = 2.6;\nQ.old_AP_r = 46.5; // AP\nQ.old_CGP_r = 6.5;\nQ.old_DP_r = 0;\nQ.old_MSP_r = 0;\nQ.old_MHP_r = 3.0;\nQ.old_other_r = 14.1;\n\n// Parliament seat distribution (initial TBMM composition, updates via elections)\nQ.total_seats = 450;\nQ.chp_seats = 143;\nQ.AP_seats = 224;\nQ.TIP_seats = 2;\nQ.CGP_seats = 26;\nQ.DP_seats = 36;\nQ.MSP_seats = 0;\nQ.MHP_seats = 1;\n Q.other_seats = 18;\nQ.majority_threshold = 226;\nQ.largest_party_key = 'AP';\nQ.largest_party = 'AP';\n\nQ.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;\nQ.grand_coalition = Q.democratic_coalition + Q.DP_seats;\nQ.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.far_right_coalition = Q.MSP_seats + Q.MHP_seats;\nQ.left_coalition = Q.chp_seats + Q.TIP_seats;\nQ.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;\nQ.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;\nQ.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\nQ.leverage = Q.chp_seats/1.5;\n\n// Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.\n// Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into\n// itself and its minor splinter parties (TKP, TSİP, TEP, SDP), each taking a fixed share of the\n// bloc's total vote.\nQ.socialist_left_formed = 0;\n// Snapshot of socialist_left_formed as of the last election, used to decide whether the\n// \"Last election vote share\" section on the status screen shows the Socialist Left\n// breakdown (it must reflect whether the split existed AT the last election, not whether\n// it currently exists).\nQ.socialist_left_formed_last_election = 0;\nQ.former_TIP_r = 0;\nQ.TIP_socialist_left_r = 0;\nQ.TKP_r = 0;\nQ.TSIP_r = 0;\nQ.TEP_r = 0;\nQ.SDP_r = 0;\n\n// for changing the CGP's name to the DStP\nQ.CGP_name = \"CGP\";\n\n// array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election\nQ.election_records = [];\n// party support records for every month\nQ.party_support_records = [];\n// inflation and unemployment records\nQ.economic_records = [];\n\n// Party Strategy\nQ.strategy_united = 0;\nQ.strategy_socdem = 0;\nQ.strategy_res = 0;\nQ.strategy_socfas = 0;\n\n// State of the government\nQ.president = \"Cevdet Sunay\";\n// starting prime_minister: Nihat Erim\n// starting prime minister: Nihat Erim\nQ.prime_minister = \"Nihat Erim\";\nQ.prime_minister_party = 'I';\nQ.CHP_in_government = 0;\nQ.AP_in_government = 0;\nQ.CGP_in_government = 0;\nQ.DP_in_government = 0;\nQ.MSP_in_government = 0;\nQ.TIP_in_government = 0;\nQ.MHP_in_government = 0;\nQ.I_in_government = 1;\nQ.generalstaff = \"Memduh Tağmaç\";\n\nQ.in_right_coalition = 0;\nQ.in_democratic_coalition = 0;\n// Grand coalition = <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP\n// also includes the \"new grand coalition\" of <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP + Others\nQ.in_grand_coalition = 0;\n// Popular front = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + Z + CGP\nQ.in_popular_front = 0;\n// left coalition = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + left-splinters\nQ.in_left_front = 0;\n// unholy coalition = <span style=\"color: #E3000F;\">**CHP**</span> + MSP\nQ.in_msp_coalition = 0;\nQ.in_emergency_government = 0;\nQ.in_CHP_majority = 0;\nQ.grand_coalition_failed = 0;\n// if the <span style=\"color: #E3000F;\">**CHP**</span> is ruling as part of a minority government\nQ.in_minority_government = 0;\n// national unity governmet\n\n// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.\nQ.coalition_dissent = 0;\n// dissent from the TIP, in a popular front or left front government\nQ.TIP_coalition_dissent = 0;\n\n// does the <span style=\"color: #E3000F;\">**CHP**</span> tolerate the government even if it is not a participant?\nQ.CHP_toleration = 0;\n\n// is the current government a presidential minority government?\nQ.minority_government = 0;\n\n// ministries - which parties control the ministries?\n// is the agricultural ministry useful at all?\nQ.foreign_minister = 'Independent minister';\nQ.foreign_minister_party = 'I';\nQ.interior_minister = 'Independent minister';\nQ.interior_minister_party = 'I';\nQ.justice_minister = 'Independent minister';\nQ.justice_minister_party = 'I';\nQ.labor_minister_party = 'I';\nQ.defense_minister = 'Independent minister';\nQ.defense_minister_party = 'I';\nQ.economic_minister = 'Independent minister';\nQ.economic_minister_party = 'I';\nQ.agriculture_minister = 'Independent minister';\nQ.agriculture_minister_party = 'I';\nQ.industrial_minister = 'Independent minister';\nQ.industrial_minister_party = 'I';\nQ.trade_minister = 'Independent minister';\nQ.trade_minister_party = 'I';\nQ.education_minister = 'Independent minister';\nQ.education_minister_party = 'I';\n\n// Events: what has occurred?\nQ.unemployment_insurance_seen = 0;\n// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...\nQ.unemployment_insurance_threshold = 10;\n\n//\nQ.economicreform = 0\nQ.aet = 0\nQ.oil = 0\n\n// Working rights promises\nQ.lockout_promise = 0;\nQ.working_rights_promise = 0;\n// Working rights achievements\nQ.lokavtt = 0;\nQ.nationall = 0;\nQ.kitt = 0;\nQ.ikincilgrevv = 0;\nQ.healthinspectionss = 0;\n// Set to 1 when at least 3 one-time labour ministry reforms have been passed\nQ.labour_rights_reform = 0;\n\n// have we reformed these institutions to be more democratic?\nQ.judicial_reform = 0;\nQ.bureaucratic_reform = 0;\nQ.military_reform = 0;\nQ.womens_rights = 0;\n// Level of welfare relative to the starting situation (can go negative)\nQ.welfare = 0;\n// level of support for farmers\nQ.agricultural_policy = 0;\nQ.land_reform = 0;\nQ.rural_land_reform_policy = 0;\nQ.works_program = 0;\nQ.public_works_implemented = 0;\n// Relations with the Western countries (France, UK).\nQ.west_relation = 45;\n// Relations with Eastern Bloc countries\nQ.east_relation = 0;\n// Relations with the Soviet Union\nQ.soviet_relation = 20;\n// Relations with the United States\nQ.us_relation = 45;\n// Relations with the Middle East countries\nQ.middle_east_relation = 45;\n// Cyprus Problem status: 0 = Unresolved, 1 = Status Quo, 2 = Confederation, 3 = Divided\nQ.cyprus_problem = 0;\nQ.gunesplan = 0\nQ.denktasplan = 0\nQ.armsembargo = 0\n// Cyprus effects tracking\nQ.cyprus_last_status = 0; // Track previous status to detect changes\nQ.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)\nQ.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)\n// How much have we exposed the secret rearmament programs?\n// nationalization_progress is part of the left economic plan.\nQ.nationalization_progress = 0;\n// socializations is part of the economic democracy card.\nQ.socializations = 0;\nQ.nationalize_budget = 4;\n// have there been any factory takeovers?\nQ.factory_takeovers = 0;\n// progress on the moderate economic plan\nQ.moderate_plan_progress = 0;\n// European Union negotiation process\nQ.eu = 0;\nQ.eu_progress = 0;\n// science/education\nQ.science = 0;\nQ.education_science = 0;\n\n// Tax rates relative to the starting situation\nQ.lower_tax_rates = 0;\nQ.upper_tax_rates = 0;\nQ.tariffs = 5;\n\nQ.electoral_threshold = 0;\n\n// our conduct in the government, and the conduct of our coalition opponents.\n// did the <span style=\"color: #E3000F;\">**CHP**</span> vote against the previous government in a vote of no confidence?\nQ.CHP_no_confidence = 0;\n// was the last <span style=\"color: #E3000F;\">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?\nQ.no_confidence_against_chp = 0;\n\n// Advisors/Leaders\n// n_advisors counts only swappable member slots (not leader or secretary)\nQ.n_advisors = 2;\n// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.\n// let's just put all of the timers here...\n// most party affairs and government affairs cards are on a timer.\nQ.timers = ['advisor_action',  'crisis_program',\n            'fundraising', 'ideology', 'intraparty',\n            'inter_party_relationships', 'international_relations',\n             'media', 'enemies',\n            'party_organizations', 'rally',\n            'shuffle_leadership',  'peoples_party',\n            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',\n            // govt\n            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',\n            'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',\n            'police',  'shuffle_cabinet', 'social_welfare',\n            'homosexual_rights', 'economic_policy', 'coalition_affairs',\n            'womens_rights', 'economic_democracy',\n            'dealing_with_toleration',\n            'constitutional_reform', 'labor_rights',\n            'education_science', 'curriculum', 'avans', 'cutspending',\n            // events\n            'emergency_cuts', 'unemployment_insurance',\n\n            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',\n            'high_inflation', 'banking_crisis',\n            'understanding_enemy', ];\nQ.advisor_action_timer = 0;\n// party affairs timers\nQ.crisis_program_timer = 0;\nQ.fundraising_timer = 0;\nQ.ideology_timer = 0;\nQ.intraparty_timer = 0\nQ.poppy_campaign = 0;\nQ.strategy_timer = 0;\nQ.poppy_harvestation = 1;\nQ.inter_party_relationships_timer = 0;\nQ.international_relations_timer = 0;\nQ.western_socialist_contacts = 0;\nQ.socialist_international_member = 0;\nQ.avans_timer = 0;\nQ.remnants_of_inonu_timer = 0;\nQ.cutspending_timer = 0;\nQ.media_timer = 0;\nQ.enemies_timer = 0;\nQ.party_organizations_timer =  0;\nQ.rally_timer = 0;\nQ.kemalizm_timer = 0;\nQ.shuffle_leadership_timer = 0;\nQ.streetfighting_timer = 0;\nQ.peoples_party_timer = 0;\n// n_elections is the number of elections that have happened since the start of the game.\nQ.n_elections = 0;\n// number of elections without a clear majority.\nQ.no_majority_elections = 0;\n// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.\nQ.in_election = 1;\nQ.next_election_year = 1973;\nQ.next_election_month = 10;\nQ.next_election_time = 22;\nif (typeof Q.local_elections_held === 'undefined') {\n    Q.local_elections_held = 0;\n}\nif (typeof Q.next_local_election_year === 'undefined') {\n    Q.next_local_election_year = 1973;\n}\nif (typeof Q.next_local_election_month === 'undefined') {\n    Q.next_local_election_month = 12;\n}\nif (typeof Q.next_local_election_week === 'undefined') {\n    Q.next_local_election_week = 2;\n}\nif (typeof Q.next_local_election_time === 'undefined') {\n    Q.next_local_election_time = 0;\n}\n// government affairs timers\nQ.agricultural_policy_timer = 0;\nQ.domestic_enemies_timer = 0;\nQ.economic_policy_timer = 0;\nQ.fiscal_policy_timer = 0;\nQ.foreign_policy_timer = 0;\nQ.judiciary_timer = 0;\nQ.labor_affairs_timer = 0;\nQ.military_policy_timer = 0;\nQ.police_timer = 0;\nQ.shuffle_cabinet_timer = 0;\nQ.social_welfare_timer = 0;\nQ.womens_rights_timer = 0;\nQ.homosexual_rights_timer = 0;\nQ.municipality_timer = 0;\nQ.economic_democracy_timer = 0;\nQ.coalition_affairs_timer = 0;\nQ.industrial_policy_timer = 0;\n// Economic policy state\nQ.Tiger = 0;\nQ.imf_agreement = 0;\n\n// Tracking flags for one-time effects\nQ.oil_effect_applied = false;\nQ.oil_inflation_effect = 0;\nQ.land_reform_effect_applied = false;\nQ.cooperative_effect_applied = false;\nQ.koykent_effect_applied = false;\nQ.tiger_1978_effect_applied = false;\nQ.tiger_1979_effect_applied = false;\nQ.tiger_1980_effect_applied = false;\n\n// event timers\nQ.emergency_cuts_timer = 0;\nQ.unemployment_insurance_timer = 0;\nQ.TIP_ultimatum_timer = 0;\n\n//Cyprus attitudes\nQ.greece_attitude = 4;\nQ.uk_attitude = 50 + (Q.west_relation - 50);\nQ.us_attitude = 35 + (Q.us_relation - 50);\n\n// all the initial advisors are centrists.\n// Leader and Secretary have advisor=1 for display but are NOT counted in n_advisors.\n// Only Members (Ecevit, Satır) are counted in n_advisors.\nQ.inonu_advisor = 1; // İsmet İnönü (Party Leader — not in n_advisors)\nQ.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary — not in n_advisors)\nQ.ecevit_advisor = 1; // Bülent Ecevit (Member — counted in n_advisors)\nQ.satir_advisor = 1; // Kemal Satır (Member — counted in n_advisors)\n\n// left advisors\n\n// centrist alternate advisors\n\n// Reformist advisors\n\n// Labor advisors\n\n// Revisionist advisors\n\n\n// Nonfactional advisors\n\n// Turkish Right Kemalist advisors\nQ.gogus_advisor = 0; // Ali İhsan Göğüs (existing)\nQ.paksut_advisor = 0; // Emin Paksüt\nQ.celikbas_advisor = 0; // Fethi Çelikbaş\n\n// Turkish advisors - other factions\nQ.avcioglu_advisor = 0; // Doğan Avcıoğlu (Kemalist Marxist)\nQ.eyuboglu_advisor = 0; // Sabahattin Eyüboğlu (Reformist Kemalist)\n\n// Function to calculate municipality control level dynamically\nfunction getMunicipalityControlLevel() {\n    var controlled = Q.municipalities_controlled || 0;\n    var total = Q.total_municipalities || Q.local_total_seats || 67;\n    if (total <= 0) {\n        total = 67;\n    }\n    var ratio = controlled / total;\n    if (ratio <= (13 / 67)) {\n        return 0; // Terrible\n    } else if (ratio <= (26 / 67)) {\n        return 1; // Poor\n    } else if (ratio <= (34 / 67)) {\n        return 2; // Divided\n    } else if (ratio <= (40 / 67)) {\n        return 3; // Satisfactory\n    }\n    return 4; // Overwhelming\n}\n\n// Set initial municipality control level\nQ.municipality_control_level = getMunicipalityControlLevel();\n\n// Function to update municipality control level (call this whenever municipalities_controlled changes)\nfunction updateMunicipalityControlLevel() {\n    Q.municipality_control_level = getMunicipalityControlLevel();\n}\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nAnatolianRules.refreshVotes(Q);"
+          "$code": "Q.started = 1;\n// time elapsed (in half-months/bi-weekly periods)\nQ.time = 1;\nQ.year = 1972;\nQ.month = 1;\nQ.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)\n// how many actions have been taken this period?\nQ.month_actions = 0;\n\n// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves\nQ.difficulty = 0;\nQ.historical_mode = 0;\n// old demographics\nQ.old_demographics = 0;\n// use decimals for parliament seats\nQ.use_decimals = 1; // Enable decimal display for Turkish election results\n// Show narrative-only flavour events by default\nQ.flavour_events = 1;\n\n// party resources\nQ.resources = 2;\n// party dues\nQ.dues = 2;\n\n// the state of the party\n// overall dissent reduces every increase in party support.\nQ.dissent = 0.05;\nQ.dissent_percent = 5;\n\n// factions\nQ.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'right_kemalists', 'third_worldists'];\n\n// Third Worldists: a minor faction, disabled by default. Toggle Q.third_worldists_enabled\n// to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,\n// Internal Factions list), where it is positioned to the right of the Kemalist Marxists.\nQ.third_worldists_enabled = 0;\nQ.third_worldists_color = '#5f0f91';\nQ.third_worldists_dissent = 20;\n\n// Per-quarter faction strengths (source of truth)\n// Quarters: Grassroots(20%), Base(15%), Bureaucracy(25%), TBMM(20%), Intelligentsia(10%), Local Leadership(10%)\n// q2 (Bureaucracy) base values are lower because party leadership figures add +1 each dynamically.\n// Starting leadership: İnönü(ok), Kırıkoğlu(km), Ecevit(lk), Satır(ok) → bonus km=1, lk=1, ok=2, rk=0\n// So q2 base + bonus = effective: km(-1+1=0), lk(1+1=2), ok(2+2=4), rk(1+0=1)\nQ.q0_km_str = 2; Q.q0_lk_str = 4; Q.q0_ok_str = 2; Q.q0_rk_str = 1; Q.q0_tw_str = 3;\nQ.q1_km_str = 1; Q.q1_lk_str = 4; Q.q1_ok_str = 2; Q.q1_rk_str = 1; Q.q1_tw_str = 2;\nQ.q2_km_str = 0; Q.q2_lk_str = 1; Q.q2_ok_str = 2; Q.q2_rk_str = 1; Q.q2_tw_str = 1;\nQ.q3_km_str = 1; Q.q3_lk_str = 3; Q.q3_ok_str = 3; Q.q3_rk_str = 2; Q.q3_tw_str = 2;\nQ.q4_km_str = 2; Q.q4_lk_str = 4; Q.q4_ok_str = 2; Q.q4_rk_str = 1; Q.q4_tw_str = 2;\nQ.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str = 1;\n\n// Advisor-to-faction mapping for dynamic Bureaucracy quarter (q2) computation.\n// km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional\nQ._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';\n\nQ.kemalist_marxists_dissent = 20;\nQ.left_kemalists_dissent = 20;\nQ.orthodox_kemalists_dissent = 5;\nQ.right_kemalists_dissent = 10;\nQ.right_kemalist_deal = 0;\nQ.right_kemalists_resign = 0;\nQ.right_kemalist_split = 0;\nQ.orthodox_kemalist_destruction = 0;\n\n// Congress tracking\nQ.congress_upcoming = 1;\nQ.congress_year = 1972;\nQ.congress_month = 5;\nQ.congress_candidate_1 = \"ecevit\";\nQ.congress_candidate_2 = \"inonu\";\n// Faction support: 1 = candidate_1 (Ecevit), 2 = candidate_2 (İnönü), 0 = undecided\nQ.kemalist_marxists_support = 0;\nQ.left_kemalists_support = 1;\nQ.orthodox_kemalists_support = 2;\nQ.right_kemalists_support = 2;\nQ.third_worldists_support = 0;\n\n// secret events...\nQ.unions_independent = 0;\nQ.centrists_resign = 0;\nQ.left_split = 0;\nQ.reformists_resigned = 0;\n\n// Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)\nQ.inonu_stay = 0;\n\n// Status of the Turkish Democracy\nQ.democracystatus = 30\nQ.paramilitary_pressure_timer = 0;\n\n// crisis_urgency indicates how seriously the <span style=\"color: #E3000F;\">**CHP**</span> is taking the economic crisis - scale from 0 to 10.\nQ.crisis_urgency = 0;\nQ.far_right_urgency = 0;\n// radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.\nQ.radicalization = 0;\nQ.public_works_support = 0;\nQ.pacifism = 0;\nQ.democratization = 0;\nQ.communist_coalition = 0;\n// economic_plan: have we adopted *any* economic plan?\nQ.economic_plan = 0;\nQ.public_works_adopted = 0;\n// have we formed the iron front?\n// people's party support\nQ.peoples_party_support = 0;\n// support for nationalizations\nQ.nationalization_support = 0;\nQ.nationalization_adopted = 0;\n// moderate economic plan\nQ.moderate_plan_support = 0;\nQ.moderate_plan_adopted = 0;\n\n// Cyprus\nQ.cyprus_mode = 0;\nQ.cyprus_briefings_seen = [];\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching\n\n\n// organizations\n\n// inter-party relations\nQ.TIP_relation = 40;\nQ.CGP_relation = 35;\nQ.AP_relation = 30;\nQ.DP_relation = 20;\n// MSP and MHP are invariably hostile\nQ.MSP_relation = 10;\nQ.MHP_relation = 10;\n\n// DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977\nQ.DP_collapse = 0;\n\nQ.TIP_leader = \"Unorganized\";\n// alternative TIP leaders: Mehmet Ali Aybar, Behice Boran\nQ.TIP_party_leader = \"Unorganized\";\nQ.AP_leader = \"Demirel\";\nQ.AP_party_leader = \"Demirel\";\nQ.DP_leader = \"Bozbeyli\";\nQ.DP_party_leader = \"Bozbeyli\";\nQ.CGP_leader = \"Feyzioğlu\";\nQ.CGP_party_leader = \"Feyzioğlu\";\nQ.MSP_leader = \"Süleyman Arif\";\n// alternative MSP leader: Erbakan\nQ.MSP_party_leader = \"Süleyman Arif\";\nQ.CHP_leader = \"İnönü\";\n// alternative <span style=\"color: #E3000F;\">**CHP**</span> leader: Ecevit\nQ.CHP_party_leader = \"İnönü\";\nQ.party_leader_id = \"inonu\";\nQ.party_secretary = \"Kırıkoğlu\";\nQ.party_secretary_id = \"kirikoglu\";\nQ.MHP_leader = \"Alparslan Türkeş\"\nQ.MHP_party_leader = \"Alparslan Türkeş\"\n\n// Municipality control system\nQ.municipalities_controlled = 21;\nQ.total_municipalities = 67;\nQ.municipality_control_level = 1; // 0=Terrible, 1=Poor, 2=Divided, 3=Satisfactory, 4=Overwhelming\nQ.local_total_seats = 67;\nQ.local_election_threshold = 8;\n\n// Interior affairs policy baselines (numeric: 0 = worst/bad start)\nQ.land_reform_level = 0;\nQ.natural_resources_level = 0;\nQ.workplace_democracy_level = 0;\nQ.peoples_sector_level = 0;\nQ.workplace_safety_level = 0;\nQ.minimum_wage_level = 0;\nQ.judicial_reform_level = 0;\nQ.counter_guerilla_discovered = 0;\nQ.counter_guerilla_level = 0;\nQ.education_funding_level = 0;\nQ.education_curriculum_level = 0;\nQ.university_freedom_level = 0;\nQ.university_prestige_level = 0;\nQ.womens_legal_level = 2;\nQ.womens_workplace_level = 0;\nQ.household_violence_level = 0;\nQ.language_rights_level = 0;\n\n// The array of forces - Turkish paramilitary groups\n// Number of members (in thousands)\n// Far Left organizations\nQ.thkpc_strength = 2;\nQ.thkpc_militancy = 0.5;\nQ.thkpc_destroyed = 0;\nQ.thkpc_banned = 0;\n\nQ.tkpml_strength = 0.1;\nQ.tkpml_militancy = 0.8;\nQ.tkpml_formed = 0;\nQ.tkpml_banned = 0;\n\nQ.devyol_strength = 55;\nQ.devyol_militancy = 0.25;\nQ.devyol_formed = 0;\nQ.devyol_banned = 0;\n\n// Separatist organizations\nQ.pkk_base_strength = 8;\nQ.pkk_militancy = 0.5;\nQ.pkk_formed = 0;\nQ.pkk_strength = 0;\n\n// State forces\nQ.police_strength = 60;\nQ.police_militancy = 0.8;\nQ.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)\n\n// Far Right organizations\nQ.grey_wolves_strength = 25;\nQ.grey_wolves_militancy = 0.1;\nQ.grey_wolves_banned = 0;\n\nQ.raiders_strength = 30;\nQ.raiders_militancy = 0.05;\nQ.raiders_formed = 0;\nQ.raiders_banned = 0;\n\nQ.tit_strength = 0.5;\nQ.tit_militancy = 0.9;\nQ.tit_banned = 0;\n\n// Keep these for compatibility with existing events, but set to 0 for Turkish context\n\n\n// Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)\nQ.army_land_strength = 0.4;\nQ.army_naval_strength = 0.4;\nQ.army_aerial_strength = 0.4;\n\n// Political Violence Calculation System\nQ.streetfighting_joever = 0;\n\n// Calculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.separatist_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Separatist forces calculation (strength × militancy)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.pkk_formed = 1;\n    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);\n    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;\n    Q.separatist_force += Q.pkk_force;\n} else {\n    Q.pkk_formed = 0;\n    Q.pkk_strength = 0;\n    Q.pkk_force = 0;\n}\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.pkk_formed) {\n        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\n// Grey Wolves street control vote bonus for middle class (petty bourgeoisie)\n// Applied at initialization only - recalculations happen elsewhere\nif (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_percent > Q.far_left_force_percent && Q.grey_wolves_force_percent > 30) {\n    Q.grey_wolves_control_bonus = Math.floor((Q.grey_wolves_force_percent - 30) / 10) * 4;\n    Q.petty_bourgeoisie_MHP += Q.grey_wolves_control_bonus;\n    // Ensure we don't exceed 100% and redistribute proportionally if needed\n    if (Q.petty_bourgeoisie_MHP > 100) {\n        Q.petty_bourgeoisie_MHP = 100;\n    }\n}\n\n// strength includes actual military and de facto reserves?\nQ.armed_forces_strength = 100;\nQ.armed_forces_militancy = 5;\nQ.armed_forces_loyalty = 0.2;\n\n// The state of the country\n\n// popular opinion\n// national ideology - on a binary scale\n// nationalism vs internationalism or pacifism or non-nationalism\nQ.nationalism = 80;\n// socialism vs capitalism\nQ.socialism = 6;\n// pro-republic vs anti-republic\nQ.pro_republic = 86;\n\nQ.emergency_rule = 0;\n\n// minimum percentage of votes to be represented in the Grand National Assembly\nQ.electoral_threshold = 0;\n// constitutional reform level\nQ.constitutional_reform = 0;\n// constructive vote of no confidence\nQ.constructive_vonc = 0;\n// reduction in presidential powers\nQ.presidential_powers = 0;\n// allows banning of non-constitutional parties\nQ.constitutional_protection = 0;\nQ.TIP_banned = 1;\nQ.MHP_banned = 0;\n\n// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.\n// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.\nQ.coup_progress = 0;\nQ.capital_strike_progress = 0;\n\n// TSK (Turkish Armed Forces) coup timer system (0-15)\nQ.coup_timer = 0;\n\n// TSK status tracking\nQ.army_in_government = 1; // Starting with Nihat Erim military government\nQ.tsk_pacified = 0;\n\n// Kurdish Nationalism system\nQ.kurdish_political_consciousness = 0.20; // Starting position: Low (0.14-0.24)\nQ.kurdish_radicalism = 0.25; // Starting position: Medium-low (0.24-0.44)\n\n// Women's Rights\nQ.women_reform = 0\n\n// Factors affecting Kurdish Nationalism\n// Consciousness\nQ.eastern_crime = 5\nQ.CHP_kurdish_attitude = 0\nQ.ddkd_formed = 0\n\n// Radicalism\n// CHP attitude here too\n// tip being banned\n// ddkd here too\n\n// Union Relations system\nQ.disk_relation = 35; // Starting at \"cool\" (29.9-39.9 range)\nQ.disk_turkis_conflict = 0.50; // Starting at \"Balanced\" (0.40-0.60)\nQ.union_reform = \"no\";\n\n// Update army_in_government based on prime_minister_party\nif (Q.prime_minister_party == 'I') {\n    Q.army_in_government = 1;\n} else {\n    Q.army_in_government = 0;\n}\n\nQ.budget = 1;\nQ.yearly_budget = 0;\n\n// Proportion of different social groups - Turkish demographics circa 1972-1977\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\n\n// Kurdish demographic percentage based on political consciousness level\nif (Q.kurdish_political_consciousness < 0.05) {\n    Q.kurds = 0; // Nonexistent - 0%\n} else if (Q.kurdish_political_consciousness >= 0.05 && Q.kurdish_political_consciousness < 0.14) {\n    Q.kurds = 3; // Very low - 3%\n} else if (Q.kurdish_political_consciousness >= 0.14 && Q.kurdish_political_consciousness < 0.24) {\n    Q.kurds = 5; // Low - 5%\n} else if (Q.kurdish_political_consciousness >= 0.24 && Q.kurdish_political_consciousness < 0.44) {\n    Q.kurds = 7; // Medium-low - 7%\n} else if (Q.kurdish_political_consciousness >= 0.44 && Q.kurdish_political_consciousness < 0.69) {\n    Q.kurds = 9; // Medium - 9%\n} else if (Q.kurdish_political_consciousness >= 0.69 && Q.kurdish_political_consciousness < 0.89) {\n    Q.kurds = 11; // High - 11%\n} else {\n    Q.kurds = 15; // Very high - 15%\n}\n\n// income for industrial workers\nQ.income = 1600;\n\n// Historical economic baseline data by year (Turkish context)\nQ.historical_inflation = {\n    1972: 15.3,\n    1973: 15.8,\n    1974: 15.4,\n    1975: 19.0,\n    1976: 16.4,\n    1977: 22.5,\n    1978: 53.3,\n    1979: 62.0\n};\n\nQ.historical_gdp_growth = {\n    1972: 9.2,\n    1973: 4.9,\n    1974: 3.3,\n    1975: 6.1,\n    1976: 9.0,\n    1977: 3.0,\n    1978: 1.2,\n    1979: -0.5\n};\n\nQ.historical_unemployment = {\n    1972: 4.6,\n    1973: 6.5,\n    1974: 8.0,\n    1975: 7.5,\n    1976: 8.5,\n    1977: 9.7,\n    1978: 10.1,\n    1979: 8.9\n};\n\n// Set base economic values based on starting year (1972)\nQ.base_inflation = Q.historical_inflation[Q.year] || 15.3;\nQ.base_growth = Q.historical_gdp_growth[Q.year] || 9.2;\nQ.base_unemployment = Q.historical_unemployment[Q.year] || 4.6;\n\n// Player deviation variables (only these change via player actions)\nQ.inflation_modifier = 0;\nQ.growth_modifier = 0;\nQ.unemployment_modifier = 0;\nQ.industry_modifier = 0;\nQ.agriculture_modifier = 0;\nQ.forex_pressure_delayed_reduction = 0;\n\n// Set initial economic values from base + modifiers\nQ.inflation = Q.base_inflation + Q.inflation_modifier;\nQ.economic_growth = Q.base_growth + Q.growth_modifier;\nQ.unemployed = Q.base_unemployment + Q.unemployment_modifier;\n\n// Historical Industrial Production Index (base year 1972 = 100)\nQ.historical_industrial_index = {\n    1972: 100,\n    1973: 110,\n    1974: 120,\n    1975: 132,\n    1976: 145,\n    1977: 158,\n    1978: 150,\n    1979: 142\n};\n\n// Historical Agricultural Production Index (base year 1972 = 100)\nQ.historical_agricultural_index = {\n    1972: 100,\n    1973: 102,\n    1974: 105,\n    1975: 108,\n    1976: 111,\n    1977: 113,\n    1978: 115,\n    1979: 117\n};\n\nQ.base_industry_index = Q.historical_industrial_index[Q.year] || 100;\nQ.base_agriculture_index = Q.historical_agricultural_index[Q.year] || 100;\n\nQ.getForexFactors = function() {\n    var industry = Q.forex_industry_penalty || 0.6;\n    var ratio = Q.forex_agriculture_ratio || 3;\n    var agriculture = Q.forex_agriculture_penalty || industry / ratio;\n    return {industry: industry, agriculture: agriculture, ratio: ratio};\n};\n\n// Current Production Indices\nQ.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;\nQ.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;\n\n// Player modifications to production indices (cumulative effects from player actions)\nQ.industrial_player_modifier = 0;\nQ.agricultural_player_modifier = 0;\n\n// Variables for making production changes (used by government actions)\nQ.industrial_change = 0;\nQ.agricultural_change = 0;\nQ.agricultural_consumption_change = 0;\n\n// Agricultural Product Prices System\nQ.agricultural_consumption = 100; // Base consumption level (can be modified by player actions)\nQ.agricultural_product_prices = 1.0; // Consumption/Production ratio\nQ.agricultural_price_status = \"Sufficient\"; // Text status for display\nQ.agricultural_price_timer = 0; // Timer for applying political effects\n\n// Economic Health System\nQ.economy_health = 0;\nQ.economy_health_raw = 0;\nQ.economy_health_timer = 0;\nQ.inflation_score = 0;\nQ.unemployment_score = 0;\nQ.growth_score = 0;\nQ.health_economy_status = \"Stable\";\nQ.apply_economy_effects = 0;\n\n// Foreign Exchange Pressure System\nQ.forex_pressure = 45;\nQ.forex_multiplier = 1;\nQ.crisis_forex_flag = 0;\nQ.forex_pressure_drift = 2;\nQ.forex_industry_penalty = 0.6;\nQ.forex_agriculture_ratio = 3;\nQ.forex_agriculture_penalty = Q.forex_industry_penalty/Q.forex_agriculture_ratio;\nQ.last_economy_year = null;\n\n// economic expansion timer\nQ.economic_expansion = 0;\n\n// quality of life (as % of base year - currently unused)\nQ.rural_qol = 100;\nQ.workers_qol = 100;\nQ.petty_bourgeoisie_qol = 100;\nQ.state_employees_qol = 100;\nQ.capitalists_qol = 100;\nQ.alevis_qol = 100;\nQ.kurds_qol = 100;\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\n\n// Land Reform mechanics\nQ.koykent_progress = 0;\nQ.land_reform_progress = 0;\nQ.cooperative_progress = 0;\n\n// Support for party by social group - Turkish political alignment baseline (1972)\n// Rural (45% of population)\nQ.rural_TIP = 0.4;\nQ.rural_chp = 13;\nQ.rural_AP = 44; // AP uses 'AP' variable\nQ.rural_CGP = 4;\nQ.rural_DP = 22;\nQ.rural_MSP = 9.6;\nQ.rural_MHP = 4;\nQ.rural_other = 3;\n\n// Workers (15% of population)\nQ.workers_TIP = 14;\nQ.workers_chp = 42;\nQ.workers_AP = 18; // AP\nQ.workers_CGP = 3;\nQ.workers_DP = 7;\nQ.workers_MSP = 10;\nQ.workers_MHP = 3;\nQ.workers_other = 3;\n\n// Apply union effects to worker support\nif (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {\n    // TÜRK-İŞ leaning: Worker support AP +5%\n    Q.workers_AP += 5;\n} else if (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance: Worker support AP +10%\n    Q.workers_AP += 10;\n}\n\n// Petty Bourgeoisie (15% of population)\nQ.petty_bourgeoisie_TIP = 0;\nQ.petty_bourgeoisie_chp = 15;\nQ.petty_bourgeoisie_AP = 36; // AP\nQ.petty_bourgeoisie_CGP = 9;\nQ.petty_bourgeoisie_DP = 15;\nQ.petty_bourgeoisie_MSP = 16;\nQ.petty_bourgeoisie_MHP = 7;\nQ.petty_bourgeoisie_other = 2;\n\n// State Employees (7% of population)\nQ.state_employees_TIP = 0;\nQ.state_employees_chp = 41;\nQ.state_employees_AP = 18; // AP\nQ.state_employees_CGP = 27;\nQ.state_employees_DP = 8;\nQ.state_employees_MSP = 0;\nQ.state_employees_MHP = 5;\nQ.state_employees_other = 3;\n\n// Capitalists and Land Owners (3% of population)\nQ.capitalists_TIP = 0;\nQ.capitalists_chp = 7;\nQ.capitalists_AP = 55; // AP\nQ.capitalists_CGP = 8;\nQ.capitalists_DP = 25;\nQ.capitalists_MSP = 5;\nQ.capitalists_MHP = 0;\nQ.capitalists_other = 0;\n\n// Alevis (10% of population)\nQ.alevis_TIP = 8;\nQ.alevis_chp = 63;\nQ.alevis_AP = 8; // AP\nQ.alevis_CGP = 1;\nQ.alevis_DP = 1;\nQ.alevis_MSP = 0;\nQ.alevis_MHP = 1;\nQ.alevis_other = 18;\n\n// Kurdish Political Movement (5% of population)\nQ.kurds_TIP = 8;\nQ.kurds_chp = 33;\nQ.kurds_AP = 32; // AP\nQ.kurds_CGP = 3;\nQ.kurds_DP = 2;\nQ.kurds_MSP = 3;\nQ.kurds_MHP = 0;\nQ.kurds_other = 19;\n\n\n// Current Parliament composition - Turkish baseline (1972)\n// Based on weighted demographic calculations\nQ.chp_r = 27.3;\nQ.TIP_r = 2.6;\nQ.AP_r = 46.5; // AP (Justice Party)\nQ.CGP_r = 6.5;\nQ.DP_r = 0;\nQ.MSP_r = 0;\nQ.MHP_r = 3.0;\nQ.other_r = 14.1;\n\n// diff from prev\nQ.old_chp_r = 27.3;\nQ.old_TIP_r = 2.6;\nQ.old_AP_r = 46.5; // AP\nQ.old_CGP_r = 6.5;\nQ.old_DP_r = 0;\nQ.old_MSP_r = 0;\nQ.old_MHP_r = 3.0;\nQ.old_other_r = 14.1;\n\n// Parliament seat distribution (initial TBMM composition, updates via elections)\nQ.total_seats = 450;\nQ.chp_seats = 143;\nQ.AP_seats = 224;\nQ.TIP_seats = 2;\nQ.CGP_seats = 26;\nQ.DP_seats = 36;\nQ.MSP_seats = 0;\nQ.MHP_seats = 1;\n Q.other_seats = 18;\nQ.majority_threshold = 226;\nQ.largest_party_key = 'AP';\nQ.largest_party = 'AP';\n\nQ.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;\nQ.grand_coalition = Q.democratic_coalition + Q.DP_seats;\nQ.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.far_right_coalition = Q.MSP_seats + Q.MHP_seats;\nQ.left_coalition = Q.chp_seats + Q.TIP_seats;\nQ.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;\nQ.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;\nQ.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\nQ.leverage = Q.chp_seats/1.5;\n\n// Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.\n// Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into\n// itself and its minor splinter parties (TKP, TSİP, TEP, SDP), each taking a fixed share of the\n// bloc's total vote.\nQ.socialist_left_formed = 0;\n// Snapshot of socialist_left_formed as of the last election, used to decide whether the\n// \"Last election vote share\" section on the status screen shows the Socialist Left\n// breakdown (it must reflect whether the split existed AT the last election, not whether\n// it currently exists).\nQ.socialist_left_formed_last_election = 0;\nQ.former_TIP_r = 0;\nQ.TIP_socialist_left_r = 0;\nQ.TKP_r = 0;\nQ.TSIP_r = 0;\nQ.TEP_r = 0;\nQ.SDP_r = 0;\n\n// for changing the CGP's name to the DStP\nQ.CGP_name = \"CGP\";\n\n// array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election\nQ.election_records = [];\n// party support records for every month\nQ.party_support_records = [];\n// inflation and unemployment records\nQ.economic_records = [];\n\n// Party Strategy\nQ.strategy_united = 0;\nQ.strategy_socdem = 0;\nQ.strategy_res = 0;\nQ.strategy_socfas = 0;\n\n// State of the government\nQ.president = \"Cevdet Sunay\";\n// starting prime_minister: Nihat Erim\n// starting prime minister: Nihat Erim\nQ.prime_minister = \"Nihat Erim\";\nQ.prime_minister_party = 'I';\nQ.CHP_in_government = 0;\nQ.AP_in_government = 0;\nQ.CGP_in_government = 0;\nQ.DP_in_government = 0;\nQ.MSP_in_government = 0;\nQ.TIP_in_government = 0;\nQ.MHP_in_government = 0;\nQ.I_in_government = 1;\nQ.generalstaff = \"Memduh Tağmaç\";\n\nQ.in_right_coalition = 0;\nQ.in_democratic_coalition = 0;\n// Grand coalition = <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP\n// also includes the \"new grand coalition\" of <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP + Others\nQ.in_grand_coalition = 0;\n// Popular front = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + Z + CGP\nQ.in_popular_front = 0;\n// left coalition = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + left-splinters\nQ.in_left_front = 0;\n// unholy coalition = <span style=\"color: #E3000F;\">**CHP**</span> + MSP\nQ.in_msp_coalition = 0;\nQ.in_emergency_government = 0;\nQ.in_CHP_majority = 0;\nQ.grand_coalition_failed = 0;\n// if the <span style=\"color: #E3000F;\">**CHP**</span> is ruling as part of a minority government\nQ.in_minority_government = 0;\n// national unity governmet\n\n// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.\nQ.coalition_dissent = 0;\n// dissent from the TIP, in a popular front or left front government\nQ.TIP_coalition_dissent = 0;\n\n// does the <span style=\"color: #E3000F;\">**CHP**</span> tolerate the government even if it is not a participant?\nQ.CHP_toleration = 0;\n\n// is the current government a presidential minority government?\nQ.minority_government = 0;\n\n// ministries - which parties control the ministries?\n// is the agricultural ministry useful at all?\nQ.foreign_minister = 'Independent minister';\nQ.foreign_minister_party = 'I';\nQ.interior_minister = 'Independent minister';\nQ.interior_minister_party = 'I';\nQ.justice_minister = 'Independent minister';\nQ.justice_minister_party = 'I';\nQ.labor_minister_party = 'I';\nQ.defense_minister = 'Independent minister';\nQ.defense_minister_party = 'I';\nQ.economic_minister = 'Independent minister';\nQ.economic_minister_party = 'I';\nQ.agriculture_minister = 'Independent minister';\nQ.agriculture_minister_party = 'I';\nQ.industrial_minister = 'Independent minister';\nQ.industrial_minister_party = 'I';\nQ.trade_minister = 'Independent minister';\nQ.trade_minister_party = 'I';\nQ.education_minister = 'Independent minister';\nQ.education_minister_party = 'I';\n\n// Events: what has occurred?\nQ.unemployment_insurance_seen = 0;\n// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...\nQ.unemployment_insurance_threshold = 10;\n\n//\nQ.economicreform = 0\nQ.aet = 0\nQ.oil = 0\n\n// Working rights promises\nQ.lockout_promise = 0;\nQ.working_rights_promise = 0;\n// Working rights achievements\nQ.lokavtt = 0;\nQ.nationall = 0;\nQ.kitt = 0;\nQ.ikincilgrevv = 0;\nQ.healthinspectionss = 0;\n// Set to 1 when at least 3 one-time labour ministry reforms have been passed\nQ.labour_rights_reform = 0;\n\n// have we reformed these institutions to be more democratic?\nQ.judicial_reform = 0;\nQ.bureaucratic_reform = 0;\nQ.military_reform = 0;\nQ.womens_rights = 0;\n// Level of welfare relative to the starting situation (can go negative)\nQ.welfare = 0;\n// level of support for farmers\nQ.agricultural_policy = 0;\nQ.land_reform = 0;\nQ.rural_land_reform_policy = 0;\nQ.works_program = 0;\nQ.public_works_implemented = 0;\n// Relations with the Western countries (France, UK).\nQ.west_relation = 45;\n// Relations with Eastern Bloc countries\nQ.east_relation = 0;\n// Relations with the Soviet Union\nQ.soviet_relation = 20;\n// Relations with the United States\nQ.us_relation = 45;\n// Relations with the Middle East countries\nQ.middle_east_relation = 45;\n// Cyprus Problem status: 0 = Unresolved, 1 = Status Quo, 2 = Confederation, 3 = Divided\nQ.cyprus_problem = 0;\nQ.gunesplan = 0\nQ.denktasplan = 0\nQ.armsembargo = 0\n// Cyprus effects tracking\nQ.cyprus_last_status = 0; // Track previous status to detect changes\nQ.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)\nQ.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)\n// How much have we exposed the secret rearmament programs?\n// nationalization_progress is part of the left economic plan.\nQ.nationalization_progress = 0;\n// socializations is part of the economic democracy card.\nQ.socializations = 0;\nQ.nationalize_budget = 4;\n// have there been any factory takeovers?\nQ.factory_takeovers = 0;\n// progress on the moderate economic plan\nQ.moderate_plan_progress = 0;\n// European Union negotiation process\nQ.eu = 0;\nQ.eu_progress = 0;\n// science/education\nQ.science = 0;\nQ.education_science = 0;\n\n// Tax rates relative to the starting situation\nQ.lower_tax_rates = 0;\nQ.upper_tax_rates = 0;\nQ.tariffs = 5;\n\nQ.electoral_threshold = 0;\n\n// our conduct in the government, and the conduct of our coalition opponents.\n// did the <span style=\"color: #E3000F;\">**CHP**</span> vote against the previous government in a vote of no confidence?\nQ.CHP_no_confidence = 0;\n// was the last <span style=\"color: #E3000F;\">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?\nQ.no_confidence_against_chp = 0;\n\n// Advisors/Leaders\n// n_advisors counts only swappable member slots (not leader or secretary)\nQ.n_advisors = 2;\n// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.\n// let's just put all of the timers here...\n// most party affairs and government affairs cards are on a timer.\nQ.timers = ['advisor_action',  'crisis_program',\n            'fundraising', 'ideology', 'intraparty',\n            'inter_party_relationships', 'international_relations',\n             'media', 'enemies',\n            'party_organizations', 'rally',\n            'shuffle_leadership',  'peoples_party',\n            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',\n            // govt\n            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',\n            'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',\n            'police',  'shuffle_cabinet', 'social_welfare',\n            'homosexual_rights', 'economic_policy', 'coalition_affairs',\n            'womens_rights', 'economic_democracy',\n            'dealing_with_toleration',\n            'constitutional_reform', 'labor_rights',\n            'education_science', 'curriculum', 'avans', 'cutspending',\n            // events\n            'emergency_cuts', 'unemployment_insurance',\n\n            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',\n            'high_inflation', 'banking_crisis',\n            'understanding_enemy', ];\nQ.advisor_action_timer = 0;\n// party affairs timers\nQ.crisis_program_timer = 0;\nQ.fundraising_timer = 0;\nQ.ideology_timer = 0;\nQ.intraparty_timer = 0\nQ.poppy_campaign = 0;\nQ.strategy_timer = 0;\nQ.poppy_harvestation = 1;\nQ.inter_party_relationships_timer = 0;\nQ.international_relations_timer = 0;\nQ.western_socialist_contacts = 0;\nQ.socialist_international_member = 0;\nQ.avans_timer = 0;\nQ.remnants_of_inonu_timer = 0;\nQ.cutspending_timer = 0;\nQ.media_timer = 0;\nQ.enemies_timer = 0;\nQ.party_organizations_timer =  0;\nQ.rally_timer = 0;\nQ.kemalizm_timer = 0;\nQ.shuffle_leadership_timer = 0;\nQ.streetfighting_timer = 0;\nQ.peoples_party_timer = 0;\n// n_elections is the number of elections that have happened since the start of the game.\nQ.n_elections = 0;\n// number of elections without a clear majority.\nQ.no_majority_elections = 0;\n// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.\nQ.in_election = 1;\nQ.next_election_year = 1973;\nQ.next_election_month = 10;\nQ.next_election_time = 22;\nif (typeof Q.local_elections_held === 'undefined') {\n    Q.local_elections_held = 0;\n}\nif (typeof Q.next_local_election_year === 'undefined') {\n    Q.next_local_election_year = 1973;\n}\nif (typeof Q.next_local_election_month === 'undefined') {\n    Q.next_local_election_month = 12;\n}\nif (typeof Q.next_local_election_week === 'undefined') {\n    Q.next_local_election_week = 2;\n}\nif (typeof Q.next_local_election_time === 'undefined') {\n    Q.next_local_election_time = 0;\n}\n// government affairs timers\nQ.agricultural_policy_timer = 0;\nQ.domestic_enemies_timer = 0;\nQ.economic_policy_timer = 0;\nQ.fiscal_policy_timer = 0;\nQ.foreign_policy_timer = 0;\nQ.judiciary_timer = 0;\nQ.labor_affairs_timer = 0;\nQ.military_policy_timer = 0;\nQ.police_timer = 0;\nQ.shuffle_cabinet_timer = 0;\nQ.social_welfare_timer = 0;\nQ.womens_rights_timer = 0;\nQ.homosexual_rights_timer = 0;\nQ.municipality_timer = 0;\nQ.economic_democracy_timer = 0;\nQ.coalition_affairs_timer = 0;\nQ.industrial_policy_timer = 0;\n// Economic policy state\nQ.Tiger = 0;\nQ.imf_agreement = 0;\n\n// Tracking flags for one-time effects\nQ.oil_effect_applied = false;\nQ.oil_inflation_effect = 0;\nQ.land_reform_effect_applied = false;\nQ.cooperative_effect_applied = false;\nQ.koykent_effect_applied = false;\nQ.tiger_1978_effect_applied = false;\nQ.tiger_1979_effect_applied = false;\nQ.tiger_1980_effect_applied = false;\n\n// event timers\nQ.emergency_cuts_timer = 0;\nQ.unemployment_insurance_timer = 0;\nQ.TIP_ultimatum_timer = 0;\n\n//Cyprus attitudes\nQ.greece_attitude = 4;\nQ.uk_attitude = 50 + (Q.west_relation - 50);\nQ.us_attitude = 35 + (Q.us_relation - 50);\n\n// all the initial advisors are centrists.\n// Leader and Secretary have advisor=1 for display but are NOT counted in n_advisors.\n// Only Members (Ecevit, Satır) are counted in n_advisors.\nQ.inonu_advisor = 1; // İsmet İnönü (Party Leader — not in n_advisors)\nQ.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary — not in n_advisors)\nQ.ecevit_advisor = 1; // Bülent Ecevit (Member — counted in n_advisors)\nQ.satir_advisor = 1; // Kemal Satır (Member — counted in n_advisors)\n\n// left advisors\n\n// centrist alternate advisors\n\n// Reformist advisors\n\n// Labor advisors\n\n// Revisionist advisors\n\n\n// Nonfactional advisors\n\n// Turkish Right Kemalist advisors\nQ.gogus_advisor = 0; // Ali İhsan Göğüs (existing)\nQ.paksut_advisor = 0; // Emin Paksüt\nQ.celikbas_advisor = 0; // Fethi Çelikbaş\n\n// Turkish advisors - other factions\nQ.avcioglu_advisor = 0; // Doğan Avcıoğlu (Kemalist Marxist)\nQ.eyuboglu_advisor = 0; // Sabahattin Eyüboğlu (Reformist Kemalist)\n\n// Function to calculate municipality control level dynamically\nfunction getMunicipalityControlLevel() {\n    var controlled = Q.municipalities_controlled || 0;\n    var total = Q.total_municipalities || Q.local_total_seats || 67;\n    if (total <= 0) {\n        total = 67;\n    }\n    var ratio = controlled / total;\n    if (ratio <= (13 / 67)) {\n        return 0; // Terrible\n    } else if (ratio <= (26 / 67)) {\n        return 1; // Poor\n    } else if (ratio <= (34 / 67)) {\n        return 2; // Divided\n    } else if (ratio <= (40 / 67)) {\n        return 3; // Satisfactory\n    }\n    return 4; // Overwhelming\n}\n\n// Set initial municipality control level\nQ.municipality_control_level = getMunicipalityControlLevel();\n\n// Function to update municipality control level (call this whenever municipalities_controlled changes)\nfunction updateMunicipalityControlLevel() {\n    Q.municipality_control_level = getMunicipalityControlLevel();\n}\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nAnatolianRules.refreshVotes(Q);"
         }
       ],
       "setBg": "img/map_4.jpg",
@@ -21320,6 +21830,9 @@
       ],
       "maxCards": 3,
       "options": [
+        {
+          "id": "@cyprus_briefing_continue"
+        },
         {
           "id": "@cyprus_atilla1_continue"
         },

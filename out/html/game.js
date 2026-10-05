@@ -84,6 +84,13 @@
   window.loadMod = function(url) {
       ui.loadGame(url);
   };
+  // Required source readings are saved independently of military decisions.
+  window.cyprusBriefingScene = function(Q) {
+    return AnatolianRules.cyprusAtilla1.briefingScene(Q);
+  };
+  window.cyprusPendingScene = function(Q) {
+    return window.cyprusBriefingScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q);
+  };
   window.updateCyprusWidth = function() {
   const content = document.getElementById('content');
   const toolsWrapper = document.getElementById('tools_wrapper');
@@ -104,7 +111,7 @@
   const endDayLink = document.getElementById('cyprus-end-day-link');
   if (endDayLink) {
     endDayLink.style.display = isCyprus ? 'inline-block' : 'none';
-    endDayLink.textContent = AnatolianRules.cyprusAtilla1.scene(Q) ? 'Continue operation' : 'Skip Day';
+    endDayLink.textContent = window.cyprusPendingScene(Q) ? 'Continue operation' : 'Skip Day';
   }
 };
   window.setupCyprusMapClicks = function() {
@@ -138,7 +145,7 @@
   function doAction(sceneName) {
     if (!selected) return;
     var Q = window.dendryUI.dendryEngine.state.qualities;
-    var operationScene = AnatolianRules.cyprusAtilla1.scene(Q);
+    var operationScene = window.cyprusPendingScene(Q);
     if (operationScene) { window.dendryUI.dendryEngine.goToScene(operationScene); return; }
     Q.cyprus_target_district = selected.id;
     Q.cyprus_target_district_label = selected.label;
@@ -158,7 +165,7 @@
   window.cyprusAdvanceDay = function() {
   var Q = window.dendryUI.dendryEngine.state.qualities;
   if (!Q.cyprus_mode || Q.cyprus_end_shown) return;
-  var operationScene = AnatolianRules.cyprusAtilla1.scene(Q);
+  var operationScene = window.cyprusPendingScene(Q);
   if (operationScene) {
     window.dendryUI.dendryEngine.goToScene(operationScene);
     return;
@@ -206,7 +213,12 @@
     if (scene && engine._runPredicate(scene.viewIf, true)) engine.goToScene(id);
   }
 
-  operationScene = AnatolianRules.cyprusAtilla1.scene(Q);
+  var briefingScene = window.cyprusBriefingScene(Q);
+  if (briefingScene) {
+    window.dendryUI.dendryEngine.goToScene(briefingScene);
+    return;
+  }
+  operationScene = window.cyprusPendingScene(Q);
   if (operationScene) {
     // Preserve the existing optional stories before the relevant daily decision.
     if (Q.flavour_events && Q.cyprus_day === 21) showDateEvent('ayse');

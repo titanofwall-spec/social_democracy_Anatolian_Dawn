@@ -8,6 +8,7 @@ set-bg: img/kibriss.jpg
 audio: music/gercekkibris1.m4a
 on-arrival: {!
 Q.cyprus_mode = 1;
+Q.cyprus_briefings_seen = [];
 Q.month_actions = 0;
 Q.cyprus_calendar_advance = 0;
 AnatolianRules.cyprusAtilla1.initialize(Q);
@@ -37,3 +38,4 @@ Ecevit in his speech called on the farmers of Afyon to assist the state with com
 - @root: Ecevit in an instant realized that the next 30 days would be even hotter.
 
 @root
+go-to: cyprus_briefing_15

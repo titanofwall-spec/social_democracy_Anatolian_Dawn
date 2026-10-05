@@ -1,0 +1,18 @@
+title: 16 July 1974
+new-page: true
+view-if: {! return AnatolianRules.cyprusAtilla1.briefingScene(Q) === "cyprus_briefing_16"; !}
+
+= 16 July 1974
+
+He settled on the following strategy: he would call on Britain to activate the machinery of the Treaty of Guarantee, conduct the relevant contacts, go to London if necessary, and show that he had "tried every avenue".
+
+At the end of the cabinet meeting, it was decided to approach Britain immediately. Since the British ambassador was then on his summer holiday, a note was handed to the counsellor, requesting a reply within twenty-four hours. The note formally requested "immediate talks to invoke the Treaty of Guarantee".
+
+- @continue: Continue.
+
+@continue
+on-arrival: {!
+if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
+if (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);
+!}
+go-to: meetingopposition if {! return !(this.state.visits['meetingopposition'] > 0); !}; root if {! return this.state.visits['meetingopposition'] > 0; !}

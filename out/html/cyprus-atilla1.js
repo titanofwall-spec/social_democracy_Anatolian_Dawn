@@ -107,6 +107,13 @@
         Q.cyprus_atilla1_last_text = '';
     }
     /** @param {State} Q */
+    function briefingScene(Q) {
+        if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month !== 7 ||
+            Q.cyprus_day < 15 || Q.cyprus_day > 20) return null;
+        var seen = Array.isArray(Q.cyprus_briefings_seen) ? Q.cyprus_briefings_seen : [];
+        return seen.indexOf(Q.cyprus_day) < 0 ? 'cyprus_briefing_' + Q.cyprus_day : null;
+    }
+    /** @param {State} Q */
     function scene(Q) {
         if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month !== 7) return null;
         if (Q.cyprus_day >= 20 && Q.cyprus_day <= 24 && !Q.cyprus_atilla1_complete) return 'cyprus_atilla1_' + Q.cyprus_day;
@@ -211,6 +218,6 @@
         return true;
     }
     rules.cyprusAtilla1 = {days:days,levels:levels,outcomes:outcomes,militaryTier:militaryTier,roll:roll,
-        resultIndex:resultIndex,initialize:initialize,scene:scene,briefing:briefing,resolve:resolve,advanceDate:advanceDate};
+        resultIndex:resultIndex,initialize:initialize,briefingScene:briefingScene,scene:scene,briefing:briefing,resolve:resolve,advanceDate:advanceDate};
     if (typeof module !== 'undefined' && module.exports) module.exports = rules.cyprusAtilla1;
 }(typeof globalThis !== 'undefined' ? globalThis : window));

@@ -89,6 +89,7 @@ max-cards: 3
 
 
 
+- @cyprus_briefing_continue
 - @cyprus_atilla1_continue
 - @party
 - @dovevsbayonet
@@ -202,6 +203,7 @@ max-cards: 4
 
 {!</div>!}
 
+- @cyprus_briefing_continue
 - @cyprus_atilla1_continue
 - @party
 - @dovevsbayonet

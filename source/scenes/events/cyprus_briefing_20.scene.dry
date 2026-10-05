@@ -1,0 +1,28 @@
+title: 20 July 1974
+new-page: true
+view-if: {! return AnatolianRules.cyprusAtilla1.briefingScene(Q) === "cyprus_briefing_20"; !}
+
+= 20 July 1974
+
+"The Turkish Armed Forces' airborne and landing operation in Cyprus has begun. May God make it beneficial to our nation, to all Cypriots and to humanity. We believe that in this way we shall have rendered a great service to humanity and peace. I hope that our forces will not be fired upon and that there will be no bloody clash. We are going to the island not for war but for peace, to bring peace not only to the Turks but also to the Greeks. We reached this decision only after trying every political and diplomatic avenue and being compelled to do so. I consider it my duty to express my gratitude to all friendly countries, including our friends and allies the United States and Britain, with whom we have recently been in close consultation, for their well-intentioned efforts to settle the matter without intervention, through diplomatic means. If these efforts produced no result, the responsibility certainly does not lie with the states that made these well-intentioned efforts. Once again, I hope that this action will be beneficial to humanity, to our nation and to all Cypriots. I pray that God protects our nation and all humanity from disasters."
+
+Sisco, who was in Athens at the time, was aware of this panic. He had been unable to stop Turkey, but he had at least to prevent a Turkish-Greek war. What Kissinger, and therefore America, categorically did not want, and was ready to use every threat to prevent, was war between two NATO members.
+
+Turan Güneş opened the door and entered the prime minister's office, looking around. As he went out as though he had failed to find what he was looking for, he said to the person typing at the desk opposite, "Look, have you seen the prime minister?" and burst into laughter. Bülent Ecevit was at his typewriter, writing the speech he would make in parliament that afternoon.
+
+"Mr. Bülent, Sisco has sent a message from Athens. He wants to come today. We have nothing left to say... I do not want to see him."
+
+"The operation has begun now. I too think there is nothing to discuss."
+
+Güneş asked his aides to inform the US embassy that, because the region was very dangerous, the General Staff was not granting landing permission for Sisco's aircraft.
+
+The operation had begun only a few hours earlier, but telephone calls were pouring in from the most unexpected places: please cease fire! From the UN secretary-general's message and the NATO secretary-general's telephone call to French pressure at embassy level and German interventions, the Foreign Ministry and the prime minister's office hummed like a beehive with messages saying, "Please stop. War with Greece could break out."
+
+- @continue: Continue.
+
+@continue
+on-arrival: {!
+if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
+if (Q.cyprus_briefings_seen.indexOf(20) < 0) Q.cyprus_briefings_seen.push(20);
+!}
+go-to: cyprus_atilla1_continue

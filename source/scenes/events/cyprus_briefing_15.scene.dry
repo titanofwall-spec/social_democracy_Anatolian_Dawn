@@ -1,0 +1,24 @@
+title: 15 July 1974
+new-page: true
+view-if: {! return AnatolianRules.cyprusAtilla1.briefingScene(Q) === "cyprus_briefing_15"; !}
+
+= 15 July 1974
+
+Immediately after news of the coup, the eyes of the whole world turned to Ankara. Messages began pouring into the Foreign Ministry by telegram, telephone and visits from ambassadors. Led by UN Secretary-General Waldheim and NATO Secretary-General Luns, Britain, America, France and all the allies repeated the scenario familiar from years past: "Please act calmly."
+
+Ecevit concluded the discussions as follows:
+
+"To invoke Article 4 of the Treaty of Guarantee, drawn up for the independence of Cyprus, and to change the Sampson regime, a Turkish military presence on the island is necessary. In this way, we can protect both Turkey's security and that of the Turkish Cypriots. Preparations must begin. Meanwhile, we shall also contact Britain, the other guarantor country, and try to achieve our objectives without bloodshed. If we obtain no result from Britain, we shall have completed our preparations to exercise our right in practice."
+
+That night, Ecevit told his ministers that Greece could no longer be regarded as a guarantor country and that he would therefore hold talks with Britain. Even those who understood that intervention lay at the end of the road had countless questions. What would the Greek reaction be? What if a Turkish-Greek war broke out? And so on, and so on.
+
+At around 2.30 in the morning, the ministers gave the prime minister "full authority". This authority covered conducting diplomatic contacts with Britain and other countries, as well as following the recommendations of the National Security Council.
+
+- @continue: Continue.
+
+@continue
+on-arrival: {!
+if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
+if (Q.cyprus_briefings_seen.indexOf(15) < 0) Q.cyprus_briefings_seen.push(15);
+!}
+go-to: root
