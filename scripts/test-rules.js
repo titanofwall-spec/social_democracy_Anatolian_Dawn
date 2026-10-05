@@ -5,7 +5,7 @@ require('../out/html/cyprus-atilla1.js');
 const check = require('./check.js');
 const root = path.resolve(__dirname, '..');
 const noop = () => {};
-const node = {style:{setProperty:noop}, appendChild:noop, setAttribute:noop, addEventListener:noop,
+const node = {remove:noop, replaceChildren:noop, style:{setProperty:noop}, appendChild:noop, setAttribute:noop, addEventListener:noop,
     offsetWidth:600, classList:{add:noop, remove:noop, toggle:noop}, querySelector:()=>node,
     querySelectorAll:()=>[], getAttribute:()=>'', getElementsByClassName:()=>[], innerHTML:'', textContent:''};
 global.document = {createElement:()=>({...node}), getElementById:()=>node, querySelector:()=>node,
@@ -249,6 +249,57 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         Q.cyprus_day=23; window.cyprusAdvanceDay(); assert.notEqual(e.state.sceneId,'plane');
         Q.cyprus_day=31; Q.cyprus_month=10; Q.cyprus_year=1974; Q.year=1974; Q.month=10; Q.week=2;
         window.cyprusAdvanceDay(); assert.deepEqual([Q.cyprus_year,Q.cyprus_month,Q.cyprus_day],[1974,11,1]);
+    });
+    test('Military Resource starting pool and daily supply use all three branch strengths', (e,Q) => {
+        const c=rules.cyprusAtilla1;
+        for(const [strength,initial,daily] of [[0,12,0],[0.2,18,1],[0.4,23,2],[0.6,29,2],[0.8,34,3],[1,40,4]]) {
+            Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=strength;
+            assert.equal(c.startingResources(Q),initial); assert.equal(c.dailyResources(Q),daily);
+        }
+        Q.army_land_strength=1;Q.army_naval_strength=0;Q.army_aerial_strength=0.5;
+        Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');
+        assert.equal(Q.military_strength,26);assert.equal(Q.cyprus_support_bonus,0);
+        const old=Q.military_strength;c.advanceDate(Q);assert.equal(Q.military_strength,old+2);
+        delete Q.cyprus_resources_initialized;delete Q.cyprus_support_used;delete Q.cyprus_support_bonus;
+        Q.military_strength=9;c.ensureSupport(Q);assert.equal(Q.military_strength,9);assert.deepEqual(Q.cyprus_support_used,{});
+    });
+    test('Six support actions share district-independent three-day cooldowns and cannot award leverage', (e,Q) => {
+        const c=rules.cyprusAtilla1;
+        Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;Q.military_strength=100;
+        const time=Q.time,leverage=Q.leverage_points;
+        for(const key of Object.keys(c.supportActions)) {
+            Q.cyprus_support_bonus=0;
+            assert(c.useSupport(Q,key,'kyrenia'));
+            const after=Q.military_strength;
+            for(const district of c.districts)assert(!c.useSupport(Q,key,district));
+            assert.equal(Q.military_strength,after);assert.equal(c.cooldown(Q,key),3);
+        }
+        assert.equal(Q.cyprus_day,20);assert.equal(Q.time,time);assert.equal(Q.leverage_points,leverage);
+        Q.cyprus_day=22;Q.cyprus_support_bonus=0;assert(!c.useSupport(Q,'reinforce','nicosia'));
+        Q.cyprus_day=23;assert(c.useSupport(Q,'reinforce','nicosia'));assert.equal(c.cooldown(Q,'reinforce'),3);
+        assert(!c.useSupport(Q,'strike','akrotiri'));assert(!c.useSupport(Q,'strike','dhekelia'));
+        assert(!c.useSupport(Q,'__proto__','nicosia'));
+    });
+    test('Support costs, insufficient funds and the +6 stack limit are enforced before spending', (e,Q) => {
+        const c=rules.cyprusAtilla1;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;
+        Q.military_strength=3;assert(!c.useSupport(Q,'reinforce','paphos'));assert.equal(Q.military_strength,3);
+        Q.military_strength=30;
+        assert(c.useSupport(Q,'smuggle','paphos'));assert.equal(Q.military_strength,23);assert.equal(Q.cyprus_support_bonus,3);
+        assert(c.useSupport(Q,'paratrooper','limassol'));assert.equal(Q.military_strength,16);assert.equal(Q.cyprus_support_bonus,6);
+        assert(!c.useSupport(Q,'bombard','famagusta'));assert.equal(Q.military_strength,16);
+        Q.cyprus_atilla1_complete=1;Q.cyprus_support_bonus=0;assert(!c.useSupport(Q,'bombard','famagusta'));
+    });
+    test('Next-roll support is consumed once, survives saves, and respects the 80-point ceiling', (e,Q) => {
+        const c=rules.cyprusAtilla1;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;
+        Q.army_land_strength=Q.army_aerial_strength=Q.army_naval_strength=0;
+        assert(c.useSupport(Q,'reinforce','larnaca'));
+        const saved=JSON.parse(JSON.stringify(e.getExportableState()));e.setState(saved);Q=e.state.qualities;
+        assert.equal(Q.cyprus_support_bonus,2);assert.equal(c.cooldown(Q,'reinforce'),3);
+        assert(c.resolve(Q,20,'historical',()=>0));assert.equal(Q.cyprus_atilla1_results[0].baseScore,0);
+        assert.equal(Q.cyprus_atilla1_results[0].supportBonus,2);assert.equal(Q.cyprus_atilla1_results[0].score,2);
+        assert.equal(Q.cyprus_support_bonus,0);assert(!c.resolve(Q,20,'historical',()=>0));
+        Q.cyprus_support_bonus=6;Q.army_land_strength=Q.army_aerial_strength=Q.army_naval_strength=1;
+        assert(c.resolve(Q,21,'historical',()=>1));assert.equal(Q.cyprus_atilla1_results[1].score,80);assert.equal(Q.cyprus_support_bonus,0);
     });
     test('Atilla I tier and inclusive roll boundaries follow the agreed rules', () => {
         const cyprus=rules.cyprusAtilla1;

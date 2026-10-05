@@ -946,6 +946,10 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 @cyprus
 view-if: cyprus_mode != 0
 
+= Military Resources
+
+{!<div id="cyprus-resource-status" aria-live="polite"><strong id="cyprus-military-strength">!}[+ military_strength +]{!</strong> available<br>Next roll: <span id="cyprus-support-bonus">+!}[+ cyprus_support_bonus +]{!</span> (maximum +6)</div>!}
+
 = Attitude towards Turkish perspective
 
 [? if cyprus_mode != 0 : {!

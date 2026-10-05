@@ -1,33 +1,26 @@
-title: Right Kemalist delegates join CGP.
-view-if: year = 1999 and month = 9 and week = 2 and right_kemalist_split = 1
-max-visits: 1
-tags: event
+title: Turkish Land Forces
+view-if: cyprus_mode != 0
 new-page: true
-on-display: {!
-var cardEl = document.createElement('div');
-cardEl.className = "face-figure2";
-var image = new Image();
-image.className = "face-img";
-image.src = "img/landforces.webp";
-cardEl.appendChild(image);
-var contentDiv = document.querySelector("#page #mid_panel #content");
-contentDiv.appendChild(cardEl);
-!}
 
 = Turkish Land Forces
 
-asdasd
+Support the next operation roll in [+ cyprus_target_district_label +]. Actions do not advance the date. Each action can be used once every three days across all districts.
 
-- @reinforce: Reinforce troops in 
-- @smuggle: Smuggle weapons to TMT in 
-- @root: Don't take any land actions for now.
+- @reinforce: Reinforce troops (4 resources, +2 to the next roll).
+- @smuggle: Deliver weapons and supplies to TMT (7 resources, +3 to the next roll).
+- @root: Return to the operation.
 
 @reinforce
-choose-if: military_strength >= 10
-unavailable-subtitle: We dont have enough military resources!
-on-arrival: military_strength -= 10; leverage_points += 2
+choose-if: {! return !AnatolianRules.cyprusAtilla1.supportUnavailable(Q,'reinforce',Q.cyprus_target_district); !}
+unavailable-subtitle: Requires resources, an available cooldown and room below the +6 bonus cap.
+on-arrival: {! AnatolianRules.cyprusAtilla1.useSupport(Q,'reinforce',Q.cyprus_target_district); !}
+go-to: cyprus_support_return
 
 @smuggle
-choose-if: military_strength >= 10
-unavailable-subtitle: We dont have enough military resources!
-on-arrival: military_strength -= 10; leverage_points += 2
+choose-if: {! return !AnatolianRules.cyprusAtilla1.supportUnavailable(Q,'smuggle',Q.cyprus_target_district); !}
+unavailable-subtitle: Requires resources, an available cooldown and room below the +6 bonus cap.
+on-arrival: {! AnatolianRules.cyprusAtilla1.useSupport(Q,'smuggle',Q.cyprus_target_district); !}
+go-to: cyprus_support_return
+
+@root
+go-to: cyprus_support_return

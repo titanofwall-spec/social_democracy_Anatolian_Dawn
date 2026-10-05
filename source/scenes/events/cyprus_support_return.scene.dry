@@ -1,0 +1,2 @@
+title: Return to the operation.
+go-to: cyprus_briefing_continue if {! return !!AnatolianRules.cyprusAtilla1.briefingScene(Q); !}; cyprus_atilla1_continue if {! return !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !!AnatolianRules.cyprusAtilla1.scene(Q); !}; root if {! return !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !AnatolianRules.cyprusAtilla1.scene(Q); !}

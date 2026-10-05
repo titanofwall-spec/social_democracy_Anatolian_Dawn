@@ -18,6 +18,7 @@ Q.cyprus_day = 15;
 Q.cyprus_month = 7;
 Q.cyprus_year = 1974;
 Q.cyprus_date_display = 'July 15, 1974';
+AnatolianRules.cyprusAtilla1.initializeSupport(Q);
 updateCyprusWidth();
 !}
 

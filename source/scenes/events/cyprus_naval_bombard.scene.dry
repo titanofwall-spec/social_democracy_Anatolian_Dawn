@@ -1,23 +1,26 @@
 title: Turkish Naval Forces
-view-if: year = 1999 and month = 9 and week = 2 and right_kemalist_split = 1
-max-visits: 1
-tags: event
+view-if: cyprus_mode != 0
 new-page: true
 
 = Turkish Naval Forces
 
-In an amphibious invasion, the cooperation with naval forces will prove crucial for success. However we should be careful how we utilize our armed forces; these are weapons of destruction we are controlling.
+Support the next operation roll in [+ cyprus_target_district_label +]. Actions do not advance the date. Each action can be used once every three days across all districts.
 
-- @bombard: Bombard coastal defences in [+ cyprus_target_district_label +]
-- @blockade: Impose a blockade in [+ cyprus_target_district_label +]
-- @root: Don't take any naval actions for now.
+- @bombard: Provide naval fire support (4 resources, +2 to the next roll).
+- @blockade: Interdict opposing supply routes (7 resources, +3 to the next roll).
+- @root: Return to the operation.
 
 @bombard
-choose-if: military_strength >= 10
-unavailable-subtitle: We dont have enough military resources!
-on-arrival: military_strength -= 10; leverage_points += 2
+choose-if: {! return !AnatolianRules.cyprusAtilla1.supportUnavailable(Q,'bombard',Q.cyprus_target_district); !}
+unavailable-subtitle: Requires resources, an available cooldown and room below the +6 bonus cap.
+on-arrival: {! AnatolianRules.cyprusAtilla1.useSupport(Q,'bombard',Q.cyprus_target_district); !}
+go-to: cyprus_support_return
 
 @blockade
-choose-if: military_strength >= 10
-unavailable-subtitle: We dont have enough military resources!
-on-arrival: military_strength -= 10; leverage_points += 2
+choose-if: {! return !AnatolianRules.cyprusAtilla1.supportUnavailable(Q,'blockade',Q.cyprus_target_district); !}
+unavailable-subtitle: Requires resources, an available cooldown and room below the +6 bonus cap.
+on-arrival: {! AnatolianRules.cyprusAtilla1.useSupport(Q,'blockade',Q.cyprus_target_district); !}
+go-to: cyprus_support_return
+
+@root
+go-to: cyprus_support_return

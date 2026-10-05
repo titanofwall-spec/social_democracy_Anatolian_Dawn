@@ -143,6 +143,9 @@ Q.moderate_plan_adopted = 0;
 
 // Cyprus
 Q.cyprus_mode = 0;
+Q.cyprus_resources_initialized = 0;
+Q.cyprus_support_bonus = 0;
+Q.cyprus_support_used = {};
 Q.cyprus_briefings_seen = [];
 AnatolianRules.cyprusAtilla1.initialize(Q);
 Q._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching

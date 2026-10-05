@@ -1494,3 +1494,16 @@ table {
   line-height: 1.35;
   text-align: left;
 }
+
+/* Cyprus support stays alongside operation decisions, within the main panel. */
+.cyprus-command-panel { border-top: 1px solid #a39c8e; margin-top: 22px; padding-top: 12px; }
+#cyprus-map-wrap svg { display: block; width: 100%; height: auto; }
+#cyprus-action-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.cyprus-action-btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px; }
+.cyprus-action-btn img { width: 32px; height: 32px; object-fit: contain; }
+.cyprus-action-btn:disabled, .cyprus-support-action:disabled { opacity: .55; cursor: default; }
+.cyprus-support-action { display: block; width: 100%; padding: 9px; margin: 7px 0; text-align: left; }
+#cyprus-resource-status { line-height: 1.6; text-align: center; }
+#cyprus-selected-district { text-align: center; }
+
+.cyprus-support-action:disabled { opacity: 1; color: #665740; background: #e9e6df; border: 1px solid #bcb7ad; }
