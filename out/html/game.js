@@ -157,7 +157,7 @@
     var source = svg.querySelector('#basemap image').getAttribute('href');
     if (!window.cyprusSidePixels || window.cyprusSidePixels.source !== source) {
       var record = {source:source,context:null};window.cyprusSidePixels=record;
-      var img=new Image();img.onload=function(){var canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;var ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0);record.context=ctx;};img.src=source;
+      var img=new Image();img.onload=function(){var canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;var ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0);record.context=ctx;if(record.pending){record.pending();record.pending=null;}};img.src=source;
     }
     var panel=document.getElementById('cyprus-command-panel');
     var chooser=panel.querySelector('#cyprus-side-choices');
@@ -168,14 +168,38 @@
     }
     function select(side) {window.dendryUI.dendryEngine.state.qualities.cyprus_target_side=side;window.setupCyprusMapClicks();chooser.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.side===side?'true':'false');});}
     chooser.querySelectorAll('button').forEach(function(b){b.onclick=function(){select(b.dataset.side);};b.setAttribute('aria-pressed',window.dendryUI.dendryEngine.state.qualities.cyprus_target_side===b.dataset.side?'true':'false');});
+    svg.style.cursor='pointer';
+    svg.setAttribute('aria-label','Click Turkish red territory or Greek blue territory to select a side.');
     svg.onclick=function(event){
-      var record=window.cyprusSidePixels;if (!record || record.source!==source || !record.context) return;
       var point=new DOMPoint(event.clientX,event.clientY).matrixTransform(svg.getScreenCTM().inverse());
-      if (Array.from(svg.querySelectorAll('.sba')).some(function(p){return p.isPointInFill(point);})) return;
-      if (point.x<0 || point.y<0 || point.x>=4250 || point.y>=2573) return;
-      var rgb=record.context.getImageData(Math.floor(point.x),Math.floor(point.y),1,1).data;
-      if (rgb[0]>rgb[2]*1.15 && rgb[0]>rgb[1]*1.15) select('turkish');
-      else if (rgb[2]>rgb[0]*1.05 && rgb[2]>35) select('greek');
+      var record=window.cyprusSidePixels;if(!record || record.source!==source)return;
+      function choose(){
+        if(!svg.isConnected || svg.querySelector('#basemap image').getAttribute('href')!==source)return;
+        if(Array.from(svg.querySelectorAll('.sba')).some(function(p){return p.isPointInFill(point);}))return;
+        var x=Math.floor(point.x),y=Math.floor(point.y);
+        if(x<0||y<0||x>=4250||y>=2573)return;
+        function sideAt(px,py){
+          var c=record.context.getImageData(px,py,1,1).data;
+          if(c[0]>c[2]*1.15&&c[0]>c[1]*1.15)return 'turkish';
+          if(c[2]>c[0]*1.05&&c[2]>35)return 'greek';
+          return '';
+        }
+        var side=sideAt(x,y);
+        if(!side){
+          // White borders and city markers belong to the nearest colored land.
+          // Black sea pixels and British bases never select a side.
+          var c=record.context.getImageData(x,y,1,1).data;
+          if(Math.max(c[0],c[1],c[2])<35)return;
+          for(var radius=2;radius<=40&&!side;radius+=2){
+            for(var angle=0;angle<8&&!side;angle++){
+              var px=Math.round(x+radius*Math.cos(angle*Math.PI/4)),py=Math.round(y+radius*Math.sin(angle*Math.PI/4));
+              if(px>=0&&py>=0&&px<4250&&py<2573)side=sideAt(px,py);
+            }
+          }
+        }
+        if(side)select(side);
+      }
+      if(record.context)choose();else record.pending=choose;
     };
   };
   window.setupCyprusMapClicks = function() {
