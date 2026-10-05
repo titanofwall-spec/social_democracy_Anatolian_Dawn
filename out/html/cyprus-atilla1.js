@@ -299,6 +299,15 @@
         return true;
     }
     /** @param {State} Q */
+    function mapImage(Q) {
+        var original = 'cyprusgame/cyprus_map.png';
+        if (!Q.cyprus_mode || Number(Q.cyprus_year) !== 1974) return original;
+        var month = Number(Q.cyprus_month), day = Number(Q.cyprus_day);
+        if (month < 7 || (month === 7 && day < 20)) return original;
+        var stage = month > 7 ? 'august-1' : day >= 30 ? 'july-30-31' : day >= 27 ? 'july-27-28' : 'july-' + day;
+        return 'cyprusgame/frontlines/' + stage + '.png';
+    }
+    /** @param {State} Q */
     function militaryTier(Q) {
         var average = (rules.number(Q.army_land_strength) + rules.number(Q.army_aerial_strength) + rules.number(Q.army_naval_strength)) / 3;
         // Use the same 0–1 branch strengths as military policy and the status panel.
@@ -631,7 +640,7 @@
     rules.cyprusAtilla1 = {supportActions:supportActions,districts:districts,startingResources:startingResources,
         dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,
         replenishResources:replenishResources,cooldown:cooldown,supportUnavailable:supportUnavailable,useSupport:useSupport,
-        choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
+        mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
         days:days,levels:levels,outcomes:outcomes,militaryTier:militaryTier,roll:roll,
         resultIndex:resultIndex,initialize:initialize,briefingScene:briefingScene,scene:scene,briefing:briefing,resolve:resolve,advanceDate:advanceDate};
     if (typeof module !== 'undefined' && module.exports) module.exports = rules.cyprusAtilla1;

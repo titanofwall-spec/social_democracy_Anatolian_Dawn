@@ -137,6 +137,14 @@
         '<button type="button" id="cyprus-btn-naval" class="cyprus-action-btn" data-branch="naval"><img src="img/icon_naval.webp" alt="">Turkish Naval Forces</button></div>' +
         '<div id="cyprus-support-actions" aria-live="polite"></div>';
     }
+    // The supplied artwork and the province hit areas use the same 4250 x 2573 coordinates.
+    // Replace only the basemap, retaining selection, keyboard controls and support actions.
+    var image = panel.querySelector('#basemap image');
+    var mapSource = rules.mapImage(Q);
+    if (image.getAttribute('href') !== mapSource) {
+      image.setAttribute('href',mapSource);
+      image.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href',mapSource);
+    }
     // Dendry appends choices after rendering text. Move controls below those choices.
     content.appendChild(panel);
     window.setupCyprusMapClicks();

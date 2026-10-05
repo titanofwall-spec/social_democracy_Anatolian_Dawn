@@ -354,6 +354,15 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
         }
     });
+    test('Supplied frontline map stages follow the Cyprus date without changing gameplay state', () => {
+        const c=rules.cyprusAtilla1;
+        for(const [month,day,name] of [[7,15,'cyprus_map'],[7,19,'cyprus_map'],...Array.from({length:7},(_,i)=>[7,20+i,'frontlines/july-'+(20+i)]),[7,27,'frontlines/july-27-28'],[7,28,'frontlines/july-27-28'],[7,29,'frontlines/july-27-28'],[7,30,'frontlines/july-30-31'],[7,31,'frontlines/july-30-31'],[8,1,'frontlines/august-1'],[8,13,'frontlines/august-1']]) {
+            const Q={cyprus_mode:1,cyprus_year:1974,cyprus_month:month,cyprus_day:day,cyprus_target_district:'kyrenia',cyprus_support_bonus:2};
+            const saved=JSON.stringify(Q);assert.equal(c.mapImage(Q),'cyprusgame/'+name+'.png');assert.equal(JSON.stringify(Q),saved);
+            assert(fs.existsSync(path.join(root,'out/html',c.mapImage(Q))));
+        }
+        assert.equal(c.mapImage({cyprus_mode:0}),'cyprusgame/cyprus_map.png');
+    });
     test('Military choice tooltips match roll requirements and descriptions match attributed source passages', () => {
         const c=rules.cyprusAtilla1, passages=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_MILITARY_SOURCE_PASSAGES.json'),'utf8'));
         let count=0;
