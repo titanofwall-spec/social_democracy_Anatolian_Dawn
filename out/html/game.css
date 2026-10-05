@@ -1507,3 +1507,9 @@ table {
 
 
 .cyprus-force-media img { display: block; max-width: 100%; width: auto; max-height: 240px; margin: 12px auto; }
+
+#cyprus-side-choices { display:flex;justify-content:center;gap:8px;margin:10px 0; }
+#cyprus-side-choices button[aria-pressed="true"] { outline:2px solid #9b7d07; }
+#leader-tooltip-layer { position:fixed;z-index:2147483000;pointer-events:none;transform:scale(.75);transform-origin:top left;width:max-content;text-decoration:none;padding:0; }
+.mytooltip:hover > .mytooltiptext, .wide_tooltip-wrap:hover > .wide_tooltip-tip,
+.mytooltip:focus > .mytooltiptext, .wide_tooltip-wrap:focus > .wide_tooltip-tip { opacity:0 !important;visibility:hidden !important; }

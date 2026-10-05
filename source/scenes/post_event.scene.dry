@@ -856,7 +856,7 @@ if (typeof window !== "undefined" && window.generateBar) {
 // Recalculate paramilitary force effectiveness (strength × militancy) every turn
 
 !}
-go-to: game_over if coup_roll_success = 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0; main.main_easy if has_event = 0 and difficulty < 0
+go-to: cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; game_over if coup_roll_success = 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0 and not cyprus_preop_resume; main.main_easy if has_event = 0 and difficulty < 0 and not cyprus_preop_resume
 
 = [? if cyprus_mode = 0 : [+ month : month +] [+ year +] ?]
 

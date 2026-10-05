@@ -1,0 +1,3 @@
+title: Continue Cyprus preparations
+on-arrival: {! Q.cyprus_preop_resume = 0; !}
+go-to: cyprus_briefing_continue

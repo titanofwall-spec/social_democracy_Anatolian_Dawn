@@ -227,14 +227,20 @@
     }
 };
     var districts = ['nicosia','famagusta','paphos','limassol','larnaca','kyrenia'];
-    /** @type {Record<string,{branch:string,label:string,cost:number,bonus:number}>} */
+    /** @type {Record<string,{branch:string,side:string,label:string,cost:number,bonus:number}>} */
     var supportActions = {
-        reinforce: {branch:'land',label:'Reinforce troops',cost:4,bonus:2},
-        smuggle: {branch:'land',label:'Deliver weapons and supplies to TMT',cost:7,bonus:3},
-        strike: {branch:'air',label:'Provide close air support',cost:4,bonus:2},
-        paratrooper: {branch:'air',label:'Deploy airborne reinforcements',cost:7,bonus:3},
-        bombard: {branch:'naval',label:'Provide naval fire support',cost:4,bonus:2},
-        blockade: {branch:'naval',label:'Interdict opposing supply routes',cost:7,bonus:3}
+        reinforce:{branch:'land',side:'turkish',label:'Reinforce defensive positions',cost:4,bonus:2},
+        smuggle:{branch:'land',side:'turkish',label:'Deliver supplies and entrench troops',cost:7,bonus:3},
+        strike:{branch:'air',side:'greek',label:'Strike opposing military positions',cost:4,bonus:2},
+        paratrooper:{branch:'air',side:'turkish',label:'Deliver airborne reinforcements',cost:7,bonus:3},
+        bombard:{branch:'naval',side:'greek',label:'Shell opposing military positions',cost:4,bonus:2},
+        blockade:{branch:'naval',side:'greek',label:'Disrupt opposing supply routes',cost:7,bonus:3},
+        land_recon:{branch:'land',side:'greek',label:'Scout opposing positions',cost:4,bonus:2},
+        land_skirmish:{branch:'land',side:'greek',label:'Conduct a limited skirmish',cost:7,bonus:3},
+        air_supply:{branch:'air',side:'turkish',label:'Deliver supplies by air',cost:4,bonus:2},
+        air_recon:{branch:'air',side:'greek',label:'Fly reconnaissance missions',cost:7,bonus:3},
+        naval_supply:{branch:'naval',side:'turkish',label:'Escort supply ships',cost:4,bonus:2},
+        naval_plan:{branch:'naval',side:'turkish',label:'Coordinate reinforcement landings',cost:7,bonus:3}
     };
     /** @param {State} Q */
     function averageStrength(Q) {
@@ -250,6 +256,9 @@
     function initializeSupport(Q) {
         Q.military_strength = startingResources(Q);
         Q.cyprus_support_bonus = 0;
+        Q.cyprus_target_side = '';
+        Q.cyprus_intro_seen = 0;
+        Q.cyprus_preop_resume = 0;
         Q.cyprus_support_used = {};
         Q.cyprus_resources_initialized = 1;
     }
@@ -280,7 +289,8 @@
     function supportUnavailable(Q,key,district) {
         if (!Object.prototype.hasOwnProperty.call(supportActions,key)) return 'Unknown support action.';
         if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month < 7 || Q.cyprus_month > 8 || (Q.cyprus_month === 7 && Q.cyprus_day < 15) || (Q.cyprus_month === 8 && Q.cyprus_day > 13)) return 'No upcoming operation roll.';
-        if (districts.indexOf(district) < 0) return 'Select one of the six Cyprus districts.';
+        if (district !== 'turkish' && district !== 'greek' && districts.indexOf(district) < 0) return 'Select Turkish or Greek positions.';
+        if ((district === 'turkish' || district === 'greek') && supportActions[key].side !== district) return 'This action is for the other side.';
         var wait = cooldown(Q,key);
         if (wait) return 'Available in ' + wait + (wait === 1 ? ' day.' : ' days.');
         var action = supportActions[key];
@@ -424,7 +434,16 @@
         if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month !== 7 ||
             Q.cyprus_day < 15 || Q.cyprus_day > 20) return null;
         var seen = Array.isArray(Q.cyprus_briefings_seen) ? Q.cyprus_briefings_seen : [];
+        if (Q.cyprus_day === 17 && seen.indexOf(17) < 0 && !Q.cyprus_intro_seen) return 'cyprusintro';
         return seen.indexOf(Q.cyprus_day) < 0 ? 'cyprus_briefing_' + Q.cyprus_day : null;
+    }
+    /** Advance only after all passages belonging to a pre-operation day are complete.
+     * @param {State} Q @param {number} day */
+    function finishBriefingDay(Q,day) {
+        if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month !== 7 || Q.cyprus_day !== day || day >= 20 || !Array.isArray(Q.cyprus_briefings_seen) || Q.cyprus_briefings_seen.indexOf(day) < 0) return false;
+        advanceDate(Q);
+        Q.cyprus_preop_resume = 1;
+        return true;
     }
     /** @param {State} Q */
     function endingReady(Q) {
@@ -640,7 +659,7 @@
     rules.cyprusAtilla1 = {supportActions:supportActions,districts:districts,startingResources:startingResources,
         dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,
         replenishResources:replenishResources,cooldown:cooldown,supportUnavailable:supportUnavailable,useSupport:useSupport,
-        mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
+        finishBriefingDay:finishBriefingDay,mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
         days:days,levels:levels,outcomes:outcomes,militaryTier:militaryTier,roll:roll,
         resultIndex:resultIndex,initialize:initialize,briefingScene:briefingScene,scene:scene,briefing:briefing,resolve:resolve,advanceDate:advanceDate};
     if (typeof module !== 'undefined' && module.exports) module.exports = rules.cyprusAtilla1;

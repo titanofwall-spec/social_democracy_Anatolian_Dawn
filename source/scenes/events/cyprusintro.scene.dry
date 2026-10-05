@@ -32,3 +32,5 @@ Ecevit felt a chilling breeze going from his neck and into his chest. He remembe
 - @root: To live or not to live, that is the question.
 
 @root
+on-arrival: {! Q.cyprus_intro_seen = 1; !}
+go-to: cyprus_briefing_17

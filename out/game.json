@@ -3074,12 +3074,12 @@
       "id": "cyprus_briefing_15.continue",
       "onArrival": [
         {
-          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(15) < 0) Q.cyprus_briefings_seen.push(15);"
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(15) < 0) Q.cyprus_briefings_seen.push(15);\nAnatolianRules.cyprusAtilla1.finishBriefingDay(Q,15);"
         }
       ],
       "goTo": [
         {
-          "id": "root"
+          "id": "post_event"
         }
       ],
       "content": {
@@ -3132,7 +3132,7 @@
       "id": "cyprus_briefing_16.continue",
       "onArrival": [
         {
-          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);"
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(16) < 0) Q.cyprus_briefings_seen.push(16);\nif (this.state.visits['meetingopposition'] > 0) AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);"
         }
       ],
       "goTo": [
@@ -3143,7 +3143,7 @@
           }
         },
         {
-          "id": "root",
+          "id": "post_event",
           "predicate": {
             "$code": "return this.state.visits['meetingopposition'] > 0;"
           }
@@ -3187,21 +3187,12 @@
       "id": "cyprus_briefing_17.continue",
       "onArrival": [
         {
-          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(17) < 0) Q.cyprus_briefings_seen.push(17);"
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(17) < 0) Q.cyprus_briefings_seen.push(17);\nAnatolianRules.cyprusAtilla1.finishBriefingDay(Q,17);"
         }
       ],
       "goTo": [
         {
-          "id": "cyprusintro",
-          "predicate": {
-            "$code": "return !(this.state.visits['cyprusintro'] > 0);"
-          }
-        },
-        {
-          "id": "root",
-          "predicate": {
-            "$code": "return this.state.visits['cyprusintro'] > 0;"
-          }
+          "id": "post_event"
         }
       ],
       "content": {
@@ -3298,12 +3289,12 @@
       "id": "cyprus_briefing_18.continue",
       "onArrival": [
         {
-          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(18) < 0) Q.cyprus_briefings_seen.push(18);"
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(18) < 0) Q.cyprus_briefings_seen.push(18);\nAnatolianRules.cyprusAtilla1.finishBriefingDay(Q,18);"
         }
       ],
       "goTo": [
         {
-          "id": "root"
+          "id": "post_event"
         }
       ],
       "content": {
@@ -3384,12 +3375,12 @@
       "id": "cyprus_briefing_19.continue",
       "onArrival": [
         {
-          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(19) < 0) Q.cyprus_briefings_seen.push(19);"
+          "$code": "if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];\nif (Q.cyprus_briefings_seen.indexOf(19) < 0) Q.cyprus_briefings_seen.push(19);\nAnatolianRules.cyprusAtilla1.finishBriefingDay(Q,19);"
         }
       ],
       "goTo": [
         {
-          "id": "root"
+          "id": "post_event"
         }
       ],
       "content": {
@@ -3525,6 +3516,12 @@
       },
       "goTo": [
         {
+          "id": "cyprusintro",
+          "predicate": {
+            "$code": "return (((Q['cyprus_day'] || 0) == 17) && (!(((Q['cyprus_intro_seen'] || 0)) !== 0)));"
+          }
+        },
+        {
           "id": "cyprus_briefing_15",
           "predicate": {
             "$code": "return ((Q['cyprus_day'] || 0) == 15);"
@@ -3539,7 +3536,7 @@
         {
           "id": "cyprus_briefing_17",
           "predicate": {
-            "$code": "return ((Q['cyprus_day'] || 0) == 17);"
+            "$code": "return (((Q['cyprus_day'] || 0) == 17) && (((Q['cyprus_intro_seen'] || 0)) !== 0));"
           }
         },
         {
@@ -4048,6 +4045,25 @@
       "goTo": [
         {
           "id": "cyprus_support_return"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_preop_continue": {
+      "id": "cyprus_preop_continue",
+      "type": "scene",
+      "title": "Continue Cyprus preparations",
+      "onArrival": [
+        {
+          "$code": "Q.cyprus_preop_resume = 0;"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_briefing_continue"
         }
       ],
       "content": {
@@ -5028,6 +5044,23 @@
         "type": "paragraph"
       }
     },
+    "meetingopposition.root": {
+      "id": "meetingopposition.root",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,16);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "post_event"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "meetingopposition": {
       "id": "meetingopposition",
       "type": "scene",
@@ -5048,7 +5081,7 @@
       ],
       "options": [
         {
-          "id": "@root",
+          "id": "@meetingopposition.root",
           "title": "And he thought of his next stop: London."
         }
       ],
@@ -10719,6 +10752,12 @@
       ],
       "goTo": [
         {
+          "id": "cyprus_preop_continue",
+          "predicate": {
+            "$code": "return (((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_preop_resume'] || 0) == 1)) && ((Q['calculate_economy_health'] || 0) != 1)) && ((Q['coup_roll_success'] || 0) != 1));"
+          }
+        },
+        {
           "id": "game_over",
           "predicate": {
             "$code": "return ((Q['coup_roll_success'] || 0)===1);"
@@ -10739,13 +10778,13 @@
         {
           "id": "main",
           "predicate": {
-            "$code": "return (((Q['has_event'] || 0)===0) && ((Q['difficulty'] || 0) >= 0));"
+            "$code": "return ((((Q['has_event'] || 0)===0) && ((Q['difficulty'] || 0) >= 0)) && (!(((Q['cyprus_preop_resume'] || 0)) !== 0)));"
           }
         },
         {
           "id": "main.main_easy",
           "predicate": {
-            "$code": "return (((Q['has_event'] || 0)===0) && ((Q['difficulty'] || 0) < 0));"
+            "$code": "return ((((Q['has_event'] || 0)===0) && ((Q['difficulty'] || 0) < 0)) && (!(((Q['cyprus_preop_resume'] || 0)) !== 0)));"
           }
         }
       ],
@@ -18068,6 +18107,16 @@
     },
     "cyprusintro.root": {
       "id": "cyprusintro.root",
+      "onArrival": [
+        {
+          "$code": "Q.cyprus_intro_seen = 1;"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_briefing_17"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"

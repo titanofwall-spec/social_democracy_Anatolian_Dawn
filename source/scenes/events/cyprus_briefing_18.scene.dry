@@ -34,5 +34,6 @@ In a speech many described as "clear and resolute", Deniz Baykal explained the E
 on-arrival: {!
 if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
 if (Q.cyprus_briefings_seen.indexOf(18) < 0) Q.cyprus_briefings_seen.push(18);
+AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,18);
 !}
-go-to: root
+go-to: post_event

@@ -197,32 +197,19 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert.equal(Q.time,time);
         assert.deepEqual([Q.year,Q.month,Q.week,Q.cyprus_day],[1974,7,2,16]);
     });
-    test('Six source readings are saved, cannot be skipped, and preserve operation scores', (e,Q) => {
-        Q.year=1974; Q.month=7; Q.week=2; Q.flavour_events=0; e.goToScene('kibrisdarbe');
-        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
-        const time=Q.time, score=Q.cyprus_atilla1_score;
-        pick(e,'kibrisdarbe.root'); assert.equal(e.state.sceneId,'cyprus_briefing_15');
-        for(let day=15;day<=20;day++) {
-            if(day>15) window.cyprusAdvanceDay();
-            assert.equal(Q.cyprus_day,day); assert.equal(e.state.sceneId,'cyprus_briefing_'+day);
-            window.cyprusAdvanceDay(); // Header must reopen the pending reading, not skip it.
-            assert.equal(Q.cyprus_day,day);
-            pick(e,'cyprus_briefing_'+day+'.continue');
-            assert(Q.cyprus_briefings_seen.includes(day));
-            assert.equal(rules.cyprusAtilla1.briefingScene(Q),null);
-            assert.equal(Q.cyprus_day,day); assert.equal(Q.time,time); assert.equal(Q.cyprus_atilla1_score,score);
-            if(day===16||day===17) {
-                assert.equal(e.state.sceneId,day===16?'meetingopposition':'cyprusintro');
-                for(let i=0;i<8 && !['main','main.main_easy'].includes(e.state.sceneId);i++) e.choose(0);
-                assert(['main','main.main_easy'].includes(e.state.sceneId));
-            }
-        }
-        assert.equal(e.state.sceneId,'cyprus_atilla1_20');
-        assert.equal(e.getCurrentChoices().length,2);
-        // Missing new fields in a legacy save are safe, and only its current date is offered.
-        delete Q.cyprus_briefings_seen; Q.cyprus_day=19;
-        assert.equal(rules.cyprusAtilla1.briefingScene(Q),'cyprus_briefing_19');
-        Q.cyprus_day=25; assert.equal(rules.cyprusAtilla1.briefingScene(Q),null);
+    test('Pre-operation days advance after the final passage and London follows the earlier briefing', (e,Q) => {
+        Q.year=1974;Q.month=7;Q.week=2;Q.flavour_events=0;e.goToScene('kibrisdarbe');
+        const time=Q.time,score=Q.cyprus_atilla1_score;
+        pick(e,'kibrisdarbe.root');assert.equal(e.state.sceneId,'cyprus_briefing_15');
+        pick(e,'cyprus_briefing_15.continue');assert.equal(Q.cyprus_day,16);assert.equal(e.state.sceneId,'cyprus_briefing_16');
+        pick(e,'cyprus_briefing_16.continue');assert.equal(Q.cyprus_day,16);assert.equal(e.state.sceneId,'meetingopposition');
+        pick(e,'meetingopposition.root');assert.equal(Q.cyprus_day,17);assert.equal(e.state.sceneId,'cyprusintro');
+        pick(e,'cyprusintro.a');pick(e,'cyprusintro.b');assert.equal(Q.cyprus_day,17);
+        pick(e,'cyprusintro.root');assert.equal(e.state.sceneId,'cyprus_briefing_17');assert.equal(Q.cyprus_day,17);
+        for(let day=17;day<20;day++){pick(e,'cyprus_briefing_'+day+'.continue');assert.equal(Q.cyprus_day,day+1);assert.equal(e.state.sceneId,'cyprus_briefing_'+(day+1));}
+        pick(e,'cyprus_briefing_20.continue');assert.equal(Q.cyprus_day,20);assert.equal(e.state.sceneId,'cyprus_atilla1_20');
+        assert.equal(Q.time,time);assert.equal(Q.cyprus_atilla1_score,score);assert.deepEqual(Q.cyprus_briefings_seen,[15,16,17,18,19,20]);
+        assert(!rules.cyprusAtilla1.finishBriefingDay(Q,19));
     });
     test('Cyprus daily calendar reaches the existing exit without an extra turn', (e,Q) => {
         Q.year=1974; Q.month=7; Q.week=2; Q.flavour_events=0; e.goToScene('kibrisdarbe');
@@ -278,6 +265,15 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         Q.cyprus_day=23;assert(c.useSupport(Q,'reinforce','nicosia'));assert.equal(c.cooldown(Q,'reinforce'),3);
         assert(!c.useSupport(Q,'strike','akrotiri'));assert(!c.useSupport(Q,'strike','dhekelia'));
         assert(!c.useSupport(Q,'__proto__','nicosia'));
+    });
+    test('Turkish and Greek support actions reject the other side before spending', (e,Q) => {
+        const c=rules.cyprusAtilla1;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;Q.military_strength=200;
+        for(const [key,action] of Object.entries(c.supportActions)){
+            Q.cyprus_support_bonus=0;const before=Q.military_strength;
+            assert(!c.useSupport(Q,key,action.side==='turkish'?'greek':'turkish'));assert.equal(Q.military_strength,before);
+            assert(c.useSupport(Q,key,action.side));assert.equal(Q.military_strength,before-action.cost);
+            assert.equal(Q.cyprus_support_bonus,action.bonus);assert.equal(c.cooldown(Q,key),3);
+        }
     });
     test('Support costs, insufficient funds and the +6 stack limit are enforced before spending', (e,Q) => {
         const c=rules.cyprusAtilla1;Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');Q.cyprus_day=20;

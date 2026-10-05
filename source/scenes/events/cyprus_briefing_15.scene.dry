@@ -20,5 +20,6 @@ At around 2.30 in the morning, the ministers gave the prime minister "full autho
 on-arrival: {!
 if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
 if (Q.cyprus_briefings_seen.indexOf(15) < 0) Q.cyprus_briefings_seen.push(15);
+AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,15);
 !}
-go-to: root
+go-to: post_event

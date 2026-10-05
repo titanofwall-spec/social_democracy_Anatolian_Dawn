@@ -26,5 +26,6 @@ An icy atmosphere swept through the room. Athens had rejected every point on whi
 on-arrival: {!
 if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
 if (Q.cyprus_briefings_seen.indexOf(19) < 0) Q.cyprus_briefings_seen.push(19);
+AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,19);
 !}
-go-to: root
+go-to: post_event

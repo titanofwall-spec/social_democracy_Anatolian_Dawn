@@ -130,7 +130,7 @@
       panel.id = 'cyprus-command-panel';
       panel.className = 'cyprus-command-panel';
       panel.innerHTML = '<div id="cyprus-map-wrap">' + window.cyprusMapMarkup + '</div>' +
-        '<p id="cyprus-selected-district">Select a district on the map to prepare support.</p>' +
+        '<p id="cyprus-selected-district">Select Turkish (red) or Greek (blue) positions to prepare support.</p>' +
         '<div id="cyprus-action-buttons">' +
         '<button type="button" id="cyprus-btn-smuggle" class="cyprus-action-btn" data-branch="land"><img src="img/icon_smuggling.png" alt="">Turkish Land Forces</button>' +
         '<button type="button" id="cyprus-btn-airstrike" class="cyprus-action-btn" data-branch="air"><img src="img/icon_aerial.webp" alt="">Turkish Air Forces</button>' +
@@ -147,31 +147,44 @@
     }
     // Dendry appends choices after rendering text. Move controls below those choices.
     content.appendChild(panel);
+    window.setupCyprusSideClicks();
     window.setupCyprusMapClicks();
+  };
+  window.setupCyprusSideClicks = function() {
+    var svg = document.getElementById('cyprus-map-svg');
+    if (!svg) return;
+    svg.querySelectorAll('.district').forEach(function(p) { p.style.pointerEvents='none';p.style.display='none';p.removeAttribute('tabindex');p.removeAttribute('role'); });
+    var source = svg.querySelector('#basemap image').getAttribute('href');
+    if (!window.cyprusSidePixels || window.cyprusSidePixels.source !== source) {
+      var record = {source:source,context:null};window.cyprusSidePixels=record;
+      var img=new Image();img.onload=function(){var canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;var ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0);record.context=ctx;};img.src=source;
+    }
+    var panel=document.getElementById('cyprus-command-panel');
+    var chooser=panel.querySelector('#cyprus-side-choices');
+    if (!chooser) {
+      chooser=document.createElement('div');chooser.id='cyprus-side-choices';
+      ['turkish','greek'].forEach(function(side){var b=document.createElement('button');b.type='button';b.className='cyprus-action-btn';b.dataset.side=side;b.textContent=side==='turkish'?'Turkish positions (red)':'Greek positions (blue)';chooser.appendChild(b);});
+      panel.querySelector('#cyprus-map-wrap').appendChild(chooser);
+    }
+    function select(side) {window.dendryUI.dendryEngine.state.qualities.cyprus_target_side=side;window.setupCyprusMapClicks();chooser.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.side===side?'true':'false');});}
+    chooser.querySelectorAll('button').forEach(function(b){b.onclick=function(){select(b.dataset.side);};b.setAttribute('aria-pressed',window.dendryUI.dendryEngine.state.qualities.cyprus_target_side===b.dataset.side?'true':'false');});
+    svg.onclick=function(event){
+      var record=window.cyprusSidePixels;if (!record || record.source!==source || !record.context) return;
+      var point=new DOMPoint(event.clientX,event.clientY).matrixTransform(svg.getScreenCTM().inverse());
+      if (Array.from(svg.querySelectorAll('.sba')).some(function(p){return p.isPointInFill(point);})) return;
+      if (point.x<0 || point.y<0 || point.x>=4250 || point.y>=2573) return;
+      var rgb=record.context.getImageData(Math.floor(point.x),Math.floor(point.y),1,1).data;
+      if (rgb[0]>rgb[2]*1.15 && rgb[0]>rgb[1]*1.15) select('turkish');
+      else if (rgb[2]>rgb[0]*1.05 && rgb[2]>35) select('greek');
+    };
   };
   window.setupCyprusMapClicks = function() {
     var panel = document.getElementById('cyprus-command-panel');
     if (!panel) return;
     var Q = window.dendryUI.dendryEngine.state.qualities, rules = AnatolianRules.cyprusAtilla1;
-    var selected = rules.districts.indexOf(Q.cyprus_target_district) >= 0 ? Q.cyprus_target_district : '';
-    panel.querySelectorAll('.district').forEach(function(el) {
-      el.classList.toggle('selected',el.id === selected);
-      el.setAttribute('role','button'); el.setAttribute('tabindex','0');
-      el.setAttribute('aria-label','Select ' + el.getAttribute('data-name'));
-      el.setAttribute('aria-pressed',el.id === selected ? 'true' : 'false');
-      function select() {
-        Q.cyprus_target_district = el.id;
-        Q.cyprus_target_district_label = el.getAttribute('data-name');
-        window.setupCyprusMapClicks();
-      }
-      el.onclick = select;
-      el.onkeydown = function(event) {
-        if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); select(); }
-      };
-    });
-    var chosen = selected ? panel.querySelector('#' + selected).getAttribute('data-name') : '';
-    document.getElementById('cyprus-selected-district').textContent = chosen ?
-      'Selected district: ' + chosen : 'Select a district on the map to prepare support.';
+    var selected = ['turkish','greek'].indexOf(Q.cyprus_target_side) >= 0 ? Q.cyprus_target_side : '';
+    var chosen = selected === 'turkish' ? 'Turkish positions' : selected === 'greek' ? 'Greek positions' : '';
+    document.getElementById('cyprus-selected-district').textContent = chosen ? 'Selected: ' + chosen : 'Select Turkish (red) or Greek (blue) positions to prepare support.';
     panel.querySelectorAll('[data-branch]').forEach(function(button) {
       button.disabled = !selected;
       button.setAttribute('aria-expanded',window.cyprusSupportBranch === button.dataset.branch ? 'true' : 'false');
@@ -193,14 +206,14 @@
     image.src = visual.src; image.alt = visual.alt;
     media.appendChild(image); actions.appendChild(media);
     var title = document.createElement('p');
-    title.textContent = 'Support in ' + chosen + '. Applies to the next roll; each action has a three-day cooldown across all districts.';
+    title.textContent = 'Actions targeting ' + chosen + '. Applies to the next roll; each action has a three-day cooldown.';
     actions.appendChild(title);
     var choices = document.createElement('ul');
     choices.className = 'choices';
     actions.appendChild(choices);
     Object.keys(rules.supportActions).forEach(function(key) {
       var action = rules.supportActions[key];
-      if (action.branch !== window.cyprusSupportBranch) return;
+      if (action.branch !== window.cyprusSupportBranch || action.side !== selected) return;
       var reason = rules.supportUnavailable(Q,key,selected);
       var row = document.createElement('li');
       var label = document.createElement(reason ? 'span' : 'a');
@@ -214,7 +227,7 @@
         label.onclick = function(event) {
           // Inline support uses the shared choice styling without invoking an event choice.
           event.preventDefault(); event.stopPropagation();
-          if (!rules.useSupport(Q,key,Q.cyprus_target_district)) return;
+          if (!rules.useSupport(Q,key,Q.cyprus_target_side)) return;
           window.updatePartySidebar(); window.setupCyprusMapClicks(); window.dendryUI.autosave();
         };
       }
@@ -229,6 +242,7 @@
   if (!Q.cyprus_mode || Q.cyprus_end_shown) return;
   var operationScene = window.cyprusPendingScene(Q);
   if (operationScene) {
+    if (!Q.cyprus_calendar_advance) { Q.year=Q.cyprus_year;Q.month=Q.cyprus_month;Q.week=Q.cyprus_day<=15?1:2; }
     window.dendryUI.dendryEngine.goToScene(operationScene);
     return;
   }
@@ -1122,3 +1136,24 @@ function getPartyIdeology(party, Q) {
         });
     });
 }());
+
+(function(){
+  if (typeof MutationObserver === 'undefined') return;
+  var owner=null,layer=null;
+  function hide(){if(layer)layer.remove();layer=null;owner=null;}
+  function show(target,x,y){
+    var tip=target.querySelector('.mytooltiptext,.wide_tooltip-tip');if(!tip)return;
+    if(owner!==target){hide();owner=target;layer=document.createElement('div');layer.id='leader-tooltip-layer';layer.className='mytooltip wide_tooltip-wrap';layer.setAttribute('role','tooltip');
+      var clone=tip.cloneNode(true),computed=getComputedStyle(tip);
+      ['width','max-width','padding','font-size','font-family','line-height','font-weight','background-color','color','border','border-radius','box-shadow','text-align'].forEach(function(k){clone.style.setProperty(k,computed.getPropertyValue(k));});
+      clone.style.cssText+=';position:static;display:block;visibility:visible;opacity:1;transform:none;margin:0;transition:none;';layer.appendChild(clone);document.body.appendChild(layer);
+    }
+    var box=layer.getBoundingClientRect();var left=Math.max(8,Math.min(innerWidth-box.width-8,x-box.width/2));var top=y-box.height-18;if(top<8)top=Math.min(innerHeight-box.height-8,y+18);
+    layer.style.left=left+'px';layer.style.top=Math.max(8,top)+'px';
+  }
+  document.addEventListener('mousemove',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap'):null;if(t&&t.id!=='leader-tooltip-layer')show(t,e.clientX,e.clientY);else hide();});
+  document.addEventListener('focusin',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap'):null;if(t){var b=t.getBoundingClientRect();show(t,b.left+b.width/2,b.bottom);}});
+  document.addEventListener('focusout',hide);window.addEventListener('scroll',hide,true);
+  new MutationObserver(function(){if(owner&&!owner.isConnected)hide();}).observe(document.documentElement,{childList:true,subtree:true});
+}());
+

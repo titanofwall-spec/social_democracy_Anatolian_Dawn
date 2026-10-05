@@ -42,5 +42,6 @@ Having tried every avenue without obtaining a result, the British prime minister
 on-arrival: {!
 if (!Array.isArray(Q.cyprus_briefings_seen)) Q.cyprus_briefings_seen = [];
 if (Q.cyprus_briefings_seen.indexOf(17) < 0) Q.cyprus_briefings_seen.push(17);
+AnatolianRules.cyprusAtilla1.finishBriefingDay(Q,17);
 !}
-go-to: cyprusintro if {! return !(this.state.visits['cyprusintro'] > 0); !}; root if {! return this.state.visits['cyprusintro'] > 0; !}
+go-to: post_event

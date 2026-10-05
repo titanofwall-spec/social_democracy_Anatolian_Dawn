@@ -1,3 +1,3 @@
 title: Continue.
 view-if: {! return !!AnatolianRules.cyprusAtilla1.briefingScene(Q); !}
-go-to: cyprus_briefing_15 if cyprus_day == 15; cyprus_briefing_16 if cyprus_day == 16; cyprus_briefing_17 if cyprus_day == 17; cyprus_briefing_18 if cyprus_day == 18; cyprus_briefing_19 if cyprus_day == 19; cyprus_briefing_20 if cyprus_day == 20
+go-to: cyprusintro if cyprus_day == 17 and not cyprus_intro_seen; cyprus_briefing_15 if cyprus_day == 15; cyprus_briefing_16 if cyprus_day == 16; cyprus_briefing_17 if cyprus_day == 17 and cyprus_intro_seen; cyprus_briefing_18 if cyprus_day == 18; cyprus_briefing_19 if cyprus_day == 19; cyprus_briefing_20 if cyprus_day == 20
