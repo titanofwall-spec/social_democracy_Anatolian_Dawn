@@ -1,8 +1,13 @@
 title: 25 July 1974 — Geneva opens amid continued fighting
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25'; !}
 new-page: true
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "25 July 1974 — Geneva opens amid continued fighting"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','alternative'); !}
 
-= 25 July 1974 — Geneva opens amid continued fighting
+= [+ cyprus_history_current_title +]
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 Mert Zorlu described what he had seen in those days, during the ceasefire, as follows:
 
@@ -11,8 +16,8 @@ Mert Zorlu described what he had seen in those days, during the ceasefire, as fo
 Mehmet Ali Birand, 30 Sıcak Gün, PDF page 272–273 — English translation of the source excerpt.
 
 
-- @historical: Continue consolidating positions while opening the Geneva talks.
-- @alternative: Freeze offensive movement and seek UN-monitored protection and supply arrangements.
+- @historical: [+ cyprus_history_choice_historical +]
+- @alternative: [+ cyprus_history_choice_alternative +]
 
 @historical
 title: Continue consolidating positions while opening the Geneva talks.
@@ -20,7 +25,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','historical',this.random.random.bind(this.random)); !}
 
-= 25 July 1974 — Geneva opens amid continued fighting — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -32,7 +37,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','alternative',this.random.random.bind(this.random)); !}
 
-= 25 July 1974 — Geneva opens amid continued fighting — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

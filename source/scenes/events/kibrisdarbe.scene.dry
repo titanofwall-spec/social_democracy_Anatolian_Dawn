@@ -19,8 +19,13 @@ Q.cyprus_month = 7;
 Q.cyprus_year = 1974;
 Q.cyprus_date_display = 'July 15, 1974';
 AnatolianRules.cyprusAtilla1.initializeSupport(Q);
+AnatolianRules.cyprusCampaign.initialize(Q);
 updateCyprusWidth();
 !}
+go-to: cyprus_campaign_final if cyprus_campaign_resolved == 1; kibrisdarbe.intervention if not cyprus_campaign_resolved
+
+@intervention
+new-page: true
 
 = Turmoil in Cyprus
 
@@ -40,3 +45,4 @@ Ecevit in his speech called on the farmers of Afyon to assist the state with com
 
 @root
 go-to: cyprus_briefing_15
+

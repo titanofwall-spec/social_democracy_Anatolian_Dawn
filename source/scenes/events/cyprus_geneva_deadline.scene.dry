@@ -1,0 +1,41 @@
+title: The settlement decision
+view-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_geneva_deadline'; !}
+new-page: true
+
+= [+ cyprus_date_display +] — The settlement decision
+
+The delegations must decide whether an agreement is ready. A federal settlement requires support from all three foreign delegations and sufficient progress on security guarantees. Further military action remains a separate political decision.
+
+- @denktas: Conclude the Denktaş federal settlement.
+- @gunes: Conclude the Güneş canton settlement.
+- @constitution: Accept restoration of the constitutional order.
+- @second: Authorize Atilla II.
+- @division: Accept the historical division.
+
+@denktas
+choose-if: {! return AnatolianRules.cyprusCampaign.canSettle(Q,'denktas'); !}
+unavailable-subtitle: Requires all three endorsements and the military, UN, airport and diplomatic conditions.
+on-arrival: {! AnatolianRules.cyprusCampaign.settle(Q,'Denktaş Plan'); !}
+go-to: cyprus_campaign_final
+
+@gunes
+choose-if: {! return AnatolianRules.cyprusCampaign.canSettle(Q,'gunes'); !}
+unavailable-subtitle: Requires all three endorsements, three conference breakthroughs and strong UN cooperation.
+on-arrival: {! AnatolianRules.cyprusCampaign.settle(Q,'Güneş Plan'); !}
+go-to: cyprus_campaign_final
+
+@constitution
+on-arrival: {! AnatolianRules.cyprusCampaign.settle(Q,'Return to the 1960 Constitutional Order'); !}
+go-to: cyprus_campaign_final
+
+@second
+choose-if: cyprus_atilla2_complete == 0 and cyprus_month == 8 and cyprus_day == 14
+unavailable-subtitle: The second operation can only be authorized on August 14, before it has already occurred.
+on-arrival: {! AnatolianRules.cyprusCampaign.beginII(Q); !}
+go-to: cyprus_atilla2_14
+
+@division
+choose-if: cyprus_atilla2_complete == 1
+unavailable-subtitle: This outcome is available only after Atilla II.
+on-arrival: {! AnatolianRules.cyprusCampaign.settle(Q,'Historical Division'); !}
+go-to: cyprus_campaign_final

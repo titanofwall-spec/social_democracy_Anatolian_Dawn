@@ -90,7 +90,7 @@
     return AnatolianRules.cyprusAtilla1.briefingScene(Q);
   };
   window.cyprusPendingScene = function(Q) {
-    return window.cyprusBriefingScene(Q) || AnatolianRules.cyprusAtilla1.historyScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q);
+    return AnatolianRules.cyprusCampaign.pending(Q) || window.cyprusBriefingScene(Q) || AnatolianRules.cyprusAtilla1.historyScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q);
   };
   window.updateCyprusWidth = function() {
   const content = document.getElementById('content');
@@ -1209,3 +1209,9 @@ function getPartyIdeology(party, Q) {
   new MutationObserver(function(){if(owner&&!owner.isConnected)hide();}).observe(document.documentElement,{childList:true,subtree:true});
 }());
 
+
+window.openCyprusDiplomacy=function(country){
+ var e=window.dendryUI.dendryEngine,Q=e.state.qualities;
+ if(!['greece','uk','us'].includes(country)||!Q.cyprus_mode||!Q.cyprus_atilla1_ending_seen||Q.cyprus_campaign_resolved||(Q.cyprus_campaign_phase==='atilla2'&&!Q.cyprus_atilla2_complete))return;
+ e.goToScene('cyprus_diplomacy_'+country);
+};

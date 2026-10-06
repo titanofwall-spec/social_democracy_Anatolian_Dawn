@@ -1,9 +1,13 @@
 title: A ceasefire without security
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 23 and cyprus_atilla1_complete == 0
 new-page: true
-on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 23); !}
+on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,23); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 23); !}
 
 = 23 July 1974 — A ceasefire without security
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 In Turkey, Karamanlis's arrival, followed immediately by Sampson's overthrow and his replacement by Clerides, was met with mixed feelings. In every Turk's mind, Karamanlis was known as a man who had signed the London–Zurich agreements despite Makarios and believed in Turkish–Greek friendship... Clerides too had always inspired sympathy with his moderate and reasonable attitude. These two leaders' accession increased hopes that “the way to a solution in Cyprus would open”... In government circles, the boast “We have brought democracy to Greece” prevailed. A softer atmosphere had emerged... With Karamanlis's arrival, an entirely new and wide-ranging cooperation could be established between Turkey and Greece...
 

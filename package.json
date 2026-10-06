@@ -7,7 +7,7 @@
     "dendrynexus": "dendrynexus",
     "build": "node scripts/build.js",
     "check": "node scripts/check.js",
-    "test": "npm run check && node scripts/test-cleanup.js && node scripts/test-rules.js"
+    "test": "npm run check && node scripts/test-cleanup.js && node scripts/test-rules.js && node scripts/test-cyprus-campaign.js"
   },
   "keywords": [],
   "author": "Egehan, based on the original game by Autumn Chen",

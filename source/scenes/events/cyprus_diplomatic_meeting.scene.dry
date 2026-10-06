@@ -1,0 +1,48 @@
+title: The diplomatic conference
+view-if: {! return AnatolianRules.cyprusCampaign.meetingPending(Q); !}
+on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.meetingBrief(Q); !}
+new-page: true
+
+= [+ cyprus_date_display +] — Negotiations
+
+[+ cyprus_campaign_report +]
+
+- @guarantees: Offer reciprocal security guarantees and advance the federal negotiations.
+- @protection: Prioritize UN monitoring and civilian protection arrangements.
+- @reject: Reject further concessions and maintain Turkey's demands.
+
+@guarantees
+choose-if: {! return AnatolianRules.cyprusCampaign.meetingAvailable(Q,'guarantees'); !}
+unavailable-subtitle: The current foreign attitudes do not permit this approach.
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveMeeting(Q,'guarantees'); !}
+new-page: true
+
+= Conference report
+
+[+ cyprus_campaign_last_text +]
+
+- @cyprus_campaign_continue: Continue.
+
+@protection
+choose-if: {! return AnatolianRules.cyprusCampaign.meetingAvailable(Q,'protection'); !}
+unavailable-subtitle: The current foreign attitudes do not permit this approach.
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveMeeting(Q,'protection'); !}
+new-page: true
+
+= Conference report
+
+[+ cyprus_campaign_last_text +]
+
+- @cyprus_campaign_continue: Continue.
+
+@reject
+choose-if: {! return AnatolianRules.cyprusCampaign.meetingAvailable(Q,'reject'); !}
+unavailable-subtitle: The current foreign attitudes do not permit this approach.
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveMeeting(Q,'reject'); !}
+new-page: true
+
+= Conference report
+
+[+ cyprus_campaign_last_text +]
+
+- @cyprus_campaign_continue: Continue.

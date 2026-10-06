@@ -1,9 +1,13 @@
 title: The second wave
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
 new-page: true
-on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 21); !}
+on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,21); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 21); !}
 
 = 21 July 1974 — The second wave
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 The bombardment that had begun on the island in the morning broke the first night's blockage, and the advance resumed... But the troop reinforcements—the second wave—would reach the island the following morning. The Kyrenia–Nicosia road still had not been brought under control. Fire continued from the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless.
 

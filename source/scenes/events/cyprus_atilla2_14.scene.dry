@@ -1,0 +1,42 @@
+title: The second operation
+view-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_atilla2_14'; !}
+new-page: true
+
+= 14 August 1974 — The second operation
+
+Turkey has authorized a second operation. Today's decision determines the strength of the next military position; its result remains uncertain.
+
+Historical source reference:
+
+The silence was broken by the message from the war centre in Adana:
+
+“...Unless changed, the operation will begin with the first light. Objective: the Şahin Line. Password: VICTORY.”
+
+In the darkness of the night, the great war machine immediately began turning. Soldiers were put into tanks and armoured vehicles. Orders were repeated.
+
+Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt.
+
+- @historical: Continue the offensive towards the operation's objectives.
+- @alternative: Prioritize reinforcement and supply coordination before the next advance.
+
+@historical
+choose-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_atilla2_14'; !}
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,14,'historical',this.random.random.bind(this.random)); !}
+new-page: true
+
+= Operation report — [+ cyprus_campaign_last_outcome +]
+
+[+ cyprus_campaign_last_text +]
+
+- @cyprus_campaign_continue: Continue.
+
+@alternative
+choose-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_atilla2_14'; !}
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,14,'alternative',this.random.random.bind(this.random)); !}
+new-page: true
+
+= Operation report — [+ cyprus_campaign_last_outcome +]
+
+[+ cyprus_campaign_last_text +]
+
+- @cyprus_campaign_continue: Continue.

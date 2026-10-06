@@ -1,0 +1,70 @@
+title: Negotiations with United States
+view-if: cyprus_mode != 0 and cyprus_atilla1_ending_seen == 1 and cyprus_campaign_resolved == 0
+new-page: true
+
+= Negotiations with United States
+
+Attitude: [+ us_attitude : cyprus_attitude +]. Diplomatic leverage: [+ leverage_points +].
+
+Denktaş proposes a northern Turkish and southern Greek federal structure. Güneş proposes six geographically separate autonomous Turkish cantons within a federal Cyprus.
+
+- @improve: Improve diplomatic confidence.
+- @denktas: Negotiate support for the Denktaş Plan.
+- @gunes: Negotiate support for the Güneş Plan.
+- @ratify_denktas: Conclude the Denktaş settlement.
+- @ratify_gunes: Conclude the Güneş settlement.
+- @return: Return to the campaign.
+
+@improve
+choose-if: {! return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','improve')===''; !}
+subtitle: 1 diplomatic leverage.
+unavailable-subtitle: Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.
+on-arrival: {! AnatolianRules.cyprusCampaign.diplomaticAction(Q,'us','improve'); !}
+new-page: true
+
+= Diplomatic report
+
+[+ cyprus_campaign_last_text +]
+
+- @return: Return to the campaign.
+
+@denktas
+choose-if: {! return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','denktas')===''; !}
+subtitle: 1 diplomatic leverage.
+unavailable-subtitle: Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.
+on-arrival: {! AnatolianRules.cyprusCampaign.diplomaticAction(Q,'us','denktas'); !}
+new-page: true
+
+= Diplomatic report
+
+[+ cyprus_campaign_last_text +]
+
+- @return: Return to the campaign.
+
+@gunes
+choose-if: {! return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','gunes')===''; !}
+subtitle: 2 diplomatic leverage.
+unavailable-subtitle: Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.
+on-arrival: {! AnatolianRules.cyprusCampaign.diplomaticAction(Q,'us','gunes'); !}
+new-page: true
+
+= Diplomatic report
+
+[+ cyprus_campaign_last_text +]
+
+- @return: Return to the campaign.
+
+@return
+go-to: cyprus_campaign_continue
+
+@ratify_denktas
+choose-if: {! return AnatolianRules.cyprusCampaign.canSettle(Q,'denktas'); !}
+unavailable-subtitle: Requires all three endorsements and the military, airport, UN and conference conditions.
+on-arrival: {! AnatolianRules.cyprusCampaign.settle(Q,'Denktaş Plan'); !}
+go-to: cyprus_campaign_final
+
+@ratify_gunes
+choose-if: {! return AnatolianRules.cyprusCampaign.canSettle(Q,'gunes'); !}
+unavailable-subtitle: Requires all three endorsements, strong UN cooperation and three conference breakthroughs.
+on-arrival: {! AnatolianRules.cyprusCampaign.settle(Q,'Güneş Plan'); !}
+go-to: cyprus_campaign_final

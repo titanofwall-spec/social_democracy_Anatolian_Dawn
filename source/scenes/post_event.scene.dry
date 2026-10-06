@@ -173,6 +173,10 @@ if (turnAdvanced) {
             Q.alevis_chp += 2;
             // Start 5-year timer for effects to wane
             Q.cyprus_confederation_timer = 60; // 5; years = 60 months
+        } else if (Q.cyprus_problem == 4) { // Negotiated federal settlement
+            var peaceGain=Q.cyprus_final_result==='Güneş Plan'?6:4;
+            Q.rural_chp+=peaceGain;Q.workers_chp+=peaceGain;Q.petty_bourgeoisie_chp+=peaceGain;Q.state_employees_chp+=peaceGain;Q.alevis_chp+=peaceGain;
+            Q.us_relation+=10;Q.west_relation+=10;
         } else if (Q.cyprus_problem == 3) { // Divided
             // +10% votershare increase among all demographics except Kurds and Capitalists
             Q.rural_chp += 10;
@@ -856,7 +860,7 @@ if (typeof window !== "undefined" && window.generateBar) {
 // Recalculate paramilitary force effectiveness (strength × militancy) every turn
 
 !}
-go-to: cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; game_over if coup_roll_success = 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0 and not cyprus_preop_resume; main.main_easy if has_event = 0 and difficulty < 0 and not cyprus_preop_resume
+go-to: cyprus_campaign_continue if cyprus_mode != 0 and cyprus_campaign_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; game_over if coup_roll_success = 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0 and not cyprus_preop_resume and not cyprus_campaign_resume; main.main_easy if has_event = 0 and difficulty < 0 and not cyprus_preop_resume and not cyprus_campaign_resume
 
 = [? if cyprus_mode = 0 : [+ month : month +] [+ year +] ?]
 

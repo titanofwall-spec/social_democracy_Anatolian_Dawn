@@ -1,8 +1,13 @@
 title: 2–13 August 1974 — The uneasy ceasefire
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213'; !}
 new-page: true
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "2–13 August 1974 — The uneasy ceasefire"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'august213','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'august213','alternative'); !}
 
-= 2–13 August 1974 — The uneasy ceasefire
+= [+ cyprus_history_current_title +]
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 “Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”
 
@@ -17,8 +22,8 @@ Turkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Tu
 Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt.
 
 
-- @historical: Prepare the reinforced army for renewed operations if Geneva fails.
-- @alternative: Prioritize defensive readiness and give negotiations more time under a strict territorial freeze.
+- @historical: [+ cyprus_history_choice_historical +]
+- @alternative: [+ cyprus_history_choice_alternative +]
 
 @historical
 title: Prepare the reinforced army for renewed operations if Geneva fails.
@@ -26,7 +31,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','historical',this.random.random.bind(this.random)); !}
 
-= 2–13 August 1974 — The uneasy ceasefire — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -38,7 +43,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','alternative',this.random.random.bind(this.random)); !}
 
-= 2–13 August 1974 — The uneasy ceasefire — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

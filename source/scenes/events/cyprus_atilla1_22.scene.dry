@@ -1,9 +1,13 @@
 title: Before the ceasefire
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0
 new-page: true
-on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 22); !}
+on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,22); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 22); !}
 
 = 22 July 1974 — Before the ceasefire
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 In Cyprus, the pressure of the previous night had been relieved, but the Greek Cypriots were again becoming active after dark. The KYRENIA–GÖNYELİ–NICOSIA link had been established, however inadequately. Yet resistance continued inside Kyrenia, and fighting continued in the pockets in the Beşparmak Mountains. The airborne troops and those who had landed from the sea were about to join up. The General Staff was very pleased that the force, which had been fighting on the island for two days without reinforcements, had achieved this—in fact, this was the real success. The second-wave forces had set out on Sunday night, 21 July, and were about to reach the island. There were heavy tanks and armoured vehicles, and they would consolidate control over the area that had been captured.
 

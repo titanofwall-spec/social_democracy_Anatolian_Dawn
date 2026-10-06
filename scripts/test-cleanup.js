@@ -2,6 +2,7 @@ const fs=require('fs'),path=require('path'),assert=require('assert');
 const root=path.resolve(__dirname,'..');
 require(path.join(root,'out/html/rules.js'));
 require(path.join(root,'out/html/cyprus-atilla1.js'));
+require(path.join(root,'out/html/cyprus-campaign.js'));
 const lib=require('dendrynexus/lib/engine.js');
 const silent=()=>{};
 const node={style:{},appendChild:silent,setAttribute:silent,addEventListener:silent,offsetWidth:600,classList:{add:silent,remove:silent,toggle:silent},querySelector:()=>node,querySelectorAll:()=>[],innerHTML:'',textContent:''};

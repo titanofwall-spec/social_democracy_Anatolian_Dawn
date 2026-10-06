@@ -1,9 +1,13 @@
 title: The airport confrontation
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
-on-arrival: {! Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 24); !}
+on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,24); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 24); !}
 
 = 24 July 1974 — The airport confrontation
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 Callaghan had made the incident a matter of prestige. In this way, he could both give the passive British a role to play and “save” the airport, which had great symbolic value. As Turkish commanders pressed the peacekeeping forces, made up of British troops, to “leave the airport,” Secretary-General Waldheim not only telephoned Ecevit but then went to Washington and asked Kissinger to help on the matter...
 
@@ -14,12 +18,12 @@ The airport really was not in our hands. When it had been surrounded, a message 
 Mehmet Ali Birand, 30 Sıcak Gün, PDF page 261 — English translation of the source excerpt.
 
 
-- @historical: Promise not to seize the airport by force.
-- @alternative: Negotiate UN-supervised arrangements for the approaches and access.
-- @pressure: Maintain the demand for control, risking escalation.
+- @historical: Continue limited expansion, promising not to seize the airport by force.
+- @alternative: Accept UN control, negotiate monitored access and freeze further advances.
+- @pressure: Continue expansion and maintain the demand for airport control.
 
 @historical
-title: Promise not to seize the airport by force.
+title: Continue limited expansion, promising not to seize the airport by force.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'historical', this.random.random.bind(this.random)); !}
@@ -31,7 +35,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Negotiate UN-supervised arrangements for the approaches and access.
+title: Accept UN control, negotiate monitored access and freeze further advances.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'alternative', this.random.random.bind(this.random)); !}
@@ -43,7 +47,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'alternative', this.r
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @pressure
-title: Maintain the demand for control, risking escalation.
+title: Continue expansion and maintain the demand for airport control.
 choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 24 and cyprus_atilla1_complete == 0
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'pressure', this.random.random.bind(this.random)); !}

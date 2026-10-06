@@ -1,10 +1,28 @@
 title: Atilla I — The result
-view-if: {! return AnatolianRules.cyprusAtilla1.endingReady(Q) && !AnatolianRules.cyprusAtilla1.historyScene(Q); !}
+view-if: {! return AnatolianRules.cyprusAtilla1.endingReady(Q); !}
 on-arrival: {! AnatolianRules.cyprusAtilla1.awardEnding(Q); !}
 new-page: true
-go-to: cyprus_support_return if {! return !AnatolianRules.cyprusAtilla1.endingReady(Q) || !!AnatolianRules.cyprusAtilla1.historyScene(Q); !}
 
-= 30 July 1974 — Atilla I: [+ cyprus_atilla1_ending +]
+= [+ cyprus_date_display +] — Atilla I: [+ cyprus_atilla1_ending +]
+
+[? if cyprus_early_freeze == 1 : Turkey has frozen its positions after the airport confrontation. Geneva I concludes earlier on this alternative route, on July 28. ?]
+[? if cyprus_early_freeze == 0 : The military chapter concludes after the later field operations and Geneva I. ?]
+
+Combined Atilla I Score: [+ cyprus_atilla1_score +] / 720.
+
+Operation results: [+ cyprus_operation_score +]. Military Readiness: +[+ cyprus_readiness_score +].
+
+Frontlines: [+ cyprus_atilla1_frontline +].
+
+Opposing Forces: [+ cyprus_atilla1_enemy_damage +].
+
+Airport: [+ cyprus_atilla1_access +].
+
+Diplomatic Position: [+ cyprus_atilla1_credibility +].
+
+Diplomatic leverage earned: +[+ cyprus_atilla1_reward +]. Total: [+ leverage_points +].
+
+Historical source reference (the historical conference, rather than a guaranteed player outcome):
 
 Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand:
 
@@ -14,22 +32,8 @@ It was not easy to believe, but the First Geneva Conference really had ended...
 
 Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the source excerpt.
 
-Combined Atilla I score: [+ cyprus_atilla1_score +] / [+ cyprus_atilla1_max_score +].
-
-Diplomatic leverage gained: +[+ cyprus_atilla1_reward +]. Total leverage: [+ leverage_points +].
-
-Position established by campaign decisions: [+ cyprus_atilla1_frontline +].
-
-Junction: [? if cyprus_atilla1_junction == 1 : Established. ?][? if cyprus_atilla1_junction == 0 : Incomplete; coastal and airborne forces remain separated. ?]
-
-Opposing forces: [+ cyprus_atilla1_enemy_damage +].
-
-Airport: [+ cyprus_atilla1_access +].
-
-Diplomatic position: [+ cyprus_atilla1_credibility +].
-
 - @root: Continue.
 
 @root
 on-arrival: {! AnatolianRules.cyprusAtilla1.continueEnding(Q); !}
-go-to: post_event
+go-to: cyprus_campaign_continue

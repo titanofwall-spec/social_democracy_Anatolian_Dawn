@@ -1,9 +1,13 @@
 title: A foothold, not a front
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
 new-page: true
-on-arrival: {! Q.cyprus_operation_started = 1; Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
+on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,20); Q.cyprus_operation_started = 1; Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
 
 = 20 July 1974 — A foothold, not a front
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 As the 6th Marine Regiment held the road immediately behind the beach, the soldiers of the 50th Infantry Regiment began moving forward and organizing themselves. Scattered machine-gun fire started from the surrounding area, but it was not difficult to silence it. Landing thirty-one ships one after another on the tiny beach was no easy task. The fleet had already begun taking up positions for shore bombardment... Turkish jets were sweeping the areas around Kyrenia and Nicosia, but dropping far fewer bombs than expected. The order “Do not fire unless fired upon” was still in their ears... Two landing ships that had run aground were left where they were... Scattered fire was answered.
 

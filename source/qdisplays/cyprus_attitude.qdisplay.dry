@@ -1,0 +1,7 @@
+
+(..-1.5) <span style="color:#9e2626"><strong>Hostile</strong></span>
+(-1.5..-0.5) <span style="color:#d4823a"><strong>Suspicious</strong></span>
+(-0.5..0.5) <span style="color:#c2b657"><strong>Neutral</strong></span>
+(0.5..1.5) <span style="color:#4a8f3c"><strong>Friendly</strong></span>
+(1.5..) <span style="color:#2f7a3a"><strong>Very Friendly</strong></span>
+

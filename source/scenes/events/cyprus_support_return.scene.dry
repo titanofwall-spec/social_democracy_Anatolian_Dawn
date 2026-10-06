@@ -1,2 +1,2 @@
-title: Return to the operation.
-go-to: root if cyprus_calendar_advance == 1; cyprus_atilla1_continue if {! return !Q.cyprus_calendar_advance && !!(AnatolianRules.cyprusAtilla1.briefingScene(Q) || AnatolianRules.cyprusAtilla1.historyScene(Q) || AnatolianRules.cyprusAtilla1.scene(Q)); !}; root if {! return !Q.cyprus_calendar_advance && !AnatolianRules.cyprusAtilla1.briefingScene(Q) && !AnatolianRules.cyprusAtilla1.historyScene(Q) && !AnatolianRules.cyprusAtilla1.scene(Q); !}
+title: Return to the Cyprus campaign
+go-to: cyprus_campaign_continue

@@ -1,16 +1,21 @@
 title: 26 July 1974 — The enclave expands
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26'; !}
 new-page: true
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "26 July 1974 — The enclave expands"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative'); !}
 
-= 26 July 1974 — The enclave expands
+= [+ cyprus_history_current_title +]
+
+[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+
+Historical source reference:
 
 “Gentlemen, the news reaching us is extremely worrying. Turkey has embarked on another major occupation in Cyprus. Clerides can no longer bear it. The situation is extremely critical. Look at the maps: you will see the Turks' expansion of nearly one hundred square kilometres since 22 July. In these circumstances, the conference will continue without me. The Greek government cannot remain at this conference any longer...”
 
 Mavros, quoted in Mehmet Ali Birand, 30 Sıcak Gün, PDF page 295 — English translation of the source excerpt.
 
 
-- @historical: Secure Alayköy and improve the western and eastern approaches to the enclave.
-- @alternative: Concentrate reinforcements on a coherent defensive perimeter rather than extending the advance.
+- @historical: [+ cyprus_history_choice_historical +]
+- @alternative: [+ cyprus_history_choice_alternative +]
 
 @historical
 title: Secure Alayköy and improve the western and eastern approaches to the enclave.
@@ -18,7 +23,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july26','historical',this.random.random.bind(this.random)); !}
 
-= 26 July 1974 — The enclave expands — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -30,7 +35,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july26','alternative',this.random.random.bind(this.random)); !}
 
-= 26 July 1974 — The enclave expands — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

@@ -1,0 +1,15 @@
+title: A diplomatic opening
+view-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_diplomatic_opportunity'; !}
+on-arrival: {! AnatolianRules.cyprusCampaign.opportunity(Q); !}
+new-page: true
+
+= A diplomatic opening
+
+A strong military position, restraint at the airport and cooperation with UN protection have given Turkey an exceptional opportunity to seek a federal settlement without a second operation. The three foreign delegations are sufficiently receptive for substantive negotiations.
+
+Turkey gains two additional leverage points. Click the Greek, British or American flags to negotiate support for the Denktaş or Güneş proposals. Their agreement is not automatic: country support and the conference's security guarantees must both be secured by August 14.
+
+- @root: Continue negotiations.
+
+@root
+go-to: cyprus_campaign_continue
