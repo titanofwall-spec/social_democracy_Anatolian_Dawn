@@ -1117,7 +1117,7 @@ function getPartyIdeology(party, Q) {
 
     var $ul = window.jQuery("<ul>").addClass("pinned-cards leadership-cards");
     var memberCount = 0;
-    var factionColors = {km:'#701616', lk:'#c76083', tw:'#b31f3b', ok:'#ac8bb3', rk:'#404139'};
+    var factionColors = {km:'#701616', lk:'#c76083', tw:'#b31f3b', ok:'#ac8bb3', rk:'#5b7387'};
     var advisorFactions = {};
     String(Q._advisor_factions || '').split(',').forEach(function(pair) {
       var parts = pair.split(':'); advisorFactions[parts[0]] = parts[1];

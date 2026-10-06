@@ -259,7 +259,7 @@ Municipality Control: [+ municipalities_controlled +]/[+ total_municipalities +]
 {!<span class="tooltip-text" style="color: #ac8bb3;" title="CHP was created as a middle class party to reinforce the Kemalist and the semi-bourgeoisie revolution of the military intelligentsia. Mostly the remnants of the one party era and lead by the illustrious right-man in command of Ataturk, İsmet İnönü, the Reformist Kemalists reject any intrusion into the Left in fears of CHP losing its identity as the party that gave birth to the Turkish Republic, as a nation-state found on Corporatist principles.">Reformist Kemalists</span>!} strength: [+ ok_strength_label +], dissent: [+ orthodox_kemalists_dissent : dissent +]
 [? if orthodox_kemalist_destruction : {!<span style="color: #7A3C00;">The Reformist Kemalist faction has been destroyed and left the party.</span>!} ?]
 
-{!<span class="tooltip-text" style="color: #404139;" title="Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right-Wing Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right-Wing Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.">Right-Wing Kemalists</span>!} strength: [+ rk_strength_label +], dissent: [+ right_kemalists_dissent : dissent +]
+{!<span class="tooltip-text" style="color: #5b7387;" title="Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right-Wing Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right-Wing Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.">Right-Wing Kemalists</span>!} strength: [+ rk_strength_label +], dissent: [+ right_kemalists_dissent : dissent +]
 [? if right_kemalist_split : {!<span style="color: #7A3C00;">Following Ecevit's ascension, the Right-Wing Kemalist faction has left the party to join the non-socialist opposition.</span>!} ?]
 [? if not right_kemalist_split and right_kemalist_deal : {!<span style="color: #7A3C00;">Satır's compromise keeps the Right-Wing Kemalists inside the CHP—at least for now.</span>!} ?]
 
@@ -797,7 +797,7 @@ if (!Q.orthodox_kemalist_destruction && Q.ok_congress_seats > 0) {
     pData.push({ id: "ok", legend: "Reformist Kemalists", name: "OK", seats: Q.ok_congress_seats, color: "#ac8bb3", outline: getOutline(Q.orthodox_kemalists_support) });
 }
 if (factionModelT.active.rk && Q.rk_congress_seats > 0) {
-    pData.push({ id: "rk", legend: "Right-Wing Kemalists", name: "RK", seats: Q.rk_congress_seats, color: "#404139", outline: getOutline(Q.right_kemalists_support) });
+    pData.push({ id: "rk", legend: "Right-Wing Kemalists", name: "RK", seats: Q.rk_congress_seats, color: "#5b7387", outline: getOutline(Q.right_kemalists_support) });
 }
 window.partyParliamentData = pData;
 
@@ -887,7 +887,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<span style="color: #b31f3b;">&#9632;</span> Third Worldists: !}[+ tw_congress_seats +]{! (<em>!}[+ tw_strength_label +]{!</em>)<br>!} ?]
 {!<span style="color: #c76083;">&#9632;</span> Left-Wing Kemalist: !}[+ lk_congress_seats +]{! (<em>!}[+ lk_strength_label +]{!</em>)<br>!}
 [? if not orthodox_kemalist_destruction : {!<span style="color: #ac8bb3;">&#9632;</span> Reformist Kemalists: !}[+ ok_congress_seats +]{! (<em>!}[+ ok_strength_label +]{!</em>)<br>!} ?]
-[? if not right_kemalist_split : {!<span style="color: #404139;">&#9632;</span> Right-Wing Kemalists: !}[+ rk_congress_seats +]{! (<em>!}[+ rk_strength_label +]{!</em>)!} ?]
+[? if not right_kemalist_split : {!<span style="color: #5b7387;">&#9632;</span> Right-Wing Kemalists: !}[+ rk_congress_seats +]{! (<em>!}[+ rk_strength_label +]{!</em>)!} ?]
 {!</div>!}
 
 = Party Quarters
@@ -899,7 +899,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<div><span style="color: #b31f3b;">Third Worldists:</span> !}[+ q0_tw_label +]{!</div>!} ?]
 {!<div><span style="color: #c76083;">Left-Wing Kemalist:</span> !}[+ q0_lk_label +]{!</div>!}
 [? if not orthodox_kemalist_destruction : {!<div><span style="color: #ac8bb3;">Reformist Kemalists:</span> !}[+ q0_ok_label +]{!</div>!} ?]
-[? if not right_kemalist_split : {!<div><span style="color: #404139;">Right-Wing Kemalists:</span> !}[+ q0_rk_label +]{!</div>!} ?]
+[? if not right_kemalist_split : {!<div><span style="color: #5b7387;">Right-Wing Kemalists:</span> !}[+ q0_rk_label +]{!</div>!} ?]
 {!</div>
 <div style="border: 1px solid #ccc; padding: 4px; border-radius: 3px;">
 <div style="font-weight: bold;">The Base (15%)</div>
@@ -907,7 +907,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<div><span style="color: #b31f3b;">Third Worldists:</span> !}[+ q1_tw_label +]{!</div>!} ?]
 {!<div><span style="color: #c76083;">Left-Wing Kemalist:</span> !}[+ q1_lk_label +]{!</div>!}
 [? if not orthodox_kemalist_destruction : {!<div><span style="color: #ac8bb3;">Reformist Kemalists:</span> !}[+ q1_ok_label +]{!</div>!} ?]
-[? if not right_kemalist_split : {!<div><span style="color: #404139;">Right-Wing Kemalists:</span> !}[+ q1_rk_label +]{!</div>!} ?]
+[? if not right_kemalist_split : {!<div><span style="color: #5b7387;">Right-Wing Kemalists:</span> !}[+ q1_rk_label +]{!</div>!} ?]
 {!</div>
 <div style="border: 1px solid #ccc; padding: 4px; border-radius: 3px;">
 <div style="font-weight: bold;">Party Bureaucracy (25%)</div>
@@ -915,7 +915,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<div><span style="color: #b31f3b;">Third Worldists:</span> !}[+ q2_tw_label +]{!</div>!} ?]
 {!<div><span style="color: #c76083;">Left-Wing Kemalist:</span> !}[+ q2_lk_label +]{!</div>!}
 [? if not orthodox_kemalist_destruction : {!<div><span style="color: #ac8bb3;">Reformist Kemalists:</span> !}[+ q2_ok_label +]{!</div>!} ?]
-[? if not right_kemalist_split : {!<div><span style="color: #404139;">Right-Wing Kemalists:</span> !}[+ q2_rk_label +]{!</div>!} ?]
+[? if not right_kemalist_split : {!<div><span style="color: #5b7387;">Right-Wing Kemalists:</span> !}[+ q2_rk_label +]{!</div>!} ?]
 {!</div>
 <div style="border: 1px solid #ccc; padding: 4px; border-radius: 3px;">
 <div style="font-weight: bold;">TBMM Delegation (20%)</div>
@@ -923,7 +923,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<div><span style="color: #b31f3b;">Third Worldists:</span> !}[+ q3_tw_label +]{!</div>!} ?]
 {!<div><span style="color: #c76083;">Left-Wing Kemalist:</span> !}[+ q3_lk_label +]{!</div>!}
 [? if not orthodox_kemalist_destruction : {!<div><span style="color: #ac8bb3;">Reformist Kemalists:</span> !}[+ q3_ok_label +]{!</div>!} ?]
-[? if not right_kemalist_split : {!<div><span style="color: #404139;">Right-Wing Kemalists:</span> !}[+ q3_rk_label +]{!</div>!} ?]
+[? if not right_kemalist_split : {!<div><span style="color: #5b7387;">Right-Wing Kemalists:</span> !}[+ q3_rk_label +]{!</div>!} ?]
 {!</div>
 <div style="border: 1px solid #ccc; padding: 4px; border-radius: 3px;">
 <div style="font-weight: bold;">Party Intelligentsia (10%)</div>
@@ -931,7 +931,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<div><span style="color: #b31f3b;">Third Worldists:</span> !}[+ q4_tw_label +]{!</div>!} ?]
 {!<div><span style="color: #c76083;">Left-Wing Kemalist:</span> !}[+ q4_lk_label +]{!</div>!}
 [? if not orthodox_kemalist_destruction : {!<div><span style="color: #ac8bb3;">Reformist Kemalists:</span> !}[+ q4_ok_label +]{!</div>!} ?]
-[? if not right_kemalist_split : {!<div><span style="color: #404139;">Right-Wing Kemalists:</span> !}[+ q4_rk_label +]{!</div>!} ?]
+[? if not right_kemalist_split : {!<div><span style="color: #5b7387;">Right-Wing Kemalists:</span> !}[+ q4_rk_label +]{!</div>!} ?]
 {!</div>
 <div style="border: 1px solid #ccc; padding: 4px; border-radius: 3px;">
 <div style="font-weight: bold;">Local Leaderships (10%)</div>
@@ -939,7 +939,7 @@ if (Q.CHP_party_leader == "Ecevit" || Q.CHP_party_leader == "ecevit") Q.leader_p
 [? if third_worldists_enabled : {!<div><span style="color: #b31f3b;">Third Worldists:</span> !}[+ q5_tw_label +]{!</div>!} ?]
 {!<div><span style="color: #c76083;">Left-Wing Kemalist:</span> !}[+ q5_lk_label +]{!</div>!}
 [? if not orthodox_kemalist_destruction : {!<div><span style="color: #ac8bb3;">Reformist Kemalists:</span> !}[+ q5_ok_label +]{!</div>!} ?]
-[? if not right_kemalist_split : {!<div><span style="color: #404139;">Right-Wing Kemalists:</span> !}[+ q5_rk_label +]{!</div>!} ?]
+[? if not right_kemalist_split : {!<div><span style="color: #5b7387;">Right-Wing Kemalists:</span> !}[+ q5_rk_label +]{!</div>!} ?]
 {!</div>
 </div>!}
 
