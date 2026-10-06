@@ -1,5 +1,5 @@
 // Normalize source paths for the pinned compiler on Windows and Linux.
-const fs=require('fs'),path=require('path'),{spawnSync}=require('child_process');
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),{spawnSync}=require('child_process');
 const root=path.resolve(__dirname,'..');
 const compiler=require('dendrynexus/lib/parsers/compiler.js');
 const files=[];
@@ -19,5 +19,11 @@ compiler.compileGame(files,(err,game)=>{
   if(result.error)throw result.error;
   if(result.status!==0){process.exitCode=result.status||1;return;}
   fs.copyFileSync(path.join(root,'out/game.json'),path.join(root,'out/html/game.json'));
+  // core.js embeds the compiled scenes; refresh its URL whenever the rules change.
+  const coreVersion=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html/core.js'))).digest('hex').slice(0,12);
+  const indexPath=path.join(root,'out/html/index.html');
+  const html=fs.readFileSync(indexPath,'utf8').replace(/src="core\.js(?:\?[^"]*)?"/g,'src="core.js?v='+coreVersion+'"');
+  fs.writeFileSync(indexPath,html);
+
  });
 });
