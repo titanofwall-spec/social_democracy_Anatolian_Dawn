@@ -65,7 +65,7 @@ Q.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'righ
 // to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,
 // Internal Factions list), where it is positioned to the right of the Kemalist Marxists.
 Q.third_worldists_enabled = 0;
-Q.third_worldists_color = '#5f0f91';
+Q.third_worldists_color = '#b31f3b';
 Q.third_worldists_dissent = 20;
 
 // Per-quarter faction strengths (source of truth)
@@ -1095,7 +1095,7 @@ Q.satir_advisor = 1; // Kemal Satır (Member — counted in n_advisors)
 
 // Nonfactional advisors
 
-// Turkish Right Kemalist advisors
+// Turkish Right-Wing Kemalist advisors
 Q.gogus_advisor = 0; // Ali İhsan Göğüs (existing)
 Q.paksut_advisor = 0; // Emin Paksüt
 Q.celikbas_advisor = 0; // Fethi Çelikbaş

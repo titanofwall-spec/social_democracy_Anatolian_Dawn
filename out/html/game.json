@@ -368,7 +368,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Fethi Çelikbaş is a pragmatist Right Kemalist politician and former minister of Industry and economy."
+          "content": "Fethi Çelikbaş is a pragmatist Right-Wing Kemalist politician and former minister of Industry and economy."
         }
       ]
     },
@@ -1025,7 +1025,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Emin Paksüt is a prominent Right Kemalist intellectual and politician has previously served as the minister of public works."
+          "content": "Emin Paksüt is a prominent Right-Wing Kemalist intellectual and politician has previously served as the minister of public works."
         }
       ]
     },
@@ -2178,7 +2178,7 @@
     "cgpformation": {
       "id": "cgpformation",
       "type": "scene",
-      "title": "Right Kemalist delegates join CGP.",
+      "title": "Right-Wing Kemalist delegates join CGP.",
       "viewIf": {
         "$code": "return (((((Q['year'] || 0)===1972) && ((Q['month'] || 0)===9)) && ((Q['week'] || 0)===2)) && ((Q['right_kemalist_split'] || 0)===1));"
       },
@@ -2197,11 +2197,11 @@
       "content": [
         {
           "type": "heading",
-          "content": "Right Kemalist delegates join CGP"
+          "content": "Right-Wing Kemalist delegates join CGP"
         },
         {
           "type": "paragraph",
-          "content": "2 Months ago, as a reaction to Ecevit's victory in the party congress, Right Kemalists had handed their resignations to the new leadership and become independents to pursue a separate political agenda."
+          "content": "2 Months ago, as a reaction to Ecevit's victory in the party congress, Right-Wing Kemalists had handed their resignations to the new leadership and become independents to pursue a separate political agenda."
         },
         {
           "type": "paragraph",
@@ -5739,7 +5739,7 @@
       "content": {
         "type": "paragraph",
         "content": [
-          "Now we as the Leftist Kemalists can expect the Marxists in the party to lend us their support in the congress. ",
+          "Now we as the Left-Wing Kemalist can expect the Marxists in the party to lend us their support in the congress. ",
           {
             "type": "emphasis-2",
             "content": "Time will tell whether this alliance will be one of convenience or unity"
@@ -5974,7 +5974,7 @@
           {
             "type": "paragraph",
             "content": [
-              "<span class=\"wide_tooltip-wrap\"><span style=\"color: #750a6f; font-weight: bold;\">Demirel</span><span class=\"wide_tooltip-tip\"><img src=\"img/demirell.jpg\">Süleyman Demirel. The chairman of AP and the leader of the main opposition. He is known for his political maneuvering and survival instincts.</span></span>, <span class=\"wide_tooltip-wrap\"><span style=\"color: #4a4d04; font-weight: bold;\">Bozbeyli</span><span class=\"wide_tooltip-tip\"><img src=\"img/bozbeyli.jpeg\">Ferruh Bozbeyli. The chairman of the right wing DP. He is a young lawyer who defended the former members of the Democrat Party during the political trials that followed the 1960 coup.</span></span>, <span class=\"wide_tooltip-wrap\"><span style=\"color: #5a5f63; font-weight: bold;\">Feyzioğlu</span><span class=\"wide_tooltip-tip\"><img src=\"img/feyzioglu.jpg\">Turhan Feyzioğlu. The chairman of CGP, he was expected to be İnönü's successor before he was overshadowed by Ecevit's and the Left of Center's rise.</span></span> and <span class=\"wide_tooltip-wrap\"><span style=\"color: #7c8287; font-weight: bold;\">Nihat Erim</span><span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Nihat Erim. A prominent Right Kemalist, he was the prime minister in the cabinet that followed the 12 March Memorandum in 1971.</span></span> stepped into the room one by one and took their seats. Admist curious eyes, Ecevit signalled national defense minister ",
+              "<span class=\"wide_tooltip-wrap\"><span style=\"color: #750a6f; font-weight: bold;\">Demirel</span><span class=\"wide_tooltip-tip\"><img src=\"img/demirell.jpg\">Süleyman Demirel. The chairman of AP and the leader of the main opposition. He is known for his political maneuvering and survival instincts.</span></span>, <span class=\"wide_tooltip-wrap\"><span style=\"color: #4a4d04; font-weight: bold;\">Bozbeyli</span><span class=\"wide_tooltip-tip\"><img src=\"img/bozbeyli.jpeg\">Ferruh Bozbeyli. The chairman of the right wing DP. He is a young lawyer who defended the former members of the Democrat Party during the political trials that followed the 1960 coup.</span></span>, <span class=\"wide_tooltip-wrap\"><span style=\"color: #5a5f63; font-weight: bold;\">Feyzioğlu</span><span class=\"wide_tooltip-tip\"><img src=\"img/feyzioglu.jpg\">Turhan Feyzioğlu. The chairman of CGP, he was expected to be İnönü's successor before he was overshadowed by Ecevit's and the Left of Center's rise.</span></span> and <span class=\"wide_tooltip-wrap\"><span style=\"color: #7c8287; font-weight: bold;\">Nihat Erim</span><span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Nihat Erim. A prominent Right-Wing Kemalist, he was the prime minister in the cabinet that followed the 12 March Memorandum in 1971.</span></span> stepped into the room one by one and took their seats. Admist curious eyes, Ecevit signalled national defense minister ",
               {
                 "type": "insert",
                 "insert": 0
@@ -6008,7 +6008,7 @@
           },
           {
             "type": "paragraph",
-            "content": "<span class=\"wide_tooltip-wrap\"><span style=\"color: #7c8287; font-weight: bold;\">Nihat Erim</span><span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Nihat Erim. A prominent Right Kemalist, he was the prime minister in the cabinet that followed the 12 March Memorandum in 1971.</span></span> called for caution too. 'The US may be the one behind this coup. Even if it's not clear yet, I suspect Washington may be viewing the Sampson Junta with sympathy. The government has to figure out their allegiances of the US and USSR before acting."
+            "content": "<span class=\"wide_tooltip-wrap\"><span style=\"color: #7c8287; font-weight: bold;\">Nihat Erim</span><span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Nihat Erim. A prominent Right-Wing Kemalist, he was the prime minister in the cabinet that followed the 12 March Memorandum in 1971.</span></span> called for caution too. 'The US may be the one behind this coup. Even if it's not clear yet, I suspect Washington may be viewing the Sampson Junta with sympathy. The government has to figure out their allegiances of the US and USSR before acting."
           },
           {
             "type": "paragraph",
@@ -7403,7 +7403,7 @@
     "rightkemalistsplit": {
       "id": "rightkemalistsplit",
       "type": "scene",
-      "title": "Right Kemalists are breaking off!",
+      "title": "Right-Wing Kemalists are breaking off!",
       "subtitle": "The battle for CHP reaches its conclusion.",
       "viewIf": {
         "$code": "return (((((Q['year'] || 0)===1972) && ((Q['month'] || 0)===7)) && ((Q['week'] || 0)===2)) && ((Q['right_kemalist_split'] || 0)===1));"
@@ -7435,7 +7435,7 @@
         },
         {
           "type": "paragraph",
-          "content": "With Ecevit's victory in his conflict with İnönü on the chairmanship, the Left of Center has emerged as the triumphant faction within the party. With the rapid transformation of the party and its executive, the Right Kemalists have chosen to abandon CHP and carve out a separate path to offer a 'national' alternative to the Social Democratic CHP appearing in the horizon."
+          "content": "With Ecevit's victory in his conflict with İnönü on the chairmanship, the Left of Center has emerged as the triumphant faction within the party. With the rapid transformation of the party and its executive, the Right-Wing Kemalists have chosen to abandon CHP and carve out a separate path to offer a 'national' alternative to the Social Democratic CHP appearing in the horizon."
         },
         {
           "type": "paragraph",
@@ -8160,7 +8160,7 @@
                 "type": "insert",
                 "insert": 0
               },
-              "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> was established. However, for the few that dared to speak up and act against the conventional, life had been crueler and more painful than ever before. The Socialist intellectuals who had previously backed the <span class=\"wide_tooltip-wrap\">9 March coup attempt<span class=\"wide_tooltip-tip\"><img src=\"img/9mart.jpg\">The 9 March coup attempt was a failed coup d'etat by Left Kemalist colonels who were unable to get the support of the high command.</span></span> and even those who had simply made their political tendencies known had been gathered in the Ziverbey Villa."
+              "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right-Wing Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> was established. However, for the few that dared to speak up and act against the conventional, life had been crueler and more painful than ever before. The Socialist intellectuals who had previously backed the <span class=\"wide_tooltip-wrap\">9 March coup attempt<span class=\"wide_tooltip-tip\"><img src=\"img/9mart.jpg\">The 9 March coup attempt was a failed coup d'etat by Left Kemalist colonels who were unable to get the support of the high command.</span></span> and even those who had simply made their political tendencies known had been gathered in the Ziverbey Villa."
             ]
           },
           {
@@ -8767,7 +8767,7 @@
       "content": [
         {
           "type": "paragraph",
-          "content": "The Köykent project is a comprehensive reform proposed by Ecevit that aims to reorganize the countryside and the dispersed villages into larger city-like structures that specialize in agriculture. The Leftist Kemalist and Marxist Kemalist factions voice their support."
+          "content": "The Köykent project is a comprehensive reform proposed by Ecevit that aims to reorganize the countryside and the dispersed villages into larger city-like structures that specialize in agriculture. The Left-Wing Kemalist and Marxist Kemalist factions voice their support."
         },
         {
           "type": "paragraph",
@@ -12222,7 +12222,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"Marxists within the party desire a realignment of the party alongside Socialist elements. Even though many intellectuals such as Tevfik Rüştü Aras and Doğan Avcıoğlu subscribe to this faction, there is no central organization nor a figure that leads the Marxist camp, largely due to ideological differences. However the general secretary, Kamil Kırıkoğlu, is the most prominent member in the party.\">Kemalist Marxists</span>"
+                "content": "<span class=\"tooltip-text\" style=\"color: #701616;\" title=\"Marxists within the party desire a realignment of the party alongside Socialist elements. Even though many intellectuals such as Tevfik Rüştü Aras and Doğan Avcıoğlu subscribe to this faction, there is no central organization nor a figure that leads the Marxist camp, largely due to ideological differences. However the general secretary, Kamil Kırıkoğlu, is the most prominent member in the party.\">Kemalist Marxists</span>"
               },
               " strength: ",
               {
@@ -12246,7 +12246,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<span class=\"tooltip-text\" title=\"The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor disattachment from the right wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so called \"shackles of the US\".\">Third Worldists</span>"
+                    "content": "<span class=\"tooltip-text\" style=\"color: #b31f3b;\" title=\"The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor disattachment from the right wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so called \"shackles of the US\".\">Third Worldists</span>"
                   },
                   " strength: ",
                   {
@@ -12270,7 +12270,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"Leftist Kemalists aka the Left of Center movement is a movement within CHP led by poet Bülent Ecevit which wishes to compliment the Progressive nature of the party with Social Democracy and in face of the growing urban working class, instead of swimming against the current, desires to lead the stream.\">Leftist Kemalists</span>"
+                "content": "<span class=\"tooltip-text\" style=\"color: #c76083;\" title=\"Left-Wing Kemalist aka the Left of Center movement is a movement within CHP led by poet Bülent Ecevit which wishes to compliment the Progressive nature of the party with Social Democracy and in face of the growing urban working class, instead of swimming against the current, desires to lead the stream.\">Left-Wing Kemalist</span>"
               },
               " strength: ",
               {
@@ -12290,7 +12290,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"CHP was created as a middle class party to reinforce the Kemalist and the semi-bourgeoisie revolution of the military intelligentsia. Mostly the remnants of the one party era and lead by the illustrious right-man in command of Ataturk, İsmet İnönü, the Reformist Kemalists reject any intrusion into the Left in fears of CHP losing its identity as the party that gave birth to the Turkish Republic, as a nation-state found on Corporatist principles.\">Reformist Kemalists</span>"
+                "content": "<span class=\"tooltip-text\" style=\"color: #ac8bb3;\" title=\"CHP was created as a middle class party to reinforce the Kemalist and the semi-bourgeoisie revolution of the military intelligentsia. Mostly the remnants of the one party era and lead by the illustrious right-man in command of Ataturk, İsmet İnönü, the Reformist Kemalists reject any intrusion into the Left in fears of CHP losing its identity as the party that gave birth to the Turkish Republic, as a nation-state found on Corporatist principles.\">Reformist Kemalists</span>"
               },
               " strength: ",
               {
@@ -12328,7 +12328,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.\">Right Kemalists</span>"
+                "content": "<span class=\"tooltip-text\" style=\"color: #404139;\" title=\"Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right-Wing Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right-Wing Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.\">Right-Wing Kemalists</span>"
               },
               " strength: ",
               {
@@ -12352,7 +12352,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<span style=\"color: #7A3C00;\">Following Ecevit's ascension, the Right Kemalist faction has left the party to join the non-socialist opposition.</span>"
+                    "content": "<span style=\"color: #7A3C00;\">Following Ecevit's ascension, the Right-Wing Kemalist faction has left the party to join the non-socialist opposition.</span>"
                   },
                   " "
                 ],
@@ -12370,7 +12370,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<span style=\"color: #7A3C00;\">Satır's compromise keeps the Right Kemalists inside the CHP—at least for now.</span>"
+                    "content": "<span style=\"color: #7A3C00;\">Satır's compromise keeps the Right-Wing Kemalists inside the CHP—at least for now.</span>"
                   },
                   " "
                 ],
@@ -17579,7 +17579,7 @@
       "content": [
         {
           "type": "paragraph",
-          "content": "We have committed to comprehensive land distribution, promising to break up large estates and redistribute land to small farmers. The Leftist Kemalist and the Reformist Kemalist factions voice their support."
+          "content": "We have committed to comprehensive land distribution, promising to break up large estates and redistribute land to small farmers. The Left-Wing Kemalist and the Reformist Kemalist factions voice their support."
         },
         {
           "type": "paragraph",
@@ -18395,7 +18395,7 @@
             "type": "emphasis-2",
             "content": "CHP"
           },
-          "</span> stands for the working class, it preaches for justice, not worker domination. The Marxist rhetoric generally fall on deaf ears and gathers serious backlash from even the Leftist Kemalists within the party. Our enemies are quick to capitalize on this, calling us \"unnational\" and \"godless marxists\"."
+          "</span> stands for the working class, it preaches for justice, not worker domination. The Marxist rhetoric generally fall on deaf ears and gathers serious backlash from even the Left-Wing Kemalist within the party. Our enemies are quick to capitalize on this, calling us \"unnational\" and \"godless marxists\"."
         ]
       }
     },
@@ -21725,7 +21725,7 @@
       "content": [
         {
           "type": "paragraph",
-          "content": "We have announced support for establishing agricultural cooperatives to help small farmers access credit, equipment, and markets. While modest, this cooperative approach demonstrates our commitment to rural development. Reformist Kemalist and Right Kemalist factions voice their support."
+          "content": "We have announced support for establishing agricultural cooperatives to help small farmers access credit, equipment, and markets. While modest, this cooperative approach demonstrates our commitment to rural development. Reformist Kemalist and Right-Wing Kemalist factions voice their support."
         },
         {
           "type": "paragraph",
@@ -22531,7 +22531,7 @@
       "id": "root.start",
       "onArrival": [
         {
-          "$code": "Q.started = 1;\n// time elapsed (in half-months/bi-weekly periods)\nQ.time = 1;\nQ.year = 1972;\nQ.month = 1;\nQ.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)\n// how many actions have been taken this period?\nQ.month_actions = 0;\n\n// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves\nQ.difficulty = 0;\nQ.historical_mode = 0;\n// old demographics\nQ.old_demographics = 0;\n// use decimals for parliament seats\nQ.use_decimals = 1; // Enable decimal display for Turkish election results\n// Show narrative-only flavour events by default\nQ.flavour_events = 1;\n\n// party resources\nQ.resources = 2;\n// party dues\nQ.dues = 2;\n\n// the state of the party\n// overall dissent reduces every increase in party support.\nQ.dissent = 0.05;\nQ.dissent_percent = 5;\n\n// factions\nQ.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'right_kemalists', 'third_worldists'];\n\n// Third Worldists: a minor faction, disabled by default. Toggle Q.third_worldists_enabled\n// to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,\n// Internal Factions list), where it is positioned to the right of the Kemalist Marxists.\nQ.third_worldists_enabled = 0;\nQ.third_worldists_color = '#5f0f91';\nQ.third_worldists_dissent = 20;\n\n// Per-quarter faction strengths (source of truth)\n// Quarters: Grassroots(20%), Base(15%), Bureaucracy(25%), TBMM(20%), Intelligentsia(10%), Local Leadership(10%)\n// q2 (Bureaucracy) base values are lower because party leadership figures add +1 each dynamically.\n// Starting leadership: İnönü(ok), Kırıkoğlu(km), Ecevit(lk), Satır(ok) → bonus km=1, lk=1, ok=2, rk=0\n// So q2 base + bonus = effective: km(-1+1=0), lk(1+1=2), ok(2+2=4), rk(1+0=1)\nQ.q0_km_str = 2; Q.q0_lk_str = 4; Q.q0_ok_str = 2; Q.q0_rk_str = 1; Q.q0_tw_str = 3;\nQ.q1_km_str = 1; Q.q1_lk_str = 4; Q.q1_ok_str = 2; Q.q1_rk_str = 1; Q.q1_tw_str = 2;\nQ.q2_km_str = 0; Q.q2_lk_str = 1; Q.q2_ok_str = 2; Q.q2_rk_str = 1; Q.q2_tw_str = 1;\nQ.q3_km_str = 1; Q.q3_lk_str = 3; Q.q3_ok_str = 3; Q.q3_rk_str = 2; Q.q3_tw_str = 2;\nQ.q4_km_str = 2; Q.q4_lk_str = 4; Q.q4_ok_str = 2; Q.q4_rk_str = 1; Q.q4_tw_str = 2;\nQ.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str = 1;\n\n// Advisor-to-faction mapping for dynamic Bureaucracy quarter (q2) computation.\n// km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional\nQ._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';\n\nQ.kemalist_marxists_dissent = 20;\nQ.left_kemalists_dissent = 20;\nQ.orthodox_kemalists_dissent = 5;\nQ.right_kemalists_dissent = 10;\nQ.right_kemalist_deal = 0;\nQ.right_kemalists_resign = 0;\nQ.right_kemalist_split = 0;\nQ.orthodox_kemalist_destruction = 0;\n\n// Congress tracking\nQ.congress_upcoming = 1;\nQ.congress_year = 1972;\nQ.congress_month = 5;\nQ.congress_candidate_1 = \"ecevit\";\nQ.congress_candidate_2 = \"inonu\";\n// Faction support: 1 = candidate_1 (Ecevit), 2 = candidate_2 (İnönü), 0 = undecided\nQ.kemalist_marxists_support = 0;\nQ.left_kemalists_support = 1;\nQ.orthodox_kemalists_support = 2;\nQ.right_kemalists_support = 2;\nQ.third_worldists_support = 0;\n\n// secret events...\nQ.unions_independent = 0;\nQ.centrists_resign = 0;\nQ.left_split = 0;\nQ.reformists_resigned = 0;\n\n// Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)\nQ.inonu_stay = 0;\n\n// Status of the Turkish Democracy\nQ.democracystatus = 30\nQ.paramilitary_pressure_timer = 0;\n\n// crisis_urgency indicates how seriously the <span style=\"color: #E3000F;\">**CHP**</span> is taking the economic crisis - scale from 0 to 10.\nQ.crisis_urgency = 0;\nQ.far_right_urgency = 0;\n// radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.\nQ.radicalization = 0;\nQ.public_works_support = 0;\nQ.pacifism = 0;\nQ.democratization = 0;\nQ.communist_coalition = 0;\n// economic_plan: have we adopted *any* economic plan?\nQ.economic_plan = 0;\nQ.public_works_adopted = 0;\n// have we formed the iron front?\n// people's party support\nQ.peoples_party_support = 0;\n// support for nationalizations\nQ.nationalization_support = 0;\nQ.nationalization_adopted = 0;\n// moderate economic plan\nQ.moderate_plan_support = 0;\nQ.moderate_plan_adopted = 0;\n\n// Cyprus\nQ.cyprus_mode = 0;\nQ.cyprus_resources_initialized = 0;\nQ.cyprus_support_bonus = 0;\nQ.cyprus_support_used = {};\nQ.cyprus_briefings_seen = [];\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching\n\n\n// organizations\n\n// inter-party relations\nQ.TIP_relation = 40;\nQ.CGP_relation = 35;\nQ.AP_relation = 30;\nQ.DP_relation = 20;\n// MSP and MHP are invariably hostile\nQ.MSP_relation = 10;\nQ.MHP_relation = 10;\n\n// DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977\nQ.DP_collapse = 0;\n\nQ.TIP_leader = \"Unorganized\";\n// alternative TIP leaders: Mehmet Ali Aybar, Behice Boran\nQ.TIP_party_leader = \"Unorganized\";\nQ.AP_leader = \"Demirel\";\nQ.AP_party_leader = \"Demirel\";\nQ.DP_leader = \"Bozbeyli\";\nQ.DP_party_leader = \"Bozbeyli\";\nQ.CGP_leader = \"Feyzioğlu\";\nQ.CGP_party_leader = \"Feyzioğlu\";\nQ.MSP_leader = \"Süleyman Arif\";\n// alternative MSP leader: Erbakan\nQ.MSP_party_leader = \"Süleyman Arif\";\nQ.CHP_leader = \"İnönü\";\n// alternative <span style=\"color: #E3000F;\">**CHP**</span> leader: Ecevit\nQ.CHP_party_leader = \"İnönü\";\nQ.party_leader_id = \"inonu\";\nQ.party_secretary = \"Kırıkoğlu\";\nQ.party_secretary_id = \"kirikoglu\";\nQ.MHP_leader = \"Alparslan Türkeş\"\nQ.MHP_party_leader = \"Alparslan Türkeş\"\n\n// Municipality control system\nQ.municipalities_controlled = 21;\nQ.total_municipalities = 67;\nQ.municipality_control_level = 1; // 0=Terrible, 1=Poor, 2=Divided, 3=Satisfactory, 4=Overwhelming\nQ.local_total_seats = 67;\nQ.local_election_threshold = 8;\n\n// Interior affairs policy baselines (numeric: 0 = worst/bad start)\nQ.land_reform_level = 0;\nQ.natural_resources_level = 0;\nQ.workplace_democracy_level = 0;\nQ.peoples_sector_level = 0;\nQ.workplace_safety_level = 0;\nQ.minimum_wage_level = 0;\nQ.judicial_reform_level = 0;\nQ.counter_guerilla_discovered = 0;\nQ.counter_guerilla_level = 0;\nQ.education_funding_level = 0;\nQ.education_curriculum_level = 0;\nQ.university_freedom_level = 0;\nQ.university_prestige_level = 0;\nQ.womens_legal_level = 2;\nQ.womens_workplace_level = 0;\nQ.household_violence_level = 0;\nQ.language_rights_level = 0;\n\n// The array of forces - Turkish paramilitary groups\n// Number of members (in thousands)\n// Far Left organizations\nQ.thkpc_strength = 2;\nQ.thkpc_militancy = 0.5;\nQ.thkpc_destroyed = 0;\nQ.thkpc_banned = 0;\n\nQ.tkpml_strength = 0.1;\nQ.tkpml_militancy = 0.8;\nQ.tkpml_formed = 0;\nQ.tkpml_banned = 0;\n\nQ.devyol_strength = 55;\nQ.devyol_militancy = 0.25;\nQ.devyol_formed = 0;\nQ.devyol_banned = 0;\n\n// Separatist organizations\nQ.pkk_base_strength = 8;\nQ.pkk_militancy = 0.5;\nQ.pkk_formed = 0;\nQ.pkk_strength = 0;\n\n// State forces\nQ.police_strength = 60;\nQ.police_militancy = 0.8;\nQ.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)\n\n// Far Right organizations\nQ.grey_wolves_strength = 25;\nQ.grey_wolves_militancy = 0.1;\nQ.grey_wolves_banned = 0;\n\nQ.raiders_strength = 30;\nQ.raiders_militancy = 0.05;\nQ.raiders_formed = 0;\nQ.raiders_banned = 0;\n\nQ.tit_strength = 0.5;\nQ.tit_militancy = 0.9;\nQ.tit_banned = 0;\n\n// Keep these for compatibility with existing events, but set to 0 for Turkish context\n\n\n// Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)\nQ.army_land_strength = 0.4;\nQ.army_naval_strength = 0.4;\nQ.army_aerial_strength = 0.4;\n\n// Political Violence Calculation System\nQ.streetfighting_joever = 0;\n\n// Calculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.separatist_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Separatist forces calculation (strength × militancy)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.pkk_formed = 1;\n    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);\n    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;\n    Q.separatist_force += Q.pkk_force;\n} else {\n    Q.pkk_formed = 0;\n    Q.pkk_strength = 0;\n    Q.pkk_force = 0;\n}\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.pkk_formed) {\n        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\n// Grey Wolves street control vote bonus for middle class (petty bourgeoisie)\n// Applied at initialization only - recalculations happen elsewhere\nif (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_percent > Q.far_left_force_percent && Q.grey_wolves_force_percent > 30) {\n    Q.grey_wolves_control_bonus = Math.floor((Q.grey_wolves_force_percent - 30) / 10) * 4;\n    Q.petty_bourgeoisie_MHP += Q.grey_wolves_control_bonus;\n    // Ensure we don't exceed 100% and redistribute proportionally if needed\n    if (Q.petty_bourgeoisie_MHP > 100) {\n        Q.petty_bourgeoisie_MHP = 100;\n    }\n}\n\n// strength includes actual military and de facto reserves?\nQ.armed_forces_strength = 100;\nQ.armed_forces_militancy = 5;\nQ.armed_forces_loyalty = 0.2;\n\n// The state of the country\n\n// popular opinion\n// national ideology - on a binary scale\n// nationalism vs internationalism or pacifism or non-nationalism\nQ.nationalism = 80;\n// socialism vs capitalism\nQ.socialism = 6;\n// pro-republic vs anti-republic\nQ.pro_republic = 86;\n\nQ.emergency_rule = 0;\n\n// minimum percentage of votes to be represented in the Grand National Assembly\nQ.electoral_threshold = 0;\n// constitutional reform level\nQ.constitutional_reform = 0;\n// constructive vote of no confidence\nQ.constructive_vonc = 0;\n// reduction in presidential powers\nQ.presidential_powers = 0;\n// allows banning of non-constitutional parties\nQ.constitutional_protection = 0;\nQ.TIP_banned = 1;\nQ.MHP_banned = 0;\n\n// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.\n// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.\nQ.coup_progress = 0;\nQ.capital_strike_progress = 0;\n\n// TSK (Turkish Armed Forces) coup timer system (0-15)\nQ.coup_timer = 0;\n\n// TSK status tracking\nQ.army_in_government = 1; // Starting with Nihat Erim military government\nQ.tsk_pacified = 0;\n\n// Kurdish Nationalism system\nQ.kurdish_political_consciousness = 0.20; // Starting position: Low (0.14-0.24)\nQ.kurdish_radicalism = 0.25; // Starting position: Medium-low (0.24-0.44)\n\n// Women's Rights\nQ.women_reform = 0\n\n// Factors affecting Kurdish Nationalism\n// Consciousness\nQ.eastern_crime = 5\nQ.CHP_kurdish_attitude = 0\nQ.ddkd_formed = 0\n\n// Radicalism\n// CHP attitude here too\n// tip being banned\n// ddkd here too\n\n// Union Relations system\nQ.disk_relation = 35; // Starting at \"cool\" (29.9-39.9 range)\nQ.disk_turkis_conflict = 0.50; // Starting at \"Balanced\" (0.40-0.60)\nQ.union_reform = \"no\";\n\n// Update army_in_government based on prime_minister_party\nif (Q.prime_minister_party == 'I') {\n    Q.army_in_government = 1;\n} else {\n    Q.army_in_government = 0;\n}\n\nQ.budget = 1;\nQ.yearly_budget = 0;\n\n// Proportion of different social groups - Turkish demographics circa 1972-1977\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\n\n// Kurdish demographic percentage based on political consciousness level\nif (Q.kurdish_political_consciousness < 0.05) {\n    Q.kurds = 0; // Nonexistent - 0%\n} else if (Q.kurdish_political_consciousness >= 0.05 && Q.kurdish_political_consciousness < 0.14) {\n    Q.kurds = 3; // Very low - 3%\n} else if (Q.kurdish_political_consciousness >= 0.14 && Q.kurdish_political_consciousness < 0.24) {\n    Q.kurds = 5; // Low - 5%\n} else if (Q.kurdish_political_consciousness >= 0.24 && Q.kurdish_political_consciousness < 0.44) {\n    Q.kurds = 7; // Medium-low - 7%\n} else if (Q.kurdish_political_consciousness >= 0.44 && Q.kurdish_political_consciousness < 0.69) {\n    Q.kurds = 9; // Medium - 9%\n} else if (Q.kurdish_political_consciousness >= 0.69 && Q.kurdish_political_consciousness < 0.89) {\n    Q.kurds = 11; // High - 11%\n} else {\n    Q.kurds = 15; // Very high - 15%\n}\n\n// income for industrial workers\nQ.income = 1600;\n\n// Historical economic baseline data by year (Turkish context)\nQ.historical_inflation = {\n    1972: 15.3,\n    1973: 15.8,\n    1974: 15.4,\n    1975: 19.0,\n    1976: 16.4,\n    1977: 22.5,\n    1978: 53.3,\n    1979: 62.0\n};\n\nQ.historical_gdp_growth = {\n    1972: 9.2,\n    1973: 4.9,\n    1974: 3.3,\n    1975: 6.1,\n    1976: 9.0,\n    1977: 3.0,\n    1978: 1.2,\n    1979: -0.5\n};\n\nQ.historical_unemployment = {\n    1972: 4.6,\n    1973: 6.5,\n    1974: 8.0,\n    1975: 7.5,\n    1976: 8.5,\n    1977: 9.7,\n    1978: 10.1,\n    1979: 8.9\n};\n\n// Set base economic values based on starting year (1972)\nQ.base_inflation = Q.historical_inflation[Q.year] || 15.3;\nQ.base_growth = Q.historical_gdp_growth[Q.year] || 9.2;\nQ.base_unemployment = Q.historical_unemployment[Q.year] || 4.6;\n\n// Player deviation variables (only these change via player actions)\nQ.inflation_modifier = 0;\nQ.growth_modifier = 0;\nQ.unemployment_modifier = 0;\nQ.industry_modifier = 0;\nQ.agriculture_modifier = 0;\nQ.forex_pressure_delayed_reduction = 0;\n\n// Set initial economic values from base + modifiers\nQ.inflation = Q.base_inflation + Q.inflation_modifier;\nQ.economic_growth = Q.base_growth + Q.growth_modifier;\nQ.unemployed = Q.base_unemployment + Q.unemployment_modifier;\n\n// Historical Industrial Production Index (base year 1972 = 100)\nQ.historical_industrial_index = {\n    1972: 100,\n    1973: 110,\n    1974: 120,\n    1975: 132,\n    1976: 145,\n    1977: 158,\n    1978: 150,\n    1979: 142\n};\n\n// Historical Agricultural Production Index (base year 1972 = 100)\nQ.historical_agricultural_index = {\n    1972: 100,\n    1973: 102,\n    1974: 105,\n    1975: 108,\n    1976: 111,\n    1977: 113,\n    1978: 115,\n    1979: 117\n};\n\nQ.base_industry_index = Q.historical_industrial_index[Q.year] || 100;\nQ.base_agriculture_index = Q.historical_agricultural_index[Q.year] || 100;\n\nQ.getForexFactors = function() {\n    var industry = Q.forex_industry_penalty || 0.6;\n    var ratio = Q.forex_agriculture_ratio || 3;\n    var agriculture = Q.forex_agriculture_penalty || industry / ratio;\n    return {industry: industry, agriculture: agriculture, ratio: ratio};\n};\n\n// Current Production Indices\nQ.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;\nQ.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;\n\n// Player modifications to production indices (cumulative effects from player actions)\nQ.industrial_player_modifier = 0;\nQ.agricultural_player_modifier = 0;\n\n// Variables for making production changes (used by government actions)\nQ.industrial_change = 0;\nQ.agricultural_change = 0;\nQ.agricultural_consumption_change = 0;\n\n// Agricultural Product Prices System\nQ.agricultural_consumption = 100; // Base consumption level (can be modified by player actions)\nQ.agricultural_product_prices = 1.0; // Consumption/Production ratio\nQ.agricultural_price_status = \"Sufficient\"; // Text status for display\nQ.agricultural_price_timer = 0; // Timer for applying political effects\n\n// Economic Health System\nQ.economy_health = 0;\nQ.economy_health_raw = 0;\nQ.economy_health_timer = 0;\nQ.inflation_score = 0;\nQ.unemployment_score = 0;\nQ.growth_score = 0;\nQ.health_economy_status = \"Stable\";\nQ.apply_economy_effects = 0;\n\n// Foreign Exchange Pressure System\nQ.forex_pressure = 45;\nQ.forex_multiplier = 1;\nQ.crisis_forex_flag = 0;\nQ.forex_pressure_drift = 2;\nQ.forex_industry_penalty = 0.6;\nQ.forex_agriculture_ratio = 3;\nQ.forex_agriculture_penalty = Q.forex_industry_penalty/Q.forex_agriculture_ratio;\nQ.last_economy_year = null;\n\n// economic expansion timer\nQ.economic_expansion = 0;\n\n// quality of life (as % of base year - currently unused)\nQ.rural_qol = 100;\nQ.workers_qol = 100;\nQ.petty_bourgeoisie_qol = 100;\nQ.state_employees_qol = 100;\nQ.capitalists_qol = 100;\nQ.alevis_qol = 100;\nQ.kurds_qol = 100;\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\n\n// Land Reform mechanics\nQ.koykent_progress = 0;\nQ.land_reform_progress = 0;\nQ.cooperative_progress = 0;\n\n// Support for party by social group - Turkish political alignment baseline (1972)\n// Rural (45% of population)\nQ.rural_TIP = 0.4;\nQ.rural_chp = 13;\nQ.rural_AP = 44; // AP uses 'AP' variable\nQ.rural_CGP = 4;\nQ.rural_DP = 22;\nQ.rural_MSP = 9.6;\nQ.rural_MHP = 4;\nQ.rural_other = 3;\n\n// Workers (15% of population)\nQ.workers_TIP = 14;\nQ.workers_chp = 42;\nQ.workers_AP = 18; // AP\nQ.workers_CGP = 3;\nQ.workers_DP = 7;\nQ.workers_MSP = 10;\nQ.workers_MHP = 3;\nQ.workers_other = 3;\n\n// Apply union effects to worker support\nif (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {\n    // TÜRK-İŞ leaning: Worker support AP +5%\n    Q.workers_AP += 5;\n} else if (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance: Worker support AP +10%\n    Q.workers_AP += 10;\n}\n\n// Petty Bourgeoisie (15% of population)\nQ.petty_bourgeoisie_TIP = 0;\nQ.petty_bourgeoisie_chp = 15;\nQ.petty_bourgeoisie_AP = 36; // AP\nQ.petty_bourgeoisie_CGP = 9;\nQ.petty_bourgeoisie_DP = 15;\nQ.petty_bourgeoisie_MSP = 16;\nQ.petty_bourgeoisie_MHP = 7;\nQ.petty_bourgeoisie_other = 2;\n\n// State Employees (7% of population)\nQ.state_employees_TIP = 0;\nQ.state_employees_chp = 41;\nQ.state_employees_AP = 18; // AP\nQ.state_employees_CGP = 27;\nQ.state_employees_DP = 8;\nQ.state_employees_MSP = 0;\nQ.state_employees_MHP = 5;\nQ.state_employees_other = 3;\n\n// Capitalists and Land Owners (3% of population)\nQ.capitalists_TIP = 0;\nQ.capitalists_chp = 7;\nQ.capitalists_AP = 55; // AP\nQ.capitalists_CGP = 8;\nQ.capitalists_DP = 25;\nQ.capitalists_MSP = 5;\nQ.capitalists_MHP = 0;\nQ.capitalists_other = 0;\n\n// Alevis (10% of population)\nQ.alevis_TIP = 8;\nQ.alevis_chp = 63;\nQ.alevis_AP = 8; // AP\nQ.alevis_CGP = 1;\nQ.alevis_DP = 1;\nQ.alevis_MSP = 0;\nQ.alevis_MHP = 1;\nQ.alevis_other = 18;\n\n// Kurdish Political Movement (5% of population)\nQ.kurds_TIP = 8;\nQ.kurds_chp = 33;\nQ.kurds_AP = 32; // AP\nQ.kurds_CGP = 3;\nQ.kurds_DP = 2;\nQ.kurds_MSP = 3;\nQ.kurds_MHP = 0;\nQ.kurds_other = 19;\n\n\n// Current Parliament composition - Turkish baseline (1972)\n// Based on weighted demographic calculations\nQ.chp_r = 27.3;\nQ.TIP_r = 2.6;\nQ.AP_r = 46.5; // AP (Justice Party)\nQ.CGP_r = 6.5;\nQ.DP_r = 0;\nQ.MSP_r = 0;\nQ.MHP_r = 3.0;\nQ.other_r = 14.1;\n\n// diff from prev\nQ.old_chp_r = 27.3;\nQ.old_TIP_r = 2.6;\nQ.old_AP_r = 46.5; // AP\nQ.old_CGP_r = 6.5;\nQ.old_DP_r = 0;\nQ.old_MSP_r = 0;\nQ.old_MHP_r = 3.0;\nQ.old_other_r = 14.1;\n\n// Parliament seat distribution (initial TBMM composition, updates via elections)\nQ.total_seats = 450;\nQ.chp_seats = 143;\nQ.AP_seats = 224;\nQ.TIP_seats = 2;\nQ.CGP_seats = 26;\nQ.DP_seats = 36;\nQ.MSP_seats = 0;\nQ.MHP_seats = 1;\n Q.other_seats = 18;\nQ.majority_threshold = 226;\nQ.largest_party_key = 'AP';\nQ.largest_party = 'AP';\n\nQ.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;\nQ.grand_coalition = Q.democratic_coalition + Q.DP_seats;\nQ.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.far_right_coalition = Q.MSP_seats + Q.MHP_seats;\nQ.left_coalition = Q.chp_seats + Q.TIP_seats;\nQ.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;\nQ.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;\nQ.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\nQ.leverage = Q.chp_seats/1.5;\n\n// Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.\n// Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into\n// itself and its minor splinter parties (TKP, TSİP, TEP, SDP), each taking a fixed share of the\n// bloc's total vote.\nQ.socialist_left_formed = 0;\n// Snapshot of socialist_left_formed as of the last election, used to decide whether the\n// \"Last election vote share\" section on the status screen shows the Socialist Left\n// breakdown (it must reflect whether the split existed AT the last election, not whether\n// it currently exists).\nQ.socialist_left_formed_last_election = 0;\nQ.former_TIP_r = 0;\nQ.TIP_socialist_left_r = 0;\nQ.TKP_r = 0;\nQ.TSIP_r = 0;\nQ.TEP_r = 0;\nQ.SDP_r = 0;\n\n// for changing the CGP's name to the DStP\nQ.CGP_name = \"CGP\";\n\n// array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election\nQ.election_records = [];\n// party support records for every month\nQ.party_support_records = [];\n// inflation and unemployment records\nQ.economic_records = [];\n\n// Party Strategy\nQ.strategy_united = 0;\nQ.strategy_socdem = 0;\nQ.strategy_res = 0;\nQ.strategy_socfas = 0;\n\n// State of the government\nQ.president = \"Cevdet Sunay\";\n// starting prime_minister: Nihat Erim\n// starting prime minister: Nihat Erim\nQ.prime_minister = \"Nihat Erim\";\nQ.prime_minister_party = 'I';\nQ.CHP_in_government = 0;\nQ.AP_in_government = 0;\nQ.CGP_in_government = 0;\nQ.DP_in_government = 0;\nQ.MSP_in_government = 0;\nQ.TIP_in_government = 0;\nQ.MHP_in_government = 0;\nQ.I_in_government = 1;\nQ.generalstaff = \"Memduh Tağmaç\";\n\nQ.in_right_coalition = 0;\nQ.in_democratic_coalition = 0;\n// Grand coalition = <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP\n// also includes the \"new grand coalition\" of <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP + Others\nQ.in_grand_coalition = 0;\n// Popular front = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + Z + CGP\nQ.in_popular_front = 0;\n// left coalition = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + left-splinters\nQ.in_left_front = 0;\n// unholy coalition = <span style=\"color: #E3000F;\">**CHP**</span> + MSP\nQ.in_msp_coalition = 0;\nQ.in_emergency_government = 0;\nQ.in_CHP_majority = 0;\nQ.grand_coalition_failed = 0;\n// if the <span style=\"color: #E3000F;\">**CHP**</span> is ruling as part of a minority government\nQ.in_minority_government = 0;\n// national unity governmet\n\n// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.\nQ.coalition_dissent = 0;\n// dissent from the TIP, in a popular front or left front government\nQ.TIP_coalition_dissent = 0;\n\n// does the <span style=\"color: #E3000F;\">**CHP**</span> tolerate the government even if it is not a participant?\nQ.CHP_toleration = 0;\n\n// is the current government a presidential minority government?\nQ.minority_government = 0;\n\n// ministries - which parties control the ministries?\n// is the agricultural ministry useful at all?\nQ.foreign_minister = 'Independent minister';\nQ.foreign_minister_party = 'I';\nQ.interior_minister = 'Independent minister';\nQ.interior_minister_party = 'I';\nQ.justice_minister = 'Independent minister';\nQ.justice_minister_party = 'I';\nQ.labor_minister_party = 'I';\nQ.defense_minister = 'Independent minister';\nQ.defense_minister_party = 'I';\nQ.economic_minister = 'Independent minister';\nQ.economic_minister_party = 'I';\nQ.agriculture_minister = 'Independent minister';\nQ.agriculture_minister_party = 'I';\nQ.industrial_minister = 'Independent minister';\nQ.industrial_minister_party = 'I';\nQ.trade_minister = 'Independent minister';\nQ.trade_minister_party = 'I';\nQ.education_minister = 'Independent minister';\nQ.education_minister_party = 'I';\n\n// Events: what has occurred?\nQ.unemployment_insurance_seen = 0;\n// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...\nQ.unemployment_insurance_threshold = 10;\n\n//\nQ.economicreform = 0\nQ.aet = 0\nQ.oil = 0\n\n// Working rights promises\nQ.lockout_promise = 0;\nQ.working_rights_promise = 0;\n// Working rights achievements\nQ.lokavtt = 0;\nQ.nationall = 0;\nQ.kitt = 0;\nQ.ikincilgrevv = 0;\nQ.healthinspectionss = 0;\n// Set to 1 when at least 3 one-time labour ministry reforms have been passed\nQ.labour_rights_reform = 0;\n\n// have we reformed these institutions to be more democratic?\nQ.judicial_reform = 0;\nQ.bureaucratic_reform = 0;\nQ.military_reform = 0;\nQ.womens_rights = 0;\n// Level of welfare relative to the starting situation (can go negative)\nQ.welfare = 0;\n// level of support for farmers\nQ.agricultural_policy = 0;\nQ.land_reform = 0;\nQ.rural_land_reform_policy = 0;\nQ.works_program = 0;\nQ.public_works_implemented = 0;\n// Relations with the Western countries (France, UK).\nQ.west_relation = 45;\n// Relations with Eastern Bloc countries\nQ.east_relation = 0;\n// Relations with the Soviet Union\nQ.soviet_relation = 20;\n// Relations with the United States\nQ.us_relation = 45;\n// Relations with the Middle East countries\nQ.middle_east_relation = 45;\n// Cyprus Problem status: 0 = Unresolved, 1 = Status Quo, 2 = Confederation, 3 = Divided\nQ.cyprus_problem = 0;\nQ.gunesplan = 0\nQ.denktasplan = 0\nQ.armsembargo = 0\n// Cyprus effects tracking\nQ.cyprus_last_status = 0; // Track previous status to detect changes\nQ.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)\nQ.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)\n// How much have we exposed the secret rearmament programs?\n// nationalization_progress is part of the left economic plan.\nQ.nationalization_progress = 0;\n// socializations is part of the economic democracy card.\nQ.socializations = 0;\nQ.nationalize_budget = 4;\n// have there been any factory takeovers?\nQ.factory_takeovers = 0;\n// progress on the moderate economic plan\nQ.moderate_plan_progress = 0;\n// European Union negotiation process\nQ.eu = 0;\nQ.eu_progress = 0;\n// science/education\nQ.science = 0;\nQ.education_science = 0;\n\n// Tax rates relative to the starting situation\nQ.lower_tax_rates = 0;\nQ.upper_tax_rates = 0;\nQ.tariffs = 5;\n\nQ.electoral_threshold = 0;\n\n// our conduct in the government, and the conduct of our coalition opponents.\n// did the <span style=\"color: #E3000F;\">**CHP**</span> vote against the previous government in a vote of no confidence?\nQ.CHP_no_confidence = 0;\n// was the last <span style=\"color: #E3000F;\">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?\nQ.no_confidence_against_chp = 0;\n\n// Advisors/Leaders\n// n_advisors counts only swappable member slots (not leader or secretary)\nQ.n_advisors = 2;\n// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.\n// let's just put all of the timers here...\n// most party affairs and government affairs cards are on a timer.\nQ.timers = ['advisor_action',  'crisis_program',\n            'fundraising', 'ideology', 'intraparty',\n            'inter_party_relationships', 'international_relations',\n             'media', 'enemies',\n            'party_organizations', 'rally',\n            'shuffle_leadership',  'peoples_party',\n            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',\n            // govt\n            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',\n            'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',\n            'police',  'shuffle_cabinet', 'social_welfare',\n            'homosexual_rights', 'economic_policy', 'coalition_affairs',\n            'womens_rights', 'economic_democracy',\n            'dealing_with_toleration',\n            'constitutional_reform', 'labor_rights',\n            'education_science', 'curriculum', 'avans', 'cutspending',\n            // events\n            'emergency_cuts', 'unemployment_insurance',\n\n            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',\n            'high_inflation', 'banking_crisis',\n            'understanding_enemy', ];\nQ.advisor_action_timer = 0;\n// party affairs timers\nQ.crisis_program_timer = 0;\nQ.fundraising_timer = 0;\nQ.ideology_timer = 0;\nQ.intraparty_timer = 0\nQ.poppy_campaign = 0;\nQ.strategy_timer = 0;\nQ.poppy_harvestation = 1;\nQ.inter_party_relationships_timer = 0;\nQ.international_relations_timer = 0;\nQ.western_socialist_contacts = 0;\nQ.socialist_international_member = 0;\nQ.avans_timer = 0;\nQ.remnants_of_inonu_timer = 0;\nQ.cutspending_timer = 0;\nQ.media_timer = 0;\nQ.enemies_timer = 0;\nQ.party_organizations_timer =  0;\nQ.rally_timer = 0;\nQ.kemalizm_timer = 0;\nQ.shuffle_leadership_timer = 0;\nQ.streetfighting_timer = 0;\nQ.peoples_party_timer = 0;\n// n_elections is the number of elections that have happened since the start of the game.\nQ.n_elections = 0;\n// number of elections without a clear majority.\nQ.no_majority_elections = 0;\n// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.\nQ.in_election = 1;\nQ.next_election_year = 1973;\nQ.next_election_month = 10;\nQ.next_election_time = 22;\nif (typeof Q.local_elections_held === 'undefined') {\n    Q.local_elections_held = 0;\n}\nif (typeof Q.next_local_election_year === 'undefined') {\n    Q.next_local_election_year = 1973;\n}\nif (typeof Q.next_local_election_month === 'undefined') {\n    Q.next_local_election_month = 12;\n}\nif (typeof Q.next_local_election_week === 'undefined') {\n    Q.next_local_election_week = 2;\n}\nif (typeof Q.next_local_election_time === 'undefined') {\n    Q.next_local_election_time = 0;\n}\n// government affairs timers\nQ.agricultural_policy_timer = 0;\nQ.domestic_enemies_timer = 0;\nQ.economic_policy_timer = 0;\nQ.fiscal_policy_timer = 0;\nQ.foreign_policy_timer = 0;\nQ.judiciary_timer = 0;\nQ.labor_affairs_timer = 0;\nQ.military_policy_timer = 0;\nQ.police_timer = 0;\nQ.shuffle_cabinet_timer = 0;\nQ.social_welfare_timer = 0;\nQ.womens_rights_timer = 0;\nQ.homosexual_rights_timer = 0;\nQ.municipality_timer = 0;\nQ.economic_democracy_timer = 0;\nQ.coalition_affairs_timer = 0;\nQ.industrial_policy_timer = 0;\n// Economic policy state\nQ.Tiger = 0;\nQ.imf_agreement = 0;\n\n// Tracking flags for one-time effects\nQ.oil_effect_applied = false;\nQ.oil_inflation_effect = 0;\nQ.land_reform_effect_applied = false;\nQ.cooperative_effect_applied = false;\nQ.koykent_effect_applied = false;\nQ.tiger_1978_effect_applied = false;\nQ.tiger_1979_effect_applied = false;\nQ.tiger_1980_effect_applied = false;\n\n// event timers\nQ.emergency_cuts_timer = 0;\nQ.unemployment_insurance_timer = 0;\nQ.TIP_ultimatum_timer = 0;\n\n//Cyprus attitudes\nQ.greece_attitude = 4;\nQ.uk_attitude = 50 + (Q.west_relation - 50);\nQ.us_attitude = 35 + (Q.us_relation - 50);\n\n// all the initial advisors are centrists.\n// Leader and Secretary have advisor=1 for display but are NOT counted in n_advisors.\n// Only Members (Ecevit, Satır) are counted in n_advisors.\nQ.inonu_advisor = 1; // İsmet İnönü (Party Leader — not in n_advisors)\nQ.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary — not in n_advisors)\nQ.ecevit_advisor = 1; // Bülent Ecevit (Member — counted in n_advisors)\nQ.satir_advisor = 1; // Kemal Satır (Member — counted in n_advisors)\n\n// left advisors\n\n// centrist alternate advisors\n\n// Reformist advisors\n\n// Labor advisors\n\n// Revisionist advisors\n\n\n// Nonfactional advisors\n\n// Turkish Right Kemalist advisors\nQ.gogus_advisor = 0; // Ali İhsan Göğüs (existing)\nQ.paksut_advisor = 0; // Emin Paksüt\nQ.celikbas_advisor = 0; // Fethi Çelikbaş\n\n// Turkish advisors - other factions\nQ.avcioglu_advisor = 0; // Doğan Avcıoğlu (Kemalist Marxist)\nQ.eyuboglu_advisor = 0; // Sabahattin Eyüboğlu (Reformist Kemalist)\n\n// Function to calculate municipality control level dynamically\nfunction getMunicipalityControlLevel() {\n    var controlled = Q.municipalities_controlled || 0;\n    var total = Q.total_municipalities || Q.local_total_seats || 67;\n    if (total <= 0) {\n        total = 67;\n    }\n    var ratio = controlled / total;\n    if (ratio <= (13 / 67)) {\n        return 0; // Terrible\n    } else if (ratio <= (26 / 67)) {\n        return 1; // Poor\n    } else if (ratio <= (34 / 67)) {\n        return 2; // Divided\n    } else if (ratio <= (40 / 67)) {\n        return 3; // Satisfactory\n    }\n    return 4; // Overwhelming\n}\n\n// Set initial municipality control level\nQ.municipality_control_level = getMunicipalityControlLevel();\n\n// Function to update municipality control level (call this whenever municipalities_controlled changes)\nfunction updateMunicipalityControlLevel() {\n    Q.municipality_control_level = getMunicipalityControlLevel();\n}\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nAnatolianRules.refreshVotes(Q);"
+          "$code": "Q.started = 1;\n// time elapsed (in half-months/bi-weekly periods)\nQ.time = 1;\nQ.year = 1972;\nQ.month = 1;\nQ.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)\n// how many actions have been taken this period?\nQ.month_actions = 0;\n\n// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves\nQ.difficulty = 0;\nQ.historical_mode = 0;\n// old demographics\nQ.old_demographics = 0;\n// use decimals for parliament seats\nQ.use_decimals = 1; // Enable decimal display for Turkish election results\n// Show narrative-only flavour events by default\nQ.flavour_events = 1;\n\n// party resources\nQ.resources = 2;\n// party dues\nQ.dues = 2;\n\n// the state of the party\n// overall dissent reduces every increase in party support.\nQ.dissent = 0.05;\nQ.dissent_percent = 5;\n\n// factions\nQ.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'right_kemalists', 'third_worldists'];\n\n// Third Worldists: a minor faction, disabled by default. Toggle Q.third_worldists_enabled\n// to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,\n// Internal Factions list), where it is positioned to the right of the Kemalist Marxists.\nQ.third_worldists_enabled = 0;\nQ.third_worldists_color = '#b31f3b';\nQ.third_worldists_dissent = 20;\n\n// Per-quarter faction strengths (source of truth)\n// Quarters: Grassroots(20%), Base(15%), Bureaucracy(25%), TBMM(20%), Intelligentsia(10%), Local Leadership(10%)\n// q2 (Bureaucracy) base values are lower because party leadership figures add +1 each dynamically.\n// Starting leadership: İnönü(ok), Kırıkoğlu(km), Ecevit(lk), Satır(ok) → bonus km=1, lk=1, ok=2, rk=0\n// So q2 base + bonus = effective: km(-1+1=0), lk(1+1=2), ok(2+2=4), rk(1+0=1)\nQ.q0_km_str = 2; Q.q0_lk_str = 4; Q.q0_ok_str = 2; Q.q0_rk_str = 1; Q.q0_tw_str = 3;\nQ.q1_km_str = 1; Q.q1_lk_str = 4; Q.q1_ok_str = 2; Q.q1_rk_str = 1; Q.q1_tw_str = 2;\nQ.q2_km_str = 0; Q.q2_lk_str = 1; Q.q2_ok_str = 2; Q.q2_rk_str = 1; Q.q2_tw_str = 1;\nQ.q3_km_str = 1; Q.q3_lk_str = 3; Q.q3_ok_str = 3; Q.q3_rk_str = 2; Q.q3_tw_str = 2;\nQ.q4_km_str = 2; Q.q4_lk_str = 4; Q.q4_ok_str = 2; Q.q4_rk_str = 1; Q.q4_tw_str = 2;\nQ.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str = 1;\n\n// Advisor-to-faction mapping for dynamic Bureaucracy quarter (q2) computation.\n// km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional\nQ._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';\n\nQ.kemalist_marxists_dissent = 20;\nQ.left_kemalists_dissent = 20;\nQ.orthodox_kemalists_dissent = 5;\nQ.right_kemalists_dissent = 10;\nQ.right_kemalist_deal = 0;\nQ.right_kemalists_resign = 0;\nQ.right_kemalist_split = 0;\nQ.orthodox_kemalist_destruction = 0;\n\n// Congress tracking\nQ.congress_upcoming = 1;\nQ.congress_year = 1972;\nQ.congress_month = 5;\nQ.congress_candidate_1 = \"ecevit\";\nQ.congress_candidate_2 = \"inonu\";\n// Faction support: 1 = candidate_1 (Ecevit), 2 = candidate_2 (İnönü), 0 = undecided\nQ.kemalist_marxists_support = 0;\nQ.left_kemalists_support = 1;\nQ.orthodox_kemalists_support = 2;\nQ.right_kemalists_support = 2;\nQ.third_worldists_support = 0;\n\n// secret events...\nQ.unions_independent = 0;\nQ.centrists_resign = 0;\nQ.left_split = 0;\nQ.reformists_resigned = 0;\n\n// Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)\nQ.inonu_stay = 0;\n\n// Status of the Turkish Democracy\nQ.democracystatus = 30\nQ.paramilitary_pressure_timer = 0;\n\n// crisis_urgency indicates how seriously the <span style=\"color: #E3000F;\">**CHP**</span> is taking the economic crisis - scale from 0 to 10.\nQ.crisis_urgency = 0;\nQ.far_right_urgency = 0;\n// radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.\nQ.radicalization = 0;\nQ.public_works_support = 0;\nQ.pacifism = 0;\nQ.democratization = 0;\nQ.communist_coalition = 0;\n// economic_plan: have we adopted *any* economic plan?\nQ.economic_plan = 0;\nQ.public_works_adopted = 0;\n// have we formed the iron front?\n// people's party support\nQ.peoples_party_support = 0;\n// support for nationalizations\nQ.nationalization_support = 0;\nQ.nationalization_adopted = 0;\n// moderate economic plan\nQ.moderate_plan_support = 0;\nQ.moderate_plan_adopted = 0;\n\n// Cyprus\nQ.cyprus_mode = 0;\nQ.cyprus_resources_initialized = 0;\nQ.cyprus_support_bonus = 0;\nQ.cyprus_support_used = {};\nQ.cyprus_briefings_seen = [];\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching\n\n\n// organizations\n\n// inter-party relations\nQ.TIP_relation = 40;\nQ.CGP_relation = 35;\nQ.AP_relation = 30;\nQ.DP_relation = 20;\n// MSP and MHP are invariably hostile\nQ.MSP_relation = 10;\nQ.MHP_relation = 10;\n\n// DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977\nQ.DP_collapse = 0;\n\nQ.TIP_leader = \"Unorganized\";\n// alternative TIP leaders: Mehmet Ali Aybar, Behice Boran\nQ.TIP_party_leader = \"Unorganized\";\nQ.AP_leader = \"Demirel\";\nQ.AP_party_leader = \"Demirel\";\nQ.DP_leader = \"Bozbeyli\";\nQ.DP_party_leader = \"Bozbeyli\";\nQ.CGP_leader = \"Feyzioğlu\";\nQ.CGP_party_leader = \"Feyzioğlu\";\nQ.MSP_leader = \"Süleyman Arif\";\n// alternative MSP leader: Erbakan\nQ.MSP_party_leader = \"Süleyman Arif\";\nQ.CHP_leader = \"İnönü\";\n// alternative <span style=\"color: #E3000F;\">**CHP**</span> leader: Ecevit\nQ.CHP_party_leader = \"İnönü\";\nQ.party_leader_id = \"inonu\";\nQ.party_secretary = \"Kırıkoğlu\";\nQ.party_secretary_id = \"kirikoglu\";\nQ.MHP_leader = \"Alparslan Türkeş\"\nQ.MHP_party_leader = \"Alparslan Türkeş\"\n\n// Municipality control system\nQ.municipalities_controlled = 21;\nQ.total_municipalities = 67;\nQ.municipality_control_level = 1; // 0=Terrible, 1=Poor, 2=Divided, 3=Satisfactory, 4=Overwhelming\nQ.local_total_seats = 67;\nQ.local_election_threshold = 8;\n\n// Interior affairs policy baselines (numeric: 0 = worst/bad start)\nQ.land_reform_level = 0;\nQ.natural_resources_level = 0;\nQ.workplace_democracy_level = 0;\nQ.peoples_sector_level = 0;\nQ.workplace_safety_level = 0;\nQ.minimum_wage_level = 0;\nQ.judicial_reform_level = 0;\nQ.counter_guerilla_discovered = 0;\nQ.counter_guerilla_level = 0;\nQ.education_funding_level = 0;\nQ.education_curriculum_level = 0;\nQ.university_freedom_level = 0;\nQ.university_prestige_level = 0;\nQ.womens_legal_level = 2;\nQ.womens_workplace_level = 0;\nQ.household_violence_level = 0;\nQ.language_rights_level = 0;\n\n// The array of forces - Turkish paramilitary groups\n// Number of members (in thousands)\n// Far Left organizations\nQ.thkpc_strength = 2;\nQ.thkpc_militancy = 0.5;\nQ.thkpc_destroyed = 0;\nQ.thkpc_banned = 0;\n\nQ.tkpml_strength = 0.1;\nQ.tkpml_militancy = 0.8;\nQ.tkpml_formed = 0;\nQ.tkpml_banned = 0;\n\nQ.devyol_strength = 55;\nQ.devyol_militancy = 0.25;\nQ.devyol_formed = 0;\nQ.devyol_banned = 0;\n\n// Separatist organizations\nQ.pkk_base_strength = 8;\nQ.pkk_militancy = 0.5;\nQ.pkk_formed = 0;\nQ.pkk_strength = 0;\n\n// State forces\nQ.police_strength = 60;\nQ.police_militancy = 0.8;\nQ.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)\n\n// Far Right organizations\nQ.grey_wolves_strength = 25;\nQ.grey_wolves_militancy = 0.1;\nQ.grey_wolves_banned = 0;\n\nQ.raiders_strength = 30;\nQ.raiders_militancy = 0.05;\nQ.raiders_formed = 0;\nQ.raiders_banned = 0;\n\nQ.tit_strength = 0.5;\nQ.tit_militancy = 0.9;\nQ.tit_banned = 0;\n\n// Keep these for compatibility with existing events, but set to 0 for Turkish context\n\n\n// Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)\nQ.army_land_strength = 0.4;\nQ.army_naval_strength = 0.4;\nQ.army_aerial_strength = 0.4;\n\n// Political Violence Calculation System\nQ.streetfighting_joever = 0;\n\n// Calculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.separatist_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Separatist forces calculation (strength × militancy)\nif (Q.kurdish_radicalism >= 0.69) {\n    Q.pkk_formed = 1;\n    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);\n    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;\n    Q.separatist_force += Q.pkk_force;\n} else {\n    Q.pkk_formed = 0;\n    Q.pkk_strength = 0;\n    Q.pkk_force = 0;\n}\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.pkk_formed) {\n        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\n// Grey Wolves street control vote bonus for middle class (petty bourgeoisie)\n// Applied at initialization only - recalculations happen elsewhere\nif (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_percent > Q.far_left_force_percent && Q.grey_wolves_force_percent > 30) {\n    Q.grey_wolves_control_bonus = Math.floor((Q.grey_wolves_force_percent - 30) / 10) * 4;\n    Q.petty_bourgeoisie_MHP += Q.grey_wolves_control_bonus;\n    // Ensure we don't exceed 100% and redistribute proportionally if needed\n    if (Q.petty_bourgeoisie_MHP > 100) {\n        Q.petty_bourgeoisie_MHP = 100;\n    }\n}\n\n// strength includes actual military and de facto reserves?\nQ.armed_forces_strength = 100;\nQ.armed_forces_militancy = 5;\nQ.armed_forces_loyalty = 0.2;\n\n// The state of the country\n\n// popular opinion\n// national ideology - on a binary scale\n// nationalism vs internationalism or pacifism or non-nationalism\nQ.nationalism = 80;\n// socialism vs capitalism\nQ.socialism = 6;\n// pro-republic vs anti-republic\nQ.pro_republic = 86;\n\nQ.emergency_rule = 0;\n\n// minimum percentage of votes to be represented in the Grand National Assembly\nQ.electoral_threshold = 0;\n// constitutional reform level\nQ.constitutional_reform = 0;\n// constructive vote of no confidence\nQ.constructive_vonc = 0;\n// reduction in presidential powers\nQ.presidential_powers = 0;\n// allows banning of non-constitutional parties\nQ.constitutional_protection = 0;\nQ.TIP_banned = 1;\nQ.MHP_banned = 0;\n\n// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.\n// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.\nQ.coup_progress = 0;\nQ.capital_strike_progress = 0;\n\n// TSK (Turkish Armed Forces) coup timer system (0-15)\nQ.coup_timer = 0;\n\n// TSK status tracking\nQ.army_in_government = 1; // Starting with Nihat Erim military government\nQ.tsk_pacified = 0;\n\n// Kurdish Nationalism system\nQ.kurdish_political_consciousness = 0.20; // Starting position: Low (0.14-0.24)\nQ.kurdish_radicalism = 0.25; // Starting position: Medium-low (0.24-0.44)\n\n// Women's Rights\nQ.women_reform = 0\n\n// Factors affecting Kurdish Nationalism\n// Consciousness\nQ.eastern_crime = 5\nQ.CHP_kurdish_attitude = 0\nQ.ddkd_formed = 0\n\n// Radicalism\n// CHP attitude here too\n// tip being banned\n// ddkd here too\n\n// Union Relations system\nQ.disk_relation = 35; // Starting at \"cool\" (29.9-39.9 range)\nQ.disk_turkis_conflict = 0.50; // Starting at \"Balanced\" (0.40-0.60)\nQ.union_reform = \"no\";\n\n// Update army_in_government based on prime_minister_party\nif (Q.prime_minister_party == 'I') {\n    Q.army_in_government = 1;\n} else {\n    Q.army_in_government = 0;\n}\n\nQ.budget = 1;\nQ.yearly_budget = 0;\n\n// Proportion of different social groups - Turkish demographics circa 1972-1977\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\n\n// Kurdish demographic percentage based on political consciousness level\nif (Q.kurdish_political_consciousness < 0.05) {\n    Q.kurds = 0; // Nonexistent - 0%\n} else if (Q.kurdish_political_consciousness >= 0.05 && Q.kurdish_political_consciousness < 0.14) {\n    Q.kurds = 3; // Very low - 3%\n} else if (Q.kurdish_political_consciousness >= 0.14 && Q.kurdish_political_consciousness < 0.24) {\n    Q.kurds = 5; // Low - 5%\n} else if (Q.kurdish_political_consciousness >= 0.24 && Q.kurdish_political_consciousness < 0.44) {\n    Q.kurds = 7; // Medium-low - 7%\n} else if (Q.kurdish_political_consciousness >= 0.44 && Q.kurdish_political_consciousness < 0.69) {\n    Q.kurds = 9; // Medium - 9%\n} else if (Q.kurdish_political_consciousness >= 0.69 && Q.kurdish_political_consciousness < 0.89) {\n    Q.kurds = 11; // High - 11%\n} else {\n    Q.kurds = 15; // Very high - 15%\n}\n\n// income for industrial workers\nQ.income = 1600;\n\n// Historical economic baseline data by year (Turkish context)\nQ.historical_inflation = {\n    1972: 15.3,\n    1973: 15.8,\n    1974: 15.4,\n    1975: 19.0,\n    1976: 16.4,\n    1977: 22.5,\n    1978: 53.3,\n    1979: 62.0\n};\n\nQ.historical_gdp_growth = {\n    1972: 9.2,\n    1973: 4.9,\n    1974: 3.3,\n    1975: 6.1,\n    1976: 9.0,\n    1977: 3.0,\n    1978: 1.2,\n    1979: -0.5\n};\n\nQ.historical_unemployment = {\n    1972: 4.6,\n    1973: 6.5,\n    1974: 8.0,\n    1975: 7.5,\n    1976: 8.5,\n    1977: 9.7,\n    1978: 10.1,\n    1979: 8.9\n};\n\n// Set base economic values based on starting year (1972)\nQ.base_inflation = Q.historical_inflation[Q.year] || 15.3;\nQ.base_growth = Q.historical_gdp_growth[Q.year] || 9.2;\nQ.base_unemployment = Q.historical_unemployment[Q.year] || 4.6;\n\n// Player deviation variables (only these change via player actions)\nQ.inflation_modifier = 0;\nQ.growth_modifier = 0;\nQ.unemployment_modifier = 0;\nQ.industry_modifier = 0;\nQ.agriculture_modifier = 0;\nQ.forex_pressure_delayed_reduction = 0;\n\n// Set initial economic values from base + modifiers\nQ.inflation = Q.base_inflation + Q.inflation_modifier;\nQ.economic_growth = Q.base_growth + Q.growth_modifier;\nQ.unemployed = Q.base_unemployment + Q.unemployment_modifier;\n\n// Historical Industrial Production Index (base year 1972 = 100)\nQ.historical_industrial_index = {\n    1972: 100,\n    1973: 110,\n    1974: 120,\n    1975: 132,\n    1976: 145,\n    1977: 158,\n    1978: 150,\n    1979: 142\n};\n\n// Historical Agricultural Production Index (base year 1972 = 100)\nQ.historical_agricultural_index = {\n    1972: 100,\n    1973: 102,\n    1974: 105,\n    1975: 108,\n    1976: 111,\n    1977: 113,\n    1978: 115,\n    1979: 117\n};\n\nQ.base_industry_index = Q.historical_industrial_index[Q.year] || 100;\nQ.base_agriculture_index = Q.historical_agricultural_index[Q.year] || 100;\n\nQ.getForexFactors = function() {\n    var industry = Q.forex_industry_penalty || 0.6;\n    var ratio = Q.forex_agriculture_ratio || 3;\n    var agriculture = Q.forex_agriculture_penalty || industry / ratio;\n    return {industry: industry, agriculture: agriculture, ratio: ratio};\n};\n\n// Current Production Indices\nQ.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;\nQ.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;\n\n// Player modifications to production indices (cumulative effects from player actions)\nQ.industrial_player_modifier = 0;\nQ.agricultural_player_modifier = 0;\n\n// Variables for making production changes (used by government actions)\nQ.industrial_change = 0;\nQ.agricultural_change = 0;\nQ.agricultural_consumption_change = 0;\n\n// Agricultural Product Prices System\nQ.agricultural_consumption = 100; // Base consumption level (can be modified by player actions)\nQ.agricultural_product_prices = 1.0; // Consumption/Production ratio\nQ.agricultural_price_status = \"Sufficient\"; // Text status for display\nQ.agricultural_price_timer = 0; // Timer for applying political effects\n\n// Economic Health System\nQ.economy_health = 0;\nQ.economy_health_raw = 0;\nQ.economy_health_timer = 0;\nQ.inflation_score = 0;\nQ.unemployment_score = 0;\nQ.growth_score = 0;\nQ.health_economy_status = \"Stable\";\nQ.apply_economy_effects = 0;\n\n// Foreign Exchange Pressure System\nQ.forex_pressure = 45;\nQ.forex_multiplier = 1;\nQ.crisis_forex_flag = 0;\nQ.forex_pressure_drift = 2;\nQ.forex_industry_penalty = 0.6;\nQ.forex_agriculture_ratio = 3;\nQ.forex_agriculture_penalty = Q.forex_industry_penalty/Q.forex_agriculture_ratio;\nQ.last_economy_year = null;\n\n// economic expansion timer\nQ.economic_expansion = 0;\n\n// quality of life (as % of base year - currently unused)\nQ.rural_qol = 100;\nQ.workers_qol = 100;\nQ.petty_bourgeoisie_qol = 100;\nQ.state_employees_qol = 100;\nQ.capitalists_qol = 100;\nQ.alevis_qol = 100;\nQ.kurds_qol = 100;\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\n\n// Land Reform mechanics\nQ.koykent_progress = 0;\nQ.land_reform_progress = 0;\nQ.cooperative_progress = 0;\n\n// Support for party by social group - Turkish political alignment baseline (1972)\n// Rural (45% of population)\nQ.rural_TIP = 0.4;\nQ.rural_chp = 13;\nQ.rural_AP = 44; // AP uses 'AP' variable\nQ.rural_CGP = 4;\nQ.rural_DP = 22;\nQ.rural_MSP = 9.6;\nQ.rural_MHP = 4;\nQ.rural_other = 3;\n\n// Workers (15% of population)\nQ.workers_TIP = 14;\nQ.workers_chp = 42;\nQ.workers_AP = 18; // AP\nQ.workers_CGP = 3;\nQ.workers_DP = 7;\nQ.workers_MSP = 10;\nQ.workers_MHP = 3;\nQ.workers_other = 3;\n\n// Apply union effects to worker support\nif (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {\n    // TÜRK-İŞ leaning: Worker support AP +5%\n    Q.workers_AP += 5;\n} else if (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance: Worker support AP +10%\n    Q.workers_AP += 10;\n}\n\n// Petty Bourgeoisie (15% of population)\nQ.petty_bourgeoisie_TIP = 0;\nQ.petty_bourgeoisie_chp = 15;\nQ.petty_bourgeoisie_AP = 36; // AP\nQ.petty_bourgeoisie_CGP = 9;\nQ.petty_bourgeoisie_DP = 15;\nQ.petty_bourgeoisie_MSP = 16;\nQ.petty_bourgeoisie_MHP = 7;\nQ.petty_bourgeoisie_other = 2;\n\n// State Employees (7% of population)\nQ.state_employees_TIP = 0;\nQ.state_employees_chp = 41;\nQ.state_employees_AP = 18; // AP\nQ.state_employees_CGP = 27;\nQ.state_employees_DP = 8;\nQ.state_employees_MSP = 0;\nQ.state_employees_MHP = 5;\nQ.state_employees_other = 3;\n\n// Capitalists and Land Owners (3% of population)\nQ.capitalists_TIP = 0;\nQ.capitalists_chp = 7;\nQ.capitalists_AP = 55; // AP\nQ.capitalists_CGP = 8;\nQ.capitalists_DP = 25;\nQ.capitalists_MSP = 5;\nQ.capitalists_MHP = 0;\nQ.capitalists_other = 0;\n\n// Alevis (10% of population)\nQ.alevis_TIP = 8;\nQ.alevis_chp = 63;\nQ.alevis_AP = 8; // AP\nQ.alevis_CGP = 1;\nQ.alevis_DP = 1;\nQ.alevis_MSP = 0;\nQ.alevis_MHP = 1;\nQ.alevis_other = 18;\n\n// Kurdish Political Movement (5% of population)\nQ.kurds_TIP = 8;\nQ.kurds_chp = 33;\nQ.kurds_AP = 32; // AP\nQ.kurds_CGP = 3;\nQ.kurds_DP = 2;\nQ.kurds_MSP = 3;\nQ.kurds_MHP = 0;\nQ.kurds_other = 19;\n\n\n// Current Parliament composition - Turkish baseline (1972)\n// Based on weighted demographic calculations\nQ.chp_r = 27.3;\nQ.TIP_r = 2.6;\nQ.AP_r = 46.5; // AP (Justice Party)\nQ.CGP_r = 6.5;\nQ.DP_r = 0;\nQ.MSP_r = 0;\nQ.MHP_r = 3.0;\nQ.other_r = 14.1;\n\n// diff from prev\nQ.old_chp_r = 27.3;\nQ.old_TIP_r = 2.6;\nQ.old_AP_r = 46.5; // AP\nQ.old_CGP_r = 6.5;\nQ.old_DP_r = 0;\nQ.old_MSP_r = 0;\nQ.old_MHP_r = 3.0;\nQ.old_other_r = 14.1;\n\n// Parliament seat distribution (initial TBMM composition, updates via elections)\nQ.total_seats = 450;\nQ.chp_seats = 143;\nQ.AP_seats = 224;\nQ.TIP_seats = 2;\nQ.CGP_seats = 26;\nQ.DP_seats = 36;\nQ.MSP_seats = 0;\nQ.MHP_seats = 1;\n Q.other_seats = 18;\nQ.majority_threshold = 226;\nQ.largest_party_key = 'AP';\nQ.largest_party = 'AP';\n\nQ.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;\nQ.grand_coalition = Q.democratic_coalition + Q.DP_seats;\nQ.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.far_right_coalition = Q.MSP_seats + Q.MHP_seats;\nQ.left_coalition = Q.chp_seats + Q.TIP_seats;\nQ.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;\nQ.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;\nQ.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\nQ.leverage = Q.chp_seats/1.5;\n\n// Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.\n// Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into\n// itself and its minor splinter parties (TKP, TSİP, TEP, SDP), each taking a fixed share of the\n// bloc's total vote.\nQ.socialist_left_formed = 0;\n// Snapshot of socialist_left_formed as of the last election, used to decide whether the\n// \"Last election vote share\" section on the status screen shows the Socialist Left\n// breakdown (it must reflect whether the split existed AT the last election, not whether\n// it currently exists).\nQ.socialist_left_formed_last_election = 0;\nQ.former_TIP_r = 0;\nQ.TIP_socialist_left_r = 0;\nQ.TKP_r = 0;\nQ.TSIP_r = 0;\nQ.TEP_r = 0;\nQ.SDP_r = 0;\n\n// for changing the CGP's name to the DStP\nQ.CGP_name = \"CGP\";\n\n// array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election\nQ.election_records = [];\n// party support records for every month\nQ.party_support_records = [];\n// inflation and unemployment records\nQ.economic_records = [];\n\n// Party Strategy\nQ.strategy_united = 0;\nQ.strategy_socdem = 0;\nQ.strategy_res = 0;\nQ.strategy_socfas = 0;\n\n// State of the government\nQ.president = \"Cevdet Sunay\";\n// starting prime_minister: Nihat Erim\n// starting prime minister: Nihat Erim\nQ.prime_minister = \"Nihat Erim\";\nQ.prime_minister_party = 'I';\nQ.CHP_in_government = 0;\nQ.AP_in_government = 0;\nQ.CGP_in_government = 0;\nQ.DP_in_government = 0;\nQ.MSP_in_government = 0;\nQ.TIP_in_government = 0;\nQ.MHP_in_government = 0;\nQ.I_in_government = 1;\nQ.generalstaff = \"Memduh Tağmaç\";\n\nQ.in_right_coalition = 0;\nQ.in_democratic_coalition = 0;\n// Grand coalition = <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP\n// also includes the \"new grand coalition\" of <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP + Others\nQ.in_grand_coalition = 0;\n// Popular front = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + Z + CGP\nQ.in_popular_front = 0;\n// left coalition = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + left-splinters\nQ.in_left_front = 0;\n// unholy coalition = <span style=\"color: #E3000F;\">**CHP**</span> + MSP\nQ.in_msp_coalition = 0;\nQ.in_emergency_government = 0;\nQ.in_CHP_majority = 0;\nQ.grand_coalition_failed = 0;\n// if the <span style=\"color: #E3000F;\">**CHP**</span> is ruling as part of a minority government\nQ.in_minority_government = 0;\n// national unity governmet\n\n// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.\nQ.coalition_dissent = 0;\n// dissent from the TIP, in a popular front or left front government\nQ.TIP_coalition_dissent = 0;\n\n// does the <span style=\"color: #E3000F;\">**CHP**</span> tolerate the government even if it is not a participant?\nQ.CHP_toleration = 0;\n\n// is the current government a presidential minority government?\nQ.minority_government = 0;\n\n// ministries - which parties control the ministries?\n// is the agricultural ministry useful at all?\nQ.foreign_minister = 'Independent minister';\nQ.foreign_minister_party = 'I';\nQ.interior_minister = 'Independent minister';\nQ.interior_minister_party = 'I';\nQ.justice_minister = 'Independent minister';\nQ.justice_minister_party = 'I';\nQ.labor_minister_party = 'I';\nQ.defense_minister = 'Independent minister';\nQ.defense_minister_party = 'I';\nQ.economic_minister = 'Independent minister';\nQ.economic_minister_party = 'I';\nQ.agriculture_minister = 'Independent minister';\nQ.agriculture_minister_party = 'I';\nQ.industrial_minister = 'Independent minister';\nQ.industrial_minister_party = 'I';\nQ.trade_minister = 'Independent minister';\nQ.trade_minister_party = 'I';\nQ.education_minister = 'Independent minister';\nQ.education_minister_party = 'I';\n\n// Events: what has occurred?\nQ.unemployment_insurance_seen = 0;\n// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...\nQ.unemployment_insurance_threshold = 10;\n\n//\nQ.economicreform = 0\nQ.aet = 0\nQ.oil = 0\n\n// Working rights promises\nQ.lockout_promise = 0;\nQ.working_rights_promise = 0;\n// Working rights achievements\nQ.lokavtt = 0;\nQ.nationall = 0;\nQ.kitt = 0;\nQ.ikincilgrevv = 0;\nQ.healthinspectionss = 0;\n// Set to 1 when at least 3 one-time labour ministry reforms have been passed\nQ.labour_rights_reform = 0;\n\n// have we reformed these institutions to be more democratic?\nQ.judicial_reform = 0;\nQ.bureaucratic_reform = 0;\nQ.military_reform = 0;\nQ.womens_rights = 0;\n// Level of welfare relative to the starting situation (can go negative)\nQ.welfare = 0;\n// level of support for farmers\nQ.agricultural_policy = 0;\nQ.land_reform = 0;\nQ.rural_land_reform_policy = 0;\nQ.works_program = 0;\nQ.public_works_implemented = 0;\n// Relations with the Western countries (France, UK).\nQ.west_relation = 45;\n// Relations with Eastern Bloc countries\nQ.east_relation = 0;\n// Relations with the Soviet Union\nQ.soviet_relation = 20;\n// Relations with the United States\nQ.us_relation = 45;\n// Relations with the Middle East countries\nQ.middle_east_relation = 45;\n// Cyprus Problem status: 0 = Unresolved, 1 = Status Quo, 2 = Confederation, 3 = Divided\nQ.cyprus_problem = 0;\nQ.gunesplan = 0\nQ.denktasplan = 0\nQ.armsembargo = 0\n// Cyprus effects tracking\nQ.cyprus_last_status = 0; // Track previous status to detect changes\nQ.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)\nQ.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)\n// How much have we exposed the secret rearmament programs?\n// nationalization_progress is part of the left economic plan.\nQ.nationalization_progress = 0;\n// socializations is part of the economic democracy card.\nQ.socializations = 0;\nQ.nationalize_budget = 4;\n// have there been any factory takeovers?\nQ.factory_takeovers = 0;\n// progress on the moderate economic plan\nQ.moderate_plan_progress = 0;\n// European Union negotiation process\nQ.eu = 0;\nQ.eu_progress = 0;\n// science/education\nQ.science = 0;\nQ.education_science = 0;\n\n// Tax rates relative to the starting situation\nQ.lower_tax_rates = 0;\nQ.upper_tax_rates = 0;\nQ.tariffs = 5;\n\nQ.electoral_threshold = 0;\n\n// our conduct in the government, and the conduct of our coalition opponents.\n// did the <span style=\"color: #E3000F;\">**CHP**</span> vote against the previous government in a vote of no confidence?\nQ.CHP_no_confidence = 0;\n// was the last <span style=\"color: #E3000F;\">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?\nQ.no_confidence_against_chp = 0;\n\n// Advisors/Leaders\n// n_advisors counts only swappable member slots (not leader or secretary)\nQ.n_advisors = 2;\n// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.\n// let's just put all of the timers here...\n// most party affairs and government affairs cards are on a timer.\nQ.timers = ['advisor_action',  'crisis_program',\n            'fundraising', 'ideology', 'intraparty',\n            'inter_party_relationships', 'international_relations',\n             'media', 'enemies',\n            'party_organizations', 'rally',\n            'shuffle_leadership',  'peoples_party',\n            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',\n            // govt\n            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',\n            'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',\n            'police',  'shuffle_cabinet', 'social_welfare',\n            'homosexual_rights', 'economic_policy', 'coalition_affairs',\n            'womens_rights', 'economic_democracy',\n            'dealing_with_toleration',\n            'constitutional_reform', 'labor_rights',\n            'education_science', 'curriculum', 'avans', 'cutspending',\n            // events\n            'emergency_cuts', 'unemployment_insurance',\n\n            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',\n            'high_inflation', 'banking_crisis',\n            'understanding_enemy', ];\nQ.advisor_action_timer = 0;\n// party affairs timers\nQ.crisis_program_timer = 0;\nQ.fundraising_timer = 0;\nQ.ideology_timer = 0;\nQ.intraparty_timer = 0\nQ.poppy_campaign = 0;\nQ.strategy_timer = 0;\nQ.poppy_harvestation = 1;\nQ.inter_party_relationships_timer = 0;\nQ.international_relations_timer = 0;\nQ.western_socialist_contacts = 0;\nQ.socialist_international_member = 0;\nQ.avans_timer = 0;\nQ.remnants_of_inonu_timer = 0;\nQ.cutspending_timer = 0;\nQ.media_timer = 0;\nQ.enemies_timer = 0;\nQ.party_organizations_timer =  0;\nQ.rally_timer = 0;\nQ.kemalizm_timer = 0;\nQ.shuffle_leadership_timer = 0;\nQ.streetfighting_timer = 0;\nQ.peoples_party_timer = 0;\n// n_elections is the number of elections that have happened since the start of the game.\nQ.n_elections = 0;\n// number of elections without a clear majority.\nQ.no_majority_elections = 0;\n// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.\nQ.in_election = 1;\nQ.next_election_year = 1973;\nQ.next_election_month = 10;\nQ.next_election_time = 22;\nif (typeof Q.local_elections_held === 'undefined') {\n    Q.local_elections_held = 0;\n}\nif (typeof Q.next_local_election_year === 'undefined') {\n    Q.next_local_election_year = 1973;\n}\nif (typeof Q.next_local_election_month === 'undefined') {\n    Q.next_local_election_month = 12;\n}\nif (typeof Q.next_local_election_week === 'undefined') {\n    Q.next_local_election_week = 2;\n}\nif (typeof Q.next_local_election_time === 'undefined') {\n    Q.next_local_election_time = 0;\n}\n// government affairs timers\nQ.agricultural_policy_timer = 0;\nQ.domestic_enemies_timer = 0;\nQ.economic_policy_timer = 0;\nQ.fiscal_policy_timer = 0;\nQ.foreign_policy_timer = 0;\nQ.judiciary_timer = 0;\nQ.labor_affairs_timer = 0;\nQ.military_policy_timer = 0;\nQ.police_timer = 0;\nQ.shuffle_cabinet_timer = 0;\nQ.social_welfare_timer = 0;\nQ.womens_rights_timer = 0;\nQ.homosexual_rights_timer = 0;\nQ.municipality_timer = 0;\nQ.economic_democracy_timer = 0;\nQ.coalition_affairs_timer = 0;\nQ.industrial_policy_timer = 0;\n// Economic policy state\nQ.Tiger = 0;\nQ.imf_agreement = 0;\n\n// Tracking flags for one-time effects\nQ.oil_effect_applied = false;\nQ.oil_inflation_effect = 0;\nQ.land_reform_effect_applied = false;\nQ.cooperative_effect_applied = false;\nQ.koykent_effect_applied = false;\nQ.tiger_1978_effect_applied = false;\nQ.tiger_1979_effect_applied = false;\nQ.tiger_1980_effect_applied = false;\n\n// event timers\nQ.emergency_cuts_timer = 0;\nQ.unemployment_insurance_timer = 0;\nQ.TIP_ultimatum_timer = 0;\n\n//Cyprus attitudes\nQ.greece_attitude = 4;\nQ.uk_attitude = 50 + (Q.west_relation - 50);\nQ.us_attitude = 35 + (Q.us_relation - 50);\n\n// all the initial advisors are centrists.\n// Leader and Secretary have advisor=1 for display but are NOT counted in n_advisors.\n// Only Members (Ecevit, Satır) are counted in n_advisors.\nQ.inonu_advisor = 1; // İsmet İnönü (Party Leader — not in n_advisors)\nQ.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary — not in n_advisors)\nQ.ecevit_advisor = 1; // Bülent Ecevit (Member — counted in n_advisors)\nQ.satir_advisor = 1; // Kemal Satır (Member — counted in n_advisors)\n\n// left advisors\n\n// centrist alternate advisors\n\n// Reformist advisors\n\n// Labor advisors\n\n// Revisionist advisors\n\n\n// Nonfactional advisors\n\n// Turkish Right-Wing Kemalist advisors\nQ.gogus_advisor = 0; // Ali İhsan Göğüs (existing)\nQ.paksut_advisor = 0; // Emin Paksüt\nQ.celikbas_advisor = 0; // Fethi Çelikbaş\n\n// Turkish advisors - other factions\nQ.avcioglu_advisor = 0; // Doğan Avcıoğlu (Kemalist Marxist)\nQ.eyuboglu_advisor = 0; // Sabahattin Eyüboğlu (Reformist Kemalist)\n\n// Function to calculate municipality control level dynamically\nfunction getMunicipalityControlLevel() {\n    var controlled = Q.municipalities_controlled || 0;\n    var total = Q.total_municipalities || Q.local_total_seats || 67;\n    if (total <= 0) {\n        total = 67;\n    }\n    var ratio = controlled / total;\n    if (ratio <= (13 / 67)) {\n        return 0; // Terrible\n    } else if (ratio <= (26 / 67)) {\n        return 1; // Poor\n    } else if (ratio <= (34 / 67)) {\n        return 2; // Divided\n    } else if (ratio <= (40 / 67)) {\n        return 3; // Satisfactory\n    }\n    return 4; // Overwhelming\n}\n\n// Set initial municipality control level\nQ.municipality_control_level = getMunicipalityControlLevel();\n\n// Function to update municipality control level (call this whenever municipalities_controlled changes)\nfunction updateMunicipalityControlLevel() {\n    Q.municipality_control_level = getMunicipalityControlLevel();\n}\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nAnatolianRules.refreshVotes(Q);"
         }
       ],
       "setBg": "img/map_4.jpg",
@@ -24171,7 +24171,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The Right Kemalist faction refuses to accept Ecevit's victory and walks out of the congress hall. Their cadres disperse towards the CGP and other right-wing groupings, leaving our party firmly in the hands of the reformists. ",
+                "content": "The Right-Wing Kemalist faction refuses to accept Ecevit's victory and walks out of the congress hall. Their cadres disperse towards the CGP and other right-wing groupings, leaving our party firmly in the hands of the reformists. ",
                 "predicate": 0
               },
               ""
@@ -24182,7 +24182,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Thanks to the understanding we struck with Satır before the vote, the Right Kemalists grit their teeth and remain within the party—at least for the moment. ",
+                "content": "Thanks to the understanding we struck with Satır before the vote, the Right-Wing Kemalists grit their teeth and remain within the party—at least for the moment. ",
                 "predicate": 1
               },
               ""
@@ -30654,7 +30654,7 @@
         }
       ],
       "content": {
-        "content": "Ecevit has been removed as a member. The Leftist Kemalist faction deeply disapproves.",
+        "content": "Ecevit has been removed as a member. The Left-Wing Kemalist faction deeply disapproves.",
         "type": "paragraph"
       }
     },
@@ -31981,7 +31981,7 @@
         }
       ],
       "content": {
-        "content": "Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Leftist Kemalists disapprove of this action greatly.",
+        "content": "Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Left-Wing Kemalist disapprove of this action greatly.",
         "type": "paragraph"
       }
     },
@@ -32314,7 +32314,7 @@
         }
       ],
       "content": {
-        "content": "Baykal has been removed as a member. The Leftist Kemalist faction disapproves.",
+        "content": "Baykal has been removed as a member. The Left-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -32393,7 +32393,7 @@
       "id": "status.the_party",
       "onArrival": [
         {
-          "$code": "var factionModelT = AnatolianRules.factionModel(Q);\n// Per-quarter seat calculations using per-quarter faction strengths\nvar qPcts = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];\nQ.km_congress_seats = 0;\nQ.lk_congress_seats = 0;\nQ.ok_congress_seats = 0;\nQ.rk_congress_seats = 0;\nQ.tw_congress_seats = 0;\n\nfunction _qLabel(v) {\n    if (v < 0.5) return \"Nonexistent\";\n    if (v < 1.5) return \"Very Weak\";\n    if (v < 2.5) return \"Weak\";\n    if (v < 3.5) return \"Medium\";\n    if (v < 4.5) return \"Strong\";\n    return \"Very Strong\";\n}\n\nfor (var qi = 0; qi < qPcts.length; qi++) {\n    var _eKm = factionModelT.effective(qi, 'km'), _eLk = factionModelT.effective(qi, 'lk'), _eOk = factionModelT.effective(qi, 'ok'), _eRk = factionModelT.effective(qi, 'rk'), _eTw = factionModelT.effective(qi, 'tw');\n    var qSeats = Math.round(qPcts[qi] * 1200);\n    var qTotal = _eKm + _eLk;\n    if (!Q.orthodox_kemalist_destruction) {\n        qTotal += _eOk;\n    }\n    if (factionModelT.active.rk) {\n        qTotal += _eRk;\n    }\n    if (Q.third_worldists_enabled) {\n        qTotal += _eTw;\n    }\n    if (qTotal <= 0) { qTotal = 1; }\n\n    Q['q' + qi + '_total'] = qSeats;\n    Q['q' + qi + '_km'] = Math.round(qSeats * _eKm / qTotal);\n    Q['q' + qi + '_lk'] = Math.round(qSeats * _eLk / qTotal);\n    Q['q' + qi + '_ok'] = Q.orthodox_kemalist_destruction ? 0 : Math.round(qSeats * _eOk / qTotal);\n    Q['q' + qi + '_rk'] = !factionModelT.active.rk ? 0 : Math.round(qSeats * _eRk / qTotal);\n    Q['q' + qi + '_tw'] = Q.third_worldists_enabled ? Math.round(qSeats * _eTw / qTotal) : 0;\n\n    // Per-quarter strength text labels (use effective values)\n    Q['q' + qi + '_km_label'] = _qLabel(_eKm);\n    Q['q' + qi + '_lk_label'] = _qLabel(_eLk);\n    Q['q' + qi + '_ok_label'] = Q.orthodox_kemalist_destruction ? \"Nonexistent\" : _qLabel(_eOk);\n    Q['q' + qi + '_rk_label'] = !factionModelT.active.rk ? \"Nonexistent\" : _qLabel(_eRk);\n    Q['q' + qi + '_tw_label'] = Q.third_worldists_enabled ? _qLabel(_eTw) : \"Nonexistent\";\n\n    // Accumulate total seats from per-quarter results\n    Q.km_congress_seats += Q['q' + qi + '_km'];\n    Q.lk_congress_seats += Q['q' + qi + '_lk'];\n    Q.ok_congress_seats += Q['q' + qi + '_ok'];\n    Q.rk_congress_seats += Q['q' + qi + '_rk'];\n    Q.tw_congress_seats += Q['q' + qi + '_tw'];\n}\n\n// Adjust rounding to ensure total is exactly 1200\nvar seat_diff = 1200 - (Q.km_congress_seats + Q.lk_congress_seats + Q.ok_congress_seats + Q.rk_congress_seats + Q.tw_congress_seats);\nif (seat_diff !== 0) {\n    var maxSeats = Math.max(Q.km_congress_seats, Q.lk_congress_seats, Q.ok_congress_seats, Q.rk_congress_seats, Q.third_worldists_enabled ? Q.tw_congress_seats : -1);\n    if (Q.third_worldists_enabled && Q.tw_congress_seats === maxSeats) {\n        Q.tw_congress_seats += seat_diff;\n    } else if (Q.lk_congress_seats === maxSeats) {\n        Q.lk_congress_seats += seat_diff;\n    } else if (Q.ok_congress_seats === maxSeats) {\n        Q.ok_congress_seats += seat_diff;\n    } else if (Q.rk_congress_seats === maxSeats) {\n        Q.rk_congress_seats += seat_diff;\n    } else {\n        Q.km_congress_seats += seat_diff;\n    }\n}\n\n// Calculate candidate seats\nQ.candidate_1_seats = 0;\nQ.candidate_2_seats = 0;\nif (Q.congress_upcoming) {\n    if (Q.kemalist_marxists_support == 1) Q.candidate_1_seats += Q.km_congress_seats;\n    if (Q.kemalist_marxists_support == 2) Q.candidate_2_seats += Q.km_congress_seats;\n    if (Q.left_kemalists_support == 1) Q.candidate_1_seats += Q.lk_congress_seats;\n    if (Q.left_kemalists_support == 2) Q.candidate_2_seats += Q.lk_congress_seats;\n    if (!Q.orthodox_kemalist_destruction) {\n        if (Q.orthodox_kemalists_support == 1) Q.candidate_1_seats += Q.ok_congress_seats;\n        if (Q.orthodox_kemalists_support == 2) Q.candidate_2_seats += Q.ok_congress_seats;\n    }\n    if (factionModelT.active.rk) {\n        if (Q.right_kemalists_support == 1) Q.candidate_1_seats += Q.rk_congress_seats;\n        if (Q.right_kemalists_support == 2) Q.candidate_2_seats += Q.rk_congress_seats;\n    }\n    if (Q.third_worldists_enabled) {\n        if (Q.third_worldists_support == 1) Q.candidate_1_seats += Q.tw_congress_seats;\n        if (Q.third_worldists_support == 2) Q.candidate_2_seats += Q.tw_congress_seats;\n    }\n}\n\n// Determine outline colors based on candidate support\nfunction getOutline(support) {\n    if (!Q.congress_upcoming) return \"none\";\n    if (support == 1) return \"#ca1010\";\n    if (support == 2) return \"#9e9e9e\";\n    return \"none\";\n}\n\n// Build parliament data for d3 rendering\nvar pData = [];\nif (Q.km_congress_seats > 0) {\n    pData.push({ id: \"km\", legend: \"Kemalist Marxists\", name: \"KM\", seats: Q.km_congress_seats, color: \"#701616\", outline: getOutline(Q.kemalist_marxists_support) });\n}\nif (Q.third_worldists_enabled && Q.tw_congress_seats > 0) {\n    pData.push({ id: \"tw\", legend: \"Third Worldists\", name: \"TW\", seats: Q.tw_congress_seats, color: Q.third_worldists_color, outline: getOutline(Q.third_worldists_support) });\n}\nif (Q.lk_congress_seats > 0) {\n    pData.push({ id: \"lk\", legend: \"Leftist Kemalists\", name: \"LK\", seats: Q.lk_congress_seats, color: \"#c76082\", outline: getOutline(Q.left_kemalists_support) });\n}\nif (!Q.orthodox_kemalist_destruction && Q.ok_congress_seats > 0) {\n    pData.push({ id: \"ok\", legend: \"Reformist Kemalists\", name: \"OK\", seats: Q.ok_congress_seats, color: \"#5a5f63\", outline: getOutline(Q.orthodox_kemalists_support) });\n}\nif (factionModelT.active.rk && Q.rk_congress_seats > 0) {\n    pData.push({ id: \"rk\", legend: \"Right Kemalists\", name: \"RK\", seats: Q.rk_congress_seats, color: \"#353057\", outline: getOutline(Q.right_kemalists_support) });\n}\nwindow.partyParliamentData = pData;\n\n// Build candidate support text\nQ.candidate_1_supporters = \"\";\nQ.candidate_2_supporters = \"\";\nif (Q.congress_upcoming) {\n    var s1 = [], s2 = [];\n    if (Q.left_kemalists_support == 1) s1.push(\"Leftist Kemalists\");\n    if (Q.left_kemalists_support == 2) s2.push(\"Leftist Kemalists\");\n    if (Q.kemalist_marxists_support == 1) s1.push(\"Kemalist Marxists\");\n    if (Q.kemalist_marxists_support == 2) s2.push(\"Kemalist Marxists\");\n    if (Q.third_worldists_enabled) {\n        if (Q.third_worldists_support == 1) s1.push(\"Third Worldists\");\n        if (Q.third_worldists_support == 2) s2.push(\"Third Worldists\");\n    }\n    if (!Q.orthodox_kemalist_destruction) {\n        if (Q.orthodox_kemalists_support == 1) s1.push(\"Reformist Kemalists\");\n        if (Q.orthodox_kemalists_support == 2) s2.push(\"Reformist Kemalists\");\n    }\n    if (factionModelT.active.rk) {\n        if (Q.right_kemalists_support == 1) s1.push(\"Right Kemalists\");\n        if (Q.right_kemalists_support == 2) s2.push(\"Right Kemalists\");\n    }\n    Q.candidate_1_supporters = s1.length > 0 ? s1.join(\", \") : \"None\";\n    Q.candidate_2_supporters = s2.length > 0 ? s2.join(\", \") : \"None\";\n}\n\n// Portrait mapping\nQ.candidate_1_portrait = \"\";\nQ.candidate_2_portrait = \"\";\nif (Q.congress_candidate_1 == \"ecevit\") Q.candidate_1_portrait = \"img/portraits/ecevit3.jpg\";\nif (Q.congress_candidate_1 == \"inonu\") Q.candidate_1_portrait = \"img/portraits/IsmetInonu.jpg\";\nif (Q.congress_candidate_1 == \"kirikoglu\") Q.candidate_1_portrait = \"img/portraits/KamilKirikoglu.jpg\";\nif (Q.congress_candidate_1 == \"eyuboglu\") Q.candidate_1_portrait = \"img/portraits/OrhanEyuboglu.jpeg\";\nif (Q.congress_candidate_2 == \"ecevit\") Q.candidate_2_portrait = \"img/portraits/ecevit3.jpg\";\nif (Q.congress_candidate_2 == \"inonu\") Q.candidate_2_portrait = \"img/portraits/IsmetInonu.jpg\";\nif (Q.congress_candidate_2 == \"kirikoglu\") Q.candidate_2_portrait = \"img/portraits/KamilKirikoglu.jpg\";\nif (Q.congress_candidate_2 == \"eyuboglu\") Q.candidate_2_portrait = \"img/portraits/OrhanEyuboglu.jpeg\";\n\n// Candidate name mapping\nQ.candidate_1_name = \"\";\nQ.candidate_2_name = \"\";\nif (Q.congress_candidate_1 == \"ecevit\") Q.candidate_1_name = \"Bülent Ecevit\";\nif (Q.congress_candidate_1 == \"inonu\") Q.candidate_1_name = \"İsmet İnönü\";\nif (Q.congress_candidate_1 == \"kirikoglu\") Q.candidate_1_name = \"Kamil Kırıkoğlu\";\nif (Q.congress_candidate_1 == \"eyuboglu\") Q.candidate_1_name = \"Orhan Eyüboğlu\";\nif (Q.congress_candidate_2 == \"ecevit\") Q.candidate_2_name = \"Bülent Ecevit\";\nif (Q.congress_candidate_2 == \"inonu\") Q.candidate_2_name = \"İsmet İnönü\";\nif (Q.congress_candidate_2 == \"kirikoglu\") Q.candidate_2_name = \"Kamil Kırıkoğlu\";\nif (Q.congress_candidate_2 == \"eyuboglu\") Q.candidate_2_name = \"Orhan Eyüboğlu\";\n\n// Leader portrait (when no congress)\nQ.leader_portrait = \"\";\nif (Q.CHP_party_leader == \"İnönü\" || Q.CHP_party_leader == \"inonu\") Q.leader_portrait = \"img/portraits/IsmetInonu.jpg\";\nif (Q.CHP_party_leader == \"Ecevit\" || Q.CHP_party_leader == \"ecevit\") Q.leader_portrait = \"img/portraits/ecevit3.jpg\";"
+          "$code": "var factionModelT = AnatolianRules.factionModel(Q);\n// Per-quarter seat calculations using per-quarter faction strengths\nvar qPcts = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];\nQ.km_congress_seats = 0;\nQ.lk_congress_seats = 0;\nQ.ok_congress_seats = 0;\nQ.rk_congress_seats = 0;\nQ.tw_congress_seats = 0;\n\nfunction _qLabel(v) {\n    if (v < 0.5) return \"Nonexistent\";\n    if (v < 1.5) return \"Very Weak\";\n    if (v < 2.5) return \"Weak\";\n    if (v < 3.5) return \"Medium\";\n    if (v < 4.5) return \"Strong\";\n    return \"Very Strong\";\n}\n\nfor (var qi = 0; qi < qPcts.length; qi++) {\n    var _eKm = factionModelT.effective(qi, 'km'), _eLk = factionModelT.effective(qi, 'lk'), _eOk = factionModelT.effective(qi, 'ok'), _eRk = factionModelT.effective(qi, 'rk'), _eTw = factionModelT.effective(qi, 'tw');\n    var qSeats = Math.round(qPcts[qi] * 1200);\n    var qTotal = _eKm + _eLk;\n    if (!Q.orthodox_kemalist_destruction) {\n        qTotal += _eOk;\n    }\n    if (factionModelT.active.rk) {\n        qTotal += _eRk;\n    }\n    if (Q.third_worldists_enabled) {\n        qTotal += _eTw;\n    }\n    if (qTotal <= 0) { qTotal = 1; }\n\n    Q['q' + qi + '_total'] = qSeats;\n    Q['q' + qi + '_km'] = Math.round(qSeats * _eKm / qTotal);\n    Q['q' + qi + '_lk'] = Math.round(qSeats * _eLk / qTotal);\n    Q['q' + qi + '_ok'] = Q.orthodox_kemalist_destruction ? 0 : Math.round(qSeats * _eOk / qTotal);\n    Q['q' + qi + '_rk'] = !factionModelT.active.rk ? 0 : Math.round(qSeats * _eRk / qTotal);\n    Q['q' + qi + '_tw'] = Q.third_worldists_enabled ? Math.round(qSeats * _eTw / qTotal) : 0;\n\n    // Per-quarter strength text labels (use effective values)\n    Q['q' + qi + '_km_label'] = _qLabel(_eKm);\n    Q['q' + qi + '_lk_label'] = _qLabel(_eLk);\n    Q['q' + qi + '_ok_label'] = Q.orthodox_kemalist_destruction ? \"Nonexistent\" : _qLabel(_eOk);\n    Q['q' + qi + '_rk_label'] = !factionModelT.active.rk ? \"Nonexistent\" : _qLabel(_eRk);\n    Q['q' + qi + '_tw_label'] = Q.third_worldists_enabled ? _qLabel(_eTw) : \"Nonexistent\";\n\n    // Accumulate total seats from per-quarter results\n    Q.km_congress_seats += Q['q' + qi + '_km'];\n    Q.lk_congress_seats += Q['q' + qi + '_lk'];\n    Q.ok_congress_seats += Q['q' + qi + '_ok'];\n    Q.rk_congress_seats += Q['q' + qi + '_rk'];\n    Q.tw_congress_seats += Q['q' + qi + '_tw'];\n}\n\n// Adjust rounding to ensure total is exactly 1200\nvar seat_diff = 1200 - (Q.km_congress_seats + Q.lk_congress_seats + Q.ok_congress_seats + Q.rk_congress_seats + Q.tw_congress_seats);\nif (seat_diff !== 0) {\n    var maxSeats = Math.max(Q.km_congress_seats, Q.lk_congress_seats, Q.ok_congress_seats, Q.rk_congress_seats, Q.third_worldists_enabled ? Q.tw_congress_seats : -1);\n    if (Q.third_worldists_enabled && Q.tw_congress_seats === maxSeats) {\n        Q.tw_congress_seats += seat_diff;\n    } else if (Q.lk_congress_seats === maxSeats) {\n        Q.lk_congress_seats += seat_diff;\n    } else if (Q.ok_congress_seats === maxSeats) {\n        Q.ok_congress_seats += seat_diff;\n    } else if (Q.rk_congress_seats === maxSeats) {\n        Q.rk_congress_seats += seat_diff;\n    } else {\n        Q.km_congress_seats += seat_diff;\n    }\n}\n\n// Calculate candidate seats\nQ.candidate_1_seats = 0;\nQ.candidate_2_seats = 0;\nif (Q.congress_upcoming) {\n    if (Q.kemalist_marxists_support == 1) Q.candidate_1_seats += Q.km_congress_seats;\n    if (Q.kemalist_marxists_support == 2) Q.candidate_2_seats += Q.km_congress_seats;\n    if (Q.left_kemalists_support == 1) Q.candidate_1_seats += Q.lk_congress_seats;\n    if (Q.left_kemalists_support == 2) Q.candidate_2_seats += Q.lk_congress_seats;\n    if (!Q.orthodox_kemalist_destruction) {\n        if (Q.orthodox_kemalists_support == 1) Q.candidate_1_seats += Q.ok_congress_seats;\n        if (Q.orthodox_kemalists_support == 2) Q.candidate_2_seats += Q.ok_congress_seats;\n    }\n    if (factionModelT.active.rk) {\n        if (Q.right_kemalists_support == 1) Q.candidate_1_seats += Q.rk_congress_seats;\n        if (Q.right_kemalists_support == 2) Q.candidate_2_seats += Q.rk_congress_seats;\n    }\n    if (Q.third_worldists_enabled) {\n        if (Q.third_worldists_support == 1) Q.candidate_1_seats += Q.tw_congress_seats;\n        if (Q.third_worldists_support == 2) Q.candidate_2_seats += Q.tw_congress_seats;\n    }\n}\n\n// Determine outline colors based on candidate support\nfunction getOutline(support) {\n    if (!Q.congress_upcoming) return \"none\";\n    if (support == 1) return \"#ca1010\";\n    if (support == 2) return \"#9e9e9e\";\n    return \"none\";\n}\n\n// Build parliament data for d3 rendering\nvar pData = [];\nif (Q.km_congress_seats > 0) {\n    pData.push({ id: \"km\", legend: \"Kemalist Marxists\", name: \"KM\", seats: Q.km_congress_seats, color: \"#701616\", outline: getOutline(Q.kemalist_marxists_support) });\n}\nif (Q.third_worldists_enabled && Q.tw_congress_seats > 0) {\n    pData.push({ id: \"tw\", legend: \"Third Worldists\", name: \"TW\", seats: Q.tw_congress_seats, color: \"#b31f3b\", outline: getOutline(Q.third_worldists_support) });\n}\nif (Q.lk_congress_seats > 0) {\n    pData.push({ id: \"lk\", legend: \"Left-Wing Kemalist\", name: \"LK\", seats: Q.lk_congress_seats, color: \"#c76083\", outline: getOutline(Q.left_kemalists_support) });\n}\nif (!Q.orthodox_kemalist_destruction && Q.ok_congress_seats > 0) {\n    pData.push({ id: \"ok\", legend: \"Reformist Kemalists\", name: \"OK\", seats: Q.ok_congress_seats, color: \"#ac8bb3\", outline: getOutline(Q.orthodox_kemalists_support) });\n}\nif (factionModelT.active.rk && Q.rk_congress_seats > 0) {\n    pData.push({ id: \"rk\", legend: \"Right-Wing Kemalists\", name: \"RK\", seats: Q.rk_congress_seats, color: \"#404139\", outline: getOutline(Q.right_kemalists_support) });\n}\nwindow.partyParliamentData = pData;\n\n// Build candidate support text\nQ.candidate_1_supporters = \"\";\nQ.candidate_2_supporters = \"\";\nif (Q.congress_upcoming) {\n    var s1 = [], s2 = [];\n    if (Q.left_kemalists_support == 1) s1.push(\"Left-Wing Kemalist\");\n    if (Q.left_kemalists_support == 2) s2.push(\"Left-Wing Kemalist\");\n    if (Q.kemalist_marxists_support == 1) s1.push(\"Kemalist Marxists\");\n    if (Q.kemalist_marxists_support == 2) s2.push(\"Kemalist Marxists\");\n    if (Q.third_worldists_enabled) {\n        if (Q.third_worldists_support == 1) s1.push(\"Third Worldists\");\n        if (Q.third_worldists_support == 2) s2.push(\"Third Worldists\");\n    }\n    if (!Q.orthodox_kemalist_destruction) {\n        if (Q.orthodox_kemalists_support == 1) s1.push(\"Reformist Kemalists\");\n        if (Q.orthodox_kemalists_support == 2) s2.push(\"Reformist Kemalists\");\n    }\n    if (factionModelT.active.rk) {\n        if (Q.right_kemalists_support == 1) s1.push(\"Right-Wing Kemalists\");\n        if (Q.right_kemalists_support == 2) s2.push(\"Right-Wing Kemalists\");\n    }\n    Q.candidate_1_supporters = s1.length > 0 ? s1.join(\", \") : \"None\";\n    Q.candidate_2_supporters = s2.length > 0 ? s2.join(\", \") : \"None\";\n}\n\n// Portrait mapping\nQ.candidate_1_portrait = \"\";\nQ.candidate_2_portrait = \"\";\nif (Q.congress_candidate_1 == \"ecevit\") Q.candidate_1_portrait = \"img/portraits/ecevit3.jpg\";\nif (Q.congress_candidate_1 == \"inonu\") Q.candidate_1_portrait = \"img/portraits/IsmetInonu.jpg\";\nif (Q.congress_candidate_1 == \"kirikoglu\") Q.candidate_1_portrait = \"img/portraits/KamilKirikoglu.jpg\";\nif (Q.congress_candidate_1 == \"eyuboglu\") Q.candidate_1_portrait = \"img/portraits/OrhanEyuboglu.jpeg\";\nif (Q.congress_candidate_2 == \"ecevit\") Q.candidate_2_portrait = \"img/portraits/ecevit3.jpg\";\nif (Q.congress_candidate_2 == \"inonu\") Q.candidate_2_portrait = \"img/portraits/IsmetInonu.jpg\";\nif (Q.congress_candidate_2 == \"kirikoglu\") Q.candidate_2_portrait = \"img/portraits/KamilKirikoglu.jpg\";\nif (Q.congress_candidate_2 == \"eyuboglu\") Q.candidate_2_portrait = \"img/portraits/OrhanEyuboglu.jpeg\";\n\n// Candidate name mapping\nQ.candidate_1_name = \"\";\nQ.candidate_2_name = \"\";\nif (Q.congress_candidate_1 == \"ecevit\") Q.candidate_1_name = \"Bülent Ecevit\";\nif (Q.congress_candidate_1 == \"inonu\") Q.candidate_1_name = \"İsmet İnönü\";\nif (Q.congress_candidate_1 == \"kirikoglu\") Q.candidate_1_name = \"Kamil Kırıkoğlu\";\nif (Q.congress_candidate_1 == \"eyuboglu\") Q.candidate_1_name = \"Orhan Eyüboğlu\";\nif (Q.congress_candidate_2 == \"ecevit\") Q.candidate_2_name = \"Bülent Ecevit\";\nif (Q.congress_candidate_2 == \"inonu\") Q.candidate_2_name = \"İsmet İnönü\";\nif (Q.congress_candidate_2 == \"kirikoglu\") Q.candidate_2_name = \"Kamil Kırıkoğlu\";\nif (Q.congress_candidate_2 == \"eyuboglu\") Q.candidate_2_name = \"Orhan Eyüboğlu\";\n\n// Leader portrait (when no congress)\nQ.leader_portrait = \"\";\nif (Q.CHP_party_leader == \"İnönü\" || Q.CHP_party_leader == \"inonu\") Q.leader_portrait = \"img/portraits/IsmetInonu.jpg\";\nif (Q.CHP_party_leader == \"Ecevit\" || Q.CHP_party_leader == \"ecevit\") Q.leader_portrait = \"img/portraits/ecevit3.jpg\";"
         }
       ],
       "content": {
@@ -32567,7 +32567,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<span style=\"color: "
+                    "content": "<span style=\"color: #b31f3b;\">&#9632;</span> Third Worldists: "
                   },
                   {
                     "type": "insert",
@@ -32575,19 +32575,11 @@
                   },
                   {
                     "type": "magic",
-                    "content": ";\">&#9632;</span> Third Worldists: "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 16
-                  },
-                  {
-                    "type": "magic",
                     "content": " (<em>"
                   },
                   {
                     "type": "insert",
-                    "insert": 17
+                    "insert": 16
                   },
                   {
                     "type": "magic",
@@ -32605,11 +32597,11 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<span style=\"color: #c76082;\">&#9632;</span> Leftist Kemalists: "
+                "content": "<span style=\"color: #c76083;\">&#9632;</span> Left-Wing Kemalist: "
               },
               {
                 "type": "insert",
-                "insert": 18
+                "insert": 17
               },
               {
                 "type": "magic",
@@ -32617,7 +32609,7 @@
               },
               {
                 "type": "insert",
-                "insert": 19
+                "insert": 18
               },
               {
                 "type": "magic",
@@ -32635,11 +32627,11 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<span style=\"color: #5a5f63;\">&#9632;</span> Reformist Kemalists: "
+                    "content": "<span style=\"color: #ac8bb3;\">&#9632;</span> Reformist Kemalists: "
                   },
                   {
                     "type": "insert",
-                    "insert": 21
+                    "insert": 20
                   },
                   {
                     "type": "magic",
@@ -32647,7 +32639,7 @@
                   },
                   {
                     "type": "insert",
-                    "insert": 22
+                    "insert": 21
                   },
                   {
                     "type": "magic",
@@ -32655,7 +32647,7 @@
                   },
                   " "
                 ],
-                "predicate": 20
+                "predicate": 19
               },
               ""
             ]
@@ -32669,11 +32661,11 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<span style=\"color: #353057;\">&#9632;</span> Right Kemalists: "
+                    "content": "<span style=\"color: #404139;\">&#9632;</span> Right-Wing Kemalists: "
                   },
                   {
                     "type": "insert",
-                    "insert": 24
+                    "insert": 23
                   },
                   {
                     "type": "magic",
@@ -32681,7 +32673,7 @@
                   },
                   {
                     "type": "insert",
-                    "insert": 25
+                    "insert": 24
                   },
                   {
                     "type": "magic",
@@ -32689,7 +32681,7 @@
                   },
                   " "
                 ],
-                "predicate": 23
+                "predicate": 22
               },
               ""
             ]
@@ -32717,7 +32709,7 @@
               },
               {
                 "type": "insert",
-                "insert": 26
+                "insert": 25
               },
               {
                 "type": "magic",
@@ -32735,19 +32727,11 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: "
+                    "content": "<div><span style=\"color: #b31f3b;\">Third Worldists:</span> "
                   },
                   {
                     "type": "insert",
-                    "insert": 28
-                  },
-                  {
-                    "type": "magic",
-                    "content": ";\">Third Worldists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 29
+                    "insert": 27
                   },
                   {
                     "type": "magic",
@@ -32755,7 +32739,7 @@
                   },
                   " "
                 ],
-                "predicate": 27
+                "predicate": 26
               },
               ""
             ]
@@ -32765,11 +32749,11 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<div><span style=\"color: #c76082;\">Leftist Kemalists:</span> "
+                "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
               },
               {
                 "type": "insert",
-                "insert": 30
+                "insert": 28
               },
               {
                 "type": "magic",
@@ -32787,7 +32771,33 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: #5a5f63;\">Reformist Kemalists:</span> "
+                    "content": "<div><span style=\"color: #ac8bb3;\">Reformist Kemalists:</span> "
+                  },
+                  {
+                    "type": "insert",
+                    "insert": 30
+                  },
+                  {
+                    "type": "magic",
+                    "content": "</div>"
+                  },
+                  " "
+                ],
+                "predicate": 29
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<div><span style=\"color: #404139;\">Right-Wing Kemalists:</span> "
                   },
                   {
                     "type": "insert",
@@ -32808,38 +32818,12 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<div><span style=\"color: #353057;\">Right Kemalists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 34
-                  },
-                  {
-                    "type": "magic",
-                    "content": "</div>"
-                  },
-                  " "
-                ],
-                "predicate": 33
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
                 "type": "magic",
                 "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">The Base (15%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
               },
               {
                 "type": "insert",
-                "insert": 35
+                "insert": 33
               },
               {
                 "type": "magic",
@@ -32857,15 +32841,51 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: "
+                    "content": "<div><span style=\"color: #b31f3b;\">Third Worldists:</span> "
                   },
                   {
                     "type": "insert",
-                    "insert": 37
+                    "insert": 35
                   },
                   {
                     "type": "magic",
-                    "content": ";\">Third Worldists:</span> "
+                    "content": "</div>"
+                  },
+                  " "
+                ],
+                "predicate": 34
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
+              },
+              {
+                "type": "insert",
+                "insert": 36
+              },
+              {
+                "type": "magic",
+                "content": "</div>"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<div><span style=\"color: #ac8bb3;\">Reformist Kemalists:</span> "
                   },
                   {
                     "type": "insert",
@@ -32877,7 +32897,33 @@
                   },
                   " "
                 ],
-                "predicate": 36
+                "predicate": 37
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<div><span style=\"color: #404139;\">Right-Wing Kemalists:</span> "
+                  },
+                  {
+                    "type": "insert",
+                    "insert": 40
+                  },
+                  {
+                    "type": "magic",
+                    "content": "</div>"
+                  },
+                  " "
+                ],
+                "predicate": 39
               },
               ""
             ]
@@ -32887,11 +32933,11 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<div><span style=\"color: #c76082;\">Leftist Kemalists:</span> "
+                "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Party Bureaucracy (25%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
               },
               {
                 "type": "insert",
-                "insert": 39
+                "insert": 41
               },
               {
                 "type": "magic",
@@ -32909,33 +32955,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: #5a5f63;\">Reformist Kemalists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 41
-                  },
-                  {
-                    "type": "magic",
-                    "content": "</div>"
-                  },
-                  " "
-                ],
-                "predicate": 40
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<div><span style=\"color: #353057;\">Right Kemalists:</span> "
+                    "content": "<div><span style=\"color: #b31f3b;\">Third Worldists:</span> "
                   },
                   {
                     "type": "insert",
@@ -32957,7 +32977,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Party Bureaucracy (25%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
+                "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
               },
               {
                 "type": "insert",
@@ -32979,19 +32999,11 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: "
+                    "content": "<div><span style=\"color: #ac8bb3;\">Reformist Kemalists:</span> "
                   },
                   {
                     "type": "insert",
                     "insert": 46
-                  },
-                  {
-                    "type": "magic",
-                    "content": ";\">Third Worldists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 47
                   },
                   {
                     "type": "magic",
@@ -33008,34 +33020,16 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "<div><span style=\"color: #c76082;\">Leftist Kemalists:</span> "
-              },
-              {
-                "type": "insert",
-                "insert": 48
-              },
-              {
-                "type": "magic",
-                "content": "</div>"
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
                 "type": "conditional",
                 "content": [
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: #5a5f63;\">Reformist Kemalists:</span> "
+                    "content": "<div><span style=\"color: #404139;\">Right-Wing Kemalists:</span> "
                   },
                   {
                     "type": "insert",
-                    "insert": 50
+                    "insert": 48
                   },
                   {
                     "type": "magic",
@@ -33043,33 +33037,7 @@
                   },
                   " "
                 ],
-                "predicate": 49
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<div><span style=\"color: #353057;\">Right Kemalists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 52
-                  },
-                  {
-                    "type": "magic",
-                    "content": "</div>"
-                  },
-                  " "
-                ],
-                "predicate": 51
+                "predicate": 47
               },
               ""
             ]
@@ -33083,7 +33051,7 @@
               },
               {
                 "type": "insert",
-                "insert": 53
+                "insert": 49
               },
               {
                 "type": "magic",
@@ -33101,15 +33069,77 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: "
+                    "content": "<div><span style=\"color: #b31f3b;\">Third Worldists:</span> "
                   },
                   {
                     "type": "insert",
-                    "insert": 55
+                    "insert": 51
                   },
                   {
                     "type": "magic",
-                    "content": ";\">Third Worldists:</span> "
+                    "content": "</div>"
+                  },
+                  " "
+                ],
+                "predicate": 50
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
+              },
+              {
+                "type": "insert",
+                "insert": 52
+              },
+              {
+                "type": "magic",
+                "content": "</div>"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<div><span style=\"color: #ac8bb3;\">Reformist Kemalists:</span> "
+                  },
+                  {
+                    "type": "insert",
+                    "insert": 54
+                  },
+                  {
+                    "type": "magic",
+                    "content": "</div>"
+                  },
+                  " "
+                ],
+                "predicate": 53
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<div><span style=\"color: #404139;\">Right-Wing Kemalists:</span> "
                   },
                   {
                     "type": "insert",
@@ -33121,7 +33151,7 @@
                   },
                   " "
                 ],
-                "predicate": 54
+                "predicate": 55
               },
               ""
             ]
@@ -33131,7 +33161,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<div><span style=\"color: #c76082;\">Leftist Kemalists:</span> "
+                "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Party Intelligentsia (10%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
               },
               {
                 "type": "insert",
@@ -33153,7 +33183,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: #5a5f63;\">Reformist Kemalists:</span> "
+                    "content": "<div><span style=\"color: #b31f3b;\">Third Worldists:</span> "
                   },
                   {
                     "type": "insert",
@@ -33174,38 +33204,12 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<div><span style=\"color: #353057;\">Right Kemalists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 61
-                  },
-                  {
-                    "type": "magic",
-                    "content": "</div>"
-                  },
-                  " "
-                ],
-                "predicate": 60
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
                 "type": "magic",
-                "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Party Intelligentsia (10%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
+                "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
               },
               {
                 "type": "insert",
-                "insert": 62
+                "insert": 60
               },
               {
                 "type": "magic",
@@ -33223,19 +33227,37 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: "
+                    "content": "<div><span style=\"color: #ac8bb3;\">Reformist Kemalists:</span> "
+                  },
+                  {
+                    "type": "insert",
+                    "insert": 62
+                  },
+                  {
+                    "type": "magic",
+                    "content": "</div>"
+                  },
+                  " "
+                ],
+                "predicate": 61
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<div><span style=\"color: #404139;\">Right-Wing Kemalists:</span> "
                   },
                   {
                     "type": "insert",
                     "insert": 64
-                  },
-                  {
-                    "type": "magic",
-                    "content": ";\">Third Worldists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 65
                   },
                   {
                     "type": "magic",
@@ -33253,11 +33275,11 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<div><span style=\"color: #c76082;\">Leftist Kemalists:</span> "
+                "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Local Leaderships (10%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
               },
               {
                 "type": "insert",
-                "insert": 66
+                "insert": 65
               },
               {
                 "type": "magic",
@@ -33275,11 +33297,11 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: #5a5f63;\">Reformist Kemalists:</span> "
+                    "content": "<div><span style=\"color: #b31f3b;\">Third Worldists:</span> "
                   },
                   {
                     "type": "insert",
-                    "insert": 68
+                    "insert": 67
                   },
                   {
                     "type": "magic",
@@ -33287,7 +33309,25 @@
                   },
                   " "
                 ],
-                "predicate": 67
+                "predicate": 66
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
+              },
+              {
+                "type": "insert",
+                "insert": 68
+              },
+              {
+                "type": "magic",
+                "content": "</div>"
               },
               ""
             ]
@@ -33301,7 +33341,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: #353057;\">Right Kemalists:</span> "
+                    "content": "<div><span style=\"color: #ac8bb3;\">Reformist Kemalists:</span> "
                   },
                   {
                     "type": "insert",
@@ -33322,42 +33362,16 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Local Leaderships (10%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
-              },
-              {
-                "type": "insert",
-                "insert": 71
-              },
-              {
-                "type": "magic",
-                "content": "</div>"
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
                 "type": "conditional",
                 "content": [
                   "",
                   {
                     "type": "magic",
-                    "content": "<div><span style=\"color: "
+                    "content": "<div><span style=\"color: #404139;\">Right-Wing Kemalists:</span> "
                   },
                   {
                     "type": "insert",
-                    "insert": 73
-                  },
-                  {
-                    "type": "magic",
-                    "content": ";\">Third Worldists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 74
+                    "insert": 72
                   },
                   {
                     "type": "magic",
@@ -33365,77 +33379,7 @@
                   },
                   " "
                 ],
-                "predicate": 72
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<div><span style=\"color: #c76082;\">Leftist Kemalists:</span> "
-              },
-              {
-                "type": "insert",
-                "insert": 75
-              },
-              {
-                "type": "magic",
-                "content": "</div>"
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<div><span style=\"color: #5a5f63;\">Reformist Kemalists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 77
-                  },
-                  {
-                    "type": "magic",
-                    "content": "</div>"
-                  },
-                  " "
-                ],
-                "predicate": 76
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<div><span style=\"color: #353057;\">Right Kemalists:</span> "
-                  },
-                  {
-                    "type": "insert",
-                    "insert": 79
-                  },
-                  {
-                    "type": "magic",
-                    "content": "</div>"
-                  },
-                  " "
-                ],
-                "predicate": 78
+                "predicate": 71
               },
               ""
             ]
@@ -33545,12 +33489,6 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
               "$code": "return (Q['tw_congress_seats'] || 0);"
             }
           },
@@ -33623,12 +33561,6 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
               "$code": "return (Q['q0_tw_label'] || 0);"
             }
           },
@@ -33672,12 +33604,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return (((Q['third_worldists_enabled'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
             }
           },
           {
@@ -33731,12 +33657,6 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
               "$code": "return (Q['q2_tw_label'] || 0);"
             }
           },
@@ -33780,12 +33700,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return (((Q['third_worldists_enabled'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
             }
           },
           {
@@ -33839,12 +33753,6 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
               "$code": "return (Q['q4_tw_label'] || 0);"
             }
           },
@@ -33888,12 +33796,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return (((Q['third_worldists_enabled'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['third_worldists_color'] || 0);"
             }
           },
           {
@@ -34859,7 +34761,7 @@
         }
       ],
       "content": {
-        "content": "Aksoy has been removed as a member. The Leftist Kemalist faction disapproves.",
+        "content": "Aksoy has been removed as a member. The Left-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -35221,7 +35123,7 @@
       "isSpecial": true,
       "onArrival": [
         {
-          "$code": "// Format economic indicators with proper fallbacks only for display\nQ.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';\nQ.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';\nQ.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : '9.2';\n\n// Format production indices\nQ.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 100.0).toFixed(1);\nQ.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production_index, 100.0).toFixed(1);\n\n// Format agricultural market data\nQ.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);\n\n// Format forex pressure and determine status\nQ.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure, 45.0).toFixed(1);\nif (Q.forex_pressure <= 20) {\n    Q.forex_pressure_status = \"Low\";\n} else if (Q.forex_pressure > 20 && Q.forex_pressure <= 40) {\n    Q.forex_pressure_status = \"Manageable\";\n} else if (Q.forex_pressure > 40 && Q.forex_pressure <= 60) {\n    Q.forex_pressure_status = \"Straining\";\n} else if (Q.forex_pressure > 60 && Q.forex_pressure <= 80) {\n    Q.forex_pressure_status = \"Damaging\";\n} else if (Q.forex_pressure > 80) {\n    Q.forex_pressure_status = \"Crushing\";\n}\n\nif (typeof Q.chp_seats === 'undefined') {\n    Q.chp_seats = 143;\n    Q.AP_seats = 224;\n    Q.TIP_seats = 2;\n    Q.CGP_seats = 26;\n    Q.DP_seats = 36;\n    Q.MSP_seats = 0;\n    Q.MHP_seats = 1;\n    Q.other_seats = 18;\n}\n\n// Socialist Left: once formed, TİP's vote share is treated as the aggregate \"Socialist Left\"\n// bloc, and is displayed broken down into TİP itself and its minor splinter parties\n// (TKP, TSİP, TEP, SDP), each taking a fixed share of the bloc's total vote. Recomputed on\n// every visit so it always reflects the current (aggregate) TIP_r, without altering TIP_r\n// itself (which is still used elsewhere, e.g. for seat calculations). This uses\n// socialist_left_formed_last_election (a snapshot taken at the last election) rather than\n// the live socialist_left_formed, since TIP_r itself is the result of the last election.\nif (typeof Q.socialist_left_formed === 'undefined') {\n    Q.socialist_left_formed = 0;\n}\nif (typeof Q.socialist_left_formed_last_election === 'undefined') {\n    Q.socialist_left_formed_last_election = Q.socialist_left_formed;\n}\nQ.former_TIP_r = Q.TIP_r;\nif (Q.socialist_left_formed_last_election) {\n    Q.TKP_r = Q.former_TIP_r * 0.25;\n    Q.TSIP_r = Q.former_TIP_r * 0.25;\n    Q.TEP_r = Q.former_TIP_r * 0.10;\n    Q.SDP_r = Q.former_TIP_r * 0.20;\n    Q.TIP_socialist_left_r = Q.former_TIP_r * 0.20;\n} else {\n    Q.TKP_r = 0;\n    Q.TSIP_r = 0;\n    Q.TEP_r = 0;\n    Q.SDP_r = 0;\n    Q.TIP_socialist_left_r = Q.former_TIP_r;\n}\nif (typeof Q.majority_threshold === 'undefined') {\n    Q.majority_threshold = 226;\n}\nif (typeof Q.right_kemalist_split === 'undefined') {\n    Q.right_kemalist_split = 0;\n}\nif (typeof Q.orthodox_kemalist_destruction === 'undefined') {\n    Q.orthodox_kemalist_destruction = 0;\n}\nif (typeof Q.right_kemalist_deal === 'undefined') {\n    Q.right_kemalist_deal = 0;\n}\nif (typeof Q.right_kemalists_resign === 'undefined') {\n    Q.right_kemalists_resign = 0;\n}\n\n// Initialize per-quarter strengths if they don't exist (backward compatibility with saves)\nif (typeof Q.q0_km_str === 'undefined') {\n    var _qWInit = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];\n    var _fKeysInit = ['km', 'lk', 'ok', 'rk'];\n    var _fGlobalsInit = ['kemalist_marxists_strength', 'left_kemalists_strength', 'orthodox_kemalists_strength', 'right_kemalists_strength'];\n    for (var _fii = 0; _fii < 4; _fii++) {\n        var _val = Q[_fGlobalsInit[_fii]] || 0;\n        for (var _qii = 0; _qii < 6; _qii++) {\n            Q['q' + _qii + '_' + _fKeysInit[_fii] + '_str'] = _val;\n        }\n        Q['_last_' + _fKeysInit[_fii] + '_str'] = _val;\n    }\n}\n\n// Third Worldists: backward compatibility with saves created before this faction existed.\nif (typeof Q.third_worldists_enabled === 'undefined') {\n    Q.third_worldists_enabled = 0;\n}\nif (typeof Q.third_worldists_color === 'undefined') {\n    Q.third_worldists_color = '#5f0f91';\n}\nif (typeof Q.third_worldists_dissent === 'undefined') {\n    Q.third_worldists_dissent = 20;\n}\nif (typeof Q.q0_tw_str === 'undefined') {\n    var _twDefaults = [3, 2, 1, 2, 2, 1];\n    for (var _twi = 0; _twi < 6; _twi++) {\n        Q['q' + _twi + '_tw_str'] = _twDefaults[_twi];\n    }\n}\n\n// Per-quarter faction strengths are the source of truth and are only\n// modified by direct assignment in game events/advisors (not by global sync).\n// Global faction strengths are normalized independently by post_event.\n\nvar factionModel = AnatolianRules.factionModel(Q);\nvar _kmAvg = factionModel.averages.km, _lkAvg = factionModel.averages.lk, _okAvg = factionModel.averages.ok, _rkAvg = factionModel.averages.rk, _twAvg = factionModel.averages.tw;\n\nfunction _strengthLabel(score, myAvg, othersAvg) {\n    if (score >= 5.5 && myAvg > othersAvg) return \"Hegemonic\";\n    if (score >= 4.5) return \"Very High\";\n    if (score >= 3.5) return \"High\";\n    if (score >= 2.5) return \"Medium\";\n    if (score >= 1.5) return \"Weak\";\n    if (score >= 0.5) return \"Very weak\";\n    return \"Nonexistant\";\n}\n\nvar _rkAvgActive = factionModel.active.rk ? _rkAvg : 0;\nvar _okAvgActive = Q.orthodox_kemalist_destruction ? 0 : _okAvg;\nvar _twAvgActive = Q.third_worldists_enabled ? _twAvg : 0;\n\nQ.km_strength_label = _strengthLabel(_kmAvg, _kmAvg, _lkAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.lk_strength_label = _strengthLabel(_lkAvg, _lkAvg, _kmAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.ok_strength_label = Q.orthodox_kemalist_destruction ? \"Nonexistant\" : _strengthLabel(_okAvg, _okAvg, _kmAvg + _lkAvg + _rkAvgActive + _twAvgActive);\nQ.rk_strength_label = !factionModel.active.rk ? \"Nonexistant\" : _strengthLabel(_rkAvg, _rkAvg, _kmAvg + _lkAvg + _okAvgActive + _twAvgActive);\nQ.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg, _kmAvg + _lkAvg + _okAvgActive + _rkAvgActive) : \"Nonexistant\";"
+          "$code": "// Format economic indicators with proper fallbacks only for display\nQ.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';\nQ.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';\nQ.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : '9.2';\n\n// Format production indices\nQ.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 100.0).toFixed(1);\nQ.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production_index, 100.0).toFixed(1);\n\n// Format agricultural market data\nQ.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);\n\n// Format forex pressure and determine status\nQ.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure, 45.0).toFixed(1);\nif (Q.forex_pressure <= 20) {\n    Q.forex_pressure_status = \"Low\";\n} else if (Q.forex_pressure > 20 && Q.forex_pressure <= 40) {\n    Q.forex_pressure_status = \"Manageable\";\n} else if (Q.forex_pressure > 40 && Q.forex_pressure <= 60) {\n    Q.forex_pressure_status = \"Straining\";\n} else if (Q.forex_pressure > 60 && Q.forex_pressure <= 80) {\n    Q.forex_pressure_status = \"Damaging\";\n} else if (Q.forex_pressure > 80) {\n    Q.forex_pressure_status = \"Crushing\";\n}\n\nif (typeof Q.chp_seats === 'undefined') {\n    Q.chp_seats = 143;\n    Q.AP_seats = 224;\n    Q.TIP_seats = 2;\n    Q.CGP_seats = 26;\n    Q.DP_seats = 36;\n    Q.MSP_seats = 0;\n    Q.MHP_seats = 1;\n    Q.other_seats = 18;\n}\n\n// Socialist Left: once formed, TİP's vote share is treated as the aggregate \"Socialist Left\"\n// bloc, and is displayed broken down into TİP itself and its minor splinter parties\n// (TKP, TSİP, TEP, SDP), each taking a fixed share of the bloc's total vote. Recomputed on\n// every visit so it always reflects the current (aggregate) TIP_r, without altering TIP_r\n// itself (which is still used elsewhere, e.g. for seat calculations). This uses\n// socialist_left_formed_last_election (a snapshot taken at the last election) rather than\n// the live socialist_left_formed, since TIP_r itself is the result of the last election.\nif (typeof Q.socialist_left_formed === 'undefined') {\n    Q.socialist_left_formed = 0;\n}\nif (typeof Q.socialist_left_formed_last_election === 'undefined') {\n    Q.socialist_left_formed_last_election = Q.socialist_left_formed;\n}\nQ.former_TIP_r = Q.TIP_r;\nif (Q.socialist_left_formed_last_election) {\n    Q.TKP_r = Q.former_TIP_r * 0.25;\n    Q.TSIP_r = Q.former_TIP_r * 0.25;\n    Q.TEP_r = Q.former_TIP_r * 0.10;\n    Q.SDP_r = Q.former_TIP_r * 0.20;\n    Q.TIP_socialist_left_r = Q.former_TIP_r * 0.20;\n} else {\n    Q.TKP_r = 0;\n    Q.TSIP_r = 0;\n    Q.TEP_r = 0;\n    Q.SDP_r = 0;\n    Q.TIP_socialist_left_r = Q.former_TIP_r;\n}\nif (typeof Q.majority_threshold === 'undefined') {\n    Q.majority_threshold = 226;\n}\nif (typeof Q.right_kemalist_split === 'undefined') {\n    Q.right_kemalist_split = 0;\n}\nif (typeof Q.orthodox_kemalist_destruction === 'undefined') {\n    Q.orthodox_kemalist_destruction = 0;\n}\nif (typeof Q.right_kemalist_deal === 'undefined') {\n    Q.right_kemalist_deal = 0;\n}\nif (typeof Q.right_kemalists_resign === 'undefined') {\n    Q.right_kemalists_resign = 0;\n}\n\n// Initialize per-quarter strengths if they don't exist (backward compatibility with saves)\nif (typeof Q.q0_km_str === 'undefined') {\n    var _qWInit = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];\n    var _fKeysInit = ['km', 'lk', 'ok', 'rk'];\n    var _fGlobalsInit = ['kemalist_marxists_strength', 'left_kemalists_strength', 'orthodox_kemalists_strength', 'right_kemalists_strength'];\n    for (var _fii = 0; _fii < 4; _fii++) {\n        var _val = Q[_fGlobalsInit[_fii]] || 0;\n        for (var _qii = 0; _qii < 6; _qii++) {\n            Q['q' + _qii + '_' + _fKeysInit[_fii] + '_str'] = _val;\n        }\n        Q['_last_' + _fKeysInit[_fii] + '_str'] = _val;\n    }\n}\n\n// Third Worldists: backward compatibility with saves created before this faction existed.\nif (typeof Q.third_worldists_enabled === 'undefined') {\n    Q.third_worldists_enabled = 0;\n}\nif (typeof Q.third_worldists_color === 'undefined') {\n    Q.third_worldists_color = '#b31f3b';\n}\nif (typeof Q.third_worldists_dissent === 'undefined') {\n    Q.third_worldists_dissent = 20;\n}\nif (typeof Q.q0_tw_str === 'undefined') {\n    var _twDefaults = [3, 2, 1, 2, 2, 1];\n    for (var _twi = 0; _twi < 6; _twi++) {\n        Q['q' + _twi + '_tw_str'] = _twDefaults[_twi];\n    }\n}\n\n// Per-quarter faction strengths are the source of truth and are only\n// modified by direct assignment in game events/advisors (not by global sync).\n// Global faction strengths are normalized independently by post_event.\n\nvar factionModel = AnatolianRules.factionModel(Q);\nvar _kmAvg = factionModel.averages.km, _lkAvg = factionModel.averages.lk, _okAvg = factionModel.averages.ok, _rkAvg = factionModel.averages.rk, _twAvg = factionModel.averages.tw;\n\nfunction _strengthLabel(score, myAvg, othersAvg) {\n    if (score >= 5.5 && myAvg > othersAvg) return \"Hegemonic\";\n    if (score >= 4.5) return \"Very High\";\n    if (score >= 3.5) return \"High\";\n    if (score >= 2.5) return \"Medium\";\n    if (score >= 1.5) return \"Weak\";\n    if (score >= 0.5) return \"Very weak\";\n    return \"Nonexistant\";\n}\n\nvar _rkAvgActive = factionModel.active.rk ? _rkAvg : 0;\nvar _okAvgActive = Q.orthodox_kemalist_destruction ? 0 : _okAvg;\nvar _twAvgActive = Q.third_worldists_enabled ? _twAvg : 0;\n\nQ.km_strength_label = _strengthLabel(_kmAvg, _kmAvg, _lkAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.lk_strength_label = _strengthLabel(_lkAvg, _lkAvg, _kmAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.ok_strength_label = Q.orthodox_kemalist_destruction ? \"Nonexistant\" : _strengthLabel(_okAvg, _okAvg, _kmAvg + _lkAvg + _rkAvgActive + _twAvgActive);\nQ.rk_strength_label = !factionModel.active.rk ? \"Nonexistant\" : _strengthLabel(_rkAvg, _rkAvg, _kmAvg + _lkAvg + _okAvgActive + _twAvgActive);\nQ.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg, _kmAvg + _lkAvg + _okAvgActive + _rkAvgActive) : \"Nonexistant\";"
         }
       ],
       "content": {
@@ -35508,7 +35410,7 @@
                     "type": "insert",
                     "insert": 36
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right-Wing Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> "
                 ],
                 "predicate": 35
               },
@@ -35521,7 +35423,7 @@
                     "type": "insert",
                     "insert": 38
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A Right Kemalist and one of the founders of CGP, he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A Right-Wing Kemalist and one of the founders of CGP, he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
                 ],
                 "predicate": 37
               },
@@ -37223,7 +37125,7 @@
         }
       ],
       "content": {
-        "content": "Üstündağ has been removed as a member. The Leftist Kemalist faction disapproves.",
+        "content": "Üstündağ has been removed as a member. The Left-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -38714,7 +38616,7 @@
         }
       ],
       "content": {
-        "content": "Ali Topuz has been removed as a member. The Leftist Kemalist faction disapproves.",
+        "content": "Ali Topuz has been removed as a member. The Left-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -39161,7 +39063,7 @@
         }
       ],
       "content": {
-        "content": "Turan Güneş has been removed as a member. The Leftist Kemalist faction disapproves.",
+        "content": "Turan Güneş has been removed as a member. The Left-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -40138,7 +40040,7 @@
         }
       ],
       "content": {
-        "content": "Önder Sav has been removed as a member. The Leftist Kemalist faction disapproves.",
+        "content": "Önder Sav has been removed as a member. The Left-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -40459,7 +40361,7 @@
             "content": [
               {
                 "type": "emphasis-2",
-                "content": "Leftist Kemalists"
+                "content": "Left-Wing Kemalist"
               },
               ""
             ]
@@ -40467,12 +40369,12 @@
           {
             "type": "paragraph",
             "content": [
-              "The Leftist Kemalists are a group of reformers who want to sway <span style=\"color: #E3000F;\">",
+              "The Left-Wing Kemalist are a group of reformers who want to sway <span style=\"color: #E3000F;\">",
               {
                 "type": "emphasis-2",
                 "content": "CHP"
               },
-              "</span> from its authoritarian stance of \"For the people, in spite of the people\". Led by Bülent Ecevit, they have been gaining power within the party since 1965 and now seems to be overshadowing the old guard in strength and rhetoric. The Leftist Kemalists want to complete the Kemalist revolution through the spread of progressive values and the improvement of the lives of the labourers, so that Turkey can become the modern republic, in peace with the values of civilization as Atatürk once envisioned."
+              "</span> from its authoritarian stance of \"For the people, in spite of the people\". Led by Bülent Ecevit, they have been gaining power within the party since 1965 and now seems to be overshadowing the old guard in strength and rhetoric. The Left-Wing Kemalist want to complete the Kemalist revolution through the spread of progressive values and the improvement of the lives of the labourers, so that Turkey can become the modern republic, in peace with the values of civilization as Atatürk once envisioned."
             ]
           },
           {
@@ -40538,7 +40440,7 @@
             "content": [
               {
                 "type": "emphasis-2",
-                "content": "Right Kemalists"
+                "content": "Right-Wing Kemalists"
               },
               ""
             ]
@@ -40546,7 +40448,7 @@
           {
             "type": "paragraph",
             "content": [
-              "The Right Kemalists have an especially nationalistic perception of Atatürk, and perhaps share more in ideology with the counter revolutionaries than they do with the other Kemalists. They have increasingly been sidelined by the Leftist Kemalists during the last decade and even though they have split into a party of their own, CGP, sympathizers of Right Kemalism are still in <span style=\"color: #E3000F;\">",
+              "The Right-Wing Kemalists have an especially nationalistic perception of Atatürk, and perhaps share more in ideology with the counter revolutionaries than they do with the other Kemalists. They have increasingly been sidelined by the Left-Wing Kemalist during the last decade and even though they have split into a party of their own, CGP, sympathizers of Right Kemalism are still in <span style=\"color: #E3000F;\">",
               {
                 "type": "emphasis-2",
                 "content": "CHP"
@@ -42081,7 +41983,7 @@
         }
       ],
       "content": {
-        "content": "Ali İhsan Göğüs has been removed as a member. The Right Kemalist faction disapproves.",
+        "content": "Ali İhsan Göğüs has been removed as a member. The Right-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -42272,7 +42174,7 @@
         }
       ],
       "content": {
-        "content": "Emin Paksüt has been removed as a member. The Right Kemalist faction disapproves.",
+        "content": "Emin Paksüt has been removed as a member. The Right-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -42405,7 +42307,7 @@
         }
       ],
       "content": {
-        "content": "Fethi Çelikbaş has been removed as a member. The Right Kemalist faction disapproves.",
+        "content": "Fethi Çelikbaş has been removed as a member. The Right-Wing Kemalist faction disapproves.",
         "type": "paragraph"
       }
     },
@@ -43076,7 +42978,7 @@
         },
         {
           "id": "@shuffle_leadership.left_kemalist",
-          "title": "Add Leftist Kemalists"
+          "title": "Add Left-Wing Kemalist"
         },
         {
           "id": "@shuffle_leadership.orthodox_kemalist",
@@ -43084,7 +42986,7 @@
         },
         {
           "id": "@shuffle_leadership.right_kemalist",
-          "title": "Add Right Kemalists"
+          "title": "Add Right-Wing Kemalists"
         },
         {
           "id": "@shuffle_leadership.nonfactional",
@@ -44528,7 +44430,7 @@
     "shuffle_leadership.add_paksut": {
       "id": "shuffle_leadership.add_paksut",
       "title": "Emin Paksüt",
-      "subtitle": "Emin Paksüt is a Right Kemalist intellectual and former minister of public works.",
+      "subtitle": "Emin Paksüt is a Right-Wing Kemalist intellectual and former minister of public works.",
       "isCard": true,
       "cardImage": "img/portraits/Eminpaksut.jpeg",
       "viewIf": {
@@ -44579,7 +44481,7 @@
     "shuffle_leadership.add_celikbas": {
       "id": "shuffle_leadership.add_celikbas",
       "title": "Fethi Çelikbaş",
-      "subtitle": "Fethi Çelikbaş is a pragmatist Right Kemalist politician and former minister of Industry and economy.",
+      "subtitle": "Fethi Çelikbaş is a pragmatist Right-Wing Kemalist politician and former minister of Industry and economy.",
       "isCard": true,
       "cardImage": "img/portraits/FethiCelikbas.jpeg",
       "viewIf": {

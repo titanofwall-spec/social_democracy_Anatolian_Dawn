@@ -716,7 +716,7 @@ function getPartyIdeology(party, Q) {
             return 'Unknown';
         case 'CHP':
             if (Q.CHP_party_leader === "İnönü") return '<span style="color: #803c53;">Center-Center Left</span> (Kemalism)';
-            if (Q.CHP_party_leader === "Ecevit") return '<span style="color: #c76082;">Center Left</span> (Left Kemalism)';
+            if (Q.CHP_party_leader === "Ecevit") return '<span style="color: #c76083;">Center Left</span> (Left Kemalism)';
             return 'Unknown';
         case 'DP':
             if (Q.DP_party_leader === "Bozbeyli") return '<span style="color: #342675;">Right Wing</span> (Conservative Populism)';
@@ -1117,6 +1117,11 @@ function getPartyIdeology(party, Q) {
 
     var $ul = window.jQuery("<ul>").addClass("pinned-cards leadership-cards");
     var memberCount = 0;
+    var factionColors = {km:'#701616', lk:'#c76083', tw:'#b31f3b', ok:'#ac8bb3', rk:'#404139'};
+    var advisorFactions = {};
+    String(Q._advisor_factions || '').split(',').forEach(function(pair) {
+      var parts = pair.split(':'); advisorFactions[parts[0]] = parts[1];
+    });
     for (var i = 0; i < cards.length; i++) {
       var card = cards[i];
       var $li = window.jQuery("<li>").addClass("pinned-card");
@@ -1150,6 +1155,11 @@ function getPartyIdeology(party, Q) {
       $li.append($role);
 
       var $a = window.jQuery("<a>").addClass("card").attr({href: "#", "card-id": card.id, title: card.title});
+      var faction = advisorFactions[shortId];
+      if (factionColors[faction] && shortId !== 'cabinet' && shortId !== 'shuffle_leadership_pinned') {
+        $li.attr('data-faction',faction);
+        $a.css('border-color',factionColors[faction]);
+      }
       var $caption = window.jQuery("<span>").addClass("card-caption").text(card.title);
 
       if (card.image) {

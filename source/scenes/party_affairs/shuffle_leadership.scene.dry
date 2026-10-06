@@ -71,7 +71,7 @@ tags: remove_advisor
 on-arrival: ecevit_advisor = 0; left_kemalists_dissent += 10; n_advisors -= 1
 go-to: rm_main
 
-Ecevit has been removed as a member. The Leftist Kemalist faction deeply disapproves.
+Ecevit has been removed as a member. The Left-Wing Kemalist faction deeply disapproves.
 
 @remove_baykal
 title: Remove Baykal
@@ -80,7 +80,7 @@ tags: remove_advisor
 on-arrival: baykal_advisor = 0; left_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Baykal has been removed as a member. The Leftist Kemalist faction disapproves.
+Baykal has been removed as a member. The Left-Wing Kemalist faction disapproves.
 
 @remove_aksoy
 title: Remove Aksoy
@@ -89,7 +89,7 @@ tags: remove_advisor
 on-arrival: aksoy_advisor = 0; left_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Aksoy has been removed as a member. The Leftist Kemalist faction disapproves.
+Aksoy has been removed as a member. The Left-Wing Kemalist faction disapproves.
 
 @remove_ustundag
 title: Remove Üstündağ
@@ -98,7 +98,7 @@ tags: remove_advisor
 on-arrival: ustundag_advisor = 0; left_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Üstündağ has been removed as a member. The Leftist Kemalist faction disapproves.
+Üstündağ has been removed as a member. The Left-Wing Kemalist faction disapproves.
 
 @remove_rahsan
 title: Remove Rahşan
@@ -116,7 +116,7 @@ tags: remove_advisor
 on-arrival: topuz_advisor = 0; left_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Ali Topuz has been removed as a member. The Leftist Kemalist faction disapproves.
+Ali Topuz has been removed as a member. The Left-Wing Kemalist faction disapproves.
 
 @remove_gunes
 title: Remove Güneş
@@ -125,7 +125,7 @@ tags: remove_advisor
 on-arrival: gunes_advisor = 0; left_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Turan Güneş has been removed as a member. The Leftist Kemalist faction disapproves.
+Turan Güneş has been removed as a member. The Left-Wing Kemalist faction disapproves.
 
 @remove_sav
 title: Remove Sav
@@ -134,7 +134,7 @@ tags: remove_advisor
 on-arrival: sav_advisor = 0; left_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Önder Sav has been removed as a member. The Leftist Kemalist faction disapproves.
+Önder Sav has been removed as a member. The Left-Wing Kemalist faction disapproves.
 
 
 # kemalist marxists
@@ -185,7 +185,7 @@ tags: remove_advisor
 on-arrival: gogus_advisor = 0; right_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Ali İhsan Göğüs has been removed as a member. The Right Kemalist faction disapproves.
+Ali İhsan Göğüs has been removed as a member. The Right-Wing Kemalist faction disapproves.
 
 @remove_paksut
 title: Remove Paksüt
@@ -194,7 +194,7 @@ tags: remove_advisor
 on-arrival: paksut_advisor = 0; right_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Emin Paksüt has been removed as a member. The Right Kemalist faction disapproves.
+Emin Paksüt has been removed as a member. The Right-Wing Kemalist faction disapproves.
 
 @remove_celikbas
 title: Remove Çelikbaş
@@ -203,7 +203,7 @@ tags: remove_advisor
 on-arrival: celikbas_advisor = 0; right_kemalists_dissent += 5; n_advisors -= 1
 go-to: rm_main
 
-Fethi Çelikbaş has been removed as a member. The Right Kemalist faction disapproves.
+Fethi Çelikbaş has been removed as a member. The Right-Wing Kemalist faction disapproves.
 
 
 ## nonfactional
@@ -260,9 +260,9 @@ frequency: 1
 
 
 - @kemalist_marxist: Add Kemalist Marxists
-- @left_kemalist: Add Leftist Kemalists
+- @left_kemalist: Add Left-Wing Kemalist
 - @orthodox_kemalist: Add Reformist Kemalists
-- @right_kemalist: Add Right Kemalists
+- @right_kemalist: Add Right-Wing Kemalists
 - @nonfactional: Add non-factional members
 - @rm_main: Remove members instead.
 - @remove_none: Stop changing members.
@@ -497,7 +497,7 @@ Ali İhsan Göğüs is now a member.
 
 @add_paksut
 title: Emin Paksüt
-subtitle: Emin Paksüt is a Right Kemalist intellectual and former minister of public works.
+subtitle: Emin Paksüt is a Right-Wing Kemalist intellectual and former minister of public works.
 is-card: true
 card-image: img/portraits/Eminpaksut.jpeg
 view-if: CHP_party_leader == "İnönü" and paksut_advisor = 0 and n_advisors < 3 and party_leader_id != "paksut" and party_secretary_id != "paksut"
@@ -509,7 +509,7 @@ Emin Paksüt is now a member.
 
 @add_celikbas
 title: Fethi Çelikbaş
-subtitle: Fethi Çelikbaş is a pragmatist Right Kemalist politician and former minister of Industry and economy.
+subtitle: Fethi Çelikbaş is a pragmatist Right-Wing Kemalist politician and former minister of Industry and economy.
 is-card: true
 card-image: img/portraits/FethiCelikbas.jpeg
 view-if: CHP_party_leader == "İnönü" and celikbas_advisor = 0 and n_advisors < 3 and party_leader_id != "celikbas" and party_secretary_id != "celikbas"
