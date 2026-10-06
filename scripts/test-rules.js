@@ -548,6 +548,18 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert.equal(Q.n_advisors,2);
         assert(e._runPredicate(game.scenes['shuffle_leadership.add_erdem'].viewIf,true));
     });
+    test('Reshuffle is always pinned in both difficulties regardless of cooldown or party leader', (e,Q) => {
+        const pinned=game.scenes.shuffle_leadership_pinned;
+        for(const difficulty of [-1,0])for(const leader of ['İnönü','Ecevit']) {
+            Q.difficulty=difficulty;Q.CHP_party_leader=leader;Q.shuffle_leadership_timer=8;
+            assert(e._runPredicate(pinned.viewIf,true));
+            e.goToScene('shuffle_leadership_pinned');
+            assert.equal(Q.shuffle_leadership_timer,0);
+            assert.equal(e.state.sceneId,'shuffle_leadership.rm_main');
+            assert(e._runPredicate(pinned.viewIf,true));
+        }
+        assert(!e._runPredicate(game.scenes.shuffle_leadership.viewIf,true),'No duplicate card in the party deck');
+    });
     console.log=log;
     log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');
     if(process.env.REPAIR_RESULTS) fs.writeFileSync(process.env.REPAIR_RESULTS,JSON.stringify({passed,scenes:Object.keys(game.scenes).length},null,2));

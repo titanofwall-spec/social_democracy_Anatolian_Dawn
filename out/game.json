@@ -1267,16 +1267,13 @@
     "shuffle_leadership_pinned": {
       "id": "shuffle_leadership_pinned",
       "type": "scene",
-      "title": "Shuffle Leadership",
-      "viewIf": {
-        "$code": "return ((Q['difficulty'] || 0) < 0);"
-      },
+      "title": "Reshuffle Leadership",
       "newPage": true,
       "isCard": true,
       "isPinnedCard": true,
       "onArrival": [
         {
-          "$code": "Q['month_activities'] = (Q['month_activities'] || 0) + 1;\nQ['shuffle_leadership_timer'] = 6;"
+          "$code": "Q['month_activities'] = (Q['month_activities'] || 0) + 1;\nQ['shuffle_leadership_timer'] = 0;"
         }
       ],
       "cardImage": "img/cumhuriyet3.jpg",
@@ -44965,18 +44962,18 @@
     "shuffle_leadership": {
       "id": "shuffle_leadership",
       "type": "scene",
-      "title": "Shuffle Leadership",
+      "title": "Reshuffle Leadership",
       "newPage": true,
       "isCard": true,
       "tags": [
         "party_affairs"
       ],
       "viewIf": {
-        "$code": "return ((((Q['shuffle_leadership_timer'] || 0)===0) && ((Q['difficulty'] || 0) >= 0)) && (Q['CHP_party_leader'] == \"Ecevit\"));"
+        "$code": "return false;"
       },
       "onArrival": [
         {
-          "$code": "Q['month_activities'] = (Q['month_activities'] || 0) + 1;\nQ['shuffle_leadership_timer'] = 8;"
+          "$code": "Q['month_activities'] = (Q['month_activities'] || 0) + 1;\nQ['shuffle_leadership_timer'] = 0;"
         }
       ],
       "cardImage": "img/cumhuriyet3.jpg",

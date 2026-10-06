@@ -1531,6 +1531,7 @@ ul.pinned-cards.leadership-cards {
 }
 .leadership-cards .leader-card { grid-column: 2; grid-row: 1; }
 .leadership-cards .secretary-card { grid-column: 1; grid-row: 1; }
+.leadership-cards .reshuffle-card { grid-column: 3; grid-row: 1; }
 .leadership-cards .member-card { grid-row: 2; align-self: start; }
 .leadership-cards .leadership-control { grid-row: 3; align-self: start; }
 .leadership-cards a.card,
@@ -1544,7 +1545,8 @@ ul.pinned-cards.leadership-cards {
   vertical-align: top;
 }
 .leadership-cards .leader-card a.card { width: min(150px, calc(100% - 16px)); }
-.leadership-cards .secretary-card a.card { width: min(114px, calc(90% - 16px)); }
+.leadership-cards .secretary-card a.card,
+.leadership-cards .reshuffle-card a.card { width: min(114px, calc(90% - 16px)); }
 .leadership-cards .card-img {
   display: block;
   width: 100%;

@@ -1,9 +1,8 @@
-title: Shuffle Leadership
-view-if: difficulty < 0
+title: Reshuffle Leadership
 new-page: true
 is-card: true
 is-pinned-card: true
-on-arrival: month_activities += 1; shuffle_leadership_timer = 6;
+on-arrival: month_activities += 1; shuffle_leadership_timer = 0;
 card-image: img/cumhuriyet3.jpg
 go-to: shuffle_leadership.rm_main
 

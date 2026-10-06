@@ -1128,7 +1128,9 @@ function getPartyIdeology(party, Q) {
         $li.addClass("leader-card");
       } else if (shortId === secretaryId) {
         $li.addClass("secretary-card");
-      } else if (shortId === "shuffle_leadership_pinned" || shortId === "cabinet") {
+      } else if (shortId === "shuffle_leadership_pinned") {
+        $li.addClass("reshuffle-card");
+      } else if (shortId === "cabinet") {
         $li.addClass("leadership-control");
       } else {
         $li.addClass("member-card");
