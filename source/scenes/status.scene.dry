@@ -2,6 +2,7 @@ title: Status
 new-page: true
 is-special: true
 on-arrival: {!
+AnatolianRules.refreshPartyNames(Q,this.state.visits);
 // Format economic indicators with proper fallbacks only for display
 Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';
 Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';
@@ -174,9 +175,9 @@ TBMM composition (seats):
 
 <span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+ AP_seats +]
 <span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TIP**</span>: [+ TIP_seats +]
-<span class="tooltip-text" title="Republican Trust Party" style="color: #5a5f63;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_seats +]
+<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_seats +]
 <span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_seats +]
-<span class="tooltip-text" title="National Salvation Party" style="color: #054521;">**MSP**</span>: [+ MSP_seats +]
+<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_seats +]
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_seats +]
 Others: [+ other_seats +]
 
@@ -188,9 +189,9 @@ Last election vote share:
 
 <span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+ AP_r +]%
 [? if socialist_left_formed_last_election: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_r +]%<br>TKP: [+ TKP_r +]%<br>TSİP: [+ TSIP_r +]%<br>TEP: [+ TEP_r +]%<br>SDP: [+ SDP_r +]%</span></span>: [+ former_TIP_r +]% ?][? if not socialist_left_formed_last_election: <span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TIP**</span>: [+ TIP_r +]% ?]
-<span class="tooltip-text" title="Republican Trust Party" style="color: #5a5f63;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_r +]%
+<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_r +]%
 <span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_r +]%
-<span class="tooltip-text" title="National Salvation Party" style="color: #054521;">**MSP**</span>: [+ MSP_r +]%
+<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_r +]%
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_r +]%
 Others: [+ other_r +]%
 
@@ -206,13 +207,13 @@ Next general election: [+ next_election_month : month +] [+ next_election_year +
 
 <span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TIP**</span>: [+ TIP_relation : relationships +]
 
-<span class="tooltip-text" title="Republican Trust Party" style="color: #5a5f63;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_relation : relationships +]
+<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_relation : relationships +]
 
 <span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+AP_relation : relationships +]
 
 <span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_relation : relationships +]
 
-<span class="tooltip-text" title="National Salvation Party" style="color: #054521;">**MSP**</span>: [+ MSP_relation : relationships +]
+<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_relation : relationships +]
 
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_relation : relationships +]
 
@@ -222,13 +223,13 @@ Next general election: [+ next_election_month : month +] [+ next_election_year +
 
 <span style="color: #E3000F;">**CHP**</span>: [? if CHP_party_leader == "İnönü" : Kemalism (İnönü) ?][? if CHP_party_leader == "Ecevit" : Left Kemalism (Ecevit) ?]
 
-<span style="color: #5a5f63;">**CGP**</span>: [? if CGP_party_leader == "Feyzioğlu" : Right Kemalism (Feyzioğlu) ?]
+<span style="color: #5b7387;">**CGP**</span>: [? if CGP_party_leader == "Feyzioğlu" : Right Kemalism (Feyzioğlu) ?]
 
 <span style="color: #750a6f;">**AP**</span>:  [? if AP_party_leader == "Demirel" : Conservative Liberalism (Demirel) ?]
 
 <span style="color: #4a4d04;">**DP**</span>:  [? if DP_party_leader == "Bozbeyli" : Conservative Populism (Bozbeyli) ?]
 
-<span style="color: #054521;">**MSP**</span>:  [? if MSP_party_leader == "Süleyman Arif" : Islamic Conservatism (Süleyman Arif) ?][? if MSP_party_leader == "Erbakan" : National Vision (Erbakan) ?]
+<span style="color: #054521;">**[+ MSP_name +]**</span>:  [? if MSP_party_leader == "Süleyman Arif" : Islamic Conservatism (Süleyman Arif) ?][? if MSP_party_leader == "Erbakan" : National Vision (Erbakan) ?]
 
 <span style="color: #954B00;">**MHP**</span>:  [? if MHP_party_leader == "Alparslan Türkeş" : Turkic-Islamic Synthesis (Türkeş) ?]
 
@@ -477,64 +478,65 @@ Aerial Strength: [+ army_aerial_desc +]
 
 @polls
 on-arrival: {!
+AnatolianRules.refreshPolls(Q);
 Q.pro_republic_disp = Math.round(Q.pro_republic);
 Q.nationalism_disp = Math.round(Q.nationalism);
 Q.socialism_disp = Math.round(Q.socialism);
 // Socialist Left breakdown for the projected poll numbers, mirroring the split applied
 // to the last election's results (see the aggregate TIP_r breakdown above), but based on
-// the current TIP_votes projection instead.
+// the current TIP_poll_votes projection instead.
 if (Q.socialist_left_formed) {
-    Q.TKP_votes = Q.TIP_votes * 0.25;
-    Q.TSIP_votes = Q.TIP_votes * 0.25;
-    Q.TEP_votes = Q.TIP_votes * 0.10;
-    Q.SDP_votes = Q.TIP_votes * 0.20;
-    Q.TIP_socialist_left_votes = Q.TIP_votes * 0.20;
+    Q.TKP_votes = Q.TIP_poll_votes * 0.25;
+    Q.TSIP_votes = Q.TIP_poll_votes * 0.25;
+    Q.TEP_votes = Q.TIP_poll_votes * 0.10;
+    Q.SDP_votes = Q.TIP_poll_votes * 0.20;
+    Q.TIP_socialist_left_votes = Q.TIP_poll_votes * 0.20;
 } else {
     Q.TKP_votes = 0;
     Q.TSIP_votes = 0;
     Q.TEP_votes = 0;
     Q.SDP_votes = 0;
-    Q.TIP_socialist_left_votes = Q.TIP_votes;
+    Q.TIP_socialist_left_votes = Q.TIP_poll_votes;
 }
 !}
 
 = Projected election results
 
-(if the election were to be held now):
+Current voter preferences:
 
-<span style="color: #E3000F;">**CHP**</span>: [+ chp_votes +]%
+<span style="color: #E3000F;">**CHP**</span>: [+ chp_poll_votes +]%
 
 
 
-<span style="color: #750a6f;">**AP**</span>: [+ AP_votes +]%
+<span style="color: #750a6f;">**AP**</span>: [+ AP_poll_votes +]%
 
-[? if socialist_left_formed: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_votes +]%<br>TKP: [+ TKP_votes +]%<br>TSİP: [+ TSIP_votes +]%<br>TEP: [+ TEP_votes +]%<br>SDP: [+ SDP_votes +]%</span></span>: [+ TIP_votes +]% ?][? if not socialist_left_formed: <span style="color: #8B0000;">**TIP**</span>: [+ TIP_votes +]% ?]
+[? if socialist_left_formed: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_votes +]%<br>TKP: [+ TKP_votes +]%<br>TSİP: [+ TSIP_votes +]%<br>TEP: [+ TEP_votes +]%<br>SDP: [+ SDP_votes +]%</span></span>: [+ TIP_poll_votes +]% ?][? if not socialist_left_formed: <span style="color: #8B0000;">**TIP**</span>: [+ TIP_poll_votes +]% ?]
 
-{!<span style="color: #5a5f63;">!}**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span>!}: [+ CGP_votes +]%
+{!<span style="color: #5b7387;">!}**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span>!}: [+ CGP_poll_votes +]%
 
-<span style="color: #4a4d04;">**DP**</span>: [+ DP_votes +]%
+<span style="color: #4a4d04;">**DP**</span>: [+ DP_poll_votes +]%
 
-<span style="color: #054521;">**MSP**</span>: [+ MSP_votes +]%
+<span style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_poll_votes +]%
 
-<span style="color: #954B00;">**MHP**</span>: [+ MHP_votes +]%
+<span style="color: #954B00;">**MHP**</span>: [+ MHP_poll_votes +]%
 
-Others: [+ other_votes +]%
+Others: [+ other_poll_votes +]%
 
 **Detailed results for each demographic**
 
-Rural: <span style="color: #E3000F;">**CHP**</span>: [+ rural_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ rural_AP_display +]%,
+Rural: <span style="color: #E3000F;">**CHP**</span>: [+ rural_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ rural_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ rural_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ rural_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ rural_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ rural_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ rural_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ rural_other_display +]%.
 
-Workers: <span style="color: #E3000F;">**CHP**</span>: [+ workers_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ workers_AP_display +]%,
+Workers: <span style="color: #E3000F;">**CHP**</span>: [+ workers_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ workers_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ workers_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ workers_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ workers_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ workers_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ workers_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ workers_other_display +]%.
 
-Petty Bourgeoisie: <span style="color: #E3000F;">**CHP**</span>: [+ petty_bourgeoisie_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ petty_bourgeoisie_AP_display +]%,
+Petty Bourgeoisie: <span style="color: #E3000F;">**CHP**</span>: [+ petty_bourgeoisie_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ petty_bourgeoisie_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ petty_bourgeoisie_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ petty_bourgeoisie_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ petty_bourgeoisie_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ petty_bourgeoisie_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ petty_bourgeoisie_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ petty_bourgeoisie_other_display +]%.
 
-State Employees: <span style="color: #E3000F;">**CHP**</span>: [+ state_employees_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ state_employees_AP_display +]%,
+State Employees: <span style="color: #E3000F;">**CHP**</span>: [+ state_employees_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ state_employees_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ state_employees_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ state_employees_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ state_employees_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ state_employees_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ state_employees_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ state_employees_other_display +]%.
 
-Capitalists: <span style="color: #E3000F;">**CHP**</span>: [+ capitalists_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ capitalists_AP_display +]%,
+Capitalists: <span style="color: #E3000F;">**CHP**</span>: [+ capitalists_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ capitalists_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ capitalists_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ capitalists_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ capitalists_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ capitalists_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ capitalists_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ capitalists_other_display +]%.
 
-Alevis: <span style="color: #E3000F;">**CHP**</span>: [+ alevis_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ alevis_AP_display +]%,
+Alevis: <span style="color: #E3000F;">**CHP**</span>: [+ alevis_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ alevis_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ alevis_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ alevis_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ alevis_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ alevis_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ alevis_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ alevis_other_display +]%.
 
-Kurdish National Movement: <span style="color: #E3000F;">**CHP**</span>: [+ kurds_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ kurds_AP_display +]%,
+Kurdish National Movement: <span style="color: #E3000F;">**CHP**</span>: [+ kurds_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ kurds_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ kurds_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ kurds_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ kurds_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ kurds_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ kurds_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ kurds_other_display +]%.
 
 Support for the Republic: [+ pro_republic_disp +]%
 

@@ -161,14 +161,14 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         const next=rules.factionModel(Q); near(next.effective(0,'lk')/next.effective(1,'lk'),ratio,'quarter proportions');
         assert.equal(['km','lk','ok','rk','tw'].reduce((sum,f)=>sum+Q[f+'_congress_seats'],0),1200);
     });
-    test('Polls and elections share the preserved TIP transfer rule', (e,Q) => {
+    test('Polling retains TIP preferences while elections preserve bans and partial transfer', (e,Q) => {
         Q.classes=['workers']; Q.parties=['chp','TIP','AP','other']; Q.workers=1;
         Q.workers_chp=40; Q.workers_TIP=20; Q.workers_AP=40; Q.workers_other=0;
         for(const [banned,endorsement,expectedCHP,expectedTIP] of [[0,0,40,20],[1,0,50,0],[1,1,100*50/90,0]]) {
             Q.TIP_banned=banned; Q.disk_endorsement=endorsement;
             const projection=rules.projectVotes(Q); near(projection.transfer,banned&&endorsement?10:0,'partial transfer');
             near(projection.fractions.chp*100,expectedCHP,'CHP vote'); near(projection.fractions.TIP*100,expectedTIP,'TIP vote');
-            rules.refreshVotes(Q); action(e,'status.polls'); const poll=[Q.chp_votes,Q.TIP_votes];
+            rules.refreshVotes(Q); action(e,'status.polls'); assert.equal(Q.TIP_poll_votes,20);assert.equal(Q.chp_poll_votes,40); const poll=[Q.chp_votes,Q.TIP_votes];
             action(e,'election_algorithm'); assert.deepEqual([Q.chp_votes,Q.TIP_votes],poll);
         }
     });
@@ -559,6 +559,25 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             assert(e._runPredicate(pinned.viewIf,true));
         }
         assert(!e._runPredicate(game.scenes.shuffle_leadership.viewIf,true),'No duplicate card in the party deck');
+    });
+    test('GP and MNP names change only at their respective formation events', (e,Q) => {
+        assert.equal(Q.CGP_name,'GP');assert.equal(Q.MSP_name,'MNP');
+        e.goToScene('rightkemalistsplit');assert.equal(Q.CGP_name,'GP');
+        e.goToScene('cgpformation');assert.equal(Q.CGP_name,'CGP');assert.equal(Q.MSP_name,'MNP');
+        e.goToScene('msp_formation');assert.equal(Q.MSP_name,'MSP');
+        const old={CGP_name:'CGP',year:1972};rules.refreshPartyNames(old,{});assert.equal(old.CGP_name,'GP');assert.equal(old.MSP_name,'MNP');
+        const later={};rules.refreshPartyNames(later,{cgpformation:1,msp_formation:1});assert.equal(later.CGP_name,'CGP');assert.equal(later.MSP_name,'MSP');
+    });
+    test('Every demographic includes all eight party preferences', (e,Q) => {
+        rules.refreshPolls(Q);
+        for(const group of Q.classes) {
+            const total=Q.parties.reduce((sum,party)=>sum+Q[group+'_'+party+'_display'],0);
+            assert(Math.abs(total-100)<.5,group+' shares sum to 100');
+            for(const party of Q.parties)assert(Number.isFinite(Q[group+'_'+party+'_display']));
+        }
+        const source=fs.readFileSync(path.join(root,'source/scenes/status.scene.dry'),'utf8');
+        const detail=source.slice(source.indexOf('**Detailed results for each demographic**'),source.indexOf('@interior_affairs'));
+        for(const group of Q.classes)for(const party of Q.parties)assert(detail.includes(group+'_'+party+'_display'),group+' '+party);
     });
     console.log=log;
     log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');

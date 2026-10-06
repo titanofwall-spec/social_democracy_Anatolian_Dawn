@@ -708,6 +708,7 @@ function getPartyIdeology(party, Q) {
         case 'TKP ': return '<span style="color: #780808;">Far Left</span> (Marxism-Leninism)';
         case 'TEP': return '<span style="color: #910a0a;">Left Wing-Far Left</span> (National Democratic Revolution)';
         case 'SDP': return '<span style="color: #C42424;">Left Wing</span> (Democratic Socialism)';
+        case 'GP':
         case 'CGP':
             if (Q.CGP_party_leader === "Feyzioğlu") return '<span style="color: #484863;">Center-Center Right</span> (Right Kemalism)';
             return 'Unknown';
@@ -721,6 +722,7 @@ function getPartyIdeology(party, Q) {
         case 'DP':
             if (Q.DP_party_leader === "Bozbeyli") return '<span style="color: #342675;">Right Wing</span> (Conservative Populism)';
             return 'Unknown';
+        case 'MNP':
         case 'MSP':
             if (Q.MSP_party_leader === "Süleyman Arif") return '<span style="color: #3c3e4e;">Far Right</span> (Islamic Conservatism)';
             if (Q.MSP_party_leader === "Erbakan") return '<span style="color: #3c3e4e ;">Far Right</span> (National Vision)';
@@ -773,7 +775,7 @@ function getPartyIdeology(party, Q) {
             var relationText = getRelationshipText(Q['DP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
-        if (searchString === 'CGP' && Q['CGP_relation'] !== undefined) {
+        if ((searchString === 'CGP' || searchString === 'GP') && Q['CGP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);
             var relationText = getRelationshipText(Q['CGP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
@@ -783,7 +785,7 @@ function getPartyIdeology(party, Q) {
             var relationText = getRelationshipText(Q['AP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
-        if (searchString === 'MSP' && Q['MSP_relation'] !== undefined) {
+        if ((searchString === 'MSP' || searchString === 'MNP') && Q['MSP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);
             var relationText = getRelationshipText(Q['MSP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;

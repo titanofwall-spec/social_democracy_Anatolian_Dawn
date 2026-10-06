@@ -2,6 +2,7 @@ title: MSP formation
 subtitle: The reorganization of the Islamist movement
 view-if: year == 1972 and month = 10 and week = 2
 max-visits: 1
+on-arrival: MSP_formed = 1; {! AnatolianRules.refreshPartyNames(Q,this.state.visits); !}
 tags: event
 new-page: true
 face-image: img/MSP1.jpeg

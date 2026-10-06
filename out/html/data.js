@@ -1,4 +1,4 @@
-const tooltipList = [{
+const tooltipList = [{searchString: "GP", explanationText: "Güven Partisi (Trust Party)"}, {
     searchString: "CHP",
     explanationText: "<img src=img/chp5_20251125_200815_0000.svg> Republican People's Party, our party."
 },
@@ -52,7 +52,7 @@ const tooltipList = [{
 },                     
 {
     searchString: "CGP",
-    explanationText: "<img src=img/cgplogo.png> Republican Trust Party"
+    explanationText: "<img src=img/cgplogo.png> Cumhuriyetçi Güven Partisi (Republican Trust Party)"
 },
 {
     searchString: "MSP",
@@ -60,7 +60,7 @@ const tooltipList = [{
 },
 {
     searchString: "MNP",
-    explanationText: "<img src=img/mnp.png> National Order Party. The predecessor to MSP."
+    explanationText: "<img src=img/mnp.png> Milli Nizam Partisi (National Order Party)."
 },                     
 {
     searchString: "MHP",
@@ -77,7 +77,7 @@ const tooltipList = [{
 ];
 
 
-const colourList = [{
+const colourList = [{word: "GP", style: "color: #5b7387; font-weight: bold;"}, {word: "MNP", style: "color: #054521; font-weight: bold;"}, {
         word: "CHP",
         style: "color: #E3000F; font-weight: bold;"
 },
@@ -87,7 +87,7 @@ const colourList = [{
 },
 {
         word: "CGP",
-        style: "color: #5a5f63; font-weight: bold;"
+        style: "color: #5b7387; font-weight: bold;"
 },
 {
         word: "TIP",

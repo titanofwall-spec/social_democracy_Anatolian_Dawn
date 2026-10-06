@@ -790,7 +790,9 @@ Q.TEP_r = 0;
 Q.SDP_r = 0;
 
 // for changing the CGP's name to the DStP
-Q.CGP_name = "CGP";
+Q.CGP_name = "GP";
+Q.CGP_formed = 0; Q.MSP_formed = 0;
+AnatolianRules.refreshPartyNames(Q);
 
 // array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election
 Q.election_records = [];

@@ -96,8 +96,8 @@
         Q.minority_government = 0;
     }
     /** Pure projection: retain the existing TIP ban and partial DISK endorsement transfer.
-     * @param {GameState} Q */
-    function projectVotes(Q) {
+     * @param {GameState} Q @param {boolean} [polling] */
+    function projectVotes(Q, polling) {
         /** @type {string[]} */ var parties = Q.parties;
         /** @type {string[]} */ var classes = Q.classes;
         /** @type {Record<string, number>} */ var classShares = {};
@@ -113,8 +113,8 @@
             });
         });
         // A banned TIP abstains; only half its support transfers with DISK endorsement.
-        var transfer = Q.TIP_banned && Q.disk_endorsement ? support.TIP / 2 : 0;
-        if (Q.TIP_banned) { support.chp += transfer; support.TIP = 0; }
+        var transfer = !polling && Q.TIP_banned && Q.disk_endorsement ? support.TIP / 2 : 0;
+        if (!polling && Q.TIP_banned) { support.chp += transfer; support.TIP = 0; }
         var totalSupport = parties.reduce(function (sum, party) { return sum + support[party]; }, 0);
         if (totalSupport <= 0) { support.other = 1; totalSupport = 1; }
         /** @type {Record<string, number>} */ var fractions = {};
@@ -137,8 +137,29 @@
             Q[party + '_votes_display'] = Q[party + '_votes'];
         });
     }
+    /** Polling reports preferences, independently of election bans. @param {GameState} Q */
+    function refreshPolls(Q) {
+        var projection=projectVotes(Q,true);
+        Q.parties.forEach(function(/** @type {string} */ party) {
+            Q[party+'_poll_votes']=Math.round(projection.fractions[party]*1000)/10;
+        });
+        Object.keys(projection.classShares).forEach(function(key) {
+            Q[key+'_display']=Math.round(projection.classShares[key]*10)/10;
+        });
+    }
+    /** Restore party labels in old saves using formation-event visits, not the calendar.
+     * @param {GameState} Q @param {Record<string, number>} [visits] */
+    function refreshPartyNames(Q,visits) {
+        visits=visits||{};
+        if(typeof Q.CGP_formed==='undefined')Q.CGP_formed=visits.cgpformation?1:0;
+        if(typeof Q.MSP_formed==='undefined')Q.MSP_formed=visits.msp_formation?1:0;
+        Q.CGP_name=Q.CGP_formed?'CGP':'GP';
+        Q.CGP_full_name=Q.CGP_formed?'Cumhuriyetçi Güven Partisi (Republican Trust Party)':'Güven Partisi (Trust Party)';
+        Q.MSP_name=Q.MSP_formed?'MSP':'MNP';
+        Q.MSP_full_name=Q.MSP_formed?'Milli Selamet Partisi (National Salvation Party)':'Milli Nizam Partisi (National Order Party)';
+    }
     root.AnatolianRules = {number: number, clamp: clamp, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
-        projectVotes: projectVotes, refreshVotes: refreshVotes};
+        projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) module.exports = root.AnatolianRules;
 }(typeof globalThis !== 'undefined' ? globalThis : window));
