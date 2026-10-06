@@ -248,10 +248,24 @@
             rules.clamp(rules.number(Q.army_naval_strength),0,1) +
             rules.clamp(rules.number(Q.army_aerial_strength),0,1)) / 3;
     }
+    var resourceTiers = [
+        {name:'Horrible',starting:8,daily:0,limit:2},
+        {name:'Decrepit',starting:11,daily:1,limit:3},
+        {name:'Poor',starting:22,daily:2,limit:6},
+        {name:'Adequate',starting:25,daily:3,limit:Infinity},
+        {name:'Sufficient',starting:29,daily:4,limit:Infinity},
+        {name:'Good',starting:44,daily:9,limit:Infinity},
+        {name:'Excellent',starting:54,daily:12,limit:Infinity}
+    ];
     /** @param {State} Q */
-    function startingResources(Q) { return 12 + Math.round(28 * averageStrength(Q)); }
+    function resourceTier(Q) {
+        var strength=averageStrength(Q);
+        return strength>=0.8?6:strength>=0.6?5:strength>=0.5?4:strength>=0.4?3:strength>=0.2?2:strength>=0.1?1:0;
+    }
     /** @param {State} Q */
-    function dailyResources(Q) { return Math.round(4 * averageStrength(Q)); }
+    function startingResources(Q) { return resourceTiers[resourceTier(Q)].starting; }
+    /** @param {State} Q */
+    function dailyResources(Q) { return resourceTiers[resourceTier(Q)].daily; }
     /** @param {State} Q */
     function initializeSupport(Q) {
         Q.military_strength = startingResources(Q);
@@ -262,6 +276,7 @@
         Q.cyprus_opposition_seen = 0;
         Q.cyprus_preop_resume = 0;
         Q.cyprus_support_used = {};
+        Q.cyprus_support_early_counts = {};
         Q.cyprus_resources_initialized = 1;
     }
     /** Preserve resources in legacy saves; missing new fields start safely.
@@ -273,7 +288,12 @@
             Q.cyprus_resources_initialized = 1;
         }
         if (!Q.cyprus_support_used || typeof Q.cyprus_support_used !== 'object' || Array.isArray(Q.cyprus_support_used)) Q.cyprus_support_used = {};
-        Q.cyprus_support_bonus = rules.clamp(rules.number(Q.cyprus_support_bonus),0,6);
+        if (!Q.cyprus_support_early_counts || typeof Q.cyprus_support_early_counts !== 'object' || Array.isArray(Q.cyprus_support_early_counts)) {
+            Q.cyprus_support_early_counts={};
+            // Old saves retain resources and at least the support uses recorded by their cooldowns.
+            Object.keys(supportActions).forEach(function(key){var day=Q.cyprus_support_used[key];if(typeof day==='number'&&day>=Date.UTC(1974,6,20)/86400000&&day<=Date.UTC(1974,6,25)/86400000)Q.cyprus_support_early_counts[key]=1;});
+        }
+        Q.cyprus_support_bonus = rules.clamp(rules.number(Q.cyprus_support_bonus),0,10);
     }
     /** @param {State} Q */
     function replenishResources(Q) {
@@ -299,10 +319,16 @@
         if (!Q.cyprus_mode || Q.cyprus_year !== 1974 || Q.cyprus_month < 7 || Q.cyprus_month > 8 || (Q.cyprus_month === 7 && Q.cyprus_day < 15) || (Q.cyprus_month === 8 && Q.cyprus_day > 13)) return 'No upcoming operation roll.';
         if (district !== 'turkish' && district !== 'greek' && districts.indexOf(district) < 0) return 'Select Turkish or Greek positions.';
         if ((district === 'turkish' || district === 'greek') && supportActions[key].side !== district) return 'This action is for the other side.';
+        if(Q.cyprus_month===7&&Q.cyprus_day<=25){
+            var tier=resourceTier(Q),counts=Q.cyprus_support_early_counts||{};
+            var used=Object.keys(supportActions).reduce(function(total,k){return total+rules.number(counts[k]);},0);
+            if(used>=resourceTiers[tier].limit)return resourceTiers[tier].name+' forces have reached their action limit through July 25.';
+            if((tier===3||tier===4)&&rules.number(counts[key])>=1)return 'This action can be used once through July 25 at this military tier.';
+        }
         var wait = cooldown(Q,key);
         if (wait) return 'Available in ' + wait + (wait === 1 ? ' day.' : ' days.');
         var action = supportActions[key];
-        if (rules.number(Q.cyprus_support_bonus) + action.bonus > 6) return 'The next-roll bonus is capped at +6.';
+        if (rules.number(Q.cyprus_support_bonus) + action.bonus > 10) return 'The next-roll bonus is capped at +10.';
         if (rules.number(Q.military_strength) < action.cost) return 'Not enough Military Resources.';
         return '';
     }
@@ -314,6 +340,7 @@
         Q.military_strength -= action.cost;
         Q.cyprus_support_bonus += action.bonus;
         Q.cyprus_support_used[key] = calendarDay(Q);
+        if(Q.cyprus_month===7&&Q.cyprus_day<=25)Q.cyprus_support_early_counts[key]=rules.number(Q.cyprus_support_early_counts[key])+1;
         return true;
     }
     /** @param {State} Q */
@@ -665,7 +692,7 @@
         advanceDate(Q);
         return true;
     }
-    rules.cyprusAtilla1 = {supportActions:supportActions,districts:districts,startingResources:startingResources,
+    rules.cyprusAtilla1 = {resourceTiers:resourceTiers,resourceTier:resourceTier,supportActions:supportActions,districts:districts,startingResources:startingResources,
         dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,
         replenishResources:replenishResources,cooldown:cooldown,supportUnavailable:supportUnavailable,useSupport:useSupport,
         operationStarted:operationStarted,finishBriefingDay:finishBriefingDay,mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,

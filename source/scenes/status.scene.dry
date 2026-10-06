@@ -948,7 +948,7 @@ view-if: cyprus_mode != 0
 
 = Military Resources
 
-{!<div id="cyprus-resource-status" aria-live="polite"><strong id="cyprus-military-strength">!}[+ military_strength +]{!</strong> available<br>Next roll: <span id="cyprus-support-bonus">+!}[+ cyprus_support_bonus +]{!</span> (maximum +6)</div>!}
+{!<div id="cyprus-resource-status" aria-live="polite"><strong id="cyprus-military-strength">!}[+ military_strength +]{!</strong> available<br>Next roll: <span id="cyprus-support-bonus">+!}[+ cyprus_support_bonus +]{!</span> (maximum +10)</div>!}
 
 = Attitude towards Turkish perspective
 
