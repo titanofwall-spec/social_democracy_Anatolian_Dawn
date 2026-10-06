@@ -125,16 +125,22 @@ d3.parliament = function() {
             var seatX = function(d) { return d.cartesian.x; };
             var seatY = function(d) { return d.cartesian.y; };
             var seatColor = function(d) { return d.party.color; };
-            var seatOutline = function(d) { return d.party.outline; };
+            // SVG strokes are centered on the circle edge. Replace removed neutral
+            // strokes with half their width in radius to preserve the visible diameter.
+            var removedOutlineWidth = function(d) {
+                if (d.party.id === 'chp') return 1.5;
+                return /^#([0-9a-f]{2})\1\1$/i.test(d.party.outline || '') ? 1 : 0;
+            };
+            var seatOutline = function(d) { return removedOutlineWidth(d) ? 'none' : d.party.outline; };
             var seatStrokeWidth = function(d) {
-                return (d.party.outline && d.party.outline !== "none") ? 1 : 0;
+                return removedOutlineWidth(d) ? 0 : (d.party.outline && d.party.outline !== "none") ? 1 : 0;
             };
             var seatRadius = function(d) {
                 var r = 0.4 * rowWidth;
                 if (d.data && typeof d.data.size === 'number') {
                     r *= d.data.size;
                 }
-                return r;
+                return r + removedOutlineWidth(d) / 2;
             };
 
 

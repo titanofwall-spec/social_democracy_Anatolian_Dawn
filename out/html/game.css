@@ -759,8 +759,8 @@ table {
 }
 .seat.chp {
     fill: #E3000F;
-    stroke: var(--border-color);
-    stroke-width: 1.5px;
+    stroke: none;
+    stroke-width: 0;
 }
 .seat.CGP {
     fill: #5a5f63;
