@@ -32388,7 +32388,7 @@
         },
         {
           "type": "paragraph",
-          "content": "The Party Leadership represents the top figures of the CHP. The Party Leader and Party Secretary are fixed positions that change through events, while the two Member slots can be changed via the Shuffle Leadership card. Each leadership member can take unique actions, but actions are limited to one per a specific period of time. Build a dynamic and competent team to lead the party forward."
+          "content": "The Party Leadership represents the top figures of the CHP. The Party Leader and Party Secretary are fixed positions that change through events, while the three Member slots can be changed via the Shuffle Leadership card. Each leadership member can take unique actions, but actions are limited to one per a specific period of time. Build a dynamic and competent team to lead the party forward."
         }
       ]
     },
@@ -43031,9 +43031,9 @@
       "id": "shuffle_leadership.add_advisors",
       "title": "Add members",
       "chooseIf": {
-        "$code": "return ((Q['n_advisors'] || 0) < 2);"
+        "$code": "return ((Q['n_advisors'] || 0) < 3);"
       },
-      "unavailableSubtitle": "Maximum of 2 members.",
+      "unavailableSubtitle": "Maximum of 3 members.",
       "goTo": [
         {
           "id": "shuffle_leadership.advisor_menu"
@@ -43122,7 +43122,7 @@
     "shuffle_leadership.kemalist_marxist": {
       "id": "shuffle_leadership.kemalist_marxist",
       "viewIf": {
-        "$code": "return ((Q['n_advisors'] || 0) < 2);"
+        "$code": "return ((Q['n_advisors'] || 0) < 3);"
       },
       "options": [
         {
@@ -43163,7 +43163,7 @@
     "shuffle_leadership.left_kemalist": {
       "id": "shuffle_leadership.left_kemalist",
       "viewIf": {
-        "$code": "return ((Q['n_advisors'] || 0) < 2);"
+        "$code": "return ((Q['n_advisors'] || 0) < 3);"
       },
       "options": [
         {
@@ -43190,7 +43190,7 @@
     "shuffle_leadership.orthodox_kemalist": {
       "id": "shuffle_leadership.orthodox_kemalist",
       "viewIf": {
-        "$code": "return ((Q['n_advisors'] || 0) < 2);"
+        "$code": "return ((Q['n_advisors'] || 0) < 3);"
       },
       "options": [
         {
@@ -43252,7 +43252,7 @@
     "shuffle_leadership.right_kemalist": {
       "id": "shuffle_leadership.right_kemalist",
       "viewIf": {
-        "$code": "return (((Q['right_kemalists_strength'] || 0) > 0) && ((Q['n_advisors'] || 0) < 2));"
+        "$code": "return (((Q['right_kemalists_strength'] || 0) > 0) && ((Q['n_advisors'] || 0) < 3));"
       },
       "options": [
         {
@@ -43312,7 +43312,7 @@
     "shuffle_leadership.nonfactional": {
       "id": "shuffle_leadership.nonfactional",
       "viewIf": {
-        "$code": "return ((Q['n_advisors'] || 0) < 2);"
+        "$code": "return ((Q['n_advisors'] || 0) < 3);"
       },
       "options": [
         {
@@ -43360,7 +43360,7 @@
       "isCard": true,
       "cardImage": "img/portraits/KamilKirikoglu.jpg",
       "viewIf": {
-        "$code": "return (((((Q['kirikoglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"kirikoglu\")) && (Q['party_secretary_id'] != \"kirikoglu\"));"
+        "$code": "return (((((Q['kirikoglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"kirikoglu\")) && (Q['party_secretary_id'] != \"kirikoglu\"));"
       },
       "onArrival": [
         {
@@ -43437,7 +43437,7 @@
       "isCard": true,
       "cardImage": "img/portraits/AvciogluDogan.jpg",
       "viewIf": {
-        "$code": "return (((((Q['avcioglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"avcioglu\")) && (Q['party_secretary_id'] != \"avcioglu\"));"
+        "$code": "return (((((Q['avcioglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"avcioglu\")) && (Q['party_secretary_id'] != \"avcioglu\"));"
       },
       "onArrival": [
         {
@@ -43514,7 +43514,7 @@
       "isCard": true,
       "cardImage": "img/portraits/IlhanSelcuk.jpg",
       "viewIf": {
-        "$code": "return (((((Q['selcuk_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"selcuk\")) && (Q['party_secretary_id'] != \"selcuk\"));"
+        "$code": "return (((((Q['selcuk_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"selcuk\")) && (Q['party_secretary_id'] != \"selcuk\"));"
       },
       "onArrival": [
         {
@@ -43591,7 +43591,7 @@
       "isCard": true,
       "cardImage": "img/portraits/MihriBelli.jpg",
       "viewIf": {
-        "$code": "return (((((Q['belli_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"belli\")) && (Q['party_secretary_id'] != \"belli\"));"
+        "$code": "return (((((Q['belli_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"belli\")) && (Q['party_secretary_id'] != \"belli\"));"
       },
       "onArrival": [
         {
@@ -43671,7 +43671,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['ecevit_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"ecevit\")) && (Q['party_secretary_id'] != \"ecevit\"));"
+        "$code": "return (((((Q['ecevit_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"ecevit\")) && (Q['party_secretary_id'] != \"ecevit\"));"
       },
       "onArrival": [
         {
@@ -43748,7 +43748,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['baykal_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"baykal\")) && (Q['party_secretary_id'] != \"baykal\"));"
+        "$code": "return (((((Q['baykal_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"baykal\")) && (Q['party_secretary_id'] != \"baykal\"));"
       },
       "onArrival": [
         {
@@ -43825,7 +43825,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['gunes_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"gunes\")) && (Q['party_secretary_id'] != \"gunes\"));"
+        "$code": "return (((((Q['gunes_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"gunes\")) && (Q['party_secretary_id'] != \"gunes\"));"
       },
       "onArrival": [
         {
@@ -43902,7 +43902,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['aksoy_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"aksoy\")) && (Q['party_secretary_id'] != \"aksoy\"));"
+        "$code": "return (((((Q['aksoy_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"aksoy\")) && (Q['party_secretary_id'] != \"aksoy\"));"
       },
       "onArrival": [
         {
@@ -43979,7 +43979,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['ustundag_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"ustundag\")) && (Q['party_secretary_id'] != \"ustundag\"));"
+        "$code": "return (((((Q['ustundag_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"ustundag\")) && (Q['party_secretary_id'] != \"ustundag\"));"
       },
       "onArrival": [
         {
@@ -44056,7 +44056,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return ((((((Q['rahsan_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['CHP_party_leader'] == \"Ecevit\")) && (Q['party_leader_id'] != \"rahsan\")) && (Q['party_secretary_id'] != \"rahsan\"));"
+        "$code": "return ((((((Q['rahsan_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['CHP_party_leader'] == \"Ecevit\")) && (Q['party_leader_id'] != \"rahsan\")) && (Q['party_secretary_id'] != \"rahsan\"));"
       },
       "onArrival": [
         {
@@ -44148,7 +44148,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['topuz_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"topuz\")) && (Q['party_secretary_id'] != \"topuz\"));"
+        "$code": "return (((((Q['topuz_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"topuz\")) && (Q['party_secretary_id'] != \"topuz\"));"
       },
       "onArrival": [
         {
@@ -44220,7 +44220,7 @@
         "left_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['sav_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"sav\")) && (Q['party_secretary_id'] != \"sav\"));"
+        "$code": "return (((((Q['sav_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"sav\")) && (Q['party_secretary_id'] != \"sav\"));"
       },
       "onArrival": [
         {
@@ -44292,7 +44292,7 @@
         "orthodox_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return ((((((Q['inonu_dead'] || 0)===0) && ((Q['inonu_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"inonu\")) && (Q['party_secretary_id'] != \"inonu\"));"
+        "$code": "return ((((((Q['inonu_dead'] || 0)===0) && ((Q['inonu_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"inonu\")) && (Q['party_secretary_id'] != \"inonu\"));"
       },
       "onArrival": [
         {
@@ -44364,7 +44364,7 @@
         "orthodox_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['satir_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"satir\")) && (Q['party_secretary_id'] != \"satir\"));"
+        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['satir_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"satir\")) && (Q['party_secretary_id'] != \"satir\"));"
       },
       "onArrival": [
         {
@@ -44436,7 +44436,7 @@
         "orthodox_kemalist_advisor"
       ],
       "viewIf": {
-        "$code": "return (((((Q['eyuboglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"eyuboglu\")) && (Q['party_secretary_id'] != \"eyuboglu\"));"
+        "$code": "return (((((Q['eyuboglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"eyuboglu\")) && (Q['party_secretary_id'] != \"eyuboglu\"));"
       },
       "onArrival": [
         {
@@ -44484,7 +44484,7 @@
       "isCard": true,
       "cardImage": "img/portraits/AliIhsanGogus.jpg",
       "viewIf": {
-        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['gogus_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"gogus\")) && (Q['party_secretary_id'] != \"gogus\"));"
+        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['gogus_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"gogus\")) && (Q['party_secretary_id'] != \"gogus\"));"
       },
       "onArrival": [
         {
@@ -44535,7 +44535,7 @@
       "isCard": true,
       "cardImage": "img/portraits/Eminpaksut.jpeg",
       "viewIf": {
-        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['paksut_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"paksut\")) && (Q['party_secretary_id'] != \"paksut\"));"
+        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['paksut_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"paksut\")) && (Q['party_secretary_id'] != \"paksut\"));"
       },
       "onArrival": [
         {
@@ -44586,7 +44586,7 @@
       "isCard": true,
       "cardImage": "img/portraits/FethiCelikbas.jpeg",
       "viewIf": {
-        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['celikbas_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"celikbas\")) && (Q['party_secretary_id'] != \"celikbas\"));"
+        "$code": "return (((((Q['CHP_party_leader'] == \"İnönü\") && ((Q['celikbas_advisor'] || 0)===0)) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"celikbas\")) && (Q['party_secretary_id'] != \"celikbas\"));"
       },
       "onArrival": [
         {
@@ -44658,7 +44658,7 @@
       "isCard": true,
       "cardImage": "img/portraits/Muezzinoglu.jpg",
       "viewIf": {
-        "$code": "return (((((Q['muezzinoglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"muezzinoglu\")) && (Q['party_secretary_id'] != \"muezzinoglu\"));"
+        "$code": "return (((((Q['muezzinoglu_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"muezzinoglu\")) && (Q['party_secretary_id'] != \"muezzinoglu\"));"
       },
       "onArrival": [
         {
@@ -44730,7 +44730,7 @@
       "isCard": true,
       "cardImage": "img/portraits/Hasan_Esat_Isik.jpg",
       "viewIf": {
-        "$code": "return (((((Q['isik_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"isik\")) && (Q['party_secretary_id'] != \"isik\"));"
+        "$code": "return (((((Q['isik_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"isik\")) && (Q['party_secretary_id'] != \"isik\"));"
       },
       "onArrival": [
         {
@@ -44867,7 +44867,7 @@
       "isCard": true,
       "cardImage": "img/portraits/TarhanErdem.jpg",
       "viewIf": {
-        "$code": "return (((((Q['erdem_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"erdem\")) && (Q['party_secretary_id'] != \"erdem\"));"
+        "$code": "return (((((Q['erdem_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"erdem\")) && (Q['party_secretary_id'] != \"erdem\"));"
       },
       "onArrival": [
         {
@@ -44915,7 +44915,7 @@
       "isCard": true,
       "cardImage": "img/portraits/NecdetUgur.jpg",
       "viewIf": {
-        "$code": "return (((((Q['ugur_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['party_leader_id'] != \"ugur\")) && (Q['party_secretary_id'] != \"ugur\"));"
+        "$code": "return (((((Q['ugur_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['party_leader_id'] != \"ugur\")) && (Q['party_secretary_id'] != \"ugur\"));"
       },
       "onArrival": [
         {
@@ -44942,7 +44942,7 @@
       "isCard": true,
       "cardImage": "img/portraits/TarikAkan.jpg",
       "viewIf": {
-        "$code": "return (((((((Q['akan_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 2)) && (Q['CHP_party_leader'] == \"Ecevit\")) && ((Q['year'] || 0) >= 1975)) && (Q['party_leader_id'] != \"akan\")) && (Q['party_secretary_id'] != \"akan\"));"
+        "$code": "return (((((((Q['akan_advisor'] || 0)===0) && ((Q['n_advisors'] || 0) < 3)) && (Q['CHP_party_leader'] == \"Ecevit\")) && ((Q['year'] || 0) >= 1975)) && (Q['party_leader_id'] != \"akan\")) && (Q['party_secretary_id'] != \"akan\"));"
       },
       "onArrival": [
         {

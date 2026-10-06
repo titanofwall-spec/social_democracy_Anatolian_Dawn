@@ -1077,7 +1077,7 @@ function getPartyIdeology(party, Q) {
     window.updateTitleScreenImages();
   };
 
-  // Override displayPinnedCards to add gold/silver borders and sort leader > secretary > members
+  // Arrange the secretary to the leader’s left, with three member slots below.
   window.displayPinnedCards = function(cards) {
     var Q = window.dendryUI.dendryEngine.state.qualities;
     var leaderId = Q.party_leader_id || "";
@@ -1115,7 +1115,8 @@ function getPartyIdeology(party, Q) {
     $content.append(window.jQuery("<hr>"));
     $content.append(window.jQuery("<p>").addClass("pinned-text-description").text(desc));
 
-    var $ul = window.jQuery("<ul>").addClass("pinned-cards");
+    var $ul = window.jQuery("<ul>").addClass("pinned-cards leadership-cards");
+    var memberCount = 0;
     for (var i = 0; i < cards.length; i++) {
       var card = cards[i];
       var $li = window.jQuery("<li>").addClass("pinned-card");
@@ -1127,6 +1128,11 @@ function getPartyIdeology(party, Q) {
         $li.addClass("leader-card");
       } else if (shortId === secretaryId) {
         $li.addClass("secretary-card");
+      } else if (shortId === "shuffle_leadership_pinned" || shortId === "cabinet") {
+        $li.addClass("leadership-control");
+      } else {
+        $li.addClass("member-card");
+        memberCount++;
       }
 
       // Add role title above the portrait (always present for vertical alignment)
@@ -1135,7 +1141,7 @@ function getPartyIdeology(party, Q) {
         roleLabel = "Party Leader";
       } else if (shortId === secretaryId) {
         roleLabel = "Party Secretary";
-      } else if (shortId !== "shuffle_leadership_pinned") {
+      } else if (shortId !== "shuffle_leadership_pinned" && shortId !== "cabinet") {
         roleLabel = "Member";
       }
       var $role = window.jQuery("<span>").addClass("card-role-label").html(roleLabel || "&nbsp;");
@@ -1164,6 +1170,14 @@ function getPartyIdeology(party, Q) {
       $li.append($a);
       $li.append($caption);
       $ul.append($li);
+    }
+    // Empty positions remain visible; existing saves keep their current members.
+    for (var slot = memberCount; slot < 3; slot++) {
+      var $empty = window.jQuery("<li>").addClass("pinned-card member-card empty-member-slot");
+      $empty.append(window.jQuery("<span>").addClass("card-role-label").text("Member"));
+      $empty.append(window.jQuery("<div>").addClass("blank-card").attr("aria-label", "Vacant advisor position").append(window.jQuery("<span>").text("Vacant")));
+      $empty.append(window.jQuery("<span>").addClass("card-caption").text("Available advisor slot"));
+      $ul.append($empty);
     }
     $content.append($ul);
   };

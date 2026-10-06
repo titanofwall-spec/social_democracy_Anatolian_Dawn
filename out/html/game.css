@@ -440,10 +440,10 @@ div.blank-card {
 }
 
 .leader-card a.card {
-  border-color: #B8860B;
+  border-color: var(--card-border-color);
 }
 .secretary-card a.card {
-  border-color: silver;
+  border-color: var(--card-border-color);
 }
 
 .card-in-hand, .pinned-card, .deck {
@@ -1513,3 +1513,54 @@ table {
 #leader-tooltip-layer { position:fixed;z-index:2147483000;pointer-events:none;transform:scale(.75);transform-origin:top left;width:max-content;text-decoration:none;padding:0; }
 .mytooltip:hover > .mytooltiptext, .wide_tooltip-wrap:hover > .wide_tooltip-tip,
 .mytooltip:focus > .mytooltiptext, .wide_tooltip-wrap:focus > .wide_tooltip-tip { opacity:0 !important;visibility:hidden !important; }
+
+
+/* Party leadership: larger centered leader, secretary on the left, three members. */
+ul.pinned-cards.leadership-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px 12px;
+  align-items: end;
+  margin: 18px 0 0;
+}
+.leadership-cards .pinned-card {
+  max-width: none;
+  margin: 0;
+  min-width: 0;
+  text-align: center;
+}
+.leadership-cards .leader-card { grid-column: 2; grid-row: 1; }
+.leadership-cards .secretary-card { grid-column: 1; grid-row: 1; }
+.leadership-cards .member-card { grid-row: 2; align-self: start; }
+.leadership-cards .leadership-control { grid-row: 3; align-self: start; }
+.leadership-cards a.card,
+.leadership-cards div.blank-card {
+  box-sizing: content-box;
+  width: min(120px, calc(100% - 16px));
+  height: auto;
+  aspect-ratio: 4 / 5;
+  border: 8px solid var(--card-border-color);
+  margin: 0 auto 8px;
+  vertical-align: top;
+}
+.leadership-cards .leader-card a.card { width: min(150px, calc(100% - 16px)); }
+.leadership-cards .secretary-card a.card { width: min(114px, calc(90% - 16px)); }
+.leadership-cards .card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.leadership-cards .card-caption { overflow-wrap: anywhere; }
+.leadership-cards .blank-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.12);
+}
+@media (max-width: 600px) {
+  ul.pinned-cards.leadership-cards { gap: 20px 8px; }
+  .leadership-cards .card-caption { font-size: .88em; }
+}

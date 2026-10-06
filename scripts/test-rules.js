@@ -536,6 +536,18 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert.equal(domain[0].getFullYear(),1969); assert.equal(domain[1].getFullYear(),1973);
         global.d3=null;
     });
+    test('Three swappable members are allowed independently of leader and secretary', (e,Q) => {
+        assert.equal(Q.n_advisors,2);
+        assert(e._runPredicate(game.scenes['shuffle_leadership.add_isik'].viewIf,true));
+        e.goToScene('shuffle_leadership.add_isik');
+        assert.equal(Q.n_advisors,3);assert.equal(Q.isik_advisor,1);
+        assert(!e._runPredicate(game.scenes['shuffle_leadership.add_erdem'].viewIf,true));
+        assert(!e._runPredicate(game.scenes['shuffle_leadership.add_advisors'].chooseIf,true));
+        assert.equal(Q.inonu_advisor,1);assert.equal(Q.kirikoglu_advisor,1);
+        e.goToScene('shuffle_leadership.remove_isik');
+        assert.equal(Q.n_advisors,2);
+        assert(e._runPredicate(game.scenes['shuffle_leadership.add_erdem'].viewIf,true));
+    });
     console.log=log;
     log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');
     if(process.env.REPAIR_RESULTS) fs.writeFileSync(process.env.REPAIR_RESULTS,JSON.stringify({passed,scenes:Object.keys(game.scenes).length},null,2));
