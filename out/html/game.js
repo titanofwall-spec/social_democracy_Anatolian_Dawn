@@ -163,18 +163,35 @@
       var canvas=document.createElement('canvas');canvas.width=1063;canvas.height=644;
       var ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(record.context.canvas,0,0,canvas.width,canvas.height);
       var pixels=ctx.getImageData(0,0,canvas.width,canvas.height),d=pixels.data;
-      var color=[255,203,90];
-      for(var i=0;i<d.length;i+=4){var hit=side==='turkish'?d[i]>d[i+2]*1.15&&d[i]>d[i+1]*1.15:d[i+2]>d[i]*1.05&&d[i+2]>35;d[i]=color[0];d[i+1]=color[1];d[i+2]=color[2];d[i+3]=hit?45:0;}
+      var color=[255,215,0],width=canvas.width,height=canvas.height;
+      var mask=new Uint8Array(width*height),expanded=new Uint8Array(mask.length),closed=new Uint8Array(mask.length);
+      // Include shaded terrain, then bridge thin district lines and texture gaps.
+      // Only the outside of the territory should receive an opaque outline.
+      for(var i=0;i<mask.length;i++){var p=i*4;mask[i]=side==='turkish'?+(d[p]>d[p+2]*1.15&&d[p]>d[p+1]*1.15):+(d[p+2]>d[p]*1.05&&d[p+2]>8);}
+      for(var y=0;y<height;y++)for(var x=0;x<width;x++){
+        var k=y*width+x;
+        for(var dy=-2;dy<=2&&!expanded[k];dy++)for(var dx=-2;dx<=2;dx++){
+          var nx=x+dx,ny=y+dy;if(nx>=0&&nx<width&&ny>=0&&ny<height&&mask[ny*width+nx]){expanded[k]=1;break;}
+        }
+      }
+      for(var y=0;y<height;y++)for(var x=0;x<width;x++){
+        var k=y*width+x,inside=1;
+        for(var dy=-2;dy<=2&&inside;dy++)for(var dx=-2;dx<=2;dx++){
+          var nx=x+dx,ny=y+dy;if(nx>=0&&nx<width&&ny>=0&&ny<height&&!expanded[ny*width+nx]){inside=0;break;}
+        }
+        closed[k]=inside;
+      }
+      for(var i=0;i<closed.length;i++){var p=i*4;d[p]=color[0];d[p+1]=color[1];d[p+2]=color[2];d[p+3]=closed[i]?51:0;} // 20% opacity: 80% transparent.
       ctx.putImageData(pixels,0,0);
       ctx.globalCompositeOperation='destination-out';ctx.fillStyle='black';ctx.strokeStyle='black';ctx.lineWidth=4;
       svg.querySelectorAll('.sba').forEach(function(p){ctx.beginPath();Array.from(p.points).forEach(function(point,j){if(j===0)ctx.moveTo(point.x*canvas.width/4250,point.y*canvas.height/2573);else ctx.lineTo(point.x*canvas.width/4250,point.y*canvas.height/2573);});ctx.closePath();ctx.fill();ctx.stroke();});
       pixels=ctx.getImageData(0,0,canvas.width,canvas.height);d=pixels.data;var alpha=new Uint8Array(canvas.width*canvas.height);
       for(var j=0;j<alpha.length;j++)alpha[j]=d[j*4+3];
-      for(var y=1;y<canvas.height-1;y++)for(var x=1;x<canvas.width-1;x++){var k=y*canvas.width+x;if(alpha[k]&&(!alpha[k-1]||!alpha[k+1]||!alpha[k-canvas.width]||!alpha[k+canvas.width]))d[k*4+3]=210;}
+      for(var y=1;y<canvas.height-1;y++)for(var x=1;x<canvas.width-1;x++){var k=y*canvas.width+x;if(alpha[k]&&(!alpha[k-1]||!alpha[k+1]||!alpha[k-canvas.width]||!alpha[k+canvas.width]))d[k*4+3]=255;}
       ctx.globalCompositeOperation='source-over';ctx.putImageData(pixels,0,0);record.highlights[side]=canvas.toDataURL();
     }
-    if(!overlay){overlay=document.createElementNS('http://www.w3.org/2000/svg','image');overlay.id='cyprus-territory-highlight';overlay.setAttribute('width','4250');overlay.setAttribute('height','2573');overlay.setAttribute('pointer-events','none');overlay.style.filter='drop-shadow(0 0 3px '+'#ffd66b'+')';svg.appendChild(overlay);}
-    overlay.dataset.side=side;overlay.setAttribute('href',record.highlights[side]);overlay.style.filter='drop-shadow(0 0 3px '+'#ffd66b'+')';
+    if(!overlay){overlay=document.createElementNS('http://www.w3.org/2000/svg','image');overlay.id='cyprus-territory-highlight';overlay.setAttribute('width','4250');overlay.setAttribute('height','2573');overlay.setAttribute('pointer-events','none');overlay.style.filter='none';svg.appendChild(overlay);}
+    overlay.dataset.side=side;overlay.setAttribute('href',record.highlights[side]);overlay.style.filter='none';
   };
   window.setupCyprusSideClicks = function() {
     var svg = document.getElementById('cyprus-map-svg');
