@@ -223,13 +223,13 @@ Next general election: [+ next_election_month : month +] [+ next_election_year +
 
 <span style="color: #E3000F;">**CHP**</span>: [? if CHP_party_leader == "İnönü" : Kemalism (İnönü) ?][? if CHP_party_leader == "Ecevit" : Left Kemalism (Ecevit) ?]
 
-<span style="color: #5b7387;">**CGP**</span>: [? if CGP_party_leader == "Feyzioğlu" : Right Kemalism (Feyzioğlu) ?]
+<span style="color: #5b7387;">**[+ CGP_name +]**</span>: [? if CGP_party_leader == "Feyzioğlu" : Right Kemalism (Feyzioğlu) ?]
 
 <span style="color: #750a6f;">**AP**</span>:  [? if AP_party_leader == "Demirel" : Conservative Liberalism (Demirel) ?]
 
 <span style="color: #4a4d04;">**DP**</span>:  [? if DP_party_leader == "Bozbeyli" : Conservative Populism (Bozbeyli) ?]
 
-<span style="color: #054521;">**[+ MSP_name +]**</span>:  [? if MSP_party_leader == "Süleyman Arif" : Islamic Conservatism (Süleyman Arif) ?][? if MSP_party_leader == "Erbakan" : National Vision (Erbakan) ?]
+<span style="color: #054521;">**[+ MSP_name +]**</span>:  [? if not MSP_formed : Unorganized (Banned) ?][? if MSP_formed and MSP_party_leader == "Süleyman Arif" : Islamic Conservatism (Süleyman Arif) ?][? if MSP_formed and MSP_party_leader == "Erbakan" : National Vision (Erbakan) ?]
 
 <span style="color: #954B00;">**MHP**</span>:  [? if MHP_party_leader == "Alparslan Türkeş" : Turkic-Islamic Synthesis (Türkeş) ?]
 

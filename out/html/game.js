@@ -724,6 +724,7 @@ function getPartyIdeology(party, Q) {
             return 'Unknown';
         case 'MNP':
         case 'MSP':
+            if(!Q.MSP_formed)return 'Unorganized';
             if (Q.MSP_party_leader === "Süleyman Arif") return '<span style="color: #3c3e4e;">Far Right</span> (Islamic Conservatism)';
             if (Q.MSP_party_leader === "Erbakan") return '<span style="color: #3c3e4e ;">Far Right</span> (National Vision)';
             return 'Unknown';
@@ -788,7 +789,7 @@ function getPartyIdeology(party, Q) {
         if ((searchString === 'MSP' || searchString === 'MNP') && Q['MSP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);
             var relationText = getRelationshipText(Q['MSP_relation']);
-            return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
+            return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText + (!Q.MSP_formed ? '<br><strong>BANNED</strong>' : '');
         }
         if (searchString === 'MHP' && Q['MHP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);

@@ -156,6 +156,8 @@
         Q.CGP_name=Q.CGP_formed?'CGP':'GP';
         Q.CGP_full_name=Q.CGP_formed?'Cumhuriyetçi Güven Partisi (Republican Trust Party)':'Güven Partisi (Trust Party)';
         Q.MSP_name=Q.MSP_formed?'MSP':'MNP';
+        if(!Q.MSP_formed)Q.MSP_party_leader='Banned';
+        else if(!Q.MSP_party_leader||Q.MSP_party_leader==='Banned')Q.MSP_party_leader='Süleyman Arif';
         Q.MSP_full_name=Q.MSP_formed?'Milli Selamet Partisi (National Salvation Party)':'Milli Nizam Partisi (National Order Party)';
     }
     root.AnatolianRules = {number: number, clamp: clamp, refreshEconomy: refreshEconomy, factionModel: factionModel,

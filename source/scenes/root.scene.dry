@@ -176,7 +176,7 @@ Q.CGP_leader = "Feyzioğlu";
 Q.CGP_party_leader = "Feyzioğlu";
 Q.MSP_leader = "Süleyman Arif";
 // alternative MSP leader: Erbakan
-Q.MSP_party_leader = "Süleyman Arif";
+Q.MSP_party_leader = "Banned";
 Q.CHP_leader = "İnönü";
 // alternative <span style="color: #E3000F;">**CHP**</span> leader: Ecevit
 Q.CHP_party_leader = "İnönü";

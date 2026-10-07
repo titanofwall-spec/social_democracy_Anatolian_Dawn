@@ -1,4 +1,4 @@
-const tooltipList = [{searchString: "GP", explanationText: "Güven Partisi (Trust Party)"}, {
+const tooltipList = [{searchString: "GP", explanationText: "<img src=img/cgplogo.png> Güven Partisi (Trust Party)"}, {
     searchString: "CHP",
     explanationText: "<img src=img/chp5_20251125_200815_0000.svg> Republican People's Party, our party."
 },
@@ -52,7 +52,7 @@ const tooltipList = [{searchString: "GP", explanationText: "Güven Partisi (Trus
 },                     
 {
     searchString: "CGP",
-    explanationText: "<img src=img/cgplogo.png> Cumhuriyetçi Güven Partisi (Republican Trust Party)"
+    explanationText: "<img src=img/cgp-party-logo.png> Cumhuriyetçi Güven Partisi (Republican Trust Party)"
 },
 {
     searchString: "MSP",
