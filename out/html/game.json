@@ -2890,10 +2890,16 @@
                 "type": "insert",
                 "insert": 0
               },
-              " — Atilla I: ",
+              " — Atilla I has ended, and our armies are..."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
-                "type": "insert",
-                "insert": 1
+                "type": "conditional",
+                "content": "<h2>MUZAFFER</h2> ",
+                "predicate": 1
               },
               ""
             ]
@@ -2903,7 +2909,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Turkey has frozen its positions after its last military operation. Geneva I concludes earlier on this alternative route, on July 28. ",
+                "content": "<h2>BAŞARILI</h2> ",
                 "predicate": 2
               },
               ""
@@ -2914,8 +2920,19 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The military chapter concludes after the later field operations and Geneva I. ",
+                "content": "<h2>YIPRANMIŞ</h2> ",
                 "predicate": 3
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "<h2>MAĞLUP</h2> ",
+                "predicate": 4
               },
               ""
             ]
@@ -2926,7 +2943,7 @@
               "Combined Atilla I Score: ",
               {
                 "type": "insert",
-                "insert": 4
+                "insert": 5
               },
               " / 720."
             ]
@@ -2937,20 +2954,9 @@
               "Operation results: ",
               {
                 "type": "insert",
-                "insert": 5
-              },
-              ". Military Readiness: +",
-              {
-                "type": "insert",
                 "insert": 6
               },
-              "."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Frontlines: ",
+              ". Military Readiness: +",
               {
                 "type": "insert",
                 "insert": 7
@@ -2961,7 +2967,7 @@
           {
             "type": "paragraph",
             "content": [
-              "Opposing Forces: ",
+              "Frontlines: ",
               {
                 "type": "insert",
                 "insert": 8
@@ -2972,7 +2978,7 @@
           {
             "type": "paragraph",
             "content": [
-              "Airport: ",
+              "Opposing Forces: ",
               {
                 "type": "insert",
                 "insert": 9
@@ -2983,7 +2989,7 @@
           {
             "type": "paragraph",
             "content": [
-              "Diplomatic Position: ",
+              "Airport: ",
               {
                 "type": "insert",
                 "insert": 10
@@ -2994,38 +3000,205 @@
           {
             "type": "paragraph",
             "content": [
-              "Diplomatic leverage earned: +",
+              "Diplomatic Position: ",
               {
                 "type": "insert",
                 "insert": 11
-              },
-              ". Total: ",
-              {
-                "type": "insert",
-                "insert": 12
               },
               "."
             ]
           },
           {
             "type": "paragraph",
-            "content": "Historical source reference (the historical conference, rather than a guaranteed player outcome):"
+            "content": [
+              "Diplomatic leverage earned: +",
+              {
+                "type": "insert",
+                "insert": 12
+              },
+              ". Total: ",
+              {
+                "type": "insert",
+                "insert": 13
+              },
+              "."
+            ]
           },
           {
             "type": "paragraph",
-            "content": "Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand:"
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The Greeks, the Brits, the Americans, the UN, no one had expected our government to stood so tall, and even less so expected our military power to act so decisively. The Greek Junta and Sampson's gambit resulted terribly for the Greeks, for once again, the Turkish foot soldier marches across the plains and hills of Cyprus! We have not merely clashed with Greeks and won, we achieved absolute military supremacy, so much so that the Greeks and the rest of the World believes more and more that the only factor that keeps us away from sweeping across the island was our restraint! ",
+                "predicate": 14
+              },
+              ""
+            ]
           },
           {
             "type": "paragraph",
-            "content": "“Agreed, Mr. Güneş.”"
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The result of the campaign could not be downplayed by even the concept of a fraction, the Atilla I will forever be studied and mention in military academies and history books for decades as one of if not the most formidable military operations of the second half of the 20th Century, the respect and adoration our military enjoys has risen, and similarly, our government and therefore our party's stance on the public has been rejuvenated in an unprecedented scale! We were finally being seen as <em>real</em> successors of our founding father Atatürk and his party. Our leadership had shown to our people a reality; when the Empire collapsed and foreign powers sought our demise and division, it was Atatürk and his Society for the Defence of Rights of Anatolia and Rumelia that stopped them! When Hatay was left under French, it was Atatürk and his CHP that brought it back! And now, when the lives of the Turks in Cyprus was in danger, it was Atatürk's party that he left that saved them! Let them all know; no one can teach CHP what it means to be a nationalist! ",
+                "predicate": 15
+              },
+              ""
+            ]
           },
           {
             "type": "paragraph",
-            "content": "It was not easy to believe, but the First Geneva Conference really had ended..."
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Our forces have accomplished a difficult task. The troops who landed under uncertain conditions have established a connected position on the island, and Turkey has demonstrated that the safety of the Turkish Cypriot community cannot be dismissed with another appeal for patience. The Greek Junta and Sampson's government have fallen, while our army remains in Cyprus as a force that any settlement must now take into account. ",
+                "predicate": 16
+              },
+              ""
+            ]
           },
           {
             "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the source excerpt."
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Yet this was a victory won through hard fighting rather than an effortless march. Delays, resistance and the demands of supplying our formations limited what could be achieved, and not every objective was secured as firmly as our commanders had hoped. Our position is stronger than it was when the crisis began, but strength on the battlefield alone cannot settle the questions that brought us here. ",
+                "predicate": 17
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "At home, the government can point to an intervention that produced concrete results. CHP has shown that it was willing to act when diplomacy failed to protect the Turkish community. But the responsibility of victory is now ours as well: we must preserve what our soldiers have won and secure an agreement worthy of the sacrifices already made. ",
+                "predicate": 18
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Our soldiers have held on, but the campaign has fallen short of the position we had hoped to establish. A connected foothold survives, yet too many operations brought limited gains, uncertain security or a cost greater than their result. Turkey has prevented its intervention from becoming an outright military defeat, but it cannot present this outcome as the decisive triumph the country had awaited. ",
+                "predicate": 19
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The government will have to answer difficult questions. Why were our advantages not turned into firmer positions? Why did so much effort leave so many problems unresolved? The courage of the men on the island cannot relieve Ankara of responsibility for the direction of the campaign. ",
+                "predicate": 20
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Our delegation now approaches the negotiations with a weaker hand than it had intended. The territory already held must be preserved, the safety of the Turkish Cypriot community must still be secured, and the government must demonstrate that an incomplete military result need not become a permanent political failure. ",
+                "predicate": 21
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
+                "predicate": 22
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
+                "predicate": 23
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The end of Atilla I was union with the end of First Geneva Conference, and thus the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ",
+                "predicate": 24
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "On this alternative course, Geneva I concludes on July 28 after Turkey froze its military positions. ",
+                "predicate": 25
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand: ",
+                "predicate": 26
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "“Agreed, Mr. Güneş.” ",
+                "predicate": 27
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "It was not easy to believe, but the First Geneva Conference really had ended... ",
+                "predicate": 28
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the historical source excerpt. ",
+                "predicate": 29
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -3036,21 +3209,27 @@
             }
           },
           {
-            "type": "insert",
+            "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_atilla1_ending'] || 0);"
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Massive\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
             }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_early_freeze'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Successful\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
             }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_early_freeze'] || 0) == 0);"
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Failure\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_campaign_failed'] || 0) == 1);"
             }
           },
           {
@@ -3105,6 +3284,102 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['leverage_points'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Massive\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Massive\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Successful\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Successful\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Successful\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Failure\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Failure\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla1_ending'] == \"Failure\") && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_campaign_failed'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_campaign_failed'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['cyprus_campaign_failed'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['cyprus_early_freeze'] || 0) == 1) && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['cyprus_campaign_failed'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['cyprus_campaign_failed'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['cyprus_campaign_failed'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['cyprus_campaign_failed'] || 0)) !== 0));"
             }
           }
         ]
@@ -3444,7 +3719,7 @@
     "cyprus_briefing_16": {
       "id": "cyprus_briefing_16",
       "type": "scene",
-      "title": "16 July 1974",
+      "title": "16 July 1974 — Approaching Britain",
       "newPage": true,
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_16\";"
@@ -3458,7 +3733,11 @@
       "content": [
         {
           "type": "heading",
-          "content": "16 July 1974"
+          "content": "16 July 1974 — Approaching Britain"
+        },
+        {
+          "type": "paragraph",
+          "content": "After briefing the opposition leaders, Ecevit turned to the next stage of the government’s response. Their concerns had underlined the dangers facing the Turkish community, but Ankara still had to establish whether a common course of action with Britain was possible. Before committing Turkey to an intervention, he wanted to put the other guarantor’s willingness to act to the test."
         },
         {
           "type": "paragraph",
@@ -3490,7 +3769,7 @@
     "cyprus_briefing_17": {
       "id": "cyprus_briefing_17",
       "type": "scene",
-      "title": "17 July 1974",
+      "title": "17 July 1974 — The London meeting",
       "newPage": true,
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_17\";"
@@ -3504,7 +3783,11 @@
       "content": [
         {
           "type": "heading",
-          "content": "17 July 1974"
+          "content": "17 July 1974 — The London meeting"
+        },
+        {
+          "type": "paragraph",
+          "content": "The approach to Britain had brought Ecevit to London for talks with Prime Minister Harold Wilson and Foreign Secretary James Callaghan. He came seeking more than an expression of concern: Turkey wanted Britain to participate in a joint intervention, or allow Turkish forces to operate through its bases. The meeting would determine whether Ankara could secure British cooperation before deciding its next move."
         },
         {
           "type": "paragraph",
@@ -3592,7 +3875,7 @@
     "cyprus_briefing_18": {
       "id": "cyprus_briefing_18",
       "type": "scene",
-      "title": "18 July 1974",
+      "title": "18 July 1974 — Meeting Sisco",
       "newPage": true,
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_18\";"
@@ -3606,7 +3889,11 @@
       "content": [
         {
           "type": "heading",
-          "content": "18 July 1974"
+          "content": "18 July 1974 — Meeting Sisco"
+        },
+        {
+          "type": "paragraph",
+          "content": "Britain’s refusal had left Ecevit without the cooperation he had sought in London. The diplomatic effort now turned to Joseph Sisco, who hoped to persuade Turkey to refrain from intervening. For Ankara, however, another appeal for patience would not be enough; the government had to explain what concrete changes it required, both to its allies and to the political leaders at home."
         },
         {
           "type": "paragraph",
@@ -3678,7 +3965,7 @@
     "cyprus_briefing_19": {
       "id": "cyprus_briefing_19",
       "type": "scene",
-      "title": "19 July 1974",
+      "title": "19 July 1974 — The Greek response",
       "newPage": true,
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_19\";"
@@ -3692,7 +3979,11 @@
       "content": [
         {
           "type": "heading",
-          "content": "19 July 1974"
+          "content": "19 July 1974 — The Greek response"
+        },
+        {
+          "type": "paragraph",
+          "content": "Sisco left for Athens carrying the conditions Ecevit had dictated. The next question was whether the Greek leadership would accept changes substantial enough to avert a Turkish intervention. Ankara awaited his answer, while the remaining time for a diplomatic settlement grew shorter."
         },
         {
           "type": "paragraph",
@@ -3748,7 +4039,7 @@
     "cyprus_briefing_20": {
       "id": "cyprus_briefing_20",
       "type": "scene",
-      "title": "20 July 1974",
+      "title": "20 July 1974 — The operation begins",
       "newPage": true,
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.briefingScene(Q) === \"cyprus_briefing_20\";"
@@ -3762,7 +4053,11 @@
       "content": [
         {
           "type": "heading",
-          "content": "20 July 1974"
+          "content": "20 July 1974 — The operation begins"
+        },
+        {
+          "type": "paragraph",
+          "content": "The answer from Athens had left the essential Turkish demands unanswered. With Britain unwilling to act jointly and the American effort yielding assurances rather than an agreement, the diplomatic exchanges gave way to the operation Ankara had been preparing. At dawn, Turkish aircraft and ships began carrying troops towards Cyprus. The decision had passed from the conference rooms to the men approaching the beaches and descending onto the island; Ecevit now had to announce it to the country."
         },
         {
           "type": "paragraph",
@@ -4004,7 +4299,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The operation failed to establish a viable connected position, or suffered a decisive military breakdown. Turkey cannot turn its intervention into the intended settlement. ",
+                "content": "<h2>MAĞLUP</h2> ",
                 "predicate": 2
               },
               ""
@@ -4015,7 +4310,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties accept restoration of the constitutional framework. The crisis ends through an agreement that falls short of Turkey's federal objectives. ",
+                "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
                 "predicate": 3
               },
               ""
@@ -4026,7 +4321,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ",
+                "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
                 "predicate": 4
               },
               ""
@@ -4037,7 +4332,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ",
+                "content": "The parties accept restoration of the constitutional framework. The crisis ends through an agreement that falls short of Turkey's federal objectives. ",
                 "predicate": 5
               },
               ""
@@ -4048,7 +4343,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ",
+                "content": "The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ",
                 "predicate": 6
               },
               ""
@@ -4059,8 +4354,30 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ",
+                "content": "The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ",
                 "predicate": 7
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ",
+                "predicate": 8
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ",
+                "predicate": 9
               },
               ""
             ]
@@ -4071,7 +4388,7 @@
               "Atilla I score: ",
               {
                 "type": "insert",
-                "insert": 8
+                "insert": 10
               },
               " / 720."
             ]
@@ -4085,11 +4402,11 @@
                   "Atilla II score: ",
                   {
                     "type": "insert",
-                    "insert": 10
+                    "insert": 12
                   },
                   " / 240. "
                 ],
-                "predicate": 9
+                "predicate": 11
               },
               ""
             ]
@@ -4106,6 +4423,18 @@
             "type": "predicate",
             "fn": {
               "$code": "return (Q['cyprus_final_result'] == \"Non-Intervention\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Military Defeat\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Military Defeat\");"
             }
           },
           {

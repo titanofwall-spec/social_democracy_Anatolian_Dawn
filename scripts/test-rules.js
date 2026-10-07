@@ -402,7 +402,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             const authored=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_AUTHORED_TEXTS.json'),'utf8')).events[key];
             if(authored){for(const paragraph of authored.body.split('\n\n'))assert(source.includes(paragraph),id+' authored paragraph');}
             for(const part of authored?[]:parts) {
-                assert(source.includes(part.kind==='quotation'?part.text.replace(/\n\n/g,' … '):part.text),id);
+                for(const paragraph of key==='ending'?part.text.split('\n\n'):[part.kind==='quotation'?part.text.replace(/\n\n/g,' … '):part.text])assert(source.includes(paragraph),id);
                 assert(part.kind==='quotation'?source.includes(part.document):source.includes('PDF page '+part.pdf_page),id);
             }
             if(key==='ending')continue;

@@ -3,10 +3,12 @@ view-if: {! return AnatolianRules.cyprusAtilla1.endingReady(Q); !}
 on-arrival: {! AnatolianRules.cyprusAtilla1.awardEnding(Q); !}
 new-page: true
 
-= [+ cyprus_date_display +] — Atilla I: [+ cyprus_atilla1_ending +]
+= [+ cyprus_date_display +] — Atilla I has ended, and our armies are...
 
-[? if cyprus_early_freeze == 1 : Turkey has frozen its positions after its last military operation. Geneva I concludes earlier on this alternative route, on July 28. ?]
-[? if cyprus_early_freeze == 0 : The military chapter concludes after the later field operations and Geneva I. ?]
+[? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : <h2>MUZAFFER</h2> ?]
+[? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : <h2>BAŞARILI</h2> ?]
+[? if cyprus_atilla1_ending == "Failure" and not cyprus_campaign_failed : <h2>YIPRANMIŞ</h2> ?]
+[? if cyprus_campaign_failed == 1 : <h2>MAĞLUP</h2> ?]
 
 Combined Atilla I Score: [+ cyprus_atilla1_score +] / 720.
 
@@ -22,18 +24,41 @@ Diplomatic Position: [+ cyprus_atilla1_credibility +].
 
 Diplomatic leverage earned: +[+ cyprus_atilla1_reward +]. Total: [+ leverage_points +].
 
-Historical source reference (the historical conference, rather than a guaranteed player outcome):
+[? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : The Greeks, the Brits, the Americans, the UN, no one had expected our government to stood so tall, and even less so expected our military power to act so decisively. The Greek Junta and Sampson's gambit resulted terribly for the Greeks, for once again, the Turkish foot soldier marches across the plains and hills of Cyprus! We have not merely clashed with Greeks and won, we achieved absolute military supremacy, so much so that the Greeks and the rest of the World believes more and more that the only factor that keeps us away from sweeping across the island was our restraint! ?]
 
-Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand:
+[? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : The result of the campaign could not be downplayed by even the concept of a fraction, the Atilla I will forever be studied and mention in military academies and history books for decades as one of if not the most formidable military operations of the second half of the 20th Century, the respect and adoration our military enjoys has risen, and similarly, our government and therefore our party's stance on the public has been rejuvenated in an unprecedented scale! We were finally being seen as <em>real</em> successors of our founding father Atatürk and his party. Our leadership had shown to our people a reality; when the Empire collapsed and foreign powers sought our demise and division, it was Atatürk and his Society for the Defence of Rights of Anatolia and Rumelia that stopped them! When Hatay was left under French, it was Atatürk and his CHP that brought it back! And now, when the lives of the Turks in Cyprus was in danger, it was Atatürk's party that he left that saved them! Let them all know; no one can teach CHP what it means to be a nationalist! ?]
 
-“Agreed, Mr. Güneş.”
+[? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : Our forces have accomplished a difficult task. The troops who landed under uncertain conditions have established a connected position on the island, and Turkey has demonstrated that the safety of the Turkish Cypriot community cannot be dismissed with another appeal for patience. The Greek Junta and Sampson's government have fallen, while our army remains in Cyprus as a force that any settlement must now take into account. ?]
 
-It was not easy to believe, but the First Geneva Conference really had ended...
+[? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : Yet this was a victory won through hard fighting rather than an effortless march. Delays, resistance and the demands of supplying our formations limited what could be achieved, and not every objective was secured as firmly as our commanders had hoped. Our position is stronger than it was when the crisis began, but strength on the battlefield alone cannot settle the questions that brought us here. ?]
 
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the source excerpt.
+[? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : At home, the government can point to an intervention that produced concrete results. CHP has shown that it was willing to act when diplomacy failed to protect the Turkish community. But the responsibility of victory is now ours as well: we must preserve what our soldiers have won and secure an agreement worthy of the sacrifices already made. ?]
+
+[? if cyprus_atilla1_ending == "Failure" and not cyprus_campaign_failed : Our soldiers have held on, but the campaign has fallen short of the position we had hoped to establish. A connected foothold survives, yet too many operations brought limited gains, uncertain security or a cost greater than their result. Turkey has prevented its intervention from becoming an outright military defeat, but it cannot present this outcome as the decisive triumph the country had awaited. ?]
+
+[? if cyprus_atilla1_ending == "Failure" and not cyprus_campaign_failed : The government will have to answer difficult questions. Why were our advantages not turned into firmer positions? Why did so much effort leave so many problems unresolved? The courage of the men on the island cannot relieve Ankara of responsibility for the direction of the campaign. ?]
+
+[? if cyprus_atilla1_ending == "Failure" and not cyprus_campaign_failed : Our delegation now approaches the negotiations with a weaker hand than it had intended. The territory already held must be preserved, the safety of the Turkish Cypriot community must still be secured, and the government must demonstrate that an incomplete military result need not become a permanent political failure. ?]
+
+[? if cyprus_campaign_failed == 1 : The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ?]
+
+[? if cyprus_campaign_failed == 1 : There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ?]
+
+[? if not cyprus_campaign_failed : The end of Atilla I was union with the end of First Geneva Conference, and thus the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ?]
+
+[? if cyprus_early_freeze == 1 and not cyprus_campaign_failed : On this alternative course, Geneva I concludes on July 28 after Turkey froze its military positions. ?]
+
+[? if not cyprus_campaign_failed : Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand: ?]
+
+[? if not cyprus_campaign_failed : “Agreed, Mr. Güneş.” ?]
+
+[? if not cyprus_campaign_failed : It was not easy to believe, but the First Geneva Conference really had ended... ?]
+
+[? if not cyprus_campaign_failed : Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the historical source excerpt. ?]
 
 - @root: Continue.
 
 @root
 on-arrival: {! AnatolianRules.cyprusAtilla1.continueEnding(Q); !}
 go-to: cyprus_campaign_continue
+

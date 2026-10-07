@@ -5,7 +5,11 @@ new-page: true
 = Cyprus — [+ cyprus_final_result +]
 
 [? if cyprus_final_result == "Non-Intervention" : CHP was not in power when the crisis began. Turkey did not undertake this intervention, and the opportunity to secure the Turkish Cypriot position was lost. ?]
-[? if cyprus_final_result == "Military Defeat" : The operation failed to establish a viable connected position, or suffered a decisive military breakdown. Turkey cannot turn its intervention into the intended settlement. ?]
+[? if cyprus_final_result == "Military Defeat" : <h2>MAĞLUP</h2> ?]
+
+[? if cyprus_final_result == "Military Defeat" : The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ?]
+
+[? if cyprus_final_result == "Military Defeat" : There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ?]
 [? if cyprus_final_result == "Return to the 1960 Constitutional Order" : The parties accept restoration of the constitutional framework. The crisis ends through an agreement that falls short of Turkey's federal objectives. ?]
 [? if cyprus_final_result == "Denktaş Plan" : The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ?]
 [? if cyprus_final_result == "Güneş Plan" : The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ?]
