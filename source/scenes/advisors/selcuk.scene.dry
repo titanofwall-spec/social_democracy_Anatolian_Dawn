@@ -3,7 +3,7 @@ is-pinned-card: true
 tags: advisor, kemalist_marxist
 card-image: img/portraits/IlhanSelcuk.jpg
 view-if: selcuk_advisor = 1
-new-page: true 
+new-page: true
 
 = İlhan Selçuk
 
@@ -42,4 +42,4 @@ choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 3; kemalist_marxists_dissent -= 10
 
-We can tolerate the marxists within the party as long as they dont resort to undemocratic tactics.
+We can tolerate the marxists within the party as long as they don't resort to undemocratic tactics.

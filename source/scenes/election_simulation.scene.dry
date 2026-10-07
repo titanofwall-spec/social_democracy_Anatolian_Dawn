@@ -4,7 +4,7 @@ set-jump: post_election
 
 - @scenario_1973: 1973 historical scenario
 - @scenario_1977: 1977 historical scenario
-- @scenario_1979: 1979 historical scenario(by-election)
+- @scenario_1979: 1979 historical scenario (by-election)
 
 @scenario_1973
 on-arrival: {!

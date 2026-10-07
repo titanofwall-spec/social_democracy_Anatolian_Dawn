@@ -3,7 +3,7 @@ is-pinned-card: true
 tags: advisor, left_kemalist
 card-image: img/portraits/DenizBaykal.jpg
 view-if: baykal_advisor = 1
-new-page: true 
+new-page: true
 
 = Deniz Baykal
 
@@ -14,7 +14,7 @@ A young and energetic figure within the party, Baykal can use his expertise in f
 - @coalitiontalks: Inter Party Relations.
 - @root: Return to main
 
-@internationalaffairs   
+@internationalaffairs
 subtitle: Baykal can help with our international contacts.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
@@ -33,4 +33,4 @@ choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 3; workers_chp -= 2; state_employees_chp -= 2; MSP_relation += 5
 
-Erbakan and his boys are surprisingly receptive of our calls, seems they want to break away from the fringes
+Erbakan and his boys are surprisingly receptive to our calls; it seems they want to break away from the fringes.

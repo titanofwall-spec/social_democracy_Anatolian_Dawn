@@ -14,7 +14,7 @@ In our media and campaign materials, who should we consider as our main opponent
 [? if enemies != 0 : Previously, we had considered the [+ enemies +] as our prior enemies. Is a change of direction necessary? ?]
 
 - @military: The military that is strangling our democracy
-- @bourgeois: Our liberal arch nemesis - AP.
+- @bourgeois: Our liberal archnemesis - AP.
 - @anti_dem: The radical groups to our left and right, Communists, MHP and MSP
 - @far_right: The reactionaries - the MHP and MSP.
 - @MHP: The MHP alone.
@@ -30,12 +30,12 @@ A stance against the military interventions is widely popular with our grassroot
 @bourgeois
 on-arrival: enemies = "bourgeois parties"; AP_relation -= 10; CHP_workers += 1; CHP_state_employees += 1; CHP_rural += 1; CHP_kurds += 1; CHP_petty_bourgeoisie += 2; AP_workers -= 1; AP_state_employees -= 1; AP_rural -= 1; AP_kurds -= 1; AP_petty_bourgeoisie -= 1; democracystatus -= 2
 
-We naturally focus our efforts against our biggest electoral opponent. Our promises of wealth redistribution and the decentralization of the economy succeed in drawing the masses unsatisfied with the pro-large business policies of AP. However its undeniable how the tensions between the cadres of the two parties is rising and we will struggle with cooperating with them in the future. High tensions between the two largest parties would not bode well for the long term health of our fragile democracy...
+We naturally focus our efforts against our biggest electoral opponent. Our promises of wealth redistribution and the decentralization of the economy succeed in drawing the masses unsatisfied with the pro-large business policies of AP. However, it's undeniable how the tensions between the cadres of the two parties are rising and we will struggle with cooperating with them in the future. High tensions between the two largest parties would not bode well for the long-term health of our fragile democracy...
 
 @anti_dem
 on-arrival: enemies = "radical organizations"; workers_MSP -= 3; workers_MHP -= 3; workers_TIP -= 3; state_employees_MHP -= 2; state_employees_MSP -= 2; petty_bourgeoisie_MSP -= 2; petty_bourgeoisie_MHP -= 2; grey_wolves_strength -= 4; devyol_strength -= 4; TIP_relation -= 10; MSP_relation -= 10 if year <= 1977; MHP_relation -= 10 if year <= 1977; democracystatus += 1
 
-We focus our party efforts on raising awareness against left wing and right wing radicals and their paramilitary efforts. However this might hamper our ability to reconcile with the TIP in the future.
+We focus our party efforts on raising awareness against left wing and right wing radicals and their paramilitary efforts. However, this might hamper our ability to reconcile with the TIP in the future.
 
 [? if year >= 1977 : Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties and not the larger AP. ?]
 
@@ -56,6 +56,6 @@ on-arrival: enemies = "MHP"; state_employees_MHP -= 1; workers_MHP -= 1; petty_b
 @THKPC
 on-arrival: enemies = "THKPC"; coup_timer -= 1; TIP_relation -= 5; workers_TIP -= 3; workers_chp += 3; AP_relation += 4; q5_lk_str -= 1
 
-Attacking the far-left THKP-C and similar organizations allows us to repair our relations with the military establishment. Though it is targetted towards far left **militants**, Socialist intellectuals express their disapproval of the party targetting the left when the grey wolves butcher leftist students in the streets and AP maul the workers' movement.
+Attacking the far-left THKP-C and similar organizations allows us to repair our relations with the military establishment. Though it is targeted towards far left **militants**, Socialist intellectuals express their disapproval of the party targeting the left when the grey wolves butcher leftist students in the streets and AP maul the workers' movement.
 
-Many of the intellectuals associated with CHP too question our decision to move against the so called 'smaller evil'.
+Many of the intellectuals associated with CHP too question our decision to move against the so-called 'smaller evil'.

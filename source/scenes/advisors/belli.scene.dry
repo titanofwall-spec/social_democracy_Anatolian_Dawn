@@ -3,19 +3,19 @@ is-pinned-card: true
 tags: advisor, kemalist_marxist
 card-image: img/portraits/MihriBelli.jpg
 view-if: belli_advisor = 1
-new-page: true 
+new-page: true
 
 = Mihri Belli
 
-Mihri Belli is the original theorist of the National Democratic Revolution and is an active Socialist partisan who has links with nearly all prominent far left organizations entire the whole nation. While his true allegiance lies in the far-left and not us, he can bring us news from them for sure.
+Mihri Belli is the original theorist of the National Democratic Revolution and is an active Socialist partisan who has links with nearly all prominent far-left organizations across the whole nation. While his true allegiance lies in the far-left and not us, he can bring us news from them for sure.
 
 - @thkpc: Belli has contacts in THKP-C and can get information about their current situation.
 - @tip1: Under the junta all democratic paths to Socialism have been cut off with the banning of TİP. We can try to learn about the situation of the Socialist intellectuals.
-- @tip: TIP had been banned after the memorandum of March 12. However the Socialist voterbase which is unaffiliated with any current party still remains.
+- @tip: TIP had been banned after the memorandum of March 12. However, the Socialist voterbase which is unaffiliated with any current party still remains.
 - @root: Return to main
 
 @thkpc
-subtitle: They might be in serious trouble..
+subtitle: They might be in serious trouble...
 view-if: year == 1972 and month <= 3
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
@@ -29,9 +29,9 @@ choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 3
 
-Many Socialists report undergoing horrible tortures after being arrested. 
+Many Socialists report undergoing horrible tortures after being arrested.
 
-"I couldn't see anything since my eyes were tied. Some people had laid me onto the floor and taken my socks off. A device was placed onto my wrists. I felt a screw being jammed. Such a moment came that I wasn't able to move my legs. Oil, or some other kind of liquid, they applied to the base of my feet. Then the birch rod started hitting. At first, I thought I could bear the pain (...) but the pain of bastinade is like nothing else (...) one feels a pain that sinks up to the bones. At the beginning of it, I was holding myself to not scream. But then I let myself free, because no matter how much you try, you cant keep your voice in. First the growling begins, then it turns into a cry for help, and you turn into an animal. It has such a spiritual side, that adds onto the physical pain. You see yourself humiliated..."
+"I couldn't see anything since I was blindfolded. Some people had laid me on the floor and taken my socks off. A device was placed onto my wrists. I felt a screw being jammed. Such a moment came that I wasn't able to move my legs. Oil, or some other kind of liquid, they applied to the base of my feet. Then the birch rod started hitting. At first, I thought I could bear the pain (...) but the pain of bastinade is like nothing else (...) one feels a pain that sinks up to the bones. At the beginning of it, I was holding myself back from screaming. But then I let myself go, because no matter how much you try, you can't keep your voice in. First the growling begins, then it turns into a cry for help, and you turn into an animal. It has such a spiritual side that adds to the physical pain. You see yourself humiliated..."
 
 İlhan Selçuk, in his memoirs.
 
@@ -41,7 +41,7 @@ choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 3; TIP_relation += 2
 
-With the army pressure lessening, it seems many Socialist intellectuals are preparing to create a renewed TİP.
+With the army's pressure lessening, it seems many Socialist intellectuals are preparing to create a renewed TİP.
 
 
 

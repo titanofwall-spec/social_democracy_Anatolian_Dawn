@@ -3,10 +3,10 @@ is-pinned-card: true
 tags: advisor
 card-image: img/portraits/TarikAkan.jpg
 view-if: akan_advisor = 1
-new-page: true 
+new-page: true
 
 = Tarık Akan
 
-Tarık Akan is an actor from the Yeşilçam cinema and even though he seems unwilling to participate in active politics, he also seems sympathethic to the direction our party has taken..
+Tarık Akan is an actor from the Yeşilçam cinema and even though he seems unwilling to participate in active politics, he also seems sympathetic to the direction our party has taken...
 
 - @root: Return to main

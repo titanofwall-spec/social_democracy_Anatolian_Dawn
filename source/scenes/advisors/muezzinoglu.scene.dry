@@ -3,17 +3,17 @@ is-pinned-card: true
 tags: advisor
 card-image: img/portraits/Muezzinoglu.jpg
 view-if: muezzinoglu_advisor = 1
-new-page: true 
+new-page: true
 
 = Ziya Müezzinoğlu
 
-Ziya Müezzinoğlu is an experienced economist who has served as a member of economic planning agency and Turkish representative for the European Economic Community.<span style="color: #E3000F;">**CHP**</span>
+Ziya Müezzinoğlu is an experienced economist who has served as a member of the economic planning agency and a Turkish representative for the European Economic Community.<span style="color: #E3000F;">**CHP**</span>
 
 - @ministry: Müezzinoğlu can take actions as the minister of trade
 - @europe: Müezzinoğlu can help us improve relations with Europe
-- @root: Return to main	
+- @root: Return to main
 
-@ministry	
+@ministry
 choose-if: advisor_action_timer = 0 and CHP_in_government = 1 and economic_minister_party = "CHP"
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if CHP_in_government = 0 : <span style="color: #E3000F;">**CHP**</span> is not in government. ?][? if economic_minister_party != "CHP" : The CHP does not control the trade ministry. ?]
 on-arrival: advisor_action_timer = 3; economic_policy_timer -= 8

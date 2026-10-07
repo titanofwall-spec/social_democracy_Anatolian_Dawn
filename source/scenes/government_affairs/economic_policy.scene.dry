@@ -10,16 +10,16 @@ go-to: economy_menu
 
 = Economic Policy
 
-Turkish Economy is in a dire and unstable situation. As a developing and industrializing nation, Turkey depends on import substitution to fuel its expanding industry, in the meanwhile creating the necessity for a constant supply of foreign cash flowing in to cover the expenses of industrialization.
+The Turkish economy is in a dire and unstable situation. As a developing and industrializing nation, Turkey depends on import substitution to fuel its expanding industry, in the meantime creating the necessity for a constant supply of foreign cash flowing in to cover the expenses of industrialization.
 
-While this protectionism keeps the economy afloat, it has created a lazy industry uncapable of competing with other international competitors without state subsidies and high inflation as a result of the constant pressure on the Turkish Lira by the foreign currencies.
+While this protectionism keeps the economy afloat, it has created a lazy industry incapable of competing with other international competitors without state subsidies and high inflation as a result of the constant pressure on the Turkish Lira by the foreign currencies.
 
 In its current state the Turkish economy is very volatile and dependent on the international economy. Drastic changes are needed before another wave strikes and crushes the ship that is the Turkish economy.
 
 @economy_menu
 
-- @short: Short Term Interventions
-- @mid: Middle Term Interventions
+- @short: Short-Term Interventions
+- @mid: Medium-Term Interventions
 - @long: Long Term Interventions
 - @root: Do not implement any economic policies.
 - @easy_discard
@@ -30,7 +30,7 @@ subtitle: Short term solutions meant to lessen the current impact of the crisis.
 
 - @pricecontrols: Implement price controls to control the inflation.
 - @debt: Reach out to the global market for debt.
-- @publicworks: Initiate public work programs.
+- @publicworks: Initiate public works programs.
 - @economy_menu: Return to economic planning.
 
 @pricecontrols
@@ -39,16 +39,16 @@ choose-if: imf_agreement == 0
 unavailable-subtitle: We have agreed with the IMF to not pursue state interventions!
 on-arrival: inflation_modifier -= 3; black_market_risk += 1; capitalists_chp -= 3; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-Price floors and ceilings are implemented to control the rampant inflation. While the worker families and alike are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'
+Price floors and ceilings are implemented to control the rampant inflation. While the working families and the like are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'
 
 @debt
 choose-if: west_relation >= 40 and us_relation >= 40
-subtitle: Budget ↑ Exchange Pressure(short term) ↓ Exchange Pressure(long term) ↑↑ Growth ↑
+subtitle: Budget ↑ Exchange Pressure(short term) ↓ Exchange Pressure(long-term) ↑↑ Growth ↑
 unavailable-subtitle: The general air of coldness between the western governments and us prevent us from taking debt from the international organizations!
 on-arrival: forex_pressure -= 5; growth_modifier += 0.5; budget += 1; forex_pressure_drift += 1; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 max-visits: 4
 
-We once again reach out to the global market for hot cash to fuel our economy. While our economic pain is temporarily alliviated, this only prolongs the fundamental issue of our economy, not resolve it.
+We once again reach out to the global market for hot cash to fuel our economy. While our economic pain is temporarily alleviated, this only prolongs the fundamental issue of our economy rather than resolving it.
 
 @publicworks
 choose-if: budget >= 1 and imf_agreement == 0
@@ -56,7 +56,7 @@ unavailable-subtitle: [? if budget == 0 : Requires 1 budget. ?] [? if imf_agreem
 subtitle: -1 budget, populist expansion. Budget ↓ Inflation ↑ Unemployment ↓ Exchange Pressure ↑ Growth ↑↑
 on-arrival: budget -= 1; inflation_modifier += 2; growth_modifier += 1.5; unemployment_modifier -= 1; forex_pressure += 2; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-We intervene in the economy to foster growth by creating public work programs.
+We intervene in the economy to foster growth by creating public works programs.
 
 @mid
 subtitle: Middle term solutions aimed at easing the fundamental issues of the economy
@@ -73,14 +73,14 @@ subtitle: Slight popularity decrease; Western relations slightly decrease; Excha
 on-arrival: state_employees_chp -= 2; rural_chp -= 1; alevis_chp -= 2; kurds_chp -= 2; workers_chp -= 2; capitalists_chp += 2; west_relation -= 4; us_relation -= 4; forex_pressure -= 4; industry_modifier += 3; agriculture_modifier += 3; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 max-visits: 3
 
-Even though in the short term our citizens will suffer under higher prices, creating a surplus of foreign exchange is necessary for any real of the economy. Hopefully they will understand..
+Even though in the short term our citizens will suffer under higher prices, creating a surplus of foreign exchange is necessary for any real recovery of the economy. Hopefully they will understand...
 
 @export
 choose-if: budget >= 2
 subtitle: -2 Budget; Budget ↓↓; Inflation ↑; Exchange Pressure ↓↓; Growth ↑↑
 on-arrival: forex_pressure -= 4; budget -= 2; inflation_modifier += 1.5; growth_modifier += 1.5; capitalists_chp += 2; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-The Turkish capital has long lacked any sort of competitive capability against foreign companies. Through targetted subsidies for companies choosing to sell their goods abroad and bring in foreign currency, we can perhaps increase their competitiveness on the world stage and build an industry capable of surviving harsh crises. Though the subsidies are a burden on the budget, without making the Turkish industry competitive a permanent economic solution can not be achieved.
+The Turkish capital has long lacked any sort of competitive capability against foreign companies. Through targeted subsidies for companies choosing to sell their goods abroad and bring in foreign currency, we can perhaps increase their competitiveness on the world stage and build an industry capable of surviving harsh crises. Though the subsidies are a burden on the budget, without making the Turkish industry competitive a permanent economic solution cannot be achieved.
 
 @stateplanning
 subtitle: Union relations slight decrease; Exchange Pressure ↓; Industrial Production ↑; Unemployment ↑
@@ -88,42 +88,42 @@ choose-if: imf_agreement == 0
 unavailable-subtitle: We have agreed with the IMF to not pursue state interventions!
 on-arrival: forex_pressure -= 2; disk_relation -= 4; industry_modifier += 3; unemployment_modifier += 0.5; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-Turkey has a mixed market with huge state presence. However as these corporations tend to be heavily corrupt and misfunctioning, reforms getting rid of the inefficient employees and restructuring the outdated business models are necessary to uphold the economy as a whole.
+Turkey has a mixed market with huge state presence. However, as these corporations tend to be heavily corrupt and malfunctioning, reforms getting rid of the inefficient employees and restructuring the outdated business models are necessary to uphold the economy as a whole.
 
 @long
 choose-if: economicaction >= 3
 unavailable-subtitle: We have to take actions regarding the immediate problems of the economy before moving on to structural reforms!
-subtitle: Long term solutions targetted at **solving** the structural defects of the economy.
+subtitle: Long term solutions targeted at **solving** the structural defects of the economy.
 
-- @standby: Go on a standby with the IMF. Though we absolute despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+- @standby: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
 - @tiger: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
 - @tiger2: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
 - @economy_menu: Return to economic planning.
 
 @standby
 choose-if: Tiger == 0 and west_relation >= 30 and us_relation >= 30
-subtitle: **After this we will not be able to intervene in the economy anymore!** Significant public and union backlash; Budget ↑; Exchange Pressure(short term) ↓↓↓; Exchange Pressure(long term) ↓↓; Inflation ↓↓; Growth ↓
-unavailable-subtitle: [? if Tiger > 0 : This course of action can not be taken at the same time as the transformation into an export economy. ?][? if west_relation < 30 or us_relation < 30 : Our relations with the west are too poor to the point the IMF refuses getting into talks with our government. ?]
+subtitle: **After this we will not be able to intervene in the economy anymore!** Significant public and union backlash; Budget ↑; Exchange Pressure(short term) ↓↓↓; Exchange Pressure(long-term) ↓↓; Inflation ↓↓; Growth ↓
+unavailable-subtitle: [? if Tiger > 0 : This course of action cannot be taken at the same time as the transformation into an export economy. ?][? if west_relation < 30 or us_relation < 30 : Our relations with the west are too poor to the point the IMF refuses getting into talks with our government. ?]
 on-arrival: budget += 1; imf_agreement = 1; forex_pressure -= 15; forex_pressure_drift -= 1; inflation_modifier -= 4; growth_modifier -= 1; workers_chp -= 5; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; alevis_chp -= 3; disk_relation -= 10; {! AnatolianRules.refreshEconomy(Q); !}
 
-We are forced to accept austerity measures and abandon state interventions to be bailed out by the IMF. Liberalizations are costly for us politically and betray each belief of ours. What days are we living in..
+We are forced to accept austerity measures and abandon state interventions to be bailed out by the IMF. Liberalizations are costly for us politically and betray each belief of ours. What days are we living in...
 
 @tiger
 view-if: Tiger == 0
 choose-if: Standby == 0
-unavailable-subtitle: This course of action can not be taken at the same time as committing to the privatization demands of the IMF.
-subtitle: This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long term) ↓↓↓; Growth ↑↑
+unavailable-subtitle: This course of action cannot be taken at the same time as committing to the privatization demands of the IMF.
+subtitle: This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long-term) ↓↓↓; Growth ↑↑
 on-arrival: Tiger += 1; forex_pressure -= 8; inflation_modifier += 17.5; disk_relation -= 15; forex_pressure_drift -= 3; growth_modifier += 2; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! AnatolianRules.refreshEconomy(Q); !}
 
-The situation is dire for the average Turk; we had promised them economic stability and now there is rampant inflation due to our own policies. However the Turkish economy can not survive in its current state and we need to keep our course in this radical transformation.
+The situation is dire for the average Turk; we had promised them economic stability and now there is rampant inflation due to our own policies. However, the Turkish economy cannot survive in its current state and we need to keep our course in this radical transformation.
 
 @tiger2
 view-if: Tiger == 1
 choose-if: Standby == 0
-unavailable-subtitle: This course of action can not be taken at the same time as committing to the privatization demands of the IMF.
-subtitle: Continuing the export orientation. This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long term) ↓↓↓; Growth ↑↑
+unavailable-subtitle: This course of action cannot be taken at the same time as committing to the privatization demands of the IMF.
+subtitle: Continuing the export orientation. This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long-term) ↓↓↓; Growth ↑↑
 on-arrival: Tiger += 1; forex_pressure -= 8; inflation_modifier += 17.5; disk_relation -= 15; forex_pressure_drift -= 3; growth_modifier += 2; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! AnatolianRules.refreshEconomy(Q); !}
 
-Finally we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered real much, but the light at the end of the tunnel is now beginning to shine through. Lets hope our citizens will forgive us for prescribing the painful medicine.
+Finally we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered a great deal, but the light at the end of the tunnel is now beginning to shine through. Let's hope our citizens will forgive us for prescribing the painful medicine.
 
 With our fundamental reforms, the Turkish economy has begun moving out of its constant crisis state and now has developed resistance to global crises to some extent.

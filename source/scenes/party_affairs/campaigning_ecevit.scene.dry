@@ -12,12 +12,12 @@ card-image: img/ecevit_campaigning.jpg
 Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?
 
 - @workers: The rising urban working class, attracted by our shift in policy.
-- @petty_bourgeoisie: The middle class of artisans, shopkeepers and alike, normally affiliated with liberal parties.
-- @state_employees: Citizens employed by the state and bureaucracy.
+- @petty_bourgeoisie: The middle class of artisans, shopkeepers and the like, normally affiliated with liberal parties.
+- @state_employees: Citizens employed by the state and the bureaucracy.
 - @rural: Rural workers and small farmers, who have felt neglected by us in the past.
 - @alevis: The Shiite minority that is generally grateful for saving them from the grasp of the Sunni Ottomans.
 - @kurds: Kurds, who lack a mainstream political affiliation
-- @capitalists: Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords..?
+- @capitalists: Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords...?
 - @root: We either don't want to or cannot campaign right now.
 - @easy_discard
 

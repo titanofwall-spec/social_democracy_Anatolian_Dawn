@@ -34,10 +34,10 @@ We emphasize our social democratic ideals.
 
 @kemalism
 choose-if: kemalizm_timer <= 0
-unavailable-subtitle: We cant rely on Kemalist rhetoric only, people expect us to bring real change!
+unavailable-subtitle: We can't rely on Kemalist rhetoric only, people expect us to bring real change!
 on-arrival: workers_chp += 2*(1-dissent); state_employees_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); alevis_chp += 2*(1-dissent); left_kemalists_dissent -= 5; orthodox_kemalists_dissent -= 5; {! AnatolianRules.adjustFactionStrength(Q, 'ok', 3); !}  kemalizm_timer = 6
 
-The Turkish nation, except for some radicals in the far away sections of the political spectrum, unite in their love for Atatürk. We have been using this rhetoric for the last 50 years though, and we cant gather enough votes by simply recalling Atatürk, we need to follow in his footsteps through policy platforms and actions.
+The Turkish nation, except for some radicals in the far away sections of the political spectrum, unite in their love for Atatürk. We have been using this rhetoric for the last 50 years though, and we can't gather enough votes by simply recalling Atatürk, we need to follow in his footsteps through policy platforms and actions.
 
 @social_programs
 on-arrival: workers_chp += 4*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent)

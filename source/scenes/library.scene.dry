@@ -5,7 +5,7 @@ go-to: menu
 
 = The Library
 
-Herein contains relevant information about the government and politics of the Turkish republic.
+This contains relevant information about the government and politics of the Turkish republic.
 
 @menu
 
@@ -27,52 +27,52 @@ Herein contains relevant information about the government and politics of the Tu
 @howtoplay
 go-to: menu
 
-'Anatolian Dawn' is a text-based political simulator about a significant period marked by political instability and violence in Turkish history, the 1970's. Just like in the original 'Social Democracy, An Alternate History' game that this simulator is based on, the game moves forward through turns that last for two weeks and the turns progress with cards that can be selected from the various decks that one will encounter through their playtime. As the turns progress, the players will encounter events that they will have to maneuver through. Designed to be a both complex and enjoyable simulation of the 1970's, various mechanics and features the players will get to experience are displayed down below.
+'Anatolian Dawn' is a text-based political simulator about a significant period marked by political instability and violence in Turkish history, the 1970s. Just like in the original 'Social Democracy, An Alternate History' game that this simulator is based on, the game moves forward through turns that last for two weeks and the turns progress with cards that can be selected from the various decks that one will encounter through their playtime. As the turns progress, the players will encounter events that they will have to maneuver through. Designed to be a simulation that is both complex and enjoyable of the 1970s, various mechanics and features the players will get to experience are displayed down below.
 
 To start off, on the left side of the screen, one will encounter various tabs that will display information about the political, social and economic situation of the nation.
 
-The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who is the president, who is the prime minister and so on. One crucial value shown in this tab is the attitude of TSK(acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they cant prevent or conduct coups on their own, they can determine the nature of a coup done by the military hierarchy, for an example if a coup only has the purpose of resetting the political status or to reshape the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970's in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. Thats where you, the player need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.
+The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who the president is, who the prime minister is and so on. One crucial value shown in this tab is the attitude of TSK (acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they can't prevent or conduct coups on their own, they can determine the nature of a coup carried out by the military hierarchy, for example if a coup only has the purpose of resetting the political status or reshaping the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970s in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. That's where you, the player, need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.
 
-The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which shows how close our ties are with the labour movement and what whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipalities control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
+The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which show how close our ties are with the labour movement and whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipal control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
 
-The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics neither and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fightings become unmanagable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces, land, sea and the air which has the potential to influence the outcome of many of the inter-national situations that the nation will face throughout the 1970's.
+The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far-left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics either and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fighting becomes unmanageable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces: land, sea and air which have the potential to influence the outcome of many of the international situations that the nation will face throughout the 1970s.
 
 The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.
 
 The 'Exterior Affairs' tab shows the international relations of our nation and the status of the various diplomatic crises that the nation will encounter.
 
-The 'Economics' tab is one of the most striking points of the game and presents a complex economic simulation that will need to be managed by the players. The general health of the economy is a parameter affected by the other variables that affects everything ranging from party popularity to political violence. The Turkish economy is very vulnerable to the possible turbulances in the world economy and the fundamental issues that cause this weakness need to be resolved before another crisis hits and wracks the nation like a train.
+The 'Economics' tab is one of the most striking points of the game and presents a complex economic simulation that will need to be managed by the players. The general health of the economy is a parameter affected by the other variables that affect everything ranging from party popularity to political violence. The Turkish economy is very vulnerable to the possible turbulence in the world economy and the fundamental issues that cause this weakness need to be resolved before another crisis hits and wrecks the nation like a train.
 
-Advisors are the influential politicians aligned with the party that take part in its governance and are able to take unique actions that varies from advisor to advisor. With actions being able to be taken one in specific periods of time, the players need to make the best of the actions that their advisors can provide, and create the suitable combination that will help them forward their cause and the party.
+Advisors are the influential politicians aligned with the party that take part in its governance and are able to take unique actions that vary from advisor to advisor. With actions being able to be taken once in specific periods of time, the players need to make the best of the actions that their advisors can provide, and create the suitable combination that will help them forward their cause and the party.
 
 @government
 go-to: menu
 
-The Turkish Republic is a Parliamentary Nation-State that was molded out of the ashes of the now deceased Ottoman Empire as a result of the Kemalist Revolution. The Kemalist Revolution, which was guided by the founding father of the republic Mustafa Kemal Atatürk, was essentially an attempt to save the Turkish Nation from certain destruction at the hands of the Western Powers and their so called "servants" within the empire through rapid westernization and the adopting of modern republican values to keep up with the necessities of the Modern Age. Our whole republic is a result of this rapid change and the values of the revolution are being preserved by <span style="color: #E3000F;">**CHP**</span> and the military.
+The Turkish Republic is a Parliamentary Nation-State that was molded out of the ashes of the now deceased Ottoman Empire as a result of the Kemalist Revolution. The Kemalist Revolution, which was guided by the founding father of the republic Mustafa Kemal Atatürk, was essentially an attempt to save the Turkish Nation from certain destruction at the hands of the Western Powers and their so-called "servants" within the empire through rapid westernization and the adoption of modern republican values to keep up with the necessities of the Modern Age. Our whole republic is a result of this rapid change and the values of the revolution are being preserved by <span style="color: #E3000F;">**CHP**</span> and the military.
 
-The Turkish Republic, as was aforementioned, is a parliamentary democracy with a largely ceremonial president and a powerful prime minister and parliament called TBMM or the Turkish Great National Council. TBMM is responsible for passing legislation while the prime minister is responsible for handling the usual affairs of the state. The Prime Minister is elected by the parliament in accordance with the share of seats each party gets in a general election which is approximately proportional with its vote share. To be elected prime minister one needs a majority in the parliament which opens doors to possible coalition arrangements. The ability to form governments and become prime minister is given by the president, however unless there is a case of military coup the party with the most seats is usually given the upper hand.
+The Turkish Republic, as was aforementioned, is a parliamentary democracy with a largely ceremonial president and a powerful prime minister and parliament called TBMM or the Turkish Great National Council. TBMM is responsible for passing legislation while the prime minister is responsible for handling the usual affairs of the state. The Prime Minister is elected by the parliament in accordance with the share of seats each party gets in a general election which is approximately proportional to its vote share. To be elected prime minister one needs a majority in the parliament which opens doors to possible coalition arrangements. The ability to form governments and become prime minister is given by the president, however unless there is a case of military coup the party with the most seats is usually given the upper hand.
 
-The president is too elected by the parliament, however as the president is viewed to be a non-partisan and neutral position which sets out to unite all of the nation under its wings, usually technocrats or nonpartisan politicians are elected to the post by the parliament with a consensus of the parliamentary parties.
+The president is also elected by the parliament, however as the president is viewed as a non-partisan and neutral figure which sets out to unite all of the nation under its wings, usually technocrats or nonpartisan politicians are elected to the post by the parliament with a consensus of the parliamentary parties.
 
-Turkey has had a troubled past with its military and the military looms over the politics of the young republic as the so called "defenders of the republic". However it is debatable how much of this is actually true and how much of the military oversight over politics is rooted in personal gain.
+Turkey has had a troubled past with its military and the military looms over the politics of the young republic as the so-called "defenders of the republic". However, it is debatable how much of this is actually true and how much of the military oversight over politics is rooted in personal gain.
 
 @kemalism
 go-to: menu
 set-bg: img/bigkemal.jpg
 new-page: true
 
-Kemalism, as the name suggests, is based on the principles laid out by the founding father of the republic, Mustafa Kemal Atatürk. Viewing itself as the antidote to the decadance of the Ottoman Empire, the ideals of Kemalism have given birth to the young Republic of Turkey
+Kemalism, as the name suggests, is based on the principles laid out by the founding father of the republic, Mustafa Kemal Atatürk. Viewing itself as the antidote to the decadence of the Ottoman Empire, the ideals of Kemalism have given birth to the young Republic of Turkey
 
 @turkish_timeline
 go-to: menu
 
 = Timeline of the Republic and <span style="color: #E3000F;">**CHP**</span> (until 1972)
 
-**1470~**: The Ottoman Empire is given its Absolutist system with the centralizing reforms of Mehmed II. These reforms consolidated power solely in the hands of the Sultan and made it impossible for a land owning class separate from the whims of the Padisah to arise. This act will turn the Ottomans into a conquest machine but the system lacks the necessary class divisions which would normally as society develops limit the power of the Monarch and foster social progression through the replacement of the monarch as the highest power with justice. However the centralization of power firmly stabilizes the Ottoman class affairs and renders the Ottomans deficient of social progression.
+**1470~**: The Ottoman Empire is given its Absolutist system with the centralizing reforms of Mehmed II. These reforms consolidated power solely in the hands of the Sultan and made it impossible for a land owning class separate from the whims of the Padisah to arise. This act will turn the Ottomans into a conquest machine but the system lacks the necessary class divisions which would normally as society develops limit the power of the Monarch and foster social progression through the replacement of the monarch as the highest power with justice. However, the centralization of power firmly stabilizes the Ottoman class affairs and renders the Ottomans deficient of social progression.
 
 **1510~-1610~**: Due to the discovery of the Americas putting the Ottoman finances under pressure with the inflation of gold, the Ottoman quasi-feudality system under the name of "Tımar" begins to break down. As masses are pushed away from their villages and are unable to be integrated into urban life due to the lack of industrialized means of production, banditry and thuggery under small gangs spread significantly. The rejected masses find the solution to be raiding their former villages in search of wealth, causing the Turkish villagery to be pushed to remote places where agriculture is limited, firmly preventing any progression into the later stages of production.
 
-**1600~**: The Ottoman expansion which despite the defects of the governence system was able to continue with the help of the elite Janissary Corps and skilled Sultans comes to a halt. The lack of expansion and new tax revenue from new provinces starts to degrade the Ottoman system which depends on expanding to sponsor state governence. The coinage is degraded in value and the unrest among the Janisseries rise which would culminate in numerous coups against various sultans.
+**1600~**: The Ottoman expansion which despite the defects of the governance system was able to continue with the help of the elite Janissary Corps and skilled Sultans comes to a halt. The lack of expansion and new tax revenue from new provinces starts to degrade the Ottoman system which depends on expanding to sponsor state governance. The coinage is degraded in value and the unrest among the Janisseries rise which would culminate in numerous coups against various sultans.
 
 **1699**: The disastrous treaty of Karlowitz is signed after defeat in the Great Turkish War. The need to reform gradually becomes apparent and the conflict between the reformist sultans and the conservative Ulema(the Islamic clergy) and the Janisseries starts to begin. After this period embassies to European states would be sent to find out why the Ottomans are not keeping up with the conditions of the era and a new group of reformists arise.
 
@@ -80,7 +80,7 @@ go-to: menu
 
 **1826**: The Janissary guilds are bombarded with the help of newly imported cannons from the West and replaced with the European style army of Asakir-i Mansure-i Muhammediye. The new army is molded into one of lower-middle class Muslims who will experience the effects of the downfall of the empire first-hand.
 
-**1839**: Mahmud II, persuaded by the liberals to open up the formerly isolationist empire declares the Tanzimat Reforms. The formation of classes which was deemed necessary to become a "modern society" is attempted to be achieved through economic reforms. The state incentives for local producers and artisans is removed and the creation of the bourgeoisie is expected through direct competition with the Western industrialists. This shock therapy serious pressure on the lower middle class and fuels much of the anxiety about the regression of the empire and its exploitment by Western Industrialists.
+**1839**: Mahmud II, persuaded by the liberals to open up the formerly isolationist empire declares the Tanzimat Reforms. The formation of classes which was deemed necessary to become a "modern society" is attempted to be achieved through economic reforms. The state incentives for local producers and artisans is removed and the creation of the bourgeoisie is expected through direct competition with the Western industrialists. This shock therapy serious pressure on the lower middle class and fuels much of the anxiety about the regression of the empire and its exploitation by Western Industrialists.
 
 Another step towards creating a "modern society" is taken by recognizing the ultimate status of justice, even above that of the sultan. The state is begun to be viewed as a separate entity than the Monarchy which fosters Nationalistic views.
 
@@ -92,13 +92,13 @@ Another step towards creating a "modern society" is taken by recognizing the ult
 
 **1881**: A baby of a lower middle class, Kemal, is born of a Turkish family in Thessaloniki. This baby would come to revolutionize the fate of the Turkish Nation in the future.
 
-**1889**: The CUP, Committee of Union and Progress, is formed as an illegal political party against the tyranny of Abdulhamid II. Even though a coalition of various ideologies ranging from Islamism to Westernism, the party is largely organized around the concept of Turkish Nationalism fuiled by the perpetual downfall of the empire and the perceived low status of the Turks within the Empire.
+**1889**: The CUP, Committee of Union and Progress, is formed as an illegal political party against the tyranny of Abdulhamid II. Even though a coalition of various ideologies ranging from Islamism to Westernism, the party is largely organized around the concept of Turkish Nationalism fuelled by the perpetual downfall of the empire and the perceived low status of the Turks within the Empire.
 
 **1908**: After news of unrest amongst pro-CUP officers in Macedonia, Abdulhamid II. reinstitutes the constitution and the parliament in fear of a coup. Political exiles return to the capital and two factions, the Unionists(primarily CUP members) and the Liberals(associated with another opposition group, the Ahrar party) begin to compete for power.
 
 The Unionists, fueled by a burning sense of Nationalism, want to modernize and save the Ottoman Empire as a primarily Turkic state through the creation of a "National Bourgeoisie" that derives from the Muslim Turkish community within the empire and land reform to break the hegemony of the large land owners which were created as a class thanks to the Liberal reforms of the last century. Political power was a tool to socially engineer the Ottoman and especially the Turkish society to reach the development scale of the Western powers. the Primarily comprised of the lower middle class and the military bureaucracy which proved to be the groups most affected by Western interference on the economy, the Unionists advocated for a national economy with statist elements which were deemed necessary for the preparation of a modern Turkish economy until the private sector was able to take charge of the economy. Despite their political rivalry, Abdulhamid II. was seen as a benevolent and experienced ruler and for this reason the Unionists desired to collaborate with the Sultan during the transformation into a Constitutional Monarchy.
 
-The Liberals, still believing in the potential survival of the Ottoman identity, want to preserve the empire through decentrialization of power and free market economics which they believed would integrate the Ottoman economy into the European market and result in the creation of a modern society. Largely comprised of non-muslim bourgeoisie and the local land lords, the Liberals took a negative stance against large-scale social engineering programs such as land reform which would break apart the economic powerhouse of local notables. The Liberals viewed Sultan Abdulhamid way more negatively than the Unionists due to his Authoritarianism(to which, many Unionists weren't opposed to in principle) and desired an overthrow of the Monarch as soon as possible.
+The Liberals, still believing in the potential survival of the Ottoman identity, want to preserve the empire through decentralization of power and free market economics which they believed would integrate the Ottoman economy into the European market and result in the creation of a modern society. Largely comprised of non-muslim bourgeoisie and the local land lords, the Liberals took a negative stance against large-scale social engineering programs such as land reform which would break apart the economic powerhouse of local notables. The Liberals viewed Sultan Abdulhamid way more negatively than the Unionists due to his Authoritarianism(to which, many Unionists weren't opposed to in principle) and desired an overthrow of the Monarch as soon as possible.
 
 **1909**: A liberal journalist is murdered by supporters of Absolutism and the incident of 31 March happens.(it actually happened on 13 April but was named the incident of 31 March due to the usage of the Islamic calendar) In response to Liberal protests against the murder, the conservatives led by members of the Ulema and recently demobilised soldiers take on to the streets and start a revolt in the capital. Pro-CUP regiments arrive from Macedonia and end the revolts. Abdulhamid II. is viewed as the culprit behind the revolt and is replaced with Mehmed V. as the sultan.
 
@@ -146,7 +146,7 @@ Sultan Mehmed Resad V. dies and is replaced with the passive sultan Vahdettin.
 
 **1919**: The Ottoman Army is dissolved, some officers disband their army while others retreat to more defensible positions within Anatolia or distribute their weapons among the Turkish population.
 
-The Greek Army lands in Smyrna. This act is seen as a total embarassment and national dishonor by the Turkish public whose Nationalism is fueled by ethnic conflict.
+The Greek Army lands in Smyrna. This act is seen as a total embarrassment and national dishonor by the Turkish public whose Nationalism is fueled by ethnic conflict.
 
 Thanks to the weapons distributed by the army, local militias led by notables and landlords called "Kuvayi Milliye" are formed against the approaching Entente armies.
 
@@ -178,7 +178,7 @@ Vahdettin runs away from Istanbul on a British ship.
 
 **1923**: The treaty of Lausanne is signed. The Republic of Turkey is declared.
 
-In the new elections Kemalists achieve a slim majority. Conflict begins to arise between Kemal and his Conservative former comrades. The Conservatives oppose the Republic and reaffrm the role of religion and private enterprise within society.
+In the new elections Kemalists achieve a slim majority. Conflict begins to arise between Kemal and his Conservative former comrades. The Conservatives oppose the Republic and reaffirm the role of religion and private enterprise within society.
 
 Between 1923 and 1938 under the leadership of Mustafa Kemal massive efforts at modernization would be made. A one-party state, with the aim of revolutionizing the nation and preparing it for Liberal Democracy would be established. H.C Armstrong would write at the last page of his biography of Kemal;
 
@@ -200,11 +200,11 @@ a Dictator.**"
 
 Wanting to create a civic administration, Kemal orders all military leaders many of whom have become involved with politics to choose either politics or the army. Many Conservatives leave politics for the army.
 
-**1928**: The Latin alphabet is endorsed and the Arabic scrpit is abandoned, signaling a major step in the rejection of the imperial past.
+**1928**: The Latin alphabet is endorsed and the Arabic script is abandoned, signaling a major step in the rejection of the imperial past.
 
 **1929**: A treaty is signed with the Soviet Union prohibiting both sides from signing alliances without the approval of the other and participating in any international move against each other.
 
-**1923-1929**: The Republic was created thanks to collaboration of many political forces, ranging from the military intelligentsia to the landlords. Choosing the path of collaboration, Kemal pursued a Liberal economic policy during this era. However due to the failure of the sprouted bourgeoisie to nurture the expected growth rates and their inability to involve the underdeveloped Anatolia in industrialization efforts, combined with the free market's inability to cope with the great depression the state would shift to a etatist economy and would take an even more uncompromising stance in the reforms.
+**1923-1929**: The Republic was created thanks to collaboration of many political forces, ranging from the military intelligentsia to the landlords. Choosing the path of collaboration, Kemal pursued a Liberal economic policy during this era. However, due to the failure of the sprouted bourgeoisie to nurture the expected growth rates and their inability to involve the underdeveloped Anatolia in industrialization efforts, combined with the free market's inability to cope with the great depression the state would shift to a etatist economy and would take an even more uncompromising stance in the reforms.
 
 **1933**: The right to vote and be elected is given to women, 10 years before France.
 
@@ -228,7 +228,7 @@ World War 2 begins. İsmet İnönü, though keeping close ties with all ties, re
 
 **1941**: The Axis powers invade Greece. With the German army at bay, the Çakmak line is built in Thrace against a possible attack.
 
-**1942**: To create funding for the militarization efforts, the Wealth Tax is introduced. Even though targetted primarily at the non-Turkish bourgeouisie, Turkish capital feel threatened by the unpredictableness of <span style="color: #E3000F;">**CHP**</span> and the planned economy.
+**1942**: To create funding for the militarization efforts, the Wealth Tax is introduced. Even though targeted primarily at the non-Turkish bourgeoisie, Turkish capital feel threatened by the unpredictableness of <span style="color: #E3000F;">**CHP**</span> and the planned economy.
 
 **1943**: With the chance provided by the global conflict, İsmet İnönü asks his education minister Hasan Ali Yücel and agricultural minister Şevket Raşip to create a plan to modernize the backward Anatolian villages to which the values of the Enlightenment and Kemalist Revolution have not reached. The ministers report back that the fund necessary for such a reform is simply not present and the land reform couldn't be accomplished. İsmet İnönü noted, in response to this report that "We are missing a historical chance. You will regret this choice in the future" to which, in the future, the ministers agree.
 
@@ -297,7 +297,7 @@ and I will collect it."
 
 **1957**: DP experiences electoral regression and their vote share drops to a 48% against CHP's 41%. Anxiety over replacement begins to arise among the party and Menderes, the most ambitious, seems determined to not surrender his seat.
 
-**1959**: DP, unable to get more financial assistance from the West, finds the solution in trying to ban the CHP. Menderes, growing even bolder and more ambitious, seems willing to crush any opposition as long as he can stay in power. İsmet İnönü warns him, "if you continue in this direction, even I cant save you." Nazım Hikmet writes another poem;
+**1959**: DP, unable to get more financial assistance from the West, finds the solution in trying to ban the CHP. Menderes, growing even bolder and more ambitious, seems willing to crush any opposition as long as he can stay in power. İsmet İnönü warns him, "if you continue in this direction, even I can't save you." Nazım Hikmet writes another poem;
 
 Mr. Adnan
 
@@ -319,7 +319,7 @@ Haven't seen our city a fire deadly as you
 
 You have a name, Mr Adnan, one that resembles ours
 
-Withers our tounge, as you speak the same language as ours
+Withers our tongue, as you speak the same language as ours
 
 Worse than lice, hunger and malaria you are
 
@@ -346,7 +346,7 @@ Cemal Madanoğlu, a nonpartisan general of the land forces seems to be leading t
 They contacted him and asked him to join the organization. He responded;
 "Damn it. You know I have the balls and no brain"
 
-After the coupers gave him 24 hours to think, he responded;
+After the coup plotters gave him 24 hours to think, he responded;
 "Damn it. Has manhood died? I accept joining your organization!"
 
 And the coup proceeded.
@@ -357,7 +357,7 @@ The military junta contacted various academicians and professors to create a cou
 
 Menderes is executed by hanging due to "treason against the nation". This is definitely not well received by the public and Menderes transforms in the eyes of the people from a shady but charismatic politician to a national hero and martyr of democracy. His last words reinforce this sentiment as well;
 
-"I wish eternal peace for both my nation and my people. I am not angry at anyone. **I have no resentment.**
+"I wish eternal peace for both my nation and my people. I am not angry at anyone. **I have no resentment.**"
 
 Even with the backing of the junta, <span style="color: #E3000F;">**CHP**</span> fails to achieve a victory in the 1961 elections, winning only 36% of the vote against the 64% won by the remnants of the DP, especially Adalet Partisi(Justice Party) or AP. Nevertheless the junta forced the AP to go into a coalition with <span style="color: #E3000F;">**CHP**</span> and with İsmet İnönü as the prime minister.
 
@@ -366,10 +366,10 @@ The young Kemalist officers, with this electoral defeat began to doubt CHP's abi
 **1962**: A young officer named Talat Aydemir attempts a coup.
 Dissatisfied with the coup supposedly "not reaching its goals" and the junta's "overreliance on CHP", Talat, popular among the student officers, launches a coup. The coup had no support in the military hierarchy so it had no chance of succeeding, or so the government thought.
 
-The president's palace was holding a conference which included the president Cemal Gürsel, prime minister İsmet İnönü and many other ministers. While the coup failed to capture the streets, the chief guardian of the palace Cihat Alpan, who was appointed only a while ago, was a fierce supporter of Talat Aydemir and took everyone in the palace as hostages. With the whole govenment in his palm, Aydemir could have eliminated the whole administration but he chose to negotiate and missed a once in a life time chance. İsmet İnönü, the old wolf, acclaimed when he heard that Aydemir was willing to negotiate;
+The president's palace was holding a conference which included the president Cemal Gürsel, prime minister İsmet İnönü and many other ministers. While the coup failed to capture the streets, the chief guardian of the palace Cihat Alpan, who was appointed only a while ago, was a fierce supporter of Talat Aydemir and took everyone in the palace as hostages. With the whole government in his palm, Aydemir could have eliminated the whole administration but he chose to negotiate and missed a once-in-a-lifetime chance. İsmet İnönü, the old wolf, acclaimed when he heard that Aydemir was willing to negotiate;
 "Now's the time that he has lost"
 
-Aydemir was demoted but not trialed in accordance with the agreement. However, after another coup attempt next year he would be executed in 1964. In his memoirs he said that the reason he did not eliminate the administration was because "It surely would have led to the collapse of the central authority and a civil war, and I did not want that".
+Aydemir was demoted but not tried in accordance with the agreement. However, after another coup attempt next year he would be executed in 1964. In his memoirs he said that the reason he did not eliminate the administration was because "It surely would have led to the collapse of the central authority and a civil war, and I did not want that".
 
 **1965**: AP scores a major victory in the elections and forms a majority government.
 
@@ -379,23 +379,23 @@ Aydemir was demoted but not trialed in accordance with the agreement. However, a
 
 **March 9 1971**: Socialist officers within the ranks of the military attempt a coup which fails and causes a wave of oppression against Socialists and intellectuals.
 
-**March 12 1971**: Due to AP's inability to find a solution for the inter-class conflicts and put an end to the student movements, the military sends a memorandum to the Demirel government, calling it to resign in favor of a technocratic military directed government. The names behind the 9 March attempt have been jailed and no one exactly knows where they are, or what has happened to them exactly.
+**March 12 1971**: Due to AP's inability to find a solution for the inter-class conflicts and put an end to the student movements, the military sends a memorandum to the Demirel government, calling it to resign in favor of a technocratic military-directed government. The names behind the 9 March attempt have been jailed and no one exactly knows where they are, or what has happened to them exactly.
 
 @12march
 
 The current state of Turkish politics is shaped by the Memorandum of March 12 1971 and the ensuing military-dictated technocratic governments.
 
-After the 60 coup and the constitution of 61, Turkish Republic entered a state of liberalization and democratization. With a constitution that can set an example 'even for Western Europe' as Ertuğrul Soymaz, the spokesman of the industrialists of Istanbul, left wing ideas started to appear in public life for the fırst time in the young republic's life. As the AP governments of the 60's opened up the Turkish market and many state corporations were privatized, With the effect of unregulated labour conditions and the rise of the working class, socialist and left wing ideas quickly spread through the unions and the now autonomous higher education. With the formation of TİP which managed to get a significant 3% of the vote in a nation where politics is dominated by the progressive and conservative camps, TİP and the Socialist movement set the first example of labour politics.
+After the 60 coup and the constitution of 61, Turkish Republic entered a state of liberalization and democratization. With a constitution that can set an example 'even for Western Europe' as Ertuğrul Soymaz, the spokesman of the industrialists of Istanbul, left wing ideas started to appear in public life for the first time in the young republic's life. As the AP governments of the 60s opened up the Turkish market and many state corporations were privatized, With the effect of unregulated labour conditions and the rise of the working class, socialist and left wing ideas quickly spread through the unions and the now autonomous higher education. With the formation of TİP which managed to get a significant 3% of the vote in a nation where politics is dominated by the progressive and conservative camps, TİP and the Socialist movement set the first example of labour politics.
 
-However these event worried the political right and the Kemalist military greatly and many from these camps began to argue that 'the constitution was too liberal for a nation as economically backward as ours'. In the late 1960's, a splinter party of the ultranational CKMP, MHP formed a militia called 'Ülkü Ocakları' otherwise known as the 'Grey wolves' and started to terrorize the Socialist intelligentsia without state interference. Admist rising political violence, between the Grey Wolves and DEV-GENÇ(a socialist student movement) and worsening economically conditions, after the failed coup attempt of the Socialist Kemalists within the army, the general command launched its own semi-coup on March 12 1971.
+However, these events worried the political right and the Kemalist military greatly and many from these camps began to argue that 'the constitution was too liberal for a nation as economically backward as ours'. In the late 1960s, a splinter party of the ultranational CKMP, MHP formed a militia called 'Ülkü Ocakları' otherwise known as the 'Grey wolves' and started to terrorize the Socialist intelligentsia without state interference. Amid rising political violence, between the Grey Wolves and DEV-GENÇ(a socialist student movement) and worsening economic conditions, after the failed coup attempt of the Socialist Kemalists within the army, the general command launched its own semi-coup on March 12 1971.
 
 Forcing the AP government of Süleyman Demirel to resign, the military offered the <span style="color: #E3000F;">**CHP**</span> delegate Nihat Erim to form the government, with the condition of leaving his party. Nihat Erim, already sympathetic to the cause of the military accepted the offer and formed his government, which despite collapsing once in late 1971 still holds on.
 
 Despite İnönü's silence and the view of the coup as a means for finally bringing <span style="color: #E3000F;">**CHP**</span> to government, not all of <span style="color: #E3000F;">**CHP**</span> approves the coup, and certainly not Bülent Ecevit.
 
-Some in <span style="color: #E3000F;">**CHP**</span> began to see the necessity of adapting to the times, including the young labour minister Bülent Ecevit. Arguing that Atatürk's vision for Turkey isn't inherently conflicted with Social Democracy, they began advocating for a synthesis of Kemalism and Social Democracy, one that accepts and approves all of the targets of Kemalism but rejects the notion of top-down revolutionarism and the forceful implementation of it. Leading a largely populist movement, Ecevit first rose to the rank of the party secretary and then set his eyes on the party leadership.
+Some in <span style="color: #E3000F;">**CHP**</span> began to see the necessity of adapting to the times, including the young labour minister Bülent Ecevit. Arguing that Atatürk's vision for Turkey isn't inherently conflicted with Social Democracy, they began advocating for a synthesis of Kemalism and Social Democracy, one that accepts and approves all of the targets of Kemalism but rejects the notion of top-down revolution and the forceful implementation of it. Leading a largely populist movement, Ecevit first rose to the rank of the party secretary and then set his sights on the party leadership.
 
-Under the junta media and the education have severely been restricted and masses now look up to Ecevit and his rising left of center movement within CHP. Viewing the coup as an attempt to strangle the democratic left, Ecevit has defied the orders of İsmet İnönü and began leading a grassroots movement to first change <span style="color: #E3000F;">**CHP**</span> and then the whole nation.
+Under the junta, media and education have been severely restricted, and the masses now look up to Ecevit and his rising left of center movement within CHP. Viewing the coup as an attempt to strangle the democratic left, Ecevit has defied the orders of İsmet İnönü and begun leading a grassroots movement to first change <span style="color: #E3000F;">**CHP**</span> and then the whole nation.
 
 @curr_gov
 go-to: cabinet if CHP_in_government; menu if not CHP_in_government
@@ -460,13 +460,13 @@ go-to: menu
 
 **Working Class**: The urban working class - blue-collar workers in factories, workshops, mines, and the like. A class created primarily in the last 50 years, the working class families live in ghettos near the industrial zones and support either TIP or CHP. Makes up about 15% - 20% of the population.
 
-**Petty Bourgeoisie**: The urban middle class - shopkeepers, traders and alike. Traditionally one of the main bases of AP but since the party's decision to open up to the global market their alignment have slightly shifted to MSP. Makes up about 15% of the population.
+**Petty Bourgeoisie**: The urban middle class - shopkeepers, traders and the like. Traditionally one of the main bases of AP but since the party's decision to open up to the global market their alignment has slightly shifted to MSP. Makes up about 15% of the population.
 
-**State employees and bureaucrats**: Citizens employed by the state and the bureaucracy. Mostly supports <span style="color: #E3000F;">**CHP**</span> due to the Kemalist roots of the state aparatus. Roughly around 7% of the population.
+**State employees and bureaucrats**: Citizens employed by the state and the bureaucracy. Mostly support <span style="color: #E3000F;">**CHP**</span> due to the Kemalist roots of the state apparatus. Roughly around 7% of the population.
 
 **Capitalists/Land Owners**: The owners of capital and production, disproportionally support AP and its splinter party DP. 3% of the population.
 
-**Alevis**: A Shiite minority within Central Anatolia. Overwhelmingly supports <span style="color: #E3000F;">**CHP**</span> and to a small degree the Alevi minority rights party, TBP. About 10% of the population.
+**Alevis**: A Shiite minority within Central Anatolia. Overwhelmingly support <span style="color: #E3000F;">**CHP**</span> and to a small degree the Alevi minority rights party, TBP. About 10% of the population.
 
 **Kurdish National Movement**: Even though the Kurds make up a significant portion of the population, only a minority of them have political consciousness and demands regarding their socioeconomic or cultural status. Even though the politically aware Kurdish population makes up about 5% of the population, that percentage can significantly rise in reaction to various events.
 
@@ -528,35 +528,35 @@ Rural: CHP: [+ rural_chp_display +]%, AP: [+ rural_AP_display +]%, TIP: [+ rural
 @parties
 go-to: menu
 
-**CHP** - *Cumhuriyet Halk Partisi* (Republican People's Party) - this is us. Although originally formed as an aparatus for our founding father Mustafa Kemal Atatürk to gain support and forward his progressive reforms, after his passing <span style="color: #E3000F;">**CHP**</span> has transformed itself into the defender of his values within the context of parliamentary democracy. Our party is currently in an identity crisis as it still haven't found a solid place for itself within the political spectrum. The reformists led by Bülent Ecevit emphasize the progressive and social aspect of Kemalism and want to pull the party into the direction of Social Democracy, or in their words "Democratic Left". The old guard however continue to resist the calls for reform and prefer the comfort of their ivory tower. Will the party of "for the people, in spite of the people" be able to transform into the one of "for the people, WITH the people"?
+**CHP** - *Cumhuriyet Halk Partisi* (Republican People's Party) - this is us. Although originally formed as an apparatus for our founding father Mustafa Kemal Atatürk to gain support and forward his progressive reforms, after his passing <span style="color: #E3000F;">**CHP**</span> has transformed itself into the defender of his values within the context of parliamentary democracy. Our party is currently in an identity crisis as it still hasn't found a solid place for itself within the political spectrum. The reformists led by Bülent Ecevit emphasize the progressive and social aspect of Kemalism and want to pull the party into the direction of Social Democracy, or in their words "Democratic Left". The old guard however continue to resist the calls for reform and prefer the comfort of their ivory tower. Will the party of "for the people, in spite of the people" be able to transform into one of "for the people, WITH the people"?
 
-**AP** - *Adalet Partisi* (Justice Party) - a center right party that considers itself the continuation of DP after it was banned. They are led by Süleyman Demirel, a former engineer who likely wouldn't have been involved with politics his whole life if it wasnt for the coup. They have been our primary opponent for the past two decades.
+**AP** - *Adalet Partisi* (Justice Party) - a center-right party that considers itself the continuation of DP after it was banned. They are led by Süleyman Demirel, a former engineer who likely wouldn't have been involved with politics his whole life if it wasn't for the coup. They have been our primary opponent for the past two decades.
 
 Current relations: [+ AP_relation : relationships +]
 
-**[+ CGP_name +]** - [+ CGP_full_name +] - a splinter party of CHP, led by Turhan Feyzioğlu. After the pivot of the party to the left of center, many of the right wing Kemalists have resigned from <span style="color: #E3000F;">**CHP**</span> and formed their own party.
+**[+ CGP_name +]** - [+ CGP_full_name +] - a splinter party of CHP, led by Turhan Feyzioğlu. After the pivot of the party to the left of center, many of the right-wing Kemalists have resigned from <span style="color: #E3000F;">**CHP**</span> and formed their own party.
 
 Current relations: [+ CGP_relation : relationships +]
 
-**DP** - *Demokratik Parti* (Democratic Party) - a populist conservative party formed by the right wing of AP as they claimed AP didnt properly represent the values of the former DP.
+**DP** - *Demokratik Parti* (Democratic Party) - a populist conservative party formed by the right wing of AP as they claimed AP didn't properly represent the values of the former DP.
 
 Current relations: [+ DP_relation : relationships +]
 
-**[+ MSP_name +]** - [+ MSP_full_name +] - an Islamist party that advocates for a mixed economy, the realignment of Turkish society along religious lines and increased emphasis on heavy industry. The party is currently led by Süleyman Arif Emre, an intellectual and former member of AP who was chosen to accelerate the formation of the party until the next election. However the more popular face of MSP and the Islamist politics is Necmettin Erbakan, who desires a break with the conservative tradition of AP and the flourishment of an Islamist political tradition that is "the viable alternative between Socialism and Capitalism".
+**[+ MSP_name +]** - [+ MSP_full_name +] - an Islamist party that advocates for a mixed economy, the realignment of Turkish society along religious lines and increased emphasis on heavy industry. The party is currently led by Süleyman Arif Emre, an intellectual and former member of AP who was chosen to accelerate the formation of the party until the next election. However, the more popular face of MSP and the Islamist politics is Necmettin Erbakan, who desires a break with the conservative tradition of AP and the flourishing of an Islamist political tradition that is "the viable alternative between Socialism and Capitalism".
 
 Current relations: [+ MSP_relation : relationships +]
 
-**TIP** - *Türkiye İşçi Partisi* (Turkish Workers' Party) - a left wing party that was dissolved during the memorandum period and is being reorganized behind the scenes. Originally a proponent of Democratic Socialism under Mehmet Ali Aybar's leadership, the military's attempts at shutting down Socialist movements of all kinds have prompted many leftists to lose belief in the political system and support revoluionary means, and the new TİP may be swung in either direction of the pendulum.
+**TIP** - *Türkiye İşçi Partisi* (Turkish Workers' Party) - a left-wing party that was dissolved during the memorandum period and is being reorganized behind the scenes. Originally a proponent of Democratic Socialism under Mehmet Ali Aybar's leadership, the military's attempts at shutting down Socialist movements of all kinds have prompted many leftists to lose belief in the political system and support revolutionary means, and the new TİP may be swung in either direction of the pendulum.
 
 Current relations: [+ TIP_relation : relationships +]
 
 
 
-**MHP** - *Milliyetçi Hareket Partisi* - (Nationalist Movement Party) - a far-right ultranationalist party. Born as a reformation of the old ultranationalist tradition along a synthesis of Turkic and Islamic elements, MHP is more of a paramilitary than it is a parliamentary party. Even though it was banned in the recent memorandum, its membership within the ranks of the Grey Wolves count in the tens of thousands and its rumored that more of them are being trained in the rural portions of Anatolia, commanded by Muzaffer Özdağ and Alparslan Türkeş as its "supreme leader" or "Başbuğ".
+**MHP** - *Milliyetçi Hareket Partisi* - (Nationalist Movement Party) - a far-right ultranationalist party. Born as a reformation of the old ultranationalist tradition along a synthesis of Turkic and Islamic elements, MHP is more of a paramilitary than it is a parliamentary party. Even though it was banned in the recent memorandum, its membership within the ranks of the Grey Wolves counts in the tens of thousands and it's rumored that more of them are being trained in the rural portions of Anatolia, commanded by Muzaffer Özdağ and Alparslan Türkeş as its "supreme leader" or "Başbuğ".
 
 Current relations: [+ MHP_relation : relationships +]
 
-**Other parties** - there is a multitude of small, mostly local, such as the Turkish Unity party, New Turkey Party, Nation Party, and others.
+**Other parties** - there is a multitude of small, mostly local parties, such as the Turkish Unity party, New Turkey Party, Nation Party, and others.
 
 @paramilitaries
 on-arrival: {!
@@ -607,7 +607,7 @@ Overall dissent: [+ dissent_percent : dissent +]
 
 **Marxist-Kemalists**
 
-Marxist Kemalists are a marginalized group with their idea of synthesis between Marxism and Kemalism being seen as treacherous by many. They view the Kemalist revolution as a step towards Socialism and in the case of MDD(National Democratic Revolution)'ers, want to complete it with another revolution that would come from the ranks of the military. Many of the Marxist Kemalists are prisoned right now due to their support of the 9 March coup attempt which was conducted by the Socialist members of the Turkish army.
+Marxist Kemalists are a marginalized group with their idea of synthesis between Marxism and Kemalism being seen as treacherous by many. They view the Kemalist revolution as a step towards Socialism and in the case of MDD(National Democratic Revolution)'ers, want to complete it with another revolution that would come from the ranks of the military. Many of the Marxist Kemalists are imprisoned right now due to their support of the 9 March coup attempt which was conducted by the Socialist members of the Turkish army.
 
 Strength: [+ km_strength_label +]
 
@@ -615,7 +615,7 @@ Dissent: [+ kemalist_marxists_dissent : dissent +]
 
 [? if third_worldists_enabled : **Third Worldists**?]
 
-[? if third_worldists_enabled : The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor disattachment from the right wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so called "shackles of the US".?]
+[? if third_worldists_enabled : The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor detachment from the right-wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so-called "shackles of the US".?]
 
 [? if third_worldists_enabled : Strength: [+ tw_strength_label +]?]
 
@@ -623,7 +623,7 @@ Dissent: [+ kemalist_marxists_dissent : dissent +]
 
 **Left-Wing Kemalist**
 
-The Left-Wing Kemalist are a group of reformers who want to sway <span style="color: #E3000F;">**CHP**</span> from its authoritarian stance of "For the people, in spite of the people". Led by Bülent Ecevit, they have been gaining power within the party since 1965 and now seems to be overshadowing the old guard in strength and rhetoric. The Left-Wing Kemalist want to complete the Kemalist revolution through the spread of progressive values and the improvement of the lives of the labourers, so that Turkey can become the modern republic, in peace with the values of civilization as Atatürk once envisioned.
+The Left-Wing Kemalist faction is a group of reformers who want to sway <span style="color: #E3000F;">**CHP**</span> from its authoritarian stance of "For the people, in spite of the people". Led by Bülent Ecevit, they have been gaining power within the party since 1965 and now seem to be overshadowing the old guard in strength and rhetoric. The Left-Wing Kemalist faction wants to complete the Kemalist revolution through the spread of progressive values and the improvement of the lives of the labourers, so that Turkey can become the modern republic, at peace with the values of civilization as Atatürk once envisioned.
 
 Strength: [+ lk_strength_label +]
 
@@ -631,7 +631,7 @@ Dissent: [+ left_kemalists_dissent : dissent +]
 
 **Reformist Kemalists**
 
-The Reformist Kemalists' perception of Atatürk and Kemalism is much more solid and impervious. Continuing the one party era ideology of "for the people, in spite of the people" Reformist Kemalists keep advocating for a top-down modernization and reject any motion of class differences or conflict.
+The Reformist Kemalists' perception of Atatürk and Kemalism is much more solid and impervious. Continuing the one-party era ideology of "for the people, in spite of the people" Reformist Kemalists keep advocating for a top-down modernization and reject any notion of class differences or conflict.
 
 Strength: [+ ok_strength_label +]
 
@@ -639,7 +639,7 @@ Dissent: [+ orthodox_kemalists_dissent : dissent +]
 
 **Right-Wing Kemalists**
 
-The Right-Wing Kemalists have an especially nationalistic perception of Atatürk, and perhaps share more in ideology with the counter revolutionaries than they do with the other Kemalists. They have increasingly been sidelined by the Left-Wing Kemalist during the last decade and even though they have split into a party of their own, CGP, sympathizers of Right Kemalism are still in <span style="color: #E3000F;">**CHP**</span> and search for any opportunity to prevent the rise of Ecevit.
+The Right-Wing Kemalists have an especially nationalistic perception of Atatürk, and perhaps share more in ideology with the counter-revolutionaries than they do with the other Kemalists. They have increasingly been sidelined by the Left-Wing Kemalist during the last decade and even though they have split into a party of their own, CGP, sympathizers of Right Kemalism are still in <span style="color: #E3000F;">**CHP**</span> and search for any opportunity to prevent the rise of Ecevit.
 
 Strength: [+ rk_strength_label +]
 
@@ -820,7 +820,7 @@ Leader: [+ DP_party_leader +]
 
 **CGP (Republican Reliance Party)**
 Leader: [+ CGP_party_leader +]
-[? if CGP_party_leader == "Feyzioğlu" : Turhan Feyzioğlu, former <span style="color: #E3000F;">**CHP**</span> member, leads this center right party advocating for nationalism and "incorrupt" Kemalism. ?]
+[? if CGP_party_leader == "Feyzioğlu" : Turhan Feyzioğlu, former <span style="color: #E3000F;">**CHP**</span> member, leads this center-right party advocating for nationalism and "incorrupt" Kemalism. ?]
 
 **MSP (National Salvation Party)**
 Leader: [+ MSP_party_leader +]

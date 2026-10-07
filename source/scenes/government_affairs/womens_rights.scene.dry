@@ -10,7 +10,7 @@ frequency: 100
 
 = Women's Rights
 
-The achievements in terms of women's rights are one of our proudest memories of Atatürk's reforms. Women were given the right of equal education as men in 1924, given equal status in marriages and the right of unrestricted divorce with the modern Turkish civil code in 1926 and given the right to vote and to be elected in 1934, 10 years earlier than even in France. However despite these previous legal achievements, there is a lot that needs to be done in order to achieve full gender inequality in an age where these rights are increasingly coming under scrutiny by the reactionary right.
+The achievements in terms of women's rights are one of our proudest memories of Atatürk's reforms. Women were given the right to the same education as men in 1924, given equal status in marriages and the right to unrestricted divorce with the modern Turkish civil code in 1926 and given the right to vote and to be elected in 1934, 10 years earlier than even in France. However, despite these previous legal achievements, there is a lot that needs to be done in order to achieve full gender equality in an age where these rights are increasingly coming under scrutiny by the reactionary right.
 
 [? if MSP_in_government == 1 : However, women's rights reforms while we are in a coalition with the Islamists will incur significant coalition dissent! ?]
 
@@ -29,7 +29,7 @@ The achievements in terms of women's rights are one of our proudest memories of 
 view-if: legalizee == 0
 on-arrival: women_reform += 0.2; legalizee += 1; coalition_dissent -= 1 if MSP_in_government == 1; state_employees_chp += 1; if koykent_progress >= 5 then rural_chp += 1; petty_bourgeoisie_chp += 1; workers_chp += 1; if koykent_progress < 5 then rural_chp -= 1; MSP_relation -= 10; AP_relation -= 5
 
-We have legalized abortions on request until the 10th week of pregnancy, the farthest point we could reasonably push for, so that no women is prevented from making decisions about her own body. [? if koykent_progress < 5 : While the largely urban population approves of this reform, we unfortunately cant break the reactionary sentiments within the ruralty yet without a radical land reform.?]
+We have legalized abortions on request until the 10th week of pregnancy, the farthest point we could reasonably push for, so that no woman is prevented from making decisions about her own body. [? if koykent_progress < 5 : While the largely urban population approves of this reform, we unfortunately can't break the reactionary sentiments within the rural population yet without a radical land reform.?]
 
 [? if MSP_in_government == 1 : Delegates from the MSP decry the achievements of this reform calling it "murder" and "immoral", damaging the stability of our coalition.?]
 
@@ -40,7 +40,7 @@ choose-if: legalizee == 1 and budget >= 1
 unavailable-subtitle: [? if budget < 1 : Requires 1 budget.?] [? if legalizee != 1 : We have already legalized abortions until the 10th week of pregnancy and made them widely available!?]
 on-arrival: women_reform += 0.4; budget -= 1; legalizee += 1; coalition_dissent -= 1 if MSP_in_government == 1; state_employees_chp += 1; if koykent_progress >= 5 then rural_chp += 1; petty_bourgeoisie_chp += 1; workers_chp += 1; MSP_relation -= 10; AP_relation -= 5
 
-Offering abortions on demand across the nation gives women control over their own body and their reproductive rights, improving women's rights significantly. [? if koykent_progress < 5 : While the largely urban population approves of this reform, we unfortunately cant break the reactionary sentiments within the ruralty yet without a radical land reform.?]
+Offering abortions on demand across the nation gives women control over their own bodies and their reproductive rights, improving women's rights significantly. [? if koykent_progress < 5 : While the largely urban population approves of this reform, we unfortunately can't break the reactionary sentiments within the rural population yet without a radical land reform.?]
 
 [? if MSP_in_government == 1 : Delegates from the MSP decry the achievements of this reform calling it "murder" and "immoral", damaging the stability of our coalition.?]
 
@@ -49,7 +49,7 @@ choose-if: labor_minister_party = "CHP"
 unavailable-subtitle: We need the Labour Ministry for this action!
 on-arrival: women_reform += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.2; workers_chp += 4; state_employees_chp += 4; petty_bourgeoisie_chp -= 1; capitalists_chp -= 5; {! AnatolianRules.refreshEconomy(Q); !}
 
-Even though men and women may be putting the same labour and contributed the same amount of revenue to a company, women are often paid less due to societal prejudices. Even though equal pay for equal work wont be achieved in one step, we have to continue our efforts.
+Even though men and women may be putting in the same labour and contributing the same amount of revenue to a company, women are often paid less due to societal prejudices. Even though equal pay for equal work won't be achieved in one step, we have to continue our efforts.
 
 @maternity
 subtitle: -1 budget.
@@ -58,7 +58,7 @@ unavailable-subtitle: [? if labor_minister_party != "CHP" : We need the Labour M
 view-if: maternityy == 0
 on-arrival: women_reform += 0.2; growth_modifier -= 0.1; workers_chp += 3; state_employees_chp += 3; petty_bourgeoisie_chp -= 1; budget -= 1; maternityy += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-A maternity leave of 16 weeks is given to working women, 8 prenatal and 8 postnatal. Thanks to this reform now women do not have to depend on the mercy of their predominantly male employers to manage their familial affairs. However we can further increase the duration of the leave if we concentrate our efforts.
+A maternity leave of 16 weeks is given to working women, 8 prenatal and 8 postnatal. Thanks to this reform now women do not have to depend on the mercy of their predominantly male employers to manage their familial affairs. However, we can further increase the duration of the leave if we concentrate our efforts.
 
 @maternity1
 view-if: maternityy == 1
@@ -75,7 +75,7 @@ unavailable-subtitle: [? if labor_minister_party != "CHP" : We need the Labour M
 view-if: maternityy >= 2
 on-arrival: women_reform += 0.4; growth_modifier -= 0.1; workers_chp += 3; state_employees_chp += 3; petty_bourgeoisie_chp -= 1; budget -= 1; maternityy += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-We extend the maternal leave to 24 weeks, securing a length period which women can dedicate to their newborn children and household without financial pressure from the greedy employers.
+We extend the maternity leave to 24 weeks, securing a lengthy period which women can dedicate to their newborn children and household without financial pressure from the greedy employers.
 
 @guvenlik
 subtitle: -1 budget.

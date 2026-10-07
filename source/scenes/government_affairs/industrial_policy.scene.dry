@@ -8,29 +8,29 @@ card-image: img/portraits/TarhanErdem.jpg
 
 = Industrial Policy
 
-Turkey is undergoing a boom in industrial growth assisted by the state in accordance with the import substitution model. In this model the state supports the assembly and manufacturing industries through tariffs against foreign companies and export subsidies for international competitiveness. Favored by the big industry and capitalists, this model also has its opponents in the form of the petty bourgeoisie who feel sidelined compared to their larger counterparts. 
+Turkey is undergoing a boom in industrial growth assisted by the state in accordance with the import substitution model. In this model the state supports the assembly and manufacturing industries through tariffs against foreign companies and export subsidies for international competitiveness. Favored by big industry and capitalists, this model also has its opponents in the form of the petty bourgeoisie who feel sidelined compared to their larger counterparts.
 
-We need to complete the evolution towards an export economy to build an economy resistant to the turbulences in the price of raw materials.
+We need to complete the evolution towards an export economy to build an economy resistant to the turbulence in the price of raw materials.
 
 - @industry1: Basic industrialization push.
-- @uretim: Divert industrial production away from consumer goods and towards towards capital and assembly products.
+- @uretim: Divert industrial production away from consumer goods and towards capital and assembly products.
 - @elektronik: Move towards high-tech products with great margins of profit such as electronics.
-- @capacity: Employ workers at the maximum level in the state-owned interprises, KİTs.
-- @kobi: Concentrate small and middle sized interprises into cooperatives.
+- @capacity: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+- @kobi: Concentrate small and medium-sized enterprises into cooperatives.
 - @kredi: Shift beneficial loans towards exporting big industry.
 - @demiryolu: Restart investment for railway construction.
-- @koykentindustry: Promote local industries in the Köykents. 
+- @koykentindustry: Promote local industries in the Köykents.
 - @root: No change to industrial policy.
 - @easy_discard
 - @cancel_advisor_action
 
 @industry1
-subtitle: -3 budget. This will assist our efforts for our reorientation towards an export economy. 
+subtitle: -3 budget. This will assist our efforts for our reorientation towards an export economy.
 on-arrival: budget -= 3; industry_modifier += 10; capitalists_chp += 5; petty_bourgeoisie_chp += 2; growth_modifier += 1.5; unemployment_modifier -= 0.5; inflation_modifier += 3.5; industryy += 1; economicaction += 1; forex_pressure += 4; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: industryy == 0 and budget >= 3
-unavailable-subtitle: [? if budget < 3 : We do not have enough budget! ?] [? if industryy == 1 : We have already begun an industrialization push! ?] 
+unavailable-subtitle: [? if budget < 3 : We do not have enough budget! ?] [? if industryy == 1 : We have already begun an industrialization push! ?]
 
-A significant budget is gathered for a final effort to bring our industry to modern standards. Plans are drawn, modern machinery is bought and our nation moves forward in its economic development. 
+A significant budget is gathered for a final effort to bring our industry to modern standards. Plans are drawn, modern machinery is bought and our nation moves forward in its economic development.
 
 @uretim
 on-arrival: growth_modifier += 0.5; inflation_modifier += 0.8; forex_pressure -= 3; economicaction += 0.25; {! AnatolianRules.refreshEconomy(Q); !}
@@ -40,24 +40,24 @@ unavailable-subtitle: We have not begun an industrialization push yet!
 Through incentives and the state planning agency, DPT, we push our factories to focus on assembly and capital products to be sold abroad. This lessens our dependence on the constant flow of foreign currency and increases growth, even though the price of everyday products increases with inflation.
 
 @elektronik
-subtitle: -2 budget. 
+subtitle: -2 budget.
 on-arrival: budget -= 2; growth_modifier += 1.5; inflation_modifier += 3; forex_pressure += 4; forex_pressure_drift -= 1; unemployment_modifier -= 0.5; electronicc += 1; industry_modifier += 5; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: electronicc == 0 and budget >= 2
-unavailable-subtitle: [? if budget < 2 : We do not have enough budget! ?] [? if electronicc == 1 : We have already begun an industrialization push! ?] 
+unavailable-subtitle: [? if budget < 2 : We do not have enough budget! ?] [? if electronicc == 1 : We have already begun an industrialization push! ?]
 
-As another step of our economic reform we promote the production of tech products with wide margins of profit. 
+As another step of our economic reform we promote the production of tech products with wide margins of profit.
 
 @capacity
 on-arrival: forex_pressure += 1; inflation_modifier -= 1; growth_modifier += 0.4; unemployment_modifier -= 0.8; capacityy += 1; industry_modifier += 3; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: capacityy == 0
 unavailable-subtitle: We are already pushing our employment to the limit!
 
-We maximize our employments in the state-run industries, pushing growth up and unemployment down.  
+We maximize employment in the state-run industries, pushing growth up and unemployment down.
 
 @kobi
 on-arrival: unemployment_modifier -= 0.3; growth_modifier += 0.4; inflation_modifier -= 0.8; capitalists_chp -= 3; petty_bourgeoisie_chp += 3; industry_modifier += 3; {! AnatolianRules.refreshEconomy(Q); !}
 
-We utilize the state planning agency, DPT, to promote concentration of smaller businesses in industrial zones. As smaller businesses gather possible rivals for Turkish industrial giant begin to take shape. 
+We utilize the state planning agency, DPT, to promote concentration of smaller businesses in industrial zones. As smaller businesses gather possible rivals to Turkish industrial giants begin to take shape.
 
 @kredi
 choose-if: MSP_in_government == 0
@@ -67,17 +67,17 @@ on-arrival: growth_modifier += 0.6; inflation_modifier -= 1.5; petty_bourgeoisie
 We shift beneficial loans towards exporting industries which tend to be more concentrated and in the hands of the big capital. While this promotes growth, we should be careful not to push our small producers to the brink of financial struggle.
 
 @demiryolu
-subtitle: -1 budget. Asphalt highways became the primary mode of transportation as the Turkish economy shifted towards free market policies in the 1950's. Promoting railroads can promote growth and accompany our industrial promotions.
+subtitle: -1 budget. Asphalt highways became the primary mode of transportation as the Turkish economy shifted towards free market policies in the 1950s. Promoting railroads can promote growth and accompany our industrial promotions.
 choose-if: demiryoluu == 0 and budget >= 1
 unavailable-subtitle: [? if demiryoluu == 1 : We have already financed expansion of the railroad lines! ?] [? if budget < 1 : We don't have enough budget! ?]
 on-arrival: budget -= 1; growth_modifier += 1; inflation_modifier -= 2; demiryoluu += 1; industry_modifier += 5; {! AnatolianRules.refreshEconomy(Q); !}
 
-Politics expresses itself in many forms, including even in the basic railroads and highways. While the state-guided economy of the CHP-lead one-party era resulted in networks of railroads being built across the country, a switch towards car-centric infrastructure happened in the early 1950's under Adnan Menderes's tenure, where cars as the epitome of individualism and liberty gained preference over the 'collectivist/communist' trains. Now that we are beginning direct investments and planning again, railroad expansions can improve our industrialization efforts.
+Politics expresses itself in many forms, including even in the basic railroads and highways. While the state-guided economy of the CHP-led one-party era resulted in networks of railroads being built across the country, a switch towards car-centric infrastructure happened in the early 1950s under Adnan Menderes's tenure, where cars as the epitome of individualism and liberty gained preference over the 'collectivist/communist' trains. Now that we are beginning direct investments and planning again, railroad expansions can improve our industrialization efforts.
 
 @koykentindustry
-subtitle: -1 budget. 
+subtitle: -1 budget.
 choose-if: koykenttt == 0 and koykent_progress >= 2 and budget >= 1
-unavailable-subtitle: [? if koykenttt > 0 : We have already done this action! ?] [? if koykent_progress < 2 : We have to move on with Köykent formation with the agricultural ministry first! ?] [? if budget < 1 : We dont have enough budget! ?]
+unavailable-subtitle: [? if koykenttt > 0 : We have already done this action! ?] [? if koykent_progress < 2 : We have to move on with Köykent formation with the agricultural ministry first! ?] [? if budget < 1 : We don't have enough budget! ?]
 on-arrival: budget -= 1; koykent_progress += 1; koykenttt += 1; petty_bourgeoisie_chp += 3; rural_chp += 3; growth_modifier += 0.8; unemployment_modifier -= 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-We promote artisans and small shareholder workships and factories in the Köykent settlements, promoting growth and lowering unemployment.
+We promote artisans and small shareholder workshops and factories in the Köykent settlements, promoting growth and lowering unemployment.

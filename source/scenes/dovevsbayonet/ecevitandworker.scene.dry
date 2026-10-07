@@ -9,19 +9,19 @@ tags: dovevsbayonet
 
 = A Visit to Nazilli
 
-As a part of his visits to the party organizations across the nation in preparation for a grassroot movement, Ecevit has arrived to the town of Nazilli.
+As a part of his visits to the party organizations across the nation in preparation for a grassroots movement, Ecevit has arrived in the town of Nazilli.
 
-During his speech, once he started stumbling upon his words, a worker among the watching crowd went to him, took his microphone and asked Ecevit:
+During his speech, once he started stumbling over his words, a worker among the watching crowd went to him, took his microphone and asked Ecevit:
 
 "Ecevit, leave the rhetoric aside. Will you, for the sake of democracy, be ready to struggle against İnönü or not? Tell us this."
 
-After a long suspense, Ecevit answered:
+After a long pause, Ecevit answered:
 
 - @yes: Yes, I promise. I will risk it all.
 - @no: Uh, um, my purpose is -uh, not to tread on the values of our party
 
 @yes
-subtitle: The battle begins..
+subtitle: The battle begins...
 on-arrival: q0_lk_str += 1; q1_lk_str += 1
 
 @no

@@ -9,7 +9,7 @@ card-image: img/kabine.jpg
 
 = Coalition Affairs
 
-Our coalition is in trouble. Members of our right wing coalition partner are constantly criticizing our progressive reforms and are threatening a no confidence vote to bring down this coalition.
+Our coalition is in trouble. Members of our right-wing coalition partner are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition.
 
 How do we reduce tensions with the coalition?
 
@@ -33,7 +33,7 @@ unavailable-subtitle: Not enough resources (need 2).
 choose-if: resources >= 2
 on-arrival: resources -= 2; coalition_dissent -= 1; democracystatus -= 2
 
-By transferring campaign funds to our coalition partners, we can make our policies more acceptable to them. Some would call this corruption and a negativity for democracy, but perhaps it is necessary.
+By transferring campaign funds to our coalition partners, we can make our policies more acceptable to them. Some would call this corruption and a setback for democracy, but perhaps it is necessary.
 
 @no_change
 
@@ -44,7 +44,7 @@ subtitle: Bring down this government before our opponents do. There is no guaran
 view-if: AP_votes <= 35 and AP_votes < chp_votes
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} CHP_in_government = 0; in_grand_coalition = 0; in_democratic_coalition = 0; prime_minister = "Süleyman Demirel"; prime_minister_party = "AP"; AP_in_government = 1; MHP_in_government = 1; in_right_coalition = 1; MSP_in_government = 1; DP_in_government = 1; democracystatus -= 5
 
-We have called for a vote of no confidence in ourselves, and have brought down this government. However the right wing parties, seeing our electoral potential, refused snap elections and formed a 'Nationalist Front' coalition among themselves, comprising: AP, DP, MSP and MHP.
+We have called for a vote of no confidence in ourselves, and have brought down this government. However, the right-wing parties, seeing our electoral potential, refused snap elections and formed a 'Nationalist Front' coalition among themselves, comprising: AP, DP, MSP and MHP.
 
 @bring_down2
 subtitle: Bring down this government before our opponents do. There is no guarantee we will be able to force a snap election!

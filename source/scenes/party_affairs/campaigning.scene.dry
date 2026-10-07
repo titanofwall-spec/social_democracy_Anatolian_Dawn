@@ -12,11 +12,11 @@ card-image: img/inonu_campaigning.jpeg
 
 Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?
 
-- @workers: The rising urban working class, attracted by our shift in policy. 
-- @petty_bourgeoisie: The middle class of artisans, shopkeepers and alike, normally affiliated with liberal parties.
-- @state_employees: Citizens employed by the state and bureaucracy.
+- @workers: The rising urban working class, attracted by our shift in policy.
+- @petty_bourgeoisie: The middle class of artisans, shopkeepers and the like, normally affiliated with liberal parties.
+- @state_employees: Citizens employed by the state and the bureaucracy.
 - @rural: Rural workers and small farmers, who have felt neglected by us in the past.
-- @capitalists: Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords..?
+- @capitalists: Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords...?
 - @root: We either don't want to or cannot campaign right now.
 - @easy_discard
 
@@ -24,9 +24,9 @@ Whether or not we are in an electoral campaign, the party is always trying to br
 subtitle: -1 resource.
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: workers_chp += 3*(1-dissent); 
+on-arrival: workers_chp += 3*(1-dissent);
 
-We have increased our campaigning among the workers. The workers aren't really that entusiastic about the continuation of the status quo.
+We have increased our campaigning among the workers. The workers aren't really that enthusiastic about the continuation of the status quo.
 
 @petty_bourgeoisie
 subtitle: -1 resource.

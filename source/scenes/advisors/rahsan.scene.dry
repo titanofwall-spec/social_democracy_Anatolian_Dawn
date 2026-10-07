@@ -3,11 +3,11 @@ is-pinned-card: true
 tags: advisor, left_kemalists
 card-image: img/portraits/RahsanEcevit.jpeg
 view-if: rahsan_advisor = 1 and CHP_party_leader == "Ecevit"
-new-page: true 
+new-page: true
 
 = Rahşan Ecevit
 
-he wife of our new party leader, Bülent Ecevit. While she isnt a politician herself, the party can still benefit from her personality.
+The wife of our new party leader, Bülent Ecevit. While she isn't a politician herself, the party can still benefit from her personality.
 
 - @resource: Emergency Fundraising
 - @root: Return to main

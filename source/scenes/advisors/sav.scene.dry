@@ -3,7 +3,7 @@ is-pinned-card: true
 tags: advisor, left_kemalists
 card-image: img/portraits/OnderSav.jpg
 view-if: sav_advisor = 1
-new-page: true 
+new-page: true
 
 = Önder Sav
 
@@ -16,12 +16,12 @@ new-page: true
 - @root: Return to main
 
 @constitution
-subtitle: Sav can make convincing arguments against its alteration by the right wing parties if need arises.
+subtitle: Sav can make convincing arguments against its alteration by the right-wing parties if need arises.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 3; TIP_relation += 5; disk_relation += 2; workers_chp += 3
 
-We present the benefits of the political freedom and university autonomy to the parliament against any attempts to alter it. Leftist organizations offer their gratitude for defending the laws that allow them to organize efficiently.
+We present the benefits of political freedom and university autonomy to the parliament against any attempts to alter it. Leftist organizations offer their gratitude for defending the laws that allow them to organize efficiently.
 
 @diskrelation
 choose-if: advisor_action_timer = 0

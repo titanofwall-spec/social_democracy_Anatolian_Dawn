@@ -310,7 +310,7 @@ Bourgeois Coalition (AP + [+ CGP_name +] + DP): [+ bourgeois_coalition +] seats
 
 Nationalist Front Coalition (AP + CGP + MSP + MHP): [+ nationalist_front_coalition +] seats
 
-[? if far_right_urgency <= 1 and MHP_r >= 15 : The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Turkey. ?]
+[? if far_right_urgency <= 1 and MHP_r >= 15 : The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ?]
 
 There are some potential coalition arrangements.
 
@@ -359,7 +359,7 @@ The establishment would be furious over such a coalition and the army may make a
 
 @forward
 
-There is a lot of qualm within TIP over their possible entry into government and
+There are many qualms within TIP over their possible entry into government.
 
 - @ecevitleft: Naturally, Karaoğlan Ecevit is going to be the prime minister!
 - @kirikoglu: To ease tensions, we can perhaps offer a name from CHP closer to TIP, like Kamil Kırıkoğlu.
@@ -375,7 +375,7 @@ Bülent Ecevit has become the prime minister of a government led by us and TIP. 
 @kirikoglu
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} prime_minister = "Kamil Kırıkoğlu"; prime_minister_party = "CHP"; TIP_relation += 20; coup_timer += 8; orthodox_kemalists_dissent += 20; kemalist_marxists_dissent -= 20; {! AnatolianRules.adjustFactionStrength(Q, 'km', 20); !}  CHP_in_government = 1; TIP_in_government = 1; in_left_front = 1
 
-We offer one of the hailing politicians of the Marxist left in our party, Kamil Kırıkoğlu, as the name from prime ministership. The army and the Orthodox Wing of our party are absolutely furious.
+We offer one of the hailing politicians of the Marxist left in our party, Kamil Kırıkoğlu, as the nominee for prime minister. The army and the Orthodox Wing of our party are absolutely furious.
 
 - @ministries: First, we must select our ministries.
 
@@ -393,7 +393,7 @@ After lengthy negotiations, it appears as the overwhelmingly larger party, we ca
 @ministriesb
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} CHP_in_government = 1; MSP_in_government = 1; in_msp_coalition = 1; prime_minister = "Bülent Ecevit"; prime_minister_party = "CHP"
 
-We have managed to form a seemingly improbable coalition, lets hope it will be beneficial for the nation.
+We have managed to form a seemingly improbable coalition, let's hope it will be beneficial for the nation.
 
 - @ministries: First, we must select our ministries
 
@@ -403,7 +403,7 @@ subtitle: AP + DP + MSP + Others ([+ right_coalition +] seats)
 unavailable-subtitle: The MSP is not interested in a coalition with the Center.
 view-if: right_coalition >= 226
 
-There are enough votes for a right-wing coalition of the AP, DP, MSP, and minor right wing parties. [? if largest_party == "CHP": However, this will be seen as abdicating responsibility for government, as we are the largest party. ?]
+There are enough votes for a right-wing coalition of the AP, DP, MSP, and minor right-wing parties. [? if largest_party == "CHP": However, this will be seen as abdicating responsibility for government, as we are the largest party. ?]
 
 - @right_coalition_sure: Yes, we will abdicate our responsibility for government formation, and let a right-wing coalition take power.
 - @grand_coalition: Actually, we want to check out the other possibilities.
@@ -418,9 +418,9 @@ go-to: right_coalition_2
 view-if: right_coalition >= 226
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} CHP_in_government = 0; CHP_toleration = 0; AP_in_government = 1; DP_in_government = 1; MSP_in_government = 1; prime_minister = "Süleyman Demirel"; prime_minister_party = "AP"; foreign_minister_party = "DP"; interior_minister_party = "MSP"; justice_minister_party = "MSP"; labor_minister_party = "AP"; defense_minister_party = "I"; economic_minister_party = "DP"; finance_minister_party = "AP"; agriculture_minister_party = "MSP"; in_right_coalition = 1; democracystatus -= 5;
 
-Even though DP is unwilling to reconcile with Demirel and AP, an arrangement is created between AP, DP and MSP. [? if year < 1976: Our performance in the elections disappoint many in the party and doubts begin to emerge about the actual effectiveness of the Karaoğlan wave.. ?] [? if year >= 1976: Many in our party begin to think that the Karaoğlan wave is starting to crack and rumors of various unpleasant talks begin arriving to Ecevit's office in Ankara.. ?]
+Even though DP is unwilling to reconcile with Demirel and AP, an arrangement is created between AP, DP and MSP. [? if year < 1976: Our performance in the elections disappoint many in the party and doubts begin to emerge about the actual effectiveness of the Karaoğlan wave... ?] [? if year >= 1976: Many in our party begin to think that the Karaoğlan wave is starting to crack and rumors of various unpleasant talks begin arriving to Ecevit's office in Ankara... ?]
 
-- @bye: A house of cards..
+- @bye: A house of cards...
 
 @bye
 
@@ -449,7 +449,7 @@ Who should be the prime minister?
 @ecevit_prime_minister
 on-arrival: prime_minister = "Bülent Ecevit"
 
-The progressives, for the first time since the beginning of the free elections, has been able to form a majority government of its own.
+The progressives, for the first time since the beginning of the free elections, have been able to form a majority government of its own.
 
 @grand_coalition
 title: We can form a Grand Coalition between CHP and AP.
@@ -484,7 +484,7 @@ New elections are scheduled for [+ next_election_month : month +] [+ next_electi
 @grand_coalition_CHP_lead
 on-arrival: leverage -= 25 if AP_relation < 64
 
-A grand coalition between the left wing CHP and right wing AP would be unprecedended, however it may be the solution to the the political instability that has been ravaging our nation.
+A grand coalition between the left wing CHP and right-wing AP would be unprecedented, however it may be the solution to the political instability that has been ravaging our nation.
 
 Since we have emerged as the largest party from the election, president [+ president +] has asked us to lead the government.
 
@@ -556,7 +556,7 @@ We are seen as responsible for the failure to form a government, and many of our
 
 @ministries
 
-We can pick from any number of ministries. Controlling a ministry allows us to directly effect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the TIP. ?] [? if in_left_front and defense_minister_party == "TIP" : If the TIP controls the National Defense Ministry, the army will most likely revolt. ?]
+We can pick from any number of ministries. Controlling a ministry allows us to directly affect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the TIP. ?] [? if in_left_front and defense_minister_party == "TIP" : If the TIP controls the National Defense Ministry, the army will most likely revolt. ?]
 
 - #cabinet_portfolios
 - #drop_cabinet_portfolios

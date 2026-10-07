@@ -14,17 +14,17 @@ This congress is not one for party leadership but rather for the president of th
 
 The Ecevit camp has put forward Sırrı Atalay, a former justice minister. Opposing him is Hüdai Oral, a close associate of İnönü.
 
-İnönü have been able to come to the congress only with the permission of his doctor and despite his ill state, he still haven't hesitated from openly insulting Ecevit and the other reformist candidates.
+İnönü has been able to come to the congress only with the permission of his doctor and despite his ill state, he still hasn't hesitated to openly insulting Ecevit and the other reformist candidates.
 
-After calling Ecevit a "bandit", İnönü has shouted in the podium; "Its either me or Bülent", trying to use his persona to prevent a humiliating defeat. Ecevit, responded with a simple statement;
+After calling Ecevit a "bandit", İnönü has shouted from the podium: "It's either me or Bülent", trying to use his persona to prevent a humiliating defeat. Ecevit responded with a simple statement;
 
-"The issue at hand is actually further than that of placing CHP's trajectory on its former state or replacing it with something new. Moreover, its even further than the "Its either me, or Bülent" mindset. I am repeating once again, the primary thing that should be determined is this: will <span style="color: #E3000F;">**CHP**</span> be governed by command or law? This is what we will decide.
+"The issue at hand is actually further than that of placing CHP's trajectory on its former state or replacing it with something new. Moreover, it's even further than the "It's either me, or Bülent" mindset. I am repeating once again, the primary thing that should be determined is this: will <span style="color: #E3000F;">**CHP**</span> be governed by command or law? This is what we will decide.
 
 **"I am going to say it more clearly, the decision at hand is this: Will we be the free and respectful members of a democratic party, or will we be its subjects? The decision is yours."**
 
 Shall we begin the voting?
 
-- @commence: Lets begin.
+- @commence: Let's begin.
 
 @commence
 go-to: aftervote
@@ -79,7 +79,7 @@ view-if: true
 The delegates have voted. The hall is filled with cheers and groans alike. The result is clear.
 
 - @ecevit_wins: Sırrı Atalay wins from the Reformist camp!
-- @inonu_wins: The old guard surprisingly hold on with Hüdai Oral, albeit barely.
+- @inonu_wins: The old guard surprisingly holds on with Hüdai Oral, albeit barely.
 
 @ecevit_wins
 view-if: ecevitVictory
@@ -132,7 +132,7 @@ This marks the end of an era. The old wolf who held firm control over his party 
 [? if right_kemalist_split : The Right-Wing Kemalist faction refuses to accept Ecevit's victory and walks out of the congress hall. Their cadres disperse towards the CGP and other right-wing groupings, leaving our party firmly in the hands of the reformists. ?]
 [? if not right_kemalist_split and right_kemalist_deal : Thanks to the understanding we struck with Satır before the vote, the Right-Wing Kemalists grit their teeth and remain within the party—at least for the moment. ?]
 
-- @shufflement: Now its time for a reshufflement of the party leadership. We will need a dynamic and competent team to lead our party to victory.
+- @shufflement: Now it's time for a reshuffle of the party leadership. We will need a dynamic and competent team to lead our party to victory.
 
 @shufflement
 go-to: shuffle_leadership
@@ -141,4 +141,4 @@ go-to: shuffle_leadership
 view-if: not ecevitVictory
 on-arrival: {! AnatolianRules.adjustFactionStrength(Q, 'ok', 10); Q.congress_upcoming = 0; !}
 
-The old guard has somehow managed to pull a victory with this vote. The Left is heavily demoralized over losing their intra-party majority and many of them focus their criticism on Ecevit, and his perceived romanticism.
+The old guard has somehow managed to pull off a victory with this vote. The Left is heavily demoralized over losing their intra-party majority and many of them focus their criticism on Ecevit, and his perceived romanticism.

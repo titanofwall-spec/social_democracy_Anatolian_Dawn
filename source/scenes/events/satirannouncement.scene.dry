@@ -1,5 +1,5 @@
 title: Extraordinary Party Congress called!
-subtitle: Boynuz kulağı geçmeli..
+subtitle: Boynuz kulağı geçmeli...
 view-if: year == 1972 and month = 4 and week = 1
 max-visits: 1
 tags: event
@@ -14,4 +14,4 @@ In response to the rising Left of Center movement, Kemal Satır has called for a
 - @letsgo: Bring it on.
 
 @letsgo
-subtitle: Boynuz kulağı geçmeli..
+subtitle: Boynuz kulağı geçmeli...

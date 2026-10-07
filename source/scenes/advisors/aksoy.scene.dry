@@ -3,16 +3,16 @@ is-pinned-card: true
 tags: advisor, left_kemalists
 card-image: img/portraits/MuammerAksoy.jpg
 view-if: aksoy_advisor = 1
-new-page: true 
+new-page: true
 
 = Muammer Aksoy
 
-The chief of the technocratic delegation behind the 1960 Constitution, Aksoy is an author and lawyer. In favor of stronger ties with the Western Europe, he is in contact with the European Council, having served as its Turkish delegate in the past.
+The chief of the technocratic delegation behind the 1960 Constitution, Aksoy is an author and lawyer. In favor of stronger ties with Western Europe, he is in contact with the European Council, having served as its Turkish delegate in the past.
 
 - @justice: Minister of Justice
 - @internationalaffairs: Aksoy can manage our international relations with fellow social democratic parties.
 - @europe: Aksoy's delegation in the European Council can help us improve relations.
-- @AET: This seems like a long shot but we can attempt to join the AET(European Economic Community).
+- @AET: This seems like a long shot but we can attempt to join the AET (European Economic Community).
 - @root: Return to main
 
 @justice
@@ -47,4 +47,4 @@ on-arrival: advisor_action_timer = 3; aet = 1; democracystatus += 3
 max-visits: 1
 view-if: west_relation > 80
 
-We submit our formal application. Joining AET will have great benefits but a lot of reforms are needed to be made.
+We submit our formal application. Joining the AET will have great benefits but a lot of reforms need to be made.

@@ -33,7 +33,7 @@ Current interior police loyalty: [+ police_loyalty : loyalty +]
 @recruit
 on-arrival: police_strength += 8; police_loyalty -= 0.05
 
-The new police regiments strengthen the state's hold over the streets, though we have been reported of a decrease in general loyalty.
+The new police regiments strengthen the state's hold over the streets, though we have received reports of a decrease in general loyalty.
 
 @weaponry
 subtitle: -1 budget
@@ -41,7 +41,7 @@ unavailable-subtitle: Not enough budget.
 choose-if: budget >= 1
 on-arrival: police_militancy += 0.1; budget -= 1
 
-The police forces have been supplemented with better weapons and trainings, improving their efficiency.
+The police forces have been supplemented with better weapons and training, improving their efficiency.
 
 @investigate_corruption
 go-to: investigate_corruption_success if police_loyalty >= 0.5; investigate_corruption_failure if police_loyalty < 0.5
@@ -93,10 +93,10 @@ unavailable-subtitle: [? if police_loyalty <= 0.49 : Our police forces are too d
 on-arrival: police_militancy -= 0.08; eastern_crime -= 1; kurds_chp += 3
 
 [? if eastern_crime >= 4 : We have raided some drug depots in the border regions, however more work is needed to solve the issue altogether. ?]
-[? if eastern_crime = 3 : Continuous raids and operations in the East has begun waining the power of the local gangs! ?]
+[? if eastern_crime = 3 : Continuous raids and operations in the East have begun weakening the power of the local gangs! ?]
 [? if eastern_crime = 2 : The crime rates have been decreased significantly thanks to the determination of the security forces. ?]
 [? if eastern_crime = 1 : The region has largely been neutralized, with only isolated incidents remaining as remnants of past instability. ?]
-[? if eastern_crime = 0 : The region has been completely neutralized; the region at last enjoy lasting order and stability. Many are grateful at our party for ending the lawlessness which has persisted for centuries. ?]
+[? if eastern_crime = 0 : The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries. ?]
 
 @ohal
 choose-if: OHAL = 0 and state_force_percent <= 49 or year >= 1978

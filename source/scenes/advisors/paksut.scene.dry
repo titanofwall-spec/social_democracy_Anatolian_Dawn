@@ -3,10 +3,10 @@ is-pinned-card: true
 tags: advisor, right_kemalist
 card-image: img/portraits/Eminpaksut.jpeg
 view-if: paksut_advisor = 1
-new-page: true 
+new-page: true
 
 = Emin Paksüt
 
-Emin Paksüt is a prominent Right-Wing Kemalist intellectual and politician has previously served as the minister of public works.
+Emin Paksüt is a prominent Right-Wing Kemalist intellectual and politician who has previously served as the minister of public works.
 
 - @root: Return to main

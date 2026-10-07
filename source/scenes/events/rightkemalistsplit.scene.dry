@@ -8,15 +8,15 @@ face-image: img/rightkemalistresignation.jpg
 
 = Right Wing Resignations
 
-For years, since the coup of 1960 a battle has been waging between the reformists who wished to reposition CHP as a Social Democratic party and the old guard which hoped to stall or even prevent such a transformation that they saw as a betrayal of the values of Kemalism.
+For years, since the coup of 1960 a battle has been raging between the reformists who wished to reposition CHP as a Social Democratic party and the old guard which hoped to stall or even prevent such a transformation that they saw as a betrayal of the values of Kemalism.
 
 However, the resolution of this long-lasting conflict seems to be approaching.
 
-With Ecevit's victory in his conflict with İnönü on the chairmanship, the Left of Center has emerged as the triumphant faction within the party. With the rapid transformation of the party and its executive, the Right-Wing Kemalists have chosen to abandon CHP and carve out a separate path to offer a 'national' alternative to the Social Democratic CHP appearing in the horizon.
+With Ecevit's victory in his conflict with İnönü on the chairmanship, the Left of Center has emerged as the triumphant faction within the party. With the rapid transformation of the party and its executive, the Right-Wing Kemalists have chosen to abandon CHP and carve out a separate path to offer a 'national' alternative to the Social Democratic CHP appearing on the horizon.
 
-Roughly 30 delegates, led by Kemal Satır first and foremost, have collectively handed over their resignation to Chairman Ecevit and are currently independents, though we expect them to reach an agreement with [+ CGP_name +] and its leader Turhan Feyzioğlu to merge their political paths very soon.
+Roughly 30 delegates, led by Kemal Satır first and foremost, have collectively handed over their resignations to Chairman Ecevit and are currently independents, though we expect them to reach an agreement with [+ CGP_name +] and its leader Turhan Feyzioğlu to merge their political paths very soon.
 
-- @leave: Perhaps it's for the better..
+- @leave: Perhaps it's for the better...
 
 @leave
 on-arrival: chp_seats -= 32; other_seats += 32

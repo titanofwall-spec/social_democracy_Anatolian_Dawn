@@ -11,7 +11,7 @@ tags: govt_affairs
 
 = Municipalities and local governance
 
-In Turkey, the territories of the republic are divided among small municipalities which are firmly connected with the central government. Still, the municipalities are still an integral part of Turkish politics and are useful for reaching out to demographics we normally aren't performing well with through an example of our governance and services.
+In Turkey, the territories of the republic are divided among small municipalities which are firmly connected with the central government. Still, the municipalities are an integral part of Turkish politics and are useful for reaching out to demographics we normally aren't performing well with through an example of our governance and services.
 
 @municipalities_menu
 
@@ -26,7 +26,7 @@ unavailable-subtitle: The party dissent is too high! We are unable to influence 
 - @waterlines: Urban municipalities often struggle with sewage management and providing clean water.
 - @publictransport: Public transport is a crucial part of urban life and most cities are lacking.
 - @libraries: City libraries can be built to support education and increase literature consumption.
-- @halkekmek: Municipal bakeries, organized under the programme "Halk Ekmek" can produce affordable bread to combat inflation and support worker families.
+- @halkekmek: Municipal bakeries, organized under the programme "Halk Ekmek" can produce affordable bread to combat inflation and support working families.
 - @municipalities_menu: Return to municipal planning.
 
 @waterlines
@@ -59,7 +59,7 @@ choose-if: resources >= 2
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 2; workers_chp += 5; petty_bourgeoisie_chp += 3; state_employees_chp += 2; AP_relation -= 5
 
-Many families are thankful at us for providing affordable bread. However the political Right accuses of "disrupting" the economy.
+Many families are thankful to us for providing affordable bread. However, the political Right accuses us of "disrupting" the economy.
 
 @politics
 choose-if: party_dissent < 15

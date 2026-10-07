@@ -29,17 +29,17 @@ go-to: @grassroots if TIP_banned == 1; @demsoc if TIP_banned == 0 and TIP_leader
 @grassroots
 on-arrival: TIP_relation += 6*(1 - dissent)
 
-Since TIP is currently banned, many Socialists welcome our attempts to create a political platform for them. Grassroot connections also expose our party to the socialist ideals..
+Since TIP is currently banned, many Socialists welcome our attempts to create a political platform for them. Grassroot connections also expose our party to the socialist ideals...
 
 @demsoc
 on-arrival: TIP_relation += 8*(1 - dissent)
 
-Mehmet Ali Aybar's TIP is ideologically close with us and its only natural that we improve our relations.
+Mehmet Ali Aybar's TIP is ideologically close to us and it's only natural that we improve our relations.
 
 @commie
 on-arrival: TIP_relation += 4*(1 - dissent)
 
-The ideological turn TIPO has taken is incompatible with ours and this makes attempts at improving our relations less efficient.
+The ideological turn TIP has taken is incompatible with ours and this makes attempts at improving our relations less efficient.
 
 @center
 subtitle: -1 resources
@@ -51,7 +51,7 @@ go-to: @antimilitary if year <= 1974; @enemies if year >= 1973
 @antimilitary
 on-arrival: AP_relation += 6*(1 - dissent)
 
-Even though we have our political differences, both of our party leaderships want to get rid of the military influence and our commitment to race in fair terms is what unites us.
+Even though we have our political differences, both of our party leaderships want to get rid of the military influence and our commitment to compete on fair terms is what unites us.
 
 @enemies
 on-arrival: AP_relation += 3*(1 - dissent)
@@ -77,7 +77,7 @@ go-to: @surprising if year <= 1974; @coalition if year >= 1973 and MSP_in_govern
 @surprising
 on-arrival: MSP_relation += 4*(1 - dissent)
 
-Despite the fact that Islamists are normally our arch enemies, MSP in a strange position where they are rejected by both the liberals of the right and the Kemalist establishment. For this reason, we have managed to form some connections that normally wouldn't be thought of as feasible.
+Despite the fact that Islamists are normally our archenemies, MSP is in a strange position where they are rejected by both the liberals of the right and the Kemalist establishment. For this reason, we have managed to form some connections that normally wouldn't be thought of as feasible.
 
 @coalition
 on-arrival: MSP_relation += 5*(1 - dissent)

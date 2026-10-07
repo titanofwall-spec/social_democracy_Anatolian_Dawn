@@ -10,7 +10,7 @@ tags: govt_affairs, cabinet
 
 = Agricultural Policy
 
-Turkey is largely a rural nation that depends on agricultural production. Even though we historically have had problems with connecting with our rural provinces, as a governing party we must address the needs of our farmers. Feudalism still persists in the countryside which has to be dealt with.[? if rural_policy = 0 : We have yet not agreed on a party policy on agriculture. ?]
+Turkey is largely a rural nation that depends on agricultural production. Even though we historically have had problems with connecting with our rural provinces, as a governing party we must address the needs of our farmers. Feudalism still persists in the countryside which has to be dealt with.[? if rural_policy = 0 : We have not yet agreed on a party policy on agriculture. ?]
 
 @agriculture_menu
 
@@ -25,7 +25,7 @@ Turkey is largely a rural nation that depends on agricultural production. Even t
 choose-if: land_reform == 3
 unavailable-subtitle: We have not selected the Köykent project for our agricultural policy!
 
-The Köykent, literally a fusion of the words 'village' and 'town', project proposes the concentration of small and dispersed villages into larger rural settlements where key social services and industries using agricultural resources would be concentrated. Turkish villages are currently dispersed across the most uninhabitable sections of Anatolia such as mountains and hills as a persisting mark of the war-torn years of Ottoman rule. The Köykent Project is a necessary milestone in the path towards providing livelihoods on modern standards for our Turkish villagery, forgotten by authorities supposed to develop and foster them for ages.
+The Köykent, literally a fusion of the words 'village' and 'town', project proposes the concentration of small and dispersed villages into larger rural settlements where key social services and industries using agricultural resources would be concentrated. Turkish villages are currently dispersed across the most uninhabitable sections of Anatolia such as mountains and hills as a persisting mark of the war-torn years of Ottoman rule. The Köykent Project is a necessary milestone on the path towards providing livelihoods at modern standards for our Turkish villagers, forgotten by authorities supposed to develop and foster them for ages.
 
 - @begin: Begin the rural concentration efforts.
 - @spread: Spread the Köykent settlements across Anatolia.
@@ -40,7 +40,7 @@ on-arrival: koykent_progress += 1; budget -= 1; rural_chp += 3; AP_relation -= 5
 
 We begin crafting the plans for how we shall approach the distribution of social services and which industry should be promoted in which region. The Turkish villager has been chained to poverty and reaction for ages; we will make sure this era is over once and for all.
 
-Our efforts upset the right wing parties of course, since their political existence relies on the ignorance and backwardness of the people.
+Our efforts upset the right-wing parties of course, since their political existence relies on the ignorance and backwardness of the people.
 
 @spread
 subtitle: -3 budget. We shall continue our efforts and begin the construction of Köykent settlements on a large scale.

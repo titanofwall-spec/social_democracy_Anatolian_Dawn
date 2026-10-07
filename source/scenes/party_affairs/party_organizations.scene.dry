@@ -9,7 +9,7 @@ card-image: img/turkiyeziraatbankasi.png
 
 = Party Organizations
 
-In addition to being a political party, the <span style="color: #E3000F;">**CHP**</span> is a social world onto itself, with a vast array of associated organizations which serve the social needs of their members from cradle to grave.
+In addition to being a political party, the <span style="color: #E3000F;">**CHP**</span> is a social world unto itself, with a vast array of associated organizations which serve the social needs of their members from cradle to grave.
 
 - @newspapers: Fund more newspapers and journalists.
 - @workers: Fund the worker bureaus.
@@ -47,9 +47,9 @@ go-to: culture
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; women += 1; petty_bourgeoisie_chp += 2; workers_chp += 2; 
+on-arrival: resources -= 1; women += 1; petty_bourgeoisie_chp += 2; workers_chp += 2;
 
-"How can a half of society fly onto the skies when the other half is chained down?"
+"How can half of society fly into the skies when the other half is chained down?"
 
 We have increased funding to the women's branch of the party.
 

@@ -8,7 +8,7 @@ tags: govt_affairs, cabinet
 
 = Justice Ministry
 
-Justice is the main instrument through which the state establishes trust and belief in its authority. If we don't do the necessary reforms curbing right wing influence in the bureaucracy and prevent political persecutions, it will be the stability of our democracy which will suffer the most. Likewise, improving the fairness of our judicial affairs can reestablish the trust in our democracy at a time when every group awaits its faltering for political benefit. 
+Justice is the main instrument through which the state establishes trust and belief in its authority. If we don't do the necessary reforms curbing right-wing influence in the bureaucracy and prevent political persecutions, it will be the stability of our democracy which will suffer the most. Likewise, improving the fairness of our judicial affairs can reestablish the trust in our democracy at a time when every group awaits its faltering for political benefit.
 
 - @amnesty: Launch a general amnesty.
 - @moderation: Release a circular note of moderation in political cases.
@@ -17,7 +17,7 @@ Justice is the main instrument through which the state establishes trust and bel
 - @investigate: Investigate accusations of police violence and torture.
 - @resist: Resist against DGM, the state security courts.
 - @constitutionalcourt: Bring the DGMs to the constitutional court!
-- @KMD: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for long.
+- @KMD: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
 - @easy_discard
 - @cancel_advisor_action
 
@@ -27,7 +27,7 @@ choose-if: Amnesty == 0
 unavailable_subtitle: We have already passed a general amnesty.
 on-arrival: grey_wolves_strength += 10; grey_wolves_militancy += 0.05; raiders_strength += 5; workers_chp += 2; state_employees_chp += 2; rural_chp += 2; kurds_chp += 2; petty_bourgeoisie_chp += 2; TIP_relation += 5; Amnesty += 1; coalition_dissent -= 1 if MSP_in_government == 1
 
-We have kept our campaign promise and released a huge amount of the prisoners held in our prisons. Despite our decent intentions, we have observed a significant increase in street fightings and political violence after the amnesty which needs to be managed.
+We have kept our campaign promise and released a huge number of the prisoners held in our prisons. Despite our decent intentions, we have observed a significant increase in street fighting and political violence after the amnesty which needs to be managed.
 
 @moderation
 subtitle: Many leftists have been wrongfully prosecuted for unproven crimes and dubious investigations. We can order the courts to maintain moderation in such political cases
@@ -40,25 +40,25 @@ As we put an end to purely political persecution, many leftist intellectuals are
 @prioritize
 on-arrival: police_loyalty -= 0.05; grey_wolves_strength -= 4; raiders_strength -= 6
 
-We prioritize the persecution of right winger militants. Mass arrests curb the influence of right wing paramilitaries, at least for now.
+We prioritize the persecution of right winger militants. Mass arrests curb the influence of right-wing paramilitaries, at least for now.
 
 @prisonreform
-subtitle: Political prisoners are often mistreated and placed in the same cells as rapists and murderers. 
+subtitle: Political prisoners are often mistreated and placed in the same cells as rapists and murderers.
 on-arrival: democracystatus += 1; TIP_relation += 3; disk_relation += 3
 
-Both TIP and the left wing syndicate DISK express their gratitude for our efforts in improving the status of political prisoners.
+Both TIP and the left-wing syndicate DISK express their gratitude for our efforts in improving the status of political prisoners.
 
 @investigate
 on-arrival: democracystatus += 2; police_loyalty -= 0.1; kurds_chp += 3; alevis_chp += 4; kurdish_radicalism -= 0.05
 
-Our investigations reveal infuriating cases of cooperation with right wing groups in persecuting Kurds and Alevis. As the state finally begins taking action against such atrocities, these groups are thankful towards both our party and the democratic system. 
+Our investigations reveal infuriating cases of cooperation with right-wing groups in persecuting Kurds and Alevis. As the state finally begins taking action against such atrocities, these groups are thankful towards both our party and the democratic system.
 
 @resist
 subtitle: The DGMs are special courts created after the 12 March Memorandum which are responsible for the cases 'involving the security of the state' but actually have often used to persecute intellectuals and leftists.
 view-if: resistt < 3
 on-arrival: democracystatus += 1; TIP_relation += 3; disk_relation += 3; resistt += 1
 
-We take the battle to the DGMs and do everything in our ministrial power to limit their scale and activity. Leftist groups express their approval of our resistance but we have to do more to completely mutilate the DGMs.
+We take the battle to the DGMs and do everything in our ministerial power to limit their scale and activity. Leftist groups express their approval of our resistance but we have to do more to completely mutilate the DGMs.
 
 @constitutionalcourt
 subtitle: Thanks to our previous efforts in limiting the activities of the DGMs, we can finally dispatch them to the constitutional court.
@@ -67,9 +67,9 @@ choose-if: resistt = 3
 unavailable-subtitle: We have already brought the DGMs to the constitutional court!
 on-arrival: democracystatus += 2; resistt += 1
 
-Even if the DGMs will not be banned outright now due to the risk of a direct conflict with the military, our efforts contribute to the stability of the republic and the belief in democracy. 
+Even if the DGMs will not be banned outright now due to the risk of a direct conflict with the military, our efforts contribute to the stability of the republic and the belief in democracy.
 
 @KMD
 on-arrival: grey_wolves_strength -= 2; raiders_strength -= 2
 
-We open investigations into the proceedings of the KMD. While actually banning them would be unconstitutional, our efforts put their activities under pressure and each investigation we conduct decreases their effectiveness in influencing the rural electorate. 
+We open investigations into the proceedings of the KMD. While actually banning them would be unconstitutional, our efforts put their activities under pressure and each investigation we conduct decreases their effectiveness in influencing the rural electorate.

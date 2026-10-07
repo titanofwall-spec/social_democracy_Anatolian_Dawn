@@ -9,13 +9,13 @@ tags: govt_affairs, cabinet
 
 = Education Ministry
 
-Atatürk entrusted the future of the Turkish nation in the hands of the youth and the education ministry is the institution upbringing this new generation. However our current education system is lacking in many respects; the curriculum is reminiscent of the older decades, the autonomy of the universities is under attack by the right and the opportunities for arts and sports are inadequate at best and nonexistent at worst. We will need to spend both immediate and long term efforts to reform our education to a proper level..
+Atatürk entrusted the future of the Turkish nation to the youth and the education ministry is the institution bringing up this new generation. However, our current education system is lacking in many respects; the curriculum is reminiscent of the older decades, the autonomy of the universities is under attack by the right and the opportunities for arts and sports are inadequate at best and nonexistent at worst. We will need to make both immediate and long-term efforts to reform our education to a proper level...
 
 As Ecevit says one of the most important features of Social Democracy is the support provided by the benevolent state to each individual for them to reach their full potential. Now is the time for reform and realizing this vision for the youth and the future.
 
 @ed_menu
 
-- @onetime: One time reforms.
+- @onetime: One-time reforms.
 - @repeatable: Repeatable actions.
 - @return: Do not enact any policies for now.
 - @easy_discard
@@ -56,7 +56,7 @@ Students have been excluded from decisions concerning their own education, while
 @teacher
 subtitle: -1 budget.
 choose-if: teacherr == 0 and MSP_in_government == 0 and AP_in_government == 0 and DP_in_government == 0 and budget >= 1
-unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?] [? if teacherr == 1 : We have already increased political freedoms for our teachers! ?] [? if MSP_in_government == 1 or AP_in_government == 1 or DP_in_government == 1 : Our right wing coalition partners prevent us from passing this reform! ?]
+unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?] [? if teacherr == 1 : We have already increased political freedoms for our teachers! ?] [? if MSP_in_government == 1 or AP_in_government == 1 or DP_in_government == 1 : Our right-wing coalition partners prevent us from passing this reform! ?]
 on-arrival: democracystatus += 3; AP_relation -= 5; MSP_relation -= 5; DP_relation -= 5; teacherr += 1; growth_modifier += 0.2; budget -= 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 Teachers have been subjected to political pressure, arbitrary punishment and the threat of exile. We shall allow that no more by protecting their freedom of expression and reviewing politically motivated penalties.
@@ -65,7 +65,7 @@ Teachers have been subjected to political pressure, arbitrary punishment and the
 subtitle: -1 budget.
 on-arrival: democracystatus += 2; budget -= 1; growth_modifier += 0.5; unemployment_modifier -= 1; rural_chp += 4; AP_relation -= 5; DP_relation -= 5; CGP_relation -= 5; MSP_relation -= 5; koykent_progress += 1; koykentegitimm += 1; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: budget >= 1 and curriculumm > 0 and koykent_progress >= 2 and koykentegitimm == 0
-unavailable-subtitle: [? if budget < 1 : We dont have enough budget! ?] [? if curriculumm == 0 : We havent reformed our curriculum yet! ?] [? if koykent_progress < 2 : We have to move on with Köykent formation first! ?] [? if koykentegitimm == 1 : We have already improved educational opportunities in the Köykents. ?]
+unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?] [? if curriculumm == 0 : We haven't reformed our curriculum yet! ?] [? if koykent_progress < 2 : We have to move on with Köykent formation first! ?] [? if koykentegitimm == 1 : We have already improved educational opportunities in the Köykents. ?]
 
 Village children have been deprived of secondary and vocational education, forcing many to leave their communities in order to study. We shall allow that no more by making the Köykents educational and cultural centres for the surrounding villages.
 
@@ -93,7 +93,7 @@ Family income and place of birth have too often determined which children may co
 subtitle: +1 budget.
 on-arrival: budget += 1; MSP_relation -= 10; imamhatipp += 1
 choose-if: MSP_in_government == 0 and AP_in_government == 0 and DP_in_government == 0 and imamhatipp < 3
-unavailable-subtitle: [? if imamhatipp < 3 : Our right wing coalition partners will not let us cut funding for the religious schools! ?] [? if imamhatipp >= 3 : We have already cut their funding to oblivion! ?]
+unavailable-subtitle: [? if imamhatipp < 3 : Our right-wing coalition partners will not let us cut funding for the religious schools! ?] [? if imamhatipp >= 3 : We have already cut their funding to oblivion! ?]
 
 Educational investment has been directed towards new İmam Hatip projects while general, technical and vocational schools remained neglected. We shall allow that no more by redirecting funds towards the genuine needs of national education.
 

@@ -9,7 +9,7 @@ face-image: img/Nihaterim.png
 
 = Nihat Erim Resigns!
 
-Nihat Erim's cabinet had inspired hope within the ranks of the military and the old guard of <span style="color: #E3000F;">**CHP**</span> for its "modernization" agenda. However due to its inability to bring the expected changes, Nihat Erim was cornered between the two major parties <span style="color: #E3000F;">**CHP**</span> and AP calling for calmness and the military aparatus advocating for rapid "reforms" to end political unstability. In this situation, Nihat Erim has chosen to resign from his post and Ferit Melen, the Minister of Defence within the Nihat Erim government seems the likeliest candidate to succeed him. Ferit Melen is a prominent member of CGP and its likely his appointment will entail the continuation of military control over the political affairs.
+Nihat Erim's cabinet had inspired hope within the ranks of the military and the old guard of <span style="color: #E3000F;">**CHP**</span> for its "modernization" agenda. However, due to its inability to bring the expected changes, Nihat Erim was cornered between the two major parties <span style="color: #E3000F;">**CHP**</span> and AP calling for calmness and the military apparatus advocating for rapid "reforms" to end political instability. In this situation, Nihat Erim has chosen to resign from his post and Ferit Melen, the Minister of Defence within the Nihat Erim government seems the likeliest candidate to succeed him. Ferit Melen is a prominent member of CGP and it's likely his appointment will entail the continuation of military control over the political affairs.
 
 - @reject: We have had enough of the technocratic governments, we will veto the new government!
 - @vote: We will tolerate the government, for there is no viable alternative.
@@ -21,7 +21,7 @@ choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: İnönü seems willing to tolerate another technocratic government and has prevented us from taking action.
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} coup_timer += 5; rural_chp += 2; workers_chp += 2; petty_bourgeoisie_chp += 2; state_employees_chp += 2; capitalists_chp -= 4; alevis_chp += 2; kurds_chp += 2; prime_minister = ""; prime_minister_party = ""
 
-The masses applaud our choice. The Ferit Melen government, unable to have a parliamentary majority, falls quickly. The army is said to be furious however, as many report the lights of the army headquarters were on the whole night of the vote..
+The masses applaud our choice. The Ferit Melen government, unable to have a parliamentary majority, falls quickly. The army is said to be furious however, as many report the lights of the army headquarters were on the whole night of the vote...
 
 We are now without a prime minister and we will see who the army will pick in the next few days.
 
@@ -33,4 +33,4 @@ on-arrival: {!
   Q.prime_minister_party = "CGP";
 !}
 
-Ferit Melen begins his govenment with the parliamentary support of CHP, CGP and AP.
+Ferit Melen begins his government with the parliamentary support of CHP, CGP and AP.

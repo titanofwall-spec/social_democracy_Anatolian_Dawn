@@ -7,22 +7,22 @@ face-image: img/petrol.jpg
 
 = The Oil Crisis
 
-<span class="wide_tooltip-wrap"><span style="color: #E3000F;">* Flavour Content *</span><span class="wide_tooltip-tip"><span>This is a flavour event that does not have a direct impact on gameplay and is extra content purposed for immersion and narration. Though it's advised you keep them for maximum enjoyment of the game, you can turn them off in the Options menu above.</span></span></span>
+<span class="wide_tooltip-wrap"><span style="color: #E3000F;">* Flavour Content *</span><span class="wide_tooltip-tip"><span>This is a flavour event that does not have a direct impact on gameplay and provides extra content for immersion and narration. Though it's advised that you keep them for maximum enjoyment of the game, you can turn them off in the Options menu above.</span></span></span>
 
 The oil refineries in the Middle East are being replaced with refineries of blood
-  
-Warfare and bloodshed have been a constant norm in the politics of the Middle East for long, however this fact has been reiterated once again with the Yom Kippur War. Arabian armies, which initially held the advantage on the battlefield, have been utterly and decisively defeated by the Israeli army and the war has proven to be a decisive victory for the young Jewish State.
-	
+
+Warfare and bloodshed have been a constant norm in the politics of the Middle East for a long time; however, this fact has been demonstrated once again with the Yom Kippur War. Arabian armies, which initially held the advantage on the battlefield, have been utterly and decisively defeated by the Israeli army and the war has proven to be a decisive victory for the young Jewish State.
+
 As the spilt blood began to dry under the heat of the sun, the Arabian states accused the Western Powers, especially the US, of orchestrating the Israeli victory and in a sudden announcement, OPEC has declared a general decrease in the oil production and a ban on the oil exports to the western nations.
 
 The decision came after the American president Richard Nixon put forward a bill to supply Israel with 2.2 billion dollars in the congress against the invading Arabian armies.
- 
+
 Shortly after the embargo, the price of oil spiked from 2$/barrel to 5$/barrel and immediately hit hard the developed and developing nations, one of which is us.
 
 [? if CHP_in_government == 1 : Overnight the already vulnerable Turkish economy has been hit hard by the rise in the price of oil. With both the nation and the industry struggling, we have to find a solution as soon as possible, or else our government may end earlier than we would like it to. ?][? if CHP_in_government == 0 : As overnight the economy crumbles, we will see whether Demirel can cope with the crisis or not ?]
 
-We are now in a crisis.                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                         
+We are now in a crisis.
+
 - @petrol: Black Gold, Red Sand
 
 @petrol

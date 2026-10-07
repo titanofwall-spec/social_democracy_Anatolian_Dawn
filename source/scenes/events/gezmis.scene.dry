@@ -12,17 +12,17 @@ face-image: img/gezmis.jpg
 
 Gezmiş and his friends had begun their revolt with the purpose of "forming a new state" as they call it, and the expulsion of "American Imperialism" that they claim has infiltrated every branch of the state.
 
-TBMM is in a state of chaos. Delegates from AP shout from their chambers, "Three from us, three from them!" referring to the former Right wing prime minister Menderes and two of his ministers who were executed after the 1960 coup. <span style="color: #E3000F;">**CHP**</span> is divided on the issue, with the right preparing to vote for their execution while surprisingly İnönü has supported Ecevit's call for a cancel of the execution with the following statement;
+TBMM is in a state of chaos. Delegates from AP shout from their chambers, "Three from us, three from them!" referring to the former Right wing prime minister Menderes and two of his ministers who were executed after the 1960 coup. <span style="color: #E3000F;">**CHP**</span> is divided on the issue, with the right preparing to vote for their execution while surprisingly İnönü has supported Ecevit's call for the cancellation of the execution with the following statement;
 
-"The penalty of the culprits should be turned to life sentence. These men, are younglings in essence and inexperienced. The state has already shown them and their alikes that their excesses will not give any results."
+"The penalty of the culprits should be changed to a life sentence. These men, are younglings in essence and inexperienced. The state has already shown them and their others like them that their excesses will not give any results."
 
-Ecevit has risen up in his seat made these comments in response to the right winger calls for their immediate execution;
+Ecevit has risen up in his seat and made these comments in response to the right winger calls for their immediate execution;
 
-"I am against the death penalty as a principle. However today the reason I am calling for the spare of the lives of Deniz Gezmiş, Yusuf Asland and Hüseyin İnan is not my principal rejection of capital punishment. As long as the death sentence exists within the laws, I am aware that my rejection of it in the basis of principals will be futile.
+"I am against the death penalty as a principle. However today the reason I am calling for the sparing of the lives of Deniz Gezmiş, Yusuf Asland and Hüseyin İnan is not my principal rejection of capital punishment. As long as the death sentence exists within the laws, I am aware that my rejection of it on the basis of principles will be futile.
 
-My speech has no relation to having good emotions or having positive opinions for the young men. I dont know any of these men. I have never agreed with the opinions of any of them. I have never approved their actions. Leave approving it aside, I have always raised my voice consistently higher than anyone else against their beliefs and actions. My primary reason for calling for the sparing of the lives of these young men is this: No matter the severity of their crimes, there are different and bigger culprits of these crimes than them. These young men have been incited, played over with and pulled into various traps. Many of those who are behind these incitements, those who have prepared these games and traps are free and are seen of high status. There have been no searches towards them. Here their sins are desired to be buried with the lives of a few young men. That is injustice. History cant bear this great injustice, and one day shall remove the curtain..."
+My speech has no relation to having good emotions or having positive opinions for the young men. I don't know any of these men. I have never agreed with the opinions of any of them. I have never approved their actions. Leave approving it aside, I have always raised my voice consistently higher than anyone else against their beliefs and actions. My primary reason for calling for the sparing of the lives of these young men is this: No matter the severity of their crimes, there are different and bigger culprits of these crimes than them. These young men have been incited, played over with and pulled into various traps. Many of those who are behind these incitements, those who have prepared these games and traps are free and are seen of high status. There have been no investigations into them. Here their sins are desired to be buried with the lives of a few young men. That is injustice. History can't bear this great injustice, and one day shall remove the curtain..."
 
-As it stands, the judicial decision is likely to be approved as <span style="color: #E3000F;">**CHP**</span> stands divided and AP, except for a few deserters, is fully united before the execution.
+As it stands, the judicial decision is likely to be approved as <span style="color: #E3000F;">**CHP**</span> stands divided and AP, except for a few deserters, is fully united in favor of the execution.
 
 Shall the voting begin?
 
@@ -153,9 +153,9 @@ view-if: gezmisVoteAye
 
 Dad;
 
-By the time this letter reaches you, I will be dead. I know that you will be saddened no matter how much I would tell you to not. However I want you to face this situation with fortitude. People are born, they live, and they die. What is important is not to live long, but to live meaningfully. For this reason I dont regret going away this quickly and my friends who have gone the same path before never feared death. You can be sure that I wont fear it either. Your son is not helpless or desparate in the face of death. He went through this path willingly and he knew that this would be his end. Our beliefs are different, however I think you will understand me. And not only you, I believe the entire Turkish and Kurdish peoples living in Turkey will do so too. I gave the necessary orders for my funeral to my lawyers. Also I will tell the prosecutor too. I want to be buried in Ankara alongside my friend Taylan Özgür who died in 1969. For this reason dont try to take my funeral to İstanbul. Its up to you now to comfort my mom. I am leaving my books to my little brother. Warn him especially, I want him to become a man of science. He shall work with science and should never forget, working for science is too in some way service for humanity.
+By the time this letter reaches you, I will be dead. I know that you will be saddened no matter how much I would tell you not to. However I want you to face this situation with fortitude. People are born, they live, and they die. What is important is not to live long, but to live meaningfully. For this reason I don't regret going away this quickly and my friends who have gone the same path before never feared death. You can be sure that I won't fear it either. Your son is not helpless or desperate in the face of death. He went through this path willingly and he knew that this would be his end. Our beliefs are different, however I think you will understand me. And not only you, I believe the entire Turkish and Kurdish peoples living in Turkey will do so too. I gave the necessary orders for my funeral to my lawyers. Also I will tell the prosecutor too. I want to be buried in Ankara alongside my friend Taylan Özgür who died in 1969. For this reason don't try to take my funeral to İstanbul. It's up to you now to comfort my mom. I am leaving my books to my little brother. Warn him especially, I want him to become a man of science. He shall work with science and should never forget, working for science is too in some way service for humanity.
 
-I would like to express I have no regrets for what I did in the end, and I salute you, my mother, my older brother and younger brother with the burning passion of my revolutionarism.
+I would like to express I have no regrets for what I did in the end, and I salute you, my mother, my older brother and younger brother with the burning passion of my revolutionary beliefs.
 
 Your son Deniz Gezmiş - Central Prison
 
@@ -163,4 +163,4 @@ Your son Deniz Gezmiş - Central Prison
 view-if: not gezmisVoteAye
 on-arrival: TIP_relation += 15
 
-The Socialists are grateful for us saving Gezmiş's life and many intellectuals visit Ecevit's office over the weeks and months for his support.
+The Socialists are grateful to us for saving Gezmiş's life and many intellectuals visit Ecevit's office over the weeks and months for his support.

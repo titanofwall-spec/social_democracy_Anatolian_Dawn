@@ -9,9 +9,9 @@ go-to: fp_menu
 
 = Foreign Policy
 
-Turkey is in the intersection of the global blocs and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East.
+Turkey is at the intersection of the global blocs and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East.
 
-Through our foreign policy initiatives we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '**Peace at home, peace in the world.**'. Even though since the 1950's the nation has moved towards the Western Alliance and NATO, decent and peaceful relations with all our neighbors is a key tenet of our foreign policy.
+Through our foreign policy initiatives we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '**Peace at home, peace in the world.**'. Even though since the 1950s the nation has moved towards the Western Alliance and NATO, decent and peaceful relations with all our neighbors are a key tenet of our foreign policy.
 
 @fp_menu
 
@@ -62,27 +62,27 @@ on-arrival: denktasplan += 1
 Despite the strained relations we make attempts at negotiating an end to the Cyprus problem.
 
 @aet
-subtitle: Even though we will probably not see the end of our application process in the 1970's, the application may greatly benefit our nation in the decades to come.
+subtitle: Even though we will probably not see the end of our application process in the 1970s, the application may greatly benefit our nation in the decades to come.
 choose-if: economicreform == 1 and inflation < 20 and economic_growth > 4 and unemployed < 10 and west_relation >= 70 and (cyprus_problem == 2 or cyprus_problem == 4)
-unavailable-subtitle: We have not achieved the prequisites for an application yet! The prequisites we have to achieve are: a reform of the Turkish economy, decent economic figures, good relations with Western Europe, a peaceful end to the Cyprus problem.
+unavailable-subtitle: We have not achieved the prerequisites for an application yet! The prerequisites we have to achieve are: a reform of the Turkish economy, decent economic figures, good relations with Western Europe, a peaceful end to the Cyprus problem.
 on-arrival: aet += 1; democracystatus += 3
 max-visits: 1
 
-We have officially applied to join the ECC! Though it will take many years before our application opens the door for our membership, this is a great step for the future of Turkish Democracy.
+We have officially applied to join the EEC! Though it will take many years before our application opens the door for our membership, this is a great step for the future of Turkish Democracy.
 
 @americanbase
 choose-if: cyprus_problem == 3
 on-arrival: rural_chp += 3; workers_chp += 3; state_employees_chp += 3; petty_bourgeoisie_chp += 3; alevis_chp += 3; us_relation -= 0.1
 max-visits: 1
 
-With the exception of the İncirlik base we closed down all the American bases in our country as a reaction to the arms embargo. Our people cherish this determination though our relations with the US has deteriorated even further.
+With the exception of the İncirlik base we closed down all the American bases in our country as a reaction to the arms embargo. Our people cherish this determination though our relations with the US have deteriorated even further.
 
 
 @east
 choose-if: AP_in_government == 0 and DP_in_government == 0
 unavailable-subtitle: Our coalition partners prevent us from fostering relations with the Soviets!
 
-Up until now our relations with the Eastern Bloc have been cold at best. However after Stalin's death the Soviet attitude towards Turkey have shifted towards a reconciliatory direction. Even though we should keep our relations with the West in mind, we have a lot to gain from improved relations with the Soviet Union.
+Up until now our relations with the Eastern Bloc have been cold at best. However, after Stalin's death the Soviet attitude towards Turkey has shifted towards a reconciliatory direction. Even though we should keep our relations with the West in mind, we have a lot to gain from improved relations with the Soviet Union.
 
 - @improve_east: Improve relations with the Soviet Union.
 - @friendship: Sign a treaty of Turkish-Soviet Friendship.
@@ -102,7 +102,7 @@ on-arrival: friendshipp += 1; soviet_relation += 10; us_relation -= 10; west_rel
 choose-if: friendshipp == 0 and soviet_relation >= 35
 unavailable-subtitle: [? if friendshipp > 0 : We have already signed a treaty of friendship! ?] [? if soviet_relation < 40 : Our relationship with the USSR is not decent enough! ?]
 
-Despite our previous disagreements the Soviets have been willing to consider normalization. We have signed a treaty of 'Decent Neighborhood and Friendly Cooperation' with the Soviets which will faciliate diplomatic and economic ties between the two nations. If we intend to reconsider our current relationship with the USSR and move towards a positive direction we have to continue building up mutual cooperation. However our reconciliation with the USSR has brought significant backlash from the US and Western Europe. We have to walk on a thin thread if Ecevit is not to become another Allende.
+Despite our previous disagreements the Soviets have been willing to consider normalization. We have signed a treaty of 'Decent Neighborhood and Friendly Cooperation' with the Soviets which will facilitate diplomatic and economic ties between the two nations. If we intend to reconsider our current relationship with the USSR and move towards a positive direction we have to continue building up mutual cooperation. However, our reconciliation with the USSR has brought significant backlash from the US and Western Europe. We have to walk on a thin thread if Ecevit is not to become another Allende.
 
 @credits
 on-arrival: budget += 2; us_relation -= 5; friendshipp += 1
@@ -110,7 +110,7 @@ choose-if: friendshipp == 1 and soviet_relation >= 50
 view-if: friendshipp != 2
 unavailable-subtitle: [? if friendshipp < 1 : We need to normalize our relations through a friendship treaty first! ?] [? if soviet_relation < 50 : Our relationship with the USSR is not decent enough! ?]
 
-We borrow a long term loan from the Soviet Union.
+We borrow a long-term loan from the Soviet Union.
 
 @treaty
 on-arrival: growth_modifier += 0.7; unemployment_modifier -= 0.5; inflation_modifier += 1.5; us_relation -= 5; treatyy += 1; {! AnatolianRules.refreshEconomy(Q); !}
@@ -132,7 +132,7 @@ on-arrival: forex_pressure -= 4; inflation_modifier -= 2; oil += 1; {! Anatolian
 unavailable-subtitle: [? if friendshipp < 1 : We need to normalize our relations through a friendship treaty first! ?]
 max-visits: 1
 
-Turkey largely depends on foreign energy to power its growing industry and cities. Our dependence to oil in such a sense has destabilized our economy when the oil procies soured, like in the oil crisis of 1973. We safeguard our access to the the supply of oil to mitigate the effects of any future crisis.
+Turkey largely depends on foreign energy to power its growing industry and cities. Our dependence on oil in such a sense has destabilized our economy when the oil prices soared, like in the oil crisis of 1973. We safeguard our access to the supply of oil to mitigate the effects of any future crisis.
 
 @middleeast
 
@@ -176,7 +176,7 @@ view-if: panarabb == 1
 unavailable-subtitle: [? if middle_east_relation < 55 : We have to improve our relations with the Pan-Arabist nations first! ?] [? if tradee == 0 : We have to improve bilateral trade first! ?]
 on-arrival: inflation_modifier -= 0.5; growth_modifier += 0.4; us_relation -= 5; {! AnatolianRules.refreshEconomy(Q); !}
 
-Acting as trade mediators boosts our growth and decreases inflation. However our assisting of the sanction bypassing does not go unnoticed by the US.
+Acting as trade mediators boosts our growth and decreases inflation. However, our assisting of the sanction bypassing does not go unnoticed by the US.
 
 @monarchy1
 subtitle: As a first step we can acquire loans for purchasing oil.
@@ -197,11 +197,11 @@ on-arrival: unemployment_modifier -= 0.4; inflation_modifier -= 0.5; forex_press
 Through a series of agreements on temporary working permits, many of our unemployed citizens go to work in the Gulf Monarchies.
 
 @fko
-subtitle: Many in CHP and Turkey as a whole are sympathethic to the Palestinian cause.
+subtitle: Many in CHP and Turkey as a whole are sympathetic to the Palestinian cause.
 choose-if: fkoo == 0
 unavailable-subtitle: We have already formed official relations with the PLA!
 on-arrival: fkoo += 1; us_relation -= 10; west_relation -= 5; middle_east_relation += 10; rural_chp += 2; state_employees_chp += 2; workers_chp += 2; petty_bourgeoisie_chp += 2; alevis_chp += 2; MSP_relation += 5; coalition_dissent -= 1 if MSP_in_government == 1
 
-Even though we are not a player in the Israel-Palestine conflict, recognizing the PLA as a legitimate actor can grant us popularity, stronger relations with the Middle East and possible easing down of the tensions with the internal Islamists. [? if MSP_in_government == 1 : Erbakan supports this action as well which decreased coalition dissent. ?] Besides the pragmatic reasons, many on the left of our party are sympathethic to the Palestinian cause.
+Even though we are not a player in the Israel-Palestine conflict, recognizing the PLA as a legitimate actor can grant us popularity, stronger relations with the Middle East and possible easing down of the tensions with the internal Islamists. [? if MSP_in_government == 1 : Erbakan supports this action as well which decreased coalition dissent. ?] Besides the pragmatic reasons, many on the left of our party are sympathetic to the Palestinian cause.
 
 

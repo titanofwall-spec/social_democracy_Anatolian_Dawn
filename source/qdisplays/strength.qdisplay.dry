@@ -1,7 +1,7 @@
 
 # faction strength
 
-(0..0.5) Nonexistant
+(0..0.5) Nonexistent
 (0.5..1.5) Very weak
 (1.5..2.5) Weak
 (2.5..3.5) Medium

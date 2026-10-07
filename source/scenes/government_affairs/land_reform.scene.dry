@@ -13,7 +13,7 @@ One of the most pressing issues of the republic is that of agriculture and the o
 
 Since the foundation of the republic, CHP always viewed land reform and distribution to be a necessary prerequisite for the development of the countryside. However Atatürk didn't live long enough to achieve one of his perhaps most influential reforms and now it falls upon our shoulders to turn his dream into reality.
 
-However we first need to decide on a policy platform among the ones that are circulating in the party.
+However, we first need to decide on a policy platform among the ones that are circulating in the party.
 
 Current status: [? if land_reform == 0 : No concrete land reform policy has been adopted. ?][? if land_reform == 1 : We have committed to establishing rural cooperatives. ?][? if land_reform == 2 : We have promised comprehensive land distribution programs. ?][? if land_reform == 3 : We have announced the ambitious Köykent village-city project. ?]
 

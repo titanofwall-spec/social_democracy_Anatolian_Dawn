@@ -13,7 +13,7 @@ The party is being torn apart by internal dissent. Upset at the leadership and g
 
 [? if right_kemalists_dissent > 30 : The right kemalists are upset at our direction. ?]
 [? if left_kemalists_dissent > 30 : The left kemalists are displeased with the direction of our leadership. ?]
-[? if orthodox_kemalists_dissent > 30 : The orthodox kemalists disagree with our shift to left wing rhetoric and opposition to top-down change. ?]
+[? if orthodox_kemalists_dissent > 30 : The orthodox kemalists disagree with our shift to left-wing rhetoric and opposition to top-down change. ?]
 [? if kemalist_marxists_dissent > 30: Kemalist marxists are losing faith in our leadership ?]
 
 Something must be done to reinforce party unity.
@@ -37,7 +37,7 @@ title: Give concessions to the right kemalists.
 view-if: right_kemalists_dissent > 30 and not right_kemalists_resign
 on-arrival: right_kemalists_dissent -= 7; left_kemalists_dissent += 5; kemalist_marxists_dissent += 10
 
-We attempt to appease the Right through decreasing the volume of our left wing rhetoric and our progressive standing. Though it works to some extent, the left wing of the party accuses us of cooperating with the counter revolutionaries.
+We attempt to appease the Right through decreasing the volume of our left-wing rhetoric and our progressive standing. Though it works to some extent, the left wing of the party accuses us of cooperating with the counter-revolutionaries.
 
 @concessions_orthodox
 title: Give concessions to the orthodox kemalists
@@ -51,7 +51,7 @@ title: Give concessions to the left kemalists
 view-if: left_kemalists_dissent > 30
 on-arrival: left_kemalists_dissent -= 10
 
-We are the party of the center left and there is no reason why we cant strengthen our ties with the delegates who brought us where we are.
+We are the party of the center left and there is no reason why we can't strengthen our ties with the delegates who brought us where we are.
 
 @concessions_marxist
 title: Give concessions to marxists.

@@ -3,15 +3,15 @@ is-pinned-card: true
 tags: advisor, left_kemalists
 card-image: img/guness.png
 view-if: gunes_advisor = 1
-new-page: true 
+new-page: true
 
 = Turan Güneş
 
-Turan Güneş is a member of the left of center movement and expertises in international affairs.
+Turan Güneş is a member of the left of center movement and specializes in international affairs.
 
 - @internationalaffairs: Turan Güneş can improve our relations with the other democratic left parties of the world.
 - @foreignministry: As the foreign minister, Güneş can take care of many tasks.
-- @theory: Güneş is one of the chief theoricians of Social Democracy within the party and his work can be used to improve the standing of the left kemalists.
+- @theory: Güneş is one of the chief theorists of Social Democracy within the party and his work can be used to improve the standing of the left kemalists.
 - @root: Return to main
 
 @internationalaffairs

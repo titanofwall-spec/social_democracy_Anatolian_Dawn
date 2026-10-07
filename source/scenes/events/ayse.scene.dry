@@ -1,21 +1,21 @@
-title: A Star Shaped Hole
+title: A Star-Shaped Hole
 subtitle: A story from the Cyprus operation.
 view-if: cyprus_mode != 0 and cyprus_day == 21 and cyprus_month == 7 and cyprus_year == 1974 and flavour_events
 max-visits: 1
 tags: event
 new-page: true
 
-= A Star Shaped Hole
+= A Star-Shaped Hole
 
-<span class="wide_tooltip-wrap"><span style="color: #E3000F;">* Flavour Content *</span><span class="wide_tooltip-tip"><span>This is a flavour event that does not have a direct impact on gameplay and is extra content purposed for immersion and narration. Though it's advised you keep them for maximum enjoyment of the game, you can turn them off in the Options menu above.</span></span></span>
+<span class="wide_tooltip-wrap"><span style="color: #E3000F;">* Flavour Content *</span><span class="wide_tooltip-tip"><span>This is a flavour event that does not have a direct impact on gameplay and provides extra content for immersion and narration. Though it's advised that you keep them for maximum enjoyment of the game, you can turn them off in the Options menu above.</span></span></span>
 
-Mustafa and his squad marched through the hills of the Five Finger Mountains. Their bags, rifles and boots were covered in the filth that they had to pass through while advancing along the Greek lines. On their shoulders they carried the weight of the 4.4 kilograms G3 rifle, 10 kilograms of infantry hardware and varying amounts of ammunition hanging from all over their bodies. However the most pressing weight of it all was the terror of realizing the fallacy of innocence and not knowing whether you will be alive tomorrow or not. So the young men kept marching through the steep hills and the rocky terrain, for that was the only way of not thinking about what they were going through.
+Mustafa and his squad marched through the hills of the Five Finger Mountains. Their bags, rifles and boots were covered in the filth that they had to pass through while advancing along the Greek lines. On their shoulders they carried the weight of the 4.4-kilogram G3 rifle, 10 kilograms of infantry hardware and varying amounts of ammunition hanging from all over their bodies. However, the most pressing weight of it all was the terror of realizing the fallacy of innocence and not knowing whether you will be alive tomorrow or not. So the young men kept marching through the steep hills and the rocky terrain, for that was the only way of not thinking about what they were going through.
 
 By dawn the squad reached the village of Karaman as they were instructed. The village had been captured by the TMT already and they were instructed to establish a command post in the village. However, as men entered the village and marched through its dirt streets, they were appalled by what they saw.
 
-In the middle of the village and surrounded by tens of Turkish villagers was a Greek young man tied up to a wooden chair and another Turkish man with an old pistol in his hand. Patches of redness covered the young man's clothes and the old man walked and swang his pistol frenzily and in a manner where the gun seemed both too heavy and unsuitable for his hand. He may have been holding a gun for the first time.
+In the middle of the village and surrounded by tens of Turkish villagers was a young Greek man tied up to a wooden chair and another Turkish man with an old pistol in his hand. Patches of redness covered the young man's clothes and the old man walked and swung his pistol frenziedly and in a manner where the gun seemed both too heavy and unsuitable for his hand. He may have been holding a gun for the first time.
 
-Mustafa walked through the crowd to see what had gathered the villagers so early in the morning. Just as he broke through the ring of the gossipping crowd, he saw the old man kick the young man in the groin and throw him to the ground. Another kick and blood sprayed across the ground like water color. Mustafa pulled his rifle and shouted:
+Mustafa walked through the crowd to see what had gathered the villagers so early in the morning. Just as he broke through the ring of the gossiping crowd, he saw the old man kick the young man in the groin and throw him to the ground. Another kick and blood sprayed across the ground like watercolor. Mustafa pulled his rifle and shouted:
 
 "Leave him! What's happening?"
 
@@ -25,7 +25,7 @@ The old man raised his head and smiled. "Don't get involved, soldier. This is no
 
 "He is one of them."
 
-"One of who?"
+"One of whom?"
 
 The old man shouted with a sense of mania and outburst. "The Greeks. They are going to pay for what they have done."
 
@@ -33,11 +33,11 @@ Mustafa felt his thumb trembling while pulling the rifle's hammer. "This is not 
 
 The old man looked him in the eye with a decaying excitement. He stopped for a moment before speaking up in a chalky voice. "His life is for retribution. Men from EOKA raped my only daughter and killed her in a bathtub. They made me watch her bleed to death."
 
-As Mustafa felt the rifle falling from his hands, he heard a bang that he quickly turned his head against. 
+As Mustafa felt the rifle falling from his hands, he heard a bang that he quickly turned his head towards.
 
-When he finally gathered himself enough to look, he saw the young man with a star shaped hole in his eye. And heard the screams of a hundred.
+When he finally gathered himself enough to look, he saw the young man with a star-shaped hole in his eye. And heard the screams of a hundred.
 
-- @root: And such, another addition to the things they carried.
+- @root: And thus, another addition to the things they carried.
 
 @root
 go-to: cyprus_atilla1_21 if cyprus_mode != 0 and cyprus_atilla1_complete == 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21; post_event if cyprus_mode == 0 or cyprus_atilla1_complete == 1 or cyprus_year != 1974 or cyprus_month != 7 or cyprus_day != 21

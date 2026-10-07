@@ -3,7 +3,7 @@ is-pinned-card: true
 tags: advisor, kemalist_marxist
 card-image: img/portraits/AvciogluDogan.jpg
 view-if: avcioglu_advisor = 1
-new-page: true 
+new-page: true
 
 = Doğan Avcıoğlu
 
@@ -11,7 +11,7 @@ Doğan Avcıoğlu is a famous Marxist historian, economist, politician and autho
 
 - @landreform: Land Reform Policy.
 - @economicpolicy: Minister of Economy.
-- @devrim: Avcıoğlu is an impactful author who had been the editor of two socialist newspaper, YÖN and Devrim. We can ask him to start writing once again.
+- @devrim: Avcıoğlu is an impactful author who had been the editor of two socialist newspapers, YÖN and Devrim. We can ask him to start writing once again.
 - @root: Return to main
 
 @landreform
@@ -33,4 +33,4 @@ choose-if: (year == 1973 and month >= 10) or year == 1974 or year == 1975 and ad
 unavailable-subtitle: Due to the tortures he had endured during the memorandum period, Avcıoğlu is fed up with writing.
 on-arrival: advisor_action_timer = 3; ihtilal += 1; state_employees_chp += 1
 
-Avcıoğlu has begun the planning of a new newspaper called "İhtilal", meaning revolution.
+Avcıoğlu has begun planning a new newspaper called "İhtilal", meaning revolution.

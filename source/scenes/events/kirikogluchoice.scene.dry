@@ -7,16 +7,16 @@ new-page: true
 face-image: img/kirikogluchoice.png
 
 = The Sheep in Wolf's Clothing
-	
+
 Bay İnönü's dining room was covered in clouds of smoke and tears. In a room full of party bureaucrats devouring and shouting in black suits <span class="wide_tooltip-wrap">Kırıkoğlu<span class="wide_tooltip-tip"><img src="img/portraits/KamilKirikoglu.jpg">Kamil Kırıkoğlu, the general secretary of the party since 1971. Even though a well-known Marxist, he was chosen by İnönü based on his personal tenets and acknowledged accessibility to appease the party left. However, now that the battle is between the old İnönü and the young Ecevit, he has to make a choice. Will he try to swim against the stream or try to lead it?</span></span> stood alone; with his white suit covered with a black coat.
 
-He had never wanted to be a part of this meal. Never wanted to be in this foresaken static party even! A party full of elitist bureaucrats away from and uninterested in the actual suffering of the workers and the masses. However circumstances had carried him to the spot of the secretariat. Not because İnönü or the other elites had a liking for his ideological stances. No, he had carried himself here through pure effort and discipline so that CHP can succeed in its historic mission of establishing an actual democracy with the barriers against a mass Socialist party removed. He did not care about what would happen to CHP next; it might as well end up in the dustbin of history.
+He had never wanted to be a part of this meal. Never wanted to be in this forsaken static party even! A party full of elitist bureaucrats away from and uninterested in the actual suffering of the workers and the masses. However circumstances had carried him to the spot of the secretariat. Not because İnönü or the other elites had a liking for his ideological stances. No, he had carried himself here through pure effort and discipline so that CHP can succeed in its historic mission of establishing an actual democracy with the barriers against a mass Socialist party removed. He did not care about what would happen to CHP next; it might as well end up in the dustbin of history.
 
-He thought of the alternatives. Ecevit? No. He was merely a social democrat interested more in mauling the Marxists than he was in solving the actual problems of the workers. He did not have the capacity of controlling over such a large party as such an undisciplined man. Perhaps what irritated him the most was that even though Kırıkoğlu had been the one who brought him into the party, it was not him but Ecevit who was led by destiny to lead the movement against İnönü.
+He thought of the alternatives. Ecevit? No. He was merely a social democrat interested more in mauling the Marxists than he was in solving the actual problems of the workers. He did not have the capacity to control such a large party as such an undisciplined man. Perhaps what irritated him the most was that even though Kırıkoğlu had been the one who brought him into the party, it was not him but Ecevit who was led by destiny to lead the movement against İnönü.
 
 Yet, what other choice did he have?
 
-He was suddenly waken up from his thoughts with İnönü facing towards him.
+He was suddenly shaken from his thoughts with İnönü facing towards him.
 
 / 'So, Kamil, who do you think is going to win this struggle?'
 
@@ -30,7 +30,7 @@ The whole room was now echoing with the sound of silence.
 
 / 'Do you think so, Kamil? Is it my fault that Satır decided to push for a congress without my directives? Was the coup my fault also?'
 
-+ 'Sir, you were the one who took Bülent out from Aladdin's Lamp with your moves. You cant ask me to put him back when it was your moves which led to his rise.'
++ 'Sir, you were the one who took Bülent out from Aladdin's Lamp with your moves. You can't ask me to put him back when it was your moves which led to his rise.'
 
 / 'And who are you standing with, Kamil?'
 
@@ -44,5 +44,5 @@ The decrepit chairman rose from his seat with his finger now pointing towards K�
 
 @kirikoglubye
 on-arrival: kemalist_marxists_support = 1
-  
+
 Now we as the Left-Wing Kemalist can expect the Marxists in the party to lend us their support in the congress. **Time will tell whether this alliance will be one of convenience or unity**.

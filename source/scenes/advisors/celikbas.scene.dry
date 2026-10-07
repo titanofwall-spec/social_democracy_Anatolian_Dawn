@@ -3,10 +3,10 @@ is-pinned-card: true
 tags: advisor, right_kemalist
 card-image: img/portraits/FethiCelikbas.jpeg
 view-if: celikbas_advisor = 1
-new-page: true 
+new-page: true
 
 = Fethi Çelikbaş
 
-Fethi Çelikbaş is a pragmatist Right-Wing Kemalist politician and former minister of Industry and economy.
+Fethi Çelikbaş is a pragmatist Right-Wing Kemalist politician and former minister of industry and economy.
 
 - @root: Return to main

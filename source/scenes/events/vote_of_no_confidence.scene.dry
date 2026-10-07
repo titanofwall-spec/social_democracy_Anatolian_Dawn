@@ -33,7 +33,7 @@ on-arrival: {!
     Q.democracystatus -= 5;
 !}
 
-The vote succeeds and our government falls. However, the right wing parties, seeing an opportunity, have refused snap elections and formed a 'Nationalist Front' coalition among themselves, comprising: AP, [+ CGP_name +], MSP and MHP.
+The vote succeeds and our government falls. However, the right-wing parties, seeing an opportunity, have refused snap elections and formed a 'Nationalist Front' coalition among themselves, comprising: AP, [+ CGP_name +], MSP and MHP.
 
 @caretaker
 on-arrival: {!
@@ -64,6 +64,6 @@ on-arrival: {!
     Q.democracystatus -= 5;
 !}
 
-The vote succeeds and our government falls. Since the right wing parties think they will benefit from snap elections in our expense, a new government is not formed. New elections will be held soon.
+The vote succeeds and our government falls. Since the right-wing parties think they will benefit from snap elections at our expense, a new government is not formed. New elections will be held soon.
 
 New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
