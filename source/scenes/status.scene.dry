@@ -987,6 +987,10 @@ view-if: cyprus_mode != 0
 
 = Negotiations
 
+[? if cyprus_campaign_version == 2 and cyprus_month == 8 and cyprus_day < 8 : Diplomatic turns used: [+ cyprus_diplomatic_turns +] / 4. Each outreach action or Skip 2 Days uses one turn. ?]
+[? if cyprus_selected_plan == "gunes" : Selected proposal: Güneş Plan. ?]
+[? if cyprus_selected_plan == "denktas" : Selected proposal: Denktaş Plan. ?]
+
 Diplomatic Leverage: [+ leverage_points +]
 
 [? if cyprus_atilla1_ending_seen == 1 : Atilla I: [+ cyprus_atilla1_ending +] ([+ cyprus_atilla1_score +] / [+ cyprus_atilla1_max_score +]). Leverage reward: +[+ cyprus_atilla1_reward +]. ?]

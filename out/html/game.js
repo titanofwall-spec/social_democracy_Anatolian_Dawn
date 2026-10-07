@@ -112,7 +112,7 @@
   const endDayLink = document.getElementById('cyprus-end-day-link');
   if (endDayLink) {
     endDayLink.style.display = isCyprus ? 'inline-block' : 'none';
-    endDayLink.textContent = window.cyprusPendingScene(Q) ? 'Continue operation' : 'Skip Day';
+    endDayLink.textContent = window.cyprusPendingScene(Q) ? 'Continue operation' : (AnatolianRules.cyprusRoadmap ? AnatolianRules.cyprusRoadmap.skipLabel(Q) : 'Skip Day');
   }
 };
   // One shared map/control panel is rendered alongside every Cyprus passage.
@@ -313,6 +313,10 @@
   if (operationScene) {
     if (!Q.cyprus_calendar_advance) { Q.year=Q.cyprus_year;Q.month=Q.cyprus_month;Q.week=Q.cyprus_day<=15?1:2; }
     window.dendryUI.dendryEngine.goToScene(operationScene);
+    return;
+  }
+  if (AnatolianRules.cyprusRoadmap && AnatolianRules.cyprusRoadmap.active(Q)) {
+    if (AnatolianRules.cyprusRoadmap.skip(Q)) window.dendryUI.dendryEngine.goToScene('cyprus_campaign_continue');
     return;
   }
   var nextDate = new Date(Date.UTC(Q.cyprus_year, Q.cyprus_month - 1, Q.cyprus_day + 1));

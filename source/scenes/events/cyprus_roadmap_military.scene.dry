@@ -1,0 +1,30 @@
+title: The final advances of Atilla I
+view-if: {! return AnatolianRules.cyprusRoadmap.availableMilitary(Q,Q.cyprus_day) && Q.cyprus_day>=27; !}
+new-page: true
+on-arrival: {! AnatolianRules.cyprusRoadmap.militaryBrief(Q); !}
+
+= [+ cyprus_roadmap_event_title +]
+
+[+ cyprus_roadmap_event_text +]
+
+- @historical: Continue clearing the flanks and strengthening the approaches.
+- @alternative: Comply with the ceasefire, halt all advances and reinforce the line.
+
+@historical
+choose-if: {! return AnatolianRules.cyprusRoadmap.availableMilitary(Q,Q.cyprus_day); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveMilitary(Q,Q.cyprus_day,'historical',this.random.random.bind(this.random)); !}
+go-to: report
+
+@alternative
+choose-if: {! return AnatolianRules.cyprusRoadmap.availableMilitary(Q,Q.cyprus_day); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveMilitary(Q,Q.cyprus_day,'alternative',this.random.random.bind(this.random)); !}
+go-to: report
+
+@report
+new-page: true
+
+= Operation report — [+ cyprus_atilla1_last_outcome +]
+
+[+ cyprus_atilla1_last_text +]
+
+- @cyprus_campaign_continue: Continue.

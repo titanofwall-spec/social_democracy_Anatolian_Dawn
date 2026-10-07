@@ -1,0 +1,15 @@
+title: The Güneş Plan is fully in force
+view-if: {! return AnatolianRules.cyprusRoadmap.implementationReady(Q); !}
+tags: event
+max-visits: 1
+priority: 100
+new-page: true
+on-arrival: {! Q.cyprus_implementation_complete=1;Q.cyprus_implementation_pending=0; !}
+
+= 1 November 1974 — A federal Cyprus in force
+
+The implementation process that began on August 15 has been completed. The six autonomous Turkish cantons and the federal institutions established by the Güneş agreement are now fully in force.
+
+The agreement announced on August 30 has become an operating political settlement. Turkey's military position has been turned into a lasting arrangement without a second operation.
+
+- @root: The agreement is now a reality.

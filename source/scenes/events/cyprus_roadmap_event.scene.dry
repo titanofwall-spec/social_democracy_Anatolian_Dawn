@@ -1,0 +1,60 @@
+title: The Cyprus conference
+view-if: {! return AnatolianRules.cyprusRoadmap.active(Q) && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_roadmap_event'; !}
+new-page: true
+on-arrival: {! AnatolianRules.cyprusRoadmap.prepareEvent(Q); !}
+
+= [+ cyprus_roadmap_event_title +]
+
+[+ cyprus_roadmap_event_text +]
+
+- @demand: Present our demand, document the violations and reinforce the line.
+- @monitor: Seek UN monitoring and civilian protection while reinforcing the line.
+- @gunes: Pursue the Güneş Plan: six autonomous Turkish cantons.
+- @denktas: Pursue the Denktaş Plan: a northern Turkish federal region.
+- @offensive: Carry out the next advance and secure the operation's objectives.
+- @supply: Coordinate reinforcements and supplies before the next advance.
+- @continue: Continue.
+
+@demand
+view-if: {! return AnatolianRules.cyprusRoadmap.ceasefireAvailable(Q); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'demand'); !}
+go-to: report
+
+@monitor
+view-if: {! return AnatolianRules.cyprusRoadmap.ceasefireAvailable(Q); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'monitor'); !}
+go-to: report
+
+@gunes
+view-if: {! return AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-12'); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'gunes'); !}
+go-to: report
+
+@denktas
+view-if: {! return AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-12'); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'denktas'); !}
+go-to: report
+
+@offensive
+view-if: cyprus_campaign_phase == "atilla2" and cyprus_campaign_version == 2
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'historical',this.random.random.bind(this.random)); !}
+go-to: report
+
+@supply
+view-if: cyprus_campaign_phase == "atilla2" and cyprus_campaign_version == 2
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'alternative',this.random.random.bind(this.random)); !}
+go-to: report
+
+@continue
+view-if: {! return AnatolianRules.cyprusRoadmap.ordinaryEvent(Q); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'continue'); !}
+go-to: cyprus_campaign_continue
+
+@report
+new-page: true
+
+= Report
+
+[+ cyprus_roadmap_report +]
+
+- @cyprus_campaign_continue: Continue.

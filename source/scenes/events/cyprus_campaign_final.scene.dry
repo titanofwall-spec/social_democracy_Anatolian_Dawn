@@ -19,7 +19,9 @@ new-page: true
 
 Atilla I score: [+ cyprus_atilla1_score +] / 720.
 
-[? if cyprus_atilla2_complete == 1 : Atilla II score: [+ cyprus_atilla2_score +] / 240. ?]
+[? if cyprus_atilla2_complete == 1 : Atilla II score: [+ cyprus_atilla2_score +] / [? if cyprus_campaign_version == 2 : 400 ?][? if cyprus_campaign_version != 2 : 240 ?]. ?]
+
+[? if cyprus_campaign_version == 2 and cyprus_final_result == "Historical Division" : Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ?]
 
 - @root: Return to normal play.
 

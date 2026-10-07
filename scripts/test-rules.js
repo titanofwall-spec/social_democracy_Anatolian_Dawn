@@ -3,6 +3,7 @@ const lib = require('dendrynexus/lib/engine.js');
 const rules = require('../out/html/rules.js');
 require('../out/html/cyprus-atilla1.js');
 require('../out/html/cyprus-campaign.js');
+require('../out/html/cyprus-roadmap.js');
 // Preserve the legacy campaign fixture; current-campaign tests use the real initializer.
 rules.cyprusCampaign.initialize = () => {};
 const check = require('./check.js');

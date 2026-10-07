@@ -3011,15 +3011,33 @@
           {
             "type": "paragraph",
             "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "Geneva I: ",
+                  {
+                    "type": "insert",
+                    "insert": 13
+                  },
+                  " Leverage Points earned through the operation result and ceasefire record. "
+                ],
+                "predicate": 12
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               "Diplomatic leverage earned: +",
               {
                 "type": "insert",
-                "insert": 12
+                "insert": 14
               },
               ". Total: ",
               {
                 "type": "insert",
-                "insert": 13
+                "insert": 15
               },
               "."
             ]
@@ -3030,28 +3048,6 @@
               {
                 "type": "conditional",
                 "content": "The Greeks, the Brits, the Americans, the UN, no one had expected our government to stand so tall, and even fewer had expected our military power to act so decisively. The Greek Junta and Sampson's gambit ended terribly for the Greeks, for once again, the Turkish foot soldier marches across the plains and hills of Cyprus! We have not merely clashed with Greeks and won; we have achieved absolute military supremacy, so much so that the Greeks and the rest of the world believe more and more that the only factor that keeps us from sweeping across the island is our restraint! ",
-                "predicate": 14
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The result of the campaign could not be downplayed even by a fraction; Atilla I will forever be studied and mentioned in military academies and history books for decades as one of the most formidable military operations, if not the most formidable, of the second half of the 20th century; the respect and adoration our military enjoys have risen, and similarly, our government and therefore our party's standing with the public has been rejuvenated on an unprecedented scale! We were finally being seen as <em>real</em> successors of our founding father Atatürk and his party. Our leadership had shown our people a reality: when the Empire collapsed and foreign powers sought our demise and division, it was Atatürk and his Society for the Defence of Rights of Anatolia and Rumelia that stopped them! When Hatay was left under the French, it was Atatürk and his CHP that brought it back! And now, when the lives of the Turks in Cyprus were in danger, it was Atatürk's party that he left that saved them! Let them all know: no one can teach CHP what it means to be a nationalist! ",
-                "predicate": 15
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Our forces have accomplished a difficult task. The troops who landed under uncertain conditions have established a connected position on the island, and Turkey has demonstrated that the safety of the Turkish Cypriot community cannot be dismissed with another appeal for patience. The Greek Junta and Sampson's government have fallen, while our army remains in Cyprus as a force that any settlement must now take into account. ",
                 "predicate": 16
               },
               ""
@@ -3062,7 +3058,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Yet this was a victory won through hard fighting rather than an effortless march. Delays, resistance and the demands of supplying our formations limited what could be achieved, and not every objective was secured as firmly as our commanders had hoped. Our position is stronger than it was when the crisis began, but strength on the battlefield alone cannot settle the questions that brought us here. ",
+                "content": "The result of the campaign could not be downplayed even by a fraction; Atilla I will forever be studied and mentioned in military academies and history books for decades as one of the most formidable military operations, if not the most formidable, of the second half of the 20th century; the respect and adoration our military enjoys have risen, and similarly, our government and therefore our party's standing with the public has been rejuvenated on an unprecedented scale! We were finally being seen as <em>real</em> successors of our founding father Atatürk and his party. Our leadership had shown our people a reality: when the Empire collapsed and foreign powers sought our demise and division, it was Atatürk and his Society for the Defence of Rights of Anatolia and Rumelia that stopped them! When Hatay was left under the French, it was Atatürk and his CHP that brought it back! And now, when the lives of the Turks in Cyprus were in danger, it was Atatürk's party that he left that saved them! Let them all know: no one can teach CHP what it means to be a nationalist! ",
                 "predicate": 17
               },
               ""
@@ -3073,7 +3069,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "At home, the government can point to an intervention that produced concrete results. CHP has shown that it was willing to act when diplomacy failed to protect the Turkish community. But the responsibility of victory is now ours as well: we must preserve what our soldiers have won and secure an agreement worthy of the sacrifices already made. ",
+                "content": "Our forces have accomplished a difficult task. The troops who landed under uncertain conditions have established a connected position on the island, and Turkey has demonstrated that the safety of the Turkish Cypriot community cannot be dismissed with another appeal for patience. The Greek Junta and Sampson's government have fallen, while our army remains in Cyprus as a force that any settlement must now take into account. ",
                 "predicate": 18
               },
               ""
@@ -3084,7 +3080,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Our soldiers have held on, but the campaign has fallen short of the position we had hoped to establish. A connected foothold survives, yet too many operations brought limited gains, uncertain security or a cost greater than their result. Turkey has prevented its intervention from becoming an outright military defeat, but it cannot present this outcome as the decisive triumph the country had awaited. ",
+                "content": "Yet this was a victory won through hard fighting rather than an effortless march. Delays, resistance and the demands of supplying our formations limited what could be achieved, and not every objective was secured as firmly as our commanders had hoped. Our position is stronger than it was when the crisis began, but strength on the battlefield alone cannot settle the questions that brought us here. ",
                 "predicate": 19
               },
               ""
@@ -3095,7 +3091,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The government will have to answer difficult questions. Why were our advantages not turned into firmer positions? Why did so much effort leave so many problems unresolved? The courage of the men on the island cannot relieve Ankara of responsibility for the direction of the campaign. ",
+                "content": "At home, the government can point to an intervention that produced concrete results. CHP has shown that it was willing to act when diplomacy failed to protect the Turkish community. But the responsibility of victory is now ours as well: we must preserve what our soldiers have won and secure an agreement worthy of the sacrifices already made. ",
                 "predicate": 20
               },
               ""
@@ -3106,7 +3102,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Our delegation now approaches the negotiations with a weaker hand than it had intended. The territory already held must be preserved, the safety of the Turkish Cypriot community must still be secured, and the government must demonstrate that an incomplete military result need not become a permanent political failure. ",
+                "content": "Our soldiers have held on, but the campaign has fallen short of the position we had hoped to establish. A connected foothold survives, yet too many operations brought limited gains, uncertain security or a cost greater than their result. Turkey has prevented its intervention from becoming an outright military defeat, but it cannot present this outcome as the decisive triumph the country had awaited. ",
                 "predicate": 21
               },
               ""
@@ -3117,7 +3113,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
+                "content": "The government will have to answer difficult questions. Why were our advantages not turned into firmer positions? Why did so much effort leave so many problems unresolved? The courage of the men on the island cannot relieve Ankara of responsibility for the direction of the campaign. ",
                 "predicate": 22
               },
               ""
@@ -3128,7 +3124,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
+                "content": "Our delegation now approaches the negotiations with a weaker hand than it had intended. The territory already held must be preserved, the safety of the Turkish Cypriot community must still be secured, and the government must demonstrate that an incomplete military result need not become a permanent political failure. ",
                 "predicate": 23
               },
               ""
@@ -3139,7 +3135,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The end of Atilla I coincided with the end of the First Geneva Conference, and thus the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ",
+                "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
                 "predicate": 24
               },
               ""
@@ -3150,7 +3146,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "On this alternative course, Geneva I concludes on July 28 after Turkey froze its military positions. ",
+                "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
                 "predicate": 25
               },
               ""
@@ -3161,7 +3157,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand: ",
+                "content": "The end of Atilla I coincided with the end of the First Geneva Conference, and thus the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ",
                 "predicate": 26
               },
               ""
@@ -3172,7 +3168,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "“Agreed, Mr. Güneş.” ",
+                "content": "On this alternative course, Geneva I concludes on July 28 after Turkey froze its military positions. ",
                 "predicate": 27
               },
               ""
@@ -3183,7 +3179,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "It was not easy to believe, but the First Geneva Conference really had ended... ",
+                "content": "Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand: ",
                 "predicate": 28
               },
               ""
@@ -3194,8 +3190,30 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the historical source excerpt. ",
+                "content": "“Agreed, Mr. Güneş.” ",
                 "predicate": 29
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "It was not easy to believe, but the First Geneva Conference really had ended... ",
+                "predicate": 30
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the historical source excerpt. ",
+                "predicate": 31
               },
               ""
             ]
@@ -3272,6 +3290,18 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['cyprus_atilla1_credibility'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 2);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_geneva_leverage'] || 0);"
             }
           },
           {
@@ -3355,7 +3385,7 @@
           {
             "type": "predicate",
             "fn": {
-              "$code": "return (((Q['cyprus_early_freeze'] || 0) == 1) && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
+              "$code": "return ((((Q['cyprus_early_freeze'] || 0) == 1) && ((Q['cyprus_campaign_version'] || 0) != 2)) && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
             }
           },
           {
@@ -4162,6 +4192,18 @@
       ],
       "goTo": [
         {
+          "id": "cyprus_roadmap_event",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)===\"cyprus_roadmap_event\";"
+          }
+        },
+        {
+          "id": "cyprus_roadmap_military",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)===\"cyprus_roadmap_military\";"
+          }
+        },
+        {
           "id": "post_event",
           "predicate": {
             "$code": "return ((Q['cyprus_calendar_advance'] || 0) == 1);"
@@ -4404,9 +4446,31 @@
                     "type": "insert",
                     "insert": 12
                   },
-                  " / 240. "
+                  " / ",
+                  {
+                    "type": "conditional",
+                    "content": "400 ",
+                    "predicate": 13
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "240 ",
+                    "predicate": 14
+                  },
+                  ". "
                 ],
                 "predicate": 11
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ",
+                "predicate": 15
               },
               ""
             ]
@@ -4490,17 +4554,38 @@
             "fn": {
               "$code": "return (Q['cyprus_atilla2_score'] || 0);"
             }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 2);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['cyprus_campaign_version'] || 0) == 2) && (Q['cyprus_final_result'] == \"Historical Division\"));"
+            }
           }
         ]
       }
     },
     "cyprus_diplomacy_greece.improve": {
       "id": "cyprus_diplomacy_greece.improve",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'greece','improve')==='';"
       },
       "subtitle": "1 diplomatic leverage.",
-      "unavailableSubtitle": "Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.",
+      "unavailableSubtitle": "Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.",
       "onArrival": [
         {
           "$code": "AnatolianRules.cyprusCampaign.diplomaticAction(Q,'greece','improve');"
@@ -4546,7 +4631,7 @@
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'uk','improve')==='';"
       },
       "subtitle": "1 diplomatic leverage.",
-      "unavailableSubtitle": "Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.",
+      "unavailableSubtitle": "Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.",
       "onArrival": [
         {
           "$code": "AnatolianRules.cyprusCampaign.diplomaticAction(Q,'uk','improve');"
@@ -4592,7 +4677,7 @@
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','improve')==='';"
       },
       "subtitle": "1 diplomatic leverage.",
-      "unavailableSubtitle": "Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.",
+      "unavailableSubtitle": "Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.",
       "onArrival": [
         {
           "$code": "AnatolianRules.cyprusCampaign.diplomaticAction(Q,'us','improve');"
@@ -4743,6 +4828,46 @@
         "content": "",
         "type": "paragraph"
       }
+    },
+    "cyprus_gunes_implemented": {
+      "id": "cyprus_gunes_implemented",
+      "type": "scene",
+      "title": "The Güneş Plan is fully in force",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.implementationReady(Q);"
+      },
+      "tags": [
+        "event"
+      ],
+      "maxVisits": 1,
+      "priority": 100,
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "Q.cyprus_implementation_complete=1;Q.cyprus_implementation_pending=0;"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "The agreement is now a reality."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "1 November 1974 — A federal Cyprus in force"
+        },
+        {
+          "type": "paragraph",
+          "content": "The implementation process that began on August 15 has been completed. The six autonomous Turkish cantons and the federal institutions established by the Güneş agreement are now fully in force."
+        },
+        {
+          "type": "paragraph",
+          "content": "The agreement announced on August 30 has become an operating political settlement. Turkey's military position has been turned into a lasting arrangement without a second operation."
+        }
+      ],
+      "countVisitsMax": 1
     },
     "cyprus_history_august1.historical": {
       "id": "cyprus_history_august1.historical",
@@ -5322,6 +5447,46 @@
       "goTo": [
         {
           "id": "cyprus_briefing_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.demand": {
+      "id": "cyprus_roadmap_event.demand",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.ceasefireAvailable(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'demand');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_military.historical": {
+      "id": "cyprus_roadmap_military.historical",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.availableMilitary(Q,Q.cyprus_day);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveMilitary(Q,Q.cyprus_day,'historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_military.report"
         }
       ],
       "content": {
@@ -15226,6 +15391,9 @@
     },
     "cyprus_diplomacy_greece.denktas": {
       "id": "cyprus_diplomacy_greece.denktas",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'greece','denktas')==='';"
       },
@@ -15272,6 +15440,9 @@
     },
     "cyprus_diplomacy_uk.denktas": {
       "id": "cyprus_diplomacy_uk.denktas",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'uk','denktas')==='';"
       },
@@ -15318,6 +15489,9 @@
     },
     "cyprus_diplomacy_us.denktas": {
       "id": "cyprus_diplomacy_us.denktas",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','denktas')==='';"
       },
@@ -17085,6 +17259,46 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.monitor": {
+      "id": "cyprus_roadmap_event.monitor",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.ceasefireAvailable(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'monitor');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_military.alternative": {
+      "id": "cyprus_roadmap_military.alternative",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.availableMilitary(Q,Q.cyprus_day);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveMilitary(Q,Q.cyprus_day,'alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_military.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "cyprus_smuggle_arms.smuggle": {
       "id": "cyprus_smuggle_arms.smuggle",
       "chooseIf": {
@@ -18059,6 +18273,14 @@
         {
           "id": "@foreign_policy.improve_west",
           "title": "Improve relations with Western Europe."
+        },
+        {
+          "id": "@foreign_policy.cyprus_negotiations",
+          "title": "Cyprus Negotiations."
+        },
+        {
+          "id": "@foreign_policy.implement_cyprus",
+          "title": "Implement the negotiated Cyprus plan."
         },
         {
           "id": "@foreign_policy.negotiategunes",
@@ -21260,6 +21482,9 @@
     },
     "cyprus_diplomacy_greece.gunes": {
       "id": "cyprus_diplomacy_greece.gunes",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'greece','gunes')==='';"
       },
@@ -21306,6 +21531,9 @@
     },
     "cyprus_diplomacy_uk.gunes": {
       "id": "cyprus_diplomacy_uk.gunes",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'uk','gunes')==='';"
       },
@@ -21352,6 +21580,9 @@
     },
     "cyprus_diplomacy_us.gunes": {
       "id": "cyprus_diplomacy_us.gunes",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','gunes')==='';"
       },
@@ -21582,6 +21813,138 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['cyprus_target_district_label'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_roadmap_event.gunes": {
+      "id": "cyprus_roadmap_event.gunes",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-12');"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'gunes');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_military.report": {
+      "id": "cyprus_roadmap_military.report",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_campaign_continue",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "Operation report — ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_atilla1_last_outcome'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_atilla1_last_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_roadmap_military": {
+      "id": "cyprus_roadmap_military",
+      "type": "scene",
+      "title": "The final advances of Atilla I",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.availableMilitary(Q,Q.cyprus_day) && Q.cyprus_day>=27;"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.militaryBrief(Q);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_roadmap_military.historical",
+          "title": "Continue clearing the flanks and strengthening the approaches."
+        },
+        {
+          "id": "@cyprus_roadmap_military.alternative",
+          "title": "Comply with the ceasefire, halt all advances and reinforce the line."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_title'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_text'] || 0);"
             }
           }
         ]
@@ -25754,6 +26117,26 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.denktas": {
+      "id": "cyprus_roadmap_event.denktas",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-12');"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'denktas');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "gezmis.commuted_result": {
       "id": "gezmis.commuted_result",
       "viewIf": {
@@ -27656,6 +28039,9 @@
     },
     "cyprus_diplomacy_greece.ratify_denktas": {
       "id": "cyprus_diplomacy_greece.ratify_denktas",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.canSettle(Q,'denktas');"
       },
@@ -27677,6 +28063,9 @@
     },
     "cyprus_diplomacy_uk.ratify_denktas": {
       "id": "cyprus_diplomacy_uk.ratify_denktas",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.canSettle(Q,'denktas');"
       },
@@ -27698,6 +28087,9 @@
     },
     "cyprus_diplomacy_us.ratify_denktas": {
       "id": "cyprus_diplomacy_us.ratify_denktas",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.canSettle(Q,'denktas');"
       },
@@ -27794,6 +28186,26 @@
             }
           }
         ]
+      }
+    },
+    "cyprus_roadmap_event.offensive": {
+      "id": "cyprus_roadmap_event.offensive",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_phase'] == \"atilla2\") && ((Q['cyprus_campaign_version'] || 0) == 2));"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'historical',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
       }
     },
     "national_elections.left_coalition": {
@@ -28364,7 +28776,7 @@
       "id": "foreign_policy.negotiategunes",
       "subtitle": "The Güneş Plan is a plan for the reunification of Cyprus under a confederation created by our exterior minister Turan Güneş. The plan suggests splitting the island into many decentralized zones across the island along ethnic lines. We have to negotiate a deal before the US Congress approves an arms embargo against us at the end of the year!",
       "viewIf": {
-        "$code": "return (((Q['cyprus_problem'] || 0) == 3) && ((Q['year'] || 0) < 1975));"
+        "$code": "return ((((Q['cyprus_campaign_version'] || 0) != 2) && ((Q['cyprus_problem'] || 0) == 3)) && ((Q['year'] || 0) < 1975));"
       },
       "chooseIf": {
         "$code": "return (Q['foreign_minister_party'] == \"CHP\");"
@@ -30505,6 +30917,9 @@
     },
     "cyprus_diplomacy_greece.ratify_gunes": {
       "id": "cyprus_diplomacy_greece.ratify_gunes",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.canSettle(Q,'gunes');"
       },
@@ -30535,7 +30950,7 @@
       "options": [
         {
           "id": "@cyprus_diplomacy_greece.improve",
-          "title": "Improve diplomatic confidence."
+          "title": "Improve diplomatic confidence (1 Leverage Point; 2 days)."
         },
         {
           "id": "@cyprus_diplomacy_greece.denktas",
@@ -30604,6 +31019,9 @@
     },
     "cyprus_diplomacy_uk.ratify_gunes": {
       "id": "cyprus_diplomacy_uk.ratify_gunes",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.canSettle(Q,'gunes');"
       },
@@ -30626,7 +31044,7 @@
     "cyprus_diplomacy_uk": {
       "id": "cyprus_diplomacy_uk",
       "type": "scene",
-      "title": "Negotiations with United Kingdom",
+      "title": "Negotiations with the United Kingdom",
       "viewIf": {
         "$code": "return ((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_atilla1_ending_seen'] || 0) == 1)) && ((Q['cyprus_campaign_resolved'] || 0) == 0));"
       },
@@ -30634,7 +31052,7 @@
       "options": [
         {
           "id": "@cyprus_diplomacy_uk.improve",
-          "title": "Improve diplomatic confidence."
+          "title": "Improve diplomatic confidence (1 Leverage Point; 2 days)."
         },
         {
           "id": "@cyprus_diplomacy_uk.denktas",
@@ -30661,7 +31079,7 @@
         "content": [
           {
             "type": "heading",
-            "content": "Negotiations with United Kingdom"
+            "content": "Negotiations with the United Kingdom"
           },
           {
             "type": "paragraph",
@@ -30703,6 +31121,9 @@
     },
     "cyprus_diplomacy_us.ratify_gunes": {
       "id": "cyprus_diplomacy_us.ratify_gunes",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
+      },
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.canSettle(Q,'gunes');"
       },
@@ -30725,7 +31146,7 @@
     "cyprus_diplomacy_us": {
       "id": "cyprus_diplomacy_us",
       "type": "scene",
-      "title": "Negotiations with United States",
+      "title": "Negotiations with the United States",
       "viewIf": {
         "$code": "return ((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_atilla1_ending_seen'] || 0) == 1)) && ((Q['cyprus_campaign_resolved'] || 0) == 0));"
       },
@@ -30733,7 +31154,7 @@
       "options": [
         {
           "id": "@cyprus_diplomacy_us.improve",
-          "title": "Improve diplomatic confidence."
+          "title": "Improve diplomatic confidence (1 Leverage Point; 2 days)."
         },
         {
           "id": "@cyprus_diplomacy_us.denktas",
@@ -30760,7 +31181,7 @@
         "content": [
           {
             "type": "heading",
-            "content": "Negotiations with United States"
+            "content": "Negotiations with the United States"
           },
           {
             "type": "paragraph",
@@ -30798,6 +31219,26 @@
             }
           }
         ]
+      }
+    },
+    "cyprus_roadmap_event.supply": {
+      "id": "cyprus_roadmap_event.supply",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_campaign_phase'] == \"atilla2\") && ((Q['cyprus_campaign_version'] || 0) == 2));"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'alternative',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
       }
     },
     "national_elections.forward": {
@@ -31274,7 +31715,7 @@
       "id": "foreign_policy.negotiatedenktas",
       "subtitle": "Even though we have lost our chance with the Güneş Plan, it may still be possible to find a peaceful end to the Cyprus Problem. The Denktaş Plan is a plan for the reunification of Cyprus under a confederation created by the Turkish Cypriot leader Rauf Denktaş. The plan unlike the Güneş Plan entails a division of the island into two halves roughly along the invasion lines.",
       "viewIf": {
-        "$code": "return (((Q['cyprus_problem'] || 0) == 3) && ((Q['year'] || 0) >= 1975));"
+        "$code": "return ((((Q['cyprus_campaign_version'] || 0) != 2) && ((Q['cyprus_problem'] || 0) == 3)) && ((Q['year'] || 0) >= 1975));"
       },
       "chooseIf": {
         "$code": "return ((Q['foreign_minister_party'] == \"CHP\") && ((Q['us_relation'] || 0) > 40));"
@@ -32268,6 +32709,26 @@
             }
           }
         ]
+      }
+    },
+    "cyprus_roadmap_event.continue": {
+      "id": "cyprus_roadmap_event.continue",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.ordinaryEvent(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'continue');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
       }
     },
     "national_elections.ecevitleft": {
@@ -35217,6 +35678,125 @@
         ]
       }
     },
+    "cyprus_roadmap_event.report": {
+      "id": "cyprus_roadmap_event.report",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_campaign_continue",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Report"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_report'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "cyprus_roadmap_event": {
+      "id": "cyprus_roadmap_event",
+      "type": "scene",
+      "title": "The Cyprus conference",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.active(Q) && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_roadmap_event';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.prepareEvent(Q);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_roadmap_event.demand",
+          "title": "Present our demand, document the violations and reinforce the line."
+        },
+        {
+          "id": "@cyprus_roadmap_event.monitor",
+          "title": "Seek UN monitoring and civilian protection while reinforcing the line."
+        },
+        {
+          "id": "@cyprus_roadmap_event.gunes",
+          "title": "Pursue the Güneş Plan: six autonomous Turkish cantons."
+        },
+        {
+          "id": "@cyprus_roadmap_event.denktas",
+          "title": "Pursue the Denktaş Plan: a northern Turkish federal region."
+        },
+        {
+          "id": "@cyprus_roadmap_event.offensive",
+          "title": "Carry out the next advance and secure the operation's objectives."
+        },
+        {
+          "id": "@cyprus_roadmap_event.supply",
+          "title": "Coordinate reinforcements and supplies before the next advance."
+        },
+        {
+          "id": "@cyprus_roadmap_event.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_title'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_text'] || 0);"
+            }
+          }
+        ]
+      }
+    },
     "national_elections.kirikoglu": {
       "id": "national_elections.kirikoglu",
       "onArrival": [
@@ -36261,10 +36841,50 @@
           {
             "type": "paragraph",
             "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "Diplomatic turns used: ",
+                  {
+                    "type": "insert",
+                    "insert": 9
+                  },
+                  " / 4. Each outreach action or Skip 2 Days uses one turn. "
+                ],
+                "predicate": 8
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Selected proposal: Güneş Plan. ",
+                "predicate": 10
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Selected proposal: Denktaş Plan. ",
+                "predicate": 11
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               "Diplomatic Leverage: ",
               {
                 "type": "insert",
-                "insert": 8
+                "insert": 12
               },
               ""
             ]
@@ -36278,26 +36898,26 @@
                   "Atilla I: ",
                   {
                     "type": "insert",
-                    "insert": 10
+                    "insert": 14
                   },
                   " (",
                   {
                     "type": "insert",
-                    "insert": 11
+                    "insert": 15
                   },
                   " / ",
                   {
                     "type": "insert",
-                    "insert": 12
+                    "insert": 16
                   },
                   "). Leverage reward: +",
                   {
                     "type": "insert",
-                    "insert": 13
+                    "insert": 17
                   },
                   ". "
                 ],
-                "predicate": 9
+                "predicate": 13
               },
               ""
             ]
@@ -36311,16 +36931,16 @@
                   "Ceasefire-period score: ",
                   {
                     "type": "insert",
-                    "insert": 15
+                    "insert": 19
                   },
                   " / ",
                   {
                     "type": "insert",
-                    "insert": 16
+                    "insert": 20
                   },
                   ". "
                 ],
-                "predicate": 14
+                "predicate": 18
               },
               ""
             ]
@@ -36334,11 +36954,11 @@
                   "Frontlines: ",
                   {
                     "type": "insert",
-                    "insert": 18
+                    "insert": 22
                   },
                   ". "
                 ],
-                "predicate": 17
+                "predicate": 21
               },
               ""
             ]
@@ -36352,11 +36972,11 @@
                   "Settlement: ",
                   {
                     "type": "insert",
-                    "insert": 20
+                    "insert": 24
                   },
                   ". "
                 ],
-                "predicate": 19
+                "predicate": 23
               },
               ""
             ]
@@ -36413,6 +37033,30 @@
               "$code": "return (Q['us_attitude'] || 0);"
             },
             "qdisplay": "cyprus_attitude"
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((((Q['cyprus_campaign_version'] || 0) == 2) && ((Q['cyprus_month'] || 0) == 8)) && ((Q['cyprus_day'] || 0) < 8));"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_diplomatic_turns'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_selected_plan'] == \"gunes\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_selected_plan'] == \"denktas\");"
+            }
           },
           {
             "type": "insert",
@@ -44280,52 +44924,6 @@
         ]
       }
     },
-    "foreign_policy": {
-      "id": "foreign_policy",
-      "type": "scene",
-      "title": "Foreign Policy",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['foreign_policy_timer'] = (Q['foreign_policy_timer'] || 0) + 6;"
-        }
-      ],
-      "viewIf": {
-        "$code": "return ((((Q['CHP_in_government'] || 0)===1) && (Q['foreign_minister_party'] == \"CHP\")) && ((Q['foreign_policy_timer'] || 0) <= 0));"
-      },
-      "cardImage": "img/portraits/TuranGunes.jpg",
-      "goTo": [
-        {
-          "id": "foreign_policy.fp_menu"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Foreign Policy"
-        },
-        {
-          "type": "paragraph",
-          "content": "Turkey is at the intersection of the global blocs and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East."
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            "Through our foreign policy initiatives we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '",
-            {
-              "type": "emphasis-2",
-              "content": "Peace at home, peace in the world."
-            },
-            "'. Even though since the 1950s the nation has moved towards the Western Alliance and NATO, decent and peaceful relations with all our neighbors are a key tenet of our foreign policy."
-          ]
-        }
-      ]
-    },
     "shuffle_leadership.remove_akan": {
       "id": "shuffle_leadership.remove_akan",
       "title": "Remove Akan",
@@ -44382,6 +44980,59 @@
         ]
       }
     },
+    "foreign_policy.cyprus_negotiations": {
+      "id": "foreign_policy.cyprus_negotiations",
+      "viewIf": {
+        "$code": "return ((((Q['cyprus_campaign_version'] || 0) == 2) && ((Q['cyprus_problem'] || 0) == 3)) && ((Q['cyprus_atilla2_complete'] || 0) == 1));"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.laterUnavailable(Q)==='';"
+      },
+      "subtitle": "Güneş: Friendly US and Western Europe relations, four rounds. Denktaş: Very Friendly relations with both, six rounds.",
+      "unavailableSubtitle": "CHP must hold the Foreign Ministry, and both foreign relationships must meet the selected plan's threshold.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.laterNegotiate(Q);"
+        }
+      ],
+      "newPage": true,
+      "options": [
+        {
+          "id": "@foreign_policy.implement_cyprus",
+          "title": "Implement the agreed federal plan."
+        },
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Cyprus Negotiations"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_report'] || 0);"
+            }
+          }
+        ]
+      }
+    },
     "shuffle_leadership.remove_erdem": {
       "id": "shuffle_leadership.remove_erdem",
       "title": "Remove Erdem",
@@ -44426,6 +45077,100 @@
         "content": "What are our goals here, exactly?",
         "type": "paragraph"
       }
+    },
+    "foreign_policy.implement_cyprus": {
+      "id": "foreign_policy.implement_cyprus",
+      "viewIf": {
+        "$code": "return ((((Q['cyprus_campaign_version'] || 0) == 2) && ((Q['cyprus_problem'] || 0) == 3)) && (((Q['cyprus_later_negotiations'] || 0) >= 4)));"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.laterCanImplement(Q);"
+      },
+      "unavailableSubtitle": "The selected plan needs four (Güneş) or six (Denktaş) completed rounds and the required US and Western Europe relations.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.implementLater(Q);"
+        }
+      ],
+      "newPage": true,
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "A federal settlement for Cyprus"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_report'] || 0);"
+            }
+          }
+        ]
+      }
+    },
+    "foreign_policy": {
+      "id": "foreign_policy",
+      "type": "scene",
+      "title": "Foreign Policy",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['foreign_policy_timer'] = (Q['foreign_policy_timer'] || 0) + 6;"
+        }
+      ],
+      "viewIf": {
+        "$code": "return ((((Q['CHP_in_government'] || 0)===1) && (Q['foreign_minister_party'] == \"CHP\")) && ((Q['foreign_policy_timer'] || 0) <= 0));"
+      },
+      "cardImage": "img/portraits/TuranGunes.jpg",
+      "goTo": [
+        {
+          "id": "foreign_policy.fp_menu"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Foreign Policy"
+        },
+        {
+          "type": "paragraph",
+          "content": "Turkey is at the intersection of the global blocs and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East."
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "Through our foreign policy initiatives we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '",
+            {
+              "type": "emphasis-2",
+              "content": "Peace at home, peace in the world."
+            },
+            "'. Even though since the 1950s the nation has moved towards the Western Alliance and NATO, decent and peaceful relations with all our neighbors are a key tenet of our foreign policy."
+          ]
+        }
+      ]
     },
     "shuffle_leadership.remove_ugur": {
       "id": "shuffle_leadership.remove_ugur",
@@ -46971,6 +47716,7 @@
       "ayse": true,
       "cgpformation": true,
       "coup": true,
+      "cyprus_gunes_implemented": true,
       "devletguvenlikmahkmesei": true,
       "devyol_formation": true,
       "DP_decay": true,

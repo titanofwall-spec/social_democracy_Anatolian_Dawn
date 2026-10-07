@@ -28,6 +28,8 @@ Turkey is a crucial member of the Western Alliance and of NATO. Our Western alli
 
 - @improve_us: Improve relations with the United States.
 - @improve_west: Improve relations with Western Europe.
+- @cyprus_negotiations: Cyprus Negotiations.
+- @implement_cyprus: Implement the negotiated Cyprus plan.
 - @negotiategunes: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
 - @negotiatedenktas: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
 - @aet: Apply to join the European Economic Community, EEC!
@@ -46,7 +48,7 @@ We improve our relations with Western Europe.
 
 @negotiategunes
 subtitle: The Güneş Plan is a plan for the reunification of Cyprus under a confederation created by our exterior minister Turan Güneş. The plan suggests splitting the island into many decentralized zones across the island along ethnic lines. We have to negotiate a deal before the US Congress approves an arms embargo against us at the end of the year!
-view-if: cyprus_problem == 3 and year < 1975
+view-if: cyprus_campaign_version != 2 and cyprus_problem == 3 and year < 1975
 choose-if: foreign_minister_party = "CHP"
 on-arrival: gunesplan += 1
 
@@ -54,7 +56,7 @@ We negotiate the plan with our American counterparts who act as mediators betwee
 
 @negotiatedenktas
 subtitle: Even though we have lost our chance with the Güneş Plan, it may still be possible to find a peaceful end to the Cyprus Problem. The Denktaş Plan is a plan for the reunification of Cyprus under a confederation created by the Turkish Cypriot leader Rauf Denktaş. The plan unlike the Güneş Plan entails a division of the island into two halves roughly along the invasion lines.
-view-if: cyprus_problem == 3 and year >= 1975
+view-if: cyprus_campaign_version != 2 and cyprus_problem == 3 and year >= 1975
 choose-if: foreign_minister_party = "CHP" and us_relation > 40
 unavailable-subtitle: Our relations with the US are not good enough to negotiate the Denktaş Plan!
 on-arrival: denktasplan += 1
@@ -205,3 +207,31 @@ on-arrival: fkoo += 1; us_relation -= 10; west_relation -= 5; middle_east_relati
 Even though we are not a player in the Israel-Palestine conflict, recognizing the PLA as a legitimate actor can grant us popularity, stronger relations with the Middle East and possible easing down of the tensions with the internal Islamists. [? if MSP_in_government == 1 : Erbakan supports this action as well which decreased coalition dissent. ?] Besides the pragmatic reasons, many on the left of our party are sympathetic to the Palestinian cause.
 
 
+
+@cyprus_negotiations
+view-if: cyprus_campaign_version == 2 and cyprus_problem == 3 and cyprus_atilla2_complete == 1
+choose-if: {! return AnatolianRules.cyprusRoadmap.laterUnavailable(Q)===''; !}
+subtitle: Güneş: Friendly US and Western Europe relations, four rounds. Denktaş: Very Friendly relations with both, six rounds.
+unavailable-subtitle: CHP must hold the Foreign Ministry, and both foreign relationships must meet the selected plan's threshold.
+on-arrival: {! AnatolianRules.cyprusRoadmap.laterNegotiate(Q); !}
+new-page: true
+
+= Cyprus Negotiations
+
+[+ cyprus_roadmap_report +]
+
+- @implement_cyprus: Implement the agreed federal plan.
+- @root: Continue.
+
+@implement_cyprus
+view-if: cyprus_campaign_version == 2 and cyprus_problem == 3 and (cyprus_later_negotiations >= 4)
+choose-if: {! return AnatolianRules.cyprusRoadmap.laterCanImplement(Q); !}
+unavailable-subtitle: The selected plan needs four (Güneş) or six (Denktaş) completed rounds and the required US and Western Europe relations.
+on-arrival: {! AnatolianRules.cyprusRoadmap.implementLater(Q); !}
+new-page: true
+
+= A federal settlement for Cyprus
+
+[+ cyprus_roadmap_report +]
+
+- @root: Continue.
