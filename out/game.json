@@ -2387,7 +2387,7 @@
       "id": "cyprus_atilla1_20.historical",
       "title": "Advance toward a junction with the airborne forces.",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 20)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 20)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -2460,9 +2460,9 @@
     },
     "cyprus_atilla1_21.historical": {
       "id": "cyprus_atilla1_21.historical",
-      "title": "Dispatch reinforcements and prioritize the junction.",
+      "title": "Press the advance through the Beşparmak passages and force the junction",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -2535,9 +2535,9 @@
     },
     "cyprus_atilla1_22.historical": {
       "id": "cyprus_atilla1_22.historical",
-      "title": "Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline.",
+      "title": "Accept the ceasefire and secure our flanks before the deadline",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -2610,9 +2610,9 @@
     },
     "cyprus_atilla1_23.historical": {
       "id": "cyprus_atilla1_23.historical",
-      "title": "Continue consolidation while entering diplomatic talks.",
+      "title": "Continue consolidation while entering diplomatic talks",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -2687,7 +2687,7 @@
       "id": "cyprus_atilla1_24.historical",
       "title": "Continue limited expansion, promising not to seize the airport by force.",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -2903,7 +2903,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "Turkey has frozen its positions after the airport confrontation. Geneva I concludes earlier on this alternative route, on July 28. ",
+                "content": "Turkey has frozen its positions after its last military operation. Geneva I concludes earlier on this alternative route, on July 28. ",
                 "predicate": 2
               },
               ""
@@ -4617,7 +4617,7 @@
     },
     "cyprus_history_july25.historical": {
       "id": "cyprus_history_july25.historical",
-      "title": "Continue consolidating positions while opening the Geneva talks.",
+      "title": "Continue limited advances to pressure the Greek side and protect exposed Turkish communities",
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
       },
@@ -13998,9 +13998,9 @@
     },
     "cyprus_atilla1_20.alternative": {
       "id": "cyprus_atilla1_20.alternative",
-      "title": "Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.",
+      "title": "Secure the beachhead and unload heavier support before advancing inland.",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 20)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 20)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14074,9 +14074,9 @@
     "cyprus_atilla1_20": {
       "id": "cyprus_atilla1_20",
       "type": "scene",
-      "title": "A foothold, not a front",
+      "title": "20 July 1974 — A foothold, not a front",
       "viewIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 20)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 20)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14091,7 +14091,7 @@
         },
         {
           "id": "@cyprus_atilla1_20.alternative",
-          "title": "Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation."
+          "title": "Secure the beachhead and unload heavier support before advancing inland."
         }
       ],
       "content": {
@@ -14105,14 +14105,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " "
-                ],
+                "content": ": The Turkish forces had moved from Mersin at 11:30 in July 19, by the morning of 5am the next day, they had arrived at the coast of Cyprus. The Turkish forces had grown closer to disadvantageus Glykiotissa coast instead of the preferred Pentemili, therefore the landing had started in 7:15 instead of 5:30 and ended by 13:00.",
                 "predicate": 0
               },
               ""
@@ -14120,7 +14113,14 @@
           },
           {
             "type": "paragraph",
-            "content": "Historical source reference:"
+            "content": [
+              {
+                "type": "conditional",
+                "content": ": The Turkish forces had moved from Mersin at 11:30 in July 19, by the morning of 5am the next day, they had arrived at the coast of Cyprus. The Turkish forces approached Pentemili by 5:30 and successfully carried out the landing by 11:00.",
+                "predicate": 1
+              },
+              ""
+            ]
           },
           {
             "type": "paragraph",
@@ -14128,28 +14128,28 @@
           },
           {
             "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 135 — English translation of the source excerpt."
+            "content": "The Commando Brigade was increasingly making parachute landings in the area at Strait held by the Turkish Cypriot fighters. Although they encountered scattered gunfire, their landing and assembly were fairly easy. General Ersin, commanding them, used the fighters' radios to send “We have arrived safely” to Akıncı, the Commander of the Land Forces, in Adana. The following order came from Adana: “Join the forces landing from the sea without losing any time.”"
           },
           {
             "type": "paragraph",
-            "content": "The Commando Brigade was increasingly making parachute landings in the area at Boğaz held by the Turkish Cypriot fighters. Although they encountered scattered gunfire, their landing and assembly were fairly easy. General Ersin, commanding them, used the fighters' radios to send “We have arrived safely” to Akıncı, the Commander of the Land Forces, in Adana. The following order came from Adana: “Join the forces landing from the sea without losing any time.”"
+            "content": "Forces remain authorized to consolidate and advance. Our immediate goals were to form a junction between the airborne units and the marine forces through the Beşparmak Mountain Passages. However, if we believe that our airborne units have the capabilities of further resisting, we can delay the inland expansion for a while more as we secure the beach to unload heavier support first. Either option would still allow us to move to secure the junction, but in one we risk the lives of our airborne units while in other accept less logistical superiority."
           },
           {
             "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 136 — English translation of the source excerpt."
+            "content": "Current frontlines: Separate coastal and airborne positions."
           }
         ],
         "stateDependencies": [
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
+              "$code": "return AnatolianRules.cyprusAtilla1.resourceTier(Q)<=3;"
             }
           },
           {
-            "type": "insert",
+            "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_campaign_report'] || 0);"
+              "$code": "return AnatolianRules.cyprusAtilla1.resourceTier(Q)>3;"
             }
           }
         ]
@@ -14157,9 +14157,9 @@
     },
     "cyprus_atilla1_21.alternative": {
       "id": "cyprus_atilla1_21.alternative",
-      "title": "Dispatch reinforcements to secure existing positions.",
+      "title": "Clear the mountain resistance and wait for the second wave before forcing the junction",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14233,9 +14233,9 @@
     "cyprus_atilla1_21": {
       "id": "cyprus_atilla1_21",
       "type": "scene",
-      "title": "The second wave",
+      "title": "21 July 1974 — Beşparmak Mountains",
       "viewIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 21)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14246,71 +14246,29 @@
       "options": [
         {
           "id": "@cyprus_atilla1_21.historical",
-          "title": "Dispatch reinforcements and prioritize the junction."
+          "title": "Press the advance through the Beşparmak passages and force the junction"
         },
         {
           "id": "@cyprus_atilla1_21.alternative",
-          "title": "Dispatch reinforcements to secure existing positions."
+          "title": "Clear the mountain resistance and wait for the second wave before forcing the junction"
         }
       ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "21 July 1974 — The second wave"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " "
-                ],
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "The bombardment that had begun on the island in the morning broke the first night's blockage, and the advance resumed... But the troop reinforcements—the second wave—would reach the island the following morning. The Kyrenia–Nicosia road still had not been brought under control. Fire continued from the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 188–189 — English translation of the source excerpt."
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_campaign_report'] || 0);"
-            }
-          }
-        ]
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "21 July 1974 — Beşparmak Mountains"
+        },
+        {
+          "type": "paragraph",
+          "content": "The air bombardment had begun on the island in the morning s our Marine and Airborne units keep advancing to form a junction and broke the first night's enemy blockage. By the next morning, the second wave of our forces would advance. In the meantime, the Kyrenia-Nicosia road was yet to be brought under control. As our forces approach the passage, the firing continued in the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless."
+        }
+      ]
     },
     "cyprus_atilla1_22.alternative": {
       "id": "cyprus_atilla1_22.alternative",
-      "title": "Accept the ceasefire and halt offensive movement immediately.",
+      "title": "Accept the ceasefire and halt offensive movement immediately",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14384,9 +14342,9 @@
     "cyprus_atilla1_22": {
       "id": "cyprus_atilla1_22",
       "type": "scene",
-      "title": "Before the ceasefire",
+      "title": "22 July 1974 — UN Ceasefire!",
       "viewIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 22)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14397,71 +14355,37 @@
       "options": [
         {
           "id": "@cyprus_atilla1_22.historical",
-          "title": "Accept the ceasefire and pursue the junction—or secure its flanks if already established—before the deadline."
+          "title": "Accept the ceasefire and secure our flanks before the deadline"
         },
         {
           "id": "@cyprus_atilla1_22.alternative",
-          "title": "Accept the ceasefire and halt offensive movement immediately."
+          "title": "Accept the ceasefire and halt offensive movement immediately"
         }
       ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "22 July 1974 — Before the ceasefire"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " "
-                ],
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "In Cyprus, the pressure of the previous night had been relieved, but the Greek Cypriots were again becoming active after dark. The KYRENIA–GÖNYELİ–NICOSIA link had been established, however inadequately. Yet resistance continued inside Kyrenia, and fighting continued in the pockets in the Beşparmak Mountains. The airborne troops and those who had landed from the sea were about to join up. The General Staff was very pleased that the force, which had been fighting on the island for two days without reinforcements, had achieved this—in fact, this was the real success. The second-wave forces had set out on Sunday night, 21 July, and were about to reach the island. There were heavy tanks and armoured vehicles, and they would consolidate control over the area that had been captured."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 228 — English translation of the source excerpt."
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_campaign_report'] || 0);"
-            }
-          }
-        ]
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "22 July 1974 — UN Ceasefire!"
+        },
+        {
+          "type": "paragraph",
+          "content": "In Cyprus, with the achievement of the junction, the pressure of the previous night had been relieved, most importantly, the Turkish forces had managed to enter the city by 11:00, with it the Greek line collapsed and both 251st and 306th battallions were forced to retreat from Kyrenia. Despite some Turkish tanks sustaining damage 241st battallion would also be pushed away and 306th battallion's captain would be captured. While the complete takeover of the city had not been achieved today, it was only a matter of time."
+        },
+        {
+          "type": "paragraph",
+          "content": "In the meantime, the completion of Junction saw the Airborne and Marine forces aiming at removing all resistance in the Beşparmak Mountains- however many had left by our prior operations. The General Staff was very pleased that our forces had managed to succeed in its achievements. With our military might been proven to the World, and the Second Wave was making land while our forces on field were making advances, the United Nations Security Council had commenced an emergency meeting the day we started our operations and now given us a demand of ceasefire."
+        },
+        {
+          "type": "paragraph",
+          "content": "It is not a possibility to refuse this ceasefire without utterly destroying our diplomatic stance. However, both we and UN knew that regardless of our actions the Greeks, or at the very least Cypriot militias, would continue their actions, and there was the serious question of the state of our military positions, safety of our soldiers and the very bare question of if we had done enough. Therefore, the most logical action appeared to be accepting the ceasefire while moving as much as possible to secure our flanks until the deadline, and keep responding and advancing whenever we enter into conflict with the enemy forces. Or we could also demonstrate our level headedness and confidence and halt all of our offensive movement, such action this early would only be sensible if we are truly confident of our military state and at our prospect of achieving a peaceful diplomatic resolution without any further military action."
+        }
+      ]
     },
     "cyprus_atilla1_23.alternative": {
       "id": "cyprus_atilla1_23.alternative",
-      "title": "Halt offensive movement and seek UN protection for exposed communities.",
+      "title": "Halt offensive movement and seek UN protection for exposed communities",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14535,9 +14459,9 @@
     "cyprus_atilla1_23": {
       "id": "cyprus_atilla1_23",
       "type": "scene",
-      "title": "A ceasefire without security",
+      "title": "July 23, 1974: A Ceasefire on Paper Only",
       "viewIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 23)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -14548,79 +14472,41 @@
       "options": [
         {
           "id": "@cyprus_atilla1_23.historical",
-          "title": "Continue consolidation while entering diplomatic talks."
+          "title": "Continue consolidation while entering diplomatic talks"
         },
         {
           "id": "@cyprus_atilla1_23.alternative",
-          "title": "Halt offensive movement and seek UN protection for exposed communities."
+          "title": "Halt offensive movement and seek UN protection for exposed communities"
         }
       ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "23 July 1974 — A ceasefire without security"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " "
-                ],
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "In Turkey, Karamanlis's arrival, followed immediately by Sampson's overthrow and his replacement by Clerides, was met with mixed feelings. In every Turk's mind, Karamanlis was known as a man who had signed the London–Zurich agreements despite Makarios and believed in Turkish–Greek friendship... Clerides too had always inspired sympathy with his moderate and reasonable attitude. These two leaders' accession increased hopes that “the way to a solution in Cyprus would open”... In government circles, the boast “We have brought democracy to Greece” prevailed. A softer atmosphere had emerged... With Karamanlis's arrival, an entirely new and wide-ranging cooperation could be established between Turkey and Greece..."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 255 — English translation of the source excerpt."
-          },
-          {
-            "type": "paragraph",
-            "content": "In Cyprus, however, the ceasefire existed only in words. Turkey was continually massing troops to make up the shortfall and trying to establish itself fully on the territory it held and ensure its security. The Beşparmak Mountains could not be cleared. Even in Kyrenia there was still resistance—contrary to what the newspapers were saying. The Turkish army was advancing little by little, both to silence the fire coming from the other side and to secure its own safety. The troops in Nicosia had also begun approaching the airport. From time to time, these expansions did go too far... The Turkish units were trying to make up the shortfall..."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 255 — English translation of the source excerpt."
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_campaign_report'] || 0);"
-            }
-          }
-        ]
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "July 23, 1974: A Ceasefire on Paper Only"
+        },
+        {
+          "type": "paragraph",
+          "content": "Our continuing military advances have seen the end of Greek Junta with Karamanlis's arrival, followed immediately by Sampson's overthrow and his replacement by Clerides. These events were met with mixed feelings in Turkey, for in every Turk's mind, Karamanlis was known as a man who had signed the London-Zurich agreements despite Makarios and believed in Turkish-Greek friendship... Clerides too had always inspired sympathy with his moderate and reasonable attitude. The accession of these 2 figures had increased the hopes for a way of solution for Cyprus to open. In the circles of our government, the voices of \"Having had brought democracy to Greece\" was loud, a softer atmosphere had emerged with the arrival of Karamanlis as the possibility of a new and wide-ranging cooperation could be established between Turkey and Greece..."
+        },
+        {
+          "type": "paragraph",
+          "content": "However, these hopes and prayers were met with dissatisfcation as the Greek side's ferment and absolute, unmoveable stance on refusal of any prospect of terriotarial autonomy for Turks in Cyprus, which was the center point of our Denktaş Plan, which had sought to create a Turkish zone in the North of Cyprus that'd make up 34% of the island as a federal state inside an united Cypriote republic."
+        },
+        {
+          "type": "paragraph",
+          "content": "And in Cyprus, the ceasefire existed only in words. Turkey was continually massing troops to make up for the diplomatic shortfall and trying to establish itself fully on the territory it held and ensure its security further. Small skirmishes continued in the Beşparmak Mountains and the complete takeover of Kyrenia was still not achieved. With the ceasefire appearing even effective than any expectations, the Turkish army kept advancing as it's Airborne forces had entered the districts of Nicosia since yesterday and were now moving Westward toward the Airport."
+        },
+        {
+          "type": "paragraph",
+          "content": "Our military advancement since yesterday had a varying degree of success, and we once again possessed the possibility of continuing to advance while maintaining diplomatic talks, or we can finally adhere by an increasingly weaker ceasefire to show good faith, however we would be entrusting the UN, an organization that was incapable of enforcing it ceasefire, for giving protection to exposed Turkish communities across Cyprus from frenzied Cypriot Militias...."
+        }
+      ]
     },
     "cyprus_atilla1_24.alternative": {
       "id": "cyprus_atilla1_24.alternative",
       "title": "Accept UN control, negotiate monitored access and freeze further advances.",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -15617,7 +15503,7 @@
     },
     "cyprus_history_july25.alternative": {
       "id": "cyprus_history_july25.alternative",
-      "title": "Freeze offensive movement and seek UN-monitored protection and supply arrangements.",
+      "title": "Halt all further advances and seek Anglo-American pressure against attacks on Turkish communities",
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
       },
@@ -15687,14 +15573,14 @@
     "cyprus_history_july25": {
       "id": "cyprus_history_july25",
       "type": "scene",
-      "title": "25 July 1974 — Geneva opens amid continued fighting",
+      "title": "25 July, 1974: Beginning of Geneva Conference",
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25';"
       },
       "newPage": true,
       "onArrival": [
         {
-          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"25 July 1974 — Geneva opens amid continued fighting\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','alternative');"
+          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"25 July, 1974: Beginning of Geneva Conference\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','alternative');"
         }
       ],
       "options": [
@@ -15737,11 +15623,48 @@
         "content": [
           {
             "type": "heading",
+            "content": "25 July, 1974: Beginning of Geneva Conference"
+          },
+          {
+            "type": "paragraph",
             "content": [
-              "",
               {
-                "type": "insert",
-                "insert": 0
+                "type": "conditional",
+                "content": "Mert Zorlu described what he had seen in those days, during the ceasefire, as follows: ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "“They brought us down from Ankara in a day and left us on the island by helicopter on 22 July. There was continual fighting. The Beşparmak Mountains were swarming with Greek Cypriot and Greek soldiers. Throughout the ceasefire this situation continued. Whenever fire came from somewhere, we immediately advanced and took the hill... The Greek soldiers in particular were big, giant-like men. They fought fiercely, but the Greek Cypriots immediately ran away...” ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "In July 25th, the First Geneva Conference was held under the management of British Foreign Minister Callaghan with the participation of Turkish Foreign Minister Turan Güneş, Greek Foreign Minister George Mavros, and the Observer members of William Buffum and Joseph Sisco from America, and observing delegates from UN and USSR. The real goal of the conference was to finally establish the ceasefire and freeze the frontlines, the Greeks and British fervently wanted Turks to stop, or even retreat to their frontlines at 22th July, while primary desire of Turkish side was to stop Greek and Cypriot attacks on the Turkish villages that has caused gruesome civilian death. ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "While the UN had failed to apply the ceasefire through the entire island, the beginning of the conference had seen the frontlines stop moving at large by 25th July, if we were to do any further advances, they would be limited in scope but still valuable, in retrospect, we could also geniunely stop any further advances as a show of good will and seek diplomatic solutions. Our immediate objective was saving the lives of Turkish Cypriot Turks not under occupation, we could do this either through further invasions to scare the Greeks or stopping all together to have British and America press the Greeks to control Cypriot militias. ",
+                "predicate": 3
               },
               ""
             ]
@@ -15755,43 +15678,45 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 2
+                    "insert": 5
                   },
                   " "
                 ],
-                "predicate": 1
+                "predicate": 4
               },
               ""
             ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "Mert Zorlu described what he had seen in those days, during the ceasefire, as follows:"
-          },
-          {
-            "type": "paragraph",
-            "content": "“They brought us down from Ankara in a day and left us on the island by helicopter on 22 July. There was continual fighting. The Beşparmak Mountains were swarming with Greek Cypriot and Greek soldiers. Throughout the ceasefire this situation continued. Whenever fire came from somewhere, we immediately advanced and took the hill... The Greek soldiers in particular were big, giant-like men. They fought fiercely, but the Greek Cypriots immediately ran away...”"
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 272–273 — English translation of the source excerpt."
           }
         ],
         "stateDependencies": [
           {
-            "type": "insert",
+            "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_history_current_title'] || 0);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
             }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) == 1);"
             }
           },
           {
@@ -15875,14 +15800,14 @@
     "cyprus_history_july26": {
       "id": "cyprus_history_july26",
       "type": "scene",
-      "title": "26 July 1974 — The enclave expands",
+      "title": "26 July 1974: The Enclave Expands",
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26';"
       },
       "newPage": true,
       "onArrival": [
         {
-          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"26 July 1974 — The enclave expands\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative');"
+          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"26 July 1974: The Enclave Expands\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative');"
         }
       ],
       "options": [
@@ -15925,11 +15850,59 @@
         "content": [
           {
             "type": "heading",
+            "content": "26 July 1974: The Enclave Expands"
+          },
+          {
+            "type": "paragraph",
             "content": [
-              "",
               {
-                "type": "insert",
-                "insert": 0
+                "type": "conditional",
+                "content": "Despite the beginning of the Geneva Conference and the official ceasefire remaining in effect, our forces in Cyprus had continued to expand their positions wherever it was considered necessary for the security of the Turkish-held area. With the second wave now fully arriving and our forces increasingly consolidating their positions, the territory under our control continued to grow even as our diplomats sat across the table from the Greeks and British in Geneva. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "This situation had increasingly enraged the Greek delegation. Greek Foreign Minister Mavros, pointing toward the maps showing our advances since the ceasefire of 22 July, warned the other delegations that Turkey had expanded its positions by nearly one hundred square kilometres: ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "“Gentlemen, the news reaching us is extremely worrying. Turkey has embarked on another major occupation in Cyprus. Clerides can no longer bear it. The situation is extremely critical. Look at the maps: you will see the Turks' expansion of nearly one hundred square kilometres since 22 July. In these circumstances, the conference will continue without me. The Greek government cannot remain at this conference any longer...” ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "For the Greeks, our continued advances were increasingly becoming proof that Turkey was merely using the ceasefire and the Geneva negotiations as a cover to improve its military position. For us however, the situation was considerably less simple. The ceasefire had repeatedly failed to prevent attacks against our forces or the Turkish Cypriot population, and many of our positions still remained exposed and difficult to defend. Every additional hill, road and village under our control reduced this danger and strengthened our hand at the negotiating table. ",
+                "predicate": 3
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "However, we could not continue such actions forever while simultaneously expecting the Geneva Conference to survive. Every further advance increased the possibility of the Greek delegation abandoning negotiations entirely and gave Britain another opportunity to accuse us of violating the ceasefire. We could therefore continue our consolidation and expansion wherever our commanders considered it necessary, accepting the diplomatic consequences in exchange for a stronger position on the island, or finally order our forces to stop all offensive movement and allow Geneva to determine what came next. ",
+                "predicate": 4
               },
               ""
             ]
@@ -15943,39 +15916,51 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 2
+                    "insert": 6
                   },
                   " "
                 ],
-                "predicate": 1
+                "predicate": 5
               },
               ""
             ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "“Gentlemen, the news reaching us is extremely worrying. Turkey has embarked on another major occupation in Cyprus. Clerides can no longer bear it. The situation is extremely critical. Look at the maps: you will see the Turks' expansion of nearly one hundred square kilometres since 22 July. In these circumstances, the conference will continue without me. The Greek government cannot remain at this conference any longer...”"
-          },
-          {
-            "type": "paragraph",
-            "content": "Mavros, quoted in Mehmet Ali Birand, 30 Sıcak Gün, PDF page 295 — English translation of the source excerpt."
           }
         ],
         "stateDependencies": [
           {
-            "type": "insert",
+            "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_history_current_title'] || 0);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
             }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) == 1);"
             }
           },
           {
@@ -16059,14 +16044,14 @@
     "cyprus_history_july2728": {
       "id": "cyprus_history_july2728",
       "type": "scene",
-      "title": "27–28 July 1974 — Fighting on the flanks",
+      "title": "27–28 July 1974: Fighting on the Flanks",
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728';"
       },
       "newPage": true,
       "onArrival": [
         {
-          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"27–28 July 1974 — Fighting on the flanks\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','alternative');"
+          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"27–28 July 1974: Fighting on the Flanks\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','alternative');"
         }
       ],
       "options": [
@@ -16109,11 +16094,48 @@
         "content": [
           {
             "type": "heading",
+            "content": "27–28 July 1974: Fighting on the Flanks"
+          },
+          {
+            "type": "paragraph",
             "content": [
-              "",
               {
-                "type": "insert",
-                "insert": 0
+                "type": "conditional",
+                "content": "Our refusal to freeze the frontlines had ensured that the ceasefire remained increasingly theoretical. While the Geneva negotiations dragged on without meaningful agreement, our forces continued attempting to remove hostile positions around the edges of the Turkish-held enclave and establish a more defensible perimeter before any political settlement could permanently freeze the situation on the ground. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "At the experts' meeting in Geneva, which continued until seven in the morning of 28 July, neither side had managed to move significantly from its existing position. The Greeks demanded that the UN peacekeeping force be placed inside a very narrow security zone and insisted upon the withdrawal, supply restrictions and non-increase of foreign troops on the island. They also demanded the return of refugees to their homes and continued to reject our efforts to create a broader territorial arrangement for the Turkish Cypriot community. The Turkish delegation, meanwhile, remained unwilling to accept a settlement that would return the island to the same insecure conditions that had existed before our intervention. ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "While the diplomats argued, fighting continued around the flanks of our positions. The villages of Karavas, Lapithos and Myrtou remained under the control of the National Guard, while Turkish forces had succeeded in occupying Buffavento Castle. These positions were increasingly important for the security of our western and mountain approaches, but taking them would require yet another expansion of our territory during a ceasefire that we were already being accused of ignoring. ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The military situation therefore once again presented us with the same question. We could continue clearing hostile positions around our flanks, strengthen the western approaches and take strategically valuable ground before Geneva succeeded in freezing the frontlines. Such actions would improve our military position but could further undermine the conference and strengthen Greek claims that Turkey had no intention of respecting the ceasefire. Alternatively, we could finally halt our forces at their present positions and place our remaining demands entirely in the hands of our delegation at Geneva. ",
+                "predicate": 3
               },
               ""
             ]
@@ -16127,53 +16149,45 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 2
+                    "insert": 5
                   },
                   " "
                 ],
-                "predicate": 1
+                "predicate": 4
               },
               ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "At the experts' meeting, which lasted until seven on Sunday morning, the parties had done no more than maintain their positions. Important articles were still unsettled. For example, the Greeks wanted the peacekeeping force placed in the security zone and, in direct opposition to Turkey's proposal, wanted the zone to be very narrow. They wanted the withdrawal, supply and non-increase of all foreign troops on the island explicitly included in the agreement, and insisted that the refugees return to their homes... The most useful aspect of this meeting, which lasted until morning, was that the disputed points had been identified on paper. The Greek delegation would not make concessions. It had not departed from the view that constitutional issues should be settled between the Cypriots."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 317 — English translation of the source excerpt."
-          },
-          {
-            "type": "paragraph",
-            "content": "“The villages of Karavas, Lapithos and Myrtou remain in National Guard hands. … Buffavento Castle has been occupied by Turkish forces.”"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "hidden",
-                "content": "S/11353/Add.10, paragraph 2–3 — UN report excerpt."
-              },
-              "(https://digitallibrary.un.org/record/484479/files/S_11353_Add.10-EN.pdf)"
             ]
           }
         ],
         "stateDependencies": [
           {
-            "type": "insert",
+            "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_history_current_title'] || 0);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
             }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) == 1);"
             }
           },
           {
@@ -16257,14 +16271,14 @@
     "cyprus_history_july2930": {
       "id": "cyprus_history_july2930",
       "type": "scene",
-      "title": "29–30 July 1974 — Geneva I concludes",
+      "title": "29–30 July 1974: Geneva I Concludes",
       "viewIf": {
         "$code": "return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930';"
       },
       "newPage": true,
       "onArrival": [
         {
-          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"29–30 July 1974 — Geneva I concludes\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','alternative');"
+          "$code": "Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : \"29–30 July 1974: Geneva I Concludes\"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','alternative');"
         }
       ],
       "options": [
@@ -16307,11 +16321,125 @@
         "content": [
           {
             "type": "heading",
+            "content": "29–30 July 1974: Geneva I Concludes"
+          },
+          {
+            "type": "paragraph",
             "content": [
-              "",
               {
-                "type": "insert",
-                "insert": 0
+                "type": "conditional",
+                "content": "The First Geneva Conference had now reached its final days, but despite days of negotiations, little meaningful progress had been achieved. Our forces had continued to expand and consolidate their positions throughout the conference, taking advantage of the ineffective ceasefire whenever enemy fire or exposed positions provided justification for further movement. For the Greek delegation and increasingly for the British, these actions had become proof that Turkey was negotiating in Geneva while simultaneously changing the reality on the ground. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The airport question had only worsened the situation. British Foreign Minister Callaghan had blown the matter increasingly out of proportion, treating the status of Nicosia Airport almost as a question of British prestige and repeatedly allowing the issue to dominate negotiations far beyond its real importance. With Turkish forces having already accepted that the airport itself would not be taken, the continuing British insistence on the matter became another source of unnecessary tension in a conference already struggling to produce an agreement. ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "At the conference, the airport question was once again being discussed, and the British delegation insisted that its formula be accepted. Eventually, Turan Güneş intervened: ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "“This conference must end. Mr. Callaghan, let us leave the airport question to the technicians and take it up at the second conference... If you accept this, I would like to speak privately with Mr. Mavros.” ",
+                "predicate": 3
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Despite all of these disputes, Geneva had not been entirely meaningless. By the end of the conference, something that had failed to exist since the ceasefire of 22 July had finally begun to emerge on the island: an actual halt in the movement of the frontlines. Both Turkish and Greek forces were increasingly holding their positions rather than attempting further expansion, and the ceasefire was finally beginning to resemble one in practice rather than merely on paper. ",
+                "predicate": 4
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "For the Turkish Cypriot population, this alone was of immense importance. The threat posed by roaming Greek Cypriot militias and continued attacks had not disappeared, but with the fronts finally stabilizing and international attention now firmly focused on enforcing the ceasefire, the danger facing isolated Turkish communities had become considerably smaller than it had been only days earlier. ",
+                "predicate": 5
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Yet our actions throughout the conference had come with a cost. Britain had grown increasingly hostile toward our continued advances, Greece accused us of using Geneva merely to legitimize territorial expansion, and even the United States had become increasingly concerned by the constant movement of Turkish forces despite repeated ceasefire demands. Militarily, however, our position was now incomparably stronger than it had been when the operation began. ",
+                "predicate": 6
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Atilla I had achieved what it could achieve. ",
+                "predicate": 7
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Our forces had landed successfully, established the junction between the coastal and airborne formations, taken Kyrenia, secured a continuous Turkish-held corridor and consolidated the mountain and western approaches. The immediate danger of the Turkish Cypriot community being crushed had been broken, while the Greek Junta and the Sampson government had both fallen during the crisis. ",
+                "predicate": 8
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "But the solution of the Cyprus question could no longer be found through another hill, village or road. ",
+                "predicate": 9
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "With the frontlines finally frozen and Geneva I drawing to its conclusion, the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ",
+                "predicate": 10
               },
               ""
             ]
@@ -16325,43 +16453,87 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 2
+                    "insert": 12
                   },
                   " "
                 ],
-                "predicate": 1
+                "predicate": 11
               },
               ""
             ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "At the conference, the airport question was being discussed, and the British were insisting that their formula be accepted. Güneş intervened:"
-          },
-          {
-            "type": "paragraph",
-            "content": "“This conference must end. Mr. Callaghan, let us leave the airport question to the technicians and take it up at the second conference... If you accept this, I would like to speak privately with Mr. Mavros.”"
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 357 — English translation of the source excerpt."
           }
         ],
         "stateDependencies": [
           {
-            "type": "insert",
+            "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_history_current_title'] || 0);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
             }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) != 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_frontline_frozen'] || 0) == 1);"
             }
           },
           {
@@ -20640,7 +20812,7 @@
       "id": "cyprus_atilla1_24.pressure",
       "title": "Continue expansion and maintain the demand for airport control.",
       "chooseIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -20714,9 +20886,9 @@
     "cyprus_atilla1_24": {
       "id": "cyprus_atilla1_24",
       "type": "scene",
-      "title": "The airport confrontation",
+      "title": "24 July 1974: You Shall Not Pass!",
       "viewIf": {
-        "$code": "return ((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0));"
+        "$code": "return (((((((Q['cyprus_mode'] || 0) != 0) && ((Q['cyprus_year'] || 0) == 1974)) && ((Q['cyprus_month'] || 0) == 7)) && ((Q['cyprus_day'] || 0) == 24)) && ((Q['cyprus_atilla1_complete'] || 0) == 0)) && ((Q['cyprus_early_freeze'] || 0) != 1));"
       },
       "newPage": true,
       "onArrival": [
@@ -20738,66 +20910,24 @@
           "title": "Continue expansion and maintain the demand for airport control."
         }
       ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "24 July 1974 — The airport confrontation"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " "
-                ],
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
-            "content": "Callaghan had made the incident a matter of prestige. In this way, he could both give the passive British a role to play and “save” the airport, which had great symbolic value. As Turkish commanders pressed the peacekeeping forces, made up of British troops, to “leave the airport,” Secretary-General Waldheim not only telephoned Ecevit but then went to Washington and asked Kissinger to help on the matter..."
-          },
-          {
-            "type": "paragraph",
-            "content": "NATO Secretary-General Luns telephoned Deputy Permanent Representative Turgut Tülümen in Brussels and said, “Please do not take the airport. It turns out it is not in your hands, as you have claimed. If you advance, there may be a clash with the British in the peacekeeping force.”"
-          },
-          {
-            "type": "paragraph",
-            "content": "The airport really was not in our hands. When it had been surrounded, a message saying “it is ours” had been sent... The situation could not be understood with certainty."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 261 — English translation of the source excerpt."
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_campaign_report'] || 0);"
-            }
-          }
-        ]
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "24 July 1974: You Shall Not Pass!"
+        },
+        {
+          "type": "paragraph",
+          "content": "Our Airborne units, supplied by the Marines and the second wave of soldiers, after having had secured many gains in Northern districts of Nicosia, were now advancing Westward to take over the Nicosia Airport. The British Foreign Minister, who increasingly less and less as a neutral entity, had decided to make the situation of the airport a matter of prestige, in doing so, he could both give the passive British a role to play and \"save\" the airport. With the orders of Callaghan, when Turkish commanders pressed the peacekeeping forces that were made up of British troops to leave the airport, Secretary-General Waldheim telephoned Prime Minister Bülent Ecevit and conveyed that \"if the Turkish army advanced, a clash with UN forces would ensue, Britain would launch a direct air strike, and this would lead to a war between Turkey and the UN/Britain.\", fearing that a British threat might not be enough, he had then moved to meet with Kissinger to bring them on their side as well."
+        },
+        {
+          "type": "paragraph",
+          "content": "NATO Secretary-General Luns telephoned Deputy Permanent Representative Turgut Tülümen in Brussels and said, “Please do not take the airport. It turns out it is not in your hands, as you have claimed. If you advance, there may be a clash with the British in the peacekeeping force.”"
+        },
+        {
+          "type": "paragraph",
+          "content": "The British's rapid and nonsensical, almost enraging response had made it clear as day that British Foreign Minister and his delegation were clearly hostile to Turks, it appeared that they were fully willing to doom the entire NATO structure over the matter. This had fully concluded we would not take over the airport, however we still had options; we could gain the promise of airport not being used by the Greek and Cypriot forces as a neutral entity in exchange of promising no takeover attempts, or we could go further, accept UN control, request neutrality and negotiate monitored access and movement across the airport in exchange of freezing advances around the airport. Or we could, while knowing it would still not result in a takeover, keep demanding the airport while continuing our advances around it for further tension."
+        }
+      ]
     },
     "cyprus_diplomacy_greece.gunes": {
       "id": "cyprus_diplomacy_greece.gunes",

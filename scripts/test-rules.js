@@ -371,7 +371,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             cyprus.initialize(Q);cyprus.resolve(Q,20,'historical',()=>1);
             cyprus.resolve(Q,21,earlyJunction?'historical':'alternative',()=>1);
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction?1:0);
-            assert(cyprus.briefing(Q,22).includes('PDF page 228')); // Historical evidence remains fixed; the actual junction is tracked separately.
+            assert(cyprus.briefing(Q,22).includes('The General Staff was very pleased')); // Historical evidence remains fixed; the actual junction is tracked separately.
             cyprus.resolve(Q,22,halt?'alternative':'historical',()=>1);
             assert.equal(Q.cyprus_atilla1_junction,earlyJunction||!halt?1:0);
             cyprus.resolve(Q,23,'historical',()=>1);
@@ -393,13 +393,15 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         }
         assert.equal(c.mapImage({cyprus_mode:0}),'cyprusgame/cyprus_map.png');
     });
-    test('Military choice tooltips match roll requirements and descriptions match attributed source passages', () => {
+    test('Military tooltips match requirements and descriptions match authored or attributed passages', () => {
         const c=rules.cyprusAtilla1, passages=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_MILITARY_SOURCE_PASSAGES.json'),'utf8'));
         let count=0;
         for(const [key,parts] of Object.entries(passages)) {
             const id=key==='ending'?'cyprus_atilla1_ending':/^\d+$/.test(key)?'cyprus_atilla1_'+key:'cyprus_history_'+key;
             const source=fs.readFileSync(path.join(root,'source/scenes/events',id+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');
-            for(const part of parts) {
+            const authored=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_AUTHORED_TEXTS.json'),'utf8')).events[key];
+            if(authored){for(const paragraph of authored.body.split('\n\n'))assert(source.includes(paragraph),id+' authored paragraph');}
+            for(const part of authored?[]:parts) {
                 assert(source.includes(part.kind==='quotation'?part.text.replace(/\n\n/g,' … '):part.text),id);
                 assert(part.kind==='quotation'?source.includes(part.document):source.includes('PDF page '+part.pdf_page),id);
             }

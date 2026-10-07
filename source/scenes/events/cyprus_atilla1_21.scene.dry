@@ -1,25 +1,19 @@
-title: The second wave
-view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
+title: 21 July 1974 — Beşparmak Mountains
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,21); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 21); !}
 
-= 21 July 1974 — The second wave
 
-[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+= 21 July 1974 — Beşparmak Mountains
 
-Historical source reference:
+The air bombardment had begun on the island in the morning s our Marine and Airborne units keep advancing to form a junction and broke the first night's enemy blockage. By the next morning, the second wave of our forces would advance. In the meantime, the Kyrenia-Nicosia road was yet to be brought under control. As our forces approach the passage, the firing continued in the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless.
 
-The bombardment that had begun on the island in the morning broke the first night's blockage, and the advance resumed... But the troop reinforcements—the second wave—would reach the island the following morning. The Kyrenia–Nicosia road still had not been brought under control. Fire continued from the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless.
-
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 188–189 — English translation of the source excerpt.
-
-
-- @historical: Dispatch reinforcements and prioritize the junction.
-- @alternative: Dispatch reinforcements to secure existing positions.
+- @historical: Press the advance through the Beşparmak passages and force the junction
+- @alternative: Clear the mountain resistance and wait for the second wave before forcing the junction
 
 @historical
-title: Dispatch reinforcements and prioritize the junction.
-choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
+title: Press the advance through the Beşparmak passages and force the junction
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'historical', this.random.random.bind(this.random)); !}
 
@@ -30,8 +24,8 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Dispatch reinforcements to secure existing positions.
-choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0
+title: Clear the mountain resistance and wait for the second wave before forcing the junction
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'alternative', this.random.random.bind(this.random)); !}
 

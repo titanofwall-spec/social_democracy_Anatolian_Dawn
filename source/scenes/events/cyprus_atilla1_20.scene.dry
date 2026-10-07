@@ -1,29 +1,29 @@
-title: A foothold, not a front
-view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
+title: 20 July 1974 — A foothold, not a front
+view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,20); Q.cyprus_operation_started = 1; Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
 
+
 = 20 July 1974 — A foothold, not a front
 
-[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+[? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)<=3; !} : The Turkish forces had moved from Mersin at 11:30 in July 19, by the morning of 5am the next day, they had arrived at the coast of Cyprus. The Turkish forces had grown closer to disadvantageus Glykiotissa coast instead of the preferred Pentemili, therefore the landing had started in 7:15 instead of 5:30 and ended by 13:00. ?]
 
-Historical source reference:
+[? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)>3; !} : The Turkish forces had moved from Mersin at 11:30 in July 19, by the morning of 5am the next day, they had arrived at the coast of Cyprus. The Turkish forces approached Pentemili by 5:30 and successfully carried out the landing by 11:00. ?]
 
 As the 6th Marine Regiment held the road immediately behind the beach, the soldiers of the 50th Infantry Regiment began moving forward and organizing themselves. Scattered machine-gun fire started from the surrounding area, but it was not difficult to silence it. Landing thirty-one ships one after another on the tiny beach was no easy task. The fleet had already begun taking up positions for shore bombardment... Turkish jets were sweeping the areas around Kyrenia and Nicosia, but dropping far fewer bombs than expected. The order “Do not fire unless fired upon” was still in their ears... Two landing ships that had run aground were left where they were... Scattered fire was answered.
 
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 135 — English translation of the source excerpt.
+The Commando Brigade was increasingly making parachute landings in the area at Strait held by the Turkish Cypriot fighters. Although they encountered scattered gunfire, their landing and assembly were fairly easy. General Ersin, commanding them, used the fighters' radios to send “We have arrived safely” to Akıncı, the Commander of the Land Forces, in Adana. The following order came from Adana: “Join the forces landing from the sea without losing any time.”
 
-The Commando Brigade was increasingly making parachute landings in the area at Boğaz held by the Turkish Cypriot fighters. Although they encountered scattered gunfire, their landing and assembly were fairly easy. General Ersin, commanding them, used the fighters' radios to send “We have arrived safely” to Akıncı, the Commander of the Land Forces, in Adana. The following order came from Adana: “Join the forces landing from the sea without losing any time.”
+Forces remain authorized to consolidate and advance. Our immediate goals were to form a junction between the airborne units and the marine forces through the Beşparmak Mountain Passages. However, if we believe that our airborne units have the capabilities of further resisting, we can delay the inland expansion for a while more as we secure the beach to unload heavier support first. Either option would still allow us to move to secure the junction, but in one we risk the lives of our airborne units while in other accept less logistical superiority.
 
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 136 — English translation of the source excerpt.
-
+Current frontlines: Separate coastal and airborne positions.
 
 - @historical: Advance toward a junction with the airborne forces.
-- @alternative: Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.
+- @alternative: Secure the beachhead and unload heavier support before advancing inland.
 
 @historical
 title: Advance toward a junction with the airborne forces.
-choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'historical', this.random.random.bind(this.random)); !}
 
@@ -34,8 +34,8 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'historical', this.ra
 - @cyprus_atilla1_continue: Continue to [+ cyprus_date_display +].
 
 @alternative
-title: Secure the beachhead and unload heavier support first, prolonging the inland forces’ isolation.
-choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0
+title: Secure the beachhead and unload heavier support before advancing inland.
+choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'alternative', this.random.random.bind(this.random)); !}
 

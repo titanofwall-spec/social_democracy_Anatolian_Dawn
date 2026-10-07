@@ -1,26 +1,26 @@
-title: 25 July 1974 — Geneva opens amid continued fighting
+title: 25 July, 1974: Beginning of Geneva Conference
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "25 July 1974 — Geneva opens amid continued fighting"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "25 July, 1974: Beginning of Geneva Conference"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july25','alternative'); !}
 
-= [+ cyprus_history_current_title +]
 
-[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+= 25 July, 1974: Beginning of Geneva Conference
 
-Historical source reference:
+[? if cyprus_frontline_frozen != 1 : Mert Zorlu described what he had seen in those days, during the ceasefire, as follows: ?]
 
-Mert Zorlu described what he had seen in those days, during the ceasefire, as follows:
+[? if cyprus_frontline_frozen != 1 : “They brought us down from Ankara in a day and left us on the island by helicopter on 22 July. There was continual fighting. The Beşparmak Mountains were swarming with Greek Cypriot and Greek soldiers. Throughout the ceasefire this situation continued. Whenever fire came from somewhere, we immediately advanced and took the hill... The Greek soldiers in particular were big, giant-like men. They fought fiercely, but the Greek Cypriots immediately ran away...” ?]
 
-“They brought us down from Ankara in a day and left us on the island by helicopter on 22 July. There was continual fighting. The Beşparmak Mountains were swarming with Greek Cypriot and Greek soldiers. Throughout the ceasefire this situation continued. Whenever fire came from somewhere, we immediately advanced and took the hill... The Greek soldiers in particular were big, giant-like men. They fought fiercely, but the Greek Cypriots immediately ran away...”
+[? if cyprus_frontline_frozen != 1 : In July 25th, the First Geneva Conference was held under the management of British Foreign Minister Callaghan with the participation of Turkish Foreign Minister Turan Güneş, Greek Foreign Minister George Mavros, and the Observer members of William Buffum and Joseph Sisco from America, and observing delegates from UN and USSR. The real goal of the conference was to finally establish the ceasefire and freeze the frontlines, the Greeks and British fervently wanted Turks to stop, or even retreat to their frontlines at 22th July, while primary desire of Turkish side was to stop Greek and Cypriot attacks on the Turkish villages that has caused gruesome civilian death. ?]
 
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 272–273 — English translation of the source excerpt.
+[? if cyprus_frontline_frozen != 1 : While the UN had failed to apply the ceasefire through the entire island, the beginning of the conference had seen the frontlines stop moving at large by 25th July, if we were to do any further advances, they would be limited in scope but still valuable, in retrospect, we could also geniunely stop any further advances as a show of good will and seek diplomatic solutions. Our immediate objective was saving the lives of Turkish Cypriot Turks not under occupation, we could do this either through further invasions to scare the Greeks or stopping all together to have British and America press the Greeks to control Cypriot militias. ?]
 
+[? if cyprus_frontline_frozen == 1 : [+ cyprus_campaign_report +] ?]
 
 - @historical: [+ cyprus_history_choice_historical +]
 - @alternative: [+ cyprus_history_choice_alternative +]
 
 @historical
-title: Continue consolidating positions while opening the Geneva talks.
+title: Continue limited advances to pressure the Greek side and protect exposed Turkish communities
 choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25'; !}
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','historical',this.random.random.bind(this.random)); !}
@@ -32,7 +32,7 @@ on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','historica
 - @cyprus_support_return: Continue.
 
 @alternative
-title: Freeze offensive movement and seek UN-monitored protection and supply arrangements.
+title: Halt all further advances and seek Anglo-American pressure against attacks on Turkish communities
 choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july25'; !}
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july25','alternative',this.random.random.bind(this.random)); !}

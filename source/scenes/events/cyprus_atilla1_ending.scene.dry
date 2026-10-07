@@ -5,7 +5,7 @@ new-page: true
 
 = [+ cyprus_date_display +] — Atilla I: [+ cyprus_atilla1_ending +]
 
-[? if cyprus_early_freeze == 1 : Turkey has frozen its positions after the airport confrontation. Geneva I concludes earlier on this alternative route, on July 28. ?]
+[? if cyprus_early_freeze == 1 : Turkey has frozen its positions after its last military operation. Geneva I concludes earlier on this alternative route, on July 28. ?]
 [? if cyprus_early_freeze == 0 : The military chapter concludes after the later field operations and Geneva I. ?]
 
 Combined Atilla I Score: [+ cyprus_atilla1_score +] / 720.

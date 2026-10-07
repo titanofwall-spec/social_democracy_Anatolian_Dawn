@@ -1,18 +1,22 @@
-title: 26 July 1974 — The enclave expands
+title: 26 July 1974: The Enclave Expands
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "26 July 1974 — The enclave expands"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "26 July 1974: The Enclave Expands"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative'); !}
 
-= [+ cyprus_history_current_title +]
 
-[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+= 26 July 1974: The Enclave Expands
 
-Historical source reference:
+[? if cyprus_frontline_frozen != 1 : Despite the beginning of the Geneva Conference and the official ceasefire remaining in effect, our forces in Cyprus had continued to expand their positions wherever it was considered necessary for the security of the Turkish-held area. With the second wave now fully arriving and our forces increasingly consolidating their positions, the territory under our control continued to grow even as our diplomats sat across the table from the Greeks and British in Geneva. ?]
 
-“Gentlemen, the news reaching us is extremely worrying. Turkey has embarked on another major occupation in Cyprus. Clerides can no longer bear it. The situation is extremely critical. Look at the maps: you will see the Turks' expansion of nearly one hundred square kilometres since 22 July. In these circumstances, the conference will continue without me. The Greek government cannot remain at this conference any longer...”
+[? if cyprus_frontline_frozen != 1 : This situation had increasingly enraged the Greek delegation. Greek Foreign Minister Mavros, pointing toward the maps showing our advances since the ceasefire of 22 July, warned the other delegations that Turkey had expanded its positions by nearly one hundred square kilometres: ?]
 
-Mavros, quoted in Mehmet Ali Birand, 30 Sıcak Gün, PDF page 295 — English translation of the source excerpt.
+[? if cyprus_frontline_frozen != 1 : “Gentlemen, the news reaching us is extremely worrying. Turkey has embarked on another major occupation in Cyprus. Clerides can no longer bear it. The situation is extremely critical. Look at the maps: you will see the Turks' expansion of nearly one hundred square kilometres since 22 July. In these circumstances, the conference will continue without me. The Greek government cannot remain at this conference any longer...” ?]
 
+[? if cyprus_frontline_frozen != 1 : For the Greeks, our continued advances were increasingly becoming proof that Turkey was merely using the ceasefire and the Geneva negotiations as a cover to improve its military position. For us however, the situation was considerably less simple. The ceasefire had repeatedly failed to prevent attacks against our forces or the Turkish Cypriot population, and many of our positions still remained exposed and difficult to defend. Every additional hill, road and village under our control reduced this danger and strengthened our hand at the negotiating table. ?]
+
+[? if cyprus_frontline_frozen != 1 : However, we could not continue such actions forever while simultaneously expecting the Geneva Conference to survive. Every further advance increased the possibility of the Greek delegation abandoning negotiations entirely and gave Britain another opportunity to accuse us of violating the ceasefire. We could therefore continue our consolidation and expansion wherever our commanders considered it necessary, accepting the diplomatic consequences in exchange for a stronger position on the island, or finally order our forces to stop all offensive movement and allow Geneva to determine what came next. ?]
+
+[? if cyprus_frontline_frozen == 1 : [+ cyprus_campaign_report +] ?]
 
 - @historical: [+ cyprus_history_choice_historical +]
 - @alternative: [+ cyprus_history_choice_alternative +]

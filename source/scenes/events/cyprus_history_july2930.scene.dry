@@ -1,20 +1,34 @@
-title: 29–30 July 1974 — Geneva I concludes
+title: 29–30 July 1974: Geneva I Concludes
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "29–30 July 1974 — Geneva I concludes"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "29–30 July 1974: Geneva I Concludes"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','alternative'); !}
 
-= [+ cyprus_history_current_title +]
 
-[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+= 29–30 July 1974: Geneva I Concludes
 
-Historical source reference:
+[? if cyprus_frontline_frozen != 1 : The First Geneva Conference had now reached its final days, but despite days of negotiations, little meaningful progress had been achieved. Our forces had continued to expand and consolidate their positions throughout the conference, taking advantage of the ineffective ceasefire whenever enemy fire or exposed positions provided justification for further movement. For the Greek delegation and increasingly for the British, these actions had become proof that Turkey was negotiating in Geneva while simultaneously changing the reality on the ground. ?]
 
-At the conference, the airport question was being discussed, and the British were insisting that their formula be accepted. Güneş intervened:
+[? if cyprus_frontline_frozen != 1 : The airport question had only worsened the situation. British Foreign Minister Callaghan had blown the matter increasingly out of proportion, treating the status of Nicosia Airport almost as a question of British prestige and repeatedly allowing the issue to dominate negotiations far beyond its real importance. With Turkish forces having already accepted that the airport itself would not be taken, the continuing British insistence on the matter became another source of unnecessary tension in a conference already struggling to produce an agreement. ?]
 
-“This conference must end. Mr. Callaghan, let us leave the airport question to the technicians and take it up at the second conference... If you accept this, I would like to speak privately with Mr. Mavros.”
+[? if cyprus_frontline_frozen != 1 : At the conference, the airport question was once again being discussed, and the British delegation insisted that its formula be accepted. Eventually, Turan Güneş intervened: ?]
 
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 357 — English translation of the source excerpt.
+[? if cyprus_frontline_frozen != 1 : “This conference must end. Mr. Callaghan, let us leave the airport question to the technicians and take it up at the second conference... If you accept this, I would like to speak privately with Mr. Mavros.” ?]
 
+[? if cyprus_frontline_frozen != 1 : Despite all of these disputes, Geneva had not been entirely meaningless. By the end of the conference, something that had failed to exist since the ceasefire of 22 July had finally begun to emerge on the island: an actual halt in the movement of the frontlines. Both Turkish and Greek forces were increasingly holding their positions rather than attempting further expansion, and the ceasefire was finally beginning to resemble one in practice rather than merely on paper. ?]
+
+[? if cyprus_frontline_frozen != 1 : For the Turkish Cypriot population, this alone was of immense importance. The threat posed by roaming Greek Cypriot militias and continued attacks had not disappeared, but with the fronts finally stabilizing and international attention now firmly focused on enforcing the ceasefire, the danger facing isolated Turkish communities had become considerably smaller than it had been only days earlier. ?]
+
+[? if cyprus_frontline_frozen != 1 : Yet our actions throughout the conference had come with a cost. Britain had grown increasingly hostile toward our continued advances, Greece accused us of using Geneva merely to legitimize territorial expansion, and even the United States had become increasingly concerned by the constant movement of Turkish forces despite repeated ceasefire demands. Militarily, however, our position was now incomparably stronger than it had been when the operation began. ?]
+
+[? if cyprus_frontline_frozen != 1 : Atilla I had achieved what it could achieve. ?]
+
+[? if cyprus_frontline_frozen != 1 : Our forces had landed successfully, established the junction between the coastal and airborne formations, taken Kyrenia, secured a continuous Turkish-held corridor and consolidated the mountain and western approaches. The immediate danger of the Turkish Cypriot community being crushed had been broken, while the Greek Junta and the Sampson government had both fallen during the crisis. ?]
+
+[? if cyprus_frontline_frozen != 1 : But the solution of the Cyprus question could no longer be found through another hill, village or road. ?]
+
+[? if cyprus_frontline_frozen != 1 : With the frontlines finally frozen and Geneva I drawing to its conclusion, the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ?]
+
+[? if cyprus_frontline_frozen == 1 : [+ cyprus_campaign_report +] ?]
 
 - @historical: [+ cyprus_history_choice_historical +]
 - @alternative: [+ cyprus_history_choice_alternative +]

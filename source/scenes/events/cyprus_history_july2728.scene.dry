@@ -1,22 +1,20 @@
-title: 27–28 July 1974 — Fighting on the flanks
+title: 27–28 July 1974: Fighting on the Flanks
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2728'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "27–28 July 1974 — Fighting on the flanks"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "27–28 July 1974: Fighting on the Flanks"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2728','alternative'); !}
 
-= [+ cyprus_history_current_title +]
 
-[? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
+= 27–28 July 1974: Fighting on the Flanks
 
-Historical source reference:
+[? if cyprus_frontline_frozen != 1 : Our refusal to freeze the frontlines had ensured that the ceasefire remained increasingly theoretical. While the Geneva negotiations dragged on without meaningful agreement, our forces continued attempting to remove hostile positions around the edges of the Turkish-held enclave and establish a more defensible perimeter before any political settlement could permanently freeze the situation on the ground. ?]
 
-At the experts' meeting, which lasted until seven on Sunday morning, the parties had done no more than maintain their positions. Important articles were still unsettled. For example, the Greeks wanted the peacekeeping force placed in the security zone and, in direct opposition to Turkey's proposal, wanted the zone to be very narrow. They wanted the withdrawal, supply and non-increase of all foreign troops on the island explicitly included in the agreement, and insisted that the refugees return to their homes... The most useful aspect of this meeting, which lasted until morning, was that the disputed points had been identified on paper. The Greek delegation would not make concessions. It had not departed from the view that constitutional issues should be settled between the Cypriots.
+[? if cyprus_frontline_frozen != 1 : At the experts' meeting in Geneva, which continued until seven in the morning of 28 July, neither side had managed to move significantly from its existing position. The Greeks demanded that the UN peacekeeping force be placed inside a very narrow security zone and insisted upon the withdrawal, supply restrictions and non-increase of foreign troops on the island. They also demanded the return of refugees to their homes and continued to reject our efforts to create a broader territorial arrangement for the Turkish Cypriot community. The Turkish delegation, meanwhile, remained unwilling to accept a settlement that would return the island to the same insecure conditions that had existed before our intervention. ?]
 
-Mehmet Ali Birand, 30 Sıcak Gün, PDF page 317 — English translation of the source excerpt.
+[? if cyprus_frontline_frozen != 1 : While the diplomats argued, fighting continued around the flanks of our positions. The villages of Karavas, Lapithos and Myrtou remained under the control of the National Guard, while Turkish forces had succeeded in occupying Buffavento Castle. These positions were increasingly important for the security of our western and mountain approaches, but taking them would require yet another expansion of our territory during a ceasefire that we were already being accused of ignoring. ?]
 
-“The villages of Karavas, Lapithos and Myrtou remain in National Guard hands. … Buffavento Castle has been occupied by Turkish forces.”
+[? if cyprus_frontline_frozen != 1 : The military situation therefore once again presented us with the same question. We could continue clearing hostile positions around our flanks, strengthen the western approaches and take strategically valuable ground before Geneva succeeded in freezing the frontlines. Such actions would improve our military position but could further undermine the conference and strengthen Greek claims that Turkey had no intention of respecting the ceasefire. Alternatively, we could finally halt our forces at their present positions and place our remaining demands entirely in the hands of our delegation at Geneva. ?]
 
-[S/11353/Add.10, paragraph 2–3 — UN report excerpt.](https://digitallibrary.un.org/record/484479/files/S_11353_Add.10-EN.pdf)
-
+[? if cyprus_frontline_frozen == 1 : [+ cyprus_campaign_report +] ?]
 
 - @historical: [+ cyprus_history_choice_historical +]
 - @alternative: [+ cyprus_history_choice_alternative +]

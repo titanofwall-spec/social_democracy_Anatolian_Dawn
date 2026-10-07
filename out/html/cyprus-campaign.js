@@ -30,6 +30,9 @@
   if(!Q.CHP_in_government&&Q.prime_minister_party!=='CHP')settle(Q,'Non-Intervention');
  }
  function freeze(Q,day){Q.cyprus_frontline_frozen=1;Q.cyprus_frontline_map_day=day;}
+ function enterDiplomacy(Q,day){
+  Q.cyprus_early_freeze=1;Q.cyprus_atilla1_end_day=28;Q.cyprus_campaign_phase='diplomacy';freeze(Q,day);
+ }
  function tick(Q){
   if(Q.cyprus_month===7&&Q.cyprus_day>=23&&!Q.cyprus_juntas_fallen){Q.cyprus_juntas_fallen=1;Q.greece_attitude=-1;}
  }
@@ -58,7 +61,7 @@
  }
  function meetingPending(Q){
   if(!active(Q)||Q.cyprus_campaign_resolved)return false;normalize(Q);
-  if(Q.cyprus_early_freeze&&!Q.cyprus_atilla1_ending_seen&&Q.cyprus_month===7&&Q.cyprus_day>=25&&Q.cyprus_day<=27)return Q.cyprus_campaign_meetings.indexOf(key(Q))<0;
+  if(Q.cyprus_early_freeze&&!Q.cyprus_atilla1_ending_seen&&Q.cyprus_month===7&&Q.cyprus_day>=24&&Q.cyprus_day<=27)return Q.cyprus_campaign_meetings.indexOf(key(Q))<0;
   if(!Q.cyprus_atilla1_ending_seen)return false;
   if(Q.cyprus_atilla2_complete)return Q.cyprus_month===8&&Q.cyprus_day>=17&&Q.cyprus_day<=19&&Q.cyprus_campaign_meetings.indexOf(key(Q))<0;
   if(Q.cyprus_campaign_phase==='atilla2')return false;
@@ -97,47 +100,55 @@
  }
  function actionLabel(Q,id,action){
   var day=Number(id),event=c.days[day]||c.historyEvents[id];if(!event)return '';
-  if(day===24)return action==='historical'?'Continue limited expansion, promising not to seize the airport by force.':action==='pressure'?'Continue expansion and maintain the demand for airport control.':'Accept UN control, negotiate monitored access and freeze further advances.';
+  if(day===24)return event.actions[action].label;
   if(Q.cyprus_frontline_frozen)return action==='historical'?'Coordinate defenses and secure the existing supply routes.':'Maintain the halt and pursue UN-monitored protection and access.';
   return event.actions[action].label;
  }
  function resolve(Q,day,action,random){
   if(!active(Q))return old.resolve(Q,day,action,random);
-  if(!Q.cyprus_mode||Q.cyprus_campaign_resolved||Q.cyprus_month!==7||Q.cyprus_day!==day||Q.cyprus_atilla1_complete||Q.cyprus_atilla1_results.length!==day-20||!c.days[day]||!c.days[day].actions[action])return false;
+  if(!Q.cyprus_mode||Q.cyprus_campaign_resolved||Q.cyprus_early_freeze||Q.cyprus_month!==7||Q.cyprus_day!==day||Q.cyprus_atilla1_complete||Q.cyprus_atilla1_results.length!==day-20||!c.days[day]||!c.days[day].actions[action])return false;
   c.ensureSupport(Q);tick(Q);var option=c.days[day].actions[action],bonus=Q.cyprus_support_bonus;
   var base=c.roll(c.militaryTier(Q),option.requirement,random),score=Math.min(80,base+bonus),index=resultIndex(score);
+  // Adequate or stronger armies cannot receive the terminal July 21 failure.
+  if(day===21&&c.militaryTier(Q)>=2&&score<20){score=20;index=1;}
   var text=option.text[index];
   Q.cyprus_support_bonus=0;
-  if(day===21){Q.cyprus_atilla1_junction=action==='historical'&&index===3?1:0;Q.cyprus_atilla1_frontline=['Contracted, separate positions','Limited foothold','Secure coastal and inland positions','A strong connected corridor'][index];}
+  if(day===21){Q.cyprus_atilla1_junction=index>0?1:0;Q.cyprus_frontline_quality=index;Q.cyprus_atilla1_frontline=['Contracted, separate positions','An exposed connected corridor','A secure connected corridor','A strong connected corridor'][index];}
   if(day===22){Q.cyprus_atilla1_halted=action==='alternative'?1:0;if(action==='historical'&&index>=2)Q.cyprus_atilla1_junction=1;
    Q.cyprus_atilla1_frontline=Q.cyprus_atilla1_junction?(index>=2?'A secure corridor with protected approaches':'An exposed connected corridor'):'Separate coastal and airborne positions';
    Q.cyprus_atilla1_credibility=action==='alternative'?'Offensive orders halted; ceasefire implementation remains contested':'Advance authorized until the ceasefire deadline';
-   if(action==='alternative')text+=' The ceasefire order does not yet guarantee that attacks will stop.';
   }
   if(day===23){
-   text=['Continued attacks leave forward positions exposed. Counterattacks fail to improve the line.','Local counterattacks gain a small amount of ground, but opposing attacks remain disruptive.','Limited defensive advances secure commanding ground and break up the attacking formations.','Well-coordinated defensive advances secure the approaches and severely deplete the attacking formations.'][index];
-   if(index>=2){Q.cyprus_atilla1_junction=1;Q.cyprus_atilla1_enemy_damage=index===3?'Key attacking formations severely depleted':'Attacking formations suffered crippling losses';}
+   if(index>=2){Q.cyprus_atilla1_junction=1;if(action==='historical')Q.cyprus_atilla1_enemy_damage=index===3?'Remaining resistance rapidly reduced':'Important hostile positions cleared';}
    if(index>0)Q.cyprus_atilla1_frontline=index>=2?'A secure corridor and improved defensive perimeter':'A narrow corridor with contested approaches';
    if((action==='alternative'||Q.cyprus_atilla1_halted)&&index>=2){Q.cyprus_restraint_protection=1;Q.cyprus_un_support=Math.min(2,Q.cyprus_un_support+1);shift(Q,'uk',1);shift(Q,'us',1);Q.cyprus_atilla1_credibility='Restraint and UN protection strengthened diplomatic credibility';}
    else if(!Q.cyprus_atilla1_halted&&action==='historical'){shift(Q,'uk',-1);Q.cyprus_atilla1_credibility='Continued consolidation drew ceasefire complaints';}
+   if(action==='alternative'){
+    enterDiplomacy(Q,23);
+    Q.cyprus_atilla1_halted=1;
+    Q.cyprus_frontline_quality=Q.cyprus_atilla1_junction?(index>=2&&Q.cyprus_atilla1_results[2].score>=45?3:index>=1?2:1):0;
+    if(Q.cyprus_frontline_quality===3)Q.cyprus_atilla1_frontline='Superior Defensive Position';
+    Q.cyprus_airport_assured=1;Q.cyprus_atilla1_access='No attempt to seize the airport; all offensive movement halted';
+    if(index<2)Q.cyprus_atilla1_credibility='Offensive movement halted; UN protection remains limited';
+   }
   }
   if(day===24){
    Q.cyprus_frontline_quality=Q.cyprus_atilla1_junction?(index>=2&&Q.cyprus_atilla1_results[3].score>=45?3:index>=1?2:1):0;
-   Q.cyprus_airport_assured=index>=1?1:0;Q.cyprus_un_confrontation=index===0?1:0;
+   Q.cyprus_airport_assured=index>=1?1:0;Q.cyprus_un_confrontation=0;
    Q.cyprus_atilla1_access=index>=2&&action==='alternative'?'UN-monitored access granted; airport remains under UN control':index>=1&&action!=='pressure'?'Turkey promises not to seize the airport; airport remains under UN control':'Airport access unresolved';
    if(action==='alternative'){
-    Q.cyprus_early_freeze=1;Q.cyprus_atilla1_end_day=28;freeze(Q,24);
+    enterDiplomacy(Q,24);Q.cyprus_airport_assured=1;
     if(index>=2){Q.cyprus_restraint_protection=1;Q.cyprus_un_support=2;shift(Q,'uk',1);shift(Q,'us',1);Q.cyprus_atilla1_credibility='Restraint and UN protection strengthened diplomatic credibility; confrontation with UN forces avoided';}
-    text=['The airport crisis forces local withdrawals. Ankara freezes the remaining line, but its defenses remain vulnerable.','Turkey promises not to attack the airport and freezes the line held, while access remains unsettled.','Monitored access is agreed. Limited defensive adjustments secure the final perimeter; further advances stop.','A favorable monitored arrangement preserves a superior defensive position. Turkey freezes its final perimeter and avoids confrontation with UN troops.'][index];
    }else{
     Q.greece_attitude=-2;shift(Q,'uk',action==='pressure'?-2:-1);shift(Q,'us',-1);Q.cyprus_restraint_protection=0;Q.cyprus_un_support=0;
     Q.cyprus_atilla1_credibility=action==='pressure'?'Expansion and pressure for airport control damaged diplomatic credibility':'Continued expansion despite the ceasefire damaged diplomatic credibility';
-    text=option.text[index]+' Ankara authorizes further expansion after the airport confrontation.';
+    text=option.text[index];
    }
    if(index===0)Q.cyprus_atilla1_frontline+='; exposed approaches withdrawn';else Q.cyprus_atilla1_frontline=Q.cyprus_frontline_quality===3?'Superior Defensive Position':'Secure Defensive Position';
   }
   Q.cyprus_atilla1_results.push({day:day,action:action,score:score,baseScore:base,supportBonus:bonus,tier:c.resourceTiers[tier(Q)].name,outcome:c.outcomes[index],text:text});
   Q.cyprus_atilla1_score+=score;Q.cyprus_atilla1_last_outcome=c.outcomes[index];Q.cyprus_atilla1_last_text=text;
+  if(day===21&&index===0){finishI(Q);settle(Q,'Military Defeat');}
   c.advanceDate(Q);return true;
  }
  function resolveHistory(Q,id,action,random){
@@ -154,11 +165,12 @@
    Q.cyprus_atilla1_results.push(result);Q.cyprus_atilla1_score+=score;
    if(!held&&index>=2){Q.cyprus_atilla1_frontline+='; '+option.position;Q.cyprus_frontline_quality=Math.max(Q.cyprus_frontline_quality,index);}
    if(action==='alternative'&&['july25','july26','july2728'].includes(id)){freeze(Q,event.day);if(index>=2){Q.cyprus_un_support=Math.min(2,Q.cyprus_un_support+1);shift(Q,'uk',1);shift(Q,'us',1);}}
+   if(id==='july25'&&action==='alternative'){enterDiplomacy(Q,25);Q.cyprus_atilla1_halted=1;if(index>=2){Q.cyprus_restraint_protection=1;Q.cyprus_atilla1_credibility='Restraint and UN protection strengthened diplomatic credibility';}}
    if(id==='july2930'){finishI(Q);Q.cyprus_history_advance_pending=1;}else c.advanceDate(Q);
   }else{Q.cyprus_post_atilla1_results.push(result);Q.cyprus_post_atilla1_score+=score;Q.cyprus_post_atilla1_count=Q.cyprus_post_atilla1_results.length;c.advanceDate(Q);}
   return true;
  }
- function meetingBrief(Q){return Q.cyprus_date_display+' — '+(Q.cyprus_atilla1_ending_seen?'The delegations assess guarantees, territorial arrangements and the positions of the three guarantor powers.':'The delegations work towards an earlier conclusion of Geneva I. Offensive movement remains frozen at the airport confrontation’s resulting line.')+' Greece: '+attitudes[attitude(Q,'greece')+2]+'. United Kingdom: '+attitudes[attitude(Q,'uk')+2]+'. United States: '+attitudes[attitude(Q,'us')+2]+'.';}
+ function meetingBrief(Q){return Q.cyprus_date_display+' — '+(Q.cyprus_atilla1_ending_seen?'The delegations assess guarantees, territorial arrangements and the positions of the three guarantor powers.':'The delegations work towards an earlier conclusion of Geneva I. Offensive movement remains frozen at the last military operation’s resulting line.')+' Greece: '+attitudes[attitude(Q,'greece')+2]+'. United Kingdom: '+attitudes[attitude(Q,'uk')+2]+'. United States: '+attitudes[attitude(Q,'us')+2]+'.';}
  function meetingAvailable(Q,action){if(action==='reject')return true;if(action==='guarantees')return attitude(Q,'greece')>=-1&&attitude(Q,'uk')>=0&&attitude(Q,'us')>=0;return action==='protection'&&attitude(Q,'uk')>=0;}
  function resolveMeeting(Q,action){
   if(!meetingPending(Q)||!meetingAvailable(Q,action))return false;
@@ -222,7 +234,7 @@
  // The legacy helper remains available for saves predating the complete campaign.
  c.resolve=resolve;c.resolveHistory=resolveHistory;
  c.endingReady=function(Q){return active(Q)?endingReady(Q):old.endingReady(Q);};
- c.scene=function(Q){if(!active(Q))return old.scene(Q);if(endingReady(Q))return 'cyprus_atilla1_ending';return !Q.cyprus_atilla1_complete&&Q.cyprus_month===7&&Q.cyprus_day>=20&&Q.cyprus_day<=24?'cyprus_atilla1_'+Q.cyprus_day:null;};
+ c.scene=function(Q){if(!active(Q))return old.scene(Q);if(endingReady(Q))return 'cyprus_atilla1_ending';return !Q.cyprus_atilla1_complete&&!Q.cyprus_early_freeze&&Q.cyprus_month===7&&Q.cyprus_day>=20&&Q.cyprus_day<=24?'cyprus_atilla1_'+Q.cyprus_day:null;};
  c.historyScene=function(Q){return active(Q)&&(Q.cyprus_early_freeze||Q.cyprus_campaign_resolved||Q.cyprus_campaign_phase==='atilla2'||Q.cyprus_atilla2_complete)?null:old.historyScene(Q);};
  c.awardEnding=awardEnding;c.continueEnding=continueEnding;
  c.mapImage=function(Q){if(active(Q)&&Q.cyprus_frontline_frozen){var copy=Object.assign({},Q,{cyprus_month:7,cyprus_day:Q.cyprus_frontline_map_day});return old.mapImage(copy);}return old.mapImage(Q);};
