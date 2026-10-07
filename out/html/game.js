@@ -122,7 +122,7 @@
     var content = document.getElementById('content');
     if (!content) return;
     var panel = document.getElementById('cyprus-command-panel');
-    if (!Q.cyprus_mode) { if (panel) panel.remove(); return; }
+    if (!Q.cyprus_mode || Q.cyprus_campaign_resolved) { if (panel) panel.remove(); return; }
     var rules = AnatolianRules.cyprusAtilla1;
     rules.ensureSupport(Q);
     if (!panel) {

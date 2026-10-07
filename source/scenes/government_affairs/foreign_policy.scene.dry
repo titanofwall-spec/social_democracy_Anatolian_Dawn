@@ -232,6 +232,8 @@ new-page: true
 
 = A federal settlement for Cyprus
 
+[? if cyprus_campaign_resolved == 1 : <img class="cyprus-ending-map" src="[+ {! return AnatolianRules.cyprusRoadmap.endingMap(Q); !} +]" alt="Map of the final Cyprus settlement" style="display:block;width:100%;height:auto;margin:1em auto;background:#000;"> ?]
+
 [+ cyprus_roadmap_report +]
 
 - @root: Continue.

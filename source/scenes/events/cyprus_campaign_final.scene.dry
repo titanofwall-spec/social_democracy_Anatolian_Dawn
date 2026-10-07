@@ -4,6 +4,8 @@ new-page: true
 
 = Cyprus — [+ cyprus_final_result +]
 
+[? if cyprus_campaign_resolved == 1 : <img class="cyprus-ending-map" src="[+ {! return AnatolianRules.cyprusRoadmap.endingMap(Q); !} +]" alt="Map of the final Cyprus settlement" style="display:block;width:100%;height:auto;margin:1em auto;background:#000;"> ?]
+
 [? if cyprus_final_result == "Non-Intervention" : CHP was not in power when the crisis began. Turkey did not undertake this intervention, and the opportunity to secure the Turkish Cypriot position was lost. ?]
 [? if cyprus_final_result == "Military Defeat" : <h2>MAĞLUP</h2> ?]
 
