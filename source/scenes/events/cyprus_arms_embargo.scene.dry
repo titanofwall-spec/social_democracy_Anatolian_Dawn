@@ -1,0 +1,15 @@
+title: American Weapons Embargo
+tags: event
+priority: 110
+max-visits: 1
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.embargoReady(Q,false); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.applyEmbargo(Q,false); !}
+
+= American Weapons Embargo
+
+Congress has suspended arms deliveries to Turkey. The embargo that took effect on 5 February 1975 interrupts the flow of equipment and spare parts on which our forces have depended. The army, navy and air force remain capable, but maintaining readiness will be harder until new sources of supply can be secured.
+
+Army, naval and aerial strength each fall by 0.15.
+
+- @post_event: Continue.

@@ -12,18 +12,22 @@ new-page: true
 [? if cyprus_final_result == "Military Defeat" : The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ?]
 
 [? if cyprus_final_result == "Military Defeat" : There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ?]
-[? if cyprus_final_result == "Return to the 1960 Constitutional Order" : The parties accept restoration of the constitutional framework. The crisis ends through an agreement that falls short of Turkey's federal objectives. ?]
+
 [? if cyprus_final_result == "Denktaş Plan" : The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ?]
 [? if cyprus_final_result == "Güneş Plan" : The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ?]
 [? if cyprus_final_result == "Historical Division" : The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ?]
 
 [? if cyprus_best_ending == 1 : The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ?]
 
-Atilla I score: [+ cyprus_atilla1_score +] / 720.
+[+ {! return Q.cyprus_atilla2_started || Q.cyprus_atilla2_complete ? "Atilla I" : "Atilla"; !} +] score: [+ cyprus_atilla1_score +] / 720.
 
-[? if cyprus_atilla2_complete == 1 : Atilla II score: [+ cyprus_atilla2_score +] / [? if cyprus_campaign_version == 2 : 400 ?][? if cyprus_campaign_version != 2 : 240 ?]. ?]
+[? if cyprus_atilla2_complete == 1 : Atilla II score: [+ cyprus_atilla2_score +] / [? if cyprus_campaign_version == 2 : [+ {! return Q.cyprus_delayed_ceasefire ? 320 : 240; !} +] ?][? if cyprus_campaign_version != 2 : 240 ?]. ?]
 
 [? if cyprus_campaign_version == 2 and cyprus_final_result == "Historical Division" : Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ?]
+
+[+ {! return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q) : ""; !} +]
+
+[? if cyprus_poll_reward_paid == 1 : The achievement increases CHP polling by [? if cyprus_atilla2_complete == 1 : 5 ?][? if cyprus_atilla2_complete != 1 : 3 ?] percentage points. ?]
 
 - @root: Return to normal play.
 

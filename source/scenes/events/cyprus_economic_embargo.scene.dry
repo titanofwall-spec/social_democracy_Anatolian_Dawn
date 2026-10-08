@@ -1,0 +1,15 @@
+title: American Economic Sanctions and Weapons Embargo
+tags: event
+priority: 110
+max-visits: 1
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.embargoReady(Q,true); !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.applyEmbargo(Q,true); !}
+
+= American Economic Sanctions and Weapons Embargo
+
+In this alternative outcome, the second operation and the lifting of the poppy ban have led Washington to suspend economic assistance as well as arms deliveries. Importing replacement military equipment and financing essential purchases will put severe pressure on our scarce foreign exchange. The armed forces remain capable, but equipment shortages and the loss of support impose a painful cost.
+
+Army, naval and aerial strength each fall by 0.15. Foreign-exchange pressure increases by 25 and the growth modifier falls by 0.5.
+
+- @post_event: Continue.

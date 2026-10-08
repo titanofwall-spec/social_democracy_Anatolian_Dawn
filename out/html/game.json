@@ -2383,6 +2383,46 @@
         "type": "paragraph"
       }
     },
+    "cyprus_arms_embargo": {
+      "id": "cyprus_arms_embargo",
+      "type": "scene",
+      "title": "American Weapons Embargo",
+      "tags": [
+        "event"
+      ],
+      "priority": 110,
+      "maxVisits": 1,
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.embargoReady(Q,false);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.applyEmbargo(Q,false);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "American Weapons Embargo"
+        },
+        {
+          "type": "paragraph",
+          "content": "Congress has suspended arms deliveries to Turkey. The embargo that took effect on 5 February 1975 interrupts the flow of equipment and spare parts on which our forces have depended. The army, navy and air force remain capable, but maintaining readiness will be harder until new sources of supply can be secured."
+        },
+        {
+          "type": "paragraph",
+          "content": "Army, naval and aerial strength each fall by 0.15."
+        }
+      ],
+      "countVisitsMax": 1
+    },
     "cyprus_atilla1_20.historical": {
       "id": "cyprus_atilla1_20.historical",
       "title": "Advance toward a junction with the airborne forces.",
@@ -4392,7 +4432,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties accept restoration of the constitutional framework. The crisis ends through an agreement that falls short of Turkey's federal objectives. ",
+                "content": "The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ",
                 "predicate": 7
               },
               ""
@@ -4403,7 +4443,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ",
+                "content": "The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ",
                 "predicate": 8
               },
               ""
@@ -4414,7 +4454,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ",
+                "content": "The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ",
                 "predicate": 9
               },
               ""
@@ -4425,7 +4465,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ",
+                "content": "The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ",
                 "predicate": 10
               },
               ""
@@ -4435,17 +4475,10 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "conditional",
-                "content": "The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ",
-                "predicate": 11
+                "type": "insert",
+                "insert": 11
               },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Atilla I score: ",
+              " score: ",
               {
                 "type": "insert",
                 "insert": 12
@@ -4467,13 +4500,20 @@
                   " / ",
                   {
                     "type": "conditional",
-                    "content": "400 ",
+                    "content": [
+                      "",
+                      {
+                        "type": "insert",
+                        "insert": 16
+                      },
+                      " "
+                    ],
                     "predicate": 15
                   },
                   {
                     "type": "conditional",
                     "content": "240 ",
-                    "predicate": 16
+                    "predicate": 17
                   },
                   ". "
                 ],
@@ -4488,7 +4528,41 @@
               {
                 "type": "conditional",
                 "content": "Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ",
-                "predicate": 17
+                "predicate": 18
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 19
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "The achievement increases CHP polling by ",
+                  {
+                    "type": "conditional",
+                    "content": "5 ",
+                    "predicate": 21
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "3 ",
+                    "predicate": 22
+                  },
+                  " percentage points. "
+                ],
+                "predicate": 20
               },
               ""
             ]
@@ -4540,12 +4614,6 @@
           {
             "type": "predicate",
             "fn": {
-              "$code": "return (Q['cyprus_final_result'] == \"Return to the 1960 Constitutional Order\");"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
               "$code": "return (Q['cyprus_final_result'] == \"Denktaş Plan\");"
             }
           },
@@ -4565,6 +4633,12 @@
             "type": "predicate",
             "fn": {
               "$code": "return ((Q['cyprus_best_ending'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return Q.cyprus_atilla2_started || Q.cyprus_atilla2_complete ? \"Atilla I\" : \"Atilla\";"
             }
           },
           {
@@ -4592,6 +4666,12 @@
             }
           },
           {
+            "type": "insert",
+            "fn": {
+              "$code": "return Q.cyprus_delayed_ceasefire ? 320 : 240;"
+            }
+          },
+          {
             "type": "predicate",
             "fn": {
               "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
@@ -4601,6 +4681,30 @@
             "type": "predicate",
             "fn": {
               "$code": "return (((Q['cyprus_campaign_version'] || 0) == 2) && (Q['cyprus_final_result'] == \"Historical Division\"));"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q) : \"\";"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_poll_reward_paid'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla2_complete'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_atilla2_complete'] || 0) != 1);"
             }
           }
         ]
@@ -4837,6 +4941,46 @@
           "content": "Turkey gains two additional leverage points. Click the Greek, British or American flags to negotiate support for the Denktaş or Güneş proposals. Their agreement is not automatic: country support and the conference's security guarantees must both be secured by August 14."
         }
       ]
+    },
+    "cyprus_economic_embargo": {
+      "id": "cyprus_economic_embargo",
+      "type": "scene",
+      "title": "American Economic Sanctions and Weapons Embargo",
+      "tags": [
+        "event"
+      ],
+      "priority": 110,
+      "maxVisits": 1,
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.embargoReady(Q,true);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.applyEmbargo(Q,true);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "American Economic Sanctions and Weapons Embargo"
+        },
+        {
+          "type": "paragraph",
+          "content": "In this alternative outcome, the second operation and the lifting of the poppy ban have led Washington to suspend economic assistance as well as arms deliveries. Importing replacement military equipment and financing essential purchases will put severe pressure on our scarce foreign exchange. The armed forces remain capable, but equipment shortages and the loss of support impose a painful cost."
+        },
+        {
+          "type": "paragraph",
+          "content": "Army, naval and aerial strength each fall by 0.15. Foreign-exchange pressure increases by 25 and the growth modifier falls by 0.5."
+        }
+      ],
+      "countVisitsMax": 1
     },
     "cyprus_geneva_deadline.denktas": {
       "id": "cyprus_geneva_deadline.denktas",
@@ -22502,7 +22646,7 @@
       "id": "foreign_policy.improve_us",
       "onArrival": [
         {
-          "$code": "Q['us_relation'] = (Q['us_relation'] || 0) + 5;"
+          "$code": "Q['us_relation'] = (Q['us_relation'] || 0) + 8.75;"
         }
       ],
       "content": {
@@ -26619,7 +26763,7 @@
       "id": "foreign_policy.improve_west",
       "onArrival": [
         {
-          "$code": "Q['west_relation'] = (Q['west_relation'] || 0) + 5;"
+          "$code": "Q['west_relation'] = (Q['west_relation'] || 0) + 8.75;"
         }
       ],
       "content": {
@@ -28221,7 +28365,7 @@
     "cyprus_roadmap_event.offensive": {
       "id": "cyprus_roadmap_event.offensive",
       "viewIf": {
-        "$code": "return ((Q['cyprus_campaign_phase'] == \"atilla2\") && ((Q['cyprus_campaign_version'] || 0) == 2));"
+        "$code": "return Q.cyprus_campaign_phase===\"atilla2\" && AnatolianRules.cyprusRoadmap.iiStep(Q)!==2 && AnatolianRules.cyprusRoadmap.iiStep(Q)<4;"
       },
       "onArrival": [
         {
@@ -31254,7 +31398,7 @@
     "cyprus_roadmap_event.supply": {
       "id": "cyprus_roadmap_event.supply",
       "viewIf": {
-        "$code": "return ((Q['cyprus_campaign_phase'] == \"atilla2\") && ((Q['cyprus_campaign_version'] || 0) == 2));"
+        "$code": "return Q.cyprus_campaign_phase===\"atilla2\" && AnatolianRules.cyprusRoadmap.iiStep(Q)!==2 && AnatolianRules.cyprusRoadmap.iiStep(Q)<4;"
       },
       "onArrival": [
         {
@@ -35744,89 +35888,6 @@
         ]
       }
     },
-    "cyprus_roadmap_event": {
-      "id": "cyprus_roadmap_event",
-      "type": "scene",
-      "title": "The Cyprus conference",
-      "viewIf": {
-        "$code": "return AnatolianRules.cyprusRoadmap.active(Q) && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_roadmap_event';"
-      },
-      "newPage": true,
-      "onArrival": [
-        {
-          "$code": "AnatolianRules.cyprusRoadmap.prepareEvent(Q);"
-        }
-      ],
-      "options": [
-        {
-          "id": "@cyprus_roadmap_event.demand",
-          "title": "Present our demand, document the violations and reinforce the line."
-        },
-        {
-          "id": "@cyprus_roadmap_event.monitor",
-          "title": "Seek UN monitoring and civilian protection while reinforcing the line."
-        },
-        {
-          "id": "@cyprus_roadmap_event.gunes",
-          "title": "Pursue the Güneş Plan: six autonomous Turkish cantons."
-        },
-        {
-          "id": "@cyprus_roadmap_event.denktas",
-          "title": "Pursue the Denktaş Plan: a northern Turkish federal region."
-        },
-        {
-          "id": "@cyprus_roadmap_event.offensive",
-          "title": "Carry out the next advance and secure the operation's objectives."
-        },
-        {
-          "id": "@cyprus_roadmap_event.supply",
-          "title": "Coordinate reinforcements and supplies before the next advance."
-        },
-        {
-          "id": "@cyprus_roadmap_event.continue",
-          "title": "Continue."
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": [
-              "",
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_roadmap_event_title'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_roadmap_event_text'] || 0);"
-            }
-          }
-        ]
-      }
-    },
     "national_elections.kirikoglu": {
       "id": "national_elections.kirikoglu",
       "onArrival": [
@@ -38834,6 +38895,26 @@
         ]
       }
     },
+    "cyprus_roadmap_event.constitutional": {
+      "id": "cyprus_roadmap_event.constitutional",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-14') && !Q.cyprus_gunes_backing;"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'constitution');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "national_elections.unholy_coalition": {
       "id": "national_elections.unholy_coalition",
       "title": "Can we form a coalition with Islamist MSP?",
@@ -39296,6 +39377,26 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.war": {
+      "id": "cyprus_roadmap_event.war",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='constitutional' || (AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-14') && !Q.cyprus_gunes_backing);"
+      },
+      "onArrival": [
+        {
+          "$code": "if(Q.cyprus_campaign_phase==='constitutional')AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'war');else AnatolianRules.cyprusRoadmap.resolveEvent(Q,'war');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "national_elections.ministriesb": {
       "id": "national_elections.ministriesb",
       "onArrival": [
@@ -39489,7 +39590,7 @@
       "id": "foreign_policy.improve_east",
       "onArrival": [
         {
-          "$code": "Q['soviet_relation'] = (Q['soviet_relation'] || 0) + 5;"
+          "$code": "Q['soviet_relation'] = (Q['soviet_relation'] || 0) + 8.75;"
         }
       ],
       "content": {
@@ -39773,6 +39874,30 @@
       ],
       "content": {
         "content": "Rahşan has been removed as a member.",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.turkish": {
+      "id": "cyprus_roadmap_event.turkish",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='constitutional' && (true);"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'turkish');"
+      },
+      "unavailableSubtitle": "Requires 2 Leverage Points.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'turkish');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -40790,6 +40915,30 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.compromise": {
+      "id": "cyprus_roadmap_event.compromise",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='constitutional' && (true);"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'compromise');"
+      },
+      "unavailableSubtitle": "Requires 1 Leverage Points.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'compromise');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "national_elections.right_coalition_sure": {
       "id": "national_elections.right_coalition_sure",
       "subtitle": {
@@ -41264,6 +41413,30 @@
       ],
       "content": {
         "content": "Turan Güneş has been removed as a member. The Left-Wing Kemalist faction disapproves.",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.greek": {
+      "id": "cyprus_roadmap_event.greek",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='constitutional' && (AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,\"greek\"));"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'greek');"
+      },
+      "unavailableSubtitle": "Requires 0 Leverage Points.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'greek');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -42244,6 +42417,26 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.ceasefire": {
+      "id": "cyprus_roadmap_event.ceasefire",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===2;"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ceasefire',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "national_elections.bye": {
       "id": "national_elections.bye",
       "content": {
@@ -42802,6 +42995,33 @@
         "content": "Avcıoğlu has been removed as a member. The Kemalist Marxist faction disapproves.",
         "type": "paragraph"
       }
+    },
+    "cyprus_roadmap_event.delay": {
+      "id": "cyprus_roadmap_event.delay",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===2;"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@cyprus_roadmap_event.confirm_delay",
+          "title": "Yes. Continue until 08:00 tomorrow."
+        },
+        {
+          "id": "@cyprus_roadmap_event.cancel_delay",
+          "title": "No. Declare the ceasefire at 18:00 today."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Are you sure?"
+        },
+        {
+          "type": "paragraph",
+          "content": "The operation has already achieved its objectives. Fourteen more hours could secure additional ground, but risks confrontation over the airport, condemnation from Britain and America, and a sharp increase in foreign-exchange pressure."
+        }
+      ]
     },
     "national_elections.no_majority": {
       "id": "national_elections.no_majority",
@@ -43368,6 +43588,23 @@
       ],
       "content": {
         "content": "Selçuk has been removed as a member. The Kemalist Marxist faction disapproves.",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.confirm_delay": {
+      "id": "cyprus_roadmap_event.confirm_delay",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'confirm-delay',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -43970,6 +44207,23 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.cancel_delay": {
+      "id": "cyprus_roadmap_event.cancel_delay",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ceasefire',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "national_elections.ecevit_prime_minister": {
       "id": "national_elections.ecevit_prime_minister",
       "onArrival": [
@@ -44024,7 +44278,7 @@
       "id": "foreign_policy.arabrelation",
       "onArrival": [
         {
-          "$code": "Q['middle_east_relation'] = (Q['middle_east_relation'] || 0) + 5;"
+          "$code": "Q['middle_east_relation'] = (Q['middle_east_relation'] || 0) + 8.75;"
         }
       ],
       "content": {
@@ -44054,6 +44308,141 @@
       "content": {
         "content": "Kamil Kırıkoğlu has been removed as a member. The Kemalist Marxist faction disapproves.",
         "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.division": {
+      "id": "cyprus_roadmap_event.division",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===4;"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ending',this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event": {
+      "id": "cyprus_roadmap_event",
+      "type": "scene",
+      "title": "The Cyprus conference",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.active(Q) && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_roadmap_event';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.prepareEvent(Q);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_roadmap_event.demand",
+          "title": "Present our demand, document the violations and reinforce the line."
+        },
+        {
+          "id": "@cyprus_roadmap_event.monitor",
+          "title": "Seek UN monitoring and civilian protection while reinforcing the line."
+        },
+        {
+          "id": "@cyprus_roadmap_event.gunes",
+          "title": "Pursue the Güneş Plan: six autonomous Turkish cantons."
+        },
+        {
+          "id": "@cyprus_roadmap_event.denktas",
+          "title": "Pursue the Denktaş Plan: a northern Turkish federal region."
+        },
+        {
+          "id": "@cyprus_roadmap_event.offensive",
+          "title": "Carry out the next advance and secure the operation's objectives."
+        },
+        {
+          "id": "@cyprus_roadmap_event.supply",
+          "title": "Coordinate reinforcements and supplies before the next advance."
+        },
+        {
+          "id": "@cyprus_roadmap_event.constitutional",
+          "title": "Give up territorial autonomy and negotiate a revised 1960 constitutional order."
+        },
+        {
+          "id": "@cyprus_roadmap_event.war",
+          "title": "End the talks and begin Atilla II."
+        },
+        {
+          "id": "@cyprus_roadmap_event.turkish",
+          "title": "Insist on the Turkish proposal (2 Leverage Points)."
+        },
+        {
+          "id": "@cyprus_roadmap_event.compromise",
+          "title": "Accept the compromise (1 Leverage Point)."
+        },
+        {
+          "id": "@cyprus_roadmap_event.greek",
+          "title": "Accept the Greek proposal (gain 0.5 Leverage Points)."
+        },
+        {
+          "id": "@cyprus_roadmap_event.ceasefire",
+          "title": "Declare the ceasefire at 18:00 today."
+        },
+        {
+          "id": "@cyprus_roadmap_event.delay",
+          "title": "Postpone the ceasefire until 08:00 tomorrow."
+        },
+        {
+          "id": "@cyprus_roadmap_event.division",
+          "title": "Receive the territorial settlement report."
+        },
+        {
+          "id": "@cyprus_roadmap_event.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_title'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_text'] || 0);"
+            }
+          }
+        ]
       }
     },
     "national_elections.grand_coalition": {
@@ -47776,6 +48165,8 @@
       "ayse": true,
       "cgpformation": true,
       "coup": true,
+      "cyprus_arms_embargo": true,
+      "cyprus_economic_embargo": true,
       "cyprus_gunes_implemented": true,
       "devletguvenlikmahkmesei": true,
       "devyol_formation": true,

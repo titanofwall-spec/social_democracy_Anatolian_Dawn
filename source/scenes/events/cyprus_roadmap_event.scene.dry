@@ -13,6 +13,14 @@ on-arrival: {! AnatolianRules.cyprusRoadmap.prepareEvent(Q); !}
 - @denktas: Pursue the Denktaş Plan: a northern Turkish federal region.
 - @offensive: Carry out the next advance and secure the operation's objectives.
 - @supply: Coordinate reinforcements and supplies before the next advance.
+- @constitutional: Give up territorial autonomy and negotiate a revised 1960 constitutional order.
+- @war: End the talks and begin Atilla II.
+- @turkish: Insist on the Turkish proposal (2 Leverage Points).
+- @compromise: Accept the compromise (1 Leverage Point).
+- @greek: Accept the Greek proposal (gain 0.5 Leverage Points).
+- @ceasefire: Declare the ceasefire at 18:00 today.
+- @delay: Postpone the ceasefire until 08:00 tomorrow.
+- @division: Receive the territorial settlement report.
 - @continue: Continue.
 
 @demand
@@ -36,12 +44,12 @@ on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'denktas'); !}
 go-to: report
 
 @offensive
-view-if: cyprus_campaign_phase == "atilla2" and cyprus_campaign_version == 2
+view-if: {! return Q.cyprus_campaign_phase==="atilla2" && AnatolianRules.cyprusRoadmap.iiStep(Q)!==2 && AnatolianRules.cyprusRoadmap.iiStep(Q)<4; !}
 on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'historical',this.random.random.bind(this.random)); !}
 go-to: report
 
 @supply
-view-if: cyprus_campaign_phase == "atilla2" and cyprus_campaign_version == 2
+view-if: {! return Q.cyprus_campaign_phase==="atilla2" && AnatolianRules.cyprusRoadmap.iiStep(Q)!==2 && AnatolianRules.cyprusRoadmap.iiStep(Q)<4; !}
 on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'alternative',this.random.random.bind(this.random)); !}
 go-to: report
 
@@ -58,3 +66,63 @@ new-page: true
 [+ cyprus_roadmap_report +]
 
 - @cyprus_campaign_continue: Continue.
+
+@constitutional
+view-if: {! return AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-14') && !Q.cyprus_gunes_backing; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'constitution'); !}
+go-to: report
+
+@war
+view-if: {! return Q.cyprus_campaign_phase==='constitutional' || (AnatolianRules.cyprusRoadmap.eventIs(Q,'geneva2-14') && !Q.cyprus_gunes_backing); !}
+on-arrival: {! if(Q.cyprus_campaign_phase==='constitutional')AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'war');else AnatolianRules.cyprusRoadmap.resolveEvent(Q,'war'); !}
+go-to: cyprus_campaign_continue
+
+@turkish
+view-if: {! return Q.cyprus_campaign_phase==='constitutional' && (true); !}
+choose-if: {! return AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'turkish'); !}
+unavailable-subtitle: Requires 2 Leverage Points.
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'turkish'); !}
+go-to: report
+
+@compromise
+view-if: {! return Q.cyprus_campaign_phase==='constitutional' && (true); !}
+choose-if: {! return AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'compromise'); !}
+unavailable-subtitle: Requires 1 Leverage Points.
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'compromise'); !}
+go-to: report
+
+@greek
+view-if: {! return Q.cyprus_campaign_phase==='constitutional' && (AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,"greek")); !}
+choose-if: {! return AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'greek'); !}
+unavailable-subtitle: Requires 0 Leverage Points.
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'greek'); !}
+go-to: report
+
+@ceasefire
+view-if: {! return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===2; !}
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ceasefire',this.random.random.bind(this.random)); !}
+go-to: report
+
+@delay
+view-if: {! return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===2; !}
+new-page: true
+
+= Are you sure?
+
+The operation has already achieved its objectives. Fourteen more hours could secure additional ground, but risks confrontation over the airport, condemnation from Britain and America, and a sharp increase in foreign-exchange pressure.
+
+- @confirm_delay: Yes. Continue until 08:00 tomorrow.
+- @cancel_delay: No. Declare the ceasefire at 18:00 today.
+
+@confirm_delay
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'confirm-delay',this.random.random.bind(this.random)); !}
+go-to: report
+
+@cancel_delay
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ceasefire',this.random.random.bind(this.random)); !}
+go-to: report
+
+@division
+view-if: {! return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===4; !}
+on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ending',this.random.random.bind(this.random)); !}
+go-to: cyprus_campaign_continue

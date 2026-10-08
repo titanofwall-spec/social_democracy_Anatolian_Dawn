@@ -37,12 +37,12 @@ Turkey is a crucial member of the Western Alliance and of NATO. Our Western alli
 - @fp_menu: Return to the foreign policy menu.
 
 @improve_us
-on-arrival: us_relation += 5
+on-arrival: us_relation += 8.75
 
 We improve our relations with the United States.
 
 @improve_west
-on-arrival: west_relation += 5
+on-arrival: west_relation += 8.75
 
 We improve our relations with Western Europe.
 
@@ -95,7 +95,7 @@ Up until now our relations with the Eastern Bloc have been cold at best. However
 - @fp_menu: Return to the foreign policy menu.
 
 @improve_east
-on-arrival: soviet_relation += 5
+on-arrival: soviet_relation += 8.75
 
 Even though we are on the other side of the Iron Curtain, the Soviet Union is our largest neighbor. We improve our relations with the Soviets.
 
@@ -150,7 +150,7 @@ The Middle East is currently roughly divided into two blocs, the Conservative Mo
 - @fp_menu: Return to the foreign policy menu.
 
 @arabrelation
-on-arrival: middle_east_relation += 5
+on-arrival: middle_east_relation += 8.75
 
 We improve relations with the Gulf Monarchies and the Pan Arabists.
 

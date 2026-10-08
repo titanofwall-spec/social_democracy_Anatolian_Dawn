@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path'),assert=require('assert');
 const lib=require('dendrynexus/lib/engine.js'),rules=require('../out/html/rules.js');
 require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');
 // This suite deliberately exercises the retained version-1 save format.
-rules.cyprusRoadmap={active:()=>false,implementationReady:()=>false,endingMap:()=>''};
+rules.cyprusRoadmap={active:()=>false,embargoReady:()=>false,implementationReady:()=>false,endingMap:()=>''};
 const c=rules.cyprusAtilla1, campaign=rules.cyprusCampaign,root=path.resolve(__dirname,'..'),noop=()=>{};
 const node={remove:noop,style:{setProperty:noop},appendChild:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
 global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};
@@ -67,3 +67,4 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
  console.log=log;log('PASS: '+passed+' complete-campaign scenarios.');
 });
+

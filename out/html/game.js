@@ -54,6 +54,11 @@
     ui.displayChoices = function(choices) {
       displayChoices(choices);
       window.renderCyprusCommandPanel();
+      var Q=ui.dendryEngine.state.qualities;
+      if(!Q.cyprus_atilla2_started&&!Q.cyprus_atilla2_complete){
+        var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),text;
+        while((text=walker.nextNode()))if(!['SCRIPT','STYLE'].includes(text.parentElement.tagName))text.nodeValue=text.nodeValue.replace(/Atilla I\b/g,'Atilla');
+      }
       var tooltips = window.buttonTooltips || {};
       choices.forEach(function(choice, index) {
         var choiceId = String(choice.id || '');
