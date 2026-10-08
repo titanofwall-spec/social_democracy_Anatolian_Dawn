@@ -477,6 +477,9 @@ if (Q.prime_minister_party == "I") {
 
 
     ////////////////////////// annual support changes
+    AnatolianRules.ensureSecurity(Q);
+    var ohp_growth_before={};
+    ['grey_wolves_strength','grey_wolves_militancy','raiders_strength','raiders_militancy','tit_strength','tit_militancy'].forEach(function(k){ohp_growth_before[k]=AnatolianRules.number(Q[k]);});
     // Economic health multiplier for paramilitary membership growth
     var econ_paramilitary_multiplier;
     if (Q.economy_health > 3) {
@@ -530,6 +533,7 @@ if (Q.prime_minister_party == "I") {
         Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;
         Q.devyol_militancy += 0.1/24
     }
+    AnatolianRules.scaleFarRightGrowth(Q,ohp_growth_before);
     // Ensure economic values remain tied to base paths and modifiers after all adjustments
     recalcProductionAndHeadlineValues();
 

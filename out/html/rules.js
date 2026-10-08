@@ -147,6 +147,35 @@
             Q[key+'_display']=Math.round(projection.classShares[key]*10)/10;
         });
     }
+    /** @param {GameState} Q */
+    function ensureSecurity(Q) {
+        if(typeof Q.ohp_strength!=='number')Q.ohp_strength=100;
+        Q.ohp_strength=clamp(Q.ohp_strength,20,100);
+        if(typeof Q.ohp_investigations!=='number')Q.ohp_investigations=0;
+    }
+    /** @param {GameState} Q @param {string} group @param {boolean} initial */
+    function securityAction(Q,group,initial) {
+        ensureSecurity(Q);if(!['grey_wolves','raiders','tit'].includes(group))return false;
+        if(group==='raiders'&&!Q.raiders_formed)return false;
+        if(initial&&group!=='tit'&&(number(Q.far_right_force_percent)<35||Q[group+'_banned']))return false;
+        if(initial&&group==='tit'&&Q.tit_investigated)return false;
+        if(!initial&&!(group==='tit'?Q.tit_investigated:Q[group+'_banned']))return false;
+        if(initial&&group==='tit'){Q.tit_investigated=1;Q.investigate_far_right=number(Q.investigate_far_right)+1;return true;}
+        Q[group+'_strength']=Math.max(0,initial?number(Q[group+'_strength'])*.6:number(Q[group+'_strength'])-20);
+        Q[group+'_militancy']=clamp(initial?number(Q[group+'_militancy'])*.65:number(Q[group+'_militancy'])-.03,0,1);
+        if(initial)Q[group+'_banned']=1;
+        return true;
+    }
+    /** @param {GameState} Q */
+    function investigateUnderground(Q) {ensureSecurity(Q);if(Q.ohp_investigations>=4)return false;Q.ohp_investigations++;if(Q.ohp_investigations===4)Q.counter_guerilla_discovered=1;return true;}
+    /** @param {GameState} Q */
+    function ohpClampAvailable(Q) {ensureSecurity(Q);return Q.ohp_investigations>=4&&Q.ohp_strength>20&&(!Q.cyprus_embargo_applied||Q.ohp_funding_event_seen);}
+    /** @param {GameState} Q */
+    function clampOHP(Q) {if(!ohpClampAvailable(Q))return false;Q.ohp_strength=Math.max(20,Q.ohp_strength-20);Q.counter_guerilla_level=1;return true;}
+    /** @param {GameState} Q @param {Record<string,number>} before */
+    function scaleFarRightGrowth(Q,before) {ensureSecurity(Q);Object.keys(before).forEach(function(k){var delta=number(Q[k])-before[k];if(delta>0)Q[k]=before[k]+delta*Q.ohp_strength/100;});}
+    /** @param {GameState} Q */
+    function ohpFundingReady(Q) {return !!(Q.ohp_funding_due&&!Q.ohp_funding_event_seen&&Q.CHP_in_government&&!Q.cyprus_mode);}
     /** Restore party labels in old saves using formation-event visits, not the calendar.
      * @param {GameState} Q @param {Record<string, number>} [visits] */
     function refreshPartyNames(Q,visits) {
@@ -162,6 +191,6 @@
     }
     root.AnatolianRules = {number: number, clamp: clamp, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
-        projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
+        ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) module.exports = root.AnatolianRules;
 }(typeof globalThis !== 'undefined' ? globalThis : window));

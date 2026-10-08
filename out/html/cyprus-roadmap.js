@@ -181,7 +181,7 @@
   return '';
  }
  function embargoReady(Q,economic){return Q.cyprus_campaign_version===2&&!Q.cyprus_mode&&!Q.cyprus_embargo_applied&&!Q.cyprus_campaign_failed&&Q.cyprus_atilla1_junction&&(Q.year>1975||(Q.year===1975&&Q.month>=2))&&(economic?!!(Q.cyprus_atilla2_started&&Q.cyprus_poppy_penalty):!Q.cyprus_poppy_penalty);}
- function applyEmbargo(Q,economic){if(!embargoReady(Q,economic))return false;Q.cyprus_embargo_applied=1;['army_land_strength','army_naval_strength','army_aerial_strength'].forEach(function(k){Q[k]=Math.max(Math.min(.1,number(Q[k])),number(Q[k])-.15);});if(economic){Q.forex_pressure=r.clamp(number(Q.forex_pressure)+25,0,100);Q.growth_modifier=number(Q.growth_modifier)-.5;r.refreshEconomy(Q);}return true;}
+ function applyEmbargo(Q,economic){if(!embargoReady(Q,economic))return false;Q.cyprus_embargo_applied=1;if(Q.CHP_in_government)Q.ohp_funding_due=1;['army_land_strength','army_naval_strength','army_aerial_strength'].forEach(function(k){Q[k]=Math.max(Math.min(.1,number(Q[k])),number(Q[k])-.15);});if(economic){Q.forex_pressure=r.clamp(number(Q.forex_pressure)+25,0,100);Q.growth_modifier=number(Q.growth_modifier)-.5;r.refreshEconomy(Q);}return true;}
 
  function gunesEligible(Q){return active(Q)&&!Q.cyprus_campaign_failed&&!Q.cyprus_poppy_penalty&&number(Q.uk_attitude)>=0&&number(Q.us_attitude)>=1&&Q.cyprus_atilla1_ending==='Massive'&&Q.cyprus_frontline_quality>=3&&Q.cyprus_atilla1_junction&&Q.cyprus_airport_assured&&Q.cyprus_restraint_protection&&number(Q.cyprus_un_support)>=2&&!Q.cyprus_un_confrontation;}
  function diplomacyUnavailable(Q,country,action){

@@ -1,0 +1,42 @@
+title: ÖHP requests funds
+tags: event
+priority: 105
+new-page: true
+max-visits: 1
+view-if: {! return AnatolianRules.ohpFundingReady(Q); !}
+on-arrival: ohp_funding_event_seen = 1
+
+= 5 February 1975 — Özel Harp Dairesi requests funds
+
+The American arms embargo has interrupted outside support for Özel Harp Dairesi. The General Staff asks the government to cover the department’s needs through discretionary funds. Its secret arrangements have now reached the prime minister’s desk.
+
+[? if ohp_investigations >= 4 : Our prior investigations mean this request does not arrive in ignorance. The government already knows about the department’s concealed networks and suspected domestic activities. We can use the funding crisis to restrict its operations and impose scrutiny instead of simply replacing the money. ?]
+[? if ohp_investigations < 4 : The request exposes the existence of an organization whose activities the government does not yet fully understand. Before taking effective action against its hidden networks, we must complete four investigations through Internal Security. ?]
+
+- @clamp: Refuse a blank cheque and clamp down on ÖHP.
+- @fund: Approve limited replacement funding (-1 budget).
+- @investigate: Defer funding and continue the investigation through Internal Security.
+
+@clamp
+choose-if: {! return AnatolianRules.ohpClampAvailable(Q); !}
+unavailable-subtitle: Complete all four underground investigations first.
+on-arrival: {! AnatolianRules.clampOHP(Q); !}
+
+The government restricts hidden funding and places the department under closer civilian scrutiny. ÖHP is weakened, but its residual network survives.
+
+- @post_event: Continue.
+
+@fund
+choose-if: budget >= 1
+unavailable-subtitle: Requires 1 budget.
+on-arrival: budget -= 1
+
+Replacement funds keep the department functioning. Its existing strength is preserved, and further investigation remains available through Internal Security.
+
+- @post_event: Continue.
+
+@investigate
+
+The government postpones a funding decision. Internal Security must establish the evidence needed for a clampdown; learning the department’s name alone is not enough.
+
+- @post_event: Continue.

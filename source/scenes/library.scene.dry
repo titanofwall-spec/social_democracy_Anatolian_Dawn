@@ -581,6 +581,8 @@ Grey Wolves Militarization: [+ grey_wolves_militancy : militancy +]
 
 TİT Militarization: [+ tit_militancy : militancy +]
 
+Strength of ÖHP: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength : 100; !} +]%
+
 [? if raiders_formed: {!<span class="tooltip-text" title="Raiders are a far-right paramilitary organization.">Raiders</span>!} Strength: [+ raiders_strength_2 +] thousand ?]
 
 [? if raiders_formed: Raiders Militarization: [+ raiders_militancy : militancy +] ?]

@@ -372,15 +372,9 @@ if (Q.police_strength) {
 if (Q.pkk_strength) {
     Q.pkk_strength_2 = Q.pkk_strength.toFixed(1);
 }
-if (Q.grey_wolves_strength) {
-    Q.grey_wolves_strength_2 = Q.grey_wolves_strength.toFixed(1);
-}
-if (Q.raiders_strength) {
-    Q.raiders_strength_2 = Q.raiders_strength.toFixed(1);
-}
-if (Q.tit_strength) {
-    Q.tit_strength_2 = Q.tit_strength.toFixed(1);
-}
+Q.grey_wolves_strength_2 = Math.max(0,AnatolianRules.number(Q.grey_wolves_strength)).toFixed(1);
+Q.raiders_strength_2 = Math.max(0,AnatolianRules.number(Q.raiders_strength)).toFixed(1);
+Q.tit_strength_2 = Math.max(0,AnatolianRules.number(Q.tit_strength)).toFixed(1);
 
 // Convert army strength values (0-1) to descriptive text
 function getStrengthDescription(value) {
@@ -441,6 +435,8 @@ Grey Wolves Militarization: [+ grey_wolves_militancy : militancy +]
 {!<span class="tooltip-text" title="Turkish Revenge Brigade (TİT) is a highly militant far-right organization.">Turkish Revenge Brigade (TİT)</span>!} Strength: [+ tit_strength_2 +] thousand
 
 TİT Militarization: [+ tit_militancy : militancy +]
+
+Strength of ÖHP: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength : 100; !} +]%
 
 [? if year >= 1972 and not streetfighting_joever: <h1>Distribution of Power</h1> ?]
 
@@ -557,7 +553,7 @@ Q.peoples_sector_status = mapLevel(Q.peoples_sector_level, ["Non-existant", "Gro
 Q.workplace_safety_status = mapLevel(Q.workplace_safety_level, ["Dangerous", "Improving", "Safe"]);
 Q.minimum_wage_status = mapLevel(Q.minimum_wage_level, ["Low", "Middle-Low", "Middle", "Middle-High", "High"]);
 Q.judicial_reform_status = mapLevel(Q.judicial_reform_level, ["Reactionary", "Reforming", "Progressive"]);
-Q.counter_guerilla_status = mapLevel(Q.counter_guerilla_level, ["Full strength", "Weakened", "Disbanded"]);
+Q.counter_guerilla_status = mapLevel(Q.counter_guerilla_level, ["Full strength", "Weakened", "Weakened"]);
 Q.education_funding_status = mapLevel(Q.education_funding_level, ["Decrepit", "Adequate", "Generous"]);
 Q.education_curriculum_status = mapLevel(Q.education_curriculum_level, ["Rote", "Balanced", "Progressive"]);
 Q.university_freedom_status = mapLevel(Q.university_freedom_level, ["YÖK controlled", "Semi-autonomous", "Autonomous"]);

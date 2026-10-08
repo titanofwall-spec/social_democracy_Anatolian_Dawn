@@ -16,7 +16,6 @@ The Interior Ministry controls internal security throughout the Turkish Republic
 - @investigate_corruption: Investigate corruption by big businesses.
 - @investigate_far_right: Investigate illegal activity among the far right.
 - @investigate_separatists: Investigate illegal activity among separatists.
-- @domestic_enemies: Investigate or ban our domestic enemies.
 - @easterncrime: Strike against the drug smugglers and organized crime along the Southeastern Border.
 - @ohal: Declare OHAL(state of emergency) to put an end to the street fighting.
 - @root: Take no action for now.
@@ -24,14 +23,14 @@ The Interior Ministry controls internal security throughout the Turkish Republic
 - @cancel_advisor_action
 
 @loyalty
-on-arrival: police_loyalty += 0.1
+on-arrival: {! Q.police_loyalty=Math.min(1,AnatolianRules.number(Q.police_loyalty)+0.2); !}
 
 There are measures we can take to unveil the ideological cliques, prioritizing the advancement of their ideology to the wellbeing of the state, within the police forces. We can improve training and recruiting procedures, and identify and remove known extremists and the like.
 
 Current interior police loyalty: [+ police_loyalty : loyalty +]
 
 @recruit
-on-arrival: police_strength += 8; police_loyalty -= 0.05
+on-arrival: police_strength += 16; police_loyalty -= 0.05
 
 The new police regiments strengthen the state's hold over the streets, though we have received reports of a decrease in general loyalty.
 
@@ -39,7 +38,7 @@ The new police regiments strengthen the state's hold over the streets, though we
 subtitle: -1 budget
 unavailable-subtitle: Not enough budget.
 choose-if: budget >= 1
-on-arrival: police_militancy += 0.1; budget -= 1
+on-arrival: budget -= 1; {! Q.police_militancy=Math.min(1,AnatolianRules.number(Q.police_militancy)+0.2); !}
 
 The police forces have been supplemented with better weapons and training, improving their efficiency.
 
@@ -57,22 +56,105 @@ Corruption in big business is rampant, of course. We have uncovered a number of 
 Unfortunately, our investigations have failed to turn up anything. Rumors are that the targets of our investigation were tipped off by infiltrators within the police.
 
 @investigate_far_right
-go-to: investigate_far_right_success if police_loyalty >= 0.55; investigate_far_right_failure if police_loyalty < 0.55
+new-page: true
 
-@investigate_far_right_success
-on-arrival: investigate_far_right += 1; grey_wolves_strength -= 5; workers_MHP -= 3; state_employees_MHP -= 3; far_right_urgency += 1 if investigate_far_right == 2; far_right_urgency += 2 if investigate_far_right == 3; workers_MHP -= 3 if investigate_far_right == 3; state_employees_MHP -= 3 if investigate_far_right == 3; petty_bourgeoisie_MHP -= 3 if investigate_far_right == 3; coup_progress -= 1 if coup_progress >= 7
+= Investigate illegal activity among the far right
 
-[? if investigate_far_right == 1 : We have uncovered financial links between armed far-right groups and their supporters. ?]
-[? if investigate_far_right == 2 : We have uncovered illegal arms networks supplying far-right militants. ?]
-[? if investigate_far_right == 3 : We have discovered a secret cache of documents from the MHP detailing their plan to violently take over the country if they enter into power. This is an anti-constitutional plot, and will be publicized and persecuted. ?]
-[? if investigate_far_right > 3 : Further investigations gather evidence for prosecutions of political violence. ?]
+The ministry can act against armed organizations and investigate the anti-communist underground. Initial bans require far-right strength to reach at least 35%. A ban disrupts recruitment and weapons networks, but does not end the organization. Further prosecutions remove up to twenty thousand members and slightly reduce militarization.
 
-[? if coup_progress >= 6: There are reports of an imminent coup by the far-right. We have attempted to disrupt some of these plans, but the threat is still present. ?]
+- @ban_grey: Ban the Grey Wolves.
+- @ban_raiders: Ban the Raiders.
+- @investigate_tit: Investigate the Revenge Brigades.
+- @pursue_grey: Further Persecute Grey Wolves.
+- @pursue_raiders: Further Persecute Raiders.
+- @pursue_tit: Persecute the Revenge Brigades.
+- @underground: Investigate Far Right and Anti-Communist Underground.
+- @clamp_ohp: Clamp down on ÖHP.
+- @root: Take no further action.
 
+@ban_grey
+view-if: not grey_wolves_banned
+choose-if: far_right_force_percent >= 35
+unavailable-subtitle: Far-right strength must reach at least 35%.
+on-arrival: {! AnatolianRules.securityAction(Q,'grey_wolves',true); !}
 
-@investigate_far_right_failure
+The Grey Wolves are banned. Recruitment and organization are disrupted: their membership falls by 40% and militarization by 35%. The network survives underground and requires further action.
 
-Unfortunately, our investigations have failed to turn up anything. Rumors are that the targets of our investigation were tipped off by infiltrators within the police.
+- @root: Continue.
+
+@ban_raiders
+view-if: not raiders_banned and raiders_formed == 1
+choose-if: far_right_force_percent >= 35
+unavailable-subtitle: Far-right strength must reach at least 35%.
+on-arrival: {! AnatolianRules.securityAction(Q,'raiders',true); !}
+
+The Raiders are banned. Recruitment and organization are disrupted: their membership falls by 40% and militarization by 35%. The network survives underground and requires further action.
+
+- @root: Continue.
+
+@investigate_tit
+view-if: not tit_investigated
+choose-if: true
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'tit',true); !}
+
+Investigators identify the Revenge Brigades’ clandestine structures and gather evidence. The ministry can now prosecute their members and disrupt their weapons networks.
+
+- @root: Continue.
+
+@pursue_grey
+view-if: grey_wolves_banned == 1
+choose-if: {! return AnatolianRules.number(Q.grey_wolves_strength)>0; !}
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'grey_wolves',false); !}
+
+Further prosecutions of the Grey Wolves remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.
+
+- @root: Continue.
+
+@pursue_raiders
+view-if: raiders_banned == 1 and raiders_formed == 1
+choose-if: {! return AnatolianRules.number(Q.raiders_strength)>0; !}
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'raiders',false); !}
+
+Further prosecutions of the Raiders remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.
+
+- @root: Continue.
+
+@pursue_tit
+view-if: tit_investigated == 1
+choose-if: {! return AnatolianRules.number(Q.tit_strength)>0; !}
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'tit',false); !}
+
+Further prosecutions of the Revenge Brigades remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.
+
+- @root: Continue.
+
+@underground
+view-if: {! return AnatolianRules.number(Q.ohp_investigations)<4; !}
+on-arrival: {! AnatolianRules.investigateUnderground(Q); !}
+new-page: true
+
+= The anti-communist underground
+
+[? if ohp_investigations == 1 : Investigators find that several far-right groups have access to weapons and contacts beyond their public organizations. Reports refer to a Counter-Guerrilla network, but the chains of command remain concealed. ?]
+[? if ohp_investigations == 2 : The inquiry traces contacts to secret stay-behind preparations within the Cold War alliance. Similar networks abroad are associated with Operation Gladio. The ministry has identified connections, but does not yet know enough to intervene effectively. ?]
+[? if ohp_investigations == 3 : Records point towards Özel Harp Dairesi, the Special Warfare Department under the General Staff. Its official purpose is resistance against an occupation, but the investigation finds indications of domestic political activity outside proper civilian oversight. ?]
+[? if ohp_investigations >= 4 : The government now understands the department’s hidden funding arrangements and the underground networks linked to it. The inquiry has gathered enough evidence to restrict clandestine support and impose civilian scrutiny. The department cannot be eliminated by a single decision, but its capacity can be weakened. ?]
+
+- @root: Continue.
+
+@clamp_ohp
+view-if: ohp_investigations >= 4
+choose-if: {! return AnatolianRules.ohpClampAvailable(Q); !}
+unavailable-subtitle: ÖHP is already at its residual strength, or its embargo-related funding request must first be addressed.
+on-arrival: {! AnatolianRules.clampOHP(Q); !}
+
+Civilian oversight and restrictions on hidden funding weaken ÖHP. Its strength falls by twenty percentage points, slowing the growth of far-right paramilitary groups. A residual network remains beyond our ability to dismantle fully.
+
+- @root: Continue.
 
 @investigate_separatists
 go-to: investigate_separatists_success if police_loyalty >= 0.55 and pkk_formed; investigate_separatists_failure if police_loyalty < 0.55 or not pkk_formed
