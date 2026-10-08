@@ -4357,10 +4357,16 @@
           {
             "type": "heading",
             "content": [
+              "",
+              {
+                "type": "conditional",
+                "content": "30 August 1974 — ",
+                "predicate": 0
+              },
               "Cyprus — ",
               {
                 "type": "insert",
-                "insert": 0
+                "insert": 1
               },
               ""
             ]
@@ -4374,11 +4380,11 @@
                   "<img class=\"cyprus-ending-map\" src=\"",
                   {
                     "type": "insert",
-                    "insert": 2
+                    "insert": 3
                   },
                   "\" alt=\"Map of the final Cyprus settlement\" style=\"display:block;width:100%;height:auto;margin:1em auto;background:#000;\"> "
                 ],
-                "predicate": 1
+                "predicate": 2
               },
               ""
             ]
@@ -4389,17 +4395,6 @@
               {
                 "type": "conditional",
                 "content": "CHP was not in power when the crisis began. Turkey did not undertake this intervention, and the opportunity to secure the Turkish Cypriot position was lost. ",
-                "predicate": 3
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "<h2>MAĞLUP</h2> ",
                 "predicate": 4
               },
               ""
@@ -4410,7 +4405,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
+                "content": "<h2>MAĞLUP</h2> ",
                 "predicate": 5
               },
               ""
@@ -4421,7 +4416,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
+                "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
                 "predicate": 6
               },
               ""
@@ -4432,7 +4427,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ",
+                "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
                 "predicate": 7
               },
               ""
@@ -4443,7 +4438,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ",
+                "content": "The parties agree to a federal Cyprus with a clearly defined Turkish region in the north and a Greek region in the south. ",
                 "predicate": 8
               },
               ""
@@ -4454,7 +4449,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ",
+                "content": "The parties agree to a federal Cyprus containing six geographically separate autonomous Turkish cantons. ",
                 "predicate": 9
               },
               ""
@@ -4465,7 +4460,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ",
+                "content": "The second operation is followed by the historical territorial division. A comprehensive federal agreement remains unresolved. ",
                 "predicate": 10
               },
               ""
@@ -4475,13 +4470,24 @@
             "type": "paragraph",
             "content": [
               {
+                "type": "conditional",
+                "content": "The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ",
+                "predicate": 11
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
                 "type": "insert",
-                "insert": 11
+                "insert": 12
               },
               " score: ",
               {
                 "type": "insert",
-                "insert": 12
+                "insert": 13
               },
               " / 720."
             ]
@@ -4495,7 +4501,7 @@
                   "Atilla II score: ",
                   {
                     "type": "insert",
-                    "insert": 14
+                    "insert": 15
                   },
                   " / ",
                   {
@@ -4504,20 +4510,20 @@
                       "",
                       {
                         "type": "insert",
-                        "insert": 16
+                        "insert": 17
                       },
                       " "
                     ],
-                    "predicate": 15
+                    "predicate": 16
                   },
                   {
                     "type": "conditional",
                     "content": "240 ",
-                    "predicate": 17
+                    "predicate": 18
                   },
                   ". "
                 ],
-                "predicate": 13
+                "predicate": 14
               },
               ""
             ]
@@ -4528,7 +4534,7 @@
               {
                 "type": "conditional",
                 "content": "Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ",
-                "predicate": 18
+                "predicate": 19
               },
               ""
             ]
@@ -4538,7 +4544,7 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 19
+                "insert": 20
               },
               ""
             ]
@@ -4553,22 +4559,28 @@
                   {
                     "type": "conditional",
                     "content": "5 ",
-                    "predicate": 21
+                    "predicate": 22
                   },
                   {
                     "type": "conditional",
                     "content": "3 ",
-                    "predicate": 22
+                    "predicate": 23
                   },
                   " percentage points. "
                 ],
-                "predicate": 20
+                "predicate": 21
               },
               ""
             ]
           }
         ],
         "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Return to the 1960 Constitutional Order\");"
+            }
+          },
           {
             "type": "insert",
             "fn": {

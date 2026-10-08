@@ -83,7 +83,7 @@
   return '';
  }
  function pending(Q){
-  migrate(Q);if(!active(Q))return legacy.pending(Q);if(!Q.cyprus_mode)return null;tick(Q);
+  migrate(Q);if(!active(Q))return legacy.pending(Q);if(!Q.cyprus_mode)return null;if(number(Q.cyprus_constitution_step)>=8&&(Q.cyprus_campaign_phase==='constitutional'||Q.cyprus_final_result==='Return to the 1960 Constitutional Order'))finishConstitution(Q);tick(Q);
   if(Q.cyprus_campaign_resolved)return Q.cyprus_final_seen?null:'cyprus_campaign_final';
   if(Q.cyprus_campaign_phase==='constitutional'&&!constitutionTopics[number(Q.cyprus_constitution_step)][3]&&number(Q.leverage_points)<1)beginII(Q);
   if(endingReady(Q))return 'cyprus_atilla1_ending';
@@ -162,7 +162,16 @@
  function constitutionBrief(topic){return 'Turkey has set territorial autonomy aside and proposed a revised 1960 constitutional order. The Greek delegation welcomes the opening; now both communities must agree on enforceable rules.\n\nTurkish proposal (2 Leverage Points): '+topic[1]+'\n\nCompromise (1 Leverage Point): '+topic[2]+(topic[3]?'\n\nGreek proposal (gain 0.5 Leverage Points): '+topic[3]:'\n\nA further Greek concession is unacceptable to Turkey on this issue.');}
  function beginConstitution(Q){if(Q.cyprus_campaign_resolved||Q.cyprus_atilla2_started||Q.cyprus_month!==8||Q.cyprus_day!==14||Q.cyprus_gunes_backing)return false;Q.cyprus_campaign_phase='constitutional';Q.cyprus_constitution_step=0;Q.cyprus_constitution_score=0;Q.cyprus_constitution_choices=[];Q.cyprus_roadmap_report='The Greek delegation brightens as Turkey withdraws its demand for territorial autonomy. Talks will now examine a revised constitutional order, one issue each day.';return true;}
  function constitutionChoiceAvailable(Q,action){if(Q.cyprus_campaign_phase!=='constitutional')return false;var topic=constitutionTopics[number(Q.cyprus_constitution_step)];return !!topic&&(action==='turkish'?number(Q.leverage_points)>=2:action==='compromise'?number(Q.leverage_points)>=1:action==='greek'?!!topic[3]:action==='war');}
- function resolveConstitution(Q,action){if(!constitutionChoiceAvailable(Q,action))return false;if(action==='war')return beginII(Q);var i=number(Q.cyprus_constitution_step);Q.leverage_points=number(Q.leverage_points)+(action==='turkish'?-2:action==='compromise'?-1:.5);Q.cyprus_constitution_score=number(Q.cyprus_constitution_score)+(action==='turkish'?1:action==='greek'?-1:0);Q.cyprus_constitution_choices.push(action);Q.cyprus_constitution_step=i+1;Q.cyprus_roadmap_report='Agreement is reached on '+constitutionTopics[i][0].toLowerCase()+'. '+(action==='turkish'?constitutionTopics[i][1]:action==='compromise'?constitutionTopics[i][2]:constitutionTopics[i][3]);if(i===7){Q.cyprus_constitution_result=Q.cyprus_constitution_score>=4?'turkish':Q.cyprus_constitution_score<0?'greek':'compromise';settle(Q,'Return to the 1960 Constitutional Order');}else advance(Q);return true;}
+ function finishConstitution(Q){
+  if(number(Q.cyprus_constitution_step)<8)return false;
+  Q.cyprus_constitution_result=Q.cyprus_constitution_score>=4?'turkish':Q.cyprus_constitution_score<0?'greek':'compromise';
+  Q.cyprus_day=30;Q.cyprus_month=8;Q.cyprus_year=1974;Q.cyprus_date_display='August 30, 1974';
+  Q.year=1974;Q.month=8;Q.week=2;Q.cyprus_calendar_advance=0;Q.cyprus_campaign_resume=0;Q.cyprus_preop_resume=0;
+  Q.cyprus_campaign_phase='settled';Q.cyprus_frontline_frozen=1;
+  if(!Q.cyprus_campaign_resolved)settle(Q,'Return to the 1960 Constitutional Order');
+  return true;
+ }
+ function resolveConstitution(Q,action){if(!constitutionChoiceAvailable(Q,action))return false;if(action==='war')return beginII(Q);var i=number(Q.cyprus_constitution_step);Q.leverage_points=number(Q.leverage_points)+(action==='turkish'?-2:action==='compromise'?-1:.5);Q.cyprus_constitution_score=number(Q.cyprus_constitution_score)+(action==='turkish'?1:action==='greek'?-1:0);Q.cyprus_constitution_choices.push(action);Q.cyprus_constitution_step=i+1;Q.cyprus_roadmap_report='Agreement is reached on '+constitutionTopics[i][0].toLowerCase()+'. '+(action==='turkish'?constitutionTopics[i][1]:action==='compromise'?constitutionTopics[i][2]:constitutionTopics[i][3]);if(i===7){finishConstitution(Q);}else advance(Q);return true;}
  function pollReward(Q,points){if(!Array.isArray(Q.classes)||!Array.isArray(Q.parties))return;Q.classes.forEach(function(d){var total=Q.parties.reduce(function(a,p){return a+Math.max(0,number(Q[d+'_'+p]));},0),old=number(Q[d+'_chp']),share=total?100*old/total:0,target=Math.min(100,share+points);if(!total)return;var factor=share<100?(100-target)/(100-share):0;Q.parties.forEach(function(p){if(p!=='chp')Q[d+'_'+p]=Math.max(0,number(Q[d+'_'+p]))*factor;});Q[d+'_chp']=total*target/100;});r.refreshPolls(Q);}
  function endingPraise(Q){
   var name=Q.cyprus_final_result;
@@ -187,7 +196,7 @@
  function skip(Q){if(!active(Q)||!Q.cyprus_mode||pending(Q)||c.briefingScene(Q)||c.scene(Q)||c.historyScene(Q))return false;if(Q.cyprus_month===8&&Q.cyprus_day>=1&&Q.cyprus_day<8){Q.cyprus_diplomatic_turns++;advance(Q,2);}else advance(Q);return true;}
  function skipLabel(Q){return active(Q)&&Q.cyprus_month===8&&Q.cyprus_day>=1&&Q.cyprus_day<8?'Skip 2 Days':'Skip Day';}
  function beginII(Q){
-  if(!active(Q))return legacy.beginII(Q);if(Q.cyprus_campaign_resolved||Q.cyprus_month!==8||Q.cyprus_day<14||Q.cyprus_atilla2_results.length)return false;
+  if(!active(Q))return legacy.beginII(Q);if(Q.cyprus_campaign_resolved||Q.cyprus_campaign_phase==='constitutional'&&number(Q.cyprus_constitution_step)>=8||Q.cyprus_month!==8||Q.cyprus_day<14||Q.cyprus_atilla2_results.length)return false;
   Q.cyprus_atilla2_start_day=Q.cyprus_day;Q.cyprus_atilla2_started=1;Q.cyprus_campaign_phase='atilla2';Q.cyprus_frontline_frozen=0;Q.greece_attitude=-2;shift(Q,'uk',-1);shift(Q,'us',-1);Q.cyprus_atilla2_results=[];Q.cyprus_atilla2_score=0;Q.cyprus_support_bonus=0;return true;
  }
  function iiStep(Q){return Q.cyprus_day-number(Q.cyprus_atilla2_start_day||14);}

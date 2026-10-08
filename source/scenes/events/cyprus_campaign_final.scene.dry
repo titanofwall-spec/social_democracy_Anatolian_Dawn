@@ -2,7 +2,7 @@ title: The Cyprus settlement
 view-if: cyprus_campaign_resolved == 1
 new-page: true
 
-= Cyprus — [+ cyprus_final_result +]
+= [? if cyprus_final_result == "Return to the 1960 Constitutional Order" : 30 August 1974 — ?]Cyprus — [+ cyprus_final_result +]
 
 [? if cyprus_campaign_resolved == 1 : <img class="cyprus-ending-map" src="[+ {! return AnatolianRules.cyprusRoadmap.endingMap(Q); !} +]" alt="Map of the final Cyprus settlement" style="display:block;width:100%;height:auto;margin:1em auto;background:#000;"> ?]
 
