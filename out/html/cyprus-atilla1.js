@@ -250,12 +250,12 @@
     }
     var resourceTiers = [
         {name:'Horrible',starting:8,daily:0,limit:2},
-        {name:'Decrepit',starting:11,daily:1,limit:3},
+        {name:'Decrepit',starting:12,daily:1,limit:3},
         {name:'Poor',starting:22,daily:2,limit:6},
-        {name:'Adequate',starting:25,daily:3,limit:Infinity},
-        {name:'Sufficient',starting:29,daily:4,limit:Infinity},
-        {name:'Good',starting:44,daily:9,limit:Infinity},
-        {name:'Excellent',starting:54,daily:12,limit:Infinity}
+        {name:'Adequate',starting:40,daily:3,limit:Infinity},
+        {name:'Sufficient',starting:46,daily:4,limit:Infinity},
+        {name:'Good',starting:97,daily:7,limit:Infinity},
+        {name:'Excellent',starting:102,daily:8,limit:Infinity}
     ];
     /** @param {State} Q */
     function resourceTier(Q) {
@@ -265,7 +265,11 @@
     /** @param {State} Q */
     function startingResources(Q) { return resourceTiers[resourceTier(Q)].starting; }
     /** @param {State} Q */
-    function dailyResources(Q) { return resourceTiers[resourceTier(Q)].daily; }
+    function dailyResources(Q) {
+        if(Q.cyprus_month===7 && Q.cyprus_day<=20)return 0;
+        var tier=resourceTier(Q);
+        return Q.cyprus_month>7 || Q.cyprus_day>25 ? [0,0,1,1,2,3,5][tier] : resourceTiers[tier].daily;
+    }
     /** @param {State} Q */
     function initializeSupport(Q) {
         Q.military_strength = startingResources(Q);

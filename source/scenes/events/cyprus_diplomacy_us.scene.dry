@@ -17,7 +17,7 @@ Denktaş proposes a northern Turkish and southern Greek federal structure. Güne
 
 @improve
 choose-if: {! return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','improve')===''; !}
-subtitle: 1 diplomatic leverage.
+subtitle: 1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.
 unavailable-subtitle: Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.
 on-arrival: {! AnatolianRules.cyprusCampaign.diplomaticAction(Q,'us','improve'); !}
 new-page: true
@@ -31,7 +31,7 @@ new-page: true
 @denktas
 view-if: cyprus_campaign_version != 2
 choose-if: {! return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','denktas')===''; !}
-subtitle: 1 diplomatic leverage.
+subtitle: 1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.
 unavailable-subtitle: Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.
 on-arrival: {! AnatolianRules.cyprusCampaign.diplomaticAction(Q,'us','denktas'); !}
 new-page: true

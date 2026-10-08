@@ -4614,7 +4614,7 @@
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'greece','improve')==='';"
       },
-      "subtitle": "1 diplomatic leverage.",
+      "subtitle": "1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.",
       "unavailableSubtitle": "Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.",
       "onArrival": [
         {
@@ -4660,8 +4660,8 @@
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'uk','improve')==='';"
       },
-      "subtitle": "1 diplomatic leverage.",
-      "unavailableSubtitle": "Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.",
+      "subtitle": "1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.",
+      "unavailableSubtitle": "Requires 1 Leverage Point, Britain below Neutral and one of the four outreach turns between August 1 and 8.",
       "onArrival": [
         {
           "$code": "AnatolianRules.cyprusCampaign.diplomaticAction(Q,'uk','improve');"
@@ -4706,7 +4706,7 @@
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','improve')==='';"
       },
-      "subtitle": "1 diplomatic leverage.",
+      "subtitle": "1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.",
       "unavailableSubtitle": "Requires 1 Leverage Point, a country below Very Friendly and one of the four outreach turns between August 1 and 8.",
       "onArrival": [
         {
@@ -15427,7 +15427,7 @@
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'greece','denktas')==='';"
       },
-      "subtitle": "1 diplomatic leverage.",
+      "subtitle": "1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.",
       "unavailableSubtitle": "Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.",
       "onArrival": [
         {
@@ -15476,7 +15476,7 @@
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'uk','denktas')==='';"
       },
-      "subtitle": "1 diplomatic leverage.",
+      "subtitle": "1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.",
       "unavailableSubtitle": "Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.",
       "onArrival": [
         {
@@ -15525,7 +15525,7 @@
       "chooseIf": {
         "$code": "return AnatolianRules.cyprusCampaign.diplomacyUnavailable(Q,'us','denktas')==='';"
       },
-      "subtitle": "1 diplomatic leverage.",
+      "subtitle": "1 diplomatic leverage. Outreach improves attitude by half a tier; two contacts raise it one full tier.",
       "unavailableSubtitle": "Requires leverage and the relevant military, airport, UN and foreign-attitude conditions. Outreach has a three-day cooldown; a country cannot endorse the same plan twice.",
       "onArrival": [
         {
@@ -47340,26 +47340,26 @@
       "type": "qdisplay",
       "content": [
         {
-          "max": -1.5,
+          "max": -1.01,
           "output": "<span style=\"color:#9e2626\"><strong>Hostile</strong></span>"
         },
         {
-          "min": -1.5,
-          "max": -0.5,
+          "min": -1.01,
+          "max": -0.01,
           "output": "<span style=\"color:#d4823a\"><strong>Suspicious</strong></span>"
         },
         {
-          "min": -0.5,
-          "max": 0.5,
+          "min": -0.01,
+          "max": 0.99,
           "output": "<span style=\"color:#c2b657\"><strong>Neutral</strong></span>"
         },
         {
-          "min": 0.5,
-          "max": 1.5,
+          "min": 0.99,
+          "max": 1.99,
           "output": "<span style=\"color:#4a8f3c\"><strong>Friendly</strong></span>"
         },
         {
-          "min": 1.5,
+          "min": 1.99,
           "output": "<span style=\"color:#2f7a3a\"><strong>Very Friendly</strong></span>"
         }
       ]

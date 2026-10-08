@@ -241,15 +241,15 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         window.cyprusAdvanceDay(); assert.deepEqual([Q.cyprus_year,Q.cyprus_month,Q.cyprus_day],[1974,11,1]);
     });
     test('Military Resource starting pool and daily supply use all three branch strengths', (e,Q) => {
-        const c=rules.cyprusAtilla1;
-        for(const [strength,initial,daily] of [[0,8,0],[0.1,11,1],[0.2,22,2],[0.4,25,3],[0.5,29,4],[0.6,44,9],[0.8,54,12],[1,54,12]]) {
+        const c=rules.cyprusAtilla1;Q.cyprus_month=7;Q.cyprus_day=21;
+        for(const [strength,initial,daily] of [[0,8,0],[0.1,12,1],[0.2,22,2],[0.4,40,3],[0.5,46,4],[0.6,97,7],[0.8,102,8],[1,102,8]]) {
             Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=strength;
             assert.equal(c.startingResources(Q),initial); assert.equal(c.dailyResources(Q),daily);
         }
         Q.army_land_strength=1;Q.army_naval_strength=0;Q.army_aerial_strength=0.5;
         Q.year=1974;Q.month=7;Q.week=2;e.goToScene('kibrisdarbe');
-        assert.equal(Q.military_strength,29);assert.equal(Q.cyprus_support_bonus,0);
-        const old=Q.military_strength;c.advanceDate(Q);assert.equal(Q.military_strength,old+4);
+        assert.equal(Q.military_strength,46);assert.equal(Q.cyprus_support_bonus,0);
+        const old=Q.military_strength;c.advanceDate(Q);assert.equal(Q.military_strength,old);
         delete Q.cyprus_resources_initialized;delete Q.cyprus_support_used;delete Q.cyprus_support_bonus;
         Q.military_strength=9;c.ensureSupport(Q);assert.equal(Q.military_strength,9);assert.deepEqual(Q.cyprus_support_used,{});
     });
@@ -293,12 +293,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         function start(strength){const Q={cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:15,year:1974,month:7,week:2,army_land_strength:strength,army_naval_strength:strength,army_aerial_strength:strength};c.initialize(Q);c.initializeSupport(Q);while(Q.cyprus_day<20)c.advanceDate(Q);Q.cyprus_operation_started=1;return Q;}
         function spend(Q,keys){for(const k of keys)assert(c.useSupport(Q,k,c.supportActions[k].side),k+': '+c.supportUnavailable(Q,k,c.supportActions[k].side));}
         function next(Q){assert(c.resolve(Q,Q.cyprus_day,'historical',()=>0));assert.equal(Q.cyprus_support_bonus,0);}
-        for(const [strength,remainder] of [[.6,2],[.8,42]]){
+        for(const [strength,remainder] of [[.6,0],[.8,10]]){
             const Q=start(strength);for(let day=20;day<=25;day++){spend(Q,groups[(day-20)%3]);assert.equal(Q.cyprus_support_bonus,10);if(day<25)next(Q);}
             assert.equal(Q.military_strength,remainder);assert.equal(Object.values(Q.cyprus_support_early_counts).reduce((a,b)=>a+b,0),24);
             for(const key of Object.keys(c.supportActions))assert.equal(Q.cyprus_support_early_counts[key],2);
         }
-        const S=start(.5);spend(S,groups[0]);next(S);spend(S,groups[1]);next(S);spend(S,groups[2].slice(0,2));next(S);next(S);next(S);spend(S,groups[2].slice(2));assert.equal(S.military_strength,3);assert(!c.useSupport(S,cheap[0],'turkish'));
+        const S=start(.5);spend(S,groups[0]);next(S);spend(S,groups[1]);next(S);spend(S,groups[2].slice(0,2));next(S);next(S);next(S);spend(S,groups[2].slice(2));assert.equal(S.military_strength,0);assert(!c.useSupport(S,cheap[0],'turkish'));
         const A=start(.4);spend(A,groups[0]);next(A);spend(A,groups[1].slice(0,2));next(A);spend(A,groups[1].slice(2));next(A);next(A);next(A);assert.equal(A.military_strength,11);assert(c.supportUnavailable(A,cheap[0],'turkish').includes('once'));
         for(const [strength,limit] of [[.1,3],[.2,6]]){
             const Q=start(strength);spend(Q,cheap.slice(0,Math.min(5,limit)));next(Q);if(limit===6)spend(Q,[cheap[5]]);while(Q.cyprus_day<25)next(Q);
