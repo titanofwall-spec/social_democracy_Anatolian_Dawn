@@ -4985,7 +4985,7 @@
         },
         {
           "type": "paragraph",
-          "content": "In this alternative outcome, the second operation and the lifting of the poppy ban have led Washington to suspend economic assistance as well as arms deliveries. Importing replacement military equipment and financing essential purchases will put severe pressure on our scarce foreign exchange. The armed forces remain capable, but equipment shortages and the loss of support impose a painful cost."
+          "content": "In this alternative outcome, the second operation, together with the lifting of the poppy ban or the deliberately delayed ceasefire, has led Washington to suspend economic assistance as well as arms deliveries. Importing replacement military equipment and financing essential purchases will put severe pressure on our scarce foreign exchange. The armed forces remain capable, but equipment shortages and the loss of support impose a painful cost."
         },
         {
           "type": "paragraph",
@@ -44137,121 +44137,6 @@
         "type": "paragraph"
       }
     },
-    "cyprus_roadmap_event": {
-      "id": "cyprus_roadmap_event",
-      "type": "scene",
-      "title": "The Cyprus conference",
-      "viewIf": {
-        "$code": "return AnatolianRules.cyprusRoadmap.active(Q) && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_roadmap_event';"
-      },
-      "newPage": true,
-      "onArrival": [
-        {
-          "$code": "AnatolianRules.cyprusRoadmap.prepareEvent(Q);"
-        }
-      ],
-      "options": [
-        {
-          "id": "@cyprus_roadmap_event.demand",
-          "title": "Present our demand, document the violations and reinforce the line."
-        },
-        {
-          "id": "@cyprus_roadmap_event.monitor",
-          "title": "Seek UN monitoring and civilian protection while reinforcing the line."
-        },
-        {
-          "id": "@cyprus_roadmap_event.gunes",
-          "title": "Pursue the Güneş Plan: six autonomous Turkish cantons."
-        },
-        {
-          "id": "@cyprus_roadmap_event.denktas",
-          "title": "Pursue the Denktaş Plan: a northern Turkish federal region."
-        },
-        {
-          "id": "@cyprus_roadmap_event.offensive",
-          "title": "Carry out the next advance and secure the operation's objectives."
-        },
-        {
-          "id": "@cyprus_roadmap_event.supply",
-          "title": "Coordinate reinforcements and supplies before the next advance."
-        },
-        {
-          "id": "@cyprus_roadmap_event.constitutional",
-          "title": "Give up territorial autonomy and negotiate a revised 1960 constitutional order."
-        },
-        {
-          "id": "@cyprus_roadmap_event.war",
-          "title": "End the talks and begin Atilla II."
-        },
-        {
-          "id": "@cyprus_roadmap_event.turkish",
-          "title": "Insist on the Turkish proposal (2 Leverage Points)."
-        },
-        {
-          "id": "@cyprus_roadmap_event.compromise",
-          "title": "Accept the compromise (1 Leverage Point)."
-        },
-        {
-          "id": "@cyprus_roadmap_event.greek",
-          "title": "Accept the Greek proposal (gain 0.5 Leverage Points)."
-        },
-        {
-          "id": "@cyprus_roadmap_event.ceasefire",
-          "title": "Declare the ceasefire at 18:00 today."
-        },
-        {
-          "id": "@cyprus_roadmap_event.delay",
-          "title": "Postpone the ceasefire until 08:00 tomorrow."
-        },
-        {
-          "id": "@cyprus_roadmap_event.division",
-          "title": "Receive the territorial settlement report."
-        },
-        {
-          "id": "@cyprus_roadmap_event.continue",
-          "title": "Continue."
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": [
-              "",
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_roadmap_event_title'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_roadmap_event_text'] || 0);"
-            }
-          }
-        ]
-      }
-    },
     "national_elections.grand_coalition": {
       "id": "national_elections.grand_coalition",
       "title": "We can form a Grand Coalition between CHP and AP.",
@@ -44398,6 +44283,26 @@
       ],
       "content": {
         "content": "Ali İhsan Göğüs has been removed as a member. The Right-Wing Kemalist faction disapproves.",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.consult": {
+      "id": "cyprus_roadmap_event.consult",
+      "viewIf": {
+        "$code": "return Q.cyprus_campaign_phase==='constitutional' && !AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'greek') && AnatolianRules.number(Q.leverage_points)<1;"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'consult');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_roadmap_event.report"
+        }
+      ],
+      "content": {
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -44734,6 +44639,26 @@
         "type": "paragraph"
       }
     },
+    "cyprus_roadmap_event.sign_treaty": {
+      "id": "cyprus_roadmap_event.sign_treaty",
+      "viewIf": {
+        "$code": "return (Q['cyprus_campaign_phase'] == \"constitutional_treaty\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'sign');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "national_elections.new_elections": {
       "id": "national_elections.new_elections",
       "onArrival": [
@@ -44956,6 +44881,153 @@
       "content": {
         "content": "Fethi Çelikbaş has been removed as a member. The Right-Wing Kemalist faction disapproves.",
         "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event.refuse_treaty": {
+      "id": "cyprus_roadmap_event.refuse_treaty",
+      "viewIf": {
+        "$code": "return (Q['cyprus_campaign_phase'] == \"constitutional_treaty\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'refuse');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_roadmap_event": {
+      "id": "cyprus_roadmap_event",
+      "type": "scene",
+      "title": "The Cyprus conference",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.active(Q) && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_roadmap_event';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.prepareEvent(Q);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_roadmap_event.demand",
+          "title": "Present our demand, document the violations and reinforce the line."
+        },
+        {
+          "id": "@cyprus_roadmap_event.monitor",
+          "title": "Seek UN monitoring and civilian protection while reinforcing the line."
+        },
+        {
+          "id": "@cyprus_roadmap_event.gunes",
+          "title": "Pursue the Güneş Plan: six autonomous Turkish cantons."
+        },
+        {
+          "id": "@cyprus_roadmap_event.denktas",
+          "title": "Pursue the Denktaş Plan: a northern Turkish federal region."
+        },
+        {
+          "id": "@cyprus_roadmap_event.offensive",
+          "title": "Carry out the next advance and secure the operation's objectives."
+        },
+        {
+          "id": "@cyprus_roadmap_event.supply",
+          "title": "Coordinate reinforcements and supplies before the next advance."
+        },
+        {
+          "id": "@cyprus_roadmap_event.constitutional",
+          "title": "Give up territorial autonomy and negotiate a revised 1960 constitutional order."
+        },
+        {
+          "id": "@cyprus_roadmap_event.war",
+          "title": "End the talks and begin Atilla II."
+        },
+        {
+          "id": "@cyprus_roadmap_event.turkish",
+          "title": "Insist on the Turkish proposal (2 Leverage Points)."
+        },
+        {
+          "id": "@cyprus_roadmap_event.compromise",
+          "title": "Accept the compromise (1 Leverage Point)."
+        },
+        {
+          "id": "@cyprus_roadmap_event.greek",
+          "title": "Accept the Greek proposal (gain 0.5 Leverage Points)."
+        },
+        {
+          "id": "@cyprus_roadmap_event.ceasefire",
+          "title": "Declare the ceasefire at 18:00 today."
+        },
+        {
+          "id": "@cyprus_roadmap_event.delay",
+          "title": "Postpone the ceasefire until 08:00 tomorrow."
+        },
+        {
+          "id": "@cyprus_roadmap_event.division",
+          "title": "Receive the territorial settlement report."
+        },
+        {
+          "id": "@cyprus_roadmap_event.consult",
+          "title": "Continue consultations and rebuild negotiating leverage."
+        },
+        {
+          "id": "@cyprus_roadmap_event.sign_treaty",
+          "title": "Sign the negotiated constitutional treaty."
+        },
+        {
+          "id": "@cyprus_roadmap_event.refuse_treaty",
+          "title": "Refuse the treaty and begin Atilla II."
+        },
+        {
+          "id": "@cyprus_roadmap_event.continue",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_title'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['cyprus_roadmap_event_text'] || 0);"
+            }
+          }
+        ]
       }
     },
     "national_elections.grand_coalition_CHP_lead": {

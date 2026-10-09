@@ -21,6 +21,9 @@ on-arrival: {! AnatolianRules.cyprusRoadmap.prepareEvent(Q); !}
 - @ceasefire: Declare the ceasefire at 18:00 today.
 - @delay: Postpone the ceasefire until 08:00 tomorrow.
 - @division: Receive the territorial settlement report.
+- @consult: Continue consultations and rebuild negotiating leverage.
+- @sign_treaty: Sign the negotiated constitutional treaty.
+- @refuse_treaty: Refuse the treaty and begin Atilla II.
 - @continue: Continue.
 
 @demand
@@ -125,4 +128,19 @@ go-to: report
 @division
 view-if: {! return Q.cyprus_campaign_phase==='atilla2' && AnatolianRules.cyprusRoadmap.iiStep(Q)===4; !}
 on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,Q.cyprus_day,'ending',this.random.random.bind(this.random)); !}
+go-to: cyprus_campaign_continue
+
+@consult
+view-if: {! return Q.cyprus_campaign_phase==='constitutional' && !AnatolianRules.cyprusRoadmap.constitutionChoiceAvailable(Q,'greek') && AnatolianRules.number(Q.leverage_points)<1; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveConstitution(Q,'consult'); !}
+go-to: report
+
+@sign_treaty
+view-if: cyprus_campaign_phase == "constitutional_treaty"
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'sign'); !}
+go-to: cyprus_campaign_continue
+
+@refuse_treaty
+view-if: cyprus_campaign_phase == "constitutional_treaty"
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveEvent(Q,'refuse'); !}
 go-to: cyprus_campaign_continue

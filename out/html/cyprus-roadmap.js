@@ -76,6 +76,7 @@
  function addCeasefireDays(Q,first,last){for(var d=first;d<=last;d++)if(d>=22&&d<=28&&Q.cyprus_ceasefire_days.indexOf(d)<0)Q.cyprus_ceasefire_days.push(d);}
  var ceasefire={22:['The ceasefire must hold','Turkey calls on Greek forces to halt their movements. Our troops stop offensive operations, reinforce the line already held and report any renewed fighting to the United Nations.'],23:['Orders must reach the militias','The juntas have fallen, but Greek Cypriot formations have not all stopped fighting. Ankara demands that the new authorities halt their movements and make the ceasefire effective. Our soldiers reinforce their positions without seeking new ground.'],24:['Protection for Turkish villages','Reports from exposed Turkish villages make clear that a ceasefire between armies is not enough. Turkey demands protection for the civilians still outside its lines and requests UN monitoring. The airport remains under UN control, while our troops strengthen the frozen perimeter.'],25:['Geneva I begins','The delegations meet in Geneva while reports of attacks on Turkish villages continue. Turkey calls for the remaining attacks to stop and for Britain and the United States to press the Greek authorities. Our forces reinforce their existing lines; no territorial expansion is authorized.'],26:['Violations must be recorded','Turkey protests movements by Greek units that violate the ceasefire. Our delegation asks for the reports to be investigated rather than ignored. The troops on Cyprus reinforce the line and remain ready to defend it, but they do not advance.'],27:['Evidence from the villages','On July 27–28, the Turkish delegation presents evidence of continued attacks against Turkish Cypriots. It asks for reliable protection, local ceasefire arrangements and proper investigation of the incidents. The army reinforces its positions while the diplomats work to make the truce effective.'],28:['Evidence from the villages','The Turkish delegation continues presenting evidence of attacks against Turkish Cypriots. Its demands concern protection and ceasefire enforcement. Turkish troops hold and reinforce the same line.']};
  function eventKey(Q){
+  if(Q.cyprus_campaign_phase==='constitutional_treaty')return 'constitution-treaty';
   if(Q.cyprus_campaign_phase==='constitutional')return 'constitution-'+number(Q.cyprus_constitution_step);
   if(Q.cyprus_campaign_phase==='atilla2'){var step=Q.cyprus_day-number(Q.cyprus_atilla2_start_day||14);return step>=0&&step<=4?'atilla2-'+step:'';}
   if(Q.cyprus_month===7){if(Q.cyprus_day>=22&&Q.cyprus_day<=28&&Q.cyprus_frontline_frozen)return 'ceasefire-'+Q.cyprus_day;if(Q.cyprus_day===29||Q.cyprus_day===30)return 'geneva1';if(Q.cyprus_day===31)return 'declaration';}
@@ -83,9 +84,8 @@
   return '';
  }
  function pending(Q){
-  migrate(Q);if(!active(Q))return legacy.pending(Q);if(!Q.cyprus_mode)return null;if(number(Q.cyprus_constitution_step)>=8&&(Q.cyprus_campaign_phase==='constitutional'||Q.cyprus_final_result==='Return to the 1960 Constitutional Order'))finishConstitution(Q);tick(Q);
+  migrate(Q);if(!active(Q))return legacy.pending(Q);if(!Q.cyprus_mode)return null;if(number(Q.cyprus_constitution_step)>=8&&Q.cyprus_campaign_phase==='constitutional')Q.cyprus_campaign_phase='constitutional_treaty';tick(Q);
   if(Q.cyprus_campaign_resolved)return Q.cyprus_final_seen?null:'cyprus_campaign_final';
-  if(Q.cyprus_campaign_phase==='constitutional'&&!constitutionTopics[number(Q.cyprus_constitution_step)][3]&&number(Q.leverage_points)<1)beginII(Q);
   if(endingReady(Q))return 'cyprus_atilla1_ending';
   var id=eventKey(Q);if(id&&Q.cyprus_roadmap_seen.indexOf(id)<0)return 'cyprus_roadmap_event';
   if(availableMilitary(Q,Q.cyprus_day)&&Q.cyprus_day>=27)return 'cyprus_roadmap_military';
@@ -107,7 +107,8 @@
  function prepareEvent(Q){
   var id=eventKey(Q),data=events[id];if(id.indexOf('ceasefire-')===0)data=[(Q.cyprus_day===27?'27–28 July 1974':Q.cyprus_date_display)+' — '+ceasefire[Q.cyprus_day][0],ceasefire[Q.cyprus_day][1]];
   if(id.indexOf('atilla2-')===0)data=[Q.cyprus_date_display+' — Atilla II',iiBrief(Q)];
-  if(id.indexOf('constitution-')===0){var topic=constitutionTopics[number(Q.cyprus_constitution_step)];data=[Q.cyprus_date_display+' — '+topic[0],constitutionBrief(topic)];}
+  if(id==='constitution-treaty')data=[Q.cyprus_date_display+' — The constitutional treaty','All eight topics have been agreed. The delegation has prepared the revised constitutional treaty. Turkey can sign the settlement and bring the crisis to a peaceful end, or explicitly refuse it and resume military operations.'];
+  else if(id.indexOf('constitution-')===0){var topic=constitutionTopics[number(Q.cyprus_constitution_step)];data=[Q.cyprus_date_display+' — '+topic[0],constitutionBrief(topic)];}
   if(!data)return false;
   Q.cyprus_roadmap_event_title=data[0];var text=data[1];
   if(id==='geneva2-13')text=Q.cyprus_selected_plan==='denktas'?'The Greek Cypriot representatives categorically reject the Denktaş Plan. The argument becomes more hostile than at any earlier stage of Geneva II. The session ends early, with neither side willing to move from its position.':text+(gunesEligible(Q)?'\n\nLater that day, Güneş meets with Kissinger. The multi-zone proposal grew partly from Kissinger’s own suggestion, and the American secretary agrees to support it.':'\n\nThere is no meeting with Kissinger. Turkey has not secured the political conditions needed for American backing of the plan.');
@@ -118,9 +119,10 @@
  function ceasefireAvailable(Q){return active(Q)&&eventKey(Q).indexOf('ceasefire-')===0;}
  function ordinaryEvent(Q){var id=eventKey(Q);return id.indexOf('constitution-')!==0&&!(id==='geneva2-14'&&!Q.cyprus_gunes_backing)&&!(Q.cyprus_campaign_phase==='atilla2')&&!!id&&!ceasefireAvailable(Q)&&id!=='geneva2-12'&&id.indexOf('atilla2-')!==0;}
  function resolveEvent(Q,action){
+  if(Q.cyprus_campaign_phase==='constitutional_treaty'){if(action==='sign')return finishConstitution(Q);if(action==='refuse')return beginII(Q,true);return false;}
   if(Q.cyprus_campaign_phase==='constitutional')return resolveConstitution(Q,action);
   if(eventKey(Q)==='geneva2-14'&&!Q.cyprus_gunes_backing&&action==='constitution')return beginConstitution(Q);
-  if(eventKey(Q)==='geneva2-14'&&!Q.cyprus_gunes_backing&&action==='war')return beginII(Q);
+  if(eventKey(Q)==='geneva2-14'&&!Q.cyprus_gunes_backing&&action==='war')return beginII(Q,true);
   var id=eventKey(Q);if(!id||Q.cyprus_roadmap_seen.indexOf(id)>=0)return false;
   if(ceasefireAvailable(Q)){
    if(!['demand','monitor'].includes(action))return false;var end=Q.cyprus_day===27?28:Q.cyprus_day;addCeasefireDays(Q,Q.cyprus_day,end);
@@ -141,7 +143,7 @@
   if(id==='geneva2-13')Q.cyprus_gunes_backing=Q.cyprus_selected_plan==='gunes'&&gunesEligible(Q)?1:0;
   if(id==='geneva2-14'){
    if(Q.cyprus_selected_plan==='gunes'&&Q.cyprus_gunes_backing){Q.cyprus_gunes_agreed=1;Q.cyprus_campaign_phase='implementation';Q.cyprus_implementation_pending=1;advance(Q);}
-   else beginII(Q);return true;
+   else return false;return true;
   }
   if(id==='notification'){advance(Q,6);return true;}
   if(id==='canton'){Q.cyprus_northern_canton=1;advance(Q,9);return true;}
@@ -171,7 +173,7 @@
   if(!Q.cyprus_campaign_resolved)settle(Q,'Return to the 1960 Constitutional Order');
   return true;
  }
- function resolveConstitution(Q,action){if(!constitutionChoiceAvailable(Q,action))return false;if(action==='war')return beginII(Q);var i=number(Q.cyprus_constitution_step);Q.leverage_points=number(Q.leverage_points)+(action==='turkish'?-2:action==='compromise'?-1:.5);Q.cyprus_constitution_score=number(Q.cyprus_constitution_score)+(action==='turkish'?1:action==='greek'?-1:0);Q.cyprus_constitution_choices.push(action);Q.cyprus_constitution_step=i+1;Q.cyprus_roadmap_report='Agreement is reached on '+constitutionTopics[i][0].toLowerCase()+'. '+(action==='turkish'?constitutionTopics[i][1]:action==='compromise'?constitutionTopics[i][2]:constitutionTopics[i][3]);if(i===7){finishConstitution(Q);}else advance(Q);return true;}
+ function resolveConstitution(Q,action){if(action==='consult'&&Q.cyprus_campaign_phase==='constitutional'&&!constitutionTopics[number(Q.cyprus_constitution_step)][3]&&number(Q.leverage_points)<1){Q.leverage_points=number(Q.leverage_points)+1;Q.cyprus_roadmap_report='The delegation continues consultations and regains one Leverage Point. The current topic remains open; no military operation is authorized.';advance(Q);return true;}if(!constitutionChoiceAvailable(Q,action))return false;if(action==='war')return beginII(Q,true);var i=number(Q.cyprus_constitution_step);Q.leverage_points=number(Q.leverage_points)+(action==='turkish'?-2:action==='compromise'?-1:.5);Q.cyprus_constitution_score=number(Q.cyprus_constitution_score)+(action==='turkish'?1:action==='greek'?-1:0);Q.cyprus_constitution_choices.push(action);Q.cyprus_constitution_step=i+1;Q.cyprus_roadmap_report='Agreement is reached on '+constitutionTopics[i][0].toLowerCase()+'. '+(action==='turkish'?constitutionTopics[i][1]:action==='compromise'?constitutionTopics[i][2]:constitutionTopics[i][3]);if(i===7){Q.cyprus_campaign_phase='constitutional_treaty';}else advance(Q);return true;}
  function pollReward(Q,points){if(!Array.isArray(Q.classes)||!Array.isArray(Q.parties))return;Q.classes.forEach(function(d){var total=Q.parties.reduce(function(a,p){return a+Math.max(0,number(Q[d+'_'+p]));},0),old=number(Q[d+'_chp']),share=total?100*old/total:0,target=Math.min(100,share+points);if(!total)return;var factor=share<100?(100-target)/(100-share):0;Q.parties.forEach(function(p){if(p!=='chp')Q[d+'_'+p]=Math.max(0,number(Q[d+'_'+p]))*factor;});Q[d+'_chp']=total*target/100;});r.refreshPolls(Q);}
  function endingPraise(Q){
   var name=Q.cyprus_final_result;
@@ -180,7 +182,12 @@
   if(name==='Güneş Plan'||name==='Denktaş Plan')return 'We have done it! The '+name+' turns the army’s achievements into a lasting federal agreement. Turkish Cypriot safety and self-government now have a political home, secured through the resolve of our forces and the persistence of our delegation. This is a result our people can take pride in: the government has carried the crisis from danger to agreement, and our party returns with an achievement worthy of celebration!';
   return '';
  }
- function embargoReady(Q,economic){return Q.cyprus_campaign_version===2&&!Q.cyprus_mode&&!Q.cyprus_embargo_applied&&!Q.cyprus_campaign_failed&&Q.cyprus_atilla1_junction&&(Q.year>1975||(Q.year===1975&&Q.month>=2))&&(economic?!!(Q.cyprus_atilla2_started&&Q.cyprus_poppy_penalty):!Q.cyprus_poppy_penalty);}
+ function embargoReady(Q,economic){
+  var second=!!(Q.cyprus_atilla2_started||Q.cyprus_atilla2_complete);
+  if(['Return to the 1960 Constitutional Order','Güneş Plan','Denktaş Plan'].includes(Q.cyprus_final_result))return false;
+  var economicBranch=!!(Q.cyprus_poppy_penalty||Q.hashas_done===1||Q.cyprus_delayed_ceasefire);
+  return Q.cyprus_campaign_version===2&&second&&!Q.cyprus_mode&&!Q.cyprus_embargo_applied&&!Q.cyprus_campaign_failed&&(Q.year>1975||(Q.year===1975&&Q.month>=2))&&(economic?economicBranch:!economicBranch);
+ }
  function applyEmbargo(Q,economic){if(!embargoReady(Q,economic))return false;Q.cyprus_embargo_applied=1;if(Q.CHP_in_government)Q.ohp_funding_due=1;['army_land_strength','army_naval_strength','army_aerial_strength'].forEach(function(k){Q[k]=Math.max(Math.min(.1,number(Q[k])),number(Q[k])-.15);});if(economic){Q.forex_pressure=r.clamp(number(Q.forex_pressure)+25,0,100);Q.growth_modifier=number(Q.growth_modifier)-.5;r.refreshEconomy(Q);}return true;}
 
  function gunesEligible(Q){return active(Q)&&!Q.cyprus_campaign_failed&&!Q.cyprus_poppy_penalty&&number(Q.uk_attitude)>=0&&number(Q.us_attitude)>=1&&Q.cyprus_atilla1_ending==='Massive'&&Q.cyprus_frontline_quality>=3&&Q.cyprus_atilla1_junction&&Q.cyprus_airport_assured&&Q.cyprus_restraint_protection&&number(Q.cyprus_un_support)>=2&&!Q.cyprus_un_confrontation;}
@@ -195,8 +202,8 @@
  function diplomaticAction(Q,country,action){if(!active(Q))return legacy.diplomaticAction(Q,country,action);if(diplomacyUnavailable(Q,country,action))return false;Q.leverage_points--;shift(Q,country,0.5);Q.cyprus_diplomatic_turns++;Q.cyprus_campaign_last_text=names[country]+' receives a half-tier improvement and is now '+stances[Math.floor(number(Q[country+'_attitude']))+2]+'. Two days pass while the delegation conducts its contacts.';advance(Q,2);return true;}
  function skip(Q){if(!active(Q)||!Q.cyprus_mode||pending(Q)||c.briefingScene(Q)||c.scene(Q)||c.historyScene(Q))return false;if(Q.cyprus_month===8&&Q.cyprus_day>=1&&Q.cyprus_day<8){Q.cyprus_diplomatic_turns++;advance(Q,2);}else advance(Q);return true;}
  function skipLabel(Q){return active(Q)&&Q.cyprus_month===8&&Q.cyprus_day>=1&&Q.cyprus_day<8?'Skip 2 Days':'Skip Day';}
- function beginII(Q){
-  if(!active(Q))return legacy.beginII(Q);if(Q.cyprus_campaign_resolved||Q.cyprus_campaign_phase==='constitutional'&&number(Q.cyprus_constitution_step)>=8||Q.cyprus_month!==8||Q.cyprus_day<14||Q.cyprus_atilla2_results.length)return false;
+ function beginII(Q,explicit){
+  if(!active(Q))return legacy.beginII(Q);if(!explicit||Q.cyprus_campaign_resolved||Q.cyprus_month!==8||Q.cyprus_day<14||Q.cyprus_atilla2_results.length)return false;
   Q.cyprus_atilla2_start_day=Q.cyprus_day;Q.cyprus_atilla2_started=1;Q.cyprus_campaign_phase='atilla2';Q.cyprus_frontline_frozen=0;Q.greece_attitude=-2;shift(Q,'uk',-1);shift(Q,'us',-1);Q.cyprus_atilla2_results=[];Q.cyprus_atilla2_score=0;Q.cyprus_support_bonus=0;return true;
  }
  function iiStep(Q){return Q.cyprus_day-number(Q.cyprus_atilla2_start_day||14);}
@@ -204,7 +211,7 @@
   'Turkish formations advance from the west and east, widening the northern position into a broad rectangle. The first day brings the heaviest fighting as the army breaks through the main defensive positions.',
   'The army keeps advancing towards Mağusa and Lefke. Greek formations struggle to organize an effective defense as Turkish units secure roads, settlements and supply routes.',
   'Our forces reach the Mağusa–Lefke line and consolidate a position covering approximately 38% of the island. Most of the fighting took place on the first day; the operation’s principal objectives have now been achieved. Under growing UN pressure, Turkey can declare the historical ceasefire at 18:00 today, or deliberately postpone it until 08:00 tomorrow. The latter course risks a serious diplomatic and economic backlash.',
-  'In this alternative course, the offensive continues until the delayed ceasefire. Turkish forces take Nicosia Airport and expand the occupied area to approximately 42% of the island. These additional gains come at a steep cost: the Western powers condemn the expansion, relations deteriorate and foreign-exchange pressure rises.',
+  'In this alternative course, the offensive continues until the delayed ceasefire. Turkish forces take Nicosia Airport and expand the occupied area to approximately 42% of the island. These additional gains come at a steep cost: the Western powers condemn the expansion, relations deteriorate and immediate economic sanctions raise foreign-exchange pressure.',
   'The ceasefire is now in effect. The troops hold the line reached when the operation stopped. Turkey has secured a northern territorial position, but a permanent political settlement still requires diplomacy.'
  ][iiStep(Q)];}
  function resolveII(Q,day,action,random){
@@ -219,7 +226,7 @@
   Q.cyprus_atilla2_results.push({day:day,action:action,rawRoll:raw,baseScore:base,supportBonus:bonus,score:score,outcome:c.outcomes[index]});Q.cyprus_atilla2_score+=score;Q.cyprus_support_bonus=0;Q.cyprus_roadmap_seen.push(id);Q.cyprus_roadmap_outcome=c.outcomes[index];Q.cyprus_roadmap_report='Our formations secure their objectives and organize the new positions. The northern military position is now stronger.';
   Q.cyprus_frontline_quality=Math.max(2,number(Q.cyprus_frontline_quality));Q.cyprus_atilla1_frontline='A broad northern military position';
   if(step===2){Q.cyprus_delay_confirmation=0;if(action==='confirm-delay'){Q.cyprus_delayed_ceasefire=1;Q.cyprus_roadmap_report='The ceasefire is postponed until 08:00 tomorrow. Commanders receive permission for fourteen more hours of operations.';}else{Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_roadmap_report='The ceasefire is declared at 18:00. Atilla II has ended; the army holds the Mağusa–Lefke line. The settlement report will arrive two days later.';advance(Q,2);return true;}}
-  if(step===3){Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_airport_assured=0;Q.cyprus_un_confrontation=1;Q.cyprus_atilla1_access='Nicosia Airport seized in the extended offensive';shift(Q,'uk',-1);shift(Q,'us',-1);lowerForeignTier(Q,'west_relation');lowerForeignTier(Q,'us_relation');Q.forex_pressure=r.clamp(number(Q.forex_pressure)+12,0,100);r.refreshEconomy(Q);Q.cyprus_roadmap_report='The delayed ceasefire begins at 08:00. Our army holds approximately 42% of Cyprus, including Nicosia Airport. Britain and America condemn the additional offensive; foreign relations fall one tier and foreign-exchange pressure rises.';}
+  if(step===3){Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_airport_assured=0;Q.cyprus_un_confrontation=1;Q.cyprus_atilla1_access='Nicosia Airport seized in the extended offensive';shift(Q,'uk',-1);shift(Q,'us',-1);lowerForeignTier(Q,'west_relation');lowerForeignTier(Q,'us_relation');if(!Q.cyprus_immediate_sanction_applied){Q.cyprus_immediate_sanction_applied=1;Q.forex_pressure=r.clamp(number(Q.forex_pressure)+12,0,100);}r.refreshEconomy(Q);Q.cyprus_roadmap_report='The delayed ceasefire begins at 08:00. Our army holds approximately 42% of Cyprus, including Nicosia Airport. Britain and America condemn the additional offensive; foreign relations fall one tier and immediate economic sanctions raise foreign-exchange pressure.';}
   advance(Q);return true;
  }
  function lowerForeignTier(Q,key){var bounds=[0,5,14.9,29.9,39.9,54.9,64.9,74.9],v=number(Q[key]);for(var i=bounds.length-1;i>=0;i--)if(v>bounds[i]){Q[key]=i===0?0:Math.max(0,bounds[i]-.01);return;}Q[key]=0;}
