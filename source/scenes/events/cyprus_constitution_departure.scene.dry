@@ -1,0 +1,33 @@
+title: Ayşe Tatile Çıksın
+view-if: cyprus_constitution_departure_pending == 1
+new-page: true
+
+= Ayşe Tatile Çıksın
+
+The Turkish government had finally decided that there was nothing to be gained from continuing the constitutional negotiations at Geneva. Our delegation had poured hours into finding an arrangement that would allow the Turkish Cypriot community to live securely within a united republic, but Ankara had concluded that such an agreement would not provide the territorial security desired.
+
+It had not been an easy decision. Turkey had already shown tremendous flexibility by giving up on the demand for geographical autonomy and accepting the prospect of new constitutional discussions. Yet they were clearly unwilling to leave the security of the Turkish community to another set of constitutional promises, which had proved so disastrous.
+
+For Ecevit, the alternative had been obvious from the start of the Geneva talks. The General Staff had continued to prepare its forces during the ceasefire, and the reinforcements sent to the island had vastly improved the Turkish military position. The army was no longer restricted to the small bridgehead in place at the beginning of the intervention, or suffering from the shortages and confusion of the first landings.
+
+And so, with the decision finally made in Ankara, the waiting message for the commanders was delivered.
+
+"Ayşe Tatile Çıksın."
+
+There would be no further negotiations.
+
+The orders were passed to the military headquarters, and the preparations which had kept the General Staff occupied for the past few weeks finally began. Soldiers were ordered into their armoured vehicles, artillery positions readied for the offensive and the Turkish Air Force was directed to support the advance. The target was the Şahin Line, the broad territorial position that would extend Turkish control across the northern part of Cyprus.
+
+At Geneva, the decision brought the negotiations to a premature end. Whatever constitutional arrangements had been discussed would now be left without their final settlement, as our delegation announced that Turkey was no longer willing to continue the conference. The Greek and British representatives protested at the decision, warning that another military operation would bring serious international consequences.
+
+But the orders had already been given.
+
+With Turkish aircraft once again sweeping over Cyprus and armoured formations beginning their advance from the territory secured during Atilla I, the Second Cyprus Peace Operation had begun.
+
+The future of the island would now be decided, at least for the time being, not by the diplomats around the conference table, but by the soldiers fighting across its battlefields.
+
+- @continue: We have exhausted the negotiations. Let the operation begin.
+
+@continue
+on-arrival: {! Q.cyprus_constitution_departure_pending=0; !}
+go-to: cyprus_campaign_continue
