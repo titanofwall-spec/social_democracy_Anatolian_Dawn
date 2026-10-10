@@ -20,7 +20,7 @@ on-arrival: advisor_action_timer = 3; right_kemalist_deal = 1
 
 Satır's position and ours are inherently irreconcilable, and the right wing stands its ground. However, our offer seems to have intrigued the right and we may get an interesting proposal once the dust settles...
 
-We have promised the orthodox right a say in future appointments in exchange for their cooperation. They will hold their fire—for now.
+We have promised the orthodox right a say in future appointments in exchange for their cooperation. They will hold their fire, for now.
 
 @health
 on-arrival: advisor_action_timer = 3

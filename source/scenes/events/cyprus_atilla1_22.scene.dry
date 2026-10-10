@@ -1,14 +1,14 @@
-title: 22 July 1974 — UN Ceasefire!
+title: 22 July 1974, UN Ceasefire!
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 22 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,22); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 22); !}
 
 
-= 22 July 1974 — UN Ceasefire!
+= 22 July 1974, UN Ceasefire!
 
 In Cyprus, with the achievement of the junction, the pressure of the previous night had been relieved; most importantly, the Turkish forces had managed to enter the city by 11:00; with it, the Greek line collapsed and both the 251st and 306th battalions were forced to retreat from Kyrenia. Despite some Turkish tanks sustaining damage, the 241st battalion would also be pushed away and the 306th battalion's captain would be captured. While the complete takeover of the city had not been achieved today, it was only a matter of time.
 
-In the meantime, the completion of the junction saw the Airborne and Marine forces aiming at removing all resistance in the Beşparmak Mountains—however many had been left by our prior operations. The General Staff was very pleased that our forces had managed to achieve their objectives. With our military might proven to the world, and the Second Wave landing while our forces in the field were advancing, the United Nations Security Council had commenced an emergency meeting the day we started our operations and had now demanded a ceasefire.
+In the meantime, the completion of the junction saw the Airborne and Marine forces aiming at removing all resistance in the Beşparmak Mountains, however many had been left by our prior operations. The General Staff was very pleased that our forces had managed to achieve their objectives. With our military might proven to the world, and the Second Wave landing while our forces in the field were advancing, the United Nations Security Council had commenced an emergency meeting the day we started our operations and had now demanded a ceasefire.
 
 It is not possible to refuse this ceasefire without utterly destroying our diplomatic stance. However, both we and the UN knew that regardless of our actions the Greeks, or at the very least Cypriot militias, would continue their actions, and there was the serious question of the state of our military positions, the safety of our soldiers and the very basic question of whether we had done enough. Therefore, the most logical action appeared to be accepting the ceasefire while moving as much as possible to secure our flanks until the deadline, and keeping up our responses and advances whenever we entered into conflict with the enemy forces. Or we could also demonstrate our level-headedness and confidence and halt all of our offensive movement; such action this early would only be sensible if we are truly confident of our military state and in our prospect of achieving a peaceful diplomatic resolution without any further military action.
 
@@ -21,7 +21,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'historical', this.random.random.bind(this.random)); !}
 
-= 22 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 22 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 
@@ -33,7 +33,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 22, 'alternative', this.random.random.bind(this.random)); !}
 
-= 22 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 22 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 

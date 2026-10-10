@@ -1,9 +1,9 @@
-title: Kıbrıs’ın Dağlarına Yazdık
+title: Kıbrıs'ın Dağlarına Yazdık!
 view-if: cyprus_rally_pending == 1
 new-page: true
 on-arrival: {! AnatolianRules.cyprusRoadmap.awardRally(Q); AnatolianRules.cyprusRoadmap.startEndingMusic(Q); !}
 
-= Saraçhane — Kıbrıs’ın Dağlarına Yazdık
+= Kıbrıs'ın Dağlarına Yazdık!
 
 By the afternoon, there was hardly a patch of pavement left to see in front of İstanbul’s Belediye Sarayı. From the streets of Fatih, from the other side of the bridges, from neighbourhoods where our party had once struggled to fill a meeting hall, they had come to Saraçhane. Turkish flags rose above the crowd, blue shirts pressed against one another, and homemade banners carried a name which no longer seemed to belong to one man alone.
 
@@ -27,7 +27,7 @@ Ecevit spoke of the men who had landed on the beaches, of the families on the is
 
 Then he turned to those who had spent so long telling us that the left could never be nationalist. Demirel and Türkeş had not been forgotten. Neither had the accusations, the slogans on the walls, or the certainty with which our opponents had claimed that love of this country belonged to them alone.
 
-“Biz, Demirellerden, Türkeşlerden milliyetçilik dersi almayız!”
+“We will not take lessons in nationalism from Demirel or Türkeş!”
 
 The answer from the square almost swallowed the next sentence. Ecevit waited, his hand raised, until the microphones could be heard again.
 
@@ -35,7 +35,7 @@ The answer from the square almost swallowed the next sentence. Ecevit waited, hi
 
 [? if cyprus_rally_poppy_lifted_late == 1 : In the days after Cyprus, our government had also lifted the poppy cultivation ban. The farmers of Western Anatolia would return to their fields. We had sought a settlement on the island without surrendering our right to decide what our own people could grow at home. Now Ecevit could speak of those fields alongside the men who had crossed the sea. ?]
 
-“Biz milliyetçiliği sokak duvarlarına değil; Kıbrıs’ın topraklarına, Ege’nin deniz yataklarına, Batı Anadolu’nun haşhaş tarlasına yazmışız!”
+“We have written our nationalism not on street walls, but on the soil of Cyprus, on the seabed of the Aegean, and in the poppy fields of Western Anatolia!”
 
 There was no finishing the speech for several minutes.
 

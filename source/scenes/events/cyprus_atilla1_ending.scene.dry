@@ -1,9 +1,9 @@
-title: Atilla I — The result
+title: Atilla I, The result
 view-if: {! return AnatolianRules.cyprusAtilla1.endingReady(Q); !}
 on-arrival: {! AnatolianRules.cyprusAtilla1.awardEnding(Q); !}
 new-page: true
 
-= [+ cyprus_date_display +] — Atilla I has ended, and our armies are...
+= [+ cyprus_date_display +], Atilla I has ended, and our armies are...
 
 [? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : <h2>MUZAFFER</h2> ?]
 [? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : <h2>BAŞARILI</h2> ?]

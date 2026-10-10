@@ -262,7 +262,7 @@ Municipality Control: [+ municipalities_controlled +]/[+ total_municipalities +]
 
 {!<span class="tooltip-text" style="color: #5b7387;" title="Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right-Wing Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right-Wing Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.">Right-Wing Kemalists</span>!} strength: [+ rk_strength_label +], dissent: [+ right_kemalists_dissent : dissent +]
 [? if right_kemalist_split : {!<span style="color: #7A3C00;">Following Ecevit's ascension, the Right-Wing Kemalist faction has left the party to join the non-socialist opposition.</span>!} ?]
-[? if not right_kemalist_split and right_kemalist_deal : {!<span style="color: #7A3C00;">Satır's compromise keeps the Right-Wing Kemalists inside the CHP—at least for now.</span>!} ?]
+[? if not right_kemalist_split and right_kemalist_deal : {!<span style="color: #7A3C00;">Satır's compromise keeps the Right-Wing Kemalists inside the CHP, at least for now.</span>!} ?]
 
 
 
@@ -651,7 +651,7 @@ Middle East: [+ middle_east_relation : relationships +]
 
 = The Cyprus Problem
 
-Cyprus Problem: [? if cyprus_problem == 0: Unresolved ?][? if cyprus_problem == 1: Status Quo ?][? if cyprus_problem == 2: 1960 Agreement Restored ?][? if cyprus_problem == 3: Divided ?][? if cyprus_problem == 4: Federal settlement — [+ cyprus_final_result +] ?]
+Cyprus Problem: [? if cyprus_problem == 0: Unresolved ?][? if cyprus_problem == 1: Status Quo ?][? if cyprus_problem == 2: 1960 Agreement Restored ?][? if cyprus_problem == 3: Divided ?][? if cyprus_problem == 4: Federal settlement, [+ cyprus_final_result +] ?]
 
 
 @economy

@@ -2,7 +2,7 @@ title: The advance continues
 view-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_atilla2_15'; !}
 new-page: true
 
-= 15 August 1974 — The advance continues
+= 15 August 1974, The advance continues
 
 Turkey has authorized a second operation. Today's decision determines the strength of the next military position; its result remains uncertain.
 
@@ -21,7 +21,7 @@ choose-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_atilla2_
 on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,15,'historical',this.random.random.bind(this.random)); !}
 new-page: true
 
-= Operation report — [+ cyprus_campaign_last_outcome +]
+= Operation report, [+ cyprus_campaign_last_outcome +]
 
 [+ cyprus_campaign_last_text +]
 
@@ -32,7 +32,7 @@ choose-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_atilla2_
 on-arrival: {! AnatolianRules.cyprusCampaign.resolveII(Q,15,'alternative',this.random.random.bind(this.random)); !}
 new-page: true
 
-= Operation report — [+ cyprus_campaign_last_outcome +]
+= Operation report, [+ cyprus_campaign_last_outcome +]
 
 [+ cyprus_campaign_last_text +]
 

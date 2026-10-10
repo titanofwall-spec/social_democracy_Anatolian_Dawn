@@ -1,7 +1,7 @@
 title: 29–30 July 1974: Geneva I Concludes
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july2930'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "29–30 July 1974: Geneva I Concludes"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+', Holding the ceasefire line' : "29–30 July 1974: Geneva I Concludes"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july2930','alternative'); !}
 
 
 = 29–30 July 1974: Geneva I Concludes
@@ -39,7 +39,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2930','historical',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -51,7 +51,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july2930','alternative',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

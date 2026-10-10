@@ -96,7 +96,7 @@
  function report(Q,day){
   if(!active(Q))return day>=20&&day<=24?c.days[day].briefing:'';
   var date=Q.cyprus_date_display;
-  return date+' — '+(Q.cyprus_frontline_frozen?'Offensive movement remains halted. The line held after the last operation is unchanged; troops are preparing defenses and protecting supply routes.':'Forces remain authorized to consolidate and advance. Further movement must still be earned through the next operation.')+' Current frontlines: '+Q.cyprus_atilla1_frontline+'.';
+  return date+', '+(Q.cyprus_frontline_frozen?'Offensive movement remains halted. The line held after the last operation is unchanged; troops are preparing defenses and protecting supply routes.':'Forces remain authorized to consolidate and advance. Further movement must still be earned through the next operation.')+' Current frontlines: '+Q.cyprus_atilla1_frontline+'.';
  }
  function actionLabel(Q,id,action){
   var day=Number(id),event=c.days[day]||c.historyEvents[id];if(!event)return '';
@@ -170,7 +170,7 @@
   }else{Q.cyprus_post_atilla1_results.push(result);Q.cyprus_post_atilla1_score+=score;Q.cyprus_post_atilla1_count=Q.cyprus_post_atilla1_results.length;c.advanceDate(Q);}
   return true;
  }
- function meetingBrief(Q){return Q.cyprus_date_display+' — '+(Q.cyprus_atilla1_ending_seen?'The delegations assess guarantees, territorial arrangements and the positions of the three guarantor powers.':'The delegations work towards an earlier conclusion of Geneva I. Offensive movement remains frozen at the last military operation’s resulting line.')+' Greece: '+attitudes[attitude(Q,'greece')+2]+'. United Kingdom: '+attitudes[attitude(Q,'uk')+2]+'. United States: '+attitudes[attitude(Q,'us')+2]+'.';}
+ function meetingBrief(Q){return Q.cyprus_date_display+', '+(Q.cyprus_atilla1_ending_seen?'The delegations assess guarantees, territorial arrangements and the positions of the three guarantor powers.':'The delegations work towards an earlier conclusion of Geneva I. Offensive movement remains frozen at the last military operation’s resulting line.')+' Greece: '+attitudes[attitude(Q,'greece')+2]+'. United Kingdom: '+attitudes[attitude(Q,'uk')+2]+'. United States: '+attitudes[attitude(Q,'us')+2]+'.';}
  function meetingAvailable(Q,action){if(action==='reject')return true;if(action==='guarantees')return attitude(Q,'greece')>=-1&&attitude(Q,'uk')>=0&&attitude(Q,'us')>=0;return action==='protection'&&attitude(Q,'uk')>=0;}
  function resolveMeeting(Q,action){
   if(!meetingPending(Q)||!meetingAvailable(Q,action))return false;

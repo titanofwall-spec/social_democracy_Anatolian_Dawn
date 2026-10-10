@@ -130,7 +130,7 @@ if (!Q.right_kemalist_deal) {
 This marks the end of an era. The old wolf who held firm control over his party for over 30 years is now leaving the leadership post undefeated but also in a state of surrender. Not many words are exchanged between İnönü and Ecevit, and İnönü just takes his coat, salutes the party for one last time and leaves the congress building. Whether he will leave the party completely or not is not known yet.
 
 [? if right_kemalist_split : The Right-Wing Kemalist faction refuses to accept Ecevit's victory and walks out of the congress hall. Their cadres disperse towards the CGP and other right-wing groupings, leaving our party firmly in the hands of the reformists. ?]
-[? if not right_kemalist_split and right_kemalist_deal : Thanks to the understanding we struck with Satır before the vote, the Right-Wing Kemalists grit their teeth and remain within the party—at least for the moment. ?]
+[? if not right_kemalist_split and right_kemalist_deal : Thanks to the understanding we struck with Satır before the vote, the Right-Wing Kemalists grit their teeth and remain within the party, at least for the moment. ?]
 
 - @shufflement: Now it's time for a reshuffle of the party leadership. We will need a dynamic and competent team to lead our party to victory.
 

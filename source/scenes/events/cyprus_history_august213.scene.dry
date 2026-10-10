@@ -1,7 +1,7 @@
-title: 2–13 August 1974 — The uneasy ceasefire
+title: 2–13 August 1974, The uneasy ceasefire
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august213'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "2–13 August 1974 — The uneasy ceasefire"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'august213','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'august213','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+', Holding the ceasefire line' : "2–13 August 1974, The uneasy ceasefire"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'august213','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'august213','alternative'); !}
 
 = [+ cyprus_history_current_title +]
 
@@ -26,7 +26,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','historical',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -38,7 +38,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august213','alternative',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

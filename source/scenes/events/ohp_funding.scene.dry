@@ -6,7 +6,7 @@ max-visits: 1
 view-if: {! return AnatolianRules.ohpFundingReady(Q); !}
 on-arrival: ohp_funding_event_seen = 1
 
-= 5 February 1975 — Özel Harp Dairesi requests funds
+= 5 February 1975, Özel Harp Dairesi requests funds
 
 The American arms embargo has interrupted outside support for Özel Harp Dairesi. The General Staff asks the government to cover the department’s needs through discretionary funds. Its secret arrangements have now reached the prime minister’s desk.
 

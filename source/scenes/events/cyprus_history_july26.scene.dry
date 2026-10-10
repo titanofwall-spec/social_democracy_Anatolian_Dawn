@@ -1,7 +1,7 @@
 title: 26 July 1974: The Enclave Expands
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_july26'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "26 July 1974: The Enclave Expands"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+', Holding the ceasefire line' : "26 July 1974: The Enclave Expands"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'july26','alternative'); !}
 
 
 = 26 July 1974: The Enclave Expands
@@ -27,7 +27,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july26','historical',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -39,7 +39,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'july26','alternative',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

@@ -63,27 +63,27 @@ go-to: eg_menu if started = 1 and game_over = 1; root if started = 1 and game_ov
 
 = Completed Achievements
 
-[? if achievement_game_completed : **A Political Journey** — Finish a playthrough. ?]
+[? if achievement_game_completed : **A Political Journey**, Finish a playthrough. ?]
 
-[? if achievement_majority_party : **A Majority for CHP** — Form a CHP majority government. ?]
+[? if achievement_majority_party : **A Majority for CHP**, Form a CHP majority government. ?]
 
-[? if achievement_in_government : **Responsibility for Government** — End a playthrough with CHP in government. ?]
+[? if achievement_in_government : **Responsibility for Government**, End a playthrough with CHP in government. ?]
 
-[? if achievement_peoples_party : **A People's Party** — Adopt the broader party programme. ?]
+[? if achievement_peoples_party : **A People's Party**, Adopt the broader party programme. ?]
 
-[? if achievement_constitutional_reform : **Parliamentary Reform** — Pass a constitutional reform. ?]
+[? if achievement_constitutional_reform : **Parliamentary Reform**, Pass a constitutional reform. ?]
 
-[? if achievement_economic_stability : **Economic Stability** — Finish with stable economic health and a nonnegative budget. ?]
+[? if achievement_economic_stability : **Economic Stability**, Finish with stable economic health and a nonnegative budget. ?]
 
-[? if achievement_equality : **Equality** — Pass at least three reforms for women’s rights. ?]
+[? if achievement_equality : **Equality**, Pass at least three reforms for women’s rights. ?]
 
-[? if achievement_equal_rights : **Equal Rights** — Pass at least two reforms for sexual minorities. ?]
+[? if achievement_equal_rights : **Equal Rights**, Pass at least two reforms for sexual minorities. ?]
 
-[? if achievement_land_reform : **Reform in the Countryside** — Reach the third stage of land reform. ?]
+[? if achievement_land_reform : **Reform in the Countryside**, Reach the third stage of land reform. ?]
 
-[? if achievement_cyprus_agreement : **An Agreement for Cyprus** — Reach the confederation outcome. ?]
+[? if achievement_cyprus_agreement : **An Agreement for Cyprus**, Reach the confederation outcome. ?]
 
-[? if achievement_economic_democracy : **Economic Democracy** — Reach at least three stages of economic democracy. ?]
+[? if achievement_economic_democracy : **Economic Democracy**, Reach at least three stages of economic democracy. ?]
 
 @end_game
 game-over: true

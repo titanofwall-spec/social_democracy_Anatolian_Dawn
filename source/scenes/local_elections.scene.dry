@@ -8,7 +8,7 @@ set-jump: local_results
 
 = Municipal Elections, [+ month : month +] [+ year +]
 
-The municipal contests are upon us. Control of the provinces—and the services they provide—will shift in accordance with tonight's results.
+The municipal contests are upon us. Control of the provinces, and the services they provide, will shift in accordance with tonight's results.
 
 - @start: Tally the municipal vote.
 
@@ -53,7 +53,7 @@ for (var party of parties) {
 }
 Q.local_results_lines = lines;
 Q.local_results_lines_text = lines.map(function(entry) {
-	return '**' + entry.name + ':** ' + entry.votes + '% — ' + entry.seats + ' provinces';
+	return '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';
 }).join('\n');
 Q.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));
 Q.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));

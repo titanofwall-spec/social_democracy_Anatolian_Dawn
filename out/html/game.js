@@ -676,6 +676,14 @@ window.updateTitleScreenImages = function() {
     }
   };
 window.displayText = function (text) {
+  // Normalize presentation, including text retained in older saves.
+  text=String(text).replace(/\s*\u2014\s*/g,', ').replace(/([.!?]), /g,'$1 ');
+  var formattingEngine=window.dendryUI&&window.dendryUI.dendryEngine;
+  if(formattingEngine&&/^cyprus/.test(formattingEngine.state.sceneId||'')){
+    text=text.replace(/(^|<br\s*\/?>|<p(?:\s[^>]*)?>|<h[1-6](?:\s[^>]*)?>)(?:\s|&nbsp;)*(?::(?:\s|&nbsp;)*)+/gi,'$1');
+    text=text.replace(/(^|<br\s*\/?>|<p(?:\s[^>]*)?>|<h[1-6](?:\s[^>]*)?>)(?:\s|&nbsp;)+/gi,'$1');
+  }
+
   // Resume the ending soundtrack when restoring either celebration screen.
   if(window.dendryUI&&window.AnatolianRules&&AnatolianRules.cyprusRoadmap.startEndingMusic){
     var celebrationEngine=window.dendryUI.dendryEngine;
@@ -1122,7 +1130,7 @@ function getPartyIdeology(party, Q) {
     cards.sort(function(a, b) {
       function rank(card) {
         var id = card.id || "";
-        // card ids are like "advisors.inonu" — extract the part after the dot
+        // card ids are like "advisors.inonu", extract the part after the dot
         var shortId = id.indexOf(".") >= 0 ? id.substring(id.lastIndexOf(".") + 1) : id;
         if (shortId === leaderId) return 0;
         if (shortId === secretaryId) return 1;

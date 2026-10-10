@@ -1,7 +1,7 @@
-title: 1 August 1974 — Into southern Alsancak
+title: 1 August 1974, Into southern Alsancak
 view-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_history_august1'; !}
 new-page: true
-on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+' — Holding the ceasefire line' : "1 August 1974 — Into southern Alsancak"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'august1','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'august1','alternative'); !}
+on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cyprus_date_display+', Holding the ceasefire line' : "1 August 1974, Into southern Alsancak"; Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,0); Q.cyprus_history_choice_historical=AnatolianRules.cyprusCampaign.actionLabel(Q,'august1','historical'); Q.cyprus_history_choice_alternative=AnatolianRules.cyprusCampaign.actionLabel(Q,'august1','alternative'); !}
 
 = [+ cyprus_history_current_title +]
 
@@ -20,7 +20,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august1','historical',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 
@@ -32,7 +32,7 @@ choose-if: {! return AnatolianRules.cyprusAtilla1.historyScene(Q) === 'cyprus_hi
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolveHistory(Q,'august1','alternative',this.random.random.bind(this.random)); !}
 
-= [+ cyprus_history_current_title +] — [+ cyprus_history_last_outcome +]
+= [+ cyprus_history_current_title +], [+ cyprus_history_last_outcome +]
 
 [+ cyprus_history_last_text +]
 

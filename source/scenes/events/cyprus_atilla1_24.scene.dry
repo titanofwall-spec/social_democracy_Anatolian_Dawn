@@ -22,7 +22,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'historical', this.random.random.bind(this.random)); !}
 
-= 24 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 24 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 
@@ -34,7 +34,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'alternative', this.random.random.bind(this.random)); !}
 
-= 24 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 24 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 
@@ -46,7 +46,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 24, 'pressure', this.random.random.bind(this.random)); !}
 
-= 24 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 24 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 

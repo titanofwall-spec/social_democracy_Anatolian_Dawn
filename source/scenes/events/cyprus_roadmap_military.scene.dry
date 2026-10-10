@@ -23,7 +23,7 @@ go-to: report
 @report
 new-page: true
 
-= Operation report — [+ cyprus_atilla1_last_outcome +]
+= Operation report, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 

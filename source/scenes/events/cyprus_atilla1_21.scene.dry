@@ -1,10 +1,10 @@
-title: 21 July 1974 — Beşparmak Mountains
+title: 21 July 1974, Beşparmak Mountains
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 21 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,21); Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 21); !}
 
 
-= 21 July 1974 — Beşparmak Mountains
+= 21 July 1974, Beşparmak Mountains
 
 The air bombardment had begun on the island in the morning as our Marine and Airborne units kept advancing to form a junction and broke the first night's enemy blockage. By the next morning, the second wave of our forces would advance. In the meantime, the Kyrenia-Nicosia road was yet to be brought under control. As our forces approached the passage, the firing continued in the caves in the Beşparmak Mountains, and the pockets of resistance seemed endless.
 
@@ -17,7 +17,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'historical', this.random.random.bind(this.random)); !}
 
-= 21 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 21 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 
@@ -29,7 +29,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 21, 'alternative', this.random.random.bind(this.random)); !}
 
-= 21 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 21 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 

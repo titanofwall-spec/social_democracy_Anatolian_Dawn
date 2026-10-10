@@ -1,9 +1,9 @@
-title: Atilla II — The result
+title: Atilla II, The result
 view-if: cyprus_atilla2_complete == 1 and cyprus_atilla2_ending_seen == 0
 on-arrival: {! AnatolianRules.cyprusCampaign.awardII(Q); !}
 new-page: true
 
-= 16 August 1974 — Atilla II concludes
+= 16 August 1974, Atilla II concludes
 
 Operation score: [+ cyprus_atilla2_score +] / 240.
 

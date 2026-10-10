@@ -3,7 +3,7 @@ view-if: {! return AnatolianRules.cyprusCampaign.meetingPending(Q); !}
 on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.meetingBrief(Q); !}
 new-page: true
 
-= [+ cyprus_date_display +] — Negotiations
+= [+ cyprus_date_display +], Negotiations
 
 [+ cyprus_campaign_report +]
 

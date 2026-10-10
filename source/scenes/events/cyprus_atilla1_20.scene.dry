@@ -1,10 +1,10 @@
-title: 20 July 1974 — A foothold, not a front
+title: 20 July 1974, A foothold, not a front
 view-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cyprus_day == 20 and cyprus_atilla1_complete == 0 and cyprus_early_freeze != 1
 new-page: true
 on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,20); Q.cyprus_operation_started = 1; Q.cyprus_atilla1_briefing = AnatolianRules.cyprusAtilla1.briefing(Q, 20); !}
 
 
-= 20 July 1974 — A foothold, not a front
+= 20 July 1974, A foothold, not a front
 
 [? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)<=3; !} : The Turkish forces had moved from Mersin at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces had approached the disadvantageous Glykiotissa coast instead of the preferred Pentemili; therefore, the landing had started at 7:15 instead of 5:30 and ended by 13:00. ?]
 
@@ -27,7 +27,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'historical', this.random.random.bind(this.random)); !}
 
-= 20 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 20 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 
@@ -39,7 +39,7 @@ choose-if: cyprus_mode != 0 and cyprus_year == 1974 and cyprus_month == 7 and cy
 new-page: true
 on-arrival: {! AnatolianRules.cyprusAtilla1.resolve(Q, 20, 'alternative', this.random.random.bind(this.random)); !}
 
-= 20 July 1974 — [+ cyprus_atilla1_last_outcome +]
+= 20 July 1974, [+ cyprus_atilla1_last_outcome +]
 
 [+ cyprus_atilla1_last_text +]
 

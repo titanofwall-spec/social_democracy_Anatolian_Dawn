@@ -2,7 +2,7 @@ title: The settlement decision
 view-if: {! return AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_geneva_deadline'; !}
 new-page: true
 
-= [+ cyprus_date_display +] — The settlement decision
+= [+ cyprus_date_display +], The settlement decision
 
 The delegations must decide whether an agreement is ready. A federal settlement requires support from all three foreign delegations and sufficient progress on security guarantees. Further military action remains a separate political decision.
 

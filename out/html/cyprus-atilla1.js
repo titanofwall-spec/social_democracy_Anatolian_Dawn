@@ -135,7 +135,7 @@
     "july31": {
         "month": 7,
         "day": 31,
-        "title": "31 July 1974 — Local advances after Geneva",
+        "title": "31 July 1974, Local advances after Geneva",
         "text": "“Turkish forces advanced approximately 1000 metres west from Ayios Ermolaos … approximately 500 metres south from a point near the Nicosia race course”",
         "actions": {
             "historical": {
@@ -166,7 +166,7 @@
     "august1": {
         "month": 8,
         "day": 1,
-        "title": "1 August 1974 — Into southern Alsancak",
+        "title": "1 August 1974, Into southern Alsancak",
         "text": "“Turkish forces had entered the southern part of Karavas but remained outside Lapithos … in the evening of 1 August entered Bellapais.”",
         "actions": {
             "historical": {
@@ -197,7 +197,7 @@
     "august213": {
         "month": 8,
         "day": 13,
-        "title": "2–13 August 1974 — The uneasy ceasefire",
+        "title": "2–13 August 1974, The uneasy ceasefire",
         "text": "“Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”\n\n“On 12 August, the National Guard evacuated the Turkish sectors of Larnaca/Scala and Paphos/Ktima.”\n\nTurkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Turkish, Greek, British, Turkish Cypriot and Greek Cypriot delegations had sat down at the table for peace in the United Nations Palace in Geneva.",
         "actions": {
             "historical": {
@@ -427,7 +427,7 @@
     },
     "22": {
         "title": "UN Ceasefire!",
-        "briefing": "In Cyprus, with the achievement of the junction, the pressure of the previous night had been relieved; most importantly, the Turkish forces had managed to enter the city by 11:00; with it, the Greek line collapsed and both the 251st and 306th battalions were forced to retreat from Kyrenia. Despite some Turkish tanks sustaining damage, the 241st battalion would also be pushed away and the 306th battalion's captain would be captured. While the complete takeover of the city had not been achieved today, it was only a matter of time.\n\nIn the meantime, the completion of the junction saw the Airborne and Marine forces aiming at removing all resistance in the Beşparmak Mountains—however many had been left by our prior operations. The General Staff was very pleased that our forces had managed to achieve their objectives. With our military might proven to the world, and the Second Wave landing while our forces in the field were advancing, the United Nations Security Council had commenced an emergency meeting the day we started our operations and had now demanded a ceasefire.\n\nIt is not possible to refuse this ceasefire without utterly destroying our diplomatic stance. However, both we and the UN knew that regardless of our actions the Greeks, or at the very least Cypriot militias, would continue their actions, and there was the serious question of the state of our military positions, the safety of our soldiers and the very basic question of whether we had done enough. Therefore, the most logical action appeared to be accepting the ceasefire while moving as much as possible to secure our flanks until the deadline, and keeping up our responses and advances whenever we entered into conflict with the enemy forces. Or we could also demonstrate our level-headedness and confidence and halt all of our offensive movement; such action this early would only be sensible if we are truly confident of our military state and in our prospect of achieving a peaceful diplomatic resolution without any further military action.",
+        "briefing": "In Cyprus, with the achievement of the junction, the pressure of the previous night had been relieved; most importantly, the Turkish forces had managed to enter the city by 11:00; with it, the Greek line collapsed and both the 251st and 306th battalions were forced to retreat from Kyrenia. Despite some Turkish tanks sustaining damage, the 241st battalion would also be pushed away and the 306th battalion's captain would be captured. While the complete takeover of the city had not been achieved today, it was only a matter of time.\n\nIn the meantime, the completion of the junction saw the Airborne and Marine forces aiming at removing all resistance in the Beşparmak Mountains, however many had been left by our prior operations. The General Staff was very pleased that our forces had managed to achieve their objectives. With our military might proven to the world, and the Second Wave landing while our forces in the field were advancing, the United Nations Security Council had commenced an emergency meeting the day we started our operations and had now demanded a ceasefire.\n\nIt is not possible to refuse this ceasefire without utterly destroying our diplomatic stance. However, both we and the UN knew that regardless of our actions the Greeks, or at the very least Cypriot militias, would continue their actions, and there was the serious question of the state of our military positions, the safety of our soldiers and the very basic question of whether we had done enough. Therefore, the most logical action appeared to be accepting the ceasefire while moving as much as possible to secure our flanks until the deadline, and keeping up our responses and advances whenever we entered into conflict with the enemy forces. Or we could also demonstrate our level-headedness and confidence and halt all of our offensive movement; such action this early would only be sensible if we are truly confident of our military state and in our prospect of achieving a peaceful diplomatic resolution without any further military action.",
         "actions": {
             "historical": {
                 "label": "Accept the ceasefire and secure our flanks before the deadline",
@@ -508,7 +508,7 @@
                     "The attempt to pressure the United Nations backfired. Turkish movements around the airport alarmed the British contingent and brought the opposing forces dangerously close to an armed confrontation. Our troops gained little useful ground, while diplomatic pressure mounted rapidly from Britain, NATO and the United States. The airport remained beyond our reach and the advance achieved nothing sufficient to justify the crisis it created.",
                     "Our forces continued tightening their positions around the airport without crossing into the UN-held perimeter. The growing pressure forced further negotiations over its status, but British and UN troops refused to withdraw. No clash occurred, yet the airport remained outside Turkish control and tensions with our allies increased considerably.",
                     "Sustained pressure allowed our units to improve their positions around the airport and dominate several surrounding approaches while carefully avoiding direct contact with UN troops. The installation itself remained under international control, but its practical freedom of use was sharply reduced. Turkey gained a stronger tactical position at the cost of worsening relations with Britain and increasing international demands for restraint.",
-                    "Our forces executed the pressure campaign with exceptional discipline. Turkish units secured commanding positions around nearly every important approach to the airport, effectively containing it without entering the UN perimeter or giving British troops grounds to open fire. The airport remained formally outside our hands, but its military value to the opposing side was drastically reduced. Ankara entered the next stage of the crisis with a powerful local position—alongside dangerously heightened tensions with Britain, NATO and the United Nations."
+                    "Our forces executed the pressure campaign with exceptional discipline. Turkish units secured commanding positions around nearly every important approach to the airport, effectively containing it without entering the UN perimeter or giving British troops grounds to open fire. The airport remained formally outside our hands, but its military value to the opposing side was drastically reduced. Ankara entered the next stage of the crisis with a powerful local position, alongside dangerously heightened tensions with Britain, NATO and the United Nations."
                 ]
             }
         }
