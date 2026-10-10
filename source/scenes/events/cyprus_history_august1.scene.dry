@@ -7,11 +7,8 @@ on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cypr
 
 [? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
 
-Historical source reference:
-
 “Turkish forces had entered the southern part of Karavas but remained outside Lapithos … in the evening of 1 August entered Bellapais.”
 
-[S/11353/Add.13, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484550/files/S_11353_Add.13-EN.pdf)
 
 
 - @historical: [+ cyprus_history_choice_historical +]

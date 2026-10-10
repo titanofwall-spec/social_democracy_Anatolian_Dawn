@@ -1,6 +1,7 @@
 title: The Cyprus settlement
 view-if: cyprus_campaign_resolved == 1
 new-page: true
+on-arrival: {! if(AnatolianRules.cyprusRoadmap.startEndingMusic)AnatolianRules.cyprusRoadmap.startEndingMusic(Q); !}
 
 = [? if cyprus_final_result == "Return to the 1960 Constitutional Order" : 30 August 1974 — ?]Cyprus — [+ cyprus_final_result +]
 
@@ -25,12 +26,13 @@ new-page: true
 
 [? if cyprus_campaign_version == 2 and cyprus_final_result == "Historical Division" : Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ?]
 
-[+ {! return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q) : ""; !} +]
+[+ {! return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q).replace(/\n\n/g,'<br><br>') : ""; !} +]
 
 [? if cyprus_poll_reward_paid == 1 : The achievement increases CHP polling by [? if cyprus_atilla2_complete == 1 : 5 ?][? if cyprus_atilla2_complete != 1 : 3 ?] percentage points. ?]
 
-- @root: Return to normal play.
+- @root: [+ {! return Q.cyprus_final_result==='Güneş Plan'?"We have done it!":"Let us return to our people."; !} +]
 
 @root
-on-arrival: {! AnatolianRules.cyprusCampaign.exit(Q); !}
-go-to: post_event
+on-arrival: {! if(!AnatolianRules.cyprusRoadmap.beginRally || !AnatolianRules.cyprusRoadmap.beginRally(Q))AnatolianRules.cyprusCampaign.exit(Q); !}
+go-to: cyprus_sarachane_rally if cyprus_rally_pending == 1; post_event if cyprus_rally_pending != 1
+

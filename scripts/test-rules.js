@@ -394,7 +394,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         }
         assert.equal(c.mapImage({cyprus_mode:0}),'cyprusgame/cyprus_map.png');
     });
-    test('Military tooltips match requirements and descriptions match authored or attributed passages', () => {
+    test('Military tooltips match requirements and descriptions retain passages without attribution notes', () => {
         const c=rules.cyprusAtilla1, passages=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_MILITARY_SOURCE_PASSAGES.json'),'utf8'));
         let count=0;
         for(const [key,parts] of Object.entries(passages)) {
@@ -404,7 +404,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             if(authored){for(const paragraph of authored.body.split('\n\n'))assert(source.includes(paragraph),id+' authored paragraph');}
             for(const part of authored?[]:parts) {
                 for(const paragraph of key==='ending'?part.text.split('\n\n'):[part.kind==='quotation'?part.text.replace(/\n\n/g,' … '):part.text])assert(source.includes(paragraph),id);
-                assert(part.kind==='quotation'?source.includes(part.document):source.includes('PDF page '+part.pdf_page),id);
+                assert(!source.includes('PDF page ')&&!source.includes('Historical source reference:')&&!source.includes('Mehmet Ali Birand'),id+' has no attribution notes');
             }
             if(key==='ending')continue;
             const actions=/^\d+$/.test(key)?c.days[Number(key)].actions:c.historyEvents[key].actions;

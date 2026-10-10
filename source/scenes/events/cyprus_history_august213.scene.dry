@@ -7,19 +7,14 @@ on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cypr
 
 [? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
 
-Historical source reference:
-
 “Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”
 
-[S/11353/Add.15, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484572/files/S_11353_Add.15-EN.pdf)
 
 “On 12 August, the National Guard evacuated the Turkish sectors of Larnaca/Scala and Paphos/Ktima.”
 
-[S/11353/Add.20, paragraph 3 — UN report excerpt.](https://digitallibrary.un.org/record/484623/files/S_11353_Add.20-EN.pdf)
 
 Turkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Turkish, Greek, British, Turkish Cypriot and Greek Cypriot delegations had sat down at the table for peace in the United Nations Palace in Geneva.
 
-Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt.
 
 
 - @historical: [+ cyprus_history_choice_historical +]

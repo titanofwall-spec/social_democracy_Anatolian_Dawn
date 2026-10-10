@@ -676,6 +676,12 @@ window.updateTitleScreenImages = function() {
     }
   };
 window.displayText = function (text) {
+  // Resume the ending soundtrack when restoring either celebration screen.
+  if(window.dendryUI&&window.AnatolianRules&&AnatolianRules.cyprusRoadmap.startEndingMusic){
+    var celebrationEngine=window.dendryUI.dendryEngine;
+    if(celebrationEngine&&['cyprus_campaign_final','cyprus_sarachane_rally'].includes(celebrationEngine.state.sceneId))AnatolianRules.cyprusRoadmap.startEndingMusic(celebrationEngine.state.qualities);
+  }
+
         return applyWholesome(text);
     };
 

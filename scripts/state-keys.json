@@ -1150,5 +1150,9 @@
   "yearly_budget",
   "yes",
   "youth",
-  "cyprus_constitution_departure_pending"
+  "cyprus_constitution_departure_pending",
+  "cyprus_rally_pending",
+  "cyprus_rally_seen",
+  "cyprus_rally_poppy_lifted_late",
+  "cyprus_rally_reward_paid"
 ]

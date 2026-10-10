@@ -3246,17 +3246,6 @@
               },
               ""
             ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the historical source excerpt. ",
-                "predicate": 31
-              },
-              ""
-            ]
           }
         ],
         "stateDependencies": [
@@ -3426,12 +3415,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return ((((Q['cyprus_early_freeze'] || 0) == 1) && ((Q['cyprus_campaign_version'] || 0) != 2)) && (!(((Q['cyprus_campaign_failed'] || 0)) !== 0)));"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (!(((Q['cyprus_campaign_failed'] || 0)) !== 0));"
             }
           },
           {
@@ -3692,7 +3675,7 @@
           },
           {
             "type": "paragraph",
-            "content": "Further negotiations can still produce the Denktaş or Güneş plans if their conditions are met. The historical division is now another available outcome. Click the country flags to conduct diplomacy before the final conference decision on August 20."
+            "content": "Further negotiations can still produce the Denktaş or Güneş Plans if their conditions are met. The historical division is now another available outcome. Click the country flags to conduct diplomacy before the final conference decision on August 20."
           }
         ],
         "stateDependencies": [
@@ -4331,12 +4314,21 @@
       "id": "cyprus_campaign_final.root",
       "onArrival": [
         {
-          "$code": "AnatolianRules.cyprusCampaign.exit(Q);"
+          "$code": "if(!AnatolianRules.cyprusRoadmap.beginRally || !AnatolianRules.cyprusRoadmap.beginRally(Q))AnatolianRules.cyprusCampaign.exit(Q);"
         }
       ],
       "goTo": [
         {
-          "id": "post_event"
+          "id": "cyprus_sarachane_rally",
+          "predicate": {
+            "$code": "return ((Q['cyprus_rally_pending'] || 0) == 1);"
+          }
+        },
+        {
+          "id": "post_event",
+          "predicate": {
+            "$code": "return ((Q['cyprus_rally_pending'] || 0) != 1);"
+          }
         }
       ],
       "content": {
@@ -4352,10 +4344,28 @@
         "$code": "return ((Q['cyprus_campaign_resolved'] || 0) == 1);"
       },
       "newPage": true,
+      "onArrival": [
+        {
+          "$code": "if(AnatolianRules.cyprusRoadmap.startEndingMusic)AnatolianRules.cyprusRoadmap.startEndingMusic(Q);"
+        }
+      ],
       "options": [
         {
           "id": "@cyprus_campaign_final.root",
-          "title": "Return to normal play."
+          "title": {
+            "content": {
+              "type": "insert",
+              "insert": 0
+            },
+            "stateDependencies": [
+              {
+                "type": "insert",
+                "fn": {
+                  "$code": "return Q.cyprus_final_result==='Güneş Plan'?\"We have done it!\":\"Let us return to our people.\";"
+                }
+              }
+            ]
+          }
         }
       ],
       "content": {
@@ -4704,7 +4714,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q) : \"\";"
+              "$code": "return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q).replace(/\\n\\n/g,'<br><br>') : \"\";"
             }
           },
           {
@@ -4770,7 +4780,7 @@
         },
         {
           "type": "paragraph",
-          "content": "It had not been an easy decision. Turkey had already shown tremendous flexibility by giving up on the demand for geographical autonomy and accepting the prospect of new constitutional discussions. Yet they were clearly unwilling to leave the security of the Turkish community to another set of constitutional promises, which had proved so disastrous."
+          "content": "It had not been an easy decision. Turkey had already shown tremendous flexibility by giving up on the demand for geographical autonomy and accepting the prospect of new constitutional discussions. Yet we were clearly unwilling to leave the security of the Turkish community to another set of constitutional promises, which had proved so disastrous."
         },
         {
           "type": "paragraph",
@@ -4790,7 +4800,7 @@
         },
         {
           "type": "paragraph",
-          "content": "The orders were passed to the military headquarters, and the preparations which had kept the General Staff occupied for the past few weeks finally began. Soldiers were ordered into their armoured vehicles, artillery positions readied for the offensive and the Turkish Air Force was directed to support the advance. The target was the Şahin Line, the broad territorial position that would extend Turkish control across the northern part of Cyprus."
+          "content": "The orders were passed to the military headquarters, and the preparations which had kept the General Staff occupied for the past few weeks finally began. Soldiers were ordered into their armoured vehicles, artillery positions were readied for the offensive and the Turkish Air Force was directed to support the advance. The target was the Şahin Line, the broad territorial position that would extend Turkish control across the northern part of Cyprus."
         },
         {
           "type": "paragraph",
@@ -5766,6 +5776,227 @@
       "content": {
         "content": "",
         "type": "paragraph"
+      }
+    },
+    "cyprus_sarachane_rally.finish": {
+      "id": "cyprus_sarachane_rally.finish",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.finishRally(Q);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "post_event"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_sarachane_rally": {
+      "id": "cyprus_sarachane_rally",
+      "type": "scene",
+      "title": "Kıbrıs’ın Dağlarına Yazdık",
+      "viewIf": {
+        "$code": "return ((Q['cyprus_rally_pending'] || 0) == 1);"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.awardRally(Q); AnatolianRules.cyprusRoadmap.startEndingMusic(Q);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_sarachane_rally.finish",
+          "title": "Kıbrıs'ın Dağlarına Yazdık..."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Saraçhane — Kıbrıs’ın Dağlarına Yazdık"
+          },
+          {
+            "type": "paragraph",
+            "content": "By the afternoon, there was hardly a patch of pavement left to see in front of İstanbul’s Belediye Sarayı. From the streets of Fatih, from the other side of the bridges, from neighbourhoods where our party had once struggled to fill a meeting hall, they had come to Saraçhane. Turkish flags rose above the crowd, blue shirts pressed against one another, and homemade banners carried a name which no longer seemed to belong to one man alone."
+          },
+          {
+            "type": "paragraph",
+            "content": "“Karaoğlan! Karaoğlan!”"
+          },
+          {
+            "type": "paragraph",
+            "content": "For weeks, our country had lived between the telephone and the radio. A mother had waited for a name that never came in the evening bulletin. A father had pretended not to worry while his son’s last letter lay folded in his pocket. In Cyprus, families had waited behind shuttered windows, wondering whether the next footsteps outside belonged to someone who had come to save them or someone from whom they had to hide. Now, beneath the afternoon sun, those weeks seemed to gather in the square with us."
+          },
+          {
+            "type": "paragraph",
+            "content": "When Bülent Ecevit appeared, the applause rose before he could even reach the microphone. In his blue shirt and cap, he greeted the people, but for a moment there was no way to speak over them. They called him “Kıbrıs Fatihi”. They called him “Karaoğlan”. Somewhere near the front, an older woman held a flag against her chest and wiped her eyes with the back of her hand."
+          },
+          {
+            "type": "paragraph",
+            "content": "Our army had crossed the sea. Our delegation had endured the arguments, the threats and the endless demands for more time. The Turkish Cypriots, who had so often been told to wait, had finally seen that they were not alone."
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "We had brought back more than a military victory. The six Turkish cantons would give our people a place within an independent, federal Cyprus, and the agreement had been secured without sending the army into a second operation. Our soldiers had opened the road; Güneş and his delegation had carried us to its end. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "A Turkish region in the north would give our community the security and self-government for which it had struggled. The battlefield’s gains had been turned into a federal agreement. Our people would no longer have to ask, every morning, whether the promises of the previous evening would still protect them. ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Our soldiers had secured a northern position that no government in Nicosia could simply wish away. There was still a political settlement to be won, and no one on that platform could honestly pretend otherwise. But the Turkish Cypriots were no longer waiting helplessly for the world to notice them. ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The agreement had kept Cyprus united while giving our community new constitutional safeguards. We had not obtained the territorial settlement with which we had entered the negotiations, but we had brought the crisis to a close without another offensive. In the square, the people welcomed the promise that the rights won at Geneva would now be made real. ",
+                "predicate": 3
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "Ecevit spoke of the men who had landed on the beaches, of the families on the island, and of the peace we had gone there to secure. He did not need to turn every sentence into a shout. The square listened. When he paused, the voices returned, and the words he had been trying to say were carried back to him by thousands of people who had already made them their own."
+          },
+          {
+            "type": "paragraph",
+            "content": "Then he turned to those who had spent so long telling us that the left could never be nationalist. Demirel and Türkeş had not been forgotten. Neither had the accusations, the slogans on the walls, or the certainty with which our opponents had claimed that love of this country belonged to them alone."
+          },
+          {
+            "type": "paragraph",
+            "content": "“Biz, Demirellerden, Türkeşlerden milliyetçilik dersi almayız!”"
+          },
+          {
+            "type": "paragraph",
+            "content": "The answer from the square almost swallowed the next sentence. Ecevit waited, his hand raised, until the microphones could be heard again."
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The farmers of Western Anatolia had already seen what those words meant. The poppy ban had been lifted before the crisis, despite the pressure from abroad. Their fields, like our country’s decisions, would not be surrendered merely because someone more powerful demanded it. ",
+                "predicate": 4
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "In the days after Cyprus, our government had also lifted the poppy cultivation ban. The farmers of Western Anatolia would return to their fields. We had sought a settlement on the island without surrendering our right to decide what our own people could grow at home. Now Ecevit could speak of those fields alongside the men who had crossed the sea. ",
+                "predicate": 5
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "“Biz milliyetçiliği sokak duvarlarına değil; Kıbrıs’ın topraklarına, Ege’nin deniz yataklarına, Batı Anadolu’nun haşhaş tarlasına yazmışız!”"
+          },
+          {
+            "type": "paragraph",
+            "content": "There was no finishing the speech for several minutes."
+          },
+          {
+            "type": "paragraph",
+            "content": "Flags shook above the square. People who had arrived as strangers embraced. A young man climbed onto a friend’s shoulders and shouted until his voice broke. The older woman near the front was crying openly now, but she was still holding her flag. Around her, the chant rose again, passed from one end of Saraçhane to the other, and came back louder."
+          },
+          {
+            "type": "paragraph",
+            "content": "“Karaoğlan! Karaoğlan!”"
+          },
+          {
+            "type": "paragraph",
+            "content": "We had spent years arguing that our party had not forgotten the country it had helped to build. Today, in that square, we did not have to explain it in another leaflet. There were families on Cyprus who would sleep more safely because our soldiers had gone there. There were men returning home who had wondered whether they would ever see these streets again. And there were those who would not return, whose places in this celebration could never be filled by applause."
+          },
+          {
+            "type": "paragraph",
+            "content": "For them, too, we had to make the peace worth keeping."
+          },
+          {
+            "type": "paragraph",
+            "content": "When Ecevit finally finished, the crowd did not leave all at once. The songs continued, flags stayed aloft, and people lingered as though going home would mean letting the moment end. Tomorrow there would be disputes again. The coalition, the economy and the unfinished work on Cyprus would still be waiting for us. None of that had disappeared."
+          },
+          {
+            "type": "paragraph",
+            "content": "But today, for a few hours in Saraçhane, our people could look at what we had done and stand a little taller."
+          },
+          {
+            "type": "paragraph",
+            "content": "The rally increases CHP polling by one additional percentage point."
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Güneş Plan\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Denktaş Plan\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Historical Division\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['cyprus_final_result'] == \"Return to the 1960 Constitutional Order\");"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_rally_poppy_lifted_late'] || 0) == 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['cyprus_rally_poppy_lifted_late'] || 0) == 1);"
+            }
+          }
+        ]
       }
     },
     "cyprus_smuggle_arms.reinforce": {
@@ -15355,10 +15586,6 @@
         },
         {
           "type": "paragraph",
-          "content": "Historical source reference:"
-        },
-        {
-          "type": "paragraph",
           "content": "The silence was broken by the message from the war centre in Adana:"
         },
         {
@@ -15368,10 +15595,6 @@
         {
           "type": "paragraph",
           "content": "In the darkness of the night, the great war machine immediately began turning. Soldiers were put into tanks and armoured vehicles. Orders were repeated."
-        },
-        {
-          "type": "paragraph",
-          "content": "Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt."
         }
       ]
     },
@@ -15461,10 +15684,6 @@
         },
         {
           "type": "paragraph",
-          "content": "Historical source reference:"
-        },
-        {
-          "type": "paragraph",
           "content": "The silence was broken by the message from the war centre in Adana:"
         },
         {
@@ -15474,10 +15693,6 @@
         {
           "type": "paragraph",
           "content": "In the darkness of the night, the great war machine immediately began turning. Soldiers were put into tanks and armoured vehicles. Orders were repeated."
-        },
-        {
-          "type": "paragraph",
-          "content": "Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt."
         }
       ]
     },
@@ -15567,10 +15782,6 @@
         },
         {
           "type": "paragraph",
-          "content": "Historical source reference:"
-        },
-        {
-          "type": "paragraph",
           "content": "The silence was broken by the message from the war centre in Adana:"
         },
         {
@@ -15580,10 +15791,6 @@
         {
           "type": "paragraph",
           "content": "In the darkness of the night, the great war machine immediately began turning. Soldiers were put into tanks and armoured vehicles. Orders were repeated."
-        },
-        {
-          "type": "paragraph",
-          "content": "Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt."
         }
       ]
     },
@@ -15951,21 +16158,7 @@
           },
           {
             "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
             "content": "“Turkish forces had entered the southern part of Karavas but remained outside Lapithos … in the evening of 1 August entered Bellapais.”"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "hidden",
-                "content": "S/11353/Add.13, paragraph 2 — UN report excerpt."
-              },
-              "(https://digitallibrary.un.org/record/484550/files/S_11353_Add.13-EN.pdf)"
-            ]
           }
         ],
         "stateDependencies": [
@@ -16141,21 +16334,7 @@
           },
           {
             "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
             "content": "“Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "hidden",
-                "content": "S/11353/Add.15, paragraph 2 — UN report excerpt."
-              },
-              "(https://digitallibrary.un.org/record/484572/files/S_11353_Add.15-EN.pdf)"
-            ]
           },
           {
             "type": "paragraph",
@@ -16163,21 +16342,7 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "hidden",
-                "content": "S/11353/Add.20, paragraph 3 — UN report excerpt."
-              },
-              "(https://digitallibrary.un.org/record/484623/files/S_11353_Add.20-EN.pdf)"
-            ]
-          },
-          {
-            "type": "paragraph",
             "content": "Turkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Turkish, Greek, British, Turkish Cypriot and Greek Cypriot delegations had sat down at the table for peace in the United Nations Palace in Geneva."
-          },
-          {
-            "type": "paragraph",
-            "content": "Mehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt."
           }
         ],
         "stateDependencies": [
@@ -17397,21 +17562,7 @@
           },
           {
             "type": "paragraph",
-            "content": "Historical source reference:"
-          },
-          {
-            "type": "paragraph",
             "content": "“Turkish forces advanced approximately 1000 metres west from Ayios Ermolaos … approximately 500 metres south from a point near the Nicosia race course”"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "hidden",
-                "content": "S/11353/Add.12, paragraph 2 — UN report excerpt."
-              },
-              "(https://digitallibrary.un.org/record/484532/files/S_11353_Add.12-EN.pdf)"
-            ]
           }
         ],
         "stateDependencies": [
@@ -39292,7 +39443,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['cyprus_roadmap_report'] || 0);"
+              "$code": "return String(Q.cyprus_roadmap_report||'').replace(/\\n\\n/g,'<br><br>');"
             }
           }
         ]
@@ -45528,7 +45679,20 @@
         },
         {
           "id": "@cyprus_roadmap_event.continue",
-          "title": "Continue."
+          "title": {
+            "content": {
+              "type": "insert",
+              "insert": 0
+            },
+            "stateDependencies": [
+              {
+                "type": "insert",
+                "fn": {
+                  "$code": "return AnatolianRules.cyprusRoadmap.continuationLabel(Q);"
+                }
+              }
+            ]
+          }
         }
       ],
       "content": {

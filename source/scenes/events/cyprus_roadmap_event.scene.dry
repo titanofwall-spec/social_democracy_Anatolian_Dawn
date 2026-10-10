@@ -24,7 +24,7 @@ on-arrival: {! AnatolianRules.cyprusRoadmap.prepareEvent(Q); !}
 - @consult: Continue consultations and rebuild negotiating leverage.
 - @sign_treaty: Sign the negotiated constitutional treaty.
 - @refuse_treaty: Refuse the treaty and begin Atilla II.
-- @continue: Continue.
+- @continue: [+ {! return AnatolianRules.cyprusRoadmap.continuationLabel(Q); !} +]
 
 @geneva_response
 view-if: {! return AnatolianRules.cyprusRoadmap.genevaResponse(Q); !}
@@ -76,7 +76,7 @@ new-page: true
 
 = Report
 
-[+ cyprus_roadmap_report +]
+[+ {! return String(Q.cyprus_roadmap_report||'').replace(/\n\n/g,'<br><br>'); !} +]
 
 - @cyprus_campaign_continue: Continue.
 

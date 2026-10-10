@@ -56,7 +56,6 @@ Diplomatic leverage earned: +[+ cyprus_atilla1_reward +]. Total: [+ leverage_poi
 
 [? if not cyprus_campaign_failed : It was not easy to believe, but the First Geneva Conference really had ended... ?]
 
-[? if not cyprus_campaign_failed : Mehmet Ali Birand, 30 Sıcak Gün, PDF page 358 — English translation of the historical source excerpt. ?]
 
 - @root: Continue.
 

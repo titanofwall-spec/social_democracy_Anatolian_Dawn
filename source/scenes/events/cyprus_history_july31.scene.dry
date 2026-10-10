@@ -7,11 +7,8 @@ on-arrival: {! Q.cyprus_history_current_title=Q.cyprus_frontline_frozen ? Q.cypr
 
 [? if cyprus_campaign_version == 1 : [+ cyprus_campaign_report +] ?]
 
-Historical source reference:
-
 “Turkish forces advanced approximately 1000 metres west from Ayios Ermolaos … approximately 500 metres south from a point near the Nicosia race course”
 
-[S/11353/Add.12, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484532/files/S_11353_Add.12-EN.pdf)
 
 
 - @historical: [+ cyprus_history_choice_historical +]

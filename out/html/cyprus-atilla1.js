@@ -136,7 +136,7 @@
         "month": 7,
         "day": 31,
         "title": "31 July 1974 — Local advances after Geneva",
-        "text": "“Turkish forces advanced approximately 1000 metres west from Ayios Ermolaos … approximately 500 metres south from a point near the Nicosia race course”\n\n[S/11353/Add.12, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484532/files/S_11353_Add.12-EN.pdf)",
+        "text": "“Turkish forces advanced approximately 1000 metres west from Ayios Ermolaos … approximately 500 metres south from a point near the Nicosia race course”",
         "actions": {
             "historical": {
                 "label": "Continue limited advances around Şirinevler and the western Lefkoşa approaches.",
@@ -167,7 +167,7 @@
         "month": 8,
         "day": 1,
         "title": "1 August 1974 — Into southern Alsancak",
-        "text": "“Turkish forces had entered the southern part of Karavas but remained outside Lapithos … in the evening of 1 August entered Bellapais.”\n\n[S/11353/Add.13, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484550/files/S_11353_Add.13-EN.pdf)",
+        "text": "“Turkish forces had entered the southern part of Karavas but remained outside Lapithos … in the evening of 1 August entered Bellapais.”",
         "actions": {
             "historical": {
                 "label": "Secure southern Alsancak and consolidate the Bellapais approaches.",
@@ -198,7 +198,7 @@
         "month": 8,
         "day": 13,
         "title": "2–13 August 1974 — The uneasy ceasefire",
-        "text": "“Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”\n\n[S/11353/Add.15, paragraph 2 — UN report excerpt.](https://digitallibrary.un.org/record/484572/files/S_11353_Add.15-EN.pdf)\n\n“On 12 August, the National Guard evacuated the Turkish sectors of Larnaca/Scala and Paphos/Ktima.”\n\n[S/11353/Add.20, paragraph 3 — UN report excerpt.](https://digitallibrary.un.org/record/484623/files/S_11353_Add.20-EN.pdf)\n\nTurkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Turkish, Greek, British, Turkish Cypriot and Greek Cypriot delegations had sat down at the table for peace in the United Nations Palace in Geneva.\n\nMehmet Ali Birand, Diyet, PDF page 19 — English translation of the source excerpt.",
+        "text": "“Turkish troops advanced their forward positions approximately 300 metres westward from their previous lines at AMR WE205118.”\n\n“On 12 August, the National Guard evacuated the Turkish sectors of Larnaca/Scala and Paphos/Ktima.”\n\nTurkey had completed its First Cyprus Peace Operation. On 13 August 1974, the Turkish, Greek, British, Turkish Cypriot and Greek Cypriot delegations had sat down at the table for peace in the United Nations Palace in Geneva.",
         "actions": {
             "historical": {
                 "label": "Prepare the reinforced army for renewed operations if Geneva fails.",
