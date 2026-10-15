@@ -9484,24 +9484,20 @@
         "type": "paragraph"
       }
     },
-    "economic_democracy.expand_councils": {
-      "id": "economic_democracy.expand_councils",
-      "title": "Support works councils.",
-      "subtitle": "Give works councils a greater influence in managing enterprises.",
-      "viewIf": {
-        "$code": "return ((Q['works_councils'] || 0) == 0);"
-      },
-      "onArrival": [
+    "economic_democracy.reform_meyak": {
+      "id": "economic_democracy.reform_meyak",
+      "title": "Reform MEYAK",
+      "newPage": true,
+      "options": [
         {
-          "$code": "Q['economic_democracy'] = (Q['economic_democracy'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (7 * (1 - (Q['dissent'] || 0)));\nQ['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1;\nQ['works_councils'] = (Q['works_councils'] || 0) + 1;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\n if ((((Q['in_grand_coalition'] || 0)) !== 0) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; }"
+          "id": "@economic_democracy",
+          "title": "Back."
         }
       ],
-      "maxVisits": 1,
       "content": {
-        "content": "We introduce elected worker representation on company boards, giving employees a voice in management decisions.",
-        "type": "paragraph"
-      },
-      "countVisitsMax": 1
+        "type": "heading",
+        "content": "Reform MEYAK"
+      }
     },
     "economic_policy.economy_menu": {
       "id": "economic_policy.economy_menu",
@@ -9742,6 +9738,21 @@
       "content": {
         "content": "We have kept our campaign promise and released a huge number of the prisoners held in our prisons. Despite our decent intentions, we have observed a significant increase in street fighting and political violence after the amnesty which needs to be managed.",
         "type": "paragraph"
+      }
+    },
+    "kurdish_issue.associations": {
+      "id": "kurdish_issue.associations",
+      "title": "Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@kurdish_issue",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations."
       }
     },
     "labor_affairs.labour_menu": {
@@ -11512,6 +11523,29 @@
             "qdisplay": "loyalty"
           }
         ]
+      }
+    },
+    "religious_affairs_directorate.sectarian_office": {
+      "id": "religious_affairs_directorate.sectarian_office",
+      "title": "Found the Office of Sectarian Affairs",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['sectarian_affairs_office_founded'] || 0) != 1);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q.sectarian_affairs_office_founded=1;"
+        }
+      ],
+      "options": [
+        {
+          "id": "@religious_affairs_directorate",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Found the Office of Sectarian Affairs"
       }
     },
     "shuffle_cabinet.shuffle": {
@@ -18450,27 +18484,28 @@
         ]
       }
     },
-    "economic_democracy.expand_councils_2": {
-      "id": "economic_democracy.expand_councils_2",
-      "title": "Support national and sectorial works councils.",
-      "subtitle": "This is a step towards workers' control over the entire economy.",
+    "economic_democracy.establish_iyak": {
+      "id": "economic_democracy.establish_iyak",
+      "title": "Establish İYAK",
+      "newPage": true,
       "viewIf": {
-        "$code": "return ((Q['works_councils'] || 0) == 1);"
+        "$code": "return ((Q['iyak_established'] || 0) != 1);"
       },
       "onArrival": [
         {
-          "$code": "Q['economic_democracy'] = (Q['economic_democracy'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (7 * (1 - (Q['dissent'] || 0)));\nQ['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1;\nQ['works_councils'] = (Q['works_councils'] || 0) + 1;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\n if ((((Q['in_grand_coalition'] || 0)) !== 0) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; } \n if (((Q['economic_growth'] || 0) < 3) ) { Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.1; }"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "Q.iyak_established=1;"
         }
       ],
-      "maxVisits": 1,
+      "options": [
+        {
+          "id": "@economic_democracy",
+          "title": "Back."
+        }
+      ],
       "content": {
-        "content": "We establish national and sectoral councils so workers can take part in decisions beyond individual workplaces.",
-        "type": "paragraph"
-      },
-      "countVisitsMax": 1
+        "type": "heading",
+        "content": "Establish İYAK"
+      }
     },
     "economic_policy.short": {
       "id": "economic_policy.short",
@@ -18633,6 +18668,21 @@
         "type": "paragraph"
       }
     },
+    "kurdish_issue.public_discussion": {
+      "id": "kurdish_issue.public_discussion",
+      "title": "Lift restrictions on discussing the Kurdish Issue in the public sphere.",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@kurdish_issue",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Lift restrictions on discussing the Kurdish Issue in the public sphere."
+      }
+    },
     "labor_affairs.onetime": {
       "id": "labor_affairs.onetime",
       "options": [
@@ -18748,6 +18798,21 @@
       "content": {
         "content": "The new police regiments strengthen the state's hold over the streets, though we have received reports of a decrease in general loyalty.",
         "type": "paragraph"
+      }
+    },
+    "religious_affairs_directorate.women_employment": {
+      "id": "religious_affairs_directorate.women_employment",
+      "title": "Women Employment Program",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@religious_affairs_directorate",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Women Employment Program"
       }
     },
     "social_welfare.increase_spending_pre_depression": {
@@ -22667,27 +22732,23 @@
         "type": "paragraph"
       }
     },
-    "economic_democracy.expand_councils_3": {
-      "id": "economic_democracy.expand_councils_3",
-      "title": "Empower sectorial works councils.",
-      "subtitle": "Give works councils a role in setting wage and price policy for entire industrial sectors.",
+    "economic_democracy.reform_iyak": {
+      "id": "economic_democracy.reform_iyak",
+      "title": "Reform İYAK",
+      "newPage": true,
       "viewIf": {
-        "$code": "return ((Q['works_councils'] || 0) == 2);"
+        "$code": "return ((Q['iyak_established'] || 0) == 1);"
       },
-      "onArrival": [
+      "options": [
         {
-          "$code": "Q['economic_democracy'] = (Q['economic_democracy'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (7 * (1 - (Q['dissent'] || 0)));\nQ['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1;\nQ['works_councils'] = (Q['works_councils'] || 0) + 1;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\n if ((((Q['in_grand_coalition'] || 0)) !== 0) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; } \n if (((Q['unemployed'] || 0) > 5) ) { Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 2; } \nQ['workers'] = (Q['workers'] || 0) + 2;\n if (((Q['economic_growth'] || 0) < 3) ) { Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.1; }"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "id": "@economic_democracy",
+          "title": "Back."
         }
       ],
-      "maxVisits": 1,
       "content": {
-        "content": "Sectorial works councils can now negotiate wage and price policies for entire economic sectors, helping to both give workers more of a voice, and to rationalize the economy, smoothing over the anarchy of the market.",
-        "type": "paragraph"
-      },
-      "countVisitsMax": 1
+        "type": "heading",
+        "content": "Reform İYAK"
+      }
     },
     "economic_policy.pricecontrols": {
       "id": "economic_policy.pricecontrols",
@@ -22860,6 +22921,21 @@
         "type": "paragraph"
       }
     },
+    "kurdish_issue.publishing": {
+      "id": "kurdish_issue.publishing",
+      "title": "Grant legal permission for Kurdish printing and publishing activities under regulation.",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@kurdish_issue",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Grant legal permission for Kurdish printing and publishing activities under regulation."
+      }
+    },
     "labor_affairs.national": {
       "id": "labor_affairs.national",
       "onArrival": [
@@ -22959,6 +23035,29 @@
       "content": {
         "content": "The police forces have been supplemented with better weapons and training, improving their efficiency.",
         "type": "paragraph"
+      }
+    },
+    "religious_affairs_directorate.admit_women": {
+      "id": "religious_affairs_directorate.admit_women",
+      "title": "Start admitting women to positions as preachers and professors of Islamic jurisprudence.",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['religious_women_admitted'] || 0) != 1);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q.religious_women_admitted=1;"
+        }
+      ],
+      "options": [
+        {
+          "id": "@religious_affairs_directorate",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Start admitting women to positions as preachers and professors of Islamic jurisprudence."
       }
     },
     "social_welfare.increase_spending_post_depression": {
@@ -26695,28 +26794,28 @@
         "type": "paragraph"
       }
     },
-    "economic_democracy.nationalize_1": {
-      "id": "economic_democracy.nationalize_1",
-      "title": "Begin to socialize key industries.",
-      "subtitle": "-1 budget - we should buy out industries and govern them together with workers and consumers.",
-      "chooseIf": {
-        "$code": "return ((Q['budget'] || 0) >= 1);"
+    "economic_democracy.establish_umbrella": {
+      "id": "economic_democracy.establish_umbrella",
+      "title": "Establish Cooperative Umbrella Organizations",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['cooperative_umbrella_established'] || 0) != 1);"
       },
-      "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
         {
-          "$code": "Q['economic_democracy'] = (Q['economic_democracy'] || 0) + 1;\nQ['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) - 1;\nQ['socializations'] = (Q['socializations'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (6 * (1 - (Q['dissent'] || 0)));\n if ((((Q['in_grand_coalition'] || 0)) !== 0) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; } \n if (((Q['unemployed'] || 0) > 9) ) { Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1; } \n if (((Q['economic_growth'] || 0) < 5) ) { Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2; }"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "Q.cooperative_umbrella_established=1;"
         }
       ],
-      "maxVisits": 3,
+      "options": [
+        {
+          "id": "@economic_democracy",
+          "title": "Back."
+        }
+      ],
       "content": {
-        "content": "We have begun to socialize key industries by buying out the capitalist owners, and creating coordinated governing boards consisting of worker, consumer, and state representatives. The capitalists are not pleased at our intrusion into the economy.",
-        "type": "paragraph"
-      },
-      "countVisitsMax": 3
+        "type": "heading",
+        "content": "Establish Cooperative Umbrella Organizations"
+      }
     },
     "economic_policy.debt": {
       "id": "economic_policy.debt",
@@ -26878,6 +26977,21 @@
       "content": {
         "content": "Both TIP and the left-wing syndicate DISK express their gratitude for our efforts in improving the status of political prisoners.",
         "type": "paragraph"
+      }
+    },
+    "kurdish_issue.meetings": {
+      "id": "kurdish_issue.meetings",
+      "title": "Ease restrictions on the right to hold meetings and demonstrations.",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@kurdish_issue",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Ease restrictions on the right to hold meetings and demonstrations."
       }
     },
     "labor_affairs.kit": {
@@ -27087,6 +27201,64 @@
       "content": {
         "content": "",
         "type": "paragraph"
+      }
+    },
+    "religious_affairs_directorate.recruit_women": {
+      "id": "religious_affairs_directorate.recruit_women",
+      "title": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['religious_women_admitted'] || 0) == 1);"
+      },
+      "options": [
+        {
+          "id": "@religious_affairs_directorate",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence."
+      }
+    },
+    "religious_affairs_directorate": {
+      "id": "religious_affairs_directorate",
+      "type": "scene",
+      "title": "Directorate of Religious Affairs",
+      "isCard": true,
+      "newPage": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
+      "options": [
+        {
+          "id": "@religious_affairs_directorate.sectarian_office",
+          "title": "Found the Office of Sectarian Affairs"
+        },
+        {
+          "id": "@religious_affairs_directorate.women_employment",
+          "title": "Women Employment Program"
+        },
+        {
+          "id": "@religious_affairs_directorate.admit_women",
+          "title": "Start admitting women to positions as preachers and professors of Islamic jurisprudence."
+        },
+        {
+          "id": "@religious_affairs_directorate.recruit_women",
+          "title": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence."
+        },
+        {
+          "id": "@root",
+          "title": "Back to main."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Directorate of Religious Affairs"
       }
     },
     "social_welfare.spending_same_pre_depression": {
@@ -28811,132 +28983,23 @@
         "type": "paragraph"
       }
     },
-    "economic_democracy.cooperatives_1": {
-      "id": "economic_democracy.cooperatives_1",
-      "title": "Support worker and consumer cooperatives.",
-      "subtitle": "-1 budget",
-      "chooseIf": {
-        "$code": "return ((Q['budget'] || 0) >= 1);"
-      },
-      "unavailableSubtitle": "We don't have enough budget!",
-      "onArrival": [
-        {
-          "$code": "Q['economic_democracy'] = (Q['economic_democracy'] || 0) + 1;\nQ['cooperatives'] = (Q['cooperatives'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['budget'] = (Q['budget'] || 0) - 1;\n if (((Q['unemployed'] || 0) > 9) ) { Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1; } \nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
-        }
-      ],
-      "maxVisits": 3,
-      "content": {
-        "content": "We have enacted legislation that makes it easier to create cooperative enterprises of all sorts, and provide financial support to struggling cooperatives.",
-        "type": "paragraph"
-      },
-      "countVisitsMax": 3
-    },
-    "economic_democracy": {
-      "id": "economic_democracy",
-      "type": "scene",
-      "title": "Economic Democracy",
-      "isCard": true,
+    "economic_democracy.expand_umbrella": {
+      "id": "economic_democracy.expand_umbrella",
+      "title": "Expand Cooperative Umbrella Organizations",
       "newPage": true,
-      "onArrival": [
-        {
-          "$code": "Q['economic_democracy_timer'] = (Q['economic_democracy_timer'] || 0) + 10;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
       "viewIf": {
-        "$code": "return ((((((Q['CHP_in_government'] || 0)) !== 0) && (((Q['economic_minister_party'] == \"CHP\") || (Q['finance_minister_party'] == \"CHP\")))) && ((Q['labor_minister_party'] == \"CHP\"))) && ((Q['economic_democracy_timer'] || 0) <= 0));"
+        "$code": "return ((Q['cooperative_umbrella_established'] || 0) == 1);"
       },
-      "cardImage": "img/portraits/Muezzinoglu.jpg",
-      "maxVisits": 8,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
       "options": [
         {
-          "id": "@economic_democracy.expand_councils"
-        },
-        {
-          "id": "@economic_democracy.expand_councils_2"
-        },
-        {
-          "id": "@economic_democracy.expand_councils_3"
-        },
-        {
-          "id": "@economic_democracy.nationalize_1"
-        },
-        {
-          "id": "@economic_democracy.cooperatives_1"
-        },
-        {
-          "id": "@return",
-          "title": "Do not enact any policies for now."
-        },
-        {
-          "id": "@easy_discard"
-        },
-        {
-          "id": "@cancel_advisor_action"
+          "id": "@economic_democracy",
+          "title": "Back."
         }
       ],
       "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Economic Democracy"
-          },
-          {
-            "type": "paragraph",
-            "content": "A key part of the social democratic platform is that workers should have more control over the economy. This can be done either directly at the enterprise level, by giving works councils greater influence over management, or indirectly via the democratic government, by acquiring key industries from the capitalist class and placing them under democratic control."
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "As we control the Labor ",
-              {
-                "type": "conditional",
-                "content": "and Economic ",
-                "predicate": 0
-              },
-              {
-                "type": "conditional",
-                "content": "and Finance ",
-                "predicate": 1
-              },
-              " ministries, we can finally begin to implement our long-standing goals. ",
-              {
-                "type": "conditional",
-                "content": "Our bourgeois coalition partners might not agree, however. ",
-                "predicate": 2
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (Q['economic_minister_party'] == \"CHP\");"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (Q['finance_minister_party'] == \"CHP\");"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (((Q['in_grand_coalition'] || 0)) !== 0);"
-            }
-          }
-        ]
-      },
-      "countVisitsMax": 8
+        "type": "heading",
+        "content": "Expand Cooperative Umbrella Organizations"
+      }
     },
     "economic_policy.publicworks": {
       "id": "economic_policy.publicworks",
@@ -29067,6 +29130,21 @@
       "content": {
         "content": "Our investigations reveal infuriating cases of cooperation with right-wing groups in persecuting Kurds and Alevis. As the state finally begins taking action against such atrocities, these groups are thankful towards both our party and the democratic system.",
         "type": "paragraph"
+      }
+    },
+    "kurdish_issue.oversight": {
+      "id": "kurdish_issue.oversight",
+      "title": "Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@kurdish_issue",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces."
       }
     },
     "labor_affairs.ikincilgrev": {
@@ -31843,6 +31921,29 @@
         }
       ]
     },
+    "economic_democracy.peoples_sector": {
+      "id": "economic_democracy.peoples_sector",
+      "title": "Integrate People's Sector into the Five Year Plan",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@economic_democracy.integrate_sector",
+          "title": "Integrate the People's Sector"
+        },
+        {
+          "id": "@economic_democracy.fund_sector",
+          "title": "Allocate funds to People's Sector"
+        },
+        {
+          "id": "@economic_democracy",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Integrate People's Sector into the Five Year Plan"
+      }
+    },
     "economic_policy.mid": {
       "id": "economic_policy.mid",
       "subtitle": "Middle term solutions aimed at easing the fundamental issues of the economy",
@@ -31999,6 +32100,69 @@
       "content": {
         "content": "We take the battle to the DGMs and do everything in our ministerial power to limit their scale and activity. Leftist groups express their approval of our resistance but we have to do more to completely mutilate the DGMs.",
         "type": "paragraph"
+      }
+    },
+    "kurdish_issue.local_government": {
+      "id": "kurdish_issue.local_government",
+      "title": "Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@kurdish_issue",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration."
+      }
+    },
+    "kurdish_issue": {
+      "id": "kurdish_issue",
+      "type": "scene",
+      "title": "Kurdish Issue",
+      "isCard": true,
+      "newPage": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
+      "options": [
+        {
+          "id": "@kurdish_issue.associations",
+          "title": "Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations."
+        },
+        {
+          "id": "@kurdish_issue.public_discussion",
+          "title": "Lift restrictions on discussing the Kurdish Issue in the public sphere."
+        },
+        {
+          "id": "@kurdish_issue.publishing",
+          "title": "Grant legal permission for Kurdish printing and publishing activities under regulation."
+        },
+        {
+          "id": "@kurdish_issue.meetings",
+          "title": "Ease restrictions on the right to hold meetings and demonstrations."
+        },
+        {
+          "id": "@kurdish_issue.oversight",
+          "title": "Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces."
+        },
+        {
+          "id": "@kurdish_issue.local_government",
+          "title": "Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration."
+        },
+        {
+          "id": "@root",
+          "title": "Back to main."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Kurdish Issue"
       }
     },
     "labor_affairs.healthinspections": {
@@ -33178,6 +33342,29 @@
             }
           }
         ]
+      }
+    },
+    "economic_democracy.integrate_sector": {
+      "id": "economic_democracy.integrate_sector",
+      "title": "Integrate the People's Sector",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['peoples_sector_integrated'] || 0) != 1);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q.peoples_sector_integrated=1;"
+        }
+      ],
+      "options": [
+        {
+          "id": "@economic_democracy.peoples_sector",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Integrate the People's Sector"
       }
     },
     "economic_policy.importban": {
@@ -36099,6 +36286,24 @@
         ]
       }
     },
+    "economic_democracy.fund_sector": {
+      "id": "economic_democracy.fund_sector",
+      "title": "Allocate funds to People's Sector",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['peoples_sector_integrated'] || 0) == 1);"
+      },
+      "options": [
+        {
+          "id": "@economic_democracy.peoples_sector",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Allocate funds to People's Sector"
+      }
+    },
     "economic_policy.export": {
       "id": "economic_policy.export",
       "chooseIf": {
@@ -39004,6 +39209,29 @@
         "type": "paragraph"
       }
     },
+    "economic_democracy.cooperative_bank": {
+      "id": "economic_democracy.cooperative_bank",
+      "title": "Establish the Cooperative Bank",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@economic_democracy.found_bank",
+          "title": "Found the Cooperative Bank"
+        },
+        {
+          "id": "@economic_democracy.fund_bank",
+          "title": "Allocate funds to Cooperative Bank"
+        },
+        {
+          "id": "@economic_democracy",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Establish the Cooperative Bank"
+      }
+    },
     "economic_policy.stateplanning": {
       "id": "economic_policy.stateplanning",
       "subtitle": "Union relations slight decrease; Exchange Pressure ↓; Industrial Production ↑; Unemployment ↑",
@@ -39552,6 +39780,29 @@
         ]
       }
     },
+    "economic_democracy.found_bank": {
+      "id": "economic_democracy.found_bank",
+      "title": "Found the Cooperative Bank",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['cooperative_bank_founded'] || 0) != 1);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q.cooperative_bank_founded=1;"
+        }
+      ],
+      "options": [
+        {
+          "id": "@economic_democracy.cooperative_bank",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Found the Cooperative Bank"
+      }
+    },
     "economic_policy.long": {
       "id": "economic_policy.long",
       "chooseIf": {
@@ -39993,6 +40244,77 @@
             }
           }
         ]
+      }
+    },
+    "economic_democracy.fund_bank": {
+      "id": "economic_democracy.fund_bank",
+      "title": "Allocate funds to Cooperative Bank",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['cooperative_bank_founded'] || 0) == 1);"
+      },
+      "options": [
+        {
+          "id": "@economic_democracy.cooperative_bank",
+          "title": "Back."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Allocate funds to Cooperative Bank"
+      }
+    },
+    "economic_democracy": {
+      "id": "economic_democracy",
+      "type": "scene",
+      "title": "Economic Democracy",
+      "isCard": true,
+      "newPage": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "viewIf": {
+        "$code": "return (((((Q['CHP_in_government'] || 0)) !== 0) && (((Q['economic_minister_party'] == \"CHP\") || (Q['finance_minister_party'] == \"CHP\")))) && (Q['labor_minister_party'] == \"CHP\"));"
+      },
+      "cardImage": "img/portraits/Muezzinoglu.jpg",
+      "options": [
+        {
+          "id": "@economic_democracy.reform_meyak",
+          "title": "Reform MEYAK"
+        },
+        {
+          "id": "@economic_democracy.establish_iyak",
+          "title": "Establish İYAK"
+        },
+        {
+          "id": "@economic_democracy.reform_iyak",
+          "title": "Reform İYAK"
+        },
+        {
+          "id": "@economic_democracy.establish_umbrella",
+          "title": "Establish Cooperative Umbrella Organizations"
+        },
+        {
+          "id": "@economic_democracy.expand_umbrella",
+          "title": "Expand Cooperative Umbrella Organizations"
+        },
+        {
+          "id": "@economic_democracy.peoples_sector",
+          "title": "Integrate People's Sector into the Five Year Plan"
+        },
+        {
+          "id": "@economic_democracy.cooperative_bank",
+          "title": "Establish the Cooperative Bank"
+        },
+        {
+          "id": "@root",
+          "title": "Back to main."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Economic Democracy"
       }
     },
     "economic_policy.standby": {
@@ -48655,15 +48977,17 @@
     },
     "govt_affairs": {
       "shuffle_cabinet": true,
+      "religious_affairs_directorate": true,
       "coalition_affairs": true,
-      "economic_democracy": true,
       "social_welfare": true,
+      "kurdish_issue": true,
       "womens_rights": true,
       "dealing_with_toleration": true,
       "industrial_policy": true,
       "judiciary": true,
       "municipalities": true,
       "agricultural_policy": true,
+      "economic_democracy": true,
       "military_policy": true,
       "economic_policy": true,
       "labor_affairs": true,
@@ -48674,12 +48998,14 @@
     },
     "cabinet": {
       "shuffle_cabinet": true,
-      "economic_democracy": true,
+      "religious_affairs_directorate": true,
       "social_welfare": true,
+      "kurdish_issue": true,
       "womens_rights": true,
       "industrial_policy": true,
       "judiciary": true,
       "agricultural_policy": true,
+      "economic_democracy": true,
       "military_policy": true,
       "economic_policy": true,
       "labor_affairs": true,

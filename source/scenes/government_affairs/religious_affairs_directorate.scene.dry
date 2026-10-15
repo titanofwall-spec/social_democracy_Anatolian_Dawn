@@ -1,0 +1,60 @@
+title: Directorate of Religious Affairs
+is-card: true
+new-page: true
+tags: govt_affairs, cabinet
+view-if: CHP_in_government == 1
+
+= Directorate of Religious Affairs
+
+# Localization
+
+- @sectarian_office: Found the Office of Sectarian Affairs
+- @women_employment: Women Employment Program
+- @admit_women: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+- @recruit_women: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+- @root: Back to main.
+
+@sectarian_office
+title: Found the Office of Sectarian Affairs
+new-page: true
+view-if: sectarian_affairs_office_founded != 1
+on-arrival: {! Q.sectarian_affairs_office_founded=1; !}
+
+= Found the Office of Sectarian Affairs
+
+# Localization
+
+- @religious_affairs_directorate: Back.
+
+@women_employment
+title: Women Employment Program
+new-page: true
+
+= Women Employment Program
+
+# Localization
+
+- @religious_affairs_directorate: Back.
+
+@admit_women
+title: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+new-page: true
+view-if: religious_women_admitted != 1
+on-arrival: {! Q.religious_women_admitted=1; !}
+
+= Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+
+# Localization
+
+- @religious_affairs_directorate: Back.
+
+@recruit_women
+title: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+new-page: true
+view-if: religious_women_admitted == 1
+
+= Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+
+# Localization
+
+- @religious_affairs_directorate: Back.

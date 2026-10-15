@@ -1,0 +1,77 @@
+title: Kurdish Issue
+is-card: true
+new-page: true
+tags: govt_affairs, cabinet
+view-if: CHP_in_government == 1
+
+= Kurdish Issue
+
+# Localization
+
+- @associations: Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.
+- @public_discussion: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+- @publishing: Grant legal permission for Kurdish printing and publishing activities under regulation.
+- @meetings: Ease restrictions on the right to hold meetings and demonstrations.
+- @oversight: Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.
+- @local_government: Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.
+- @root: Back to main.
+
+@associations
+title: Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.
+new-page: true
+
+= Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.
+
+# Localization
+
+- @kurdish_issue: Back.
+
+@public_discussion
+title: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+new-page: true
+
+= Lift restrictions on discussing the Kurdish Issue in the public sphere.
+
+# Localization
+
+- @kurdish_issue: Back.
+
+@publishing
+title: Grant legal permission for Kurdish printing and publishing activities under regulation.
+new-page: true
+
+= Grant legal permission for Kurdish printing and publishing activities under regulation.
+
+# Localization
+
+- @kurdish_issue: Back.
+
+@meetings
+title: Ease restrictions on the right to hold meetings and demonstrations.
+new-page: true
+
+= Ease restrictions on the right to hold meetings and demonstrations.
+
+# Localization
+
+- @kurdish_issue: Back.
+
+@oversight
+title: Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.
+new-page: true
+
+= Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.
+
+# Localization
+
+- @kurdish_issue: Back.
+
+@local_government
+title: Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.
+new-page: true
+
+= Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.
+
+# Localization
+
+- @kurdish_issue: Back.
