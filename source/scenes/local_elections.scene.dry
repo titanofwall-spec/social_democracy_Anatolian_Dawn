@@ -35,6 +35,7 @@ var partyDisplayNames = {
 var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 var lines = [];
 for (var party of parties) {
+    if(!AnatolianRules.partyAvailable(Q,party))continue;
 	var displayName = partyDisplayNames[party] || party.toUpperCase();
 	var votes = Q[party + '_local_votes_disp'];
 	if (typeof votes === 'undefined') {
@@ -60,14 +61,19 @@ Q.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (
 Q.local_chp_seats_display = Q.chp_local_seats || 0;
 Q.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;
 !}
+on-display: {! if(typeof renderElectionResultMap==='function')renderElectionResultMap('local'); !}
 
 = Municipal Election Results
 
+{!<svg class="local-election-parliament" style="width:500px;height:250px;max-width:100%" aria-label="Current TBMM parliament"></svg>!}
+
+{!<div class="election-results-map" data-election-kind="local" aria-label="Local election provincial results"></div>!}
+
 The municipal elections are complete. Control of the provinces now stands at [+ municipalities_controlled +]/[+ total_municipalities +] for <span style="color: #E3000F;">**CHP**</span>.
 
-[? if local_seats_unallocated > 0 : [+ local_seats_unallocated +] seat(s) remain unallocated due to the electoral threshold. ?]
+[? if {! return !(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q))&&Q.local_seats_unallocated>0; !} : [+ local_seats_unallocated +] seat(s) remain unallocated due to the electoral threshold. ?]
 
-**Party standings** (threshold 8%, 67 provinces)
+**Party standings** (67 provincial capitals)
 
 [+ local_results_lines_text +]
 

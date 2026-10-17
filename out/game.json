@@ -7343,7 +7343,7 @@
           "$code": "Q['I_in_government'] = 0;"
         },
         {
-          "$code": "// Snapshot whether the Socialist Left bloc existed as of this election, so the \"Last\n// election vote share\" section on the status screen can reflect the state at the last\n// election rather than whatever the current (possibly later-changed) state is.\nQ.socialist_left_formed_last_election = Q.socialist_left_formed;\n// set old results\n// election threshold constitutional reform\n// banning parties\nvar new_party_sum = 0;\nfor (var party of Q.parties) {\n    Q['old_' + party + '_r'] = Q[party + '_r'];\n    if (Q.constitutional_reform > 0) {\n        if (Q[party + '_votes'] < Q.electoral_threshold || Q[party + '_banned']) {\n            Q[party + '_r'] = 0;\n        } else {\n            Q[party + '_r'] = Q[party + '_votes'];\n        }\n        new_party_sum += Q[party + '_r'];\n    } else {\n        Q[party + '_r'] = Q[party + '_votes'];\n    }\n    // if we use decimals, then we might want to truncate the numbers\n    if (Q.use_decimals) {\n        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n    }  else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n    }\n    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n    Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n}\n// calculate new party sum if electoral reform\nif (Q.electoral_threshold && Q.electoral_threshold > 0) {\n    for (var party of Q.parties) {\n        if (Q[party + '_r'] > 0) {\n            if (Q.use_decimals) {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;\n            } else {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);\n            }\n        }\n        if (Q.use_decimals) {\n            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n        } else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n        }\n        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n        Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n    }\n}\n\n// get change arrows and signs\n\n\nQ.majority_threshold=226;\nif(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q)){AnatolianProvinces.applyElection(Q,'general');}else{\nQ.total_seats=450;Q.majority_threshold=226;\nif(typeof Q.independent_seat_factor!=='number')Q.independent_seat_factor=.5+Math.random()/6;\nvar seatVotes=Object.fromEntries(Q.parties.map(function(p){return [p,Q[p+'_banned']?0:Q[p+'_r']||0];}));if(seatVotes.IND)seatVotes.IND*=Q.independent_seat_factor;\nvar allocation=AnatolianRules.dhondt(seatVotes,450);\nQ.parties.forEach(function(p){Q[p+'_seats']=allocation[p]||0;});\nQ.largest_party_key=Q.parties.slice().sort(function(a,b){return (Q[b+'_r']||0)-(Q[a+'_r']||0);})[0];\n}\n// Display actual shares after the district allocation has been finalized.\nfor(var party of Q.parties){Q[party+'_r_disp']=Q[party+'_r'];Q['change_'+party+'_r']=Q[party+'_r']-Q['old_'+party+'_r'];Q['str_change_'+party]=(Q['change_'+party+'_r']>0?'+':'')+Q['change_'+party+'_r'].toFixed(1);}\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TİP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': Q.MSP_name,\n    'MHP': 'MHP',\n    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'\n};\nif (Q.largest_party_key) {\n    var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n    Q.largest_party = displayName;\n} else {\n    Q.largest_party = 'CHP';\n}\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\n// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\n\nQ.leverage = Q.chp_seats/1.5;\n\nQ.grand_coalition_failed = 0;\n// Reset every governing party, coalition type and ministry together.\nAnatolianRules.resetCabinet(Q);\n\n// reset TIP goals\nQ.TIP_goals_seen = 0;\nQ.TIP_ultimatum_seen = 0;\nQ.welfare_goal = 0;\nQ.agriculture_goal = 0;\nQ.economy_goal = 0;\nQ.finance_goal = 0;\nQ.labor_goal = 0;\nQ.foreign_goal = 0;\nQ.interior_goal = 0;\nQ.defense_goal = 0;\n\nQ.welfare_goal_completed = 0;\nQ.agriculture_goal_completed = 0;\nQ.economy_goal_completed = 0;\nQ.finance_goal_completed = 0;\nQ.labor_goal_completed = 0;\nQ.foreign_goal_completed = 0;\nQ.interior_goal_completed = 0;\nQ.defense_goal_completed = 0;\n\nQ.strike_term_seen = 0;\n\nQ.AP_last_vote_share = Q.AP_r;\n\n// understanding the enemy\nif (Q.MHP_r >= 15) {\n    Q.understanding_enemy_timer = 2;\n}\n\nvar election_result = {'date': new Date(Q.year, Q.month - 1)};\nfor (var party of Q.parties) {\n    election_result[party] = Q[party + '_r'];\n}\nQ.election_records.push(election_result);"
+          "$code": "// Snapshot whether the Socialist Left bloc existed as of this election, so the \"Last\n// election vote share\" section on the status screen can reflect the state at the last\n// election rather than whatever the current (possibly later-changed) state is.\nQ.socialist_left_formed_last_election = Q.socialist_left_formed;\n// set old results\n// election threshold constitutional reform\n// banning parties\nvar new_party_sum = 0;\nfor (var party of Q.parties) {\n    Q['old_' + party + '_r'] = Q[party + '_r'];\n    if (Q.constitutional_reform > 0) {\n        if (Q[party + '_votes'] < Q.electoral_threshold || Q[party + '_banned']) {\n            Q[party + '_r'] = 0;\n        } else {\n            Q[party + '_r'] = Q[party + '_votes'];\n        }\n        new_party_sum += Q[party + '_r'];\n    } else {\n        Q[party + '_r'] = Q[party + '_votes'];\n    }\n    // if we use decimals, then we might want to truncate the numbers\n    if (Q.use_decimals) {\n        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n    }  else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n    }\n    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n    Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n}\n// calculate new party sum if electoral reform\nif (Q.electoral_threshold && Q.electoral_threshold > 0) {\n    for (var party of Q.parties) {\n        if (Q[party + '_r'] > 0) {\n            if (Q.use_decimals) {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;\n            } else {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);\n            }\n        }\n        if (Q.use_decimals) {\n            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n        } else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n        }\n        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n        Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n    }\n}\n\n// get change arrows and signs\n\n\nQ.majority_threshold=226;\nif(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q)){AnatolianProvinces.applyElection(Q,'general');}else{\nQ.total_seats=450;Q.majority_threshold=226;\nif(typeof Q.independent_seat_factor!=='number')Q.independent_seat_factor=.5+Math.random()/6;\nvar seatVotes=Object.fromEntries(Q.parties.map(function(p){return [p,Q[p+'_banned']?0:Q[p+'_r']||0];}));if(seatVotes.IND)seatVotes.IND*=Q.independent_seat_factor;\nvar allocation=AnatolianRules.dhondt(seatVotes,450);\nQ.parties.forEach(function(p){Q[p+'_seats']=allocation[p]||0;});\nQ.largest_party_key=Q.parties.slice().sort(function(a,b){return (Q[b+'_r']||0)-(Q[a+'_r']||0);})[0];\n}\n// Display actual shares after the district allocation has been finalized.\nfor(var party of Q.parties){Q[party+'_r_disp']=Q.use_decimals?Q[party+'_r'].toFixed(1):Math.round(Q[party+'_r']);Q['change_'+party+'_r']=Q[party+'_r']-Q['old_'+party+'_r'];Q['str_change_'+party]=(Q['change_'+party+'_r']>0?'+':'')+Q['change_'+party+'_r'].toFixed(1);}\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TİP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': Q.MSP_name,\n    'MHP': 'MHP',\n    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'\n};\nif (Q.largest_party_key) {\n    var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n    Q.largest_party = displayName;\n} else {\n    Q.largest_party = 'CHP';\n}\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\n// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\n\nQ.leverage = Q.chp_seats/1.5;\n\nQ.grand_coalition_failed = 0;\n// Reset every governing party, coalition type and ministry together.\nAnatolianRules.resetCabinet(Q);\n\n// reset TIP goals\nQ.TIP_goals_seen = 0;\nQ.TIP_ultimatum_seen = 0;\nQ.welfare_goal = 0;\nQ.agriculture_goal = 0;\nQ.economy_goal = 0;\nQ.finance_goal = 0;\nQ.labor_goal = 0;\nQ.foreign_goal = 0;\nQ.interior_goal = 0;\nQ.defense_goal = 0;\n\nQ.welfare_goal_completed = 0;\nQ.agriculture_goal_completed = 0;\nQ.economy_goal_completed = 0;\nQ.finance_goal_completed = 0;\nQ.labor_goal_completed = 0;\nQ.foreign_goal_completed = 0;\nQ.interior_goal_completed = 0;\nQ.defense_goal_completed = 0;\n\nQ.strike_term_seen = 0;\n\nQ.AP_last_vote_share = Q.AP_r;\n\n// understanding the enemy\nif (Q.MHP_r >= 15) {\n    Q.understanding_enemy_timer = 2;\n}\n\nvar election_result = {'date': new Date(Q.year, Q.month - 1)};\nfor (var party of Q.parties) {\n    election_result[party] = Q[party + '_r'];\n}\nQ.election_records.push(election_result);"
         }
       ],
       "onDeparture": [
@@ -7353,7 +7353,7 @@
       ],
       "onDisplay": [
         {
-          "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TİP\",\n        \"name\": \"TİP\",\n        \"seats\": Q.TIP_seats,\n    }\n];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_seats,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_seats,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"AP\",\n        \"name\": \"AP\",\n        \"seats\": Q.AP_seats,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_seats,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_seats,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_seats,\n    },\n]);\ndata=data.concat(AnatolianRules.extraPartyData(Q));\nif (window && d3) {\n    var width = 500;\n    var height = 500;\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        document.getElementById(\"parliament\").style.height = screenWidth/2 + \"px\";\n    }\n\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(\"#parliament\").datum(data).call(parliament);\n}"
+          "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TİP\",\n        \"name\": \"TİP\",\n        \"seats\": Q.TIP_seats,\n    }\n];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_seats,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_seats,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"AP\",\n        \"name\": \"AP\",\n        \"seats\": Q.AP_seats,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_seats,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_seats,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_seats,\n    },\n]);\ndata=data.concat(AnatolianRules.extraPartyData(Q));\nif (window && d3) {\n    var width = 500;\n    var height = 500;\n    var electionParliaments=document.querySelectorAll('.national-election-parliament');\n    var electionParliament=electionParliaments[electionParliaments.length-1];\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        electionParliament.style.height = screenWidth/2 + \"px\";\n    }\n\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(electionParliament).datum(data).call(parliament);\n    if(typeof renderElectionResultMap==='function')renderElectionResultMap('general');\n}"
         }
       ],
       "goTo": [
@@ -7372,7 +7372,17 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<svg id=\"parliament\" style=\"width: 500px; height: 250px;\"> </svg>"
+                "content": "<svg id=\"parliament\" class=\"national-election-parliament\" style=\"width: 500px; height: 250px;\"> </svg>"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<div class=\"election-results-map\" data-election-kind=\"general\" aria-label=\"General election provincial results\"></div>"
               },
               ""
             ]
@@ -8098,43 +8108,51 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "<tr><td>"
-              },
-              " MP ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 49
-              },
-              "% ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 50
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 51
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td></tr>"
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<tr><td>"
+                  },
+                  " MP ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 50
+                  },
+                  "% ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 51
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 52
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td></tr>"
+                  },
+                  " "
+                ],
+                "predicate": 49
               },
               ""
             ]
@@ -8170,7 +8188,7 @@
               "Left Coalition (CHP + TİP): ",
               {
                 "type": "insert",
-                "insert": 52
+                "insert": 53
               },
               " seats"
             ]
@@ -8181,20 +8199,9 @@
               "Kemalist Coalition (CHP + ",
               {
                 "type": "insert",
-                "insert": 53
-              },
-              "): ",
-              {
-                "type": "insert",
                 "insert": 54
               },
-              " seats"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Grand Coalition (CHP + AP): ",
+              "): ",
               {
                 "type": "insert",
                 "insert": 55
@@ -8205,7 +8212,7 @@
           {
             "type": "paragraph",
             "content": [
-              "Unholy Coalition (CHP + MSP): ",
+              "Grand Coalition (CHP + AP): ",
               {
                 "type": "insert",
                 "insert": 56
@@ -8216,15 +8223,10 @@
           {
             "type": "paragraph",
             "content": [
-              "Bourgeois Coalition (AP + ",
+              "Unholy Coalition (CHP + MSP): ",
               {
                 "type": "insert",
                 "insert": 57
-              },
-              " + DP): ",
-              {
-                "type": "insert",
-                "insert": 58
               },
               " seats"
             ]
@@ -8232,7 +8234,12 @@
           {
             "type": "paragraph",
             "content": [
-              "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
+              "Bourgeois Coalition (AP + ",
+              {
+                "type": "insert",
+                "insert": 58
+              },
+              " + DP): ",
               {
                 "type": "insert",
                 "insert": 59
@@ -8243,10 +8250,21 @@
           {
             "type": "paragraph",
             "content": [
+              "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
+              {
+                "type": "insert",
+                "insert": 60
+              },
+              " seats"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ",
-                "predicate": 60
+                "predicate": 61
               },
               ""
             ]
@@ -8260,7 +8278,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['chp_r'] || 0);"
+              "$code": "return (Q['chp_r_disp'] || 0);"
             }
           },
           {
@@ -8278,7 +8296,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['TIP_r'] || 0);"
+              "$code": "return (Q['TIP_r_disp'] || 0);"
             }
           },
           {
@@ -8302,7 +8320,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['CGP_r'] || 0);"
+              "$code": "return (Q['CGP_r_disp'] || 0);"
             }
           },
           {
@@ -8320,7 +8338,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['AP_r'] || 0);"
+              "$code": "return (Q['AP_r_disp'] || 0);"
             }
           },
           {
@@ -8338,7 +8356,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['DP_r'] || 0);"
+              "$code": "return (Q['DP_r_disp'] || 0);"
             }
           },
           {
@@ -8362,7 +8380,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['MSP_r'] || 0);"
+              "$code": "return (Q['MSP_r_disp'] || 0);"
             }
           },
           {
@@ -8380,7 +8398,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['MHP_r'] || 0);"
+              "$code": "return (Q['MHP_r_disp'] || 0);"
             }
           },
           {
@@ -8404,7 +8422,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['TKP_r'] || 0);"
+              "$code": "return (Q['TKP_r_disp'] || 0);"
             }
           },
           {
@@ -8428,7 +8446,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['TSIP_r'] || 0);"
+              "$code": "return (Q['TSIP_r_disp'] || 0);"
             }
           },
           {
@@ -8452,7 +8470,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['TEP_r'] || 0);"
+              "$code": "return (Q['TEP_r_disp'] || 0);"
             }
           },
           {
@@ -8476,7 +8494,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['SDP_r'] || 0);"
+              "$code": "return (Q['SDP_r_disp'] || 0);"
             }
           },
           {
@@ -8494,7 +8512,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['IND_r'] || 0);"
+              "$code": "return (Q['IND_r_disp'] || 0);"
             }
           },
           {
@@ -8518,7 +8536,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['KI_r'] || 0);"
+              "$code": "return (Q['KI_r_disp'] || 0);"
             }
           },
           {
@@ -8536,7 +8554,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['TBP_r'] || 0);"
+              "$code": "return (Q['TBP_r_disp'] || 0);"
             }
           },
           {
@@ -8552,9 +8570,15 @@
             }
           },
           {
+            "type": "predicate",
+            "fn": {
+              "$code": "return AnatolianRules.partyAvailable(Q,'MP');"
+            }
+          },
+          {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['MP_r'] || 0);"
+              "$code": "return (Q['MP_r_disp'] || 0);"
             }
           },
           {
@@ -19341,7 +19365,12 @@
       "id": "local_elections.local_results",
       "onArrival": [
         {
-          "$code": "var partyDisplayNames = {\n\t'chp': 'CHP',\n\t'TIP': 'TİP',\n\t'AP': 'AP',\n\t'CGP': Q.CGP_name || 'CGP',\n\t'DP': 'DP',\n\t'MSP': 'MSP',\n\t'MHP': 'MHP',\n\t'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'\n};\nvar parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nvar lines = [];\nfor (var party of parties) {\n\tvar displayName = partyDisplayNames[party] || party.toUpperCase();\n\tvar votes = Q[party + '_local_votes_disp'];\n\tif (typeof votes === 'undefined') {\n\t\tvar vDec = Q[party + '_local_votes_dec'];\n\t\tvotes = (typeof vDec !== 'undefined') ? Number(vDec).toFixed(1) : '0.0';\n\t}\n\tvar seats = Q[party + '_local_seats'];\n\tif (typeof seats === 'undefined') {\n\t\tseats = 0;\n\t}\n\tlines.push({\n\t\tname: displayName,\n\t\tvotes: votes,\n\t\tseats: seats\n\t});\n}\nQ.local_results_lines = lines;\nQ.local_results_lines_text = lines.map(function(entry) {\n\treturn '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';\n}).join('\\n');\nQ.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));\nQ.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));\nQ.local_chp_seats_display = Q.chp_local_seats || 0;\nQ.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;"
+          "$code": "var partyDisplayNames = {\n\t'chp': 'CHP',\n\t'TIP': 'TİP',\n\t'AP': 'AP',\n\t'CGP': Q.CGP_name || 'CGP',\n\t'DP': 'DP',\n\t'MSP': 'MSP',\n\t'MHP': 'MHP',\n\t'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'\n};\nvar parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nvar lines = [];\nfor (var party of parties) {\n    if(!AnatolianRules.partyAvailable(Q,party))continue;\n\tvar displayName = partyDisplayNames[party] || party.toUpperCase();\n\tvar votes = Q[party + '_local_votes_disp'];\n\tif (typeof votes === 'undefined') {\n\t\tvar vDec = Q[party + '_local_votes_dec'];\n\t\tvotes = (typeof vDec !== 'undefined') ? Number(vDec).toFixed(1) : '0.0';\n\t}\n\tvar seats = Q[party + '_local_seats'];\n\tif (typeof seats === 'undefined') {\n\t\tseats = 0;\n\t}\n\tlines.push({\n\t\tname: displayName,\n\t\tvotes: votes,\n\t\tseats: seats\n\t});\n}\nQ.local_results_lines = lines;\nQ.local_results_lines_text = lines.map(function(entry) {\n\treturn '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';\n}).join('\\n');\nQ.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));\nQ.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));\nQ.local_chp_seats_display = Q.chp_local_seats || 0;\nQ.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;"
+        }
+      ],
+      "onDisplay": [
+        {
+          "$code": "if(typeof renderElectionResultMap==='function')renderElectionResultMap('local');"
         }
       ],
       "options": [
@@ -19355,6 +19384,26 @@
           {
             "type": "heading",
             "content": "Municipal Election Results"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<svg class=\"local-election-parliament\" style=\"width:500px;height:250px;max-width:100%\" aria-label=\"Current TBMM parliament\"></svg>"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<div class=\"election-results-map\" data-election-kind=\"local\" aria-label=\"Local election provincial results\"></div>"
+              },
+              ""
+            ]
           },
           {
             "type": "paragraph",
@@ -19383,7 +19432,7 @@
               {
                 "type": "conditional",
                 "content": [
-                  "",
+                  ":",
                   {
                     "type": "insert",
                     "insert": 3
@@ -19402,7 +19451,7 @@
                 "type": "emphasis-2",
                 "content": "Party standings"
               },
-              " (threshold 8%, 67 provinces)"
+              " (67 provincial capitals)"
             ]
           },
           {
@@ -19462,7 +19511,7 @@
           {
             "type": "predicate",
             "fn": {
-              "$code": "return ((Q['local_seats_unallocated'] || 0) > 0);"
+              "$code": "return !(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q))&&Q.local_seats_unallocated>0;"
             }
           },
           {

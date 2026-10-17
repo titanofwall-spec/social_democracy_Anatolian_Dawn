@@ -82,7 +82,7 @@ Q.parties.forEach(function(p){Q[p+'_seats']=allocation[p]||0;});
 Q.largest_party_key=Q.parties.slice().sort(function(a,b){return (Q[b+'_r']||0)-(Q[a+'_r']||0);})[0];
 }
 // Display actual shares after the district allocation has been finalized.
-for(var party of Q.parties){Q[party+'_r_disp']=Q[party+'_r'];Q['change_'+party+'_r']=Q[party+'_r']-Q['old_'+party+'_r'];Q['str_change_'+party]=(Q['change_'+party+'_r']>0?'+':'')+Q['change_'+party+'_r'].toFixed(1);}
+for(var party of Q.parties){Q[party+'_r_disp']=Q.use_decimals?Q[party+'_r'].toFixed(1):Math.round(Q[party+'_r']);Q['change_'+party+'_r']=Q[party+'_r']-Q['old_'+party+'_r'];Q['str_change_'+party]=(Q['change_'+party+'_r']>0?'+':'')+Q['change_'+party+'_r'].toFixed(1);}
 var partyDisplayNames = {
     'chp': 'CHP',
     'TIP': 'TİP',
@@ -206,53 +206,58 @@ data=data.concat(AnatolianRules.extraPartyData(Q));
 if (window && d3) {
     var width = 500;
     var height = 500;
+    var electionParliaments=document.querySelectorAll('.national-election-parliament');
+    var electionParliament=electionParliaments[electionParliaments.length-1];
     var screenWidth = document.getElementById('content').offsetWidth;
     if (screenWidth < width - 50) {
         width = screenWidth - 50;
         height = width;
-        document.getElementById("parliament").style.height = screenWidth/2 + "px";
+        electionParliament.style.height = screenWidth/2 + "px";
     }
 
     var parliament = d3.parliament();
     parliament.width(width).height(height).innerRadiusCoef(0.4);
     parliament.enter.fromCenter(true).smallToBig(true);
     parliament.exit.toCenter(false).bigToSmall(true);
-    d3.select("#parliament").datum(data).call(parliament);
+    d3.select(electionParliament).datum(data).call(parliament);
+    if(typeof renderElectionResultMap==='function')renderElectionResultMap('general');
 }
 !}
 go-to: coalition_menu
 
 = Election results
 
-{!<svg id="parliament" style="width: 500px; height: 250px;"> </svg>!}
+{!<svg id="parliament" class="national-election-parliament" style="width: 500px; height: 250px;"> </svg>!}
+
+{!<div class="election-results-map" data-election-kind="general" aria-label="General election provincial results"></div>!}
 
 {!<table>!}
 {!<tr><td>Party</td><td>Vote share</td><td>% Change</td><td>Seats</td></tr>!}
-{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **CHP:** {!</td><td>!} **[+ chp_r +]%** {!</td><td>!} **[+ str_change_chp +]** {!</td><td>!} **[+ chp_seats +]** {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#E3000F; outline: 2px; outline-style: solid;'> </div> !} **CHP:** {!</td><td>!} **[+ chp_r_disp +]%** {!</td><td>!} **[+ str_change_chp +]** {!</td><td>!} **[+ chp_seats +]** {!</td></tr>!}
 
 
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} TİP: {!</td><td>!} [+ TIP_r +]% {!</td><td>!} [+ str_change_TIP +] {!</td><td>!} [+ TIP_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} TİP: {!</td><td>!} [+ TIP_r_disp +]% {!</td><td>!} [+ str_change_TIP +] {!</td><td>!} [+ TIP_seats +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#5b7387'> </div> !} [+ CGP_name +]: {!</td><td>!} [+ CGP_r +]% {!</td><td>!} [+ str_change_CGP +] {!</td><td>!} [+ CGP_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#5b7387'> </div> !} [+ CGP_name +]: {!</td><td>!} [+ CGP_r_disp +]% {!</td><td>!} [+ str_change_CGP +] {!</td><td>!} [+ CGP_seats +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#750a6f'> </div> !} AP: {!</td><td>!} [+AP_r +]% {!</td><td>!} [+ str_change_AP +] {!</td><td>!} [+ AP_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#750a6f'> </div> !} AP: {!</td><td>!} [+ AP_r_disp +]% {!</td><td>!} [+ str_change_AP +] {!</td><td>!} [+ AP_seats +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#4a4d04'> </div> !} DP: {!</td><td>!} [+ DP_r +]% {!</td><td>!} [+ str_change_DP +] {!</td><td>!} [+ DP_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#4a4d04'> </div> !} DP: {!</td><td>!} [+ DP_r_disp +]% {!</td><td>!} [+ str_change_DP +] {!</td><td>!} [+ DP_seats +] {!</td></tr>!}
 
 
-{!<tr><td><div class="box" style='background-color:#054521'> </div> !} [+ MSP_name +]: {!</td><td>!} [+ MSP_r +]% {!</td><td>!} [+ str_change_MSP +] {!</td><td>!} [+ MSP_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#054521'> </div> !} [+ MSP_name +]: {!</td><td>!} [+ MSP_r_disp +]% {!</td><td>!} [+ str_change_MSP +] {!</td><td>!} [+ MSP_seats +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} MHP: {!</td><td>!} [+ MHP_r +]% {!</td><td>!} [+ str_change_MHP +] {!</td><td>!} [+ MHP_seats +] {!</td></tr>!}
-[? if socialist_left_formed: {!<tr><td>!} TKP {!</td><td>!} [+ TKP_r +]% {!</td><td>!} [+ str_change_TKP +] {!</td><td>!} [+ TKP_seats +] {!</td></tr>!} ?]
-[? if socialist_left_formed: {!<tr><td>!} TSİP {!</td><td>!} [+ TSIP_r +]% {!</td><td>!} [+ str_change_TSIP +] {!</td><td>!} [+ TSIP_seats +] {!</td></tr>!} ?]
-[? if socialist_left_formed: {!<tr><td>!} TEP {!</td><td>!} [+ TEP_r +]% {!</td><td>!} [+ str_change_TEP +] {!</td><td>!} [+ TEP_seats +] {!</td></tr>!} ?]
-[? if socialist_left_formed: {!<tr><td>!} SDP {!</td><td>!} [+ SDP_r +]% {!</td><td>!} [+ str_change_SDP +] {!</td><td>!} [+ SDP_seats +] {!</td></tr>!} ?]
-{!<tr><td>!} Independents {!</td><td>!} [+ IND_r +]% {!</td><td>!} [+ str_change_IND +] {!</td><td>!} [+ IND_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} MHP: {!</td><td>!} [+ MHP_r_disp +]% {!</td><td>!} [+ str_change_MHP +] {!</td><td>!} [+ MHP_seats +] {!</td></tr>!}
+[? if socialist_left_formed: {!<tr><td>!} TKP {!</td><td>!} [+ TKP_r_disp +]% {!</td><td>!} [+ str_change_TKP +] {!</td><td>!} [+ TKP_seats +] {!</td></tr>!} ?]
+[? if socialist_left_formed: {!<tr><td>!} TSİP {!</td><td>!} [+ TSIP_r_disp +]% {!</td><td>!} [+ str_change_TSIP +] {!</td><td>!} [+ TSIP_seats +] {!</td></tr>!} ?]
+[? if socialist_left_formed: {!<tr><td>!} TEP {!</td><td>!} [+ TEP_r_disp +]% {!</td><td>!} [+ str_change_TEP +] {!</td><td>!} [+ TEP_seats +] {!</td></tr>!} ?]
+[? if socialist_left_formed: {!<tr><td>!} SDP {!</td><td>!} [+ SDP_r_disp +]% {!</td><td>!} [+ str_change_SDP +] {!</td><td>!} [+ SDP_seats +] {!</td></tr>!} ?]
+{!<tr><td>!} Independents {!</td><td>!} [+ IND_r_disp +]% {!</td><td>!} [+ str_change_IND +] {!</td><td>!} [+ IND_seats +] {!</td></tr>!}
 
-[? if kurdish_independents_unlocked: {!<tr><td>!} Kurdish Independents {!</td><td>!} [+ KI_r +]% {!</td><td>!} [+ str_change_KI +] {!</td><td>!} [+ KI_seats +] {!</td></tr>!} ?]
-{!<tr><td>!} TBP {!</td><td>!} [+ TBP_r +]% {!</td><td>!} [+ str_change_TBP +] {!</td><td>!} [+ TBP_seats +] {!</td></tr>!}
-{!<tr><td>!} MP {!</td><td>!} [+ MP_r +]% {!</td><td>!} [+ str_change_MP +] {!</td><td>!} [+ MP_seats +] {!</td></tr>!}
+[? if kurdish_independents_unlocked: {!<tr><td>!} Kurdish Independents {!</td><td>!} [+ KI_r_disp +]% {!</td><td>!} [+ str_change_KI +] {!</td><td>!} [+ KI_seats +] {!</td></tr>!} ?]
+{!<tr><td>!} TBP {!</td><td>!} [+ TBP_r_disp +]% {!</td><td>!} [+ str_change_TBP +] {!</td><td>!} [+ TBP_seats +] {!</td></tr>!}
+[? if {! return AnatolianRules.partyAvailable(Q,'MP'); !}: {!<tr><td>!} MP {!</td><td>!} [+ MP_r_disp +]% {!</td><td>!} [+ str_change_MP +] {!</td><td>!} [+ MP_seats +] {!</td></tr>!} ?]
 {!</table>!}
 
 **Potential coalitions** *(226 seats needed for a majority)*

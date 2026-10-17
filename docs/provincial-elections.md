@@ -10,15 +10,21 @@ Census input totals: 35,605,176 (1970), 40,347,719 (1975), 44,736,957 (1980). Th
 
 ## Voting
 
-Province preference weights now use all 469 class-party rows supplied in the later voting-distribution table. The demographic population pools are unchanged. Rounded voting rows are normalized to 100%; the two all-zero employer rows have zero population weight and do not contribute. Class vote shares are combined using each province's existing demographic shares, then fitted with province-specific party multipliers. These weights no longer interpolate the old 1973/1977 electoral preference targets.
+The 469 supplied class-party rows remain the baseline for national support. Historical saturation changes where those voters are distributed, rather than awarding or removing nationwide support. Baseline provincial class weights, demographic pools and explicit player preference modifiers are retained.
+
+The supplied 1973 and 1977 general-election tables provide the regional benchmarks. The shape of CHP's gains moves from the 1973 pattern toward 1977 as nationwide support rises from 33.30% to 41.38%. Historical regional affinities are strengthened, so urban gains and AP strongholds diverge rather than moving uniformly. At that benchmark, provincial CHP support is bounded by its higher 1973/1977 result. Nationwide support above the benchmark opens further headroom; seats themselves are never capped or overridden.
+
+A constrained fit redistributes free voters while preserving provincial class-pool sizes and fixed Kurdish political votes. General-election party totals are conserved exactly through balanced integer rounding. MP's existing provincial decline and cap are preserved. The national-only projection used during polling-point searches avoids repeatedly solving the spatial fit.
+
+Both sets of 67 supplied capital-mayor winners inform local affinity. Their influence is modest in general elections and stronger in municipal contests. The national mayoral totals calibrate municipal voting preferences relative to general elections. National provincial-council totals are retained as a separate reference, not mixed into the mayoral tally. No provincial local vote totals were supplied, so local vote profiles are modeled estimates; supplied capital winners are calibration anchors rather than guaranteed outcomes after player actions.
 
 The fixed Kurdish political pools remain part of the calculation. Where they impose a minimum above the supplied aggregate target, the target is fitted as closely as possible while retaining those pools and the workbook's demographic figures.
 
 The supplied Other column includes minor parties and independents. Its underlying votes are allocated among the existing named parties according to their existing demographic appeal and political-pool minimums. In province result displays these parties appear as Other. Current voter preferences group MP, TBP, Independents and unlocked Kurdish Independents into Others, with a colored hover breakdown. TIP is shown separately before formation; after formation the separate Socialist Left row includes TIP and its four members. This is display grouping only: the underlying parties, seat allocation and existing Socialist Left electoral pooling remain separate.
 
-Saved games recalibrate tendency weights once using version 2. Local demographic changes, explicit preference modifiers, population anchors, initial parliamentary totals and previous election snapshots are retained.
+Saved games recalibrate tendency metadata once using version 4, keeping the class-vote baseline intact. Local demographic changes, explicit preference modifiers, population anchors, initial parliamentary totals and previous election snapshots are retained.
 
-The original 1973/1977 election tables still supply constituency seat quotas and valid-vote/population ratios. Adiyaman's 1973 named party counts and stated total imply a remainder of 12,393 rather than the supplied 11,109; the import preserves the named counts and stated total.
+The refreshed 1973/1977 general-election tables also supply constituency seat quotas and valid-vote/population ratios. Adiyaman's 1973 named party counts and stated total imply a remainder of 12,393 rather than the supplied 11,109; the import preserves the named counts and stated total.
 
 Projected valid votes use each province's historical valid-vote/population ratios, interpolated between the two elections. Residents are not treated as eligible voters. National polls aggregate provincial valid votes. Socialists remain individually visible in polling data but pool under TIP for seat calculations once Socialist Left has formed. TIP's ban and endorsement transfer still apply.
 
@@ -39,3 +45,7 @@ TKP, TSIP, TEP and SDP are absent from the active party roster before the TIP re
 Kurdish Independents unlock through General Amnesty. Otherwise the Placeholder event becomes eligible in the first period of January 1975 (or the first later eligible visit), doubles radicalism up to 100%, and unlocks the party exactly once. Before this unlock, radical Kurdish voters have no eligible electoral organization and are excluded from projected valid votes.
 
 The map toolbar contains adjoining Current polls, 1973 General, 1977 General, 1981 General, 1973 Local, 1977 Local and 1981 Local tabs. Unrecorded elections are disabled. A 1975 general election, or scheduling the next general election for 1975, changes the latter general labels to 1975 and 1979. Local labels remain fixed. The ledger uses existing party flag assets and the shared name/tooltip formatter; independent/umbrella entries use a neutral marker because they have no party flag. Its parliamentary column is Seats.
+
+## Election results screens
+
+General and local results show a clickable provincial map immediately below the shared TBMM parliament graphic. Each map retains its own archived snapshot; opening details from an older result does not substitute current polls or a later election. Local results show the preceding national parliament. Provincial outlines are black in both themes, while hover and keyboard-focus highlights retain the theme's accent color.
