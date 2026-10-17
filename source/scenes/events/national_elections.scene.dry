@@ -135,7 +135,7 @@ var partyDisplayNames = {
     'DP': 'DP',
     'MSP': Q.MSP_name,
     'MHP': 'MHP',
-    'other': 'Other'
+    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','KI':'Kurdish Independents','other': 'Other'
 };
 if (Q.largest_party_key) {
     var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();
@@ -202,8 +202,8 @@ on-display: {!
 data = [
     {
         "id": "TIP",
-        "legend": Q.socialist_left_formed ? "Socialist Left" : "TIP",
-        "name": Q.socialist_left_formed ? "Socialist Left" : "TIP",
+        "legend": "TIP",
+        "name": "TIP",
         "seats": Q.TIP_seats,
     }
 ];
@@ -252,6 +252,7 @@ data = data.concat([
         "seats": Q.MHP_seats,
     },
 ]);
+data=data.concat(AnatolianRules.extraPartyData(Q));
 if (window && d3) {
     var width = 500;
     var height = 500;
@@ -281,7 +282,7 @@ go-to: coalition_menu
 
 
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} [? if socialist_left_formed: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_votes +]%<br>TKP: [+ TKP_votes +]%<br>TSİP: [+ TSIP_votes +]%<br>TEP: [+ TEP_votes +]%<br>SDP: [+ SDP_votes +]%</span></span> ?][? if not socialist_left_formed: TIP?]: {!</td><td>!} [+ TIP_r +]% {!</td><td>!} [+ str_change_TIP +] {!</td><td>!} [+ TIP_seats +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} TİP: {!</td><td>!} [+ TIP_r +]% {!</td><td>!} [+ str_change_TIP +] {!</td><td>!} [+ TIP_seats +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#5b7387'> </div> !} [+ CGP_name +]: {!</td><td>!} [+ CGP_r +]% {!</td><td>!} [+ str_change_CGP +] {!</td><td>!} [+ CGP_seats +] {!</td></tr>!}
 
@@ -294,6 +295,11 @@ go-to: coalition_menu
 {!<tr><td><div class="box" style='background-color:#054521'> </div> !} [+ MSP_name +]: {!</td><td>!} [+ MSP_r +]% {!</td><td>!} [+ str_change_MSP +] {!</td><td>!} [+ MSP_seats +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} MHP: {!</td><td>!} [+ MHP_r +]% {!</td><td>!} [+ str_change_MHP +] {!</td><td>!} [+ MHP_seats +] {!</td></tr>!}
+{!<tr><td>!} TKP {!</td><td>!} [+ TKP_r +]% {!</td><td>!} [+ str_change_TKP +] {!</td><td>!} [+ TKP_seats +] {!</td></tr>!}
+{!<tr><td>!} TSİP {!</td><td>!} [+ TSIP_r +]% {!</td><td>!} [+ str_change_TSIP +] {!</td><td>!} [+ TSIP_seats +] {!</td></tr>!}
+{!<tr><td>!} TEP {!</td><td>!} [+ TEP_r +]% {!</td><td>!} [+ str_change_TEP +] {!</td><td>!} [+ TEP_seats +] {!</td></tr>!}
+{!<tr><td>!} SDP {!</td><td>!} [+ SDP_r +]% {!</td><td>!} [+ str_change_SDP +] {!</td><td>!} [+ SDP_seats +] {!</td></tr>!}
+{!<tr><td>!} Kurdish Independents {!</td><td>!} [+ KI_r +]% {!</td><td>!} [+ str_change_KI +] {!</td><td>!} [+ KI_seats +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions** *(226 seats needed for a majority)*

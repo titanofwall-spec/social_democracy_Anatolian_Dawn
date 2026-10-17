@@ -1,6 +1,7 @@
 title: Post Event
 new-page: true
 on-arrival: {!
+AnatolianRules.ensureKurdishIssue(Q);
 var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
 Q.cyprus_calendar_advance = 0;
@@ -331,80 +332,6 @@ if (turnAdvanced) {
         Q.agricultural_price_timer = 0;
     }
 
-// Kurdish Nationalism
-// Political Consciousness
-// Eastern crime
-if (Q.eastern_crime == 5) {
-        Q.kurdish_political_consciousness  += 0.005;
-}
-if (Q.eastern_crime == 4) {
-        Q.kurdish_political_consciousness  += 0.004;
-}
-if (Q.eastern_crime == 3) {
-        Q.kurdish_political_consciousness  += 0.003;
-}
-if (Q.eastern_crime == 2) {
-        Q.kurdish_political_consciousness  += 0.002;
-}
-if (Q.eastern_crime == 1) {
-        Q.kurdish_political_consciousness  += 0.001;
-}
-if (Q.eastern_crime <= 0) {
-        Q.kurdish_political_consciousness  -= 0.002;
-}
-// CHP attitude
-if (Q.CHP_kurdish_attitude == 0) {
-        Q.kurdish_political_consciousness  -= 0.001;
-}
-if (Q.CHP_kurdish_attitude == 1) {
-        Q.kurdish_political_consciousness  += 0.001;
-}
-if (Q.CHP_kurdish_attitude == 2) {
-        Q.kurdish_political_consciousness  += 0.002;
-}
-//ddkd
-if (Q.ddkd_formed == 1) {
-        Q.kurdish_political_consciousness  += 0.001;
-}
-
-// Kurdish Radicalism
-// CHP attitude
-if (Q.CHP_kurdish_attitude == 0) {
-        Q.kurdish_radicalism  += 0.001;
-}
-if (Q.CHP_kurdish_attitude == 2) {
-        Q.kurdish_radicalism  -= 0.001;
-}
-// tip ban
-if (Q.TIP_banned == 1) {
-        Q.kurdish_radicalism  += 0.001;
-}
-if (Q.TIP_banned == 0) {
-        Q.kurdish_radicalism  -= 0.001;
-}
-// ddkd
-if (Q.ddkd_formed == 0) {
-        Q.kurdish_radicalism  += 0.002;
-}
-if (Q.ddkd_formed == 1) {
-        Q.kurdish_radicalism  -= 0.001;
-}
-// army in government
-if (Q.prime_minister_party == "I") {
-        Q.kurdish_radicalism  += 0.002;
-}
-
-// Factors affecting Kurdish Nationalism
-// Consciousness
-// chp attitude
-// eastern crime
-// ddkd formed or not
-
-// Radicalism
-// CHP attitude here too
-// tip being banned
-// ddkd here too
-// army in government
 //////////////////////////////// Education & Science support/economic changes
     if (Q.major_curriculum && Q.major_curriculum == "democratic") {
         if (Q.pro_republic < 60) {
@@ -547,21 +474,8 @@ if (Q.prime_minister_party == "I") {
 }
 Q.far_left_force = 0;
 Q.far_right_force = 0;
-Q.separatist_force = 0;
 Q.state_force = 0;
 Q.democracy_force = 0;
-
-// Separatist forces calculation (strength × militancy)
-if (Q.kurdish_radicalism >= 0.69) {
-    Q.pkk_formed = 1;
-    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);
-    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;
-    Q.separatist_force += Q.pkk_force;
-} else {
-    Q.pkk_formed = 0;
-    Q.pkk_strength = 0;
-    Q.pkk_force = 0;
-}
 
 // Far left forces calculation (strength × militancy)
 if (!Q.thkpc_destroyed) {
@@ -600,22 +514,18 @@ Q.state_force = Q.police_force;
 Q.democracy_force = Q.state_force;
 
 // Total forces for percentage calculation
-Q.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;
+Q.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;
 
 // Convert to percentages
 if (Q.total_forces > 0) {
     Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);
     Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);
-    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);
     Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);
     Q.democracy_force_percent = Q.state_force_percent;
 
     // Individual organization force percentages
     if (!Q.thkpc_destroyed) {
         Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);
-    }
-    if (Q.pkk_formed) {
-        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);
     }
     if (Q.devyol_formed) {
         Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);
@@ -635,7 +545,6 @@ if (Q.total_forces > 0) {
 // Determine street control levels
 Q.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;
 Q.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;
-Q.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;
 Q.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);
 Q.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);
 
@@ -743,10 +652,6 @@ if (!Q.CHP_in_government) {
 // CHP in government but not controlling labour ministry: no change
 Q.disk_turkis_conflict = Math.max(0, Math.min(1, Q.disk_turkis_conflict));
 
-// 4. High Kurdish radicalism (−2/yr)
-if (Q.kurdish_radicalism >= 0.69) {
-    Q.democracystatus -= 2/24;
-}
 
 // Clamp democracystatus to [0, 100]
 Q.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));

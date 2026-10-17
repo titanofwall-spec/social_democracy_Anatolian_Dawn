@@ -65,7 +65,7 @@ We have increased our campaigning among the Alevi minority
 subtitle: Resources will decrease by 1. Kurdish support will increase.
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources
-on-arrival: kurds_chp += 3; kurdish_radicalism -= 0.05; kurdish_political_awareness += 0.05; state_employees_chp -= 1; resources -= 1
+on-arrival: kurds_chp += 3; state_employees_chp -= 1; resources -= 1
 
 We have increased our campaigning among the Kurds.
 

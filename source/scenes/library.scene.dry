@@ -33,11 +33,11 @@ To start off, on the left side of the screen, one will encounter various tabs th
 
 The 'Main' tab is the basic one that shows the rough outline of the general situation within the country, such as the date, who the president is, who the prime minister is and so on. One crucial value shown in this tab is the attitude of TSK (acronym for the Turkish Armed Forces) towards the general status of the nation and their belief in the democratic framework. The head of the general staff is crucial in the sense that even though they can't prevent or conduct coups on their own, they can determine the nature of a coup carried out by the military hierarchy, for example if a coup only has the purpose of resetting the political status or reshaping the democratic mechanisms as a whole. In that sense even though they are supposed to not take part in the political matters, the head of the armed forces can influence the future of the nation greatly. Turkey's 1970s in real life ended with a bloody coup in 1980 and such a scenario may repeat itself if the army loses belief in the ability of the current system to effectively rule the nation, and if the root causes that carried the nation to such a terrible outcome aren't resolved. That's where you, the player, need to take action and both prevent the nation from following such a path and remove the systematic issues that would carry the nation towards that path in the first place.
 
-The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which show how close our ties are with the labour movement and whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipal control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
+The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, The Kurdish Issue, which shows political consciousness, radicalism and paramilitarism within their respective Kurdish population pools, union relations which show how close our ties are with the labour movement and whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipal control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
 
 The 'Defense' tab shows the status of the paramilitary organizations that hold influence over the streets and the level of political violence, decided upon by the percentage of the state control over the streets compared to those of the far right and the far-left groups. The objective of the player is not to empower either the far right or the far left but to resolve the political violence that if unsolved may be a huge milestone towards a military intervention. The police forces aren't immune to politics either and their loyalty to the parliamentary and republican framework will need to be kept in check. If the street fighting becomes unmanageable, it will damage both our party and the rest of the parliamentary framework greatly and may prevent many of our political capabilities. This tab also shows the strength of the three branches of the armed forces: land, sea and air which have the potential to influence the outcome of many of the international situations that the nation will face throughout the 1970s.
 
-The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.
+The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. Kurdish voter preferences combine the existing demographic preferences of nonpolitical citizens with the party distributions specified by The Kurdish Issue.
 
 The 'Exterior Affairs' tab shows the international relations of our nation and the status of the various diplomatic crises that the nation will encounter.
 
@@ -460,7 +460,7 @@ go-to: menu
 
 **Alevis**: A Shiite minority within Central Anatolia. Overwhelmingly support <span style="color: #E3000F;">**CHP**</span> and to a small degree the Alevi minority rights party, TBP. About 10% of the population.
 
-**Kurdish National Movement**: Even though the Kurds make up a significant portion of the population, only a minority of them have political consciousness and demands regarding their socioeconomic or cultural status. Even though the politically aware Kurdish population makes up about 5% of the population, that percentage can significantly rise in reaction to various events.
+**Kurdish population**: Political consciousness determines the politically active share. Radicalism is a share of that group, and paramilitarism is a share of the radicals. The demographic voting weight remains separate from those percentages.
 
 @public_opinion
 on-arrival: {!
@@ -579,9 +579,7 @@ Strength of ÖHP: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength
 
 [? if raiders_formed: Raiders Militarization: [+ raiders_militancy : militancy +] ?]
 
-[? if pkk_formed: {!<span class="tooltip-text" title="Kurdistan Workers' Party (PKK) is a separatist militant organization.">PKK</span>!} Strength: [+ pkk_strength_2 +] thousand ?]
 
-[? if pkk_formed: PKK Militarization: [+ pkk_militancy : militancy +] ?]
 
 **Official military/paramilitary groups:**
 

@@ -3,6 +3,7 @@ new-page: true
 is-special: true
 on-arrival: {!
 AnatolianRules.refreshPartyNames(Q,this.state.visits);
+AnatolianRules.ensureKurdishIssue(Q);
 // Format economic indicators with proper fallbacks only for display
 Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';
 Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';
@@ -40,33 +41,6 @@ if (typeof Q.chp_seats === 'undefined') {
     Q.other_seats = 18;
 }
 
-// Socialist Left: once formed, TİP's vote share is treated as the aggregate "Socialist Left"
-// bloc, and is displayed broken down into TİP itself and its minor splinter parties
-// (TKP, TSİP, TEP, SDP), each taking a fixed share of the bloc's total vote. Recomputed on
-// every visit so it always reflects the current (aggregate) TIP_r, without altering TIP_r
-// itself (which is still used elsewhere, e.g. for seat calculations). This uses
-// socialist_left_formed_last_election (a snapshot taken at the last election) rather than
-// the live socialist_left_formed, since TIP_r itself is the result of the last election.
-if (typeof Q.socialist_left_formed === 'undefined') {
-    Q.socialist_left_formed = 0;
-}
-if (typeof Q.socialist_left_formed_last_election === 'undefined') {
-    Q.socialist_left_formed_last_election = Q.socialist_left_formed;
-}
-Q.former_TIP_r = Q.TIP_r;
-if (Q.socialist_left_formed_last_election) {
-    Q.TKP_r = Q.former_TIP_r * 0.25;
-    Q.TSIP_r = Q.former_TIP_r * 0.25;
-    Q.TEP_r = Q.former_TIP_r * 0.10;
-    Q.SDP_r = Q.former_TIP_r * 0.20;
-    Q.TIP_socialist_left_r = Q.former_TIP_r * 0.20;
-} else {
-    Q.TKP_r = 0;
-    Q.TSIP_r = 0;
-    Q.TEP_r = 0;
-    Q.SDP_r = 0;
-    Q.TIP_socialist_left_r = Q.former_TIP_r;
-}
 if (typeof Q.majority_threshold === 'undefined') {
     Q.majority_threshold = 226;
 }
@@ -179,6 +153,8 @@ TBMM composition (seats):
 <span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_seats +]
 <span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_seats +]
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_seats +]
+[+ {! return AnatolianRules.extraPartyRows(Q,"seats"); !} +]
+
 Others: [+ other_seats +]
 
 [? if majority_threshold: Majority required: [+ majority_threshold +] seats ?]
@@ -188,11 +164,13 @@ Last election vote share:
 <span class="tooltip-text" title="Republican People's Party" style="color: #E3000F;">**CHP**</span>: [+ chp_r +]%
 
 <span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+ AP_r +]%
-[? if socialist_left_formed_last_election: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_r +]%<br>TKP: [+ TKP_r +]%<br>TSİP: [+ TSIP_r +]%<br>TEP: [+ TEP_r +]%<br>SDP: [+ SDP_r +]%</span></span>: [+ former_TIP_r +]% ?][? if not socialist_left_formed_last_election: <span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TIP**</span>: [+ TIP_r +]% ?]
+<span style="color:#8B0000;">**TİP**</span>: [+ TIP_r +]%
 <span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_r +]%
 <span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_r +]%
 <span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_r +]%
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_r +]%
+[+ {! return AnatolianRules.extraPartyRows(Q,"results"); !} +]
+
 Others: [+ other_r +]%
 
 [? if CHP_in_government = 1 : Budget: [+ budget +] ?]
@@ -233,11 +211,9 @@ Next general election: [+ next_election_month : month +] [+ next_election_year +
 
 <span style="color: #954B00;">**MHP**</span>:  [? if MHP_party_leader == "Alparslan Türkeş" : Turkic-Islamic Synthesis (Türkeş) ?]
 
-= Kurdish Nationalism
+= The Kurdish Issue
 
-Political Consciousness: [? if kurdish_political_consciousness < 0.05: Nonexistent ?][? if kurdish_political_consciousness >= 0.05 and kurdish_political_consciousness < 0.14: Very low ?][? if kurdish_political_consciousness >= 0.14 and kurdish_political_consciousness < 0.24: Low ?][? if kurdish_political_consciousness >= 0.24 and kurdish_political_consciousness < 0.44: Medium-low ?][? if kurdish_political_consciousness >= 0.44 and kurdish_political_consciousness < 0.69: Medium ?][? if kurdish_political_consciousness >= 0.69 and kurdish_political_consciousness < 0.89: High ?][? if kurdish_political_consciousness >= 0.89: Very high ?]
-
-Radicalism: [? if kurdish_radicalism < 0.05: Nonexistant ?][? if kurdish_radicalism >= 0.05 and kurdish_radicalism < 0.14: Very low ?][? if kurdish_radicalism >= 0.14 and kurdish_radicalism < 0.24: Low ?][? if kurdish_radicalism >= 0.24 and kurdish_radicalism < 0.44: Medium-low ?][? if kurdish_radicalism >= 0.44 and kurdish_radicalism < 0.69: Medium ?][? if kurdish_radicalism >= 0.69 and kurdish_radicalism < 0.89: High ?][? if kurdish_radicalism >= 0.89: Very high ?]
+[+ {! return AnatolianRules.kurdishIssueHtml(Q); !} +]
 
 = Union Relations
 
@@ -271,21 +247,8 @@ on-arrival: {!
 // Recalculate paramilitary force effectiveness (strength × militancy)
 Q.far_left_force = 0;
 Q.far_right_force = 0;
-Q.separatist_force = 0;
 Q.state_force = 0;
 Q.democracy_force = 0;
-
-// Separatist forces calculation (strength × militancy)
-if (Q.kurdish_radicalism >= 0.69) {
-    Q.pkk_formed = 1;
-    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);
-    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;
-    Q.separatist_force += Q.pkk_force;
-} else {
-    Q.pkk_formed = 0;
-    Q.pkk_strength = 0;
-    Q.pkk_force = 0;
-}
 
 // Far left forces calculation (strength × militancy)
 if (!Q.thkpc_destroyed) {
@@ -324,22 +287,18 @@ Q.state_force = Q.police_force;
 Q.democracy_force = Q.state_force;
 
 // Total forces for percentage calculation
-Q.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;
+Q.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;
 
 // Convert to percentages
 if (Q.total_forces > 0) {
     Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);
     Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);
-    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);
     Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);
     Q.democracy_force_percent = Q.state_force_percent;
 
     // Individual organization force percentages
     if (!Q.thkpc_destroyed) {
         Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);
-    }
-    if (Q.pkk_formed) {
-        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);
     }
     if (Q.devyol_formed) {
         Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);
@@ -368,9 +327,6 @@ if (Q.devyol_strength) {
 }
 if (Q.police_strength) {
     Q.police_strength_2 = Q.police_strength.toFixed(1);
-}
-if (Q.pkk_strength) {
-    Q.pkk_strength_2 = Q.pkk_strength.toFixed(1);
 }
 Q.grey_wolves_strength_2 = Math.max(0,AnatolianRules.number(Q.grey_wolves_strength)).toFixed(1);
 Q.raiders_strength_2 = Math.max(0,AnatolianRules.number(Q.raiders_strength)).toFixed(1);
@@ -416,11 +372,8 @@ Police Militarization: [+ police_militancy : militancy +]
 
 Police Loyalty: [+ police_loyalty : loyalty +]
 
-[? if pkk_formed: "**Separatists**" ?]
 
-[? if pkk_formed: {!<span class="tooltip-text" title="Kurdistan Workers' Party (PKK) is a separatist militant organization.">PKK</span>!} Strength: [+ pkk_strength_2 +] thousand ?]
 
-[? if pkk_formed: PKK Militarization: [+ pkk_militancy : militancy +] ?]
 
 **Far Right**
 
@@ -458,9 +411,7 @@ Strength of ÖHP: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength
 
 [? if year >= 1972 and not streetfighting_joever: <span style="color: #4B0082;">**TİT**</span>: [+ tit_force_percent +]%?]
 
-[? if year >= 1972 and not streetfighting_joever and pkk_formed: <h4>Separatist strength: [+ separatist_force_percent +]%</h4>?]
 
-[? if year >= 1972 and not streetfighting_joever and pkk_formed: **PKK**: [+ pkk_force_percent +]%?]
 
 [? if year >= 1972 and not streetfighting_joever: Currently, [? if state_force_percent > 80: street fighting is scarce?][? if state_force_percent >= 70 and state_force_percent <= 80: street fighting is under control?][? if state_force_percent >= 60 and state_force_percent < 70: street fighting is increasing?][? if state_force_percent >= 50 and state_force_percent < 60: street fighting is slipping out of the state's control?][? if state_force_percent >= 30 and state_force_percent < 50: street fighting have split neighborhoods into two?][? if state_force_percent >= 20 and state_force_percent < 30: street fighting have reached critical levels?][? if state_force_percent < 20: <span style="color: #8B0000;">street fighting is Anarchic</span>?][? if far_left_force_percent > state_force_percent and far_left_force_percent > far_right_force_percent: and the streets are under Far Left control?][? if far_right_force_percent > state_force_percent and far_right_force_percent > far_left_force_percent: and the streets are under Far Right control?].?]
 
@@ -478,22 +429,7 @@ AnatolianRules.refreshPolls(Q);
 Q.pro_republic_disp = Math.round(Q.pro_republic);
 Q.nationalism_disp = Math.round(Q.nationalism);
 Q.socialism_disp = Math.round(Q.socialism);
-// Socialist Left breakdown for the projected poll numbers, mirroring the split applied
-// to the last election's results (see the aggregate TIP_r breakdown above), but based on
-// the current TIP_poll_votes projection instead.
-if (Q.socialist_left_formed) {
-    Q.TKP_votes = Q.TIP_poll_votes * 0.25;
-    Q.TSIP_votes = Q.TIP_poll_votes * 0.25;
-    Q.TEP_votes = Q.TIP_poll_votes * 0.10;
-    Q.SDP_votes = Q.TIP_poll_votes * 0.20;
-    Q.TIP_socialist_left_votes = Q.TIP_poll_votes * 0.20;
-} else {
-    Q.TKP_votes = 0;
-    Q.TSIP_votes = 0;
-    Q.TEP_votes = 0;
-    Q.SDP_votes = 0;
-    Q.TIP_socialist_left_votes = Q.TIP_poll_votes;
-}
+
 !}
 
 = Projected election results
@@ -506,7 +442,7 @@ Current voter preferences:
 
 <span style="color: #750a6f;">**AP**</span>: [+ AP_poll_votes +]%
 
-[? if socialist_left_formed: <span class="wide_tooltip-wrap">Socialist Left<span class="wide_tooltip-tip">TİP: [+ TIP_socialist_left_votes +]%<br>TKP: [+ TKP_votes +]%<br>TSİP: [+ TSIP_votes +]%<br>TEP: [+ TEP_votes +]%<br>SDP: [+ SDP_votes +]%</span></span>: [+ TIP_poll_votes +]% ?][? if not socialist_left_formed: <span style="color: #8B0000;">**TIP**</span>: [+ TIP_poll_votes +]% ?]
+<span style="color:#8B0000;">**TİP**</span>: [+ TIP_poll_votes +]%
 
 {!<span style="color: #5b7387;">!}**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span>!}: [+ CGP_poll_votes +]%
 
@@ -518,21 +454,11 @@ Current voter preferences:
 
 Others: [+ other_poll_votes +]%
 
+[+ {! return AnatolianRules.extraPartyRows(Q,"polls"); !} +]
+
 **Detailed results for each demographic**
 
-Rural: <span style="color: #E3000F;">**CHP**</span>: [+ rural_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ rural_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ rural_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ rural_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ rural_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ rural_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ rural_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ rural_other_display +]%.
-
-Workers: <span style="color: #E3000F;">**CHP**</span>: [+ workers_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ workers_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ workers_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ workers_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ workers_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ workers_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ workers_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ workers_other_display +]%.
-
-Petty Bourgeoisie: <span style="color: #E3000F;">**CHP**</span>: [+ petty_bourgeoisie_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ petty_bourgeoisie_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ petty_bourgeoisie_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ petty_bourgeoisie_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ petty_bourgeoisie_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ petty_bourgeoisie_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ petty_bourgeoisie_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ petty_bourgeoisie_other_display +]%.
-
-State Employees: <span style="color: #E3000F;">**CHP**</span>: [+ state_employees_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ state_employees_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ state_employees_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ state_employees_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ state_employees_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ state_employees_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ state_employees_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ state_employees_other_display +]%.
-
-Capitalists: <span style="color: #E3000F;">**CHP**</span>: [+ capitalists_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ capitalists_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ capitalists_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ capitalists_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ capitalists_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ capitalists_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ capitalists_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ capitalists_other_display +]%.
-
-Alevis: <span style="color: #E3000F;">**CHP**</span>: [+ alevis_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ alevis_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ alevis_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ alevis_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ alevis_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ alevis_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ alevis_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ alevis_other_display +]%.
-
-Kurdish National Movement: <span style="color: #E3000F;">**CHP**</span>: [+ kurds_chp_display +]%, <span style="color: #750a6f;">**AP**</span>: [+ kurds_AP_display +]%, <span style="color: #8B0000;">**TIP**</span>: [+ kurds_TIP_display +]%, <span style="color: #5b7387;">**[+ CGP_name +]**</span>: [+ kurds_CGP_display +]%, <span style="color: #4a4d04;">**DP**</span>: [+ kurds_DP_display +]%, <span style="color: #054521;">**[+ MSP_name +]**</span>: [+ kurds_MSP_display +]%, <span style="color: #954B00;">**MHP**</span>: [+ kurds_MHP_display +]%, <span style="color: #909090;">**Others**</span>: [+ kurds_other_display +]%.
+[+ {! return AnatolianRules.demographicPollHtml(Q); !} +]
 
 Support for the Republic: [+ pro_republic_disp +]%
 
@@ -561,22 +487,8 @@ Q.university_prestige_status = mapLevel(Q.university_prestige_level, ["Low", "Me
 Q.womens_legal_status = mapLevel(Q.womens_legal_level, ["Restricted", "Partial equality", "Full equality"]);
 Q.womens_workplace_status = mapLevel(Q.womens_workplace_level, ["Discriminated", "Improving", "Equal"]);
 Q.household_violence_status = mapLevel(Q.household_violence_level, ["Widespread", "Declining", "Rare"]);
-Q.language_rights_status = mapLevel(Q.language_rights_level, ["Restricted", "Limited", "Protected"]);
 
-Q.ddkd_status_display = Q.ddkd_formed ? "Active" : "Banned";
-if (Q.eastern_crime <= 0) {
-    Q.eastern_crime_status = "Controlled";
-} else if (Q.eastern_crime == 1) {
-    Q.eastern_crime_status = "Manageable";
-} else if (Q.eastern_crime == 2) {
-    Q.eastern_crime_status = "Decreasing";
-} else if (Q.eastern_crime == 3) {
-    Q.eastern_crime_status = "Medium";
-} else if (Q.eastern_crime == 4) {
-    Q.eastern_crime_status = "Struggling";
-} else {
-    Q.eastern_crime_status = "Widespread";
-}
+
 !}
 
 = Interior Affairs
@@ -622,14 +534,6 @@ Legal Status: [+ womens_legal_status +]
 Workplace status: [+ womens_workplace_status +]
 
 Household violence: [+ household_violence_status +]
-
-= Kürt Sorunu
-
-Eastern Crime: [+ eastern_crime_status +]
-
-DDKD: [+ ddkd_status_display +]
-
-Language rights: [+ language_rights_status +]
 
 @exterior_affairs
 

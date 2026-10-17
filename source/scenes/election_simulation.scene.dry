@@ -15,7 +15,7 @@ Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
 Q.alevis = 10; // Alevi religious minority
-Q.kurds = 5; // Kurdish political movement
+Q.kurds = 5; // Kurdish population (provisional poll weight)
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
@@ -55,7 +55,7 @@ Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
 Q.alevis = 10; // Alevi religious minority
-Q.kurds = 5; // Kurdish political movement
+Q.kurds = 5; // Kurdish population (provisional poll weight)
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
@@ -95,7 +95,7 @@ Q.petty_bourgeoisie = 15; // Small business owners, artisans
 Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
 Q.alevis = 10; // Alevi religious minority
-Q.kurds = 5; // Kurdish political movement
+Q.kurds = 5; // Kurdish population (provisional poll weight)
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];

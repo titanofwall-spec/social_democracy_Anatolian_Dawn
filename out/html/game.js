@@ -745,7 +745,7 @@ function getPartyIdeology(party, Q) {
             if (Q.TIP_party_leader === "Mehmet Ali Aybar") return '<span style="color: #C42424;">Left Wing</span> (Democratic Socialism)';
             return 'Unknown';
         case 'TSİP': return '<span style="color: #780808;">Far Left</span> (Marxism-Leninism)';
-        case 'TKP ': return '<span style="color: #780808;">Far Left</span> (Marxism-Leninism)';
+        case 'TKP': return '<span style="color: #780808;">Far Left</span> (Marxism-Leninism)';
         case 'TEP': return '<span style="color: #910a0a;">Left Wing-Far Left</span> (National Democratic Revolution)';
         case 'SDP': return '<span style="color: #C42424;">Left Wing</span> (Democratic Socialism)';
         case 'GP':
@@ -902,7 +902,9 @@ function getPartyIdeology(party, Q) {
             ...colourList.map(c => c.word)
         ]);
 
-        const regex = new RegExp(`\\b(${[...allWords].join('|')})\\b`, 'g');
+        const special='^$.*+?()[]{}|';
+        const words=[...allWords].sort((a,b)=>b.length-a.length).map(w=>Array.from(w).map(ch=>special.includes(ch)||ch.charCodeAt(0)===92?String.fromCharCode(92)+ch:ch).join(''));
+        const regex=new RegExp('(?<![\\p{L}\\p{N}_])('+words.join('|')+')(?![\\p{L}\\p{N}_])','gu');
 
         return str.replace(/(<(?:span|strong)[^>]*>.*?<\/(?:span|strong)>|<[^>]+>|[^<]+)/g, (segment) => {
             if (segment.startsWith('<')) return segment;

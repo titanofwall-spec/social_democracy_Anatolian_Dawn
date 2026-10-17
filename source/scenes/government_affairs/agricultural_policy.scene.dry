@@ -84,7 +84,7 @@ By supporting the formation of agricultural cooperatives, we help small farmers 
 subtitle: -1 budget.
 choose-if: budget >= 1 and east_agri_done <= 2
 unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?][? if east_agri_done >= 3 : We have already implemented our eastern agricultural support program to its full extent. ?]
-on-arrival: budget -= 1; kurdish_radicalism -= 0.05; kurds_chp += 3; alevis_chp += 2; inflation_modifier += 0.5; growth_modifier += 0.3; east_agri_done += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: budget -= 1; kurds_chp += 3; alevis_chp += 2; inflation_modifier += 0.5; growth_modifier += 0.3; east_agri_done += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 We direct special subsidies toward eastern agricultural regions, helping develop farming communities in Anatolia's east. Economic development eases grievances and reduces the appeal of radical movements among the Kurdish and Alevi populations.
 

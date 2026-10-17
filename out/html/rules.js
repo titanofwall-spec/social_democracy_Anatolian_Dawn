@@ -95,6 +95,60 @@
         Q.TIP_coalition_dissent = 0;
         Q.minority_government = 0;
     }
+
+    var kurdishParties=[{key:'TKP',name:'TKP',color:'#820b09'},{key:'TSIP',name:'TSİP',color:'#abab1a'},{key:'TEP',name:'TEP',color:'#ad673b'},{key:'SDP',name:'SDP',color:'#a83a32'},{key:'KI',name:'Kurdish Independents',color:'#c2d93f'}];
+    var kurdishGroups=[{name:'T-KDP',share:9},{name:'DHKD/TKSP',share:10},{name:'DDKD/KİP',share:9},{name:'ASDKD/Rızgari',share:9},{name:'Ala Rızgari',share:9},{name:'Kawa',share:9},{name:'Denge Kawa',share:9},{name:'Red Kawa',share:9},{name:'T-KDP/KUK',share:9},{name:'KD/UKO/PKK',share:9},{name:'Tekoşin',share:9}];
+    /** @type {Record<string,number>} */ var consciousPartyShares={chp:31,TIP:20,TKP:33,TSIP:6,TEP:5,SDP:5};
+    /** Structural initialization only. No political parameter has automatic growth. @param {GameState} Q */
+    function ensureKurdishIssue(Q){
+        if(!Array.isArray(Q.parties)||!Array.isArray(Q.classes))return;
+        if(Q.kurdish_issue_version!==1){Q.kurdish_issue_version=1;Q.kurdish_issue_consciousness=.20;Q.kurdish_issue_radicalism=.25;Q.kurdish_issue_paramilitarism=0;Q.kurdish_population_weight=5;}
+        Q.kurdish_issue_consciousness=clamp(number(Q.kurdish_issue_consciousness,.20),0,1);Q.kurdish_issue_radicalism=clamp(number(Q.kurdish_issue_radicalism,.25),0,1);Q.kurdish_issue_paramilitarism=clamp(number(Q.kurdish_issue_paramilitarism),0,1);
+        Q.kurdish_population_weight=clamp(number(Q.kurdish_population_weight,5),0,100);Q.kurds=Q.kurdish_population_weight;
+        kurdishParties.forEach(function(p){if(Q.parties.indexOf(p.key)<0)Q.parties.splice(Math.max(0,Q.parties.indexOf('other')),0,p.key);Q.classes.forEach(function(/** @type {string} */c){if(typeof Q[c+'_'+p.key]!=='number')Q[c+'_'+p.key]=0;});['_r','_seats','_local_seats'].forEach(function(suffix){if(typeof Q[p.key+suffix]!=='number')Q[p.key+suffix]=0;});});
+        // Retired save fields are discarded; they never control the replacement model.
+        if(Array.isArray(Q.election_records))Q.election_records.forEach(function(/** @type {GameState} */record){kurdishParties.forEach(function(p){if(typeof record[p.key]!=='number')record[p.key]=0;});});
+        Object.keys(Q).forEach(function(k){if(/^(?:pkk_|separatist_|eastern_crime|ddkd_|language_rights|CHP_kurdish_attitude$|kurdish_political_|kurdish_radicalism$)/.test(k))delete Q[k];});
+    }
+    /** Pure nested population pools. @param {GameState} Q */
+    function kurdishModel(Q){
+        var consciousness=clamp(number(Q.kurdish_issue_consciousness,.20),0,1),radicalism=clamp(number(Q.kurdish_issue_radicalism,.25),0,1),paramilitarism=clamp(number(Q.kurdish_issue_paramilitarism),0,1);
+        var radical=consciousness*radicalism,nonRadical=consciousness-radical,paramilitary=radical*paramilitarism;
+        return {consciousness:consciousness,radicalism:radicalism,paramilitarism:paramilitarism,radical:radical,nonRadical:nonRadical,paramilitary:paramilitary,groups:kurdishGroups.map(function(g){return {name:g.name,share:g.share,populationShare:paramilitary*g.share/100};})};
+    }
+    /** Pure voter shares. Raw Kurdish party preferences remain the nonpolitical baseline. @param {GameState} Q @param {string} demographic */
+    function demographicShares(Q,demographic){
+        /** @type {Record<string,number>} */ var raw={};
+        /** @type {Record<string,number>} */ var shares={};
+        /** @type {string[]} */ var parties=/** @type {string[]} */ (Q.parties);
+        parties.forEach(function(p){raw[p]=Math.max(0,number(Q[demographic+'_'+p]));});
+        if(Q.kurdish_issue_version===1&&Q.socialist_left_formed){var bloc=number(raw.TIP);raw.TIP=bloc*.20;[['TKP',.25],['TSIP',.25],['TEP',.10],['SDP',.20]].forEach(function(pair){raw[String(pair[0])]=number(raw[String(pair[0])])+bloc*Number(pair[1]);});}
+        var total=parties.reduce(function(n,p){return n+raw[p];},0);parties.forEach(function(p){shares[p]=total>0?100*raw[p]/total:0;});
+        if(Q.kurdish_issue_version===1&&demographic==='kurds'){
+            if(total===0)shares.other=100;
+            var model=kurdishModel(Q);parties.forEach(function(p){shares[p]*=1-model.consciousness;});
+            Object.keys(consciousPartyShares).forEach(function(p){shares[p]=number(shares[p])+model.nonRadical*consciousPartyShares[p];});shares.KI=number(shares.KI)+model.radical*100;
+        }
+        return {raw:raw,shares:shares};
+    }
+    /** @param {GameState} Q */
+    function kurdishIssueHtml(Q){
+        var m=kurdishModel(Q),pct=function(/** @type {number} */v){return (100*v).toFixed(2)+'%';};
+        var tip=function(/** @type {string} */label,/** @type {string} */description){return '<span class="mytooltip">'+label+'<span class="mytooltiptext">'+description+'</span></span>';};
+        var html='<p>'+tip('Political Consciousness','The percentage of the Kurdish population politically aware of and actively concerned with its collective political, social and economic interests, through ethnic identity, class consciousness or broader ideological commitments.')+': '+pct(m.consciousness)+'</p>';
+        html+='<p>'+tip('Radicalism','The percentage of politically conscious Kurds seeking changes to Turkey’s unitary structure, primarily an autonomous republic within Turkey. This pool votes for Kurdish Independents.')+': '+pct(m.radicalism)+' of politically conscious Kurds.</p>';
+        html+='<p>'+tip('Paramilitarism','The percentage of radical Kurds seeking their goals through paramilitary means. This is a subset of the radical pool.')+': '+pct(m.paramilitarism)+' of radical Kurds.</p>';
+        html+='<h3>Non-radical political preferences</h3>';Object.keys(consciousPartyShares).forEach(function(p){html+='<div>'+(p==='chp'?'CHP':p==='TIP'?'TİP':p==='TSIP'?'TSİP':p)+': '+consciousPartyShares[p]+'%</div>';});
+        html+='<h3>Kurdish paramilitary groups</h3>';m.groups.forEach(function(g){html+='<div><span class="mytooltip" style="color:#c2d93f;font-weight:bold;">'+g.name+'<span class="mytooltiptext"></span></span>: '+g.share+'% of Kurdish paramilitarists ('+pct(g.populationShare)+' of the Kurdish population).</div>';});return html;
+    }
+    /** @param {GameState} Q @param {string} mode */
+    function extraPartyRows(Q,mode){return kurdishParties.map(function(p){var key=p.key,value=number(Q[key+(mode==='seats'?'_seats':mode==='results'?'_r':'_poll_votes')]);return '<div>'+p.name+': '+(mode==='seats'?value:value.toFixed(3)+'%')+'</div>';}).join('');}
+    /** @param {GameState} Q */
+    function extraPartyData(Q){return kurdishParties.map(function(p){return {id:p.key,legend:p.name,name:p.name,seats:number(Q[p.key+'_seats']),color:p.color};});}
+    /** @param {GameState} Q */
+    function demographicPollHtml(Q){return Q.classes.map(function(/** @type {string} */c){
+        /** @type {Record<string,string>} */var labels={rural:'Rural',workers:'Workers',petty_bourgeoisie:'Petty bourgeoisie',state_employees:'State employees',capitalists:'Capitalists',alevis:'Alevis',kurds:'Kurdish population'};var title=labels[c]||c;return '<p>'+title+': '+Q.parties.map(function(/** @type {string} */p){var name=p==='chp'?'CHP':p==='TIP'?'TİP':p==='TSIP'?'TSİP':p==='KI'?'Kurdish Independents':p==='CGP'?Q.CGP_name:p==='MSP'?Q.MSP_name:p==='other'?'Others':p;return name+': '+number(Q[c+'_'+p+'_display']).toFixed(3)+'%';}).join(', ')+'.</p>';}).join('');}
+
     /** Pure projection: retain the existing TIP ban and partial DISK endorsement transfer.
      * @param {GameState} Q @param {boolean} [polling] */
     function projectVotes(Q, polling) {
@@ -104,12 +158,12 @@
         /** @type {Record<string, number>} */ var support = {};
         parties.forEach(function (party) { support[party] = 0; });
         classes.forEach(function (demographic) {
-            var total = parties.reduce(function (sum, party) { return sum + Math.max(0, number(Q[demographic + '_' + party])); }, 0);
+            var distribution=demographicShares(Q,demographic);var total = parties.reduce(function (sum, party) { return sum + distribution.raw[party]; }, 0);
             parties.forEach(function (party) {
-                var raw = Math.max(0, number(Q[demographic + '_' + party]));
-                var share = total > 0 ? 100 * raw / total : 0;
+                var raw = distribution.raw[party];
+                var share = distribution.shares[party];
                 classShares[demographic + '_' + party] = share;
-                support[party] += number(Q[demographic]) * (Q.old_demographics ? raw : share);
+                var weight=number(Q[demographic]);if(Q.kurdish_issue_version===1&&classes.indexOf('kurds')>=0){var remaining=classes.filter(function(c){return c!=='kurds';}).reduce(function(n,c){return n+number(Q[c]);},0);weight=demographic==='kurds'?number(Q.kurdish_population_weight,5):(remaining?weight*(100-number(Q.kurdish_population_weight,5))/remaining:0);}support[party] += weight * (Q.old_demographics&&Q.kurdish_issue_version!==1?raw:share);
             });
         });
         // A banned TIP abstains; only half its support transfers with DISK endorsement.
@@ -123,6 +177,7 @@
     }
     /** Update derived polling/election fields, leaving demographic preferences intact. @param {GameState} Q */
     function refreshVotes(Q) {
+        if(Q.started)ensureKurdishIssue(Q);
         var projection = projectVotes(Q);
         Object.keys(projection.classShares).forEach(function (key) {
             Q[key + '_normalized'] = projection.classShares[key]; Q[key + '_display'] = Math.round(projection.classShares[key]);
@@ -139,12 +194,13 @@
     }
     /** Polling reports preferences, independently of election bans. @param {GameState} Q */
     function refreshPolls(Q) {
+        if(Q.started)ensureKurdishIssue(Q);
         var projection=projectVotes(Q,true);
         Q.parties.forEach(function(/** @type {string} */ party) {
-            Q[party+'_poll_votes']=Math.round(projection.fractions[party]*1000)/10;
+            Q[party+'_poll_votes']=Math.round(projection.fractions[party]*100000)/1000;
         });
         Object.keys(projection.classShares).forEach(function(key) {
-            Q[key+'_display']=Math.round(projection.classShares[key]*10)/10;
+            Q[key+'_display']=Math.round(projection.classShares[key]*1000)/1000;
         });
     }
     /** @param {GameState} Q */
@@ -191,6 +247,6 @@
     }
     root.AnatolianRules = {number: number, clamp: clamp, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
-        ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
+        ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) module.exports = root.AnatolianRules;
 }(typeof globalThis !== 'undefined' ? globalThis : window));

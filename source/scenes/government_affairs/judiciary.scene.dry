@@ -49,7 +49,7 @@ on-arrival: democracystatus += 1; TIP_relation += 3; disk_relation += 3
 Both TIP and the left-wing syndicate DISK express their gratitude for our efforts in improving the status of political prisoners.
 
 @investigate
-on-arrival: democracystatus += 2; police_loyalty -= 0.1; kurds_chp += 3; alevis_chp += 4; kurdish_radicalism -= 0.05
+on-arrival: democracystatus += 2; police_loyalty -= 0.1; kurds_chp += 3; alevis_chp += 4; 
 
 Our investigations reveal infuriating cases of cooperation with right-wing groups in persecuting Kurds and Alevis. As the state finally begins taking action against such atrocities, these groups are thankful towards both our party and the democratic system.
 

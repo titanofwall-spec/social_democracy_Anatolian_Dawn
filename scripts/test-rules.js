@@ -571,7 +571,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         const old={CGP_name:'CGP',year:1972};rules.refreshPartyNames(old,{});assert.equal(old.CGP_name,'GP');assert.equal(old.MSP_name,'MNP');
         const later={};rules.refreshPartyNames(later,{cgpformation:1,msp_formation:1});assert.equal(later.CGP_name,'CGP');assert.equal(later.MSP_name,'MSP');
     });
-    test('Every demographic includes all eight party preferences', (e,Q) => {
+    test('Every demographic includes every registered party preference', (e,Q) => {
         rules.refreshPolls(Q);
         for(const group of Q.classes) {
             const total=Q.parties.reduce((sum,party)=>sum+Q[group+'_'+party+'_display'],0);
@@ -580,7 +580,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         }
         const source=fs.readFileSync(path.join(root,'source/scenes/status.scene.dry'),'utf8');
         const detail=source.slice(source.indexOf('**Detailed results for each demographic**'),source.indexOf('@interior_affairs'));
-        for(const group of Q.classes)for(const party of Q.parties)assert(detail.includes(group+'_'+party+'_display'),group+' '+party);
+        assert(detail.includes('demographicPollHtml'));const html=rules.demographicPollHtml(Q);for(const group of Q.classes)for(const party of Q.parties)assert(Number.isFinite(Q[group+'_'+party+'_display']),group+' '+party);assert(html.includes('Kurdish Independents:'));assert(html.includes('TKP:'));assert(html.includes('TSİP:'));
     });
 
     test('Replacement cards are removed from the compiled decks',()=>{for(const id of ['domestic_enemies','constitutional_reform','homosexual_rights','crisis_program'])assert(!game.scenes[id]);});

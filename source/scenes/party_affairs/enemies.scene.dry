@@ -28,7 +28,7 @@ on-arrival: enemies = "military"; coup_timer += 1; lk_q0_str += 1; lk_q1_str += 
 A stance against the military interventions is widely popular with our grassroots and the base. This stance may also increase coup risk and improve relations with the Justice Party.
 
 @bourgeois
-on-arrival: enemies = "bourgeois parties"; AP_relation -= 10; CHP_workers += 1; CHP_state_employees += 1; CHP_rural += 1; CHP_kurds += 1; CHP_petty_bourgeoisie += 2; AP_workers -= 1; AP_state_employees -= 1; AP_rural -= 1; AP_kurds -= 1; AP_petty_bourgeoisie -= 1; democracystatus -= 2
+on-arrival: enemies = "bourgeois parties"; AP_relation -= 10; CHP_workers += 1; CHP_state_employees += 1; CHP_rural += 1; kurds_chp += 1; CHP_petty_bourgeoisie += 2; AP_workers -= 1; AP_state_employees -= 1; AP_rural -= 1; kurds_AP -= 1; AP_petty_bourgeoisie -= 1; democracystatus -= 2
 
 We naturally focus our efforts against our biggest electoral opponent. Our promises of wealth redistribution and the decentralization of the economy succeed in drawing the masses unsatisfied with the pro-large business policies of AP. However, it's undeniable how the tensions between the cadres of the two parties are rising and we will struggle with cooperating with them in the future. High tensions between the two largest parties would not bode well for the long-term health of our fragile democracy...
 

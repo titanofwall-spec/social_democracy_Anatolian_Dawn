@@ -211,7 +211,6 @@ Q.university_prestige_level = 0;
 Q.womens_legal_level = 2;
 Q.womens_workplace_level = 0;
 Q.household_violence_level = 0;
-Q.language_rights_level = 0;
 
 // The array of forces - Turkish paramilitary groups
 // Number of members (in thousands)
@@ -230,12 +229,6 @@ Q.devyol_strength = 55;
 Q.devyol_militancy = 0.25;
 Q.devyol_formed = 0;
 Q.devyol_banned = 0;
-
-// Separatist organizations
-Q.pkk_base_strength = 8;
-Q.pkk_militancy = 0.5;
-Q.pkk_formed = 0;
-Q.pkk_strength = 0;
 
 // State forces
 Q.police_strength = 60;
@@ -270,21 +263,8 @@ Q.streetfighting_joever = 0;
 // Calculate paramilitary force effectiveness (strength × militancy)
 Q.far_left_force = 0;
 Q.far_right_force = 0;
-Q.separatist_force = 0;
 Q.state_force = 0;
 Q.democracy_force = 0;
-
-// Separatist forces calculation (strength × militancy)
-if (Q.kurdish_radicalism >= 0.69) {
-    Q.pkk_formed = 1;
-    Q.pkk_strength = Q.pkk_base_strength * (2 * Q.kurdish_political_consciousness);
-    Q.pkk_force = Q.pkk_strength * Q.pkk_militancy;
-    Q.separatist_force += Q.pkk_force;
-} else {
-    Q.pkk_formed = 0;
-    Q.pkk_strength = 0;
-    Q.pkk_force = 0;
-}
 
 // Far left forces calculation (strength × militancy)
 if (!Q.thkpc_destroyed) {
@@ -322,22 +302,18 @@ Q.state_force = Q.police_force;
 Q.democracy_force = Q.state_force;
 
 // Total forces for percentage calculation
-Q.total_forces = Q.far_left_force + Q.far_right_force + Q.separatist_force + Q.state_force;
+Q.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;
 
 // Convert to percentages
 if (Q.total_forces > 0) {
     Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);
     Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);
-    Q.separatist_force_percent = Math.round((Q.separatist_force / Q.total_forces) * 100);
     Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);
     Q.democracy_force_percent = Q.state_force_percent;
 
     // Individual organization force percentages
     if (!Q.thkpc_destroyed) {
         Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);
-    }
-    if (Q.pkk_formed) {
-        Q.pkk_force_percent = Math.round((Q.pkk_force / Q.total_forces) * 100);
     }
     if (Q.devyol_formed) {
         Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);
@@ -357,7 +333,6 @@ if (Q.total_forces > 0) {
 // Determine street control levels
 Q.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;
 Q.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;
-Q.separatist_paramilitary = Q.separatist_force_percent > Q.state_force_percent;
 Q.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);
 Q.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);
 
@@ -437,23 +412,8 @@ Q.coup_timer = 0;
 Q.army_in_government = 1; // Starting with Nihat Erim military government
 Q.tsk_pacified = 0;
 
-// Kurdish Nationalism system
-Q.kurdish_political_consciousness = 0.20; // Starting position: Low (0.14-0.24)
-Q.kurdish_radicalism = 0.25; // Starting position: Medium-low (0.24-0.44)
-
 // Women's Rights
 Q.women_reform = 0
-
-// Factors affecting Kurdish Nationalism
-// Consciousness
-Q.eastern_crime = 5
-Q.CHP_kurdish_attitude = 0
-Q.ddkd_formed = 0
-
-// Radicalism
-// CHP attitude here too
-// tip being banned
-// ddkd here too
 
 // Union Relations system
 Q.disk_relation = 35; // Starting at "cool" (29.9-39.9 range)
@@ -478,22 +438,7 @@ Q.state_employees = 7; // State employees and bureaucrats
 Q.capitalists = 3; // Capitalists and land owners
 Q.alevis = 10; // Alevi religious minority
 
-// Kurdish demographic percentage based on political consciousness level
-if (Q.kurdish_political_consciousness < 0.05) {
-    Q.kurds = 0; // Nonexistent - 0%
-} else if (Q.kurdish_political_consciousness >= 0.05 && Q.kurdish_political_consciousness < 0.14) {
-    Q.kurds = 3; // Very low - 3%
-} else if (Q.kurdish_political_consciousness >= 0.14 && Q.kurdish_political_consciousness < 0.24) {
-    Q.kurds = 5; // Low - 5%
-} else if (Q.kurdish_political_consciousness >= 0.24 && Q.kurdish_political_consciousness < 0.44) {
-    Q.kurds = 7; // Medium-low - 7%
-} else if (Q.kurdish_political_consciousness >= 0.44 && Q.kurdish_political_consciousness < 0.69) {
-    Q.kurds = 9; // Medium - 9%
-} else if (Q.kurdish_political_consciousness >= 0.69 && Q.kurdish_political_consciousness < 0.89) {
-    Q.kurds = 11; // High - 11%
-} else {
-    Q.kurds = 15; // Very high - 15%
-}
+Q.kurds = 5; // Fixed, provisional Kurdish population weight in the poll model.
 
 // income for industrial workers
 Q.income = 1600;
@@ -713,7 +658,7 @@ Q.alevis_MSP = 0;
 Q.alevis_MHP = 1;
 Q.alevis_other = 18;
 
-// Kurdish Political Movement (5% of population)
+// Kurdish population: existing preferences are the nonpolitical baseline.
 Q.kurds_TIP = 8;
 Q.kurds_chp = 33;
 Q.kurds_AP = 32; // AP
@@ -1137,6 +1082,8 @@ function updateMunicipalityControlLevel() {
 AnatolianRules.refreshEconomy(Q);
 AnatolianRules.refreshFactions(Q);
 AnatolianRules.refreshVotes(Q);
+AnatolianRules.ensureKurdishIssue(Q);
+
 !}
 set-bg: img/map_4.jpg
 new-page: true
@@ -1194,7 +1141,7 @@ The 'Main' tab is the basic one that shows the rough outline of the general situ
 
 = Politics
 
-The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, Kurdish nationalism which shows both how widespread Kurdish nationalism is among the Kurdish population and how violent it is against the state framework, union relations which show how close our ties are with the labour movement and whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipal control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
+The 'Politics' tab shows the general political situation in the nation. The key parameters displayed here are the inter-party relations which affect all aspects of the game, the party leaderships which display the ideologies that direct the decisions and attitudes of the various political parties, The Kurdish Issue, which shows political consciousness, radicalism and paramilitarism within their respective Kurdish population pools, union relations which show how close our ties are with the labour movement and whether left wing(DİSK) or right wing(TÜRK-İŞ) syndicates are more influential, municipal control which shows how many provinces are governed by our mayors and the intra-party cliques within the party. All of these parameters need to be observed and managed carefully.
 
 = Defense
 
@@ -1202,7 +1149,7 @@ The 'Defense' tab shows the status of the paramilitary organizations that hold i
 
 = Polls
 
-The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. The National Kurdish Movement has the potential to spread and increase its demographic percentage if Kurdish Nationalism manages to reach a breakthrough among the previously politically inactive Kurds.
+The 'Polls' tab shows the vote percentage of the various parties around the nation and how popular they are in specific demographics. Kurdish voter preferences combine the existing demographic preferences of nonpolitical citizens with the party distributions specified by The Kurdish Issue.
 
 = Exterior Affairs
 

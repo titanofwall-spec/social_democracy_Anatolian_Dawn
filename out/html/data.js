@@ -15,7 +15,7 @@ const tooltipList = [{searchString: "GP", explanationText: "<img src=img/cgplogo
     explanationText: "<img src=img/TİP_1970'ler.png> Workers' Party of Turkey"
 },                    
 {
-    searchString: "TKP ",
+    searchString: "TKP",
     explanationText: "<img src=img/tkp.png>Communist Party of Turkey"
 },
 {
@@ -194,3 +194,28 @@ const colourList = [{word: "GP", style: "color: #5b7387; font-weight: bold;"}, {
         style: "color: #1057a3; font-weight: bold;"
 },                    
 ];
+
+// Kurdish group localization intentionally remains empty.
+tooltipList.push({searchString:"T-KDP",explanationText:""});
+colourList.push({word:"T-KDP",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"DHKD/TKSP",explanationText:""});
+colourList.push({word:"DHKD/TKSP",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"DDKD/KİP",explanationText:""});
+colourList.push({word:"DDKD/KİP",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"ASDKD/Rızgari",explanationText:""});
+colourList.push({word:"ASDKD/Rızgari",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Ala Rızgari",explanationText:""});
+colourList.push({word:"Ala Rızgari",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Kawa",explanationText:""});
+colourList.push({word:"Kawa",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Denge Kawa",explanationText:""});
+colourList.push({word:"Denge Kawa",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Red Kawa",explanationText:""});
+colourList.push({word:"Red Kawa",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"T-KDP/KUK",explanationText:""});
+colourList.push({word:"T-KDP/KUK",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"KD/UKO/PKK",explanationText:""});
+colourList.push({word:"KD/UKO/PKK",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Tekoşin",explanationText:""});
+colourList.push({word:"Tekoşin",style:"color: #c2d93f; font-weight: bold;"});
+colourList.push({word:"Kurdish Independents",style:"color: #c2d93f; font-weight: bold;"});

@@ -1,5 +1,6 @@
 title: Local Election Algorithm
 on-arrival: {!
+if(Q.started)AnatolianRules.ensureKurdishIssue(Q);
 var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 var classes = Array.isArray(Q.classes) ? Q.classes.slice() : ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 var totalSeats = Q.local_total_seats || Q.total_municipalities || 67;
@@ -11,48 +12,11 @@ if (typeof Q.disk_endorsement === 'undefined') {
     Q.disk_endorsement = false;
 }
 
-for (var c of classes) {
-    var class_votes = 0;
-    for (var party of parties) {
-        var key = c + '_' + party;
-        if (typeof Q[key] === 'undefined') {
-            Q[key] = 0;
-        }
-        if (Q[key] < 0) {
-            Q[key] = 0;
-        }
-        class_votes += Q[key];
-    }
-    if (class_votes <= 0) {
-        class_votes = 1;
-    }
-    for (var party of parties) {
-        var normalized = 100 * (Q[c + '_' + party] || 0) / class_votes;
-        Q[c + '_' + party + '_normalized'] = normalized;
-        Q[c + '_' + party + '_display'] = Math.round(normalized);
-    }
-}
-
-var partySupports = {};
-var total_support = 0;
-var tipSupport = 0;
-
-for (var party of parties) {
-    var party_support = 0;
-    for (var c of classes) {
-        if (Q.old_demographics) {
-            party_support += (Q[c] || 0) * (Q[c + '_' + party] || 0);
-        } else {
-            party_support += (Q[c] || 0) * (Q[c + '_' + party + '_normalized'] || 0);
-        }
-    }
-    partySupports[party] = party_support;
-    Q[party + '_local_support'] = party_support;
-    total_support += party_support;
-    if (party === 'TIP') {
-        tipSupport = party_support;
-    }
-}
+var projection=AnatolianRules.projectVotes(Q,true);
+for(var c of classes)for(var party of parties){Q[c+'_'+party+'_normalized']=projection.classShares[c+'_'+party]||0;Q[c+'_'+party+'_display']=Math.round((projection.classShares[c+'_'+party]||0)*1000)/1000;}
+var partySupports=projection.support;
+var total_support=parties.reduce(function(sum,party){Q[party+'_local_support']=partySupports[party]||0;return sum+(partySupports[party]||0);},0);
+var tipSupport=partySupports.TIP||0;
 
 var normalization_total = total_support;
 if (Q.TIP_banned && tipSupport > 0) {
