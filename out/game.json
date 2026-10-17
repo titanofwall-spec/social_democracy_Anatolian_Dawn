@@ -1785,7 +1785,7 @@
       "id": "election_simulation.scenario_1973",
       "onArrival": [
         {
-          "$code": "// Turkish demographic groups with accurate percentages\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\nQ.kurds = 5; // Kurdish population (provisional poll weight)\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nQ.disk_endorsement = false;\nQ.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;\nQ.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election\nQ.use_decimals = true;\nQ.sim_year = 1973;\n// the simulation may be entered directly from the start menu, before the main\n// game state (and CGP_name) has been initialized\nif (typeof Q.CGP_name === 'undefined') {\n    Q.CGP_name = 'CGP';\n}\n\n// 1973 general election results: CHP 33%, TIP 0%, AP 30%, DP 12%, MSP 12%, CGP 5%, MHP 3%, Others 5%.\n// Applied uniformly across every demographic group so the simulated national result matches exactly.\nfor (var c of Q.classes) {\n    Q[c + '_chp'] = 33;\n    Q[c + '_TIP'] = 0;\n    Q[c + '_AP'] = 30; // AP uses 'AP' variable\n    Q[c + '_DP'] = 12;\n    Q[c + '_MSP'] = 12;\n    Q[c + '_CGP'] = 5;\n    Q[c + '_MHP'] = 3;\n    Q[c + '_other'] = 5;\n}"
+          "$code": "// Turkish demographic groups with accurate percentages\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\nQ.kurds = 5; // Kurdish population (provisional poll weight)\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nQ.minor_parties_version=0;\nQ.disk_endorsement = false;\nQ.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;\nQ.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election\nQ.use_decimals = true;\nQ.sim_year = 1973;\n// the simulation may be entered directly from the start menu, before the main\n// game state (and CGP_name) has been initialized\nif (typeof Q.CGP_name === 'undefined') {\n    Q.CGP_name = 'CGP';\n}\n\n// 1973 general election results: CHP 33%, TIP 0%, AP 30%, DP 12%, MSP 12%, CGP 5%, MHP 3%, Others 5%.\n// Applied uniformly across every demographic group so the simulated national result matches exactly.\nfor (var c of Q.classes) {\n    ['TBP','MP','IND','TKP','TSIP','TEP','SDP','KI'].forEach(function(p){Q[c+'_'+p]=0;});\n    Q[c + '_chp'] = 33;\n    Q[c + '_TIP'] = 0;\n    Q[c + '_AP'] = 30; // AP uses 'AP' variable\n    Q[c + '_DP'] = 12;\n    Q[c + '_MSP'] = 12;\n    Q[c + '_CGP'] = 5;\n    Q[c + '_MHP'] = 3;\n    Q[c + '_other'] = 5;\n}"
         }
       ],
       "goTo": [
@@ -7274,7 +7274,7 @@
           "$code": "Q['I_in_government'] = 0;"
         },
         {
-          "$code": "// Snapshot whether the Socialist Left bloc existed as of this election, so the \"Last\n// election vote share\" section on the status screen can reflect the state at the last\n// election rather than whatever the current (possibly later-changed) state is.\nQ.socialist_left_formed_last_election = Q.socialist_left_formed;\n// set old results\n// election threshold constitutional reform\n// banning parties\nvar new_party_sum = 0;\nfor (var party of Q.parties) {\n    Q['old_' + party + '_r'] = Q[party + '_r'];\n    if (Q.constitutional_reform > 0) {\n        if (Q[party + '_votes'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned']) {\n            Q[party + '_r'] = 0;\n        } else {\n            Q[party + '_r'] = Q[party + '_votes'];\n        }\n        new_party_sum += Q[party + '_r'];\n    } else {\n        Q[party + '_r'] = Q[party + '_votes'];\n    }\n    // if we use decimals, then we might want to truncate the numbers\n    if (Q.use_decimals) {\n        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n    }  else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n    }\n    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n    Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n}\n// calculate new party sum if electoral reform\nif (Q.electoral_threshold && Q.electoral_threshold > 0) {\n    for (var party of Q.parties) {\n        if (Q[party + '_r'] > 0) {\n            if (Q.use_decimals) {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;\n            } else {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);\n            }\n        }\n        if (Q.use_decimals) {\n            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n        } else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n        }\n        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n        Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n    }\n}\n\n// get change arrows and signs\n\n\n// Tiered proportional apportionment: each party's vote share is weighted more\n// heavily the larger it is (in brackets), seats are then apportioned out of a\n// fixed 450-seat assembly, and any leftover seats from rounding down are\n// settled between CHP and AP (the two historically dominant parties).\nvar totalSeatsTarget = 450;\nvar majorityThreshold = 226;\nQ.majority_threshold = majorityThreshold;\nfunction seatWeightMultiplier(share) {\n    if (share <= 5) {\n        return 0.5;\n    } else if (share <= 15) {\n        return 1.15;\n    } else if (share <= 27) {\n        return 1.25;\n    } else if (share <= 32) {\n        return 1.5;\n    } else if (share <= 40) {\n        return 1.8;\n    } else {\n        return 1.9;\n    }\n}\nQ.largest_party_key = null;\nvar largestShare = -1;\nvar weightedShares = {};\nvar weightedTotal = 0;\nfor (var party of Q.parties) {\n    var share = Q[party + '_r'] || 0;\n    var weighted = share * seatWeightMultiplier(share);\n    weightedShares[party] = weighted;\n    weightedTotal += weighted;\n    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {\n        largestShare = share;\n        Q.largest_party_key = party;\n    }\n}\n\nif (weightedTotal <= 0) {\n    weightedTotal = 1;\n}\nQ.total_seats = 0;\nfor (var party of Q.parties) {\n    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));\n    Q[party + '_seats'] = seats;\n    Q.total_seats += seats;\n}\n\n\nvar seatRemainder = totalSeatsTarget - Q.total_seats;\nif (seatRemainder < 0) {\n    Q.chp_seats += seatRemainder;\n} else if (seatRemainder > 0) {\n    Q.AP_seats += seatRemainder;\n}\nQ.total_seats = totalSeatsTarget;\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TIP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': Q.MSP_name,\n    'MHP': 'MHP',\n    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','other': 'Other'\n};\nif (Q.largest_party_key) {\n    var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n    Q.largest_party = displayName;\n} else {\n    Q.largest_party = 'CHP';\n}\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\n// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\n\nQ.leverage = Q.chp_seats/1.5;\n\nQ.grand_coalition_failed = 0;\n// Reset every governing party, coalition type and ministry together.\nAnatolianRules.resetCabinet(Q);\n\n// reset TIP goals\nQ.TIP_goals_seen = 0;\nQ.TIP_ultimatum_seen = 0;\nQ.welfare_goal = 0;\nQ.agriculture_goal = 0;\nQ.economy_goal = 0;\nQ.finance_goal = 0;\nQ.labor_goal = 0;\nQ.foreign_goal = 0;\nQ.interior_goal = 0;\nQ.defense_goal = 0;\n\nQ.welfare_goal_completed = 0;\nQ.agriculture_goal_completed = 0;\nQ.economy_goal_completed = 0;\nQ.finance_goal_completed = 0;\nQ.labor_goal_completed = 0;\nQ.foreign_goal_completed = 0;\nQ.interior_goal_completed = 0;\nQ.defense_goal_completed = 0;\n\nQ.strike_term_seen = 0;\n\nQ.AP_last_vote_share = Q.AP_r;\n\n// understanding the enemy\nif (Q.MHP_r >= 15) {\n    Q.understanding_enemy_timer = 2;\n}\n\nvar election_result = {'date': new Date(Q.year, Q.month - 1)};\nfor (var party of Q.parties) {\n    election_result[party] = Q[party + '_r'];\n}\nQ.election_records.push(election_result);"
+          "$code": "// Snapshot whether the Socialist Left bloc existed as of this election, so the \"Last\n// election vote share\" section on the status screen can reflect the state at the last\n// election rather than whatever the current (possibly later-changed) state is.\nQ.socialist_left_formed_last_election = Q.socialist_left_formed;\n// set old results\n// election threshold constitutional reform\n// banning parties\nvar new_party_sum = 0;\nfor (var party of Q.parties) {\n    Q['old_' + party + '_r'] = Q[party + '_r'];\n    if (Q.constitutional_reform > 0) {\n        if (Q[party + '_votes'] < Q.electoral_threshold || Q[party + '_banned']) {\n            Q[party + '_r'] = 0;\n        } else {\n            Q[party + '_r'] = Q[party + '_votes'];\n        }\n        new_party_sum += Q[party + '_r'];\n    } else {\n        Q[party + '_r'] = Q[party + '_votes'];\n    }\n    // if we use decimals, then we might want to truncate the numbers\n    if (Q.use_decimals) {\n        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n    }  else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n    }\n    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n    Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n}\n// calculate new party sum if electoral reform\nif (Q.electoral_threshold && Q.electoral_threshold > 0) {\n    for (var party of Q.parties) {\n        if (Q[party + '_r'] > 0) {\n            if (Q.use_decimals) {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;\n            } else {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);\n            }\n        }\n        if (Q.use_decimals) {\n            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n        } else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n        }\n        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n        Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n    }\n}\n\n// get change arrows and signs\n\n\n// Tiered proportional apportionment: each party's vote share is weighted more\n// heavily the larger it is (in brackets), seats are then apportioned out of a\n// fixed 450-seat assembly, and any leftover seats from rounding down are\n// settled between CHP and AP (the two historically dominant parties).\nvar totalSeatsTarget = 450;\nvar majorityThreshold = 226;\nQ.majority_threshold = majorityThreshold;\nfunction seatWeightMultiplier(share) {\n    if (share <= 5) {\n        return 0.5;\n    } else if (share <= 15) {\n        return 1.15;\n    } else if (share <= 27) {\n        return 1.25;\n    } else if (share <= 32) {\n        return 1.5;\n    } else if (share <= 40) {\n        return 1.8;\n    } else {\n        return 1.9;\n    }\n}\nQ.largest_party_key = null;\nvar largestShare = -1;\nvar weightedShares = {};\nvar weightedTotal = 0;\nfor (var party of Q.parties) {\n    var share = Q[party + '_r'] || 0;\n    var weighted = share * seatWeightMultiplier(share);\n    weightedShares[party] = weighted;\n    weightedTotal += weighted;\n    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {\n        largestShare = share;\n        Q.largest_party_key = party;\n    }\n}\n\nif (weightedTotal <= 0) {\n    weightedTotal = 1;\n}\nQ.total_seats = 0;\nfor (var party of Q.parties) {\n    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));\n    Q[party + '_seats'] = seats;\n    Q.total_seats += seats;\n}\n\n\nvar seatRemainder = totalSeatsTarget - Q.total_seats;\nif (seatRemainder < 0) {\n    Q.chp_seats += seatRemainder;\n} else if (seatRemainder > 0) {\n    Q.AP_seats += seatRemainder;\n}\nQ.total_seats = totalSeatsTarget;\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TIP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': Q.MSP_name,\n    'MHP': 'MHP',\n    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'\n};\nif (Q.largest_party_key) {\n    var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n    Q.largest_party = displayName;\n} else {\n    Q.largest_party = 'CHP';\n}\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\n// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\n\nQ.leverage = Q.chp_seats/1.5;\n\nQ.grand_coalition_failed = 0;\n// Reset every governing party, coalition type and ministry together.\nAnatolianRules.resetCabinet(Q);\n\n// reset TIP goals\nQ.TIP_goals_seen = 0;\nQ.TIP_ultimatum_seen = 0;\nQ.welfare_goal = 0;\nQ.agriculture_goal = 0;\nQ.economy_goal = 0;\nQ.finance_goal = 0;\nQ.labor_goal = 0;\nQ.foreign_goal = 0;\nQ.interior_goal = 0;\nQ.defense_goal = 0;\n\nQ.welfare_goal_completed = 0;\nQ.agriculture_goal_completed = 0;\nQ.economy_goal_completed = 0;\nQ.finance_goal_completed = 0;\nQ.labor_goal_completed = 0;\nQ.foreign_goal_completed = 0;\nQ.interior_goal_completed = 0;\nQ.defense_goal_completed = 0;\n\nQ.strike_term_seen = 0;\n\nQ.AP_last_vote_share = Q.AP_r;\n\n// understanding the enemy\nif (Q.MHP_r >= 15) {\n    Q.understanding_enemy_timer = 2;\n}\n\nvar election_result = {'date': new Date(Q.year, Q.month - 1)};\nfor (var party of Q.parties) {\n    election_result[party] = Q[party + '_r'];\n}\nQ.election_records.push(election_result);"
         }
       ],
       "onDeparture": [
@@ -7284,7 +7284,7 @@
       ],
       "onDisplay": [
         {
-          "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TIP\",\n        \"name\": \"TIP\",\n        \"seats\": Q.TIP_seats,\n    }\n];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_seats,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_seats,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"AP\",\n        \"name\": \"AP\",\n        \"seats\": Q.AP_seats,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_seats,\n    },\n    {\n        \"id\": \"other\",\n        \"legend\": \"Other\",\n        \"name\": \"Other\",\n        \"seats\": Q.other_seats,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_seats,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_seats,\n    },\n]);\ndata=data.concat(AnatolianRules.extraPartyData(Q));\nif (window && d3) {\n    var width = 500;\n    var height = 500;\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        document.getElementById(\"parliament\").style.height = screenWidth/2 + \"px\";\n    }\n\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(\"#parliament\").datum(data).call(parliament);\n}"
+          "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TIP\",\n        \"name\": \"TIP\",\n        \"seats\": Q.TIP_seats,\n    }\n];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_seats,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_seats,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"AP\",\n        \"name\": \"AP\",\n        \"seats\": Q.AP_seats,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_seats,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_seats,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_seats,\n    },\n]);\ndata=data.concat(AnatolianRules.extraPartyData(Q));\nif (window && d3) {\n    var width = 500;\n    var height = 500;\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        document.getElementById(\"parliament\").style.height = screenWidth/2 + \"px\";\n    }\n\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(\"#parliament\").datum(data).call(parliament);\n}"
         }
       ],
       "goTo": [
@@ -7580,19 +7580,14 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<tr><td><div class=\"box\" style='background-color:#a0a0a0'> </div> "
-              },
-              " Others: ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
+                "content": "<tr><td><div class=\"box\" style='background-color:#054521'> </div> "
               },
               " ",
               {
                 "type": "insert",
                 "insert": 16
               },
-              " % ",
+              ": ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7602,7 +7597,7 @@
                 "type": "insert",
                 "insert": 17
               },
-              " ",
+              "% ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7611,6 +7606,16 @@
               {
                 "type": "insert",
                 "insert": 18
+              },
+              " ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 19
               },
               " ",
               {
@@ -7625,14 +7630,9 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<tr><td><div class=\"box\" style='background-color:#054521'> </div> "
+                "content": "<tr><td><div class=\"box\" style='background-color:#954B00'> </div> "
               },
-              " ",
-              {
-                "type": "insert",
-                "insert": 19
-              },
-              ": ",
+              " MHP: ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7675,9 +7675,9 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<tr><td><div class=\"box\" style='background-color:#954B00'> </div> "
+                "content": "<tr><td>"
               },
-              " MHP: ",
+              " TKP ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7722,7 +7722,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " TKP ",
+              " TSİP ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7767,7 +7767,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " TSİP ",
+              " TEP ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7812,7 +7812,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " TEP ",
+              " SDP ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7857,7 +7857,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " SDP ",
+              " Independents ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7902,7 +7902,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " Independents ",
+              " Kurdish Independents ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7947,7 +7947,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " Kurdish Independents ",
+              " TBP ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7990,6 +7990,51 @@
             "content": [
               {
                 "type": "magic",
+                "content": "<tr><td>"
+              },
+              " MP ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 44
+              },
+              "% ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 45
+              },
+              " ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 46
+              },
+              " ",
+              {
+                "type": "magic",
+                "content": "</td></tr>"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
                 "content": "</table>"
               },
               ""
@@ -8016,7 +8061,7 @@
               "Left Coalition (CHP + TIP): ",
               {
                 "type": "insert",
-                "insert": 44
+                "insert": 47
               },
               " seats"
             ]
@@ -8027,12 +8072,12 @@
               "Kemalist Coalition (CHP + ",
               {
                 "type": "insert",
-                "insert": 45
+                "insert": 48
               },
               "): ",
               {
                 "type": "insert",
-                "insert": 46
+                "insert": 49
               },
               " seats"
             ]
@@ -8043,7 +8088,7 @@
               "Grand Coalition (CHP + AP): ",
               {
                 "type": "insert",
-                "insert": 47
+                "insert": 50
               },
               " seats"
             ]
@@ -8054,7 +8099,7 @@
               "Unholy Coalition (CHP + MSP): ",
               {
                 "type": "insert",
-                "insert": 48
+                "insert": 51
               },
               " seats"
             ]
@@ -8065,12 +8110,12 @@
               "Bourgeois Coalition (AP + ",
               {
                 "type": "insert",
-                "insert": 49
+                "insert": 52
               },
               " + DP): ",
               {
                 "type": "insert",
-                "insert": 50
+                "insert": 53
               },
               " seats"
             ]
@@ -8081,7 +8126,7 @@
               "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
               {
                 "type": "insert",
-                "insert": 51
+                "insert": 54
               },
               " seats"
             ]
@@ -8092,7 +8137,7 @@
               {
                 "type": "conditional",
                 "content": "The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ",
-                "predicate": 52
+                "predicate": 55
               },
               ""
             ]
@@ -8197,24 +8242,6 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['DP_seats'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['other_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['str_change_other'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['other_seats'] || 0);"
             }
           },
           {
@@ -8365,6 +8392,42 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['KI_seats'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['TBP_r'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['str_change_TBP'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['TBP_seats'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['MP_r'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['str_change_MP'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['MP_seats'] || 0);"
             }
           },
           {
@@ -13207,6 +13270,14 @@
           },
           {
             "type": "paragraph",
+            "content": "TBP: Alevi Rights (Mustafa Timisi)"
+          },
+          {
+            "type": "paragraph",
+            "content": "MP: Conservative Nationalism (Cemal Tural)"
+          },
+          {
+            "type": "paragraph",
             "content": [
               "<span style=\"color: #8B0000;\">",
               {
@@ -14973,7 +15044,7 @@
       "id": "election_simulation.scenario_1977",
       "onArrival": [
         {
-          "$code": "// Turkish demographic groups with accurate percentages - 1977 variation\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\nQ.kurds = 5; // Kurdish population (provisional poll weight)\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nQ.disk_endorsement = false;\nQ.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;\nQ.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election\nQ.use_decimals = true;\nQ.sim_year = 1977;\n// the simulation may be entered directly from the start menu, before the main\n// game state (and CGP_name) has been initialized\nif (typeof Q.CGP_name === 'undefined') {\n    Q.CGP_name = 'CGP';\n}\n\n// 1977 general election results: CHP 41%, TIP 0.1%, AP 37%, MSP 9%, MHP 6%, DP 2%, CGP 2%, Others 2.9% (remainder).\n// Applied uniformly across every demographic group so the simulated national result matches exactly.\nfor (var c of Q.classes) {\n    Q[c + '_chp'] = 41;\n    Q[c + '_TIP'] = 0.1;\n    Q[c + '_AP'] = 37; // AP uses 'AP' variable\n    Q[c + '_MSP'] = 9;\n    Q[c + '_MHP'] = 6;\n    Q[c + '_DP'] = 2;\n    Q[c + '_CGP'] = 2;\n    Q[c + '_other'] = 2.9;\n}"
+          "$code": "// Turkish demographic groups with accurate percentages - 1977 variation\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\nQ.kurds = 5; // Kurdish population (provisional poll weight)\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nQ.minor_parties_version=0;\nQ.disk_endorsement = false;\nQ.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;\nQ.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election\nQ.use_decimals = true;\nQ.sim_year = 1977;\n// the simulation may be entered directly from the start menu, before the main\n// game state (and CGP_name) has been initialized\nif (typeof Q.CGP_name === 'undefined') {\n    Q.CGP_name = 'CGP';\n}\n\n// 1977 general election results: CHP 41%, TIP 0.1%, AP 37%, MSP 9%, MHP 6%, DP 2%, CGP 2%, Others 2.9% (remainder).\n// Applied uniformly across every demographic group so the simulated national result matches exactly.\nfor (var c of Q.classes) {\n    ['TBP','MP','IND','TKP','TSIP','TEP','SDP','KI'].forEach(function(p){Q[c+'_'+p]=0;});\n    Q[c + '_chp'] = 41;\n    Q[c + '_TIP'] = 0.1;\n    Q[c + '_AP'] = 37; // AP uses 'AP' variable\n    Q[c + '_MSP'] = 9;\n    Q[c + '_MHP'] = 6;\n    Q[c + '_DP'] = 2;\n    Q[c + '_CGP'] = 2;\n    Q[c + '_other'] = 2.9;\n}"
         }
       ],
       "goTo": [
@@ -19118,7 +19189,7 @@
       "id": "local_elections.local_results",
       "onArrival": [
         {
-          "$code": "var partyDisplayNames = {\n\t'chp': 'CHP',\n\t'TIP': 'TİP',\n\t'AP': 'AP',\n\t'CGP': Q.CGP_name || 'CGP',\n\t'DP': 'DP',\n\t'MSP': 'MSP',\n\t'MHP': 'MHP',\n\t'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','other': 'Other'\n};\nvar parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nvar lines = [];\nfor (var party of parties) {\n\tvar displayName = partyDisplayNames[party] || party.toUpperCase();\n\tvar votes = Q[party + '_local_votes_disp'];\n\tif (typeof votes === 'undefined') {\n\t\tvar vDec = Q[party + '_local_votes_dec'];\n\t\tvotes = (typeof vDec !== 'undefined') ? Number(vDec).toFixed(1) : '0.0';\n\t}\n\tvar seats = Q[party + '_local_seats'];\n\tif (typeof seats === 'undefined') {\n\t\tseats = 0;\n\t}\n\tlines.push({\n\t\tname: displayName,\n\t\tvotes: votes,\n\t\tseats: seats\n\t});\n}\nQ.local_results_lines = lines;\nQ.local_results_lines_text = lines.map(function(entry) {\n\treturn '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';\n}).join('\\n');\nQ.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));\nQ.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));\nQ.local_chp_seats_display = Q.chp_local_seats || 0;\nQ.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;"
+          "$code": "var partyDisplayNames = {\n\t'chp': 'CHP',\n\t'TIP': 'TİP',\n\t'AP': 'AP',\n\t'CGP': Q.CGP_name || 'CGP',\n\t'DP': 'DP',\n\t'MSP': 'MSP',\n\t'MHP': 'MHP',\n\t'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'\n};\nvar parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nvar lines = [];\nfor (var party of parties) {\n\tvar displayName = partyDisplayNames[party] || party.toUpperCase();\n\tvar votes = Q[party + '_local_votes_disp'];\n\tif (typeof votes === 'undefined') {\n\t\tvar vDec = Q[party + '_local_votes_dec'];\n\t\tvotes = (typeof vDec !== 'undefined') ? Number(vDec).toFixed(1) : '0.0';\n\t}\n\tvar seats = Q[party + '_local_seats'];\n\tif (typeof seats === 'undefined') {\n\t\tseats = 0;\n\t}\n\tlines.push({\n\t\tname: displayName,\n\t\tvotes: votes,\n\t\tseats: seats\n\t});\n}\nQ.local_results_lines = lines;\nQ.local_results_lines_text = lines.map(function(entry) {\n\treturn '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';\n}).join('\\n');\nQ.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));\nQ.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));\nQ.local_chp_seats_display = Q.chp_local_seats || 0;\nQ.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;"
         }
       ],
       "options": [
@@ -21512,7 +21583,7 @@
       "id": "election_simulation.scenario_1979",
       "onArrival": [
         {
-          "$code": "// Turkish demographic groups with accurate percentages - 1979 by-election scenario\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\nQ.kurds = 5; // Kurdish population (provisional poll weight)\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nQ.disk_endorsement = false;\nQ.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;\nQ.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election\nQ.use_decimals = true;\nQ.sim_year = 1979;\n// the simulation may be entered directly from the start menu, before the main\n// game state (and CGP_name) has been initialized\nif (typeof Q.CGP_name === 'undefined') {\n    Q.CGP_name = 'CGP';\n}\n\n// 1979 general election results: AP 54%, CHP 29%, Socialist Left (shown in TIP's color) 2%,\n// MSP 7%, MHP 5%, CGP 2%, DP 0%, Others 1% (remainder).\n// Applied uniformly across every demographic group so the simulated national result matches exactly.\nfor (var c of Q.classes) {\n    Q[c + '_AP'] = 54; // AP uses 'AP' variable\n    Q[c + '_chp'] = 29;\n    Q[c + '_TIP'] = 2; // Socialist Left, covered in the same color as TIP\n    Q[c + '_MSP'] = 7;\n    Q[c + '_MHP'] = 5;\n    Q[c + '_CGP'] = 2;\n    Q[c + '_DP'] = 0;\n    Q[c + '_other'] = 1;\n}"
+          "$code": "// Turkish demographic groups with accurate percentages - 1979 by-election scenario\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\nQ.kurds = 5; // Kurdish population (provisional poll weight)\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nQ.minor_parties_version=0;\nQ.disk_endorsement = false;\nQ.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;\nQ.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election\nQ.use_decimals = true;\nQ.sim_year = 1979;\n// the simulation may be entered directly from the start menu, before the main\n// game state (and CGP_name) has been initialized\nif (typeof Q.CGP_name === 'undefined') {\n    Q.CGP_name = 'CGP';\n}\n\n// 1979 general election results: AP 54%, CHP 29%, Socialist Left (shown in TIP's color) 2%,\n// MSP 7%, MHP 5%, CGP 2%, DP 0%, Others 1% (remainder).\n// Applied uniformly across every demographic group so the simulated national result matches exactly.\nfor (var c of Q.classes) {\n    ['TBP','MP','IND','TKP','TSIP','TEP','SDP','KI'].forEach(function(p){Q[c+'_'+p]=0;});\n    Q[c + '_AP'] = 54; // AP uses 'AP' variable\n    Q[c + '_chp'] = 29;\n    Q[c + '_TIP'] = 2; // Socialist Left, covered in the same color as TIP\n    Q[c + '_MSP'] = 7;\n    Q[c + '_MHP'] = 5;\n    Q[c + '_CGP'] = 2;\n    Q[c + '_DP'] = 0;\n    Q[c + '_other'] = 1;\n}"
         }
       ],
       "goTo": [
@@ -24382,7 +24453,7 @@
       "id": "election_simulation.post_election",
       "onArrival": [
         {
-          "$code": "// restore the real TIP_banned state now that the simulated votes have been computed,\n// so the simulation does not permanently unban TIP in the main game state\nif (typeof Q.sim_prev_TIP_banned !== 'undefined') {\n    Q.TIP_banned = Q.sim_prev_TIP_banned;\n    delete Q.sim_prev_TIP_banned;\n}\n// set congress proportion to votes\nQ.chp_r = Q.chp_votes;\nQ.AP_r = Q.AP_votes;\nQ.AP_r = Q.AP_votes; // AP display variable matches AP_votes\nQ.TIP_r = Q.TIP_votes;\nQ.CGP_r = Q.CGP_votes;\nQ.DP_r = Q.DP_votes;\nQ.MSP_r = Q.MSP_votes;\nQ.MHP_r = Q.MHP_votes;\nQ.other_r = Q.other_votes;\n\n// Tiered proportional apportionment, mirroring the algorithm used for the actual\n// Grand National Assembly election (see post_national_elections in national_elections.scene.dry):\n// each party's vote share is weighted more heavily the larger it is (in brackets),\n// seats are then apportioned out of a fixed 450-seat assembly, and any leftover\n// seats from rounding down are settled between CHP and AP.\nvar totalSeatsTarget = 450;\nvar majorityThreshold = 226;\nQ.majority_threshold = majorityThreshold;\nfunction seatWeightMultiplier(share) {\n    if (share <= 5) {\n        return 0.5;\n    } else if (share <= 15) {\n        return 1.15;\n    } else if (share <= 27) {\n        return 1.25;\n    } else if (share <= 32) {\n        return 1.5;\n    } else if (share <= 40) {\n        return 1.8;\n    } else {\n        return 1.9;\n    }\n}\nQ.largest_party_key = null;\nvar largestShare = -1;\nvar weightedShares = {};\nvar weightedTotal = 0;\nfor (var party of Q.parties) {\n    var share = Q[party + '_r'] || 0;\n    var weighted = share * seatWeightMultiplier(share);\n    weightedShares[party] = weighted;\n    weightedTotal += weighted;\n    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {\n        largestShare = share;\n        Q.largest_party_key = party;\n    }\n}\nif (weightedTotal <= 0) {\n    weightedTotal = 1;\n}\nQ.total_seats = 0;\nfor (var party of Q.parties) {\n    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));\n    Q[party + '_seats'] = seats;\n    Q.total_seats += seats;\n}\nvar seatRemainder = totalSeatsTarget - Q.total_seats;\nif (seatRemainder < 0) {\n    Q.chp_seats += seatRemainder;\n} else if (seatRemainder > 0) {\n    Q.AP_seats += seatRemainder;\n}\nQ.total_seats = totalSeatsTarget;\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TIP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': 'MSP',\n    'MHP': 'MHP',\n    'other': 'Other'\n};\nif (Q.largest_party_key) {\n    Q.largest_party = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n} else {\n    Q.largest_party = 'CHP';\n}\n\n// Coalition options mirrored from the actual Grand National Assembly election scene (national_elections.scene.dry).\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\n// Socialist Left breakdown for the 1979 simulation result, mirroring the split used\n// for the main game's aggregate TIP_r breakdown (see status.scene.dry).\nif (Q.sim_year == 1979) {\n    Q.TKP_r = Q.TIP_r * 0.25;\n    Q.TSIP_r = Q.TIP_r * 0.25;\n    Q.TEP_r = Q.TIP_r * 0.10;\n    Q.SDP_r = Q.TIP_r * 0.20;\n    Q.TIP_socialist_left_r = Q.TIP_r * 0.20;\n}"
+          "$code": "// restore the real TIP_banned state now that the simulated votes have been computed,\n// so the simulation does not permanently unban TIP in the main game state\nif (typeof Q.sim_prev_TIP_banned !== 'undefined') {\n    Q.TIP_banned = Q.sim_prev_TIP_banned;\n    delete Q.sim_prev_TIP_banned;\n}\n// set congress proportion to votes\nQ.chp_r = Q.chp_votes;\nQ.AP_r = Q.AP_votes;\nQ.AP_r = Q.AP_votes; // AP display variable matches AP_votes\nQ.TIP_r = Q.TIP_votes;\nQ.CGP_r = Q.CGP_votes;\nQ.DP_r = Q.DP_votes;\nQ.MSP_r = Q.MSP_votes;\nQ.MHP_r = Q.MHP_votes;\nQ.parties.forEach(function(p){Q[p+'_r']=Q[p+'_votes'];});\n\n// Tiered proportional apportionment, mirroring the algorithm used for the actual\n// Grand National Assembly election (see post_national_elections in national_elections.scene.dry):\n// each party's vote share is weighted more heavily the larger it is (in brackets),\n// seats are then apportioned out of a fixed 450-seat assembly, and any leftover\n// seats from rounding down are settled between CHP and AP.\nvar totalSeatsTarget = 450;\nvar majorityThreshold = 226;\nQ.majority_threshold = majorityThreshold;\nfunction seatWeightMultiplier(share) {\n    if (share <= 5) {\n        return 0.5;\n    } else if (share <= 15) {\n        return 1.15;\n    } else if (share <= 27) {\n        return 1.25;\n    } else if (share <= 32) {\n        return 1.5;\n    } else if (share <= 40) {\n        return 1.8;\n    } else {\n        return 1.9;\n    }\n}\nQ.largest_party_key = null;\nvar largestShare = -1;\nvar weightedShares = {};\nvar weightedTotal = 0;\nfor (var party of Q.parties) {\n    var share = Q[party + '_r'] || 0;\n    var weighted = share * seatWeightMultiplier(share);\n    weightedShares[party] = weighted;\n    weightedTotal += weighted;\n    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {\n        largestShare = share;\n        Q.largest_party_key = party;\n    }\n}\nif (weightedTotal <= 0) {\n    weightedTotal = 1;\n}\nQ.total_seats = 0;\nfor (var party of Q.parties) {\n    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));\n    Q[party + '_seats'] = seats;\n    Q.total_seats += seats;\n}\nvar seatRemainder = totalSeatsTarget - Q.total_seats;\nif (seatRemainder < 0) {\n    Q.chp_seats += seatRemainder;\n} else if (seatRemainder > 0) {\n    Q.AP_seats += seatRemainder;\n}\nQ.total_seats = totalSeatsTarget;\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TIP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': 'MSP',\n    'MHP': 'MHP',\n    'TBP':'TBP','MP':'MP','IND':'Independents','KI':'Kurdish Independents'\n};\nif (Q.largest_party_key) {\n    Q.largest_party = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n} else {\n    Q.largest_party = 'CHP';\n}\n\n// Coalition options mirrored from the actual Grand National Assembly election scene (national_elections.scene.dry).\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\n// Socialist Left breakdown for the 1979 simulation result, mirroring the split used\n// for the main game's aggregate TIP_r breakdown (see status.scene.dry).\nif (Q.sim_year == 1979) {\n    Q.TKP_r = Q.TIP_r * 0.25;\n    Q.TSIP_r = Q.TIP_r * 0.25;\n    Q.TEP_r = Q.TIP_r * 0.10;\n    Q.SDP_r = Q.TIP_r * 0.20;\n    Q.TIP_socialist_left_r = Q.TIP_r * 0.20;\n}"
         }
       ],
       "content": {
@@ -24558,16 +24629,27 @@
           {
             "type": "paragraph",
             "content": [
-              {
-                "type": "emphasis-2",
-                "content": "Other parties:"
-              },
-              " ",
+              "TBP: ",
               {
                 "type": "insert",
                 "insert": 15
               },
-              "%"
+              "%, MP: ",
+              {
+                "type": "insert",
+                "insert": 16
+              },
+              "%, Independents: ",
+              {
+                "type": "insert",
+                "insert": 17
+              },
+              "%, Kurdish Independents: ",
+              {
+                "type": "insert",
+                "insert": 18
+              },
+              "%."
             ]
           },
           {
@@ -24595,7 +24677,7 @@
               " (CHP + TİP): ",
               {
                 "type": "insert",
-                "insert": 16
+                "insert": 19
               },
               " seats"
             ]
@@ -24610,12 +24692,12 @@
               " (CHP + ",
               {
                 "type": "insert",
-                "insert": 17
+                "insert": 20
               },
               "): ",
               {
                 "type": "insert",
-                "insert": 18
+                "insert": 21
               },
               " seats"
             ]
@@ -24630,7 +24712,7 @@
               " (CHP + AP): ",
               {
                 "type": "insert",
-                "insert": 19
+                "insert": 22
               },
               " seats"
             ]
@@ -24645,7 +24727,7 @@
               " (CHP + MSP): ",
               {
                 "type": "insert",
-                "insert": 20
+                "insert": 23
               },
               " seats"
             ]
@@ -24660,12 +24742,12 @@
               " (AP + ",
               {
                 "type": "insert",
-                "insert": 21
+                "insert": 24
               },
               " + DP): ",
               {
                 "type": "insert",
-                "insert": 22
+                "insert": 25
               },
               " seats"
             ]
@@ -24677,10 +24759,10 @@
                 "type": "emphasis-2",
                 "content": "Right-wing Coalition"
               },
-              " (AP + DP + Others + MSP): ",
+              " (AP + DP + MP + Independents + MSP): ",
               {
                 "type": "insert",
-                "insert": 23
+                "insert": 26
               },
               " seats"
             ]
@@ -24695,7 +24777,7 @@
               " (MSP + MHP): ",
               {
                 "type": "insert",
-                "insert": 24
+                "insert": 27
               },
               " seats"
             ]
@@ -24710,12 +24792,12 @@
               " (AP + ",
               {
                 "type": "insert",
-                "insert": 25
+                "insert": 28
               },
               " + MSP + MHP): ",
               {
                 "type": "insert",
-                "insert": 26
+                "insert": 29
               },
               " seats"
             ]
@@ -24815,7 +24897,25 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['other_r'] || 0);"
+              "$code": "return (Q['TBP_r'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['MP_r'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['IND_r'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['KI_r'] || 0);"
             }
           },
           {
@@ -32578,12 +32678,11 @@
           {
             "type": "paragraph",
             "content": [
-              "Others: ",
               {
                 "type": "insert",
                 "insert": 12
               },
-              "%"
+              ""
             ]
           },
           {
@@ -32784,7 +32883,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['other_r'] || 0);"
+              "$code": "return AnatolianRules.partyVoteRows(Q,\"results\");"
             }
           },
           {
@@ -36071,7 +36170,7 @@
       "isSpecial": true,
       "onArrival": [
         {
-          "$code": "AnatolianRules.refreshPartyNames(Q,this.state.visits);\nAnatolianRules.ensureKurdishIssue(Q);\n// Format economic indicators with proper fallbacks only for display\nQ.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';\nQ.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';\nQ.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : '9.2';\n\n// Format production indices\nQ.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 100.0).toFixed(1);\nQ.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production_index, 100.0).toFixed(1);\n\n// Format agricultural market data\nQ.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);\n\n// Format forex pressure and determine status\nQ.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure, 45.0).toFixed(1);\nif (Q.forex_pressure <= 20) {\n    Q.forex_pressure_status = \"Low\";\n} else if (Q.forex_pressure > 20 && Q.forex_pressure <= 40) {\n    Q.forex_pressure_status = \"Manageable\";\n} else if (Q.forex_pressure > 40 && Q.forex_pressure <= 60) {\n    Q.forex_pressure_status = \"Straining\";\n} else if (Q.forex_pressure > 60 && Q.forex_pressure <= 80) {\n    Q.forex_pressure_status = \"Damaging\";\n} else if (Q.forex_pressure > 80) {\n    Q.forex_pressure_status = \"Crushing\";\n}\n\nif (typeof Q.chp_seats === 'undefined') {\n    Q.chp_seats = 143;\n    Q.AP_seats = 224;\n    Q.TIP_seats = 2;\n    Q.CGP_seats = 26;\n    Q.DP_seats = 36;\n    Q.MSP_seats = 0;\n    Q.MHP_seats = 1;\n    Q.other_seats = 18;\n}\n\nif (typeof Q.majority_threshold === 'undefined') {\n    Q.majority_threshold = 226;\n}\nif (typeof Q.right_kemalist_split === 'undefined') {\n    Q.right_kemalist_split = 0;\n}\nif (typeof Q.orthodox_kemalist_destruction === 'undefined') {\n    Q.orthodox_kemalist_destruction = 0;\n}\nif (typeof Q.right_kemalist_deal === 'undefined') {\n    Q.right_kemalist_deal = 0;\n}\nif (typeof Q.right_kemalists_resign === 'undefined') {\n    Q.right_kemalists_resign = 0;\n}\n\n// Initialize per-quarter strengths if they don't exist (backward compatibility with saves)\nif (typeof Q.q0_km_str === 'undefined') {\n    var _qWInit = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];\n    var _fKeysInit = ['km', 'lk', 'ok', 'rk'];\n    var _fGlobalsInit = ['kemalist_marxists_strength', 'left_kemalists_strength', 'orthodox_kemalists_strength', 'right_kemalists_strength'];\n    for (var _fii = 0; _fii < 4; _fii++) {\n        var _val = Q[_fGlobalsInit[_fii]] || 0;\n        for (var _qii = 0; _qii < 6; _qii++) {\n            Q['q' + _qii + '_' + _fKeysInit[_fii] + '_str'] = _val;\n        }\n        Q['_last_' + _fKeysInit[_fii] + '_str'] = _val;\n    }\n}\n\n// Third Worldists: backward compatibility with saves created before this faction existed.\nif (typeof Q.third_worldists_enabled === 'undefined') {\n    Q.third_worldists_enabled = 0;\n}\nif (typeof Q.third_worldists_color === 'undefined') {\n    Q.third_worldists_color = '#b31f3b';\n}\nif (typeof Q.third_worldists_dissent === 'undefined') {\n    Q.third_worldists_dissent = 20;\n}\nif (typeof Q.q0_tw_str === 'undefined') {\n    var _twDefaults = [3, 2, 1, 2, 2, 1];\n    for (var _twi = 0; _twi < 6; _twi++) {\n        Q['q' + _twi + '_tw_str'] = _twDefaults[_twi];\n    }\n}\n\n// Per-quarter faction strengths are the source of truth and are only\n// modified by direct assignment in game events/advisors (not by global sync).\n// Global faction strengths are normalized independently by post_event.\n\nvar factionModel = AnatolianRules.factionModel(Q);\nvar _kmAvg = factionModel.averages.km, _lkAvg = factionModel.averages.lk, _okAvg = factionModel.averages.ok, _rkAvg = factionModel.averages.rk, _twAvg = factionModel.averages.tw;\n\nfunction _strengthLabel(score, myAvg, othersAvg) {\n    if (score >= 5.5 && myAvg > othersAvg) return \"Hegemonic\";\n    if (score >= 4.5) return \"Very High\";\n    if (score >= 3.5) return \"High\";\n    if (score >= 2.5) return \"Medium\";\n    if (score >= 1.5) return \"Weak\";\n    if (score >= 0.5) return \"Very weak\";\n    return \"Nonexistant\";\n}\n\nvar _rkAvgActive = factionModel.active.rk ? _rkAvg : 0;\nvar _okAvgActive = Q.orthodox_kemalist_destruction ? 0 : _okAvg;\nvar _twAvgActive = Q.third_worldists_enabled ? _twAvg : 0;\n\nQ.km_strength_label = _strengthLabel(_kmAvg, _kmAvg, _lkAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.lk_strength_label = _strengthLabel(_lkAvg, _lkAvg, _kmAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.ok_strength_label = Q.orthodox_kemalist_destruction ? \"Nonexistant\" : _strengthLabel(_okAvg, _okAvg, _kmAvg + _lkAvg + _rkAvgActive + _twAvgActive);\nQ.rk_strength_label = !factionModel.active.rk ? \"Nonexistant\" : _strengthLabel(_rkAvg, _rkAvg, _kmAvg + _lkAvg + _okAvgActive + _twAvgActive);\nQ.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg, _kmAvg + _lkAvg + _okAvgActive + _rkAvgActive) : \"Nonexistant\";"
+          "$code": "AnatolianRules.refreshPartyNames(Q,this.state.visits);\nAnatolianRules.ensureKurdishIssue(Q);\n// Format economic indicators with proper fallbacks only for display\nQ.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';\nQ.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';\nQ.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : '9.2';\n\n// Format production indices\nQ.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 100.0).toFixed(1);\nQ.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production_index, 100.0).toFixed(1);\n\n// Format agricultural market data\nQ.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);\n\n// Format forex pressure and determine status\nQ.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure, 45.0).toFixed(1);\nif (Q.forex_pressure <= 20) {\n    Q.forex_pressure_status = \"Low\";\n} else if (Q.forex_pressure > 20 && Q.forex_pressure <= 40) {\n    Q.forex_pressure_status = \"Manageable\";\n} else if (Q.forex_pressure > 40 && Q.forex_pressure <= 60) {\n    Q.forex_pressure_status = \"Straining\";\n} else if (Q.forex_pressure > 60 && Q.forex_pressure <= 80) {\n    Q.forex_pressure_status = \"Damaging\";\n} else if (Q.forex_pressure > 80) {\n    Q.forex_pressure_status = \"Crushing\";\n}\n\nif (typeof Q.chp_seats === 'undefined') {\n    Q.chp_seats = 143;\n    Q.AP_seats = 224;\n    Q.TIP_seats = 2;\n    Q.CGP_seats = 26;\n    Q.DP_seats = 36;\n    Q.MSP_seats = 0;\n    Q.MHP_seats = 1;\n    Q.IND_seats = 10;Q.TBP_seats = 5;Q.MP_seats = 3;\n}\n\nif (typeof Q.majority_threshold === 'undefined') {\n    Q.majority_threshold = 226;\n}\nif (typeof Q.right_kemalist_split === 'undefined') {\n    Q.right_kemalist_split = 0;\n}\nif (typeof Q.orthodox_kemalist_destruction === 'undefined') {\n    Q.orthodox_kemalist_destruction = 0;\n}\nif (typeof Q.right_kemalist_deal === 'undefined') {\n    Q.right_kemalist_deal = 0;\n}\nif (typeof Q.right_kemalists_resign === 'undefined') {\n    Q.right_kemalists_resign = 0;\n}\n\n// Initialize per-quarter strengths if they don't exist (backward compatibility with saves)\nif (typeof Q.q0_km_str === 'undefined') {\n    var _qWInit = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];\n    var _fKeysInit = ['km', 'lk', 'ok', 'rk'];\n    var _fGlobalsInit = ['kemalist_marxists_strength', 'left_kemalists_strength', 'orthodox_kemalists_strength', 'right_kemalists_strength'];\n    for (var _fii = 0; _fii < 4; _fii++) {\n        var _val = Q[_fGlobalsInit[_fii]] || 0;\n        for (var _qii = 0; _qii < 6; _qii++) {\n            Q['q' + _qii + '_' + _fKeysInit[_fii] + '_str'] = _val;\n        }\n        Q['_last_' + _fKeysInit[_fii] + '_str'] = _val;\n    }\n}\n\n// Third Worldists: backward compatibility with saves created before this faction existed.\nif (typeof Q.third_worldists_enabled === 'undefined') {\n    Q.third_worldists_enabled = 0;\n}\nif (typeof Q.third_worldists_color === 'undefined') {\n    Q.third_worldists_color = '#b31f3b';\n}\nif (typeof Q.third_worldists_dissent === 'undefined') {\n    Q.third_worldists_dissent = 20;\n}\nif (typeof Q.q0_tw_str === 'undefined') {\n    var _twDefaults = [3, 2, 1, 2, 2, 1];\n    for (var _twi = 0; _twi < 6; _twi++) {\n        Q['q' + _twi + '_tw_str'] = _twDefaults[_twi];\n    }\n}\n\n// Per-quarter faction strengths are the source of truth and are only\n// modified by direct assignment in game events/advisors (not by global sync).\n// Global faction strengths are normalized independently by post_event.\n\nvar factionModel = AnatolianRules.factionModel(Q);\nvar _kmAvg = factionModel.averages.km, _lkAvg = factionModel.averages.lk, _okAvg = factionModel.averages.ok, _rkAvg = factionModel.averages.rk, _twAvg = factionModel.averages.tw;\n\nfunction _strengthLabel(score, myAvg, othersAvg) {\n    if (score >= 5.5 && myAvg > othersAvg) return \"Hegemonic\";\n    if (score >= 4.5) return \"Very High\";\n    if (score >= 3.5) return \"High\";\n    if (score >= 2.5) return \"Medium\";\n    if (score >= 1.5) return \"Weak\";\n    if (score >= 0.5) return \"Very weak\";\n    return \"Nonexistant\";\n}\n\nvar _rkAvgActive = factionModel.active.rk ? _rkAvg : 0;\nvar _okAvgActive = Q.orthodox_kemalist_destruction ? 0 : _okAvg;\nvar _twAvgActive = Q.third_worldists_enabled ? _twAvg : 0;\n\nQ.km_strength_label = _strengthLabel(_kmAvg, _kmAvg, _lkAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.lk_strength_label = _strengthLabel(_lkAvg, _lkAvg, _kmAvg + _okAvgActive + _rkAvgActive + _twAvgActive);\nQ.ok_strength_label = Q.orthodox_kemalist_destruction ? \"Nonexistant\" : _strengthLabel(_okAvg, _okAvg, _kmAvg + _lkAvg + _rkAvgActive + _twAvgActive);\nQ.rk_strength_label = !factionModel.active.rk ? \"Nonexistant\" : _strengthLabel(_rkAvg, _rkAvg, _kmAvg + _lkAvg + _okAvgActive + _twAvgActive);\nQ.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg, _kmAvg + _lkAvg + _okAvgActive + _rkAvgActive) : \"Nonexistant\";"
         }
       ],
       "content": {
@@ -36753,28 +36852,17 @@
           {
             "type": "paragraph",
             "content": [
-              "Others: ",
-              {
-                "type": "insert",
-                "insert": 83
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
               {
                 "type": "conditional",
                 "content": [
                   "Majority required: ",
                   {
                     "type": "insert",
-                    "insert": 85
+                    "insert": 84
                   },
                   " seats "
                 ],
-                "predicate": 84
+                "predicate": 83
               },
               ""
             ]
@@ -36788,7 +36876,7 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 86
+                "insert": 85
               },
               ""
             ]
@@ -36802,11 +36890,11 @@
                   "Budget: ",
                   {
                     "type": "insert",
-                    "insert": 88
+                    "insert": 87
                   },
                   " "
                 ],
-                "predicate": 87
+                "predicate": 86
               },
               ""
             ]
@@ -36817,12 +36905,12 @@
               "Next general election: ",
               {
                 "type": "insert",
-                "insert": 89
+                "insert": 88
               },
               " ",
               {
                 "type": "insert",
-                "insert": 90
+                "insert": 89
               },
               ""
             ]
@@ -36836,16 +36924,16 @@
                   "Next municipal election: ",
                   {
                     "type": "insert",
-                    "insert": 92
+                    "insert": 91
                   },
                   " ",
                   {
                     "type": "insert",
-                    "insert": 93
+                    "insert": 92
                   },
                   " "
                 ],
-                "predicate": 91
+                "predicate": 90
               },
               ""
             ]
@@ -37354,12 +37442,6 @@
             "type": "insert",
             "fn": {
               "$code": "return AnatolianRules.extraPartyRows(Q,\"seats\");"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['other_seats'] || 0);"
             }
           },
           {
@@ -38518,7 +38600,7 @@
       "title": "Refuse to form a government, so that a right-wing coalition may be formed.",
       "subtitle": {
         "content": [
-          "AP + DP + MSP + Others (",
+          "AP + DP + MSP + MP + Independents (",
           {
             "type": "insert",
             "insert": 0
@@ -39028,12 +39110,22 @@
           {
             "type": "paragraph",
             "content": [
-              "Others: ",
+              "TBP: ",
               {
                 "type": "insert",
                 "insert": 9
               },
-              "%"
+              "%, MP: ",
+              {
+                "type": "insert",
+                "insert": 10
+              },
+              "%, Independents: ",
+              {
+                "type": "insert",
+                "insert": 11
+              },
+              "%."
             ]
           },
           {
@@ -39052,52 +39144,62 @@
               "Workers: CHP: ",
               {
                 "type": "insert",
-                "insert": 10
+                "insert": 12
               },
               "%, AP: ",
               {
                 "type": "insert",
-                "insert": 11
+                "insert": 13
               },
               "%, TIP: ",
               {
                 "type": "insert",
-                "insert": 12
+                "insert": 14
               },
               "%, ",
               {
                 "type": "insert",
-                "insert": 13
-              },
-              ": ",
-              {
-                "type": "insert",
-                "insert": 14
-              },
-              "%, DP: ",
-              {
-                "type": "insert",
                 "insert": 15
               },
-              "%; ",
+              ": ",
               {
                 "type": "insert",
                 "insert": 16
               },
-              ": ",
+              "%, DP: ",
               {
                 "type": "insert",
                 "insert": 17
               },
-              "%, MHP: ",
+              "%; ",
               {
                 "type": "insert",
                 "insert": 18
               },
-              "%, Others: ",
+              ": ",
               {
                 "type": "insert",
                 "insert": 19
+              },
+              "%, MHP: ",
+              {
+                "type": "insert",
+                "insert": 20
+              },
+              "%, TBP: ",
+              {
+                "type": "insert",
+                "insert": 21
+              },
+              "%, MP: ",
+              {
+                "type": "insert",
+                "insert": 22
+              },
+              "%, Independents: ",
+              {
+                "type": "insert",
+                "insert": 23
               },
               "%"
             ]
@@ -39108,52 +39210,62 @@
               "Public employees: CHP: ",
               {
                 "type": "insert",
-                "insert": 20
+                "insert": 24
               },
               "%, AP: ",
               {
                 "type": "insert",
-                "insert": 21
+                "insert": 25
               },
               "%, TIP: ",
               {
                 "type": "insert",
-                "insert": 22
+                "insert": 26
               },
               "%, ",
               {
                 "type": "insert",
-                "insert": 23
-              },
-              ": ",
-              {
-                "type": "insert",
-                "insert": 24
-              },
-              "%, DP: ",
-              {
-                "type": "insert",
-                "insert": 25
-              },
-              "%; ",
-              {
-                "type": "insert",
-                "insert": 26
-              },
-              ": ",
-              {
-                "type": "insert",
                 "insert": 27
               },
-              "%, MHP: ",
+              ": ",
               {
                 "type": "insert",
                 "insert": 28
               },
-              "%, Others: ",
+              "%, DP: ",
               {
                 "type": "insert",
                 "insert": 29
+              },
+              "%; ",
+              {
+                "type": "insert",
+                "insert": 30
+              },
+              ": ",
+              {
+                "type": "insert",
+                "insert": 31
+              },
+              "%, MHP: ",
+              {
+                "type": "insert",
+                "insert": 32
+              },
+              "%, TBP: ",
+              {
+                "type": "insert",
+                "insert": 33
+              },
+              "%, MP: ",
+              {
+                "type": "insert",
+                "insert": 34
+              },
+              "%, Independents: ",
+              {
+                "type": "insert",
+                "insert": 35
               },
               "%"
             ]
@@ -39164,52 +39276,62 @@
               "Small business and artisans: CHP: ",
               {
                 "type": "insert",
-                "insert": 30
+                "insert": 36
               },
               "%, AP: ",
               {
                 "type": "insert",
-                "insert": 31
+                "insert": 37
               },
               "%, TIP: ",
               {
                 "type": "insert",
-                "insert": 32
+                "insert": 38
               },
               "%, ",
               {
                 "type": "insert",
-                "insert": 33
+                "insert": 39
               },
               ": ",
               {
                 "type": "insert",
-                "insert": 34
+                "insert": 40
               },
               "%, DP: ",
               {
                 "type": "insert",
-                "insert": 35
+                "insert": 41
               },
               "%; ",
               {
                 "type": "insert",
-                "insert": 36
+                "insert": 42
               },
               ": ",
               {
                 "type": "insert",
-                "insert": 37
+                "insert": 43
               },
               "%, MHP: ",
               {
                 "type": "insert",
-                "insert": 38
+                "insert": 44
               },
-              "%, Others: ",
+              "%, TBP: ",
               {
                 "type": "insert",
-                "insert": 39
+                "insert": 45
+              },
+              "%, MP: ",
+              {
+                "type": "insert",
+                "insert": 46
+              },
+              "%, Independents: ",
+              {
+                "type": "insert",
+                "insert": 47
               },
               "%"
             ]
@@ -39220,52 +39342,62 @@
               "Rural: CHP: ",
               {
                 "type": "insert",
-                "insert": 40
+                "insert": 48
               },
               "%, AP: ",
               {
                 "type": "insert",
-                "insert": 41
+                "insert": 49
               },
               "%, TIP: ",
               {
                 "type": "insert",
-                "insert": 42
+                "insert": 50
               },
               "%, ",
               {
                 "type": "insert",
-                "insert": 43
+                "insert": 51
               },
               ": ",
               {
                 "type": "insert",
-                "insert": 44
+                "insert": 52
               },
               "%, DP: ",
               {
                 "type": "insert",
-                "insert": 45
+                "insert": 53
               },
               "%; ",
               {
                 "type": "insert",
-                "insert": 46
+                "insert": 54
               },
               ": ",
               {
                 "type": "insert",
-                "insert": 47
+                "insert": 55
               },
               "%, MHP: ",
               {
                 "type": "insert",
-                "insert": 48
+                "insert": 56
               },
-              "%, Others: ",
+              "%, TBP: ",
               {
                 "type": "insert",
-                "insert": 49
+                "insert": 57
+              },
+              "%, MP: ",
+              {
+                "type": "insert",
+                "insert": 58
+              },
+              "%, Independents: ",
+              {
+                "type": "insert",
+                "insert": 59
               },
               "%"
             ]
@@ -39329,7 +39461,19 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['other_votes'] || 0);"
+              "$code": "return (Q['TBP_votes'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['MP_votes'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['IND_votes'] || 0);"
             }
           },
           {
@@ -39389,7 +39533,19 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['workers_other_display'] || 0);"
+              "$code": "return (Q['workers_TBP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['workers_MP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['workers_IND_display'] || 0);"
             }
           },
           {
@@ -39449,7 +39605,19 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['state_employees_other_display'] || 0);"
+              "$code": "return (Q['state_employees_TBP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['state_employees_MP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['state_employees_IND_display'] || 0);"
             }
           },
           {
@@ -39509,7 +39677,19 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['petty_bourgeoisie_other_display'] || 0);"
+              "$code": "return (Q['petty_bourgeoisie_TBP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['petty_bourgeoisie_MP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['petty_bourgeoisie_IND_display'] || 0);"
             }
           },
           {
@@ -39569,7 +39749,19 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['rural_other_display'] || 0);"
+              "$code": "return (Q['rural_TBP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['rural_MP_display'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['rural_IND_display'] || 0);"
             }
           }
         ]
@@ -40014,9 +40206,29 @@
             "content": [
               {
                 "type": "emphasis-2",
-                "content": "Other parties"
+                "content": "TBP"
               },
-              " - there is a multitude of small, mostly local parties, such as the Turkish Unity party, New Turkey Party, Nation Party, and others."
+              " - Turkey Unity Party."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "emphasis-2",
+                "content": "MP"
+              },
+              " - National Party."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "emphasis-2",
+                "content": "Independents"
+              },
+              " - candidates standing without party affiliation."
             ]
           }
         ],
@@ -41754,7 +41966,7 @@
       ],
       "onDisplay": [
         {
-          "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TIP\",\n        \"name\": \"TIP\",\n        \"seats\": Q.TIP_r*4.5,\n    }];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_r*4.5,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_r*4.5,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"Center\",\n        \"name\": \"Center\",\n        \"seats\": Q.AP_r*4.5,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_r*4.5,\n    },\n    {\n        \"id\": \"other\",\n        \"legend\": \"Other\",\n        \"name\": \"Other\",\n        \"seats\": Q.other_r*4.5,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_r*4.5,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_r*4.5,\n    },\n]);\nif (d3 && window) {\n    // get screen width\n    var width = 500;\n    var height = 500;\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        document.getElementById(\"parliament\").style.height = screenWidth/2 + \"px\";\n    }\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(\"#parliament\").datum(data).call(parliament);\n\n    var lines = d3.linegraph(false, false,\n            Q.parties,\n            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},\n            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'other': 'Others'});\n    lines.width(width).height(400);\n    //var svg = lines(Q.election_records);\n    if (Q.election_records.length > 0) {\n        d3.select(\"#election_history\").datum(Q.election_records).call(lines);\n    }\n    //document.getElementById('election_history').innerHTML = svg.outerHTML;\n\n    // party support records should not have so many ticks\n    if (!Q.historical_mode || Q.game_over) {\n        var lines_2 = d3.linegraph(true, true,\n            Q.parties,\n            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},\n            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'other': 'Others'});\n        lines_2.width(width).height(400);\n        d3.select(\"#party_support_history\").datum(Q.party_support_records).call(lines_2);\n    }\n\n    // economic stats\n    var minInflation = d3.min(Q.economic_records, d => d.inflation);\n    var maxUnemployment = d3.max(Q.economic_records, d => d.unemployment);\n    var lines_3 = d3.linegraph(true, true, ['inflation', 'unemployment'],\n            {'inflation': '#0000FF', 'unemployment': '#FF0000'},\n            {'inflation': 'Inflation', 'unemployment': 'Unemployment'},\n            maxUnemployment + 5, minInflation - 5, 21);\n    lines_3.width(width).height(300);\n    d3.select(\"#economic_history\").datum(Q.economic_records).call(lines_3);\n}"
+          "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TIP\",\n        \"name\": \"TIP\",\n        \"seats\": Q.TIP_r*4.5,\n    }];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_r*4.5,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_r*4.5,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"Center\",\n        \"name\": \"Center\",\n        \"seats\": Q.AP_r*4.5,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_r*4.5,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_r*4.5,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_r*4.5,\n    },\n]);\nif (d3 && window) {\n    // get screen width\n    var width = 500;\n    var height = 500;\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        document.getElementById(\"parliament\").style.height = screenWidth/2 + \"px\";\n    }\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(\"#parliament\").datum(data).call(parliament);\n\n    var lines = d3.linegraph(false, false,\n            Q.parties,\n            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},\n            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});\n    lines.width(width).height(400);\n    //var svg = lines(Q.election_records);\n    if (Q.election_records.length > 0) {\n        d3.select(\"#election_history\").datum(Q.election_records).call(lines);\n    }\n    //document.getElementById('election_history').innerHTML = svg.outerHTML;\n\n    // party support records should not have so many ticks\n    if (!Q.historical_mode || Q.game_over) {\n        var lines_2 = d3.linegraph(true, true,\n            Q.parties,\n            {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},\n            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});\n        lines_2.width(width).height(400);\n        d3.select(\"#party_support_history\").datum(Q.party_support_records).call(lines_2);\n    }\n\n    // economic stats\n    var minInflation = d3.min(Q.economic_records, d => d.inflation);\n    var maxUnemployment = d3.max(Q.economic_records, d => d.unemployment);\n    var lines_3 = d3.linegraph(true, true, ['inflation', 'unemployment'],\n            {'inflation': '#0000FF', 'unemployment': '#FF0000'},\n            {'inflation': 'Inflation', 'unemployment': 'Unemployment'},\n            maxUnemployment + 5, minInflation - 5, 21);\n    lines_3.width(width).height(300);\n    d3.select(\"#economic_history\").datum(Q.economic_records).call(lines_3);\n}"
         }
       ],
       "content": {
@@ -41931,7 +42143,7 @@
                 "type": "magic",
                 "content": "<tr><td><div class=\"box\" style='background-color:#a0a0a0'> </div></td><td>"
               },
-              " Other parties: ",
+              " TBP: ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -42108,7 +42320,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['other_r'] || 0);"
+              "$code": "return (Q['TBP_r'] || 0);"
             }
           },
           {

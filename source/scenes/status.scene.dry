@@ -38,7 +38,7 @@ if (typeof Q.chp_seats === 'undefined') {
     Q.DP_seats = 36;
     Q.MSP_seats = 0;
     Q.MHP_seats = 1;
-    Q.other_seats = 18;
+    Q.IND_seats = 10;Q.TBP_seats = 5;Q.MP_seats = 3;
 }
 
 if (typeof Q.majority_threshold === 'undefined') {
@@ -155,7 +155,7 @@ TBMM composition (seats):
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_seats +]
 [+ {! return AnatolianRules.extraPartyRows(Q,"seats"); !} +]
 
-Others: [+ other_seats +]
+
 
 [? if majority_threshold: Majority required: [+ majority_threshold +] seats ?]
 
@@ -186,6 +186,10 @@ Next general election: [+ next_election_month : month +] [+ next_election_year +
 <span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_relation : relationships +]
 
 = Party Leaderships
+
+TBP: Alevi Rights (Mustafa Timisi)
+
+MP: Conservative Nationalism (Cemal Tural)
 
 <span style="color: #8B0000;">**TIP**</span>: [? if TIP_party_leader == "Unorganized" : Unorganized (Factional Committees) ?][? if TIP_party_leader == "Behice Boran" : Marxism-Leninism (Behice Boran) ?][? if TIP_party_leader == "Mehmet Ali Aybar" : Democratic Socialism (Aybar) ?]
 

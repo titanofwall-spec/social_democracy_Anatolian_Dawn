@@ -221,3 +221,8 @@ colourList.push({word:"Tekoşin",style:"color: #c2d93f; font-weight: bold;"});
 colourList.push({word:"Kurdish Independents",style:"color: #c2d93f; font-weight: bold;"});
 
 colourList.push({word:'Independents',style:'color:#808080;'});
+
+tooltipList.push({searchString:'TBP',explanationText:'<img src="img/tbp-logo.jpg">Türkiye Birlik Partisi (Turkey Unity Party).'});
+tooltipList.push({searchString:'MP',explanationText:'<img src="img/mp-logo.png">Millet Partisi (National Party).'});
+colourList.push({word:'TBP',style:'color:#c51b32;'});
+colourList.push({word:'MP',style:'color:#242018;'});

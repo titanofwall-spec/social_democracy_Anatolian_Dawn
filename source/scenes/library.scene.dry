@@ -408,7 +408,7 @@ TIP: [+ TIP_r +]%
 DP: [+ DP_r +]%
 [+ MSP_name +]: [+ MSP_r +]%
 MHP: [+ MHP_r +]%
-Others: [+ other_r +]%
+[+ {! return AnatolianRules.partyVoteRows(Q,"results"); !} +]
 
 <span style="color: #E3000F;">**CHP**</span> position: [? if CHP_toleration : toleration ?][? if CHP_in_government : in government - ?][? if CHP_toleration == 0 and CHP_in_government == 0 and CHP_caretaker == 0 : opposition ?][? if CHP_caretaker : caretaker government ?]
 [? if in_democratic_coalition and CHP_in_government: Democratic Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_popular_front and CHP_in_government: Popular Front ?][? if in_left_front and CHP_in_government: Left Front ?][? if in_msp_coalition and CHP_in_government: Unholy Coalition ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
@@ -503,17 +503,17 @@ DP: [+ DP_votes +]%
 
 MHP: [+ MHP_votes +]%
 
-Others: [+ other_votes +]%
+TBP: [+ TBP_votes +]%, MP: [+ MP_votes +]%, Independents: [+ IND_votes +]%.
 
 **Detailed results for each demographic**
 
-Workers: CHP: [+ workers_chp_display +]%, AP: [+ workers_AP_display +]%, TIP: [+ workers_TIP_display +]%, [+ CGP_name +]: [+ workers_CGP_display +]%, DP: [+ workers_DP_display +]%; [+ MSP_name +]: [+ workers_MSP_display +]%, MHP: [+ workers_MHP_display +]%, Others: [+ workers_other_display +]%
+Workers: CHP: [+ workers_chp_display +]%, AP: [+ workers_AP_display +]%, TIP: [+ workers_TIP_display +]%, [+ CGP_name +]: [+ workers_CGP_display +]%, DP: [+ workers_DP_display +]%; [+ MSP_name +]: [+ workers_MSP_display +]%, MHP: [+ workers_MHP_display +]%, TBP: [+ workers_TBP_display +]%, MP: [+ workers_MP_display +]%, Independents: [+ workers_IND_display +]%
 
-Public employees: CHP: [+ state_employees_chp_display +]%, AP: [+ state_employees_AP_display +]%, TIP: [+ state_employees_TIP_display +]%, [+ CGP_name +]: [+ state_employees_CGP_display +]%, DP: [+ state_employees_DP_display +]%; [+ MSP_name +]: [+ state_employees_MSP_display +]%, MHP: [+ state_employees_MHP_display +]%, Others: [+ state_employees_other_display +]%
+Public employees: CHP: [+ state_employees_chp_display +]%, AP: [+ state_employees_AP_display +]%, TIP: [+ state_employees_TIP_display +]%, [+ CGP_name +]: [+ state_employees_CGP_display +]%, DP: [+ state_employees_DP_display +]%; [+ MSP_name +]: [+ state_employees_MSP_display +]%, MHP: [+ state_employees_MHP_display +]%, TBP: [+ state_employees_TBP_display +]%, MP: [+ state_employees_MP_display +]%, Independents: [+ state_employees_IND_display +]%
 
-Small business and artisans: CHP: [+ petty_bourgeoisie_chp_display +]%, AP: [+ petty_bourgeoisie_AP_display +]%, TIP: [+ petty_bourgeoisie_TIP_display +]%, [+ CGP_name +]: [+ petty_bourgeoisie_CGP_display +]%, DP: [+ petty_bourgeoisie_DP_display +]%; [+ MSP_name +]: [+ petty_bourgeoisie_MSP_display +]%, MHP: [+ petty_bourgeoisie_MHP_display +]%, Others: [+ petty_bourgeoisie_other_display +]%
+Small business and artisans: CHP: [+ petty_bourgeoisie_chp_display +]%, AP: [+ petty_bourgeoisie_AP_display +]%, TIP: [+ petty_bourgeoisie_TIP_display +]%, [+ CGP_name +]: [+ petty_bourgeoisie_CGP_display +]%, DP: [+ petty_bourgeoisie_DP_display +]%; [+ MSP_name +]: [+ petty_bourgeoisie_MSP_display +]%, MHP: [+ petty_bourgeoisie_MHP_display +]%, TBP: [+ petty_bourgeoisie_TBP_display +]%, MP: [+ petty_bourgeoisie_MP_display +]%, Independents: [+ petty_bourgeoisie_IND_display +]%
 
-Rural: CHP: [+ rural_chp_display +]%, AP: [+ rural_AP_display +]%, TIP: [+ rural_TIP_display +]%, [+ CGP_name +]: [+ rural_CGP_display +]%, DP: [+ rural_DP_display +]%; [+ MSP_name +]: [+ rural_MSP_display +]%, MHP: [+ rural_MHP_display +]%, Others: [+ rural_other_display +]%
+Rural: CHP: [+ rural_chp_display +]%, AP: [+ rural_AP_display +]%, TIP: [+ rural_TIP_display +]%, [+ CGP_name +]: [+ rural_CGP_display +]%, DP: [+ rural_DP_display +]%; [+ MSP_name +]: [+ rural_MSP_display +]%, MHP: [+ rural_MHP_display +]%, TBP: [+ rural_TBP_display +]%, MP: [+ rural_MP_display +]%, Independents: [+ rural_IND_display +]%
 
 
 
@@ -548,7 +548,11 @@ Current relations: [+ TIP_relation : relationships +]
 
 Current relations: [+ MHP_relation : relationships +]
 
-**Other parties** - there is a multitude of small, mostly local parties, such as the Turkish Unity party, New Turkey Party, Nation Party, and others.
+**TBP** - Turkey Unity Party.
+
+**MP** - National Party.
+
+**Independents** - candidates standing without party affiliation.
 
 @paramilitaries
 on-arrival: {!
@@ -676,12 +680,6 @@ data = data.concat([
         "seats": Q.DP_r*4.5,
     },
     {
-        "id": "other",
-        "legend": "Other",
-        "name": "Other",
-        "seats": Q.other_r*4.5,
-    },
-    {
         "id": "MSP",
         "legend": Q.MSP_name,
         "name": Q.MSP_name,
@@ -713,7 +711,7 @@ if (d3 && window) {
     var lines = d3.linegraph(false, false,
             Q.parties,
             {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},
-            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'other': 'Others'});
+            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});
     lines.width(width).height(400);
     //var svg = lines(Q.election_records);
     if (Q.election_records.length > 0) {
@@ -726,7 +724,7 @@ if (d3 && window) {
         var lines_2 = d3.linegraph(true, true,
             Q.parties,
             {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},
-            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'other': 'Others'});
+            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});
         lines_2.width(width).height(400);
         d3.select("#party_support_history").datum(Q.party_support_records).call(lines_2);
     }
@@ -760,7 +758,7 @@ if (d3 && window) {
 
 {!<tr><td><div class="box" style='background-color:#4a4d04'> </div></td><td>!} DP: {!</td><td>!} [+ DP_r +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div></td><td>!} Other parties: {!</td><td>!} [+ other_r +] % {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div></td><td>!} TBP: {!</td><td>!} [+ TBP_r +] % {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#054521'> </div></td><td>!} [+ MSP_name +]: {!</td><td>!} [+ MSP_r +]% {!</td></tr>!}
 

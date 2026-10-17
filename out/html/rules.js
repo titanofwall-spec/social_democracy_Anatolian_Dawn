@@ -96,9 +96,30 @@
         Q.minority_government = 0;
     }
 
-    var kurdishParties=[{key:'IND',name:'Independents',color:'#808080'},{key:'TKP',name:'TKP',color:'#820b09'},{key:'TSIP',name:'TSİP',color:'#abab1a'},{key:'TEP',name:'TEP',color:'#ad673b'},{key:'SDP',name:'SDP',color:'#a83a32'},{key:'KI',name:'Kurdish Independents',color:'#c2d93f'}];
+    var kurdishParties=[{key:'TBP',name:'TBP',color:'#c51b32'},{key:'MP',name:'MP',color:'#242018'},{key:'IND',name:'Independents',color:'#808080'},{key:'TKP',name:'TKP',color:'#820b09'},{key:'TSIP',name:'TSİP',color:'#abab1a'},{key:'TEP',name:'TEP',color:'#ad673b'},{key:'SDP',name:'SDP',color:'#a83a32'},{key:'KI',name:'Kurdish Independents',color:'#c2d93f'}];
     var kurdishGroups=[{name:'T-KDP',share:9},{name:'DHKD/TKSP',share:10},{name:'DDKD/KİP',share:9},{name:'ASDKD/Rızgari',share:9},{name:'Ala Rızgari',share:9},{name:'Kawa',share:9},{name:'Denge Kawa',share:9},{name:'Red Kawa',share:9},{name:'T-KDP/KUK',share:9},{name:'KD/UKO/PKK',share:9},{name:'Tekoşin',share:9}];
     /** @type {Record<string,number>} */ var consciousPartyShares={chp:31,TIP:20,TKP:33,TSIP:6,TEP:5,SDP:5};
+    /** @param {GameState} Q */
+    function replaceOthers(Q){
+        if(Q.minor_parties_version===1)return;
+        /** @type {string[]} */ var classes=Q.classes;
+        /** @type {string[]} */ var parties=Q.parties.filter(function(/** @type {string} */p){return p!=='other';});
+        /** @type {Record<string,number>} */ var targets={};
+        /** @type {Record<string,Record<string,number>>} */ var cells={};
+        var pool=0;parties.forEach(function(p){targets[p]=0;});
+        classes.forEach(function(/** @type {string} */c){var weight=number(Q[c]);var total=Q.parties.reduce(function(/** @type {number} */n,/** @type {string} */p){return n+Math.max(0,number(Q[c+'_'+p]));},0)||100;cells[c]={};pool+=weight*Math.max(0,number(Q[c+'_other']))/total;parties.forEach(function(p){var v=weight*Math.max(0,number(Q[c+'_'+p]))/total;targets[p]+=v;cells[c][p]=v;});});
+        var ind=Math.min(pool,2.5),remaining=pool-ind;targets.IND+=ind;targets.TBP+=remaining*1.1/1.8;targets.MP+=remaining*.7/1.8;
+        classes.forEach(function(/** @type {string} */c){var w=number(Q[c]);cells[c].IND=c==='kurds'?0:Math.max(.001,number(Q[c+'_other']))*w;cells[c].TBP=w*(c==='alevis'?100:.05);cells[c].MP=Math.max(.000001,cells[c].AP);});
+        for(var i=0;i<500;i++){
+            parties.forEach(function(p){var sum=classes.reduce(function(/** @type {number} */n,/** @type {string} */c){return n+cells[c][p];},0);classes.forEach(function(/** @type {string} */c){cells[c][p]*=sum?targets[p]/sum:0;});});
+            classes.forEach(function(/** @type {string} */c){var sum=parties.reduce(function(n,p){return n+cells[c][p];},0);parties.forEach(function(p){cells[c][p]*=sum?number(Q[c])/sum:0;});});
+        }
+        classes.forEach(function(/** @type {string} */c){var oldTotal=Q.parties.reduce(function(/** @type {number} */n,/** @type {string} */p){return n+Math.max(0,number(Q[c+'_'+p]));},0)||100;parties.forEach(function(p){Q[c+'_'+p]=number(Q[c])?cells[c][p]/number(Q[c])*oldTotal:0;});delete Q[c+'_other'];});
+        // Preserve past parliamentary totals while replacing the retired catch-all.
+        ['_r','_seats','_local_seats','_local_support'].forEach(function(suffix){var old=Math.max(0,number(Q['other'+suffix]));var tb=suffix.indexOf('seats')>=0?Math.round(old*1.1/4.3):old*1.1/4.3,mp=suffix.indexOf('seats')>=0?Math.round(old*.7/4.3):old*.7/4.3;Q['TBP'+suffix]=number(Q['TBP'+suffix])+tb;Q['MP'+suffix]=number(Q['MP'+suffix])+mp;Q['IND'+suffix]=number(Q['IND'+suffix])+old-tb-mp;Q['other'+suffix]=0;});
+        if(Array.isArray(Q.election_records))Q.election_records.forEach(function(/** @type {Record<string,number>} */record){var old=number(record.other);record.TBP=number(record.TBP)+old*1.1/4.3;record.MP=number(record.MP)+old*.7/4.3;record.IND=number(record.IND)+old*2.5/4.3;delete record.other;});
+        Q.parties=parties;Q.TBP_relation=number(Q.TBP_relation,70);Q.MP_relation=number(Q.MP_relation,10);Q.minor_parties_version=1;
+    }
     /** Structural initialization only. No political parameter has automatic growth. @param {GameState} Q */
     function ensureKurdishIssue(Q){
         if(!Array.isArray(Q.parties)||!Array.isArray(Q.classes))return;
@@ -108,6 +129,7 @@
         Q.kurdish_population_weight=clamp(number(Q.kurdish_population_weight,5),0,100);Q.kurds=Q.kurdish_population_weight;
         kurdishParties.forEach(function(p){if(Q.parties.indexOf(p.key)<0)Q.parties.splice(Math.max(0,Q.parties.indexOf('other')),0,p.key);Q.classes.forEach(function(/** @type {string} */c){if(typeof Q[c+'_'+p.key]!=='number')Q[c+'_'+p.key]=0;});['_r','_seats','_local_seats'].forEach(function(suffix){if(typeof Q[p.key+suffix]!=='number')Q[p.key+suffix]=0;});});
         // Retired save fields are discarded; they never control the replacement model.
+        replaceOthers(Q);
         if(Array.isArray(Q.election_records))Q.election_records.forEach(function(/** @type {GameState} */record){kurdishParties.forEach(function(p){if(typeof record[p.key]!=='number')record[p.key]=0;});});
         Object.keys(Q).forEach(function(k){if(/^(?:pkk_|separatist_|eastern_crime|ddkd_|language_rights|CHP_kurdish_attitude$|kurdish_political_|kurdish_radicalism$)/.test(k))delete Q[k];});
     }
@@ -128,7 +150,7 @@
         if(demographic==='kurds'){raw.KI=number(raw.KI)+number(raw.IND);raw.IND=0;}else{raw.IND=number(raw.IND)+number(raw.KI);raw.KI=0;}
         var total=parties.reduce(function(n,p){return n+raw[p];},0);parties.forEach(function(p){shares[p]=total>0?100*raw[p]/total:0;});
         if(Q.kurdish_issue_version===1&&demographic==='kurds'){
-            if(total===0)shares.other=100;
+            if(total===0)shares.MP=100;
             var model=kurdishModel(Q);parties.forEach(function(p){shares[p]*=1-model.consciousness;});
             Object.keys(consciousPartyShares).forEach(function(p){shares[p]=number(shares[p])+model.nonRadical*consciousPartyShares[p];});shares.KI=number(shares.KI)+model.radical*100;
         }
@@ -161,11 +183,11 @@
     /** @param {GameState} Q @param {string} mode */
     function partyVoteRows(Q,mode){
         var suffix=mode==='polls'?'_poll_votes':'_r';
-        /** @type {Record<string,string>} */ var names={chp:'CHP',AP:'AP',TIP:'TİP',TSIP:'TSİP',KI:'Kurdish Independents',IND:'Independents',CGP:Q.CGP_name||'GP',MSP:Q.MSP_name||'MNP',other:'Others'};
+        /** @type {Record<string,string>} */ var names={chp:'CHP',AP:'AP',TIP:'TİP',TSIP:'TSİP',KI:'Kurdish Independents',IND:'Independents',CGP:Q.CGP_name||'GP',MSP:Q.MSP_name||'MNP',TBP:'TBP',MP:'MP'};
         /** @type {Record<string,string>} */ var colors={chp:'#E3000F',AP:'#750a6f',TIP:'#8B0000',CGP:'#5b7387',MSP:'#054521',MHP:'#954B00',DP:'#4a4d04',IND:'#808080',KI:'#c2d93f'};
         var keys=Q.parties.filter(function(/** @type {string} */p){return p!=='other'&&(mode!=='polls'||!Q.socialist_left_formed||['TKP','TSIP','TEP','SDP'].indexOf(p)<0);});
         var value=function(/** @type {string} */p){return p==='TIP'&&mode==='polls'&&Q.socialist_left_formed?['TIP','TKP','TSIP','TEP','SDP'].reduce(function(n,k){return n+number(Q[k+suffix]);},0):number(Q[p+suffix]);};
-        keys.sort(function(/** @type {string} */a,/** @type {string} */b){return value(b)-value(a);});keys.push('other');
+        keys.sort(function(/** @type {string} */a,/** @type {string} */b){return value(b)-value(a);});
         return keys.map(function(/** @type {string} */p){return '<div>'+(p==='TIP'&&mode==='polls'?socialistPollHtml(Q):'<b style="color:'+(colors[p]||((kurdishParties.find(function(k){return k.key===p;})||{}).color)||'#808080')+'">'+(names[p]||p)+'</b>: '+value(p).toFixed(3)+'%')+'</div>';}).join('');
     }
     /** @param {GameState} Q @param {string} mode */
@@ -174,7 +196,7 @@
     function extraPartyData(Q){return kurdishParties.map(function(p){return {id:p.key,legend:p.name,name:p.name,seats:number(Q[p.key+'_seats']),color:p.color};});}
     /** @param {GameState} Q */
     function demographicPollHtml(Q){return Q.classes.map(function(/** @type {string} */c){
-        /** @type {Record<string,string>} */var labels={rural:'Rural',workers:'Workers',petty_bourgeoisie:'Petty bourgeoisie',state_employees:'State employees',capitalists:'Capitalists',alevis:'Alevis',kurds:'Kurdish population'};var title=labels[c]||c;return '<p>'+title+': '+Q.parties.filter(function(/** @type {string} */p){return (c==='kurds'?p!=='IND':p!=='KI')&&(!Q.socialist_left_formed||['TKP','TSIP','TEP','SDP'].indexOf(p)<0);}).map(function(/** @type {string} */p){var name=p==='chp'?'CHP':p==='TIP'?'TİP':p==='TSIP'?'TSİP':p==='KI'?'Kurdish Independents':p==='IND'?'Independents':p==='CGP'?Q.CGP_name:p==='MSP'?Q.MSP_name:p==='other'?'Others':p;if(p==='TIP'&&Q.socialist_left_formed){name='Socialist Left';return name+': '+['TIP','TKP','TSIP','TEP','SDP'].reduce(function(n,k){return n+number(Q[c+'_'+k+'_display']);},0).toFixed(3)+'%';}return name+': '+number(Q[c+'_'+p+'_display']).toFixed(3)+'%';}).join(', ')+'.</p>';}).join('');}
+        /** @type {Record<string,string>} */var labels={rural:'Rural',workers:'Workers',petty_bourgeoisie:'Petty bourgeoisie',state_employees:'State employees',capitalists:'Capitalists',alevis:'Alevis',kurds:'Kurdish population'};var title=labels[c]||c;return '<p>'+title+': '+Q.parties.filter(function(/** @type {string} */p){return (c==='kurds'?p!=='IND':p!=='KI')&&(!Q.socialist_left_formed||['TKP','TSIP','TEP','SDP'].indexOf(p)<0);}).map(function(/** @type {string} */p){var name=p==='chp'?'CHP':p==='TIP'?'TİP':p==='TSIP'?'TSİP':p==='KI'?'Kurdish Independents':p==='IND'?'Independents':p==='CGP'?Q.CGP_name:p==='MSP'?Q.MSP_name:p;if(p==='TIP'&&Q.socialist_left_formed){name='Socialist Left';return name+': '+['TIP','TKP','TSIP','TEP','SDP'].reduce(function(n,k){return n+number(Q[c+'_'+k+'_display']);},0).toFixed(3)+'%';}return name+': '+number(Q[c+'_'+p+'_display']).toFixed(3)+'%';}).join(', ')+'.</p>';}).join('');}
 
     /** Pure projection: retain the existing TIP ban and partial DISK endorsement transfer.
      * @param {GameState} Q @param {boolean} [polling] */
@@ -198,7 +220,7 @@
         var transfer = !polling && Q.TIP_banned && Q.disk_endorsement ? support.TIP / 2 : 0;
         if (!polling && Q.TIP_banned) { support.chp += transfer; support.TIP = 0; }
         var totalSupport = parties.reduce(function (sum, party) { return sum + support[party]; }, 0);
-        if (totalSupport <= 0) { support.other = 1; totalSupport = 1; }
+        if (totalSupport <= 0) { support.IND = 1; totalSupport = 1; }
         /** @type {Record<string, number>} */ var fractions = {};
         parties.forEach(function (party) { fractions[party] = support[party] / totalSupport; });
         return {classShares: classShares, support: support, fractions: fractions, transfer: transfer};

@@ -21,7 +21,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  window.dendryUI={dendryEngine:engine};
  engine.beginGame([1,2,3,4,5]); engine.goToScene('root.start');
  let Q=engine.state.qualities;
- assert.deepEqual(Q.parties,['chp','TIP','AP','CGP','DP','MSP','MHP','IND','TKP','TSIP','TEP','SDP','KI','other']);
+ assert.deepEqual(Q.parties,['chp','TIP','AP','CGP','DP','MSP','MHP','TBP','MP','IND','TKP','TSIP','TEP','SDP','KI']);
  assert.equal(Q.year,1972); assert.equal(Q.prime_minister,'Nihat Erim');
  assert(!('z_relation' in Q)); assert(!('reichswehr_minister_party' in Q));
  // A rendering calculation must never create negative congress seats.

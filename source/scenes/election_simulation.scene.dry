@@ -19,6 +19,7 @@ Q.kurds = 5; // Kurdish population (provisional poll weight)
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+Q.minor_parties_version=0;
 Q.disk_endorsement = false;
 Q.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;
 Q.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election
@@ -33,6 +34,7 @@ if (typeof Q.CGP_name === 'undefined') {
 // 1973 general election results: CHP 33%, TIP 0%, AP 30%, DP 12%, MSP 12%, CGP 5%, MHP 3%, Others 5%.
 // Applied uniformly across every demographic group so the simulated national result matches exactly.
 for (var c of Q.classes) {
+    ['TBP','MP','IND','TKP','TSIP','TEP','SDP','KI'].forEach(function(p){Q[c+'_'+p]=0;});
     Q[c + '_chp'] = 33;
     Q[c + '_TIP'] = 0;
     Q[c + '_AP'] = 30; // AP uses 'AP' variable
@@ -59,6 +61,7 @@ Q.kurds = 5; // Kurdish population (provisional poll weight)
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+Q.minor_parties_version=0;
 Q.disk_endorsement = false;
 Q.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;
 Q.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election
@@ -73,6 +76,7 @@ if (typeof Q.CGP_name === 'undefined') {
 // 1977 general election results: CHP 41%, TIP 0.1%, AP 37%, MSP 9%, MHP 6%, DP 2%, CGP 2%, Others 2.9% (remainder).
 // Applied uniformly across every demographic group so the simulated national result matches exactly.
 for (var c of Q.classes) {
+    ['TBP','MP','IND','TKP','TSIP','TEP','SDP','KI'].forEach(function(p){Q[c+'_'+p]=0;});
     Q[c + '_chp'] = 41;
     Q[c + '_TIP'] = 0.1;
     Q[c + '_AP'] = 37; // AP uses 'AP' variable
@@ -99,6 +103,7 @@ Q.kurds = 5; // Kurdish population (provisional poll weight)
 
 Q.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];
 Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
+Q.minor_parties_version=0;
 Q.disk_endorsement = false;
 Q.sim_prev_TIP_banned = (typeof Q.TIP_banned !== 'undefined') ? Q.TIP_banned : 1;
 Q.TIP_banned = 0; // TİP ran openly in these historical elections; restored after the simulation in post_election
@@ -114,6 +119,7 @@ if (typeof Q.CGP_name === 'undefined') {
 // MSP 7%, MHP 5%, CGP 2%, DP 0%, Others 1% (remainder).
 // Applied uniformly across every demographic group so the simulated national result matches exactly.
 for (var c of Q.classes) {
+    ['TBP','MP','IND','TKP','TSIP','TEP','SDP','KI'].forEach(function(p){Q[c+'_'+p]=0;});
     Q[c + '_AP'] = 54; // AP uses 'AP' variable
     Q[c + '_chp'] = 29;
     Q[c + '_TIP'] = 2; // Socialist Left, covered in the same color as TIP
@@ -144,7 +150,7 @@ Q.CGP_r = Q.CGP_votes;
 Q.DP_r = Q.DP_votes;
 Q.MSP_r = Q.MSP_votes;
 Q.MHP_r = Q.MHP_votes;
-Q.other_r = Q.other_votes;
+Q.parties.forEach(function(p){Q[p+'_r']=Q[p+'_votes'];});
 
 // Tiered proportional apportionment, mirroring the algorithm used for the actual
 // Grand National Assembly election (see post_national_elections in national_elections.scene.dry):
@@ -207,7 +213,7 @@ var partyDisplayNames = {
     'DP': 'DP',
     'MSP': 'MSP',
     'MHP': 'MHP',
-    'other': 'Other'
+    'TBP':'TBP','MP':'MP','IND':'Independents','KI':'Kurdish Independents'
 };
 if (Q.largest_party_key) {
     Q.largest_party = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();
@@ -221,7 +227,7 @@ Q.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);
 Q.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);
 Q.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);
 Q.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);
-Q.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);
+Q.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);
 Q.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
 Q.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
 // Socialist Left breakdown for the 1979 simulation result, mirroring the split used
@@ -254,7 +260,7 @@ A working majority in this simulation requires 226 seats.
 
 **MHP (Milliyetçi Hareket Partisi):** [+ MHP_r +]%
 
-**Other parties:** [+ other_r +]%
+TBP: [+ TBP_r +]%, MP: [+ MP_r +]%, Independents: [+ IND_r +]%, Kurdish Independents: [+ KI_r +]%.
 
 **Potential coalitions** *(226 seats needed for a majority)*:
 
@@ -268,7 +274,7 @@ A working majority in this simulation requires 226 seats.
 
 **Bourgeois Coalition** (AP + [+ CGP_name +] + DP): [+ bourgeois_coalition +] seats
 
-**Right-wing Coalition** (AP + DP + Others + MSP): [+ right_coalition +] seats
+**Right-wing Coalition** (AP + DP + MP + Independents + MSP): [+ right_coalition +] seats
 
 **Far-right Coalition** (MSP + MHP): [+ far_right_coalition +] seats
 

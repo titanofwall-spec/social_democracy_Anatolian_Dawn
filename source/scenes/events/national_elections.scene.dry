@@ -29,7 +29,7 @@ var new_party_sum = 0;
 for (var party of Q.parties) {
     Q['old_' + party + '_r'] = Q[party + '_r'];
     if (Q.constitutional_reform > 0) {
-        if (Q[party + '_votes'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned']) {
+        if (Q[party + '_votes'] < Q.electoral_threshold || Q[party + '_banned']) {
             Q[party + '_r'] = 0;
         } else {
             Q[party + '_r'] = Q[party + '_votes'];
@@ -135,7 +135,7 @@ var partyDisplayNames = {
     'DP': 'DP',
     'MSP': Q.MSP_name,
     'MHP': 'MHP',
-    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','other': 'Other'
+    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','TBP':'TBP','MP':'MP'
 };
 if (Q.largest_party_key) {
     var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();
@@ -147,8 +147,8 @@ Q.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);
 Q.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);
 Q.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);
 Q.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);
-Q.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);
-Q.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);
+Q.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);
+Q.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.MP_seats || 0) + (Q.IND_seats || 0) + (Q.MSP_seats || 0);
 Q.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
 Q.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);
 Q.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);
@@ -234,12 +234,6 @@ data = data.concat([
         "seats": Q.DP_seats,
     },
     {
-        "id": "other",
-        "legend": "Other",
-        "name": "Other",
-        "seats": Q.other_seats,
-    },
-    {
         "id": "MSP",
         "legend": Q.MSP_name,
         "name": Q.MSP_name,
@@ -290,7 +284,6 @@ go-to: coalition_menu
 
 {!<tr><td><div class="box" style='background-color:#4a4d04'> </div> !} DP: {!</td><td>!} [+ DP_r +]% {!</td><td>!} [+ str_change_DP +] {!</td><td>!} [+ DP_seats +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_r +] % {!</td><td>!} [+ str_change_other +] {!</td><td>!} [+ other_seats +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#054521'> </div> !} [+ MSP_name +]: {!</td><td>!} [+ MSP_r +]% {!</td><td>!} [+ str_change_MSP +] {!</td><td>!} [+ MSP_seats +] {!</td></tr>!}
 
@@ -302,6 +295,8 @@ go-to: coalition_menu
 {!<tr><td>!} Independents {!</td><td>!} [+ IND_r +]% {!</td><td>!} [+ str_change_IND +] {!</td><td>!} [+ IND_seats +] {!</td></tr>!}
 
 {!<tr><td>!} Kurdish Independents {!</td><td>!} [+ KI_r +]% {!</td><td>!} [+ str_change_KI +] {!</td><td>!} [+ KI_seats +] {!</td></tr>!}
+{!<tr><td>!} TBP {!</td><td>!} [+ TBP_r +]% {!</td><td>!} [+ str_change_TBP +] {!</td><td>!} [+ TBP_seats +] {!</td></tr>!}
+{!<tr><td>!} MP {!</td><td>!} [+ MP_r +]% {!</td><td>!} [+ str_change_MP +] {!</td><td>!} [+ MP_seats +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions** *(226 seats needed for a majority)*
@@ -407,7 +402,7 @@ We have managed to form a seemingly improbable coalition, let's hope it will be 
 
 @right_coalition
 title: Refuse to form a government, so that a right-wing coalition may be formed.
-subtitle: AP + DP + MSP + Others ([+ right_coalition +] seats)
+subtitle: AP + DP + MSP + MP + Independents ([+ right_coalition +] seats)
 unavailable-subtitle: The MSP is not interested in a coalition with the Center.
 view-if: right_coalition >= 226
 

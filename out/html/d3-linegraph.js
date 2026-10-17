@@ -16,15 +16,15 @@ function addMonths(date, months) {
 d3.linegraph = function(noTicks, noDots, parties, partyColors, partyNames, dataMax, dataMin, additionalMonths) {
     /* params */
     if (!parties) {
-        parties = ['chp', 'TIP', 'CGP', 'AP', 'DP', 'MSP', 'MHP', 'TKP', 'TSIP', 'TEP', 'SDP', 'IND','KI', 'other'];
+        parties = ['chp', 'TIP', 'CGP', 'AP', 'DP', 'MSP', 'MHP', 'TKP', 'TSIP', 'TEP', 'SDP', 'IND','KI', 'TBP','MP'];
     }
     if (!partyColors) {
-        partyColors = {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'TKP':'#820b09','TSIP':'#abab1a','TEP':'#ad673b','SDP':'#a83a32','IND':'#808080','KI':'#c2d93f','other': '#a0a0a0'};
+        partyColors = {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'TKP':'#820b09','TSIP':'#abab1a','TEP':'#ad673b','SDP':'#a83a32','IND':'#808080','KI':'#c2d93f','TBP':'#c51b32','MP':'#242018'};
     }
     if (!partyNames) {
-        partyNames = {'chp': 'CHP', 'TIP': 'TIP', 'CGP': 'CGP', 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'other': 'Others'};
+        partyNames = {'chp': 'CHP', 'TIP': 'TIP', 'CGP': 'CGP', 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents','KI':'Kurdish Independents'};
     }
-    partyNames=Object.assign({TKP:'TKP',TSIP:'TSİP',TEP:'TEP',SDP:'SDP',IND:'Independents',KI:'Kurdish Independents'},partyNames);
+    partyNames=Object.assign({TKP:'TKP',TSIP:'TSİP',TEP:'TEP',SDP:'SDP',IND:'Independents',TBP:'TBP',MP:'MP',KI:'Kurdish Independents'},partyNames);
     if (!additionalMonths) {
         additionalMonths = 10;
     }

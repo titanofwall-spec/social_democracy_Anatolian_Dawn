@@ -793,6 +793,7 @@ function getPartyIdeology(party, Q) {
             var relationText = getRelationshipText(Q['TIP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
+        if(searchString==='TBP'||searchString==='MP'){return baseTooltip.explanationText+'<br>Politics: '+(searchString==='TBP'?'Left (Alevi Rights)':'Right (Conservative Nationalism)')+'<br>Relation: '+getRelationshipText(Q[searchString+'_relation']);}
         if (searchString === 'Socialist Left') {
             var socialistLeftParties = [
                 { word: 'TİP', voteQuality: 'TIP_socialist_left_r' },

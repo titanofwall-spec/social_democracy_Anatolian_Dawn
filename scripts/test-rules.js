@@ -163,7 +163,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert.equal(['km','lk','ok','rk','tw'].reduce((sum,f)=>sum+Q[f+'_congress_seats'],0),1200);
     });
     test('Polling retains TIP preferences while elections preserve bans and partial transfer', (e,Q) => {
-        Q.classes=['workers']; Q.parties=['chp','TIP','AP','other']; Q.workers=1;
+        Q.classes=['workers']; Q.workers=1; Q.parties.forEach(p=>Q['workers_'+p]=0);
         Q.workers_chp=40; Q.workers_TIP=20; Q.workers_AP=40; Q.workers_other=0;
         for(const [banned,endorsement,expectedCHP,expectedTIP] of [[0,0,40,20],[1,0,50,0],[1,1,100*50/90,0]]) {
             Q.TIP_banned=banned; Q.disk_endorsement=endorsement;
