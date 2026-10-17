@@ -10,9 +10,15 @@ Census input totals: 35,605,176 (1970), 40,347,719 (1975), 44,736,957 (1980). Th
 
 ## Voting
 
-Province preferences are fitted to the supplied 1973 and 1977 election tables, using baseline class preferences plus province-specific multipliers. The supplied JSON establishes a schema only; none of its numeric weights are used. The 1977 weights are adjusted for national electoral swing, so interpolation changes regional appeal rather than forcing the player to reproduce the historical national outcome.
+Province preference weights now use all 469 class-party rows supplied in the later voting-distribution table. The demographic population pools are unchanged. Rounded voting rows are normalized to 100%; the two all-zero employer rows have zero population weight and do not contribute. Class vote shares are combined using each province's existing demographic shares, then fitted with province-specific party multipliers. These weights no longer interpolate the old 1973/1977 electoral preference targets.
 
-The supplied tables combine minor parties. Their provincial breakdown is estimated using the national reference shares, Alevi concentration for TBP, AP appeal for MP, and the existing Kurdish political pools. Estimates are identified in the map. Adiyaman's 1973 table lists a minor-party remainder of 11,109 but the named parties and stated total imply 12,393; the named counts and stated total are preserved and the remainder is reconciled.
+The fixed Kurdish political pools remain part of the calculation. Where they impose a minimum above the supplied aggregate target, the target is fitted as closely as possible while retaining those pools and the workbook's demographic figures.
+
+The supplied Other column includes minor parties and independents. Its underlying votes are allocated among the existing named parties according to their existing demographic appeal and political-pool minimums. In province result displays these parties appear as Other. Current voter preferences combine MP, TBP, Independents, Kurdish Independents and all Socialist Left members into Others, with a colored hover breakdown. This is display grouping only: the underlying parties, seat allocation and existing Socialist Left electoral pooling remain separate.
+
+Saved games recalibrate tendency weights once using version 2. Local demographic changes, explicit preference modifiers, population anchors, initial parliamentary totals and previous election snapshots are retained.
+
+The original 1973/1977 election tables still supply constituency seat quotas and valid-vote/population ratios. Adiyaman's 1973 named party counts and stated total imply a remainder of 12,393 rather than the supplied 11,109; the import preserves the named counts and stated total.
 
 Projected valid votes use each province's historical valid-vote/population ratios, interpolated between the two elections. Residents are not treated as eligible voters. National polls aggregate provincial valid votes. Socialists remain individually visible in polling data but pool under TIP for seat calculations once Socialist Left has formed. TIP's ban and endorsement transfer still apply.
 

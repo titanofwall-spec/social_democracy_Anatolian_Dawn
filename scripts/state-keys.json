@@ -906,6 +906,7 @@
   "province_pools",
   "province_population_total",
   "province_preference_baseline",
+  "province_tendency_version",
   "public_works_adopted",
   "public_works_implemented",
   "public_works_support",
