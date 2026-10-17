@@ -403,7 +403,7 @@ Grand National Assembly composition:
 CHP: [+ chp_r +]%
 
 AP: [+AP_r +]%
-TIP: [+ TIP_r +]%
+TİP: [+ TIP_r +]%
 [+ CGP_name +]: [+ CGP_r +]%
 DP: [+ DP_r +]%
 [+ MSP_name +]: [+ MSP_r +]%
@@ -415,7 +415,7 @@ MHP: [+ MHP_r +]%
 
 [? if CHP_in_government and not in_CHP_majority and not in_left_front : Coalition dissent: [+ coalition_dissent : dissent +] ?]
 
-[? if CHP_in_government and (in_left_front or in_popular_front): TIP coalition dissent: [+ TIP_coalition_dissent : dissent +] ?]
+[? if CHP_in_government and (in_left_front or in_popular_front): TİP coalition dissent: [+ TIP_coalition_dissent : dissent +] ?]
 
 @cabinet
 go-to: menu
@@ -450,7 +450,7 @@ go-to: menu
 
 **Rural**: Peasants who live in a semi-feudal state under the hegemony of the landlords and the local notables. Generally vote for reactionary parties such as AP or MSP. Makes up about 45% - 50% of the population.
 
-**Working Class**: The urban working class - blue-collar workers in factories, workshops, mines, and the like. A class created primarily in the last 50 years, the working class families live in ghettos near the industrial zones and support either TIP or CHP. Makes up about 15% - 20% of the population.
+**Working Class**: The urban working class - blue-collar workers in factories, workshops, mines, and the like. A class created primarily in the last 50 years, the working class families live in ghettos near the industrial zones and support either TİP or CHP. Makes up about 15% - 20% of the population.
 
 **Petty Bourgeoisie**: The urban middle class - shopkeepers, traders and the like. Traditionally one of the main bases of AP but since the party's decision to open up to the global market their alignment has slightly shifted to MSP. Makes up about 15% of the population.
 
@@ -493,7 +493,7 @@ CHP: [+ chp_votes +]%
 
 AP: [+AP_votes +]%
 
-TIP: [+ TIP_votes +]%
+TİP: [+ TIP_votes +]%
 
 [+ CGP_name +]: [+ CGP_votes +]%
 
@@ -507,13 +507,13 @@ TBP: [+ TBP_votes +]%, MP: [+ MP_votes +]%, Independents: [+ IND_votes +]%.
 
 **Detailed results for each demographic**
 
-Workers: CHP: [+ workers_chp_display +]%, AP: [+ workers_AP_display +]%, TIP: [+ workers_TIP_display +]%, [+ CGP_name +]: [+ workers_CGP_display +]%, DP: [+ workers_DP_display +]%; [+ MSP_name +]: [+ workers_MSP_display +]%, MHP: [+ workers_MHP_display +]%, TBP: [+ workers_TBP_display +]%, MP: [+ workers_MP_display +]%, Independents: [+ workers_IND_display +]%
+Workers: CHP: [+ workers_chp_display +]%, AP: [+ workers_AP_display +]%, TİP: [+ workers_TIP_display +]%, [+ CGP_name +]: [+ workers_CGP_display +]%, DP: [+ workers_DP_display +]%; [+ MSP_name +]: [+ workers_MSP_display +]%, MHP: [+ workers_MHP_display +]%, TBP: [+ workers_TBP_display +]%, MP: [+ workers_MP_display +]%, Independents: [+ workers_IND_display +]%
 
-Public employees: CHP: [+ state_employees_chp_display +]%, AP: [+ state_employees_AP_display +]%, TIP: [+ state_employees_TIP_display +]%, [+ CGP_name +]: [+ state_employees_CGP_display +]%, DP: [+ state_employees_DP_display +]%; [+ MSP_name +]: [+ state_employees_MSP_display +]%, MHP: [+ state_employees_MHP_display +]%, TBP: [+ state_employees_TBP_display +]%, MP: [+ state_employees_MP_display +]%, Independents: [+ state_employees_IND_display +]%
+Public employees: CHP: [+ state_employees_chp_display +]%, AP: [+ state_employees_AP_display +]%, TİP: [+ state_employees_TIP_display +]%, [+ CGP_name +]: [+ state_employees_CGP_display +]%, DP: [+ state_employees_DP_display +]%; [+ MSP_name +]: [+ state_employees_MSP_display +]%, MHP: [+ state_employees_MHP_display +]%, TBP: [+ state_employees_TBP_display +]%, MP: [+ state_employees_MP_display +]%, Independents: [+ state_employees_IND_display +]%
 
-Small business and artisans: CHP: [+ petty_bourgeoisie_chp_display +]%, AP: [+ petty_bourgeoisie_AP_display +]%, TIP: [+ petty_bourgeoisie_TIP_display +]%, [+ CGP_name +]: [+ petty_bourgeoisie_CGP_display +]%, DP: [+ petty_bourgeoisie_DP_display +]%; [+ MSP_name +]: [+ petty_bourgeoisie_MSP_display +]%, MHP: [+ petty_bourgeoisie_MHP_display +]%, TBP: [+ petty_bourgeoisie_TBP_display +]%, MP: [+ petty_bourgeoisie_MP_display +]%, Independents: [+ petty_bourgeoisie_IND_display +]%
+Small business and artisans: CHP: [+ petty_bourgeoisie_chp_display +]%, AP: [+ petty_bourgeoisie_AP_display +]%, TİP: [+ petty_bourgeoisie_TIP_display +]%, [+ CGP_name +]: [+ petty_bourgeoisie_CGP_display +]%, DP: [+ petty_bourgeoisie_DP_display +]%; [+ MSP_name +]: [+ petty_bourgeoisie_MSP_display +]%, MHP: [+ petty_bourgeoisie_MHP_display +]%, TBP: [+ petty_bourgeoisie_TBP_display +]%, MP: [+ petty_bourgeoisie_MP_display +]%, Independents: [+ petty_bourgeoisie_IND_display +]%
 
-Rural: CHP: [+ rural_chp_display +]%, AP: [+ rural_AP_display +]%, TIP: [+ rural_TIP_display +]%, [+ CGP_name +]: [+ rural_CGP_display +]%, DP: [+ rural_DP_display +]%; [+ MSP_name +]: [+ rural_MSP_display +]%, MHP: [+ rural_MHP_display +]%, TBP: [+ rural_TBP_display +]%, MP: [+ rural_MP_display +]%, Independents: [+ rural_IND_display +]%
+Rural: CHP: [+ rural_chp_display +]%, AP: [+ rural_AP_display +]%, TİP: [+ rural_TIP_display +]%, [+ CGP_name +]: [+ rural_CGP_display +]%, DP: [+ rural_DP_display +]%; [+ MSP_name +]: [+ rural_MSP_display +]%, MHP: [+ rural_MHP_display +]%, TBP: [+ rural_TBP_display +]%, MP: [+ rural_MP_display +]%, Independents: [+ rural_IND_display +]%
 
 
 
@@ -538,7 +538,7 @@ Current relations: [+ DP_relation : relationships +]
 
 Current relations: [+ MSP_relation : relationships +]
 
-**TIP** - *Türkiye İşçi Partisi* (Turkish Workers' Party) - a left-wing party that was dissolved during the memorandum period and is being reorganized behind the scenes. Originally a proponent of Democratic Socialism under Mehmet Ali Aybar's leadership, the military's attempts at shutting down Socialist movements of all kinds have prompted many leftists to lose belief in the political system and support revolutionary means, and the new TİP may be swung in either direction of the pendulum.
+**TİP** - *Türkiye İşçi Partisi* (Turkish Workers' Party) - a left-wing party that was dissolved during the memorandum period and is being reorganized behind the scenes. Originally a proponent of Democratic Socialism under Mehmet Ali Aybar's leadership, the military's attempts at shutting down Socialist movements of all kinds have prompted many leftists to lose belief in the political system and support revolutionary means, and the new TİP may be swung in either direction of the pendulum.
 
 Current relations: [+ TIP_relation : relationships +]
 
@@ -649,8 +649,8 @@ on-display: {!
 data = [
     {
         "id": "TIP",
-        "legend": "TIP",
-        "name": "TIP",
+        "legend": "TİP",
+        "name": "TİP",
         "seats": Q.TIP_r*4.5,
     }];
 
@@ -711,7 +711,7 @@ if (d3 && window) {
     var lines = d3.linegraph(false, false,
             Q.parties,
             {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},
-            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});
+            {'chp': 'CHP', 'TIP': 'TİP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});
     lines.width(width).height(400);
     //var svg = lines(Q.election_records);
     if (Q.election_records.length > 0) {
@@ -724,7 +724,7 @@ if (d3 && window) {
         var lines_2 = d3.linegraph(true, true,
             Q.parties,
             {'chp': '#E3000F', 'TIP': '#8B0000', 'CGP': '#5b7387', 'AP': '#750a6f', 'DP': '#4a4d04', 'MSP': '#054521', 'MHP': '#954B00', 'other': '#a0a0a0'},
-            {'chp': 'CHP', 'TIP': 'TIP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});
+            {'chp': 'CHP', 'TIP': 'TİP', 'CGP': Q.CGP_name, 'AP': 'AP', 'DP': 'DP', 'MSP': Q.MSP_name, 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents'});
         lines_2.width(width).height(400);
         d3.select("#party_support_history").datum(Q.party_support_records).call(lines_2);
     }
@@ -750,7 +750,7 @@ if (d3 && window) {
 
 
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div></td> <td>!}TIP: {!</td><td>!} [+ TIP_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#8B0000'> </div></td> <td>!}TİP: {!</td><td>!} [+ TIP_r +]% {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#5b7387'> </div></td><td>!} [+ CGP_name +]: {!</td><td>!} [+ CGP_r +]% {!</td></tr>!}
 
@@ -798,7 +798,7 @@ Leader: [+ CHP_party_leader +]
 Leader: [+ AP_party_leader +]
 [? if AP_party_leader == "Demirel" : Süleyman Demirel, known for his pragmatic approach and economic focus, leads the center-right Justice Party. ?]
 
-**TIP (Workers' Party of Turkey)**
+**TİP (Workers' Party of Turkey)**
 Leader: [+ TIP_party_leader +]
 [? if TIP_party_leader == "Unorganized" : The party is currently banned and lacks a central organization. ?]
 [? if TIP_party_leader == "Behice Boran" : Behice Boran, a prominent socialist intellectual who represents the revolutionary wing of the Socialist movement. ?]

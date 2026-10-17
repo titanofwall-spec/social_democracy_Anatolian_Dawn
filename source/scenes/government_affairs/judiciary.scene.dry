@@ -46,7 +46,7 @@ We prioritize the persecution of right winger militants. Mass arrests curb the i
 subtitle: Political prisoners are often mistreated and placed in the same cells as rapists and murderers.
 on-arrival: democracystatus += 1; TIP_relation += 3; disk_relation += 3
 
-Both TIP and the left-wing syndicate DISK express their gratitude for our efforts in improving the status of political prisoners.
+Both TİP and the left-wing syndicate DISK express their gratitude for our efforts in improving the status of political prisoners.
 
 @investigate
 on-arrival: democracystatus += 2; police_loyalty -= 0.1; kurds_chp += 3; alevis_chp += 4; 

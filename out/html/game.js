@@ -793,7 +793,7 @@ function getPartyIdeology(party, Q) {
             var relationText = getRelationshipText(Q['TIP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
-        if(searchString==='TBP'||searchString==='MP'){return baseTooltip.explanationText+'<br>Politics: '+(searchString==='TBP'?'Left (Alevi Rights)':'Right (Conservative Nationalism)')+'<br>Relation: '+getRelationshipText(Q[searchString+'_relation']);}
+        if(searchString==='TBP'||searchString==='MP'){return baseTooltip.explanationText+'<br>Politics: '+(searchString==='TBP'?'Left (Alevi Democracy)':'Right (National Conservatism)')+'<br>Relation: '+getRelationshipText(Q[searchString+'_relation']);}
         if (searchString === 'Socialist Left') {
             var socialistLeftParties = [
                 { word: 'TİP', voteQuality: 'TIP_socialist_left_r' },
@@ -908,14 +908,22 @@ function getPartyIdeology(party, Q) {
         const regex=new RegExp('(?<![\\p{L}\\p{N}_])('+words.join('|')+')(?![\\p{L}\\p{N}_])','gu');
 
         return str.replace(/(<(?:span|strong)[^>]*>.*?<\/(?:span|strong)>|<[^>]+>|[^<]+)/g, (segment) => {
-            if (segment.startsWith('<')) return segment;
+            if (segment.startsWith('<')) {
+                // Plain styled spans and bold text still receive party tooltips.
+                // Existing tooltip containers are preserved to avoid nesting duplicates.
+                if (/^<(?:span|strong)\b/i.test(segment) && !/(?:mytooltip|wide_tooltip|tooltip-text)/.test(segment)) {
+                    const wrapper=segment.match(/^(<[^>]+>)([\s\S]*)(<\/(?:span|strong)>)$/i);
+                    if(wrapper)return wrapper[1]+applyWholesome(wrapper[2])+wrapper[3];
+                }
+                return segment;
+            }
 
             return segment.replace(regex, (match) => {
                 const tooltip = tooltipList.find(t => t.searchString === match);
                 const colour = colourList.find(c => c.word === match);
 
                 let style = colour ? colour.style : '';
-                let innerText = match;
+                let innerText = match === 'TIP' ? 'TİP' : match;
 
                 if (colour && colour.img) {
                     innerText = `<img src="${colour.img}" class="p_icon" alt="">${innerText}`;

@@ -288,7 +288,7 @@ Q.other_position = other_support > 0.5 ? "YES" : "NO";
 
 
 [? if chp_seats > 0 : <span style="color: [+ chp_color +];">CHP: [+ chp_seats +] seats</span> ?]
-[? if tip_seats > 0 : <span style="color: [+ tip_color +];">TIP: [+ tip_seats +] seats</span> ?]
+[? if tip_seats > 0 : <span style="color: [+ tip_color +];">TİP: [+ tip_seats +] seats</span> ?]
 [? if AP_seats > 0 : <span style="color: [+ center_color +];">AP: [+ AP_seats +] seats</span> ?]
 [? if cgp_seats > 0 : <span style="color: [+ cgp_color +];">CGP: [+ cgp_seats +] seats</span> ?]
 [? if dp_seats > 0 : <span style="color: [+ dp_color +];">DP: [+ dp_seats +] seats</span> ?]
@@ -303,7 +303,7 @@ Q.other_position = other_support > 0.5 ? "YES" : "NO";
 
 **How Each Party Voted:**
 - **CHP** ([+ chp_seats +] seats): **[+ chp_position +]** - <span style="color: #158e33;">[+ chp_yes +] YES</span>, <span style="color: #c51313;">[+ chp_no +] NO</span>[? if chp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ chp_abstain_count +] ABSTAIN</span>?]
-- **TIP** ([+ tip_seats +] seats): **[+ tip_position +]** - <span style="color: #158e33;">[+ tip_yes +] YES</span>, <span style="color: #c51313;">[+ tip_no +] NO</span>[? if tip_abstain_count > 0:, <span style="color: #9e9e9e;">[+ tip_abstain_count +] ABSTAIN</span>?]
+- **TİP** ([+ tip_seats +] seats): **[+ tip_position +]** - <span style="color: #158e33;">[+ tip_yes +] YES</span>, <span style="color: #c51313;">[+ tip_no +] NO</span>[? if tip_abstain_count > 0:, <span style="color: #9e9e9e;">[+ tip_abstain_count +] ABSTAIN</span>?]
 - **AP** ([+ AP_seats +] seats): **[+ center_position +]** - <span style="color: #158e33;">[+ center_yes +] YES</span>, <span style="color: #c51313;">[+ center_no +] NO</span>[? if center_abstain_count > 0:, <span style="color: #9e9e9e;">[+ center_abstain_count +] ABSTAIN</span>?]
 - **CGP** ([+ cgp_seats +] seats): **[+ cgp_position +]** - <span style="color: #158e33;">[+ cgp_yes +] YES</span>, <span style="color: #c51313;">[+ cgp_no +] NO</span>[? if cgp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ cgp_abstain_count +] ABSTAIN</span>?]
 [? if dp_seats > 0:- **DP** ([+ dp_seats +] seats): **[+ dp_position +]** - <span style="color: #158e33;">[+ dp_yes +] YES</span>, <span style="color: #c51313;">[+ dp_no +] NO</span>[? if dp_abstain_count > 0:, <span style="color: #9e9e9e;">[+ dp_abstain_count +] ABSTAIN</span>?]?]

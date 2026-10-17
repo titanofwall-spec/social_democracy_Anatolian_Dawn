@@ -1,0 +1,12 @@
+title: MP Died
+new-page: true
+tags: event
+priority: 2
+max-visits: 1
+view-if: year > 1975 or (year = 1975 and month >= 2)
+
+MP Died
+
+- @acknowledge: Continue
+
+@acknowledge

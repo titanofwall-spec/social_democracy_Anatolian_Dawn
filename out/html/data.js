@@ -226,3 +226,8 @@ tooltipList.push({searchString:'TBP',explanationText:'<img src="img/tbp-logo.jpg
 tooltipList.push({searchString:'MP',explanationText:'<img src="img/mp-logo.png">Millet Partisi (National Party).'});
 colourList.push({word:'TBP',style:'color:#c51b32;'});
 colourList.push({word:'MP',style:'color:#242018;'});
+
+// One source of truth for the weight of every party label.
+const boldPartyNames=new Set(['CHP','AP','CGP','GP','DP','MSP','MNP','MHP','TIP','TİP','TKP','TSİP','TSIP','TEP','SDP','TBP','MP','Independents','Kurdish Independents','Socialist Left','Others']);
+colourList.forEach(entry=>{if(boldPartyNames.has(entry.word))entry.style=entry.style.replace(/font-weight\s*:[^;]+;?/g,'')+';font-weight:bold;';});
+['Independents','Kurdish Independents'].forEach(name=>{if(!tooltipList.some(t=>t.searchString===name))tooltipList.push({searchString:name,explanationText:name});});

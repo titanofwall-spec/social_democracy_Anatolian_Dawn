@@ -29,17 +29,17 @@ go-to: @grassroots if TIP_banned == 1; @demsoc if TIP_banned == 0 and TIP_leader
 @grassroots
 on-arrival: TIP_relation += 6*(1 - dissent)
 
-Since TIP is currently banned, many Socialists welcome our attempts to create a political platform for them. Grassroot connections also expose our party to the socialist ideals...
+Since TİP is currently banned, many Socialists welcome our attempts to create a political platform for them. Grassroot connections also expose our party to the socialist ideals...
 
 @demsoc
 on-arrival: TIP_relation += 8*(1 - dissent)
 
-Mehmet Ali Aybar's TIP is ideologically close to us and it's only natural that we improve our relations.
+Mehmet Ali Aybar's TİP is ideologically close to us and it's only natural that we improve our relations.
 
 @commie
 on-arrival: TIP_relation += 4*(1 - dissent)
 
-The ideological turn TIP has taken is incompatible with ours and this makes attempts at improving our relations less efficient.
+The ideological turn TİP has taken is incompatible with ours and this makes attempts at improving our relations less efficient.
 
 @center
 subtitle: -1 resources

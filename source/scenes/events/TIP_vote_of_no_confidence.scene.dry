@@ -1,13 +1,13 @@
-title: TIP calls a vote of no confidence
+title: TİP calls a vote of no confidence
 new-page: true
 tags: event
 view-if: CHP_in_government = 1 and TIP_in_government = 1 and TIP_coalition_dissent >= 4 and not constructive_vonc
 
 = Coalition in Crisis
 
-TIP calls for a vote of no confidence after disagreements within the coalition.
+TİP calls for a vote of no confidence after disagreements within the coalition.
 
-- @negotiate: Negotiate a compromise with TIP.
+- @negotiate: Negotiate a compromise with TİP.
 - @alternatives: Look for another parliamentary majority.
 - @fall: Accept the government's fall.
 

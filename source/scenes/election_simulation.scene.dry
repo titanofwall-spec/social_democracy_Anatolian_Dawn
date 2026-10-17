@@ -152,62 +152,16 @@ Q.MSP_r = Q.MSP_votes;
 Q.MHP_r = Q.MHP_votes;
 Q.parties.forEach(function(p){Q[p+'_r']=Q[p+'_votes'];});
 
-// Tiered proportional apportionment, mirroring the algorithm used for the actual
-// Grand National Assembly election (see post_national_elections in national_elections.scene.dry):
-// each party's vote share is weighted more heavily the larger it is (in brackets),
-// seats are then apportioned out of a fixed 450-seat assembly, and any leftover
-// seats from rounding down are settled between CHP and AP.
-var totalSeatsTarget = 450;
-var majorityThreshold = 226;
-Q.majority_threshold = majorityThreshold;
-function seatWeightMultiplier(share) {
-    if (share <= 5) {
-        return 0.5;
-    } else if (share <= 15) {
-        return 1.15;
-    } else if (share <= 27) {
-        return 1.25;
-    } else if (share <= 32) {
-        return 1.5;
-    } else if (share <= 40) {
-        return 1.8;
-    } else {
-        return 1.9;
-    }
-}
-Q.largest_party_key = null;
-var largestShare = -1;
-var weightedShares = {};
-var weightedTotal = 0;
-for (var party of Q.parties) {
-    var share = Q[party + '_r'] || 0;
-    var weighted = share * seatWeightMultiplier(share);
-    weightedShares[party] = weighted;
-    weightedTotal += weighted;
-    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {
-        largestShare = share;
-        Q.largest_party_key = party;
-    }
-}
-if (weightedTotal <= 0) {
-    weightedTotal = 1;
-}
-Q.total_seats = 0;
-for (var party of Q.parties) {
-    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));
-    Q[party + '_seats'] = seats;
-    Q.total_seats += seats;
-}
-var seatRemainder = totalSeatsTarget - Q.total_seats;
-if (seatRemainder < 0) {
-    Q.chp_seats += seatRemainder;
-} else if (seatRemainder > 0) {
-    Q.AP_seats += seatRemainder;
-}
-Q.total_seats = totalSeatsTarget;
+Q.total_seats=450;Q.majority_threshold=226;
+if(typeof Q.independent_seat_factor!=='number')Q.independent_seat_factor=.5+Math.random()/6;
+var seatVotes=Object.fromEntries(Q.parties.map(function(p){return [p,Q[p+'_banned']?0:Q[p+'_r']||0];}));if(seatVotes.IND)seatVotes.IND*=Q.independent_seat_factor;
+var allocation=AnatolianRules.dhondt(seatVotes,450);
+Q.parties.forEach(function(p){Q[p+'_seats']=allocation[p]||0;});
+Q.largest_party_key=Q.parties.slice().sort(function(a,b){return (Q[b+'_r']||0)-(Q[a+'_r']||0);})[0];
+if(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q)){var result=AnatolianProvinces.compute(Q,false);Q.parties.forEach(function(p){Q[p+'_seats']=result.seats[p]||0;});}
 var partyDisplayNames = {
     'chp': 'CHP',
-    'TIP': 'TIP',
+    'TIP': 'TİP',
     'AP': 'AP',
     'CGP': Q.CGP_name,
     'DP': 'DP',
@@ -241,7 +195,7 @@ if (Q.sim_year == 1979) {
 }
 !}
 
-The electoral system uses a tiered proportional apportionment, weighting each party's vote share more heavily the larger it is, out of a 450-seat assembly.
+Seats are allocated by D’Hondt, using provincial constituencies when the provincial model is active.
 A working majority in this simulation requires 226 seats.
 
 **Election results:**

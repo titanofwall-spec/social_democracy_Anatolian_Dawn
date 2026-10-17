@@ -35,7 +35,7 @@ We naturally focus our efforts against our biggest electoral opponent. Our promi
 @anti_dem
 on-arrival: enemies = "radical organizations"; workers_MSP -= 3; workers_MHP -= 3; workers_TIP -= 3; state_employees_MHP -= 2; state_employees_MSP -= 2; petty_bourgeoisie_MSP -= 2; petty_bourgeoisie_MHP -= 2; grey_wolves_strength -= 4; devyol_strength -= 4; TIP_relation -= 10; MSP_relation -= 10 if year <= 1977; MHP_relation -= 10 if year <= 1977; democracystatus += 1
 
-We focus our party efforts on raising awareness against left wing and right wing radicals and their paramilitary efforts. However, this might hamper our ability to reconcile with the TIP in the future.
+We focus our party efforts on raising awareness against left wing and right wing radicals and their paramilitary efforts. However, this might hamper our ability to reconcile with the TİP in the future.
 
 [? if year >= 1977 : Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties and not the larger AP. ?]
 

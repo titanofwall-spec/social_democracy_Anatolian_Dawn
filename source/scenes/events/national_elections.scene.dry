@@ -72,65 +72,20 @@ if (Q.electoral_threshold && Q.electoral_threshold > 0) {
 // get change arrows and signs
 
 
-// Tiered proportional apportionment: each party's vote share is weighted more
-// heavily the larger it is (in brackets), seats are then apportioned out of a
-// fixed 450-seat assembly, and any leftover seats from rounding down are
-// settled between CHP and AP (the two historically dominant parties).
-var totalSeatsTarget = 450;
-var majorityThreshold = 226;
-Q.majority_threshold = majorityThreshold;
-function seatWeightMultiplier(share) {
-    if (share <= 5) {
-        return 0.5;
-    } else if (share <= 15) {
-        return 1.15;
-    } else if (share <= 27) {
-        return 1.25;
-    } else if (share <= 32) {
-        return 1.5;
-    } else if (share <= 40) {
-        return 1.8;
-    } else {
-        return 1.9;
-    }
+Q.majority_threshold=226;
+if(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q)){AnatolianProvinces.applyElection(Q,'general');}else{
+Q.total_seats=450;Q.majority_threshold=226;
+if(typeof Q.independent_seat_factor!=='number')Q.independent_seat_factor=.5+Math.random()/6;
+var seatVotes=Object.fromEntries(Q.parties.map(function(p){return [p,Q[p+'_banned']?0:Q[p+'_r']||0];}));if(seatVotes.IND)seatVotes.IND*=Q.independent_seat_factor;
+var allocation=AnatolianRules.dhondt(seatVotes,450);
+Q.parties.forEach(function(p){Q[p+'_seats']=allocation[p]||0;});
+Q.largest_party_key=Q.parties.slice().sort(function(a,b){return (Q[b+'_r']||0)-(Q[a+'_r']||0);})[0];
 }
-Q.largest_party_key = null;
-var largestShare = -1;
-var weightedShares = {};
-var weightedTotal = 0;
-for (var party of Q.parties) {
-    var share = Q[party + '_r'] || 0;
-    var weighted = share * seatWeightMultiplier(share);
-    weightedShares[party] = weighted;
-    weightedTotal += weighted;
-    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {
-        largestShare = share;
-        Q.largest_party_key = party;
-    }
-}
-
-if (weightedTotal <= 0) {
-    weightedTotal = 1;
-}
-Q.total_seats = 0;
-for (var party of Q.parties) {
-    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));
-    Q[party + '_seats'] = seats;
-    Q.total_seats += seats;
-}
-
-
-var seatRemainder = totalSeatsTarget - Q.total_seats;
-if (seatRemainder < 0) {
-    Q.chp_seats += seatRemainder;
-} else if (seatRemainder > 0) {
-    Q.AP_seats += seatRemainder;
-}
-Q.total_seats = totalSeatsTarget;
-if(typeof AnatolianProvinces!=='undefined')AnatolianProvinces.applyElection(Q,'general');
+// Display actual shares after the district allocation has been finalized.
+for(var party of Q.parties){Q[party+'_r_disp']=Q[party+'_r'];Q['change_'+party+'_r']=Q[party+'_r']-Q['old_'+party+'_r'];Q['str_change_'+party]=(Q['change_'+party+'_r']>0?'+':'')+Q['change_'+party+'_r'].toFixed(1);}
 var partyDisplayNames = {
     'chp': 'CHP',
-    'TIP': 'TIP',
+    'TIP': 'TİP',
     'AP': 'AP',
     'CGP': Q.CGP_name,
     'DP': 'DP',
@@ -203,8 +158,8 @@ on-display: {!
 data = [
     {
         "id": "TIP",
-        "legend": "TIP",
-        "name": "TIP",
+        "legend": "TİP",
+        "name": "TİP",
         "seats": Q.TIP_seats,
     }
 ];
@@ -302,7 +257,7 @@ go-to: coalition_menu
 
 **Potential coalitions** *(226 seats needed for a majority)*
 
-Left Coalition (CHP + TIP): [+ left_coalition +] seats
+Left Coalition (CHP + TİP): [+ left_coalition +] seats
 
 Kemalist Coalition (CHP + [+ CGP_name +]): [+ kemalist_coalition +] seats
 
@@ -349,12 +304,12 @@ go-to: ministries
 
 @left_coalition
 title: Is a United Left coalition possible?
-subtitle: CHP + TIP  ([+ left_coalition +] seats)
-unavailable-subtitle: CHP + TIP  ([+ left_coalition +] seats). [? if TIP_relation < 50 : We do not have adequate relations with the TIP. ?] [? if TIP_party_leader != "Aybar" : The Leninists led by Behice Boran do not trust us. ?]
+subtitle: CHP + TİP  ([+ left_coalition +] seats)
+unavailable-subtitle: CHP + TİP  ([+ left_coalition +] seats). [? if TIP_relation < 50 : We do not have adequate relations with the TİP. ?] [? if TIP_party_leader != "Aybar" : The Leninists led by Behice Boran do not trust us. ?]
 view-if: left_coalition >= 226 and year >= 1973
 choose-if: TIP_relation >= 50 and TIP_party_leader == "Aybar"
 
-There are enough votes for a CHP + TIP coalition government.
+There are enough votes for a CHP + TİP coalition government.
 
 The establishment would be furious over such a coalition and the army may make a coup.
 
@@ -363,16 +318,16 @@ The establishment would be furious over such a coalition and the army may make a
 
 @forward
 
-There are many qualms within TIP over their possible entry into government.
+There are many qualms within TİP over their possible entry into government.
 
 - @ecevitleft: Naturally, Karaoğlan Ecevit is going to be the prime minister!
-- @kirikoglu: To ease tensions, we can perhaps offer a name from CHP closer to TIP, like Kamil Kırıkoğlu.
+- @kirikoglu: To ease tensions, we can perhaps offer a name from CHP closer to TİP, like Kamil Kırıkoğlu.
 - @coalition_menu: Try a different governing arrangement.
 
 @ecevitleft
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} prime_minister = "Bülent Ecevit"; prime_minister_party = "CHP"; TIP_relation += 20; coup_timer += 5; orthodox_kemalists_dissent += 20; kemalist_marxists_dissent -= 20; {! AnatolianRules.adjustFactionStrength(Q, 'km', 10); !}  CHP_in_government = 1; TIP_in_government = 1; in_left_front = 1
 
-Bülent Ecevit has become the prime minister of a government led by us and TIP. The army and the Orthodox Wing of our party are furious.
+Bülent Ecevit has become the prime minister of a government led by us and TİP. The army and the Orthodox Wing of our party are furious.
 
 - @ministries: First, we must select our ministries.
 
@@ -560,7 +515,7 @@ We are seen as responsible for the failure to form a government, and many of our
 
 @ministries
 
-We can pick from any number of ministries. Controlling a ministry allows us to directly affect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the TIP. ?] [? if in_left_front and defense_minister_party == "TIP" : If the TIP controls the National Defense Ministry, the army will most likely revolt. ?]
+We can pick from any number of ministries. Controlling a ministry allows us to directly affect policy in that area. [? if in_left_front : Any ministry that we do not take will be given to the TİP. ?] [? if in_left_front and defense_minister_party == "TİP" : If the TİP controls the National Defense Ministry, the army will most likely revolt. ?]
 
 - #cabinet_portfolios
 - #drop_cabinet_portfolios
