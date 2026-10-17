@@ -375,6 +375,8 @@ Police Loyalty: [+ police_loyalty : loyalty +]
 
 
 
+[+ {! return AnatolianRules.kurdishParamilitaryHtml(Q); !} +]
+
 **Far Right**
 
 {!<span class="tooltip-text" title="Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.">Grey Wolves</span>!} Strength: [+ grey_wolves_strength_2 +] thousand
@@ -442,7 +444,7 @@ Current voter preferences:
 
 <span style="color: #750a6f;">**AP**</span>: [+ AP_poll_votes +]%
 
-<span style="color:#8B0000;">**TİP**</span>: [+ TIP_poll_votes +]%
+[+ {! return AnatolianRules.socialistPollHtml(Q); !} +]
 
 {!<span style="color: #5b7387;">!}**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span>!}: [+ CGP_poll_votes +]%
 

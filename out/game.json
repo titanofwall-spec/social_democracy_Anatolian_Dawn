@@ -19931,6 +19931,16 @@
             "type": "paragraph",
             "content": [
               {
+                "type": "insert",
+                "insert": 15
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
                 "type": "emphasis-2",
                 "content": "Far Right"
               },
@@ -19947,7 +19957,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 15
+                "insert": 16
               },
               " thousand"
             ]
@@ -19958,7 +19968,7 @@
               "Grey Wolves Militarization: ",
               {
                 "type": "insert",
-                "insert": 16
+                "insert": 17
               },
               ""
             ]
@@ -19977,11 +19987,11 @@
                   " Strength: ",
                   {
                     "type": "insert",
-                    "insert": 18
+                    "insert": 19
                   },
                   " thousand "
                 ],
-                "predicate": 17
+                "predicate": 18
               },
               ""
             ]
@@ -19995,11 +20005,11 @@
                   "Raiders Militarization: ",
                   {
                     "type": "insert",
-                    "insert": 20
+                    "insert": 21
                   },
                   " "
                 ],
-                "predicate": 19
+                "predicate": 20
               },
               ""
             ]
@@ -20014,7 +20024,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 21
+                "insert": 22
               },
               " thousand"
             ]
@@ -20025,7 +20035,7 @@
               "TİT Militarization: ",
               {
                 "type": "insert",
-                "insert": 22
+                "insert": 23
               },
               ""
             ]
@@ -20036,7 +20046,7 @@
               "Strength of ÖHP: ",
               {
                 "type": "insert",
-                "insert": 23
+                "insert": 24
               },
               "%"
             ]
@@ -20047,7 +20057,7 @@
               {
                 "type": "conditional",
                 "content": "<h1>Distribution of Power</h1> ",
-                "predicate": 24
+                "predicate": 25
               },
               ""
             ]
@@ -20061,11 +20071,11 @@
                   "<h4>Democratic strength: ",
                   {
                     "type": "insert",
-                    "insert": 26
+                    "insert": 27
                   },
                   "%</h4>"
                 ],
-                "predicate": 25
+                "predicate": 26
               },
               ""
             ]
@@ -20084,11 +20094,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 28
+                    "insert": 29
                   },
                   "%"
                 ],
-                "predicate": 27
+                "predicate": 28
               },
               ""
             ]
@@ -20102,11 +20112,11 @@
                   "<h4><span style=\"color: #8B0000;\">Far</span>-<span style=\"color: #FF0000;\">left</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 30
+                    "insert": 31
                   },
                   "%</h4>"
                 ],
-                "predicate": 29
+                "predicate": 30
               },
               ""
             ]
@@ -20125,11 +20135,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 32
+                    "insert": 33
                   },
                   "%"
                 ],
-                "predicate": 31
+                "predicate": 32
               },
               ""
             ]
@@ -20148,11 +20158,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 34
+                    "insert": 35
                   },
                   "%"
                 ],
-                "predicate": 33
+                "predicate": 34
               },
               ""
             ]
@@ -20166,11 +20176,11 @@
                   "<h4><span style=\"color: #7A3C00;\">Far</span>-<span style=\"color: #CC6600;\">right</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 36
+                    "insert": 37
                   },
                   "%</h4>"
                 ],
-                "predicate": 35
+                "predicate": 36
               },
               ""
             ]
@@ -20189,11 +20199,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 38
+                    "insert": 39
                   },
                   "%"
                 ],
-                "predicate": 37
+                "predicate": 38
               },
               ""
             ]
@@ -20212,11 +20222,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 40
+                    "insert": 41
                   },
                   "%"
                 ],
-                "predicate": 39
+                "predicate": 40
               },
               ""
             ]
@@ -20235,11 +20245,11 @@
                   "</span>: ",
                   {
                     "type": "insert",
-                    "insert": 42
+                    "insert": 43
                   },
                   "%"
                 ],
-                "predicate": 41
+                "predicate": 42
               },
               ""
             ]
@@ -20254,51 +20264,51 @@
                   {
                     "type": "conditional",
                     "content": "street fighting is scarce",
-                    "predicate": 44
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting is under control",
                     "predicate": 45
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting is increasing",
+                    "content": "street fighting is under control",
                     "predicate": 46
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting is slipping out of the state's control",
+                    "content": "street fighting is increasing",
                     "predicate": 47
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting have split neighborhoods into two",
+                    "content": "street fighting is slipping out of the state's control",
                     "predicate": 48
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting have reached critical levels",
+                    "content": "street fighting have split neighborhoods into two",
                     "predicate": 49
                   },
                   {
                     "type": "conditional",
-                    "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
+                    "content": "street fighting have reached critical levels",
                     "predicate": 50
                   },
                   {
                     "type": "conditional",
-                    "content": "and the streets are under Far Left control",
+                    "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
                     "predicate": 51
                   },
                   {
                     "type": "conditional",
-                    "content": "and the streets are under Far Right control",
+                    "content": "and the streets are under Far Left control",
                     "predicate": 52
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "and the streets are under Far Right control",
+                    "predicate": 53
                   },
                   "."
                 ],
-                "predicate": 43
+                "predicate": 44
               },
               ""
             ]
@@ -20313,7 +20323,7 @@
               "Land Strength: ",
               {
                 "type": "insert",
-                "insert": 53
+                "insert": 54
               },
               ""
             ]
@@ -20324,7 +20334,7 @@
               "Naval Strength: ",
               {
                 "type": "insert",
-                "insert": 54
+                "insert": 55
               },
               ""
             ]
@@ -20335,7 +20345,7 @@
               "Aerial Strength: ",
               {
                 "type": "insert",
-                "insert": 55
+                "insert": 56
               },
               ""
             ]
@@ -20436,6 +20446,12 @@
               "$code": "return (Q['police_loyalty'] || 0);"
             },
             "qdisplay": "loyalty"
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianRules.kurdishParamilitaryHtml(Q);"
+            }
           },
           {
             "type": "insert",
@@ -23854,17 +23870,11 @@
           {
             "type": "paragraph",
             "content": [
-              "<span style=\"color:#8B0000;\">",
-              {
-                "type": "emphasis-2",
-                "content": "TİP"
-              },
-              "</span>: ",
               {
                 "type": "insert",
                 "insert": 2
               },
-              "%"
+              ""
             ]
           },
           {
@@ -24027,7 +24037,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['TIP_poll_votes'] || 0);"
+              "$code": "return AnatolianRules.socialistPollHtml(Q);"
             }
           },
           {
