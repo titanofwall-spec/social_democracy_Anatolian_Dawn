@@ -25,6 +25,8 @@ d3.linegraph = function(noTicks, noDots, parties, partyColors, partyNames, dataM
         partyNames = {'chp': 'CHP', 'TIP': 'TIP', 'CGP': 'CGP', 'AP': 'AP', 'DP': 'DP', 'MSP': 'MSP', 'MHP': 'MHP', 'TBP':'TBP','MP':'MP','IND':'Independents','KI':'Kurdish Independents'};
     }
     partyNames=Object.assign({TKP:'TKP',TSIP:'TSİP',TEP:'TEP',SDP:'SDP',IND:'Independents',TBP:'TBP',MP:'MP',KI:'Kurdish Independents'},partyNames);
+    const currentQualities=typeof window!=='undefined'&&window.dendryUI?.dendryEngine?.state?.qualities;
+    if(currentQualities&&typeof AnatolianRules!=='undefined')parties=parties.filter(p=>AnatolianRules.partyAvailable(currentQualities,p));
     if (!additionalMonths) {
         additionalMonths = 10;
     }

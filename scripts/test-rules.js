@@ -580,7 +580,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         }
         const source=fs.readFileSync(path.join(root,'source/scenes/status.scene.dry'),'utf8');
         const detail=source.slice(source.indexOf('**Detailed results for each demographic**'),source.indexOf('@interior_affairs'));
-        assert(detail.includes('demographicPollHtml'));const html=rules.demographicPollHtml(Q);for(const group of Q.classes)for(const party of Q.parties)assert(Number.isFinite(Q[group+'_'+party+'_display']),group+' '+party);assert(html.includes('Kurdish Independents:'));assert(html.includes('TKP:'));assert(html.includes('TSİP:'));
+        assert(detail.includes('demographicPollHtml'));const html=rules.demographicPollHtml(Q);for(const group of Q.classes)for(const party of Q.parties)assert(Number.isFinite(Q[group+'_'+party+'_display']),group+' '+party);assert(!html.includes('Kurdish Independents:'));assert(!html.includes('TKP:'));assert(!html.includes('TSİP:'));
     });
 
     test('Replacement cards are removed from the compiled decks',()=>{for(const id of ['domestic_enemies','constitutional_reform','homosexual_rights','crisis_program'])assert(!game.scenes[id]);});

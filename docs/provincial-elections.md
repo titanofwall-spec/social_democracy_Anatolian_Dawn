@@ -14,7 +14,7 @@ Province preference weights now use all 469 class-party rows supplied in the lat
 
 The fixed Kurdish political pools remain part of the calculation. Where they impose a minimum above the supplied aggregate target, the target is fitted as closely as possible while retaining those pools and the workbook's demographic figures.
 
-The supplied Other column includes minor parties and independents. Its underlying votes are allocated among the existing named parties according to their existing demographic appeal and political-pool minimums. In province result displays these parties appear as Other. Current voter preferences combine MP, TBP, Independents, Kurdish Independents and all Socialist Left members into Others, with a colored hover breakdown. This is display grouping only: the underlying parties, seat allocation and existing Socialist Left electoral pooling remain separate.
+The supplied Other column includes minor parties and independents. Its underlying votes are allocated among the existing named parties according to their existing demographic appeal and political-pool minimums. In province result displays these parties appear as Other. Current voter preferences group MP, TBP, Independents and unlocked Kurdish Independents into Others, with a colored hover breakdown. TIP is shown separately before formation; after formation the separate Socialist Left row includes TIP and its four members. This is display grouping only: the underlying parties, seat allocation and existing Socialist Left electoral pooling remain separate.
 
 Saved games recalibrate tendency weights once using version 2. Local demographic changes, explicit preference modifiers, population anchors, initial parliamentary totals and previous election snapshots are retained.
 
@@ -31,3 +31,11 @@ General-election seats are allocated by provincial D'Hondt, with 450 constituent
 Completed general and local elections save immutable province snapshots in `province_election_history`. On older saves, map history begins with the first election completed after this update; earlier province-by-province player results did not exist and are not invented. Initialization preserves current party preferences and parliamentary totals. Reopening overlays does not advance time or grant rewards.
 
 The new automated test is `scripts/test-provinces.js`. It checks imports, population reconciliation, projections, seat totals, dynamic changes, archived results, save continuity, Socialist Left pooling and exact Cyprus percentage-point rewards.
+
+## Party availability and map navigation
+
+TKP, TSIP, TEP and SDP are absent from the active party roster before the TIP reformation event sets socialist_left_formed. Their raw demographic preferences and derived votes/seats are suppressed while inactive. Unorganized nonradical socialist Kurdish preferences remain under TIP until formation.
+
+Kurdish Independents unlock through General Amnesty. Otherwise the Placeholder event becomes eligible in the first period of January 1975 (or the first later eligible visit), doubles radicalism up to 100%, and unlocks the party exactly once. Before this unlock, radical Kurdish voters have no eligible electoral organization and are excluded from projected valid votes.
+
+The map toolbar contains adjoining Current polls, 1973 General, 1977 General, 1981 General, 1973 Local, 1977 Local and 1981 Local tabs. Unrecorded elections are disabled. A 1975 general election, or scheduling the next general election for 1975, changes the latter general labels to 1975 and 1979. Local labels remain fixed. The ledger uses existing party flag assets and the shared name/tooltip formatter; independent/umbrella entries use a neutral marker because they have no party flag. Its parliamentary column is Seats.

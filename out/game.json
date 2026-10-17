@@ -6914,6 +6914,43 @@
       ],
       "countVisitsMax": 1
     },
+    "kurdish_independents_unlock.acknowledge": {
+      "id": "kurdish_independents_unlock.acknowledge",
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "kurdish_independents_unlock": {
+      "id": "kurdish_independents_unlock",
+      "type": "scene",
+      "title": "Placeholder",
+      "newPage": true,
+      "tags": [
+        "event"
+      ],
+      "priority": 2,
+      "maxVisits": 1,
+      "viewIf": {
+        "$code": "return ((((Q['year'] || 0) >= 1975) && (!(((Q['Amnesty'] || 0)) !== 0))) && (!(((Q['kurdish_independents_unlocked'] || 0)) !== 0)));"
+      },
+      "onArrival": [
+        {
+          "$code": "if(!Q.kurdish_independents_unlocked){\n Q.kurdish_issue_radicalism=Math.min(1,2*AnatolianRules.number(Q.kurdish_issue_radicalism,.25));\n Q.kurdish_independents_unlocked=1;\n Q.kurdish_independents_event_seen=1;\n AnatolianRules.ensureKurdishIssue(Q);\n}"
+        }
+      ],
+      "options": [
+        {
+          "id": "@kurdish_independents_unlock.acknowledge",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "Placeholder",
+        "type": "paragraph"
+      },
+      "countVisitsMax": 1
+    },
     "lokavt.promise": {
       "id": "lokavt.promise",
       "subtitle": "We will need to get the Labour Ministry to conduct the reform!",
@@ -7674,88 +7711,51 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "<tr><td>"
-              },
-              " TKP ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 23
-              },
-              "% ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 24
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 25
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td></tr>"
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<tr><td>"
-              },
-              " TSİP ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 26
-              },
-              "% ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 27
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 28
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td></tr>"
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<tr><td>"
+                  },
+                  " TKP ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 24
+                  },
+                  "% ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 25
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 26
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td></tr>"
+                  },
+                  " "
+                ],
+                "predicate": 23
               },
               ""
             ]
@@ -7764,43 +7764,51 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "<tr><td>"
-              },
-              " TEP ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 29
-              },
-              "% ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 30
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 31
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td></tr>"
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<tr><td>"
+                  },
+                  " TSİP ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 28
+                  },
+                  "% ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 29
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 30
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td></tr>"
+                  },
+                  " "
+                ],
+                "predicate": 27
               },
               ""
             ]
@@ -7809,43 +7817,104 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "<tr><td>"
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<tr><td>"
+                  },
+                  " TEP ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 32
+                  },
+                  "% ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 33
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 34
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td></tr>"
+                  },
+                  " "
+                ],
+                "predicate": 31
               },
-              " SDP ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 32
-              },
-              "% ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 33
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 34
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td></tr>"
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<tr><td>"
+                  },
+                  " SDP ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 36
+                  },
+                  "% ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 37
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 38
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td></tr>"
+                  },
+                  " "
+                ],
+                "predicate": 35
               },
               ""
             ]
@@ -7865,7 +7934,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 35
+                "insert": 39
               },
               "% ",
               {
@@ -7875,7 +7944,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 36
+                "insert": 40
               },
               " ",
               {
@@ -7885,7 +7954,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 37
+                "insert": 41
               },
               " ",
               {
@@ -7899,43 +7968,51 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "magic",
-                "content": "<tr><td>"
-              },
-              " Kurdish Independents ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 38
-              },
-              "% ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 39
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td><td>"
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 40
-              },
-              " ",
-              {
-                "type": "magic",
-                "content": "</td></tr>"
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<tr><td>"
+                  },
+                  " Kurdish Independents ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 43
+                  },
+                  "% ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 44
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td><td>"
+                  },
+                  " ",
+                  {
+                    "type": "insert",
+                    "insert": 45
+                  },
+                  " ",
+                  {
+                    "type": "magic",
+                    "content": "</td></tr>"
+                  },
+                  " "
+                ],
+                "predicate": 42
               },
               ""
             ]
@@ -7955,7 +8032,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 41
+                "insert": 46
               },
               "% ",
               {
@@ -7965,7 +8042,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 42
+                "insert": 47
               },
               " ",
               {
@@ -7975,7 +8052,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 43
+                "insert": 48
               },
               " ",
               {
@@ -8000,7 +8077,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 44
+                "insert": 49
               },
               "% ",
               {
@@ -8010,7 +8087,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 45
+                "insert": 50
               },
               " ",
               {
@@ -8020,7 +8097,7 @@
               " ",
               {
                 "type": "insert",
-                "insert": 46
+                "insert": 51
               },
               " ",
               {
@@ -8061,7 +8138,7 @@
               "Left Coalition (CHP + TIP): ",
               {
                 "type": "insert",
-                "insert": 47
+                "insert": 52
               },
               " seats"
             ]
@@ -8072,58 +8149,9 @@
               "Kemalist Coalition (CHP + ",
               {
                 "type": "insert",
-                "insert": 48
-              },
-              "): ",
-              {
-                "type": "insert",
-                "insert": 49
-              },
-              " seats"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Grand Coalition (CHP + AP): ",
-              {
-                "type": "insert",
-                "insert": 50
-              },
-              " seats"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Unholy Coalition (CHP + MSP): ",
-              {
-                "type": "insert",
-                "insert": 51
-              },
-              " seats"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Bourgeois Coalition (AP + ",
-              {
-                "type": "insert",
-                "insert": 52
-              },
-              " + DP): ",
-              {
-                "type": "insert",
                 "insert": 53
               },
-              " seats"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
+              "): ",
               {
                 "type": "insert",
                 "insert": 54
@@ -8134,10 +8162,59 @@
           {
             "type": "paragraph",
             "content": [
+              "Grand Coalition (CHP + AP): ",
+              {
+                "type": "insert",
+                "insert": 55
+              },
+              " seats"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "Unholy Coalition (CHP + MSP): ",
+              {
+                "type": "insert",
+                "insert": 56
+              },
+              " seats"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "Bourgeois Coalition (AP + ",
+              {
+                "type": "insert",
+                "insert": 57
+              },
+              " + DP): ",
+              {
+                "type": "insert",
+                "insert": 58
+              },
+              " seats"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
+              {
+                "type": "insert",
+                "insert": 59
+              },
+              " seats"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ",
-                "predicate": 55
+                "predicate": 60
               },
               ""
             ]
@@ -8287,6 +8364,12 @@
             }
           },
           {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['socialist_left_formed'] || 0)) !== 0);"
+            }
+          },
+          {
             "type": "insert",
             "fn": {
               "$code": "return (Q['TKP_r'] || 0);"
@@ -8302,6 +8385,12 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['TKP_seats'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['socialist_left_formed'] || 0)) !== 0);"
             }
           },
           {
@@ -8323,6 +8412,12 @@
             }
           },
           {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['socialist_left_formed'] || 0)) !== 0);"
+            }
+          },
+          {
             "type": "insert",
             "fn": {
               "$code": "return (Q['TEP_r'] || 0);"
@@ -8338,6 +8433,12 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['TEP_seats'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['socialist_left_formed'] || 0)) !== 0);"
             }
           },
           {
@@ -8374,6 +8475,12 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['IND_seats'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['kurdish_independents_unlocked'] || 0)) !== 0);"
             }
           },
           {
@@ -10093,7 +10200,7 @@
       "unavailableSubtitle": "We have already passed a general amnesty.",
       "onArrival": [
         {
-          "$code": "Q['grey_wolves_strength'] = (Q['grey_wolves_strength'] || 0) + 10;\nQ['grey_wolves_militancy'] = (Q['grey_wolves_militancy'] || 0) + 0.05;\nQ['raiders_strength'] = (Q['raiders_strength'] || 0) + 5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 2;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + 5;\nQ['Amnesty'] = (Q['Amnesty'] || 0) + 1;\n if (((Q['MSP_in_government'] || 0) == 1) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) - 1; }"
+          "$code": "Q['grey_wolves_strength'] = (Q['grey_wolves_strength'] || 0) + 10;\nQ['grey_wolves_militancy'] = (Q['grey_wolves_militancy'] || 0) + 0.05;\nQ['raiders_strength'] = (Q['raiders_strength'] || 0) + 5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 2;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + 5;\nQ['Amnesty'] = (Q['Amnesty'] || 0) + 1;\nQ['kurdish_independents_unlocked'] = 1;\n if (((Q['MSP_in_government'] || 0) == 1) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) - 1; }"
         }
       ],
       "content": {
@@ -47230,6 +47337,7 @@
       "kibrisson": true,
       "kirikogluchoice": true,
       "kizildere": true,
+      "kurdish_independents_unlock": true,
       "meetingopposition": true,
       "MHP_introduction": true,
       "mspcoalition": true,

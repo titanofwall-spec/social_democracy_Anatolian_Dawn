@@ -932,6 +932,7 @@ function getPartyIdeology(party, Q) {
             });
         });
     }
+  window.formatPartyLabel = applyWholesome;
   // TODO: have some code for tabbed sidebar browsing.
   window.updateSidebar = function() {
       var scene = dendryUI.game.scenes[window.statusTab];

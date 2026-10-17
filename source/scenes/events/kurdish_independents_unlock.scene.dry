@@ -1,0 +1,20 @@
+title: Placeholder
+new-page: true
+tags: event
+priority: 2
+max-visits: 1
+view-if: year >= 1975 and not Amnesty and not kurdish_independents_unlocked
+on-arrival: {!
+if(!Q.kurdish_independents_unlocked){
+ Q.kurdish_issue_radicalism=Math.min(1,2*AnatolianRules.number(Q.kurdish_issue_radicalism,.25));
+ Q.kurdish_independents_unlocked=1;
+ Q.kurdish_independents_event_seen=1;
+ AnatolianRules.ensureKurdishIssue(Q);
+}
+!}
+
+Placeholder
+
+- @acknowledge: Continue.
+
+@acknowledge
