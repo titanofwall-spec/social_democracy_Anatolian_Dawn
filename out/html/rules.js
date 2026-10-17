@@ -132,12 +132,13 @@
         replaceOthers(Q);
         if(Array.isArray(Q.election_records))Q.election_records.forEach(function(/** @type {GameState} */record){kurdishParties.forEach(function(p){if(typeof record[p.key]!=='number')record[p.key]=0;});});
         Object.keys(Q).forEach(function(k){if(/^(?:pkk_|separatist_|eastern_crime|ddkd_|language_rights|CHP_kurdish_attitude$|kurdish_political_|kurdish_radicalism$)/.test(k))delete Q[k];});
+        if(typeof AnatolianProvinces!=='undefined')AnatolianProvinces.ensure(Q);
     }
     /** Pure nested population pools. @param {GameState} Q */
     function kurdishModel(Q){
         var consciousness=clamp(number(Q.kurdish_issue_consciousness,.20),0,1),radicalism=clamp(number(Q.kurdish_issue_radicalism,.25),0,1),paramilitarism=clamp(number(Q.kurdish_issue_paramilitarism),0,1);
         var radical=consciousness*radicalism,nonRadical=consciousness-radical,paramilitary=radical*paramilitarism;
-        var populations=[36638465,37518611,38430221,39329533,40210234,41053126,41899984,42773298,43645306,44510429,45408815];var population=populations[clamp(Math.floor(number(Q.year,1970))-1970,0,10)];var totalMembers=population*number(Q.kurds,5)/100*paramilitary;
+        var populations=[36638465,37518611,38430221,39329533,40210234,41053126,41899984,42773298,43645306,44510429,45408815];var population=populations[clamp(Math.floor(number(Q.year,1970))-1970,0,10)];if(Q.province_model_version===1&&Q.province_model_enabled!==0)population=number(Q.province_population_total,population);var totalMembers=population*number(Q.kurds,5)/100*paramilitary;
         return {consciousness:consciousness,radicalism:radicalism,paramilitarism:paramilitarism,radical:radical,nonRadical:nonRadical,paramilitary:paramilitary,population:population,totalMembers:totalMembers,groups:kurdishGroups.map(function(g){return {name:g.name,share:g.share,populationShare:paramilitary*g.share/100,members:totalMembers*g.share/100,militarization:clamp(number(Q['kurdish_group_'+kurdishGroups.indexOf(g)+'_militarization'],.02),0,1)};})};
     }
     /** Pure voter shares. Raw Kurdish party preferences remain the nonpolitical baseline. @param {GameState} Q @param {string} demographic */
@@ -201,6 +202,7 @@
     /** Pure projection: retain the existing TIP ban and partial DISK endorsement transfer.
      * @param {GameState} Q @param {boolean} [polling] */
     function projectVotes(Q, polling) {
+        if(typeof AnatolianProvinces!=='undefined'&&AnatolianProvinces.active(Q))return AnatolianProvinces.projectVotes(Q,!!polling);
         /** @type {string[]} */ var parties = Q.parties;
         /** @type {string[]} */ var classes = Q.classes;
         /** @type {Record<string, number>} */ var classShares = {};

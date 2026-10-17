@@ -56,7 +56,7 @@ if (require.main === module) {
                 assert(fs.existsSync(path.join(root, 'out/html', match[1])), source.name + ': missing ' + match[1]);
             }
         }
-        for (const file of ['rules.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'game.js', 'data.js', 'd3-linegraph.js']) {
+        for (const file of ['rules.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'game.js', 'data.js', 'd3-linegraph.js','provinces.js','province-map.js','data/province-data.js']) {
             const result = spawnSync(process.execPath, ['--check', path.join(root, 'out/html', file)], {stdio:'inherit'});
             assert.equal(result.status, 0, 'Syntax check: ' + file);
         }

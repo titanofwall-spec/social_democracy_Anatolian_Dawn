@@ -127,6 +127,7 @@ if (seatRemainder < 0) {
     Q.AP_seats += seatRemainder;
 }
 Q.total_seats = totalSeatsTarget;
+if(typeof AnatolianProvinces!=='undefined')AnatolianProvinces.applyElection(Q,'general');
 var partyDisplayNames = {
     'chp': 'CHP',
     'TIP': 'TIP',

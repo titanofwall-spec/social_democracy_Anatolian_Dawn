@@ -24,12 +24,13 @@ compiler.compileGame(files,(err,game)=>{
   const indexPath=path.join(root,'out/html/index.html');
   const html=fs.readFileSync(indexPath,'utf8').replace(/src="core\.js(?:\?[^"]*)?"/g,'src="core.js?v='+coreVersion+'"');
   let versioned=html;
-  for(const name of ['game.js','rules.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js']){
+  for(const name of ['game.js','rules.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','province-map.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;
     const version=crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex').slice(0,12);
     const escaped=name.replace(/\./g,'\\.');
     versioned=versioned.replace(new RegExp('src="'+escaped+'(?:\\?[^"]*)?"','g'),'src="'+name+'?v='+version+'"');
   }
+  for(const name of ['province-map.css']){const version=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html',name))).digest('hex').slice(0,12);versioned=versioned.replace(new RegExp('href="'+name.replace(/\./g,'\\.')+'(?:\\?[^"]*)?"','g'),'href="'+name+'?v='+version+'"');}
   fs.writeFileSync(indexPath,versioned);
 
  });

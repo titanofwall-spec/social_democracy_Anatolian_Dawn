@@ -173,6 +173,7 @@ for (var entry of partyData) {
 Q.local_largest_party_key = largestKey;
 Q.local_second_party_key = secondKey;
 
+if(typeof AnatolianProvinces!=='undefined')AnatolianProvinces.applyElection(Q,'local');
 var chpSeats = Q.chp_local_seats || 0;
 Q.municipalities_controlled = chpSeats;
 Q.total_municipalities = totalSeatsInt;

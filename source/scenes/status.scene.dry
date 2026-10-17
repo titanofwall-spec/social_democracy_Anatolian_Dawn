@@ -436,6 +436,8 @@ Current voter preferences:
 
 [+ {! return AnatolianRules.partyVoteRows(Q,"polls"); !} +]
 
+{!<button class="province-map-open-button" onclick="openProvinceElectionMap()">See in-map results</button>!}
+
 **Detailed results for each demographic**
 
 [+ {! return AnatolianRules.demographicPollHtml(Q); !} +]
