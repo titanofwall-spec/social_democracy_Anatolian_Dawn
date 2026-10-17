@@ -219,3 +219,5 @@ colourList.push({word:"KD/UKO/PKK",style:"color: #c2d93f; font-weight: bold;"});
 tooltipList.push({searchString:"Tekoşin",explanationText:""});
 colourList.push({word:"Tekoşin",style:"color: #c2d93f; font-weight: bold;"});
 colourList.push({word:"Kurdish Independents",style:"color: #c2d93f; font-weight: bold;"});
+
+colourList.push({word:'Independents',style:'color:#808080;'});

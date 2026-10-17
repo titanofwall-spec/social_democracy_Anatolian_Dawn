@@ -161,17 +161,7 @@ Others: [+ other_seats +]
 
 Last election vote share:
 
-<span class="tooltip-text" title="Republican People's Party" style="color: #E3000F;">**CHP**</span>: [+ chp_r +]%
-
-<span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+ AP_r +]%
-<span style="color:#8B0000;">**TİP**</span>: [+ TIP_r +]%
-<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_r +]%
-<span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_r +]%
-<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_r +]%
-<span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_r +]%
-[+ {! return AnatolianRules.extraPartyRows(Q,"results"); !} +]
-
-Others: [+ other_r +]%
+[+ {! return AnatolianRules.partyVoteRows(Q,"results"); !} +]
 
 [? if CHP_in_government = 1 : Budget: [+ budget +] ?]
 
@@ -375,8 +365,6 @@ Police Loyalty: [+ police_loyalty : loyalty +]
 
 
 
-[+ {! return AnatolianRules.kurdishParamilitaryHtml(Q); !} +]
-
 **Far Right**
 
 {!<span class="tooltip-text" title="Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.">Grey Wolves</span>!} Strength: [+ grey_wolves_strength_2 +] thousand
@@ -391,7 +379,11 @@ Grey Wolves Militarization: [+ grey_wolves_militancy : militancy +]
 
 TİT Militarization: [+ tit_militancy : militancy +]
 
-Strength of ÖHP: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength : 100; !} +]%
+[+ {! return Q.counter_guerilla_discovered || Q.ohp_funding_event_seen ? 'Strength of ÖHD' : 'Far Right Underground Ties'; !} +]: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength : 100; !} +]%
+
+**Separatists**
+
+[+ {! return AnatolianRules.kurdishParamilitaryHtml(Q); !} +]
 
 [? if year >= 1972 and not streetfighting_joever: <h1>Distribution of Power</h1> ?]
 
@@ -438,25 +430,7 @@ Q.socialism_disp = Math.round(Q.socialism);
 
 Current voter preferences:
 
-<span style="color: #E3000F;">**CHP**</span>: [+ chp_poll_votes +]%
-
-
-
-<span style="color: #750a6f;">**AP**</span>: [+ AP_poll_votes +]%
-
-[+ {! return AnatolianRules.socialistPollHtml(Q); !} +]
-
-{!<span style="color: #5b7387;">!}**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span>!}: [+ CGP_poll_votes +]%
-
-<span style="color: #4a4d04;">**DP**</span>: [+ DP_poll_votes +]%
-
-<span style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_poll_votes +]%
-
-<span style="color: #954B00;">**MHP**</span>: [+ MHP_poll_votes +]%
-
-Others: [+ other_poll_votes +]%
-
-[+ {! return AnatolianRules.extraPartyRows(Q,"polls"); !} +]
+[+ {! return AnatolianRules.partyVoteRows(Q,"polls"); !} +]
 
 **Detailed results for each demographic**
 

@@ -7274,7 +7274,7 @@
           "$code": "Q['I_in_government'] = 0;"
         },
         {
-          "$code": "// Snapshot whether the Socialist Left bloc existed as of this election, so the \"Last\n// election vote share\" section on the status screen can reflect the state at the last\n// election rather than whatever the current (possibly later-changed) state is.\nQ.socialist_left_formed_last_election = Q.socialist_left_formed;\n// set old results\n// election threshold constitutional reform\n// banning parties\nvar new_party_sum = 0;\nfor (var party of Q.parties) {\n    Q['old_' + party + '_r'] = Q[party + '_r'];\n    if (Q.constitutional_reform > 0) {\n        if (Q[party + '_votes'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned']) {\n            Q[party + '_r'] = 0;\n        } else {\n            Q[party + '_r'] = Q[party + '_votes'];\n        }\n        new_party_sum += Q[party + '_r'];\n    } else {\n        Q[party + '_r'] = Q[party + '_votes'];\n    }\n    // if we use decimals, then we might want to truncate the numbers\n    if (Q.use_decimals) {\n        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n    }  else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n    }\n    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n    Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n}\n// calculate new party sum if electoral reform\nif (Q.electoral_threshold && Q.electoral_threshold > 0) {\n    for (var party of Q.parties) {\n        if (Q[party + '_r'] > 0) {\n            if (Q.use_decimals) {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;\n            } else {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);\n            }\n        }\n        if (Q.use_decimals) {\n            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n        } else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n        }\n        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n        Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n    }\n}\n\n// get change arrows and signs\n\n\n// Tiered proportional apportionment: each party's vote share is weighted more\n// heavily the larger it is (in brackets), seats are then apportioned out of a\n// fixed 450-seat assembly, and any leftover seats from rounding down are\n// settled between CHP and AP (the two historically dominant parties).\nvar totalSeatsTarget = 450;\nvar majorityThreshold = 226;\nQ.majority_threshold = majorityThreshold;\nfunction seatWeightMultiplier(share) {\n    if (share <= 5) {\n        return 0.5;\n    } else if (share <= 15) {\n        return 1.15;\n    } else if (share <= 27) {\n        return 1.25;\n    } else if (share <= 32) {\n        return 1.5;\n    } else if (share <= 40) {\n        return 1.8;\n    } else {\n        return 1.9;\n    }\n}\nQ.largest_party_key = null;\nvar largestShare = -1;\nvar weightedShares = {};\nvar weightedTotal = 0;\nfor (var party of Q.parties) {\n    var share = Q[party + '_r'] || 0;\n    var weighted = share * seatWeightMultiplier(share);\n    weightedShares[party] = weighted;\n    weightedTotal += weighted;\n    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {\n        largestShare = share;\n        Q.largest_party_key = party;\n    }\n}\n\nif (weightedTotal <= 0) {\n    weightedTotal = 1;\n}\nQ.total_seats = 0;\nfor (var party of Q.parties) {\n    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));\n    Q[party + '_seats'] = seats;\n    Q.total_seats += seats;\n}\n\n\nvar seatRemainder = totalSeatsTarget - Q.total_seats;\nif (seatRemainder < 0) {\n    Q.chp_seats += seatRemainder;\n} else if (seatRemainder > 0) {\n    Q.AP_seats += seatRemainder;\n}\nQ.total_seats = totalSeatsTarget;\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TIP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': Q.MSP_name,\n    'MHP': 'MHP',\n    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','KI':'Kurdish Independents','other': 'Other'\n};\nif (Q.largest_party_key) {\n    var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n    Q.largest_party = displayName;\n} else {\n    Q.largest_party = 'CHP';\n}\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\n// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\n\nQ.leverage = Q.chp_seats/1.5;\n\nQ.grand_coalition_failed = 0;\n// Reset every governing party, coalition type and ministry together.\nAnatolianRules.resetCabinet(Q);\n\n// reset TIP goals\nQ.TIP_goals_seen = 0;\nQ.TIP_ultimatum_seen = 0;\nQ.welfare_goal = 0;\nQ.agriculture_goal = 0;\nQ.economy_goal = 0;\nQ.finance_goal = 0;\nQ.labor_goal = 0;\nQ.foreign_goal = 0;\nQ.interior_goal = 0;\nQ.defense_goal = 0;\n\nQ.welfare_goal_completed = 0;\nQ.agriculture_goal_completed = 0;\nQ.economy_goal_completed = 0;\nQ.finance_goal_completed = 0;\nQ.labor_goal_completed = 0;\nQ.foreign_goal_completed = 0;\nQ.interior_goal_completed = 0;\nQ.defense_goal_completed = 0;\n\nQ.strike_term_seen = 0;\n\nQ.AP_last_vote_share = Q.AP_r;\n\n// understanding the enemy\nif (Q.MHP_r >= 15) {\n    Q.understanding_enemy_timer = 2;\n}\n\nvar election_result = {'date': new Date(Q.year, Q.month - 1)};\nfor (var party of Q.parties) {\n    election_result[party] = Q[party + '_r'];\n}\nQ.election_records.push(election_result);"
+          "$code": "// Snapshot whether the Socialist Left bloc existed as of this election, so the \"Last\n// election vote share\" section on the status screen can reflect the state at the last\n// election rather than whatever the current (possibly later-changed) state is.\nQ.socialist_left_formed_last_election = Q.socialist_left_formed;\n// set old results\n// election threshold constitutional reform\n// banning parties\nvar new_party_sum = 0;\nfor (var party of Q.parties) {\n    Q['old_' + party + '_r'] = Q[party + '_r'];\n    if (Q.constitutional_reform > 0) {\n        if (Q[party + '_votes'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned']) {\n            Q[party + '_r'] = 0;\n        } else {\n            Q[party + '_r'] = Q[party + '_votes'];\n        }\n        new_party_sum += Q[party + '_r'];\n    } else {\n        Q[party + '_r'] = Q[party + '_votes'];\n    }\n    // if we use decimals, then we might want to truncate the numbers\n    if (Q.use_decimals) {\n        Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n    }  else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n    }\n    Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n    var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n    Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n}\n// calculate new party sum if electoral reform\nif (Q.electoral_threshold && Q.electoral_threshold > 0) {\n    for (var party of Q.parties) {\n        if (Q[party + '_r'] > 0) {\n            if (Q.use_decimals) {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*1000/new_party_sum)/10;\n            } else {\n                Q[party + '_r'] = Math.round(Q[party + '_r']*100/new_party_sum);\n            }\n        }\n        if (Q.use_decimals) {\n            Q[party + '_r_disp'] = Q[party+'_r'].toFixed(1);\n        } else {\n            Q[party + '_r_disp'] = Q[party+'_r'];\n        }\n        Q['change_' + party + '_r'] = Q[party + '_r'] - Q['old_' + party + '_r'];\n        var sign = Q['change_' + party + '_r'] > 0 ? '+'  : '';\n        Q['str_change_' + party] = sign + Q['change_' + party + '_r'].toFixed(1);\n    }\n}\n\n// get change arrows and signs\n\n\n// Tiered proportional apportionment: each party's vote share is weighted more\n// heavily the larger it is (in brackets), seats are then apportioned out of a\n// fixed 450-seat assembly, and any leftover seats from rounding down are\n// settled between CHP and AP (the two historically dominant parties).\nvar totalSeatsTarget = 450;\nvar majorityThreshold = 226;\nQ.majority_threshold = majorityThreshold;\nfunction seatWeightMultiplier(share) {\n    if (share <= 5) {\n        return 0.5;\n    } else if (share <= 15) {\n        return 1.15;\n    } else if (share <= 27) {\n        return 1.25;\n    } else if (share <= 32) {\n        return 1.5;\n    } else if (share <= 40) {\n        return 1.8;\n    } else {\n        return 1.9;\n    }\n}\nQ.largest_party_key = null;\nvar largestShare = -1;\nvar weightedShares = {};\nvar weightedTotal = 0;\nfor (var party of Q.parties) {\n    var share = Q[party + '_r'] || 0;\n    var weighted = share * seatWeightMultiplier(share);\n    weightedShares[party] = weighted;\n    weightedTotal += weighted;\n    if (share > largestShare || (share === largestShare && !Q.largest_party_key)) {\n        largestShare = share;\n        Q.largest_party_key = party;\n    }\n}\n\nif (weightedTotal <= 0) {\n    weightedTotal = 1;\n}\nQ.total_seats = 0;\nfor (var party of Q.parties) {\n    var seats = Math.max(0, Math.floor(weightedShares[party] / weightedTotal * totalSeatsTarget));\n    Q[party + '_seats'] = seats;\n    Q.total_seats += seats;\n}\n\n\nvar seatRemainder = totalSeatsTarget - Q.total_seats;\nif (seatRemainder < 0) {\n    Q.chp_seats += seatRemainder;\n} else if (seatRemainder > 0) {\n    Q.AP_seats += seatRemainder;\n}\nQ.total_seats = totalSeatsTarget;\nvar partyDisplayNames = {\n    'chp': 'CHP',\n    'TIP': 'TIP',\n    'AP': 'AP',\n    'CGP': Q.CGP_name,\n    'DP': 'DP',\n    'MSP': Q.MSP_name,\n    'MHP': 'MHP',\n    'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','other': 'Other'\n};\nif (Q.largest_party_key) {\n    var displayName = partyDisplayNames[Q.largest_party_key] || Q.largest_party_key.toUpperCase();\n    Q.largest_party = displayName;\n} else {\n    Q.largest_party = 'CHP';\n}\nQ.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);\nQ.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);\nQ.bourgeois_coalition = (Q.CGP_seats || 0) + (Q.AP_seats || 0) + (Q.DP_seats || 0);\nQ.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);\nQ.center_right_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.right_coalition = (Q.AP_seats || 0) + (Q.DP_seats || 0) + (Q.other_seats || 0) + (Q.MSP_seats || 0);\nQ.nationalist_front_coalition = (Q.AP_seats || 0) + (Q.CGP_seats || 0) + (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.far_right_coalition = (Q.MSP_seats || 0) + (Q.MHP_seats || 0);\nQ.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);\n// Progressive coalition isn't going to be implemented as a distinct coalition but it's the coalition that lets you pass improved women's rights/gay rights\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\n\nQ.leverage = Q.chp_seats/1.5;\n\nQ.grand_coalition_failed = 0;\n// Reset every governing party, coalition type and ministry together.\nAnatolianRules.resetCabinet(Q);\n\n// reset TIP goals\nQ.TIP_goals_seen = 0;\nQ.TIP_ultimatum_seen = 0;\nQ.welfare_goal = 0;\nQ.agriculture_goal = 0;\nQ.economy_goal = 0;\nQ.finance_goal = 0;\nQ.labor_goal = 0;\nQ.foreign_goal = 0;\nQ.interior_goal = 0;\nQ.defense_goal = 0;\n\nQ.welfare_goal_completed = 0;\nQ.agriculture_goal_completed = 0;\nQ.economy_goal_completed = 0;\nQ.finance_goal_completed = 0;\nQ.labor_goal_completed = 0;\nQ.foreign_goal_completed = 0;\nQ.interior_goal_completed = 0;\nQ.defense_goal_completed = 0;\n\nQ.strike_term_seen = 0;\n\nQ.AP_last_vote_share = Q.AP_r;\n\n// understanding the enemy\nif (Q.MHP_r >= 15) {\n    Q.understanding_enemy_timer = 2;\n}\n\nvar election_result = {'date': new Date(Q.year, Q.month - 1)};\nfor (var party of Q.parties) {\n    election_result[party] = Q[party + '_r'];\n}\nQ.election_records.push(election_result);"
         }
       ],
       "onDeparture": [
@@ -7902,7 +7902,7 @@
                 "type": "magic",
                 "content": "<tr><td>"
               },
-              " Kurdish Independents ",
+              " Independents ",
               {
                 "type": "magic",
                 "content": "</td><td>"
@@ -7945,6 +7945,51 @@
             "content": [
               {
                 "type": "magic",
+                "content": "<tr><td>"
+              },
+              " Kurdish Independents ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 41
+              },
+              "% ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 42
+              },
+              " ",
+              {
+                "type": "magic",
+                "content": "</td><td>"
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 43
+              },
+              " ",
+              {
+                "type": "magic",
+                "content": "</td></tr>"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
                 "content": "</table>"
               },
               ""
@@ -7971,7 +8016,7 @@
               "Left Coalition (CHP + TIP): ",
               {
                 "type": "insert",
-                "insert": 41
+                "insert": 44
               },
               " seats"
             ]
@@ -7982,12 +8027,12 @@
               "Kemalist Coalition (CHP + ",
               {
                 "type": "insert",
-                "insert": 42
+                "insert": 45
               },
               "): ",
               {
                 "type": "insert",
-                "insert": 43
+                "insert": 46
               },
               " seats"
             ]
@@ -7998,7 +8043,7 @@
               "Grand Coalition (CHP + AP): ",
               {
                 "type": "insert",
-                "insert": 44
+                "insert": 47
               },
               " seats"
             ]
@@ -8009,7 +8054,7 @@
               "Unholy Coalition (CHP + MSP): ",
               {
                 "type": "insert",
-                "insert": 45
+                "insert": 48
               },
               " seats"
             ]
@@ -8020,12 +8065,12 @@
               "Bourgeois Coalition (AP + ",
               {
                 "type": "insert",
-                "insert": 46
+                "insert": 49
               },
               " + DP): ",
               {
                 "type": "insert",
-                "insert": 47
+                "insert": 50
               },
               " seats"
             ]
@@ -8036,7 +8081,7 @@
               "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
               {
                 "type": "insert",
-                "insert": 48
+                "insert": 51
               },
               " seats"
             ]
@@ -8047,7 +8092,7 @@
               {
                 "type": "conditional",
                 "content": "The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ",
-                "predicate": 49
+                "predicate": 52
               },
               ""
             ]
@@ -8289,6 +8334,24 @@
           {
             "type": "insert",
             "fn": {
+              "$code": "return (Q['IND_r'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['str_change_IND'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['IND_seats'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
               "$code": "return (Q['KI_r'] || 0);"
             }
           },
@@ -8423,7 +8486,7 @@
         }
       ],
       "content": {
-        "content": "The government restricts hidden funding and places the department under closer civilian scrutiny. ÖHP is weakened, but its residual network survives.",
+        "content": "The government restricts hidden funding and places the department under closer civilian scrutiny. ÖHD is weakened, but its residual network survives.",
         "type": "paragraph"
       }
     },
@@ -19055,7 +19118,7 @@
       "id": "local_elections.local_results",
       "onArrival": [
         {
-          "$code": "var partyDisplayNames = {\n\t'chp': 'CHP',\n\t'TIP': 'TİP',\n\t'AP': 'AP',\n\t'CGP': Q.CGP_name || 'CGP',\n\t'DP': 'DP',\n\t'MSP': 'MSP',\n\t'MHP': 'MHP',\n\t'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','KI':'Kurdish Independents','other': 'Other'\n};\nvar parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nvar lines = [];\nfor (var party of parties) {\n\tvar displayName = partyDisplayNames[party] || party.toUpperCase();\n\tvar votes = Q[party + '_local_votes_disp'];\n\tif (typeof votes === 'undefined') {\n\t\tvar vDec = Q[party + '_local_votes_dec'];\n\t\tvotes = (typeof vDec !== 'undefined') ? Number(vDec).toFixed(1) : '0.0';\n\t}\n\tvar seats = Q[party + '_local_seats'];\n\tif (typeof seats === 'undefined') {\n\t\tseats = 0;\n\t}\n\tlines.push({\n\t\tname: displayName,\n\t\tvotes: votes,\n\t\tseats: seats\n\t});\n}\nQ.local_results_lines = lines;\nQ.local_results_lines_text = lines.map(function(entry) {\n\treturn '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';\n}).join('\\n');\nQ.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));\nQ.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));\nQ.local_chp_seats_display = Q.chp_local_seats || 0;\nQ.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;"
+          "$code": "var partyDisplayNames = {\n\t'chp': 'CHP',\n\t'TIP': 'TİP',\n\t'AP': 'AP',\n\t'CGP': Q.CGP_name || 'CGP',\n\t'DP': 'DP',\n\t'MSP': 'MSP',\n\t'MHP': 'MHP',\n\t'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','other': 'Other'\n};\nvar parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\nvar lines = [];\nfor (var party of parties) {\n\tvar displayName = partyDisplayNames[party] || party.toUpperCase();\n\tvar votes = Q[party + '_local_votes_disp'];\n\tif (typeof votes === 'undefined') {\n\t\tvar vDec = Q[party + '_local_votes_dec'];\n\t\tvotes = (typeof vDec !== 'undefined') ? Number(vDec).toFixed(1) : '0.0';\n\t}\n\tvar seats = Q[party + '_local_seats'];\n\tif (typeof seats === 'undefined') {\n\t\tseats = 0;\n\t}\n\tlines.push({\n\t\tname: displayName,\n\t\tvotes: votes,\n\t\tseats: seats\n\t});\n}\nQ.local_results_lines = lines;\nQ.local_results_lines_text = lines.map(function(entry) {\n\treturn '**' + entry.name + ':** ' + entry.votes + '%, ' + entry.seats + ' provinces';\n}).join('\\n');\nQ.local_largest_party_display = (partyDisplayNames[Q.local_largest_party_key] || (Q.local_largest_party_key ? Q.local_largest_party_key.toUpperCase() : 'N/A'));\nQ.local_second_party_display = (partyDisplayNames[Q.local_second_party_key] || (Q.local_second_party_key ? Q.local_second_party_key.toUpperCase() : 'N/A'));\nQ.local_chp_seats_display = Q.chp_local_seats || 0;\nQ.local_total_municipalities_display = Q.total_municipalities || Q.local_total_seats || 67;"
         }
       ],
       "options": [
@@ -19931,16 +19994,6 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "insert",
-                "insert": 15
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
                 "type": "emphasis-2",
                 "content": "Far Right"
               },
@@ -19957,7 +20010,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 16
+                "insert": 15
               },
               " thousand"
             ]
@@ -19968,7 +20021,7 @@
               "Grey Wolves Militarization: ",
               {
                 "type": "insert",
-                "insert": 17
+                "insert": 16
               },
               ""
             ]
@@ -19987,11 +20040,11 @@
                   " Strength: ",
                   {
                     "type": "insert",
-                    "insert": 19
+                    "insert": 18
                   },
                   " thousand "
                 ],
-                "predicate": 18
+                "predicate": 17
               },
               ""
             ]
@@ -20005,11 +20058,11 @@
                   "Raiders Militarization: ",
                   {
                     "type": "insert",
-                    "insert": 21
+                    "insert": 20
                   },
                   " "
                 ],
-                "predicate": 20
+                "predicate": 19
               },
               ""
             ]
@@ -20024,7 +20077,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 22
+                "insert": 21
               },
               " thousand"
             ]
@@ -20035,7 +20088,7 @@
               "TİT Militarization: ",
               {
                 "type": "insert",
-                "insert": 23
+                "insert": 22
               },
               ""
             ]
@@ -20043,7 +20096,11 @@
           {
             "type": "paragraph",
             "content": [
-              "Strength of ÖHP: ",
+              {
+                "type": "insert",
+                "insert": 23
+              },
+              ": ",
               {
                 "type": "insert",
                 "insert": 24
@@ -20055,9 +20112,29 @@
             "type": "paragraph",
             "content": [
               {
+                "type": "emphasis-2",
+                "content": "Separatists"
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 25
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
                 "type": "conditional",
                 "content": "<h1>Distribution of Power</h1> ",
-                "predicate": 25
+                "predicate": 26
               },
               ""
             ]
@@ -20071,11 +20148,11 @@
                   "<h4>Democratic strength: ",
                   {
                     "type": "insert",
-                    "insert": 27
+                    "insert": 28
                   },
                   "%</h4>"
                 ],
-                "predicate": 26
+                "predicate": 27
               },
               ""
             ]
@@ -20094,11 +20171,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 29
+                    "insert": 30
                   },
                   "%"
                 ],
-                "predicate": 28
+                "predicate": 29
               },
               ""
             ]
@@ -20112,11 +20189,11 @@
                   "<h4><span style=\"color: #8B0000;\">Far</span>-<span style=\"color: #FF0000;\">left</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 31
+                    "insert": 32
                   },
                   "%</h4>"
                 ],
-                "predicate": 30
+                "predicate": 31
               },
               ""
             ]
@@ -20135,11 +20212,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 33
+                    "insert": 34
                   },
                   "%"
                 ],
-                "predicate": 32
+                "predicate": 33
               },
               ""
             ]
@@ -20158,11 +20235,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 35
+                    "insert": 36
                   },
                   "%"
                 ],
-                "predicate": 34
+                "predicate": 35
               },
               ""
             ]
@@ -20176,11 +20253,11 @@
                   "<h4><span style=\"color: #7A3C00;\">Far</span>-<span style=\"color: #CC6600;\">right</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 37
+                    "insert": 38
                   },
                   "%</h4>"
                 ],
-                "predicate": 36
+                "predicate": 37
               },
               ""
             ]
@@ -20199,11 +20276,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 39
+                    "insert": 40
                   },
                   "%"
                 ],
-                "predicate": 38
+                "predicate": 39
               },
               ""
             ]
@@ -20222,11 +20299,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 41
+                    "insert": 42
                   },
                   "%"
                 ],
-                "predicate": 40
+                "predicate": 41
               },
               ""
             ]
@@ -20245,11 +20322,11 @@
                   "</span>: ",
                   {
                     "type": "insert",
-                    "insert": 43
+                    "insert": 44
                   },
                   "%"
                 ],
-                "predicate": 42
+                "predicate": 43
               },
               ""
             ]
@@ -20264,51 +20341,51 @@
                   {
                     "type": "conditional",
                     "content": "street fighting is scarce",
-                    "predicate": 45
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting is under control",
                     "predicate": 46
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting is increasing",
+                    "content": "street fighting is under control",
                     "predicate": 47
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting is slipping out of the state's control",
+                    "content": "street fighting is increasing",
                     "predicate": 48
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting have split neighborhoods into two",
+                    "content": "street fighting is slipping out of the state's control",
                     "predicate": 49
                   },
                   {
                     "type": "conditional",
-                    "content": "street fighting have reached critical levels",
+                    "content": "street fighting have split neighborhoods into two",
                     "predicate": 50
                   },
                   {
                     "type": "conditional",
-                    "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
+                    "content": "street fighting have reached critical levels",
                     "predicate": 51
                   },
                   {
                     "type": "conditional",
-                    "content": "and the streets are under Far Left control",
+                    "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
                     "predicate": 52
                   },
                   {
                     "type": "conditional",
-                    "content": "and the streets are under Far Right control",
+                    "content": "and the streets are under Far Left control",
                     "predicate": 53
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "and the streets are under Far Right control",
+                    "predicate": 54
                   },
                   "."
                 ],
-                "predicate": 44
+                "predicate": 45
               },
               ""
             ]
@@ -20323,7 +20400,7 @@
               "Land Strength: ",
               {
                 "type": "insert",
-                "insert": 54
+                "insert": 55
               },
               ""
             ]
@@ -20334,7 +20411,7 @@
               "Naval Strength: ",
               {
                 "type": "insert",
-                "insert": 55
+                "insert": 56
               },
               ""
             ]
@@ -20345,7 +20422,7 @@
               "Aerial Strength: ",
               {
                 "type": "insert",
-                "insert": 56
+                "insert": 57
               },
               ""
             ]
@@ -20450,12 +20527,6 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianRules.kurdishParamilitaryHtml(Q);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
               "$code": "return (Q['grey_wolves_strength_2'] || 0);"
             }
           },
@@ -20507,7 +20578,19 @@
           {
             "type": "insert",
             "fn": {
+              "$code": "return Q.counter_guerilla_discovered || Q.ohp_funding_event_seen ? 'Strength of ÖHD' : 'Far Right Underground Ties';"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
               "$code": "return typeof Q.ohp_strength==='number' ? Q.ohp_strength : 100;"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianRules.kurdishParamilitaryHtml(Q);"
             }
           },
           {
@@ -22395,7 +22478,7 @@
     "ohp_funding": {
       "id": "ohp_funding",
       "type": "scene",
-      "title": "ÖHP requests funds",
+      "title": "ÖHD requests funds",
       "tags": [
         "event"
       ],
@@ -22413,7 +22496,7 @@
       "options": [
         {
           "id": "@ohp_funding.clamp",
-          "title": "Refuse a blank cheque and clamp down on ÖHP."
+          "title": "Refuse a blank cheque and clamp down on ÖHD."
         },
         {
           "id": "@ohp_funding.fund",
@@ -23838,153 +23921,9 @@
           {
             "type": "paragraph",
             "content": [
-              "<span style=\"color: #E3000F;\">",
-              {
-                "type": "emphasis-2",
-                "content": "CHP"
-              },
-              "</span>: ",
               {
                 "type": "insert",
                 "insert": 0
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span style=\"color: #750a6f;\">",
-              {
-                "type": "emphasis-2",
-                "content": "AP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 2
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<span style=\"color: #5b7387;\">"
-              },
-              {
-                "type": "emphasis-2",
-                "content": [
-                  {
-                    "type": "conditional",
-                    "content": "CGP",
-                    "predicate": 3
-                  },
-                  {
-                    "type": "conditional",
-                    "content": [
-                      "",
-                      {
-                        "type": "insert",
-                        "insert": 5
-                      }
-                    ],
-                    "predicate": 4
-                  }
-                ]
-              },
-              {
-                "type": "magic",
-                "content": "</span>"
-              },
-              ": ",
-              {
-                "type": "insert",
-                "insert": 6
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span style=\"color: #4a4d04;\">",
-              {
-                "type": "emphasis-2",
-                "content": "DP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 7
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span style=\"color: #054521;\">",
-              {
-                "type": "emphasis-2",
-                "content": {
-                  "type": "insert",
-                  "insert": 8
-                }
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 9
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span style=\"color: #954B00;\">",
-              {
-                "type": "emphasis-2",
-                "content": "MHP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 10
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Others: ",
-              {
-                "type": "insert",
-                "insert": 11
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 12
               },
               ""
             ]
@@ -24004,7 +23943,7 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 13
+                "insert": 1
               },
               ""
             ]
@@ -24015,7 +23954,7 @@
               "Support for the Republic: ",
               {
                 "type": "insert",
-                "insert": 14
+                "insert": 2
               },
               "%"
             ]
@@ -24025,79 +23964,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['chp_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['AP_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianRules.socialistPollHtml(Q);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (!(((Q['CGP_name'] || 0)) !== 0));"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['CGP_name'] || 0) != 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['CGP_name'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['CGP_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['DP_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MSP_name'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MSP_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MHP_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['other_poll_votes'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianRules.extraPartyRows(Q,\"polls\");"
+              "$code": "return AnatolianRules.partyVoteRows(Q,\"polls\");"
             }
           },
           {
@@ -32415,7 +32282,7 @@
         },
         {
           "id": "@police.clamp_ohp",
-          "title": "Clamp down on ÖHP."
+          "title": "Clamp down on ÖHD."
         },
         {
           "id": "@root",
@@ -36919,168 +36786,11 @@
           {
             "type": "paragraph",
             "content": [
-              "<span class=\"tooltip-text\" title=\"Republican People's Party\" style=\"color: #E3000F;\">",
-              {
-                "type": "emphasis-2",
-                "content": "CHP"
-              },
-              "</span>: ",
               {
                 "type": "insert",
                 "insert": 86
               },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span class=\"tooltip-text\" title=\"Justice Party\" style=\"color: #750a6f;\">",
-              {
-                "type": "emphasis-2",
-                "content": "AP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 87
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span style=\"color:#8B0000;\">",
-              {
-                "type": "emphasis-2",
-                "content": "TİP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 88
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span class=\"tooltip-text\" title=\"",
-              {
-                "type": "insert",
-                "insert": 89
-              },
-              "\" style=\"color: #5b7387;\">",
-              {
-                "type": "emphasis-2",
-                "content": [
-                  {
-                    "type": "conditional",
-                    "content": "CGP",
-                    "predicate": 90
-                  },
-                  {
-                    "type": "conditional",
-                    "content": [
-                      "",
-                      {
-                        "type": "insert",
-                        "insert": 92
-                      }
-                    ],
-                    "predicate": 91
-                  }
-                ]
-              },
-              {
-                "type": "magic",
-                "content": "</span></span>"
-              },
-              ": ",
-              {
-                "type": "insert",
-                "insert": 93
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span class=\"tooltip-text\" title=\"Democratic Party\" style=\"color: #4a4d04;\">",
-              {
-                "type": "emphasis-2",
-                "content": "DP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 94
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span class=\"tooltip-text\" title=\"",
-              {
-                "type": "insert",
-                "insert": 95
-              },
-              "\" style=\"color: #054521;\">",
-              {
-                "type": "emphasis-2",
-                "content": {
-                  "type": "insert",
-                  "insert": 96
-                }
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 97
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "<span class=\"tooltip-text\" title=\"Nationalist Movement Party\" style=\"color: #954B00;\">",
-              {
-                "type": "emphasis-2",
-                "content": "MHP"
-              },
-              "</span>: ",
-              {
-                "type": "insert",
-                "insert": 98
-              },
-              "%"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 99
-              },
               ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Others: ",
-              {
-                "type": "insert",
-                "insert": 100
-              },
-              "%"
             ]
           },
           {
@@ -37092,11 +36802,11 @@
                   "Budget: ",
                   {
                     "type": "insert",
-                    "insert": 102
+                    "insert": 88
                   },
                   " "
                 ],
-                "predicate": 101
+                "predicate": 87
               },
               ""
             ]
@@ -37107,12 +36817,12 @@
               "Next general election: ",
               {
                 "type": "insert",
-                "insert": 103
+                "insert": 89
               },
               " ",
               {
                 "type": "insert",
-                "insert": 104
+                "insert": 90
               },
               ""
             ]
@@ -37126,16 +36836,16 @@
                   "Next municipal election: ",
                   {
                     "type": "insert",
-                    "insert": 106
+                    "insert": 92
                   },
                   " ",
                   {
                     "type": "insert",
-                    "insert": 107
+                    "insert": 93
                   },
                   " "
                 ],
-                "predicate": 105
+                "predicate": 91
               },
               ""
             ]
@@ -37667,91 +37377,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['chp_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['AP_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['TIP_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['CGP_full_name'] || 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (!(((Q['CGP_name'] || 0)) !== 0));"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['CGP_name'] || 0) != 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['CGP_name'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['CGP_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['DP_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MSP_full_name'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MSP_name'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MSP_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['MHP_r'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianRules.extraPartyRows(Q,\"results\");"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['other_r'] || 0);"
+              "$code": "return AnatolianRules.partyVoteRows(Q,\"results\");"
             }
           },
           {
@@ -40988,7 +40614,7 @@
           {
             "type": "paragraph",
             "content": [
-              "Strength of ÖHP: ",
+              "Strength of ÖHD: ",
               {
                 "type": "insert",
                 "insert": 12
@@ -42096,7 +41722,7 @@
       "chooseIf": {
         "$code": "return AnatolianRules.ohpClampAvailable(Q);"
       },
-      "unavailableSubtitle": "ÖHP is already at its residual strength, or its embargo-related funding request must first be addressed.",
+      "unavailableSubtitle": "ÖHD is already at its residual strength, or its embargo-related funding request must first be addressed.",
       "onArrival": [
         {
           "$code": "AnatolianRules.clampOHP(Q);"
@@ -42109,7 +41735,7 @@
         }
       ],
       "content": {
-        "content": "Civilian oversight and restrictions on hidden funding weaken ÖHP. Its strength falls by twenty percentage points, slowing the growth of far-right paramilitary groups. A residual network remains beyond our ability to dismantle fully.",
+        "content": "Civilian oversight and restrictions on hidden funding weaken ÖHD. Its strength falls by twenty percentage points, slowing the growth of far-right paramilitary groups. A residual network remains beyond our ability to dismantle fully.",
         "type": "paragraph"
       }
     },

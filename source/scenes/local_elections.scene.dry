@@ -30,7 +30,7 @@ var partyDisplayNames = {
 	'DP': 'DP',
 	'MSP': 'MSP',
 	'MHP': 'MHP',
-	'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','KI':'Kurdish Independents','other': 'Other'
+	'TKP':'TKP','TSIP':'TSİP','TEP':'TEP','SDP':'SDP','IND':'Independents','KI':'Kurdish Independents','other': 'Other'
 };
 var parties = Array.isArray(Q.parties) ? Q.parties.slice() : ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 var lines = [];

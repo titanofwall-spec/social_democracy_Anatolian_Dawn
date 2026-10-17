@@ -67,7 +67,7 @@ The ministry can act against armed organizations and investigate the anti-commun
 - @pursue_raiders: Further Persecute Raiders.
 - @pursue_tit: Persecute the Revenge Brigades.
 - @underground: Investigate Far Right and Anti-Communist Underground.
-- @clamp_ohp: Clamp down on ÖHP.
+- @clamp_ohp: Clamp down on ÖHD.
 - @root: Take no further action.
 
 @ban_grey
@@ -147,10 +147,10 @@ new-page: true
 @clamp_ohp
 view-if: ohp_investigations >= 4
 choose-if: {! return AnatolianRules.ohpClampAvailable(Q); !}
-unavailable-subtitle: ÖHP is already at its residual strength, or its embargo-related funding request must first be addressed.
+unavailable-subtitle: ÖHD is already at its residual strength, or its embargo-related funding request must first be addressed.
 on-arrival: {! AnatolianRules.clampOHP(Q); !}
 
-Civilian oversight and restrictions on hidden funding weaken ÖHP. Its strength falls by twenty percentage points, slowing the growth of far-right paramilitary groups. A residual network remains beyond our ability to dismantle fully.
+Civilian oversight and restrictions on hidden funding weaken ÖHD. Its strength falls by twenty percentage points, slowing the growth of far-right paramilitary groups. A residual network remains beyond our ability to dismantle fully.
 
 - @root: Continue.
 
