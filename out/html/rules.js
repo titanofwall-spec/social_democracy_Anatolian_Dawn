@@ -154,8 +154,9 @@
     /** @param {GameState} Q */
     function socialistPollHtml(Q){
         var keys=['TIP','TKP','TSIP','TEP','SDP'],total=keys.reduce(function(n,p){return n+number(Q[p+'_poll_votes']);},0);
-        var rows=keys.map(function(p){var name=p==='TIP'?'TİP':p==='TSIP'?'TSİP':p;return '<span style="display:block">'+name+': '+number(Q[p+'_poll_votes']).toFixed(3)+'%</span>';}).join('');
-        return Q.socialist_left_formed?'<span class="mytooltip" style="color:#8B0000;font-weight:bold">Socialist Left<span class="mytooltiptext">'+rows+'</span></span>: '+total.toFixed(3)+'%':'<b style="color:#8B0000">TİP</b>: '+number(Q.TIP_poll_votes).toFixed(3)+'%';
+        /** @type {Record<string,string>} */ var colors={TIP:'#8B0000',TKP:'#820b09',TSIP:'#abab1a',TEP:'#ad673b',SDP:'#a83a32'};
+        var rows=keys.map(function(p){var name=p==='TIP'?'TİP':p==='TSIP'?'TSİP':p;return '<span style="display:block;text-align:left;white-space:nowrap"><b style="color:'+colors[p]+'">'+name+'</b>: '+number(Q[p+'_poll_votes']).toFixed(3)+'%</span>';}).join('');
+        return Q.socialist_left_formed?'<span class="mytooltip" style="color:#8B0000;font-weight:bold">Socialist Left<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid #333;border-radius:0;background-color:#fff6e8;box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+rows+'</span></span>: '+total.toFixed(3)+'%':'<b style="color:#8B0000">TİP</b>: '+number(Q.TIP_poll_votes).toFixed(3)+'%';
     }
     /** @param {GameState} Q @param {string} mode */
     function partyVoteRows(Q,mode){
