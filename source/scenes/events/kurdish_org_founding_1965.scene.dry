@@ -1,0 +1,15 @@
+title: T-KDP Is Founded
+new-page: true
+tags: event
+priority: 2
+max-visits: 1
+view-if: {! return typeof AnatolianKurdishOrganizations!=='undefined' && AnatolianKurdishOrganizations.announcementDue(Q,1965); !}
+on-arrival: {! AnatolianKurdishOrganizations.acknowledge(Q,1965); !}
+
+= T-KDP Is Founded
+
+T-KDP are among the Kurdish political organizations established during 1965.
+
+- @acknowledge: Acknowledge.
+
+@acknowledge

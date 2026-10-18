@@ -724,6 +724,7 @@ AnatolianRules.refreshEconomy(Q);
 Q.apply_economy_effects = turnAdvanced ? 1 : 0;
 this._runActions(this.game.scenes['economy_health_calculator'].onArrival);
 AnatolianRules.refreshVotes(Q);
+if(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);
 AnatolianRules.refreshFactions(Q);
 if (turnAdvanced) {
     // append to historical party support records

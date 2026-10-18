@@ -97,7 +97,8 @@
     }
 
     var kurdishParties=[{key:'TBP',name:'TBP',color:'#c51b32'},{key:'MP',name:'MP',color:'#242018'},{key:'IND',name:'Independents',color:'#808080'},{key:'TKP',name:'TKP',color:'#820b09'},{key:'TSIP',name:'TSİP',color:'#abab1a'},{key:'TEP',name:'TEP',color:'#ad673b'},{key:'SDP',name:'SDP',color:'#a83a32'},{key:'KI',name:'Kurdish Independents',color:'#c2d93f'}];
-    var kurdishGroups=[{name:'T-KDP',share:9},{name:'DHKD/TKSP',share:10},{name:'DDKD/KİP',share:9},{name:'ASDKD/Rızgari',share:9},{name:'Ala Rızgari',share:9},{name:'Kawa',share:9},{name:'Denge Kawa',share:9},{name:'Red Kawa',share:9},{name:'T-KDP/KUK',share:9},{name:'KD/UKO/PKK',share:9},{name:'Tekoşin',share:9}];
+    /** @type {{id:string,name:string}[]} */
+    var kurdishGroups=[];
     /** @type {Record<string,number>} */ var consciousPartyShares={chp:31,TIP:20,TKP:33,TSIP:6,TEP:5,SDP:5};
     var socialistMembers=['TKP','TSIP','TEP','SDP'];
     /** Calendar-based decline, with no render-time accumulation. @param {GameState} Q */
@@ -144,7 +145,6 @@
     function ensureKurdishIssue(Q){
         if(!Array.isArray(Q.parties)||!Array.isArray(Q.classes))return;
         if(Q.kurdish_issue_version!==1){Q.kurdish_issue_version=1;Q.kurdish_issue_consciousness=.20;Q.kurdish_issue_radicalism=.25;Q.kurdish_issue_paramilitarism=0;Q.kurdish_population_weight=5;}
-        kurdishGroups.forEach(function(g,i){var key='kurdish_group_'+i+'_militarization';if(typeof Q[key]!=='number')Q[key]=.02;});
         Q.kurdish_issue_consciousness=clamp(number(Q.kurdish_issue_consciousness,.20),0,1);Q.kurdish_issue_radicalism=clamp(number(Q.kurdish_issue_radicalism,.25),0,1);Q.kurdish_issue_paramilitarism=clamp(number(Q.kurdish_issue_paramilitarism),0,1);
         Q.kurdish_population_weight=clamp(number(Q.kurdish_population_weight,5),0,100);Q.kurds=Q.kurdish_population_weight;
         kurdishParties.forEach(function(p){if(Q.parties.indexOf(p.key)<0)Q.parties.splice(Math.max(0,Q.parties.indexOf('other')),0,p.key);Q.classes.forEach(function(/** @type {string} */c){if(typeof Q[c+'_'+p.key]!=='number')Q[c+'_'+p.key]=0;});['_r','_seats','_local_seats'].forEach(function(suffix){if(typeof Q[p.key+suffix]!=='number')Q[p.key+suffix]=0;});});
@@ -159,8 +159,8 @@
     function kurdishModel(Q){
         var consciousness=clamp(number(Q.kurdish_issue_consciousness,.20),0,1),radicalism=clamp(number(Q.kurdish_issue_radicalism,.25),0,1),paramilitarism=clamp(number(Q.kurdish_issue_paramilitarism),0,1);
         var radical=consciousness*radicalism,nonRadical=consciousness-radical,paramilitary=radical*paramilitarism;
-        var populations=[36638465,37518611,38430221,39329533,40210234,41053126,41899984,42773298,43645306,44510429,45408815];var population=populations[clamp(Math.floor(number(Q.year,1970))-1970,0,10)];if(Q.province_model_version===1&&Q.province_model_enabled!==0)population=number(Q.province_population_total,population);var totalMembers=population*number(Q.kurds,5)/100*paramilitary;
-        return {consciousness:consciousness,radicalism:radicalism,paramilitarism:paramilitarism,radical:radical,nonRadical:nonRadical,paramilitary:paramilitary,population:population,totalMembers:totalMembers,groups:kurdishGroups.map(function(g){return {name:g.name,share:g.share,populationShare:paramilitary*g.share/100,members:totalMembers*g.share/100,militarization:clamp(number(Q['kurdish_group_'+kurdishGroups.indexOf(g)+'_militarization'],.02),0,1)};})};
+        var populations=[36638465,37518611,38430221,39329533,40210234,41053126,41899984,42773298,43645306,44510429,45408815];var population=populations[clamp(Math.floor(number(Q.year,1970))-1970,0,10)];if(Q.province_model_version===1&&Q.province_model_enabled!==0)population=number(Q.province_population_total,population);var kurdishPopulation=population*clamp(number(Q.kurds,5),0,100)/100;
+        return {consciousness:consciousness,radicalism:radicalism,paramilitarism:paramilitarism,radical:radical,nonRadical:nonRadical,paramilitary:paramilitary,population:population,kurdishPopulation:kurdishPopulation};
     }
     /** Pure voter shares. Raw Kurdish party preferences remain the nonpolitical baseline. @param {GameState} Q @param {string} demographic */
     function demographicShares(Q,demographic){
@@ -184,16 +184,14 @@
         var tip=function(/** @type {string} */label,/** @type {string} */description){return '<span class="mytooltip">'+label+'<span class="mytooltiptext">'+description+'</span></span>';};
         var html='<p>'+tip('Political Consciousness','The percentage of the Kurdish population politically aware of and actively concerned with its collective political, social and economic interests, through ethnic identity, class consciousness or broader ideological commitments.')+': '+pct(m.consciousness)+'</p>';
         html+='<p>'+tip('Radicalism','The percentage of politically conscious Kurds seeking changes to Turkey’s unitary structure, primarily an autonomous republic within Turkey. '+(partyAvailable(Q,'KI')?'This pool votes for Kurdish Independents.':'This pool currently has no electoral organization.'))+': '+pct(m.radicalism)+' of politically conscious Kurds.</p>';
-        html+='<p>'+tip('Paramilitarism','The percentage of radical Kurds seeking their goals through paramilitary means. This is a subset of the radical pool.')+': '+pct(m.paramilitarism)+' of radical Kurds.</p>';
+        html+='<p>'+tip('Paramilitary Inclination','The general inclination of radical Kurdish politics toward paramilitary means.')+': '+pct(m.paramilitarism)+' of radical Kurds.</p>';
         html+='<h3>Non-radical political preferences</h3>';var political=consciousShares(Q);Object.keys(political).forEach(function(p){html+='<div>'+(p==='chp'?'CHP':p==='TIP'?'TİP':p==='TSIP'?'TSİP':p)+': '+political[p]+'%</div>';});
-        return html+kurdishParamilitaryHtml(Q);
+        return html+(typeof AnatolianKurdishOrganizations!=='undefined'?AnatolianKurdishOrganizations.organizationHtml(Q):'');
     }
 
     /** @param {GameState} Q */
     function kurdishParamilitaryHtml(Q){
-        var m=kurdishModel(Q),average=m.groups.reduce(function(n,g){return n+g.share*g.militarization;},0)/100;
-        var rows=m.groups.map(function(g){return '<span style="display:block"><b style="color:#c2d93f">'+g.name+'</b>: '+Math.round(g.members).toLocaleString('en-US')+' members; militarization '+(g.militarization*100).toFixed(2)+'%.</span>';}).join('');
-        return '<p><span class="mytooltip" style="color:#c2d93f;font-weight:bold">Kurdish Paramilitaries<span class="mytooltiptext">'+rows+'</span></span>: '+Math.round(m.totalMembers).toLocaleString('en-US')+' members.<br>Militarization: '+(average*100).toFixed(2)+'%</p>';
+        return typeof AnatolianKurdishOrganizations!=='undefined'?AnatolianKurdishOrganizations.paramilitaryHtml(Q):'<p>Kurdish organization configuration unavailable.</p>';
     }
     /** @param {GameState} Q */
     function socialistPollHtml(Q){

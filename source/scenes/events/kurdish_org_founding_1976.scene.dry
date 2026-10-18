@@ -1,0 +1,15 @@
+title: Kawa and ASDKD Are Founded
+new-page: true
+tags: event
+priority: 2
+max-visits: 1
+view-if: {! return typeof AnatolianKurdishOrganizations!=='undefined' && AnatolianKurdishOrganizations.announcementDue(Q,1976); !}
+on-arrival: {! AnatolianKurdishOrganizations.acknowledge(Q,1976); !}
+
+= Kawa and ASDKD Are Founded
+
+Kawa and ASDKD/Rızgari are among the Kurdish political organizations established during 1976.
+
+- @acknowledge: Acknowledge.
+
+@acknowledge
