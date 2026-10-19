@@ -2,7 +2,9 @@ title: The Kurdish Issue
 is-card: true
 new-page: true
 tags: govt_affairs, cabinet
-view-if: CHP_in_government == 1
+view-if: {! return !!Q.CHP_in_government && !(Q.kurdish_issue_timer > 0); !}
+frequency: 100
+on-arrival: {! if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("kurdish_issue"))Q.timers.push("kurdish_issue"); Q.month_actions=(Q.month_actions||0)+1;} !}
 card-image: img/kurdish-issue.jpg
 
 = The Kurdish Issue
@@ -22,7 +24,6 @@ The Kurdish question has been one of the most difficult issues facing our young 
 @associations
 title: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
 new-page: true
-subtitle: No budget cost.
 choose-if: {! return !AnatolianSocialIssues.reason(Q,"associations"); !}
 unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"associations"); !} +]
 on-arrival: {! AnatolianSocialIssues.apply(Q,"associations"); !}
@@ -36,7 +37,6 @@ To allow Kurdish citizens to express their opinions without repression, the Inte
 @public_discussion
 title: Lift restrictions on discussing the Kurdish Issue in the public sphere.
 new-page: true
-subtitle: No budget cost.
 choose-if: {! return !AnatolianSocialIssues.reason(Q,"public_discussion"); !}
 unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"public_discussion"); !} +]
 on-arrival: {! AnatolianSocialIssues.apply(Q,"public_discussion"); !}
@@ -64,7 +64,6 @@ It is currently almost impossible to print and publish in Kurdish. By granting l
 @meetings
 title: Ease restrictions on the right to hold meetings and demonstrations.
 new-page: true
-subtitle: No budget cost.
 choose-if: {! return !AnatolianSocialIssues.reason(Q,"meetings"); !}
 unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"meetings"); !} +]
 on-arrival: {! AnatolianSocialIssues.apply(Q,"meetings"); !}
