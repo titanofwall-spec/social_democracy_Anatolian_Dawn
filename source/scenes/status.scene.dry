@@ -205,10 +205,6 @@ TBP: Alevi Democracy (Mustafa Timisi)
 
 <span style="color: #954B00;">**MHP**</span>:  [? if MHP_party_leader == "Alparslan Türkeş" : Turkic-Islamic Synthesis (Türkeş) ?]
 
-= The Kurdish Issue
-
-[+ {! return AnatolianRules.kurdishIssueHtml(Q); !} +]
-
 = Union Relations
 
 DİSK: [+ disk_relation : relationships +]
@@ -883,3 +879,21 @@ Diplomatic Leverage: [+ leverage_points +]
 
 [? if cyprus_atilla1_ending_seen == 1 : Frontlines: [+ cyprus_atilla1_frontline +]. ?]
 [? if cyprus_campaign_resolved == 1 : Settlement: [+ cyprus_final_result +]. ?]
+
+@social_issues
+
+= Women's Rights
+
+[+ {! return AnatolianSocialIssues.html(Q,"women",this.state.visits); !} +]
+
+= Religious Affairs
+
+[+ {! return AnatolianSocialIssues.html(Q,"religion"); !} +]
+
+= The Kurdish Issue
+
+[+ {! return AnatolianRules.kurdishIssueHtml(Q); !} +]
+
+= Kurdish Rights
+
+[+ {! return AnatolianSocialIssues.html(Q,"kurdish"); !} +]

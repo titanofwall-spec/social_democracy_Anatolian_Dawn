@@ -1,77 +1,107 @@
-title: Kurdish Issue
+title: The Kurdish Issue
 is-card: true
 new-page: true
 tags: govt_affairs, cabinet
 view-if: CHP_in_government == 1
+card-image: img/kurdish-issue.jpg
 
-= Kurdish Issue
+= The Kurdish Issue
 
-# Localization
+{!<img src="img/kurdish-issue.jpg" alt="Kurdish public meeting" style="display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain">!}
 
-- @associations: Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.
+The Kurdish question has been one of the most difficult issues facing our young republic. Armed attempts to break away from Turkey or change its political structure were crushed during Atatürk's presidency. Since then, the region has been pacified, and the Kurdish population largely accepts life within the republic. This does not mean that the situation has resolved itself. Rising radicalism, inadequate government action, and the failure to protect Kurdish citizens from state violence have continued to worsen the situation. Now that we are in power, it is time to fulfil the promises made to Kurdish citizens under CHP's new agenda on the Kurdish Issue.
+
+- @associations: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
 - @public_discussion: Lift restrictions on discussing the Kurdish Issue in the public sphere.
-- @publishing: Grant legal permission for Kurdish printing and publishing activities under regulation.
+- @publishing: Grant legal permission for regulated Kurdish printing and publishing activities.
 - @meetings: Ease restrictions on the right to hold meetings and demonstrations.
-- @oversight: Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.
-- @local_government: Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.
+- @oversight: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+- @agricultural_efforts: Agricultural efforts
 - @root: Back to main.
 
 @associations
-title: Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.
+title: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
 new-page: true
+subtitle: No budget cost.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"associations"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"associations"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"associations"); !}
 
-= Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.
+= Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
 
-# Localization
+To allow Kurdish citizens to express their opinions without repression, the Interior Ministry will stop shutting down their associations en masse. In accordance with the existing Associations Law, we will allow these organizations to form and flourish.
 
-- @kurdish_issue: Back.
+- @root: Continue.
 
 @public_discussion
 title: Lift restrictions on discussing the Kurdish Issue in the public sphere.
 new-page: true
+subtitle: No budget cost.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"public_discussion"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"public_discussion"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"public_discussion"); !}
 
 = Lift restrictions on discussing the Kurdish Issue in the public sphere.
 
-# Localization
+Kurdish citizens and intellectuals have long faced unfair lawsuits and accusations of separatism for using terms such as the Kurdish Issue. We will direct the Interior Ministry to handle these cases more fairly and with greater respect for freedom of speech.
 
-- @kurdish_issue: Back.
+- @root: Continue.
 
 @publishing
-title: Grant legal permission for Kurdish printing and publishing activities under regulation.
+title: Grant legal permission for regulated Kurdish printing and publishing activities.
 new-page: true
+subtitle: -1 budget.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"publishing"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"publishing"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"publishing"); !}
 
-= Grant legal permission for Kurdish printing and publishing activities under regulation.
+= Grant legal permission for regulated Kurdish printing and publishing activities.
 
-# Localization
+It is currently almost impossible to print and publish in Kurdish. By granting legal permission, we will allow the language to be used in publishing, while retaining state regulation to ensure that publications respect constitutional liberties.
 
-- @kurdish_issue: Back.
+- @root: Continue.
 
 @meetings
 title: Ease restrictions on the right to hold meetings and demonstrations.
 new-page: true
+subtitle: No budget cost.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"meetings"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"meetings"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"meetings"); !}
 
 = Ease restrictions on the right to hold meetings and demonstrations.
 
-# Localization
+Kurds have long been prevented from organizing public meetings and demonstrations. We will finally uphold this right in accordance with the constitution's commitment to freedom of expression.
 
-- @kurdish_issue: Back.
+- @root: Continue.
 
 @oversight
-title: Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.
+title: Strengthen protection and oversight against unlawful violence by public officials and security forces.
 new-page: true
+subtitle: -1 budget.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"oversight"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"oversight"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"oversight"); !}
 
-= Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.
+= Strengthen protection and oversight against unlawful violence by public officials and security forces.
 
-# Localization
+Unlawful violence and abuse by state security forces have persisted in the East for many years, with particularly grave cases involving the gendarmerie. We will fulfil our responsibility by launching a large-scale effort to investigate and prevent such abuses.
 
-- @kurdish_issue: Back.
+- @root: Continue.
+
+@agricultural_efforts
+title: Agricultural efforts
+new-page: true
+subtitle: -1 budget.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"agricultural_efforts"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"agricultural_efforts"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"agricultural_efforts"); !}
+
+= Agricultural efforts
+
+We will fund special subsidies and a land reform programme for Eastern Anatolia. The region's socioeconomic structures retain semi-feudal characteristics, compounded by poor soil conditions and centuries of rural poverty.
+
+- @root: Continue.
 
 @local_government
-title: Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.
-new-page: true
-
-= Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.
-
-# Localization
-
-- @kurdish_issue: Back.
+go-to: kurdish_issue

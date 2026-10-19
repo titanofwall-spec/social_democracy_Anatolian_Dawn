@@ -47,7 +47,7 @@ Offering abortions on demand across the nation gives women control over their ow
 @labor
 choose-if: labor_minister_party = "CHP"
 unavailable-subtitle: We need the Labour Ministry for this action!
-on-arrival: women_reform += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.2; workers_chp += 4; state_employees_chp += 4; petty_bourgeoisie_chp -= 1; capitalists_chp -= 5; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! Q.social_equal_pay=1; Q.social_female_workforce=1; !} women_reform += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.2; workers_chp += 4; state_employees_chp += 4; petty_bourgeoisie_chp -= 1; capitalists_chp -= 5; {! AnatolianRules.refreshEconomy(Q); !}
 
 Even though men and women may be putting in the same labour and contributing the same amount of revenue to a company, women are often paid less due to societal prejudices. Even though equal pay for equal work won't be achieved in one step, we have to continue our efforts.
 

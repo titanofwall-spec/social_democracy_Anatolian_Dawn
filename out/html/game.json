@@ -10553,18 +10553,47 @@
     },
     "kurdish_issue.associations": {
       "id": "kurdish_issue.associations",
-      "title": "Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations.",
+      "title": "Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.",
       "newPage": true,
-      "options": [
+      "subtitle": "No budget cost.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"associations\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"associations\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@kurdish_issue",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"associations\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations."
-      }
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations."
+        },
+        {
+          "type": "paragraph",
+          "content": "To allow Kurdish citizens to express their opinions without repression, the Interior Ministry will stop shutting down their associations en masse. In accordance with the existing Associations Law, we will allow these organizations to form and flourish."
+        }
+      ]
     },
     "labor_affairs.labour_menu": {
       "id": "labor_affairs.labour_menu",
@@ -12340,24 +12369,45 @@
       "id": "religious_affairs_directorate.sectarian_office",
       "title": "Found the Office of Sectarian Affairs",
       "newPage": true,
-      "viewIf": {
-        "$code": "return ((Q['sectarian_affairs_office_founded'] || 0) != 1);"
+      "subtitle": "-1 budget.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"sectarian_office\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"sectarian_office\");"
+            }
+          }
+        ]
       },
       "onArrival": [
         {
-          "$code": "Q.sectarian_affairs_office_founded=1;"
+          "$code": "AnatolianSocialIssues.apply(Q,\"sectarian_office\");"
         }
       ],
       "options": [
         {
-          "id": "@religious_affairs_directorate",
-          "title": "Back."
+          "id": "@root",
+          "title": "Continue."
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Found the Office of Sectarian Affairs"
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "Found the Office of Sectarian Affairs"
+        },
+        {
+          "type": "paragraph",
+          "content": "We attempted to establish the Office of Sectarian Affairs during the first İnönü government after 27 May, but failed to do so under those coalition governments. The office is intended to provide services to Muslims of different sects. Most importantly, it will recognize Alevism as a sect rather than merely a local folk culture, and officially recognize cemevis, the places of worship and assembly used by Alevi communities, as places of worship. This would be a major step toward ending the social and state repression that Alevi communities have suffered since the Ottoman era, bringing us closer to Kemalism's half-century-old goal of ending that repression."
+        }
+      ]
     },
     "shuffle_cabinet.shuffle": {
       "id": "shuffle_cabinet.shuffle",
@@ -13885,20 +13935,6 @@
           },
           {
             "type": "heading",
-            "content": "The Kurdish Issue"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 27
-              },
-              ""
-            ]
-          },
-          {
-            "type": "heading",
             "content": "Union Relations"
           },
           {
@@ -13907,7 +13943,7 @@
               "DİSK: ",
               {
                 "type": "insert",
-                "insert": 28
+                "insert": 27
               },
               ""
             ]
@@ -13919,27 +13955,27 @@
               {
                 "type": "conditional",
                 "content": "Total DİSK Dominance ",
-                "predicate": 29
+                "predicate": 28
               },
               {
                 "type": "conditional",
                 "content": "DİSK leaning ",
-                "predicate": 30
+                "predicate": 29
               },
               {
                 "type": "conditional",
                 "content": "Balanced ",
-                "predicate": 31
+                "predicate": 30
               },
               {
                 "type": "conditional",
                 "content": "TÜRK-İŞ leaning ",
-                "predicate": 32
+                "predicate": 31
               },
               {
                 "type": "conditional",
                 "content": "Total TÜRK-İŞ Dominance ",
-                "predicate": 33
+                "predicate": 32
               },
               ""
             ]
@@ -13954,38 +13990,38 @@
               "Municipality Control: ",
               {
                 "type": "insert",
-                "insert": 34
+                "insert": 33
               },
               "/",
               {
                 "type": "insert",
-                "insert": 35
+                "insert": 34
               },
               " - ",
               {
                 "type": "conditional",
                 "content": "Terrible ",
-                "predicate": 36
+                "predicate": 35
               },
               {
                 "type": "conditional",
                 "content": "Poor ",
-                "predicate": 37
+                "predicate": 36
               },
               {
                 "type": "conditional",
                 "content": "Divided ",
-                "predicate": 38
+                "predicate": 37
               },
               {
                 "type": "conditional",
                 "content": "Satisfactory ",
-                "predicate": 39
+                "predicate": 38
               },
               {
                 "type": "conditional",
                 "content": "Overwhelming ",
-                "predicate": 40
+                "predicate": 39
               },
               ""
             ]
@@ -14004,12 +14040,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 41
+                "insert": 40
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 42
+                "insert": 41
               },
               ""
             ]
@@ -14028,16 +14064,16 @@
                   " strength: ",
                   {
                     "type": "insert",
-                    "insert": 44
+                    "insert": 43
                   },
                   ", dissent: ",
                   {
                     "type": "insert",
-                    "insert": 45
+                    "insert": 44
                   },
                   " "
                 ],
-                "predicate": 43
+                "predicate": 42
               },
               ""
             ]
@@ -14052,12 +14088,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 46
+                "insert": 45
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 47
+                "insert": 46
               },
               ""
             ]
@@ -14072,12 +14108,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 48
+                "insert": 47
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 49
+                "insert": 48
               },
               ""
             ]
@@ -14095,7 +14131,7 @@
                   },
                   " "
                 ],
-                "predicate": 50
+                "predicate": 49
               },
               ""
             ]
@@ -14110,12 +14146,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 51
+                "insert": 50
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 52
+                "insert": 51
               },
               ""
             ]
@@ -14133,7 +14169,7 @@
                   },
                   " "
                 ],
-                "predicate": 53
+                "predicate": 52
               },
               ""
             ]
@@ -14151,7 +14187,7 @@
                   },
                   " "
                 ],
-                "predicate": 54
+                "predicate": 53
               },
               ""
             ]
@@ -14324,12 +14360,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return (Q['MHP_party_leader'] == \"Alparslan Türkeş\");"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianRules.kurdishIssueHtml(Q);"
             }
           },
           {
@@ -19373,16 +19403,45 @@
       "id": "kurdish_issue.public_discussion",
       "title": "Lift restrictions on discussing the Kurdish Issue in the public sphere.",
       "newPage": true,
-      "options": [
+      "subtitle": "No budget cost.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"public_discussion\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"public_discussion\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@kurdish_issue",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"public_discussion\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Lift restrictions on discussing the Kurdish Issue in the public sphere."
-      }
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Lift restrictions on discussing the Kurdish Issue in the public sphere."
+        },
+        {
+          "type": "paragraph",
+          "content": "Kurdish citizens and intellectuals have long faced unfair lawsuits and accusations of separatism for using terms such as the Kurdish Issue. We will direct the Interior Ministry to handle these cases more fairly and with greater respect for freedom of speech."
+        }
+      ]
     },
     "labor_affairs.onetime": {
       "id": "labor_affairs.onetime",
@@ -19501,20 +19560,49 @@
         "type": "paragraph"
       }
     },
-    "religious_affairs_directorate.women_employment": {
-      "id": "religious_affairs_directorate.women_employment",
-      "title": "Women Employment Program",
+    "religious_affairs_directorate.publications": {
+      "id": "religious_affairs_directorate.publications",
+      "title": "Bring Religious Affairs Publications into Compliance with the Laws of the Republic",
       "newPage": true,
-      "options": [
+      "subtitle": "-2 budget.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"publications\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"publications\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@religious_affairs_directorate",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"publications\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Women Employment Program"
-      }
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Bring Religious Affairs Publications into Compliance with the Laws of the Republic"
+        },
+        {
+          "type": "paragraph",
+          "content": "As an official state institution, the Directorate of Religious Affairs cannot present rights granted to women under Republican law as illegitimate, immoral, or religiously invalid in its calendars, newspapers, books, or official sermons. Nor can it use its ties to İmam Hatip schools to promote such views among students. Such cases have nevertheless persisted for years. By reorganizing the Directorate, we will ensure that its publications no longer hinder our progress as a society."
+        }
+      ]
     },
     "social_welfare.increase_spending_pre_depression": {
       "id": "social_welfare.increase_spending_pre_depression",
@@ -23556,18 +23644,47 @@
     },
     "kurdish_issue.publishing": {
       "id": "kurdish_issue.publishing",
-      "title": "Grant legal permission for Kurdish printing and publishing activities under regulation.",
+      "title": "Grant legal permission for regulated Kurdish printing and publishing activities.",
       "newPage": true,
-      "options": [
+      "subtitle": "-1 budget.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"publishing\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"publishing\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@kurdish_issue",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"publishing\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Grant legal permission for Kurdish printing and publishing activities under regulation."
-      }
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Grant legal permission for regulated Kurdish printing and publishing activities."
+        },
+        {
+          "type": "paragraph",
+          "content": "It is currently almost impossible to print and publish in Kurdish. By granting legal permission, we will allow the language to be used in publishing, while retaining state regulation to ensure that publications respect constitutional liberties."
+        }
+      ]
     },
     "labor_affairs.national": {
       "id": "labor_affairs.national",
@@ -23677,21 +23794,45 @@
       "viewIf": {
         "$code": "return ((Q['religious_women_admitted'] || 0) != 1);"
       },
+      "subtitle": "-1 budget.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"admit_women\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"admit_women\");"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
-          "$code": "Q.religious_women_admitted=1;"
+          "$code": "AnatolianSocialIssues.apply(Q,\"admit_women\");"
         }
       ],
       "options": [
         {
-          "id": "@religious_affairs_directorate",
-          "title": "Back."
+          "id": "@root",
+          "title": "Continue."
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Start admitting women to positions as preachers and professors of Islamic jurisprudence."
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "Start admitting women to positions as preachers and professors of Islamic jurisprudence."
+        },
+        {
+          "type": "paragraph",
+          "content": "Although it is not illegal, it is extremely difficult and practically unheard of for women to hold such positions in our academies or mosques. Many women may never even have considered the possibility. We will take an active stance, making these positions more accessible to women and encouraging wider participation."
+        }
+      ]
     },
     "social_welfare.increase_spending_post_depression": {
       "id": "social_welfare.increase_spending_post_depression",
@@ -23722,6 +23863,9 @@
       },
       "unavailableSubtitle": "We need the Labour Ministry for this action!",
       "onArrival": [
+        {
+          "$code": "Q.social_equal_pay=1; Q.social_female_workforce=1;"
+        },
         {
           "$code": "Q['women_reform'] = (Q['women_reform'] || 0) + 0.2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 4;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 1;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 5;"
         },
@@ -26330,16 +26474,45 @@
       "id": "kurdish_issue.meetings",
       "title": "Ease restrictions on the right to hold meetings and demonstrations.",
       "newPage": true,
-      "options": [
+      "subtitle": "No budget cost.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"meetings\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"meetings\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@kurdish_issue",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"meetings\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Ease restrictions on the right to hold meetings and demonstrations."
-      }
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Ease restrictions on the right to hold meetings and demonstrations."
+        },
+        {
+          "type": "paragraph",
+          "content": "Kurds have long been prevented from organizing public meetings and demonstrations. We will finally uphold this right in accordance with the constitution's commitment to freedom of expression."
+        }
+      ]
     },
     "labor_affairs.kit": {
       "id": "labor_affairs.kit",
@@ -26557,56 +26730,45 @@
       "viewIf": {
         "$code": "return ((Q['religious_women_admitted'] || 0) == 1);"
       },
-      "options": [
+      "subtitle": "No budget cost.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"recruit_women\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"recruit_women\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@religious_affairs_directorate",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"recruit_women\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence."
-      }
-    },
-    "religious_affairs_directorate": {
-      "id": "religious_affairs_directorate",
-      "type": "scene",
-      "title": "Directorate of Religious Affairs",
-      "isCard": true,
-      "newPage": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "viewIf": {
-        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
-      },
       "options": [
-        {
-          "id": "@religious_affairs_directorate.sectarian_office",
-          "title": "Found the Office of Sectarian Affairs"
-        },
-        {
-          "id": "@religious_affairs_directorate.women_employment",
-          "title": "Women Employment Program"
-        },
-        {
-          "id": "@religious_affairs_directorate.admit_women",
-          "title": "Start admitting women to positions as preachers and professors of Islamic jurisprudence."
-        },
-        {
-          "id": "@religious_affairs_directorate.recruit_women",
-          "title": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence."
-        },
         {
           "id": "@root",
-          "title": "Back to main."
+          "title": "Continue."
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Directorate of Religious Affairs"
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence."
+        },
+        {
+          "type": "paragraph",
+          "content": "Our efforts to open religious positions to women have begun to bear fruit. Stopping now would leave the task half-finished. We must continue working toward equal employment in state-led religious affairs."
+        }
+      ]
     },
     "social_welfare.spending_same_pre_depression": {
       "id": "social_welfare.spending_same_pre_depression",
@@ -28451,18 +28613,47 @@
     },
     "kurdish_issue.oversight": {
       "id": "kurdish_issue.oversight",
-      "title": "Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces.",
+      "title": "Strengthen protection and oversight against unlawful violence by public officials and security forces.",
       "newPage": true,
-      "options": [
+      "subtitle": "-1 budget.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"oversight\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"oversight\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@kurdish_issue",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"oversight\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces."
-      }
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Strengthen protection and oversight against unlawful violence by public officials and security forces."
+        },
+        {
+          "type": "paragraph",
+          "content": "Unlawful violence and abuse by state security forces have persisted in the East for many years, with particularly grave cases involving the gendarmerie. We will fulfil our responsibility by launching a large-scale effort to investigate and prevent such abuses."
+        }
+      ]
     },
     "labor_affairs.ikincilgrev": {
       "id": "labor_affairs.ikincilgrev",
@@ -28561,6 +28752,65 @@
           }
         ]
       }
+    },
+    "religious_affairs_directorate.women_employment": {
+      "id": "religious_affairs_directorate.women_employment",
+      "goTo": [
+        {
+          "id": "religious_affairs_directorate"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "religious_affairs_directorate": {
+      "id": "religious_affairs_directorate",
+      "type": "scene",
+      "title": "Directorate of Religious Affairs",
+      "isCard": true,
+      "newPage": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
+      "cardImage": "img/religious-affairs.png",
+      "options": [
+        {
+          "id": "@religious_affairs_directorate.sectarian_office",
+          "title": "Found the Office of Sectarian Affairs"
+        },
+        {
+          "id": "@religious_affairs_directorate.publications",
+          "title": "Bring Religious Affairs Publications into Compliance with the Laws of the Republic"
+        },
+        {
+          "id": "@religious_affairs_directorate.admit_women",
+          "title": "Start admitting women to positions as preachers and professors of Islamic jurisprudence."
+        },
+        {
+          "id": "@religious_affairs_directorate.recruit_women",
+          "title": "Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence."
+        },
+        {
+          "id": "@root",
+          "title": "Back to main."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Directorate of Religious Affairs"
+        },
+        {
+          "type": "paragraph",
+          "content": "The Directorate of Religious Affairs is Kemalism's response to the secular order: the subordination of religious institutions to state authorities. Through it, our republic regulates and oversees religious affairs. It therefore carries immense importance despite not being a ministry. Much remains to be done to make it serve our goals for a secular society."
+        }
+      ]
     },
     "social_welfare.spending_same_post_depression": {
       "id": "social_welfare.spending_same_post_depression",
@@ -31440,68 +31690,49 @@
         "type": "paragraph"
       }
     },
-    "kurdish_issue.local_government": {
-      "id": "kurdish_issue.local_government",
-      "title": "Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration.",
+    "kurdish_issue.agricultural_efforts": {
+      "id": "kurdish_issue.agricultural_efforts",
+      "title": "Agricultural efforts",
       "newPage": true,
-      "options": [
+      "subtitle": "-1 budget.",
+      "chooseIf": {
+        "$code": "return !AnatolianSocialIssues.reason(Q,\"agricultural_efforts\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.reason(Q,\"agricultural_efforts\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@kurdish_issue",
-          "title": "Back."
+          "$code": "AnatolianSocialIssues.apply(Q,\"agricultural_efforts\");"
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration."
-      }
-    },
-    "kurdish_issue": {
-      "id": "kurdish_issue",
-      "type": "scene",
-      "title": "Kurdish Issue",
-      "isCard": true,
-      "newPage": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "viewIf": {
-        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
-      },
       "options": [
-        {
-          "id": "@kurdish_issue.associations",
-          "title": "Remove administrative and legal obstacles to the rights of Kurdish citizens to form and organize for Kurdish associations."
-        },
-        {
-          "id": "@kurdish_issue.public_discussion",
-          "title": "Lift restrictions on discussing the Kurdish Issue in the public sphere."
-        },
-        {
-          "id": "@kurdish_issue.publishing",
-          "title": "Grant legal permission for Kurdish printing and publishing activities under regulation."
-        },
-        {
-          "id": "@kurdish_issue.meetings",
-          "title": "Ease restrictions on the right to hold meetings and demonstrations."
-        },
-        {
-          "id": "@kurdish_issue.oversight",
-          "title": "Strengthen protection and oversight mechanisms against acts of unlawful violence by public officials and security forces."
-        },
-        {
-          "id": "@kurdish_issue.local_government",
-          "title": "Expand the financial and administrative powers of local governments by reorganizing the distribution of duties and authority between the governor's office and the municipal administration."
-        },
         {
           "id": "@root",
-          "title": "Back to main."
+          "title": "Continue."
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "Kurdish Issue"
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "Agricultural efforts"
+        },
+        {
+          "type": "paragraph",
+          "content": "We will fund special subsidies and a land reform programme for Eastern Anatolia. The region's socioeconomic structures retain semi-feudal characteristics, compounded by poor soil conditions and centuries of rural poverty."
+        }
+      ]
     },
     "labor_affairs.healthinspections": {
       "id": "labor_affairs.healthinspections",
@@ -32931,6 +33162,83 @@
         "content": "Even if the DGMs will not be banned outright now due to the risk of a direct conflict with the military, our efforts contribute to the stability of the republic and the belief in democracy.",
         "type": "paragraph"
       }
+    },
+    "kurdish_issue.local_government": {
+      "id": "kurdish_issue.local_government",
+      "goTo": [
+        {
+          "id": "kurdish_issue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "kurdish_issue": {
+      "id": "kurdish_issue",
+      "type": "scene",
+      "title": "The Kurdish Issue",
+      "isCard": true,
+      "newPage": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
+      "cardImage": "img/kurdish-issue.jpg",
+      "options": [
+        {
+          "id": "@kurdish_issue.associations",
+          "title": "Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations."
+        },
+        {
+          "id": "@kurdish_issue.public_discussion",
+          "title": "Lift restrictions on discussing the Kurdish Issue in the public sphere."
+        },
+        {
+          "id": "@kurdish_issue.publishing",
+          "title": "Grant legal permission for regulated Kurdish printing and publishing activities."
+        },
+        {
+          "id": "@kurdish_issue.meetings",
+          "title": "Ease restrictions on the right to hold meetings and demonstrations."
+        },
+        {
+          "id": "@kurdish_issue.oversight",
+          "title": "Strengthen protection and oversight against unlawful violence by public officials and security forces."
+        },
+        {
+          "id": "@kurdish_issue.agricultural_efforts",
+          "title": "Agricultural efforts"
+        },
+        {
+          "id": "@root",
+          "title": "Back to main."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Kurdish Issue"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "magic",
+              "content": "<img src=\"img/kurdish-issue.jpg\" alt=\"Kurdish public meeting\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+            },
+            ""
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "The Kurdish question has been one of the most difficult issues facing our young republic. Armed attempts to break away from Turkey or change its political structure were crushed during Atatürk's presidency. Since then, the region has been pacified, and the Kurdish population largely accepts life within the republic. This does not mean that the situation has resolved itself. Rising radicalism, inadequate government action, and the failure to protect Kurdish citizens from state violence have continued to worsen the situation. Now that we are in power, it is time to fulfil the promises made to Kurdish citizens under CHP's new agenda on the Kurdish Issue."
+        }
+      ]
     },
     "labor_affairs.lokavt": {
       "id": "labor_affairs.lokavt",
@@ -36815,6 +37123,633 @@
         ]
       }
     },
+    "cyprus_roadmap_event.continue": {
+      "id": "cyprus_roadmap_event.continue",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.ordinaryEvent(Q) && !AnatolianRules.cyprusRoadmap.genevaResponse(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'continue');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "national_elections.unholy_coalition": {
+      "id": "national_elections.unholy_coalition",
+      "title": "Can we form a coalition with Islamist MSP?",
+      "subtitle": {
+        "content": [
+          "CHP + MSP (",
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " seats)"
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['unholy_coalition'] || 0);"
+            }
+          }
+        ]
+      },
+      "unavailableSubtitle": "Our relations with MSP make any coalition negotiation impossible.",
+      "viewIf": {
+        "$code": "return ((Q['unholy_coalition'] || 0) >= 226);"
+      },
+      "options": [
+        {
+          "id": "@national_elections.ministriesb",
+          "title": "Go forward with the coalition proposal."
+        },
+        {
+          "id": "@national_elections.coalition_menu",
+          "title": "Try a different governing arrangement."
+        }
+      ],
+      "content": {
+        "content": "After lengthy negotiations, it appears as the overwhelmingly larger party, we can form a CHP-MSP government led by Ecevit. We should do our best to not lose the reins to the Islamists.",
+        "type": "paragraph"
+      }
+    },
+    "agricultural_policy.east": {
+      "id": "agricultural_policy.east",
+      "subtitle": "-1 budget.",
+      "chooseIf": {
+        "$code": "return (((Q['budget'] || 0) >= 1) && ((Q['east_agri_done'] || 0) <= 2));"
+      },
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "conditional",
+            "content": "We don't have enough budget! ",
+            "predicate": 0
+          },
+          {
+            "type": "conditional",
+            "content": "We have already implemented our eastern agricultural support program to its full extent.",
+            "predicate": 1
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['budget'] || 0) < 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['east_agri_done'] || 0) >= 3);"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['east_agri_done'] = (Q['east_agri_done'] || 0) + 1;"
+        },
+        {
+          "$code": "AnatolianRules.refreshEconomy(Q);"
+        }
+      ],
+      "content": {
+        "content": "We direct special subsidies toward eastern agricultural regions, helping develop farming communities in Anatolia's east. Economic development eases grievances and reduces the appeal of radical movements among the Kurdish and Alevi populations.",
+        "type": "paragraph"
+      }
+    },
+    "economic_democracy.nationalize_mines": {
+      "id": "economic_democracy.nationalize_mines",
+      "title": "Nationalize Mines",
+      "newPage": true,
+      "subtitle": "-3 budget. Benefits develop gradually over 18 months.",
+      "chooseIf": {
+        "$code": "return !AnatolianPeoplesSector.reason(Q,\"nationalize_mines\");"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianPeoplesSector.reason(Q,\"nationalize_mines\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianPeoplesSector.apply(Q,\"nationalize_mines\");"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "Nationalize Mines"
+      }
+    },
+    "economic_policy.stateplanning": {
+      "id": "economic_policy.stateplanning",
+      "subtitle": "Union relations slight decrease; Exchange Pressure ↓; Industrial Production ↑; Unemployment ↑",
+      "chooseIf": {
+        "$code": "return ((Q['imf_agreement'] || 0) == 0);"
+      },
+      "unavailableSubtitle": "We have agreed with the IMF to not pursue state interventions!",
+      "onArrival": [
+        {
+          "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;\nQ['disk_relation'] = (Q['disk_relation'] || 0) - 4;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.5;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
+        },
+        {
+          "$code": "AnatolianRules.refreshEconomy(Q);"
+        }
+      ],
+      "content": {
+        "content": "Turkey has a mixed market with huge state presence. However, as these corporations tend to be heavily corrupt and malfunctioning, reforms getting rid of the inefficient employees and restructuring the outdated business models are necessary to uphold the economy as a whole.",
+        "type": "paragraph"
+      }
+    },
+    "education_science.repeatable": {
+      "id": "education_science.repeatable",
+      "options": [
+        {
+          "id": "@education_science.scholarship",
+          "title": "Increase scholarship and boarding school opportunities."
+        },
+        {
+          "id": "@education_science.imamhatip",
+          "title": "Cut funding to religious İmam Hatip schools."
+        },
+        {
+          "id": "@education_science.TRT",
+          "title": "Increase educational broadcasts from the state radio, TRT."
+        },
+        {
+          "id": "@education_science.art",
+          "title": "Finance greater accessibility to arts and sports opportunities."
+        },
+        {
+          "id": "@education_science.more",
+          "title": "Open more schools, especially in our isolated rural provinces."
+        },
+        {
+          "id": "@education_science.norepeatable",
+          "title": "Go back to the ministry menu."
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "fiscal_policy.istikraz": {
+      "id": "fiscal_policy.istikraz",
+      "subtitle": "+1 budget.",
+      "onArrival": [
+        {
+          "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 1;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.2;"
+        },
+        {
+          "$code": "AnatolianRules.refreshEconomy(Q);"
+        }
+      ],
+      "content": {
+        "content": "Domestic loans boost our budget in the short term but increase discontentment and inflation.",
+        "type": "paragraph"
+      }
+    },
+    "foreign_policy.east": {
+      "id": "foreign_policy.east",
+      "chooseIf": {
+        "$code": "return (((Q['AP_in_government'] || 0) == 0) && ((Q['DP_in_government'] || 0) == 0));"
+      },
+      "unavailableSubtitle": "Our coalition partners prevent us from fostering relations with the Soviets!",
+      "options": [
+        {
+          "id": "@foreign_policy.improve_east",
+          "title": "Improve relations with the Soviet Union."
+        },
+        {
+          "id": "@foreign_policy.friendship",
+          "title": "Sign a treaty of Turkish-Soviet Friendship."
+        },
+        {
+          "id": "@foreign_policy.credits",
+          "title": "Borrow loans from the Soviet Union."
+        },
+        {
+          "id": "@foreign_policy.treaty",
+          "title": "Sign a treaty of economic cooperation."
+        },
+        {
+          "id": "@foreign_policy.export",
+          "title": "Export agricultural products to the Eastern Bloc."
+        },
+        {
+          "id": "@foreign_policy.romanianoil",
+          "title": "Purchase oil from Romania."
+        },
+        {
+          "id": "@foreign_policy.fp_menu",
+          "title": "Return to the foreign policy menu."
+        }
+      ],
+      "content": {
+        "content": "Up until now our relations with the Eastern Bloc have been cold at best. However, after Stalin's death the Soviet attitude towards Turkey has shifted towards a reconciliatory direction. Even though we should keep our relations with the West in mind, we have a lot to gain from improved relations with the Soviet Union.",
+        "type": "paragraph"
+      }
+    },
+    "labor_affairs.hukukikoruma": {
+      "id": "labor_affairs.hukukikoruma",
+      "onArrival": [
+        {
+          "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.2;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;"
+        },
+        {
+          "$code": "AnatolianRules.refreshEconomy(Q);"
+        }
+      ],
+      "content": {
+        "content": "Syndicate representatives, often from the left wing DİSK, are often harassed by both owners of big business and the sycophant state officials following the lead of their de facto financers. We are preventing this onslaught by increasing legal protections for the union representatives.",
+        "type": "paragraph"
+      }
+    },
+    "military_policy.budgetdecrease": {
+      "id": "military_policy.budgetdecrease",
+      "onArrival": [
+        {
+          "$code": "Q['coup_timer'] = (Q['coup_timer'] || 0) + 2;\nQ['budget'] = (Q['budget'] || 0) + 1;"
+        }
+      ],
+      "subtitle": "+1 budget.",
+      "chooseIf": {
+        "$code": "return ((Q['CGP_in_government'] || 0) == 0);"
+      },
+      "unavailableSubtitle": "Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!",
+      "content": {
+        "content": "We launch a campaign of inspections into the spending of the army. The army views attempts at curbing excessive spending as an act of disrespect and many high-ranking officials privately express their disapproval.",
+        "type": "paragraph"
+      }
+    },
+    "police.ban_raiders": {
+      "id": "police.ban_raiders",
+      "viewIf": {
+        "$code": "return ((!(((Q['raiders_banned'] || 0)) !== 0)) && ((Q['raiders_formed'] || 0) == 1));"
+      },
+      "chooseIf": {
+        "$code": "return ((Q['far_right_force_percent'] || 0) >= 35);"
+      },
+      "unavailableSubtitle": "Far-right strength must reach at least 35%.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'raiders',true);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "The Raiders are banned. Recruitment and organization are disrupted: their membership falls by 40% and militarization by 35%. The network survives underground and requires further action.",
+        "type": "paragraph"
+      }
+    },
+    "library.demographics": {
+      "id": "library.demographics",
+      "goTo": [
+        {
+          "id": "library.menu"
+        }
+      ],
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Demographic Groups"
+            },
+            ""
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Rural"
+            },
+            ": Peasants who live in a semi-feudal state under the hegemony of the landlords and the local notables. Generally vote for reactionary parties such as AP or MSP. Makes up about 45% - 50% of the population."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Working Class"
+            },
+            ": The urban working class - blue-collar workers in factories, workshops, mines, and the like. A class created primarily in the last 50 years, the working class families live in ghettos near the industrial zones and support either TİP or CHP. Makes up about 15% - 20% of the population."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Petty Bourgeoisie"
+            },
+            ": The urban middle class - shopkeepers, traders and the like. Traditionally one of the main bases of AP but since the party's decision to open up to the global market their alignment has slightly shifted to MSP. Makes up about 15% of the population."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "State employees and bureaucrats"
+            },
+            ": Citizens employed by the state and the bureaucracy. Mostly support <span style=\"color: #E3000F;\">",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            "</span> due to the Kemalist roots of the state apparatus. Roughly around 7% of the population."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Capitalists/Land Owners"
+            },
+            ": The owners of capital and production, disproportionally support AP and its splinter party DP. 3% of the population."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Alevis"
+            },
+            ": A Shiite minority within Central Anatolia. Overwhelmingly support <span style=\"color: #E3000F;\">",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            "</span> and to a small degree the Alevi minority rights party, TBP. About 10% of the population."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "emphasis-2",
+              "content": "Kurdish population"
+            },
+            ": Political consciousness determines the politically active share. Radicalism is a share of that group, and paramilitarism is a share of the radicals. The demographic voting weight remains separate from those percentages."
+          ]
+        }
+      ]
+    },
+    "inter_party_relationships.MSP": {
+      "id": "inter_party_relationships.MSP",
+      "subtitle": "-1 resources",
+      "chooseIf": {
+        "$code": "return ((Q['resources'] || 0) >= 1);"
+      },
+      "unavailableSubtitle": "Not enough resources.",
+      "viewIf": {
+        "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "inter_party_relationships.surprising",
+          "predicate": {
+            "$code": "return ((Q['year'] || 0) <= 1974);"
+          }
+        },
+        {
+          "id": "inter_party_relationships.coalition",
+          "predicate": {
+            "$code": "return ((((Q['year'] || 0) >= 1973) && ((Q['MSP_in_government'] || 0) == 1)) && ((Q['CHP_in_government'] || 0) == 1));"
+          }
+        },
+        {
+          "id": "inter_party_relationships.hellnah",
+          "predicate": {
+            "$code": "return ((((Q['year'] || 0) >= 1973) && (!((Q['MSP_in_government'] || 0) == 1))) && ((Q['CHP_in_government'] || 0) == 1));"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "party_disunity.expel_center": {
+      "id": "party_disunity.expel_center",
+      "title": "Expel the centrists.",
+      "viewIf": {
+        "$code": "return ((Q['center_dissent'] || 0) > 30);"
+      },
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "shuffle_leadership.remove_ustundag": {
+      "id": "shuffle_leadership.remove_ustundag",
+      "title": "Remove Üstündağ",
+      "viewIf": {
+        "$code": "return ((((Q['ustundag_advisor'] || 0)===1) && (Q['party_leader_id'] != \"ustundag\")) && (Q['party_secretary_id'] != \"ustundag\"));"
+      },
+      "tags": [
+        "remove_advisor"
+      ],
+      "onArrival": [
+        {
+          "$code": "Q['ustundag_advisor'] = 0;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 5;\nQ['n_advisors'] = (Q['n_advisors'] || 0) - 1;"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "shuffle_leadership.rm_main"
+        }
+      ],
+      "content": {
+        "content": "Üstündağ has been removed as a member. The Left-Wing Kemalist faction disapproves.",
+        "type": "paragraph"
+      }
+    },
+    "root.start_main": {
+      "id": "root.start_main",
+      "onArrival": [
+        {
+          "$code": "if (Q.cyprus_mode == 1) {\n    this.ui.audio('shuffle music/gercekkibris1.m4a music/12.mp3');\n} else {\n    this.ui.audio('shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n}"
+        }
+      ],
+      "newPage": true,
+      "goTo": [
+        {
+          "id": "main",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) >= 0);"
+          }
+        },
+        {
+          "id": "main.main_easy",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) < 0);"
+          }
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "1972"
+      }
+    },
+    "root": {
+      "id": "root",
+      "type": "scene",
+      "title": "Root Scene",
+      "newPage": true,
+      "goTo": [
+        {
+          "id": "post_event",
+          "predicate": {
+            "$code": "return ((Q['started'] || 0)===1);"
+          }
+        },
+        {
+          "id": "root.start_menu",
+          "predicate": {
+            "$code": "return ((Q['started'] || 0)===0);"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "status.social_issues": {
+      "id": "status.social_issues",
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Women's Rights"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "heading",
+            "content": "Religious Affairs"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "heading",
+            "content": "The Kurdish Issue"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "heading",
+            "content": "Kurdish Rights"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 3
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.html(Q,\"women\",this.state.visits);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.html(Q,\"religion\");"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianRules.kurdishIssueHtml(Q);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSocialIssues.html(Q,\"kurdish\");"
+            }
+          }
+        ]
+      }
+    },
     "status": {
       "id": "status",
       "type": "scene",
@@ -38160,544 +39095,6 @@
             }
           }
         ]
-      }
-    },
-    "cyprus_roadmap_event.continue": {
-      "id": "cyprus_roadmap_event.continue",
-      "viewIf": {
-        "$code": "return AnatolianRules.cyprusRoadmap.ordinaryEvent(Q) && !AnatolianRules.cyprusRoadmap.genevaResponse(Q);"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianRules.cyprusRoadmap.resolveEvent(Q,'continue');"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "cyprus_campaign_continue"
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
-    "national_elections.unholy_coalition": {
-      "id": "national_elections.unholy_coalition",
-      "title": "Can we form a coalition with Islamist MSP?",
-      "subtitle": {
-        "content": [
-          "CHP + MSP (",
-          {
-            "type": "insert",
-            "insert": 0
-          },
-          " seats)"
-        ],
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['unholy_coalition'] || 0);"
-            }
-          }
-        ]
-      },
-      "unavailableSubtitle": "Our relations with MSP make any coalition negotiation impossible.",
-      "viewIf": {
-        "$code": "return ((Q['unholy_coalition'] || 0) >= 226);"
-      },
-      "options": [
-        {
-          "id": "@national_elections.ministriesb",
-          "title": "Go forward with the coalition proposal."
-        },
-        {
-          "id": "@national_elections.coalition_menu",
-          "title": "Try a different governing arrangement."
-        }
-      ],
-      "content": {
-        "content": "After lengthy negotiations, it appears as the overwhelmingly larger party, we can form a CHP-MSP government led by Ecevit. We should do our best to not lose the reins to the Islamists.",
-        "type": "paragraph"
-      }
-    },
-    "agricultural_policy.east": {
-      "id": "agricultural_policy.east",
-      "subtitle": "-1 budget.",
-      "chooseIf": {
-        "$code": "return (((Q['budget'] || 0) >= 1) && ((Q['east_agri_done'] || 0) <= 2));"
-      },
-      "unavailableSubtitle": {
-        "content": [
-          {
-            "type": "conditional",
-            "content": "We don't have enough budget! ",
-            "predicate": 0
-          },
-          {
-            "type": "conditional",
-            "content": "We have already implemented our eastern agricultural support program to its full extent.",
-            "predicate": 1
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['budget'] || 0) < 1);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['east_agri_done'] || 0) >= 3);"
-            }
-          }
-        ]
-      },
-      "onArrival": [
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['east_agri_done'] = (Q['east_agri_done'] || 0) + 1;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
-        }
-      ],
-      "content": {
-        "content": "We direct special subsidies toward eastern agricultural regions, helping develop farming communities in Anatolia's east. Economic development eases grievances and reduces the appeal of radical movements among the Kurdish and Alevi populations.",
-        "type": "paragraph"
-      }
-    },
-    "economic_democracy.nationalize_mines": {
-      "id": "economic_democracy.nationalize_mines",
-      "title": "Nationalize Mines",
-      "newPage": true,
-      "subtitle": "-3 budget. Benefits develop gradually over 18 months.",
-      "chooseIf": {
-        "$code": "return !AnatolianPeoplesSector.reason(Q,\"nationalize_mines\");"
-      },
-      "unavailableSubtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianPeoplesSector.reason(Q,\"nationalize_mines\");"
-            }
-          }
-        ]
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianPeoplesSector.apply(Q,\"nationalize_mines\");"
-        }
-      ],
-      "options": [
-        {
-          "id": "@root",
-          "title": "Continue."
-        }
-      ],
-      "content": {
-        "type": "heading",
-        "content": "Nationalize Mines"
-      }
-    },
-    "economic_policy.stateplanning": {
-      "id": "economic_policy.stateplanning",
-      "subtitle": "Union relations slight decrease; Exchange Pressure ↓; Industrial Production ↑; Unemployment ↑",
-      "chooseIf": {
-        "$code": "return ((Q['imf_agreement'] || 0) == 0);"
-      },
-      "unavailableSubtitle": "We have agreed with the IMF to not pursue state interventions!",
-      "onArrival": [
-        {
-          "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;\nQ['disk_relation'] = (Q['disk_relation'] || 0) - 4;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.5;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
-        }
-      ],
-      "content": {
-        "content": "Turkey has a mixed market with huge state presence. However, as these corporations tend to be heavily corrupt and malfunctioning, reforms getting rid of the inefficient employees and restructuring the outdated business models are necessary to uphold the economy as a whole.",
-        "type": "paragraph"
-      }
-    },
-    "education_science.repeatable": {
-      "id": "education_science.repeatable",
-      "options": [
-        {
-          "id": "@education_science.scholarship",
-          "title": "Increase scholarship and boarding school opportunities."
-        },
-        {
-          "id": "@education_science.imamhatip",
-          "title": "Cut funding to religious İmam Hatip schools."
-        },
-        {
-          "id": "@education_science.TRT",
-          "title": "Increase educational broadcasts from the state radio, TRT."
-        },
-        {
-          "id": "@education_science.art",
-          "title": "Finance greater accessibility to arts and sports opportunities."
-        },
-        {
-          "id": "@education_science.more",
-          "title": "Open more schools, especially in our isolated rural provinces."
-        },
-        {
-          "id": "@education_science.norepeatable",
-          "title": "Go back to the ministry menu."
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
-    "fiscal_policy.istikraz": {
-      "id": "fiscal_policy.istikraz",
-      "subtitle": "+1 budget.",
-      "onArrival": [
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 1;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.2;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
-        }
-      ],
-      "content": {
-        "content": "Domestic loans boost our budget in the short term but increase discontentment and inflation.",
-        "type": "paragraph"
-      }
-    },
-    "foreign_policy.east": {
-      "id": "foreign_policy.east",
-      "chooseIf": {
-        "$code": "return (((Q['AP_in_government'] || 0) == 0) && ((Q['DP_in_government'] || 0) == 0));"
-      },
-      "unavailableSubtitle": "Our coalition partners prevent us from fostering relations with the Soviets!",
-      "options": [
-        {
-          "id": "@foreign_policy.improve_east",
-          "title": "Improve relations with the Soviet Union."
-        },
-        {
-          "id": "@foreign_policy.friendship",
-          "title": "Sign a treaty of Turkish-Soviet Friendship."
-        },
-        {
-          "id": "@foreign_policy.credits",
-          "title": "Borrow loans from the Soviet Union."
-        },
-        {
-          "id": "@foreign_policy.treaty",
-          "title": "Sign a treaty of economic cooperation."
-        },
-        {
-          "id": "@foreign_policy.export",
-          "title": "Export agricultural products to the Eastern Bloc."
-        },
-        {
-          "id": "@foreign_policy.romanianoil",
-          "title": "Purchase oil from Romania."
-        },
-        {
-          "id": "@foreign_policy.fp_menu",
-          "title": "Return to the foreign policy menu."
-        }
-      ],
-      "content": {
-        "content": "Up until now our relations with the Eastern Bloc have been cold at best. However, after Stalin's death the Soviet attitude towards Turkey has shifted towards a reconciliatory direction. Even though we should keep our relations with the West in mind, we have a lot to gain from improved relations with the Soviet Union.",
-        "type": "paragraph"
-      }
-    },
-    "labor_affairs.hukukikoruma": {
-      "id": "labor_affairs.hukukikoruma",
-      "onArrival": [
-        {
-          "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.2;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
-        }
-      ],
-      "content": {
-        "content": "Syndicate representatives, often from the left wing DİSK, are often harassed by both owners of big business and the sycophant state officials following the lead of their de facto financers. We are preventing this onslaught by increasing legal protections for the union representatives.",
-        "type": "paragraph"
-      }
-    },
-    "military_policy.budgetdecrease": {
-      "id": "military_policy.budgetdecrease",
-      "onArrival": [
-        {
-          "$code": "Q['coup_timer'] = (Q['coup_timer'] || 0) + 2;\nQ['budget'] = (Q['budget'] || 0) + 1;"
-        }
-      ],
-      "subtitle": "+1 budget.",
-      "chooseIf": {
-        "$code": "return ((Q['CGP_in_government'] || 0) == 0);"
-      },
-      "unavailableSubtitle": "Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!",
-      "content": {
-        "content": "We launch a campaign of inspections into the spending of the army. The army views attempts at curbing excessive spending as an act of disrespect and many high-ranking officials privately express their disapproval.",
-        "type": "paragraph"
-      }
-    },
-    "police.ban_raiders": {
-      "id": "police.ban_raiders",
-      "viewIf": {
-        "$code": "return ((!(((Q['raiders_banned'] || 0)) !== 0)) && ((Q['raiders_formed'] || 0) == 1));"
-      },
-      "chooseIf": {
-        "$code": "return ((Q['far_right_force_percent'] || 0) >= 35);"
-      },
-      "unavailableSubtitle": "Far-right strength must reach at least 35%.",
-      "onArrival": [
-        {
-          "$code": "AnatolianRules.securityAction(Q,'raiders',true);"
-        }
-      ],
-      "options": [
-        {
-          "id": "@root",
-          "title": "Continue."
-        }
-      ],
-      "content": {
-        "content": "The Raiders are banned. Recruitment and organization are disrupted: their membership falls by 40% and militarization by 35%. The network survives underground and requires further action.",
-        "type": "paragraph"
-      }
-    },
-    "library.demographics": {
-      "id": "library.demographics",
-      "goTo": [
-        {
-          "id": "library.menu"
-        }
-      ],
-      "content": [
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Demographic Groups"
-            },
-            ""
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Rural"
-            },
-            ": Peasants who live in a semi-feudal state under the hegemony of the landlords and the local notables. Generally vote for reactionary parties such as AP or MSP. Makes up about 45% - 50% of the population."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Working Class"
-            },
-            ": The urban working class - blue-collar workers in factories, workshops, mines, and the like. A class created primarily in the last 50 years, the working class families live in ghettos near the industrial zones and support either TİP or CHP. Makes up about 15% - 20% of the population."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Petty Bourgeoisie"
-            },
-            ": The urban middle class - shopkeepers, traders and the like. Traditionally one of the main bases of AP but since the party's decision to open up to the global market their alignment has slightly shifted to MSP. Makes up about 15% of the population."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "State employees and bureaucrats"
-            },
-            ": Citizens employed by the state and the bureaucracy. Mostly support <span style=\"color: #E3000F;\">",
-            {
-              "type": "emphasis-2",
-              "content": "CHP"
-            },
-            "</span> due to the Kemalist roots of the state apparatus. Roughly around 7% of the population."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Capitalists/Land Owners"
-            },
-            ": The owners of capital and production, disproportionally support AP and its splinter party DP. 3% of the population."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Alevis"
-            },
-            ": A Shiite minority within Central Anatolia. Overwhelmingly support <span style=\"color: #E3000F;\">",
-            {
-              "type": "emphasis-2",
-              "content": "CHP"
-            },
-            "</span> and to a small degree the Alevi minority rights party, TBP. About 10% of the population."
-          ]
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "emphasis-2",
-              "content": "Kurdish population"
-            },
-            ": Political consciousness determines the politically active share. Radicalism is a share of that group, and paramilitarism is a share of the radicals. The demographic voting weight remains separate from those percentages."
-          ]
-        }
-      ]
-    },
-    "inter_party_relationships.MSP": {
-      "id": "inter_party_relationships.MSP",
-      "subtitle": "-1 resources",
-      "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 1);"
-      },
-      "unavailableSubtitle": "Not enough resources.",
-      "viewIf": {
-        "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "inter_party_relationships.surprising",
-          "predicate": {
-            "$code": "return ((Q['year'] || 0) <= 1974);"
-          }
-        },
-        {
-          "id": "inter_party_relationships.coalition",
-          "predicate": {
-            "$code": "return ((((Q['year'] || 0) >= 1973) && ((Q['MSP_in_government'] || 0) == 1)) && ((Q['CHP_in_government'] || 0) == 1));"
-          }
-        },
-        {
-          "id": "inter_party_relationships.hellnah",
-          "predicate": {
-            "$code": "return ((((Q['year'] || 0) >= 1973) && (!((Q['MSP_in_government'] || 0) == 1))) && ((Q['CHP_in_government'] || 0) == 1));"
-          }
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
-    "party_disunity.expel_center": {
-      "id": "party_disunity.expel_center",
-      "title": "Expel the centrists.",
-      "viewIf": {
-        "$code": "return ((Q['center_dissent'] || 0) > 30);"
-      },
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
-    "shuffle_leadership.remove_ustundag": {
-      "id": "shuffle_leadership.remove_ustundag",
-      "title": "Remove Üstündağ",
-      "viewIf": {
-        "$code": "return ((((Q['ustundag_advisor'] || 0)===1) && (Q['party_leader_id'] != \"ustundag\")) && (Q['party_secretary_id'] != \"ustundag\"));"
-      },
-      "tags": [
-        "remove_advisor"
-      ],
-      "onArrival": [
-        {
-          "$code": "Q['ustundag_advisor'] = 0;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 5;\nQ['n_advisors'] = (Q['n_advisors'] || 0) - 1;"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "shuffle_leadership.rm_main"
-        }
-      ],
-      "content": {
-        "content": "Üstündağ has been removed as a member. The Left-Wing Kemalist faction disapproves.",
-        "type": "paragraph"
-      }
-    },
-    "root.start_main": {
-      "id": "root.start_main",
-      "onArrival": [
-        {
-          "$code": "if (Q.cyprus_mode == 1) {\n    this.ui.audio('shuffle music/gercekkibris1.m4a music/12.mp3');\n} else {\n    this.ui.audio('shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n}"
-        }
-      ],
-      "newPage": true,
-      "goTo": [
-        {
-          "id": "main",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) >= 0);"
-          }
-        },
-        {
-          "id": "main.main_easy",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) < 0);"
-          }
-        }
-      ],
-      "content": {
-        "type": "heading",
-        "content": "1972"
-      }
-    },
-    "root": {
-      "id": "root",
-      "type": "scene",
-      "title": "Root Scene",
-      "newPage": true,
-      "goTo": [
-        {
-          "id": "post_event",
-          "predicate": {
-            "$code": "return ((Q['started'] || 0)===1);"
-          }
-        },
-        {
-          "id": "root.start_menu",
-          "predicate": {
-            "$code": "return ((Q['started'] || 0)===0);"
-          }
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
       }
     },
     "cyprus_roadmap_event.report": {
@@ -41984,7 +42381,7 @@
       "viewIf": {
         "$code": "return (((Q['CHP_in_government'] || 0)) !== 0);"
       },
-      "cardImage": "img/portraits/Muezzinoglu.jpg",
+      "cardImage": "img/peoples-sector.png",
       "options": [
         {
           "id": "@economic_democracy.found_hayat",
@@ -42031,10 +42428,22 @@
           "title": "Back to main."
         }
       ],
-      "content": {
-        "type": "heading",
-        "content": "People's Sector"
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "People's Sector"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "magic",
+              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+            },
+            ""
+          ]
+        }
+      ]
     },
     "education_science.more": {
       "id": "education_science.more",
@@ -48098,8 +48507,8 @@
     },
     "govt_affairs": {
       "shuffle_cabinet": true,
-      "religious_affairs_directorate": true,
       "coalition_affairs": true,
+      "religious_affairs_directorate": true,
       "social_welfare": true,
       "kurdish_issue": true,
       "womens_rights": true,

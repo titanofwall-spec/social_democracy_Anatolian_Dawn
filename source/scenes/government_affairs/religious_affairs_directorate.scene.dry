@@ -3,13 +3,14 @@ is-card: true
 new-page: true
 tags: govt_affairs, cabinet
 view-if: CHP_in_government == 1
+card-image: img/religious-affairs.png
 
 = Directorate of Religious Affairs
 
-# Localization
+The Directorate of Religious Affairs is Kemalism's response to the secular order: the subordination of religious institutions to state authorities. Through it, our republic regulates and oversees religious affairs. It therefore carries immense importance despite not being a ministry. Much remains to be done to make it serve our goals for a secular society.
 
 - @sectarian_office: Found the Office of Sectarian Affairs
-- @women_employment: Women Employment Program
+- @publications: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
 - @admit_women: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
 - @recruit_women: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
 - @root: Back to main.
@@ -17,44 +18,60 @@ view-if: CHP_in_government == 1
 @sectarian_office
 title: Found the Office of Sectarian Affairs
 new-page: true
-view-if: sectarian_affairs_office_founded != 1
-on-arrival: {! Q.sectarian_affairs_office_founded=1; !}
+subtitle: -1 budget.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"sectarian_office"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"sectarian_office"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"sectarian_office"); !}
 
 = Found the Office of Sectarian Affairs
 
-# Localization
+We attempted to establish the Office of Sectarian Affairs during the first İnönü government after 27 May, but failed to do so under those coalition governments. The office is intended to provide services to Muslims of different sects. Most importantly, it will recognize Alevism as a sect rather than merely a local folk culture, and officially recognize cemevis, the places of worship and assembly used by Alevi communities, as places of worship. This would be a major step toward ending the social and state repression that Alevi communities have suffered since the Ottoman era, bringing us closer to Kemalism's half-century-old goal of ending that repression.
 
-- @religious_affairs_directorate: Back.
+- @root: Continue.
 
-@women_employment
-title: Women Employment Program
+@publications
+title: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
 new-page: true
+subtitle: -2 budget.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"publications"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"publications"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"publications"); !}
 
-= Women Employment Program
+= Bring Religious Affairs Publications into Compliance with the Laws of the Republic
 
-# Localization
+As an official state institution, the Directorate of Religious Affairs cannot present rights granted to women under Republican law as illegitimate, immoral, or religiously invalid in its calendars, newspapers, books, or official sermons. Nor can it use its ties to İmam Hatip schools to promote such views among students. Such cases have nevertheless persisted for years. By reorganizing the Directorate, we will ensure that its publications no longer hinder our progress as a society.
 
-- @religious_affairs_directorate: Back.
+- @root: Continue.
 
 @admit_women
 title: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
 new-page: true
 view-if: religious_women_admitted != 1
-on-arrival: {! Q.religious_women_admitted=1; !}
+subtitle: -1 budget.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"admit_women"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"admit_women"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"admit_women"); !}
 
 = Start admitting women to positions as preachers and professors of Islamic jurisprudence.
 
-# Localization
+Although it is not illegal, it is extremely difficult and practically unheard of for women to hold such positions in our academies or mosques. Many women may never even have considered the possibility. We will take an active stance, making these positions more accessible to women and encouraging wider participation.
 
-- @religious_affairs_directorate: Back.
+- @root: Continue.
 
 @recruit_women
 title: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
 new-page: true
 view-if: religious_women_admitted == 1
+subtitle: No budget cost.
+choose-if: {! return !AnatolianSocialIssues.reason(Q,"recruit_women"); !}
+unavailable-subtitle: [+ {! return AnatolianSocialIssues.reason(Q,"recruit_women"); !} +]
+on-arrival: {! AnatolianSocialIssues.apply(Q,"recruit_women"); !}
 
 = Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
 
-# Localization
+Our efforts to open religious positions to women have begun to bear fruit. Stopping now would leave the task half-finished. We must continue working toward equal employment in state-led religious affairs.
 
-- @religious_affairs_directorate: Back.
+- @root: Continue.
+
+@women_employment
+go-to: religious_affairs_directorate

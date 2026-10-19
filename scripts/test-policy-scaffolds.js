@@ -1,22 +1,2 @@
-const fs=require('fs'),path=require('path'),assert=require('assert');
-const rules=require('../out/html/rules.js');require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');require('../out/html/cyprus-roadmap.js');
-const lib=require('dendrynexus/lib/engine.js'),root=path.resolve(__dirname,'..'),c=rules.cyprusAtilla1,rm=rules.cyprusRoadmap,cp=rules.cyprusCampaign;
-const noop=()=>{},node={remove:noop,style:{setProperty:noop},appendChild:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
-global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};global.Image=function(){return {...node};};global.window={};global.d3=null;global.updateCyprusWidth=noop;global.localStorage={getItem:()=>null,setItem:noop};
-const output=console.log,errors=[];console.log=(...args)=>{if(String(args[0]).startsWith('Error'))errors.push(args.join(' '));};
-lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(err,game)=>{
- if(err)throw err;let count=0;
- function test(label,run){errors.length=0;run();assert.deepEqual(errors,[],label);count++;output('PASS '+label);}
- function fresh(options={}){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:7,week:2,flavour_events:0,CHP_in_government:1,prime_minister_party:'CHP',army_land_strength:.8,army_naval_strength:.8,army_aerial_strength:.8,us_relation:80,west_relation:80,hashas_done:0},options);e.goToScene('kibrisdarbe');e.random.random=()=>1;return e;}
- function pick(e,id){const a=e.getCurrentChoices(),n=a.findIndex(x=>x.id===id);assert(n>=0,'Missing '+id+' at '+e.state.sceneId);assert(!a[n].unavailable,id+' unavailable');e.choose(n);}
- function next(e){const choices=e.getCurrentChoices();assert(choices.some(x=>!x.unavailable),'Dead end '+e.state.sceneId);e.choose(choices.findIndex(x=>!x.unavailable));}
- function prepare(e){for(let i=0;i<40&&e.state.sceneId!=='cyprus_atilla1_20';i++)next(e);assert.equal(e.state.sceneId,'cyprus_atilla1_20');}
-
- function card(e,id){Object.assign(e.state.qualities,{CHP_in_government:1,economic_minister_party:'CHP',finance_minister_party:'CHP',labor_minister_party:'CHP'});e.goToScene(id);}
- function ids(e){return e.getCurrentChoices().map(x=>x.id);}
- function choose(e,id){pick(e,id);next(e);}
- test('Religious card has the requested options and replaces initial admission with recruitment',()=>{const e=fresh();card(e,'religious_affairs_directorate');assert(ids(e).includes('religious_affairs_directorate.admit_women'));assert(!ids(e).includes('religious_affairs_directorate.recruit_women'));choose(e,'religious_affairs_directorate.admit_women');assert.equal(e.state.sceneId,'religious_affairs_directorate');assert(!ids(e).includes('religious_affairs_directorate.admit_women'));assert(ids(e).includes('religious_affairs_directorate.recruit_women'));choose(e,'religious_affairs_directorate.recruit_women');assert(ids(e).includes('religious_affairs_directorate.recruit_women'));choose(e,'religious_affairs_directorate.sectarian_office');assert(!ids(e).includes('religious_affairs_directorate.sectarian_office'));});
- test('Kurdish card has all six actions, with blank localization and no effects',()=>{const e=fresh();card(e,'kurdish_issue');assert.equal(ids(e).length,7);const before=JSON.stringify(e.state.qualities);for(const id of ['associations','public_discussion','publishing','meetings','oversight','local_government'])choose(e,'kurdish_issue.'+id);assert.equal(JSON.stringify(e.state.qualities),before);});
- test('The remaining scaffolds and every policy section contain headings only, with explicit blank localization markers',()=>{for(const id of ['religious_affairs_directorate','kurdish_issue']){const text=fs.readFileSync(path.join(root,'source/scenes/government_affairs/'+id+'.scene.dry'),'utf8');assert(text.includes('# Localization'));assert(!text.includes('subtitle:'));assert(game.scenes[id].isCard);assert(game.scenes[id].tags.includes('govt_affairs'));for(const [key,scene] of Object.entries(game.scenes))if(key===id||key.startsWith(id+'.')){const content=Array.isArray(scene.content)?scene.content:[scene.content];for(const block of content)assert(block.type==='heading'||block.content==='','Unexpected prose at '+key);}}});
- output('PASS: '+count+' policy scaffold scenarios.');
-});
+// Both former scaffolds are functional policies, covered by the Social Issues regression suite.
+require('./test-social-issues.js');
