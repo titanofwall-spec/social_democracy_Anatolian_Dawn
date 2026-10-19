@@ -485,7 +485,7 @@ Natural Resources: [+ natural_resources_policy +]
 
 Workplace Democracy: [+ workplace_democracy_status +]
 
-People's Sector: [+ peoples_sector_status +]
+[+ {! return "People's Sector: "+AnatolianPeoplesSector.levels(Q)["People's Sector"]; !} +]
 
 = Labour
 
@@ -561,6 +561,8 @@ Agricultural Production Index (1972=100): [+ agricultural_index_formatted +]
 Agricultural Product Prices: [+ agricultural_prices_formatted +] ([+ agricultural_price_status +])
 
 {!<span style="color: #7A3C00;">The economic values are updated monthly.</span>!}
+
+[+ {! return AnatolianPeoplesSector.html(Q); !} +]
 
 @the_party
 on-arrival: {!

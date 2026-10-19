@@ -720,6 +720,7 @@ if (turnAdvanced && Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {
         Q.coup_timer = 15;
     }
 }
+AnatolianPeoplesSector.update(Q);
 AnatolianRules.refreshEconomy(Q);
 Q.apply_economy_effects = turnAdvanced ? 1 : 0;
 this._runActions(this.game.scenes['economy_health_calculator'].onArrival);

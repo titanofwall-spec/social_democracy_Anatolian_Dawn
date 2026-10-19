@@ -1084,6 +1084,7 @@ AnatolianRules.refreshFactions(Q);
 AnatolianRules.refreshVotes(Q);
 AnatolianRules.ensureKurdishIssue(Q);
 if(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);
+AnatolianPeoplesSector.ensure(Q);
 
 !}
 set-bg: img/map_4.jpg

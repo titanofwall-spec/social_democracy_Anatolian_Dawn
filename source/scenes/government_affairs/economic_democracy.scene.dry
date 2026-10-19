@@ -1,145 +1,204 @@
-title: Economic Democracy
+title: People's Sector
 is-card: true
 new-page: true
 tags: govt_affairs, cabinet
-view-if: CHP_in_government and (economic_minister_party == "CHP" or finance_minister_party == "CHP") and labor_minister_party == "CHP"
+view-if: CHP_in_government
 card-image: img/portraits/Muezzinoglu.jpg
 
-= Economic Democracy
+= People's Sector
 
-# Localization
-
-- @reform_meyak: Reform MEYAK
-- @establish_iyak: Establish İYAK
+- @found_hayat: Found HAYAT
+- @establish_iyak: Found İYAK
 - @reform_iyak: Reform İYAK
+- @reform_meyak: Reform MEYAK
 - @establish_umbrella: Establish Cooperative Umbrella Organizations
 - @expand_umbrella: Expand Cooperative Umbrella Organizations
 - @peoples_sector: Integrate People's Sector into the Five Year Plan
 - @cooperative_bank: Establish the Cooperative Bank
+- @nationalize_mines: Nationalize Mines
+- @nationalize_petrol: Nationalize Petroleum
 - @root: Back to main.
 
-@reform_meyak
-title: Reform MEYAK
+@found_hayat
+title: Found HAYAT
 new-page: true
+subtitle: -1 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"found_hayat"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"found_hayat"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"found_hayat"); !}
 
-= Reform MEYAK
+= Found HAYAT
 
-# Localization
+HAYAT is a planned institution aimed at undertaking large-scale production investments by pooling the savings of workers, cooperatives, and other public partnerships. It is our ultimate goal in building a People's Sector and achieving economic democracy. The voices, resources, and labour of our working class will build our economy!
 
-- @economic_democracy: Back.
+- @root: Continue.
 
 @establish_iyak
-title: Establish İYAK
+title: Found İYAK
 new-page: true
-view-if: iyak_established != 1
-on-arrival: {! Q.iyak_established=1; !}
+subtitle: -1 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"establish_iyak"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"establish_iyak"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"establish_iyak"); !}
 
-= Establish İYAK
+= Found İYAK
 
-# Localization
+The planned Workers' Mutual Aid Institution (İYAK) will generate funds for development by channelling workers' earnings into savings. In the long run, the returns from that development will contribute to workers' retirement and social needs.
 
-- @economic_democracy: Back.
+- @root: Continue.
 
 @reform_iyak
 title: Reform İYAK
 new-page: true
-view-if: iyak_established == 1
+subtitle: No budget cost. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"reform_iyak"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"reform_iyak"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"reform_iyak"); !}
 
 = Reform İYAK
 
-# Localization
+Encourage İYAK to acquire shares in existing industrial firms, in addition to its investment activities, thereby enabling workers to have a say in their workplaces.
 
-- @economic_democracy: Back.
+- @root: Continue.
+
+@reform_meyak
+title: Reform MEYAK
+new-page: true
+subtitle: No budget cost. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"reform_meyak"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"reform_meyak"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"reform_meyak"); !}
+
+= Reform MEYAK
+
+Although MEYAK has collected a large sum from civil servants, the money has neither been invested nor transferred anywhere because the institution lacks the mechanisms it needs to operate. Its funds remain idle and unusable. We will reform the institution, ensure that it functions properly, and put those funds to use!
+
+- @root: Continue.
 
 @establish_umbrella
 title: Establish Cooperative Umbrella Organizations
 new-page: true
-view-if: cooperative_umbrella_established != 1
-on-arrival: {! Q.cooperative_umbrella_established=1; !}
+subtitle: -1 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"establish_umbrella"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"establish_umbrella"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"establish_umbrella"); !}
 
 = Establish Cooperative Umbrella Organizations
 
-# Localization
+The cooperative umbrella organizations plan will transform fragmented village cooperatives into self-governing producer organizations capable of large-scale economic activity. It will encourage nationwide capital accumulation and the creation of large agricultural enterprises. These self-governing institutions will help establish economic democracy among our largest demographic and offer rural communities alternatives to the old ağa class for economic, cultural, and legal assistance.
 
-- @economic_democracy: Back.
+- @root: Continue.
 
 @expand_umbrella
 title: Expand Cooperative Umbrella Organizations
 new-page: true
-view-if: cooperative_umbrella_established == 1
+subtitle: -1 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"expand_umbrella"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"expand_umbrella"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"expand_umbrella"); !}
 
 = Expand Cooperative Umbrella Organizations
 
-# Localization
+We have begun transforming small cooperatives into larger organizations. We must now invest further in this programme to achieve its objectives.
 
-- @economic_democracy: Back.
+- @root: Continue.
 
 @peoples_sector
 title: Integrate People's Sector into the Five Year Plan
 new-page: true
+choose-if: CHP_in_government and (economic_minister_party == "CHP" or finance_minister_party == "CHP")
+unavailable-subtitle: Requires the Ministry of Economics or Finance.
 
 = Integrate People's Sector into the Five Year Plan
 
-# Localization
+The Turkish economy is still developing and needs broad, long-term, state-led growth programmes to build its industry. Our republic has used Five Year Plans, with an interruption between 1939 and 1960. Integrating the People's Sector into these large-scale economic projects will allow us to pursue development and economic democracy together.
 
 - @integrate_sector: Integrate the People's Sector
 - @fund_sector: Allocate funds to People's Sector
 - @economic_democracy: Back.
 
-@integrate_sector
-title: Integrate the People's Sector
-new-page: true
-view-if: peoples_sector_integrated != 1
-on-arrival: {! Q.peoples_sector_integrated=1; !}
-
-= Integrate the People's Sector
-
-# Localization
-
-- @economic_democracy.peoples_sector: Back.
-
-@fund_sector
-title: Allocate funds to People's Sector
-new-page: true
-view-if: peoples_sector_integrated == 1
-
-= Allocate funds to People's Sector
-
-# Localization
-
-- @economic_democracy.peoples_sector: Back.
-
 @cooperative_bank
 title: Establish the Cooperative Bank
 new-page: true
+choose-if: CHP_in_government and agriculture_minister_party == "CHP"
+unavailable-subtitle: Requires the Ministry of Agriculture.
 
 = Establish the Cooperative Bank
 
-# Localization
+The Cooperative Bank will give small producers access to credit without requiring them to mortgage their land or other assets. By financing productive investments through cooperatives, it will bring modern financial services to rural communities in a form suited to their needs.
 
 - @found_bank: Found the Cooperative Bank
 - @fund_bank: Allocate funds to Cooperative Bank
 - @economic_democracy: Back.
 
+@nationalize_mines
+title: Nationalize Mines
+new-page: true
+subtitle: -3 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"nationalize_mines"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"nationalize_mines"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"nationalize_mines"); !}
+
+= Nationalize Mines
+
+- @root: Continue.
+
+@nationalize_petrol
+title: Nationalize Petroleum
+new-page: true
+subtitle: -4 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"nationalize_petrol"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"nationalize_petrol"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"nationalize_petrol"); !}
+
+= Nationalize Petroleum
+
+- @root: Continue.
+
+@integrate_sector
+title: Integrate the People's Sector
+new-page: true
+subtitle: No budget cost. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"integrate_sector"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"integrate_sector"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"integrate_sector"); !}
+
+= Integrate the People's Sector
+
+- @root: Continue.
+
+@fund_sector
+title: Allocate funds to People's Sector
+new-page: true
+subtitle: -1 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"fund_sector"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"fund_sector"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"fund_sector"); !}
+
+= Allocate funds to People's Sector
+
+- @root: Continue.
+
 @found_bank
 title: Found the Cooperative Bank
 new-page: true
-view-if: cooperative_bank_founded != 1
-on-arrival: {! Q.cooperative_bank_founded=1; !}
+subtitle: -2 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"found_bank"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"found_bank"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"found_bank"); !}
 
 = Found the Cooperative Bank
 
-# Localization
-
-- @economic_democracy.cooperative_bank: Back.
+- @root: Continue.
 
 @fund_bank
 title: Allocate funds to Cooperative Bank
 new-page: true
-view-if: cooperative_bank_founded == 1
+subtitle: -2 budget. Benefits develop gradually over 18 months.
+choose-if: {! return !AnatolianPeoplesSector.reason(Q,"fund_bank"); !}
+unavailable-subtitle: [+ {! return AnatolianPeoplesSector.reason(Q,"fund_bank"); !} +]
+on-arrival: {! AnatolianPeoplesSector.apply(Q,"fund_bank"); !}
 
 = Allocate funds to Cooperative Bank
 
-# Localization
-
-- @economic_democracy.cooperative_bank: Back.
+- @root: Continue.
