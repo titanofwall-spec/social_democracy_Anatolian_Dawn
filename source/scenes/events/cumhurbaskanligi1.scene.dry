@@ -31,6 +31,7 @@ choose-if: AP_relation >= 40
 unavailable-subtitle: No, that didn't happen. AP doesn't trust us enough and we never get the expected cooperation message.
 on-arrival: AP_relation += 3; cgp_relation += 3; {!
 Q.president = "Fahri Korutürk";
+if(typeof AnatolianSenate!=="undefined")AnatolianSenate.recordPresident(Q);
 !}
 on-display: {!
 data = [
@@ -96,7 +97,8 @@ With the support of CHP, CGP and AP; Korutürk has begun his presidency. While h
 choose-if: left_kemalists_strength <= 4000
 unavailable-subtitle: Our reformist delegates are against serving the desires of the military and prevent us from taking such an action!
 on-arrival: AP_relation -= 10; workers_chp -= 5; rural_chp -= 4; state_employees_chp -= 2; alevis_chp -= 3; kurds_chp -= 3; coup_timer -= 3; left_kemalists_dissent += 15; {!
-Q.president = "Faruk Gürler"
+Q.president = "Faruk Gürler";
+if(typeof AnatolianSenate!=="undefined")AnatolianSenate.recordPresident(Q);
 !}
 on-display: {!
 data = [
@@ -156,7 +158,8 @@ After a number of failed rounds, the military surrounded the lower chamber. Unde
 @ariburun
 view-if: prime_minister == "Nuri Bayar"
 on-arrival: {!
-Q.president = "Tekin Arıburun"
+Q.president = "Tekin Arıburun";
+if(typeof AnatolianSenate!=="undefined")AnatolianSenate.recordPresident(Q);
 !}
 on-display: {!
 data = [
@@ -206,7 +209,7 @@ After a number of failed rounds, Bozbeyli has accepted to withdraw his candidacy
 
 @sunay
 view-if: not prime_minister == "Nuri Bayar"
-on-arrival: coup_timer += 1
+on-arrival: coup_timer += 1; {! if(typeof AnatolianSenate!=="undefined")AnatolianSenate.recordPresident(Q); !}
 on-display: {!
 data = [
   {

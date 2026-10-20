@@ -1,0 +1,12 @@
+title: Placeholder
+new-page: true
+tags: event
+priority: 2
+view-if: {! return typeof AnatolianSenate!=="undefined" && !!AnatolianSenate.pendingDeath(Q); !}
+
+Placeholder
+
+- @acknowledge: Continue
+
+@acknowledge
+on-arrival: {! AnatolianSenate.acknowledgeDeath(Q); !}

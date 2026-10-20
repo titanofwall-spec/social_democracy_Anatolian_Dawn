@@ -205,6 +205,12 @@ TBP: Alevi Democracy (Mustafa Timisi)
 
 <span style="color: #954B00;">**MHP**</span>:  [? if MHP_party_leader == "Alparslan Türkeş" : Turkic-Islamic Synthesis (Türkeş) ?]
 
+= TBMM
+
+{!<h3>The Senate</h3>!}
+
+[+ {! return typeof AnatolianSenate!=="undefined"?AnatolianSenate.html(Q):""; !} +]
+
 = Union Relations
 
 DİSK: [+ disk_relation : relationships +]

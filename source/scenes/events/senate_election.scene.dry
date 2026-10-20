@@ -1,0 +1,28 @@
+title: Senate Elections
+new-page: true
+tags: event
+priority: -2
+view-if: {! return typeof AnatolianSenate!=="undefined" && !!AnatolianSenate.due(Q); !}
+
+= Senate Elections, [+ year +]
+
+The provinces in Group [+ {! return AnatolianSenate.due(Q).group; !} +] will elect their senators.
+
+- @results: Let the votes be counted.
+
+@results
+new-page: true
+on-arrival: {! AnatolianSenate.elect(Q); !}
+on-display: {! if(typeof renderElectionResultMap!=="undefined")renderElectionResultMap('senate'); !}
+
+= Senate Election Results
+
+Fifty elected seats have been renewed. The remaining elected senators retain their seats.
+
+[+ {! return AnatolianSenate.html(Q); !} +]
+
+{!<svg class="senate-election-parliament" style="width:500px;height:250px" aria-label="Elected Senate seat distribution"></svg><div class="election-results-map" data-election-kind="senate"></div>!}
+
+- @done: The Senate has been renewed.
+
+@done

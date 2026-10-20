@@ -747,6 +747,7 @@ if (turnAdvanced) {
                              'unemployment': Q.unemployed});
 
 }
+if(typeof AnatolianSenate!=="undefined")AnatolianSenate.update(Q);
 Q.has_event = 0;
 Q.calculate_economy_health = 0;
 // Apply economy health effects every turn for gradual changes
