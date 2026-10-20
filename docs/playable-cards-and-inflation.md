@@ -21,3 +21,5 @@ An actual economic Cyprus embargo sets cyprus_economic_sanctions_active. The exi
 ## Verification
 
 New suites cover completed/cooling cards, nested menus, original ready government cards, return-to-hand versus discard for all three cards, price-control magnitude, historical-rate isolation after 1976, once-only oil shock, and persistent economic sanctions. Existing source/type/state checks and social/People's Sector/election/Kurdish/Cyprus/cleanup regression suites pass. Chrome checks confirm the runtime filter and actual Back/inaction buttons.
+
+Advisor regression fix: eligibility filtering is restricted to actual deck and Cabinet choice lists. Advisor recruitment/leadership selection uses original conditions unchanged, even though its entries are marked is-card. Subordinate actions with on-arrival effects count before following their return links. All five advisor categories are tested against unfiltered eligibility and real appointments, with Chrome coverage.
