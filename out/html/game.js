@@ -12,6 +12,7 @@
   var main = function(dendryUI) {
     ui = dendryUI;
     game = ui.game;
+    AnatolianCardActions.install(ui.dendryEngine);
 
     // Preserve hands while the Cyprus calendar owns play; do not draw/play
     // domestic cards or show leadership actions until normal play resumes.

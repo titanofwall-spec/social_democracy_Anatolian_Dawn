@@ -4,7 +4,7 @@ new-page: true
 tags: govt_affairs, cabinet
 view-if: {! return !!Q.CHP_in_government && !(Q.religious_affairs_directorate_timer > 0); !}
 frequency: 100
-on-arrival: {! if(!(Q.religious_affairs_directorate_timer>0)){Q.religious_affairs_directorate_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("religious_affairs_directorate"))Q.timers.push("religious_affairs_directorate"); Q.month_actions=(Q.month_actions||0)+1;} !}
+on-arrival: {! AnatolianCardActions.begin(this,"religious_affairs_directorate"); if(!(Q.religious_affairs_directorate_timer>0)){Q.religious_affairs_directorate_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("religious_affairs_directorate"))Q.timers.push("religious_affairs_directorate"); Q.month_actions=(Q.month_actions||0)+1;} !}
 card-image: img/religious-affairs.png
 
 = Directorate of Religious Affairs
@@ -15,7 +15,8 @@ The Directorate of Religious Affairs is Kemalism's response to the secular order
 - @publications: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
 - @admit_women: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
 - @recruit_women: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
-- @root: Back to main.
+- @back_to_main: Back to main menu.
+- @decline: We will not take an action at the moment.
 
 @sectarian_office
 title: Found the Office of Sectarian Affairs
@@ -77,3 +78,11 @@ Our efforts to open religious positions to women have begun to bear fruit. Stopp
 
 @women_employment
 go-to: religious_affairs_directorate
+
+@back_to_main
+on-arrival: {! AnatolianCardActions.back(this); !}
+go-to: root
+
+@decline
+on-arrival: {! AnatolianCardActions.commit(Q); !}
+go-to: root

@@ -4,7 +4,7 @@ new-page: true
 tags: govt_affairs, cabinet
 view-if: {! return !!Q.CHP_in_government && !(Q.economic_democracy_timer > 0); !}
 frequency: 100
-on-arrival: {! if(!(Q.economic_democracy_timer>0)){Q.economic_democracy_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("economic_democracy"))Q.timers.push("economic_democracy"); Q.month_actions=(Q.month_actions||0)+1;} !}
+on-arrival: {! AnatolianCardActions.begin(this,"economic_democracy"); if(!(Q.economic_democracy_timer>0)){Q.economic_democracy_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("economic_democracy"))Q.timers.push("economic_democracy"); Q.month_actions=(Q.month_actions||0)+1;} !}
 card-image: img/peoples-sector.png
 
 = People's Sector
@@ -21,7 +21,8 @@ card-image: img/peoples-sector.png
 - @cooperative_bank: Establish the Cooperative Bank
 - @nationalize_mines: Nationalize Mines
 - @nationalize_petrol: Nationalize Petroleum
-- @root: Back to main.
+- @back_to_main: Back to main menu.
+- @decline: We will not take an action at the moment.
 
 @found_hayat
 title: Found HAYAT
@@ -206,3 +207,11 @@ on-arrival: {! AnatolianPeoplesSector.apply(Q,"fund_bank"); !}
 = Allocate funds to Cooperative Bank
 
 - @root: Continue.
+
+@back_to_main
+on-arrival: {! AnatolianCardActions.back(this); !}
+go-to: root
+
+@decline
+on-arrival: {! AnatolianCardActions.commit(Q); !}
+go-to: root

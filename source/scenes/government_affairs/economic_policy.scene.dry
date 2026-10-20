@@ -37,7 +37,7 @@ subtitle: Short term solutions meant to lessen the current impact of the crisis.
 subtitle: Inflation ↓
 choose-if: imf_agreement == 0
 unavailable-subtitle: We have agreed with the IMF to not pursue state interventions!
-on-arrival: inflation_modifier -= 3; black_market_risk += 1; capitalists_chp -= 3; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: inflation_modifier -= 6; black_market_risk += 1; capitalists_chp -= 3; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 Price floors and ceilings are implemented to control the rampant inflation. While the working families and the like are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'
 

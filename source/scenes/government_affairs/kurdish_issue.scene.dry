@@ -4,7 +4,7 @@ new-page: true
 tags: govt_affairs, cabinet
 view-if: {! return !!Q.CHP_in_government && !(Q.kurdish_issue_timer > 0); !}
 frequency: 100
-on-arrival: {! if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("kurdish_issue"))Q.timers.push("kurdish_issue"); Q.month_actions=(Q.month_actions||0)+1;} !}
+on-arrival: {! AnatolianCardActions.begin(this,"kurdish_issue"); if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("kurdish_issue"))Q.timers.push("kurdish_issue"); Q.month_actions=(Q.month_actions||0)+1;} !}
 card-image: img/kurdish-issue.jpg
 
 = The Kurdish Issue
@@ -19,7 +19,8 @@ The Kurdish question has been one of the most difficult issues facing our young 
 - @meetings: Ease restrictions on the right to hold meetings and demonstrations.
 - @oversight: Strengthen protection and oversight against unlawful violence by public officials and security forces.
 - @agricultural_efforts: Agricultural efforts
-- @root: Back to main.
+- @back_to_main: Back to main menu.
+- @decline: We will not take an action at the moment.
 
 @associations
 title: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
@@ -104,3 +105,11 @@ We will fund special subsidies and a land reform programme for Eastern Anatolia.
 
 @local_government
 go-to: kurdish_issue
+
+@back_to_main
+on-arrival: {! AnatolianCardActions.back(this); !}
+go-to: root
+
+@decline
+on-arrival: {! AnatolianCardActions.commit(Q); !}
+go-to: root

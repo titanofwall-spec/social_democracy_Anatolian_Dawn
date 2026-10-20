@@ -57,7 +57,8 @@ var applyDecay = function(value, negativeRate, positiveRate) {
 };
 var refreshBaseEconomicValues = function() {
     var currentYear = Q.year;
-    if (Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }
+    if(currentYear>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);
+    if (currentYear <= 1976 && Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }
     if (Q.historical_gdp_growth[currentYear] !== undefined) { Q.base_growth = Q.historical_gdp_growth[currentYear]; }
     if (Q.historical_unemployment[currentYear] !== undefined) { Q.base_unemployment = Q.historical_unemployment[currentYear]; }
     if (Q.historical_industrial_index[currentYear] !== undefined) { Q.base_industry_index = Q.historical_industrial_index[currentYear]; }
@@ -79,7 +80,8 @@ var runMonthlyEconomicSimulation = function() {
     // Step 2: card effects already stored in modifiers
     // Step 3: structural resistance with asymmetric decay
     Q.inflation_modifier = applyDecay(Q.inflation_modifier, INFLATION_DECAY_NEG_MONTHLY, INFLATION_DECAY_POS_MONTHLY);
-    Q.growth_modifier = applyDecay(Q.growth_modifier, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);
+    var sanctionPenalty=Q.cyprus_economic_sanctions_active ? -.5 : 0;
+    Q.growth_modifier = sanctionPenalty + applyDecay(Q.growth_modifier-sanctionPenalty, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);
     Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);
     // Step 4/5: recompute production indices and headline figures
     recalcProductionAndHeadlineValues();
@@ -90,6 +92,11 @@ if (Q.last_economy_month === null) {
     Q.last_economy_month = Q.month + Q.year * 12;
 }
 
+// Existing saves retain the persistent penalty only for economic sanctions actually imposed.
+if(Q.cyprus_embargo_applied && (Q.cyprus_atilla2_started||Q.cyprus_atilla2_complete) && !["Return to the 1960 Constitutional Order","Güneş Plan","Denktaş Plan"].includes(Q.cyprus_final_result) && (Q.cyprus_poppy_penalty || Q.hashas_done===1 || Q.cyprus_delayed_ceasefire))Q.cyprus_economic_sanctions_active=1;
+// The Arab oil embargo is an external shock, not a later historical inflation target.
+if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}
+if(Q.year>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);
 // 1. update dates
 if (turnAdvanced) {
     Q.time += 1;
@@ -115,6 +122,7 @@ if (turnAdvanced) {
         }
     }
 
+    if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}
     // decrement timers (only when month actually changes for monthly timers)
     if (Q.week == 1) {
         for (var timer of Q.timers) {

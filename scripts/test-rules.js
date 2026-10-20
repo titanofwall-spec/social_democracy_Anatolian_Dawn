@@ -146,7 +146,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         Q.CHP_in_government=1; Q.economic_minister_party='CHP';
         e.goToScene('avcioglu'); pick(e,'avcioglu.economicpolicy'); assert.equal(e.state.sceneId,'economic_policy.economy_menu');
         const before=Q.inflation; pick(e,'economic_policy.short'); pick(e,'economic_policy.pricecontrols');
-        near(Q.inflation,before-3,'price controls'); assert.equal(Q.economic_minister,'Avcıoğlu');
+        near(Q.inflation,before-6,'price controls'); assert.equal(Q.economic_minister,'Avcıoğlu');
     });
     test('Aksoy records an AET application once', (e,Q) => {
         Q.CHP_in_government=1; Q.west_relation=90;

@@ -1,0 +1,10 @@
+(function(root){'use strict';
+const managed=['economic_democracy','religious_affairs_directorate','kurdish_issue'];
+const navigation=id=>/^(root|main|easy_discard|cancel_advisor_action)$/.test(id)||/\.(back|return|back_to_main|decline)$/.test(id);
+function available(e,id,seen=new Set(),compile=e._cardCompile||e._compileChoices){if(seen.has(id))return false;seen.add(id);const s=e.game.scenes[id];if(!s)return false;const children=(s.goTo||[]).filter(t=>t.id&&t.id.startsWith(id.split('.')[0]+'.')&&(!t.predicate||e._runPredicate(t.predicate)));if(children.length)return children.some(t=>available(e,t.id,new Set(seen),compile));if(id.includes('.')&&s.onArrival&&!navigation(id))return true;if(s.options){const choices=compile.call(e,s)||[];return choices.some(c=>c.canChoose&&!navigation(c.id)&&available(e,c.id,new Set(seen),compile));}return !!s.onArrival||!s.goTo;}
+function install(e){if(e._cardCompile)return;e._cardCompile=e._compileChoices;e._compileChoices=function(s){return (this._cardCompile(s)||[]).filter(c=>!this.game.scenes[c.id]?.isCard||available(this,c.id));};const play=e.playCard;e.playCard=function(id){if(managed.includes(id)){const Q=this.state.qualities,hand=this.state.currentHands[this.state.sceneId]||[];Q.card_pending={id,origin:this.state.sceneId,card:hand.find(c=>c.id===id),timer:Q[id+'_timer']||0,actions:Q.month_actions||0};}return play.call(this,id);};}
+function begin(e,id){install(e);const Q=e.state.qualities;if(Q.card_pending?.id!==id)Q.card_pending={id,timer:Q[id+'_timer']||0,actions:Q.month_actions||0};}
+function back(e){const Q=e.state.qualities,p=Q.card_pending;if(!p)return;Q[p.id+'_timer']=p.timer;Q.month_actions=p.actions;if(p.card&&p.origin){const hand=e.state.currentHands[p.origin]||(e.state.currentHands[p.origin]=[]);if(!hand.some(c=>c.id===p.id))hand.push(p.card);}delete Q.card_pending;}
+function commit(Q){delete Q.card_pending;}
+const api={install,available,begin,back,commit};root.AnatolianCardActions=api;if(typeof module!=='undefined')module.exports=api;
+})(globalThis);
