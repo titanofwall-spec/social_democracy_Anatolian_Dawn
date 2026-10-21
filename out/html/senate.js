@@ -6,10 +6,10 @@ const schedule=[{year:1973,month:10,group:'C'},{year:1975,month:10,group:'A'},{y
 const deaths={'İsmet İnönü':19731225,'Cevdet Sunay':19820522,'Fahri Korutürk':19871012,'Faruk Gürler':19750823,'Tekin Arıburun':19930812};
 const appointed='Chosen by the President, they were elected for a six-year term from among individuals who had rendered significant service to society, held a university degree, and had reached the age of 40. At least ten of these members were required to be chosen from among independents. Should a vacancy arise for any reason, the person elected to fill the seat would serve out the remainder of the term of the member they replaced. These senators formed a group within the Senate, electing one of their own as their leader and operating as a collective unit.';
 const mbk='The National Unity Committee is a military junta consisting of thirty-eight members of the Turkish Armed Forces, which seized political power by overthrowing the Democrat Party government in a coup on May 27, 1960, and was subsequently led by General Cemal Gürsel, the Commander of the Turkish Land Forces.';
-function initial(){return {version:1,provinces:Object.fromEntries(D.provinces.map(p=>[p.id,copy(p.initial)])),completed:[],deathEvents:[],president1973:null};}
+function initial(){return {version:2,provinces:Object.fromEntries(D.provinces.map(p=>[p.id,copy(p.initial)])),completed:[],deathEvents:[],president1973:null};}
 function state(Q){return Q.senate_state||initial();}
 function totals(Q){const result={};for(const seats of Object.values(state(Q).provinces))for(const [k,v]of Object.entries(seats))result[k]=(result[k]||0)+v;return result;}
-function ensure(Q){if(Q.senate_state)return Q.senate_state;Q.senate_state=initial();P.ensure(Q);return Q.senate_state;}
+function ensure(Q){if(Q.senate_state){const s=Q.senate_state;if(s.version<2){for(const p of D.provinces){if(!s.completed.some(id=>id.endsWith(':'+p.group)))s.provinces[p.id]=copy(p.initial);}s.version=2;}return s;}Q.senate_state=initial();P.ensure(Q);return Q.senate_state;}
 function recordPresident(Q){const s=ensure(Q);s.president1973=Q.president;}
 function update(Q){const s=ensure(Q);if(!s.president1973&&stamp(Q)>=19730416)s.president1973=Q.president;}
 function former(Q){const now=stamp(Q),winner=state(Q).president1973||Q.president,result=[];

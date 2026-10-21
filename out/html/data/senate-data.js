@@ -7,10 +7,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -19,10 +21,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 3,
       "initial": {
-        "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "AP": 2,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -31,10 +35,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -43,10 +49,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
+        "AP": 2,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -55,10 +63,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -67,10 +77,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
+        "AP": 2,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -79,10 +91,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -91,10 +105,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
-        "chp": 2,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "AP": 1,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -103,10 +119,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
-        "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "AP": 1,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -115,10 +133,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 6,
       "initial": {
-        "chp": 3,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "AP": 4,
+        "chp": 2,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -127,10 +147,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
+        "AP": 2,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -139,10 +161,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -151,10 +175,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 0,
         "chp": 0,
-        "MP": 1,
-        "TIP": 0,
-        "AP": 0
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -163,10 +189,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 5,
       "initial": {
+        "AP": 3,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 4
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -175,10 +203,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
+        "AP": 0,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 1
       }
     },
     {
@@ -187,10 +217,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 4,
       "initial": {
-        "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 4
+        "AP": 3,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -199,10 +231,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 2,
       "initial": {
+        "AP": 1,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -211,10 +245,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -223,10 +259,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 3,
       "initial": {
+        "AP": 1,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 1
       }
     },
     {
@@ -235,10 +273,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -247,10 +287,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 4,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "AP": 1,
+        "chp": 2,
+        "CGP": 0,
+        "DP": 1,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -259,10 +301,12 @@ root.AnatolianSenateData={
       "group": "A",
       "seats": 3,
       "initial": {
-        "chp": 2,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 1,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 1
       }
     },
     {
@@ -271,10 +315,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 4,
       "initial": {
-        "chp": 3,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 2,
+        "chp": 2,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -283,10 +329,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 3,
       "initial": {
+        "AP": 3,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -295,10 +343,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 7,
       "initial": {
-        "chp": 4,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "AP": 3,
+        "chp": 1,
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 2
       }
     },
     {
@@ -307,10 +357,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 1,
       "initial": {
+        "AP": 0,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 1,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -319,10 +371,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 4,
       "initial": {
-        "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 4
+        "AP": 3,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -331,10 +385,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "AP": 1,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -343,10 +399,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 0,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 2
       }
     },
     {
@@ -355,10 +413,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 0,
+        "chp": 2,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -367,10 +427,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
+        "AP": 2,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -379,10 +441,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
+        "AP": 1,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -391,10 +455,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -403,10 +469,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 3,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "AP": 0,
+        "chp": 0,
+        "CGP": 1,
+        "DP": 2,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -415,10 +483,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 2,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "AP": 1,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 1
       }
     },
     {
@@ -427,10 +497,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 2,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -439,10 +511,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 1,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 1,
+        "IND": 0
       }
     },
     {
@@ -451,10 +525,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
+        "AP": 2,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -463,10 +539,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
+        "AP": 0,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 1
       }
     },
     {
@@ -475,10 +553,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 3,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "AP": 2,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 1,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -487,10 +567,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 1,
       "initial": {
+        "AP": 0,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -499,10 +581,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 2,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 1,
+        "chp": 0,
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -511,10 +595,12 @@ root.AnatolianSenateData={
       "group": "B",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -523,10 +609,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 0,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -535,10 +623,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -547,10 +637,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -559,10 +651,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 0,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -571,10 +665,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 4,
       "initial": {
-        "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 4
+        "AP": 3,
+        "chp": 1,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -583,10 +679,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -595,10 +693,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "AP": 1,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -607,10 +707,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 1,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -619,10 +721,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "AP": 0,
+        "chp": 0,
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -631,10 +735,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 3,
       "initial": {
+        "AP": 3,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -643,10 +749,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "AP": 1,
+        "chp": 0,
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -655,10 +763,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
-        "chp": 2,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 0
+        "AP": 1,
+        "chp": 0,
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -667,10 +777,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 10,
       "initial": {
+        "AP": 5,
         "chp": 4,
-        "MP": 0,
-        "TIP": 1,
-        "AP": 5
+        "CGP": 0,
+        "DP": 1,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -679,10 +791,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -691,10 +805,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 3,
       "initial": {
+        "AP": 1,
         "chp": 2,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -703,10 +819,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
+        "AP": 2,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 2
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -715,10 +833,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
-        "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "AP": 0,
+        "chp": 0,
+        "CGP": 1,
+        "DP": 1,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -727,10 +847,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -739,10 +861,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -751,10 +875,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 4,
       "initial": {
+        "AP": 3,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 3
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -763,10 +889,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 1,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -775,10 +903,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
+        "AP": 1,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -787,10 +917,12 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 1,
       "initial": {
+        "AP": 0,
         "chp": 0,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 1,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     },
     {
@@ -799,24 +931,17 @@ root.AnatolianSenateData={
       "group": "C",
       "seats": 2,
       "initial": {
+        "AP": 1,
         "chp": 1,
-        "MP": 0,
-        "TIP": 0,
-        "AP": 1
+        "CGP": 0,
+        "DP": 0,
+        "MHP": 0,
+        "IND": 0
       }
     }
   ],
-  "provisionalTransfers": [
-    "Adana",
-    "Ankara",
-    "İzmir",
-    "İstanbul",
-    "Hatay",
-    "Kocaeli",
-    "Gaziantep",
-    "Zonguldak"
-  ]
+  "startingAllocationSource": "Umut_senato_liste_cCc (2).xlsx / İl-Parti Dağılımı",
+  "startingAllocationVersion": 2
 };
 if(typeof module!=="undefined")module.exports=root.AnatolianSenateData;
 })(globalThis);
-

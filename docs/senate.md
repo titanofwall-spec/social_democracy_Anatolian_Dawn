@@ -6,11 +6,13 @@ The supplied workbook provides all 67 province groups and seat quotas. Each grou
 
 Renewals: October 1973 (C), October 1975 (A), June 1977 (B), October 1979 (C), June 1981 (A). These follow the requested group order; 1981 continues the alternate-history schedule. The game's half-month calendar handles these in the first period of each month. Each completed election stores an immutable map snapshot. The ledger reports the 50 contested seats; the diagram reports the full composition of 150 elected senators. Nonparticipating provinces are gray.
 
-## Provisional starting allocation
+## Starting allocation
 
-The user's provincial list totals AP 109, CHP 39, MP 1 and TİP 1. The clarified national totals are AP 101, CHP 47, MP 1 and TİP 1. With the user's authorization to choose provisionally, one seat transfers from AP to CHP in each of Adana, Ankara, İzmir, İstanbul, Hatay, Kocaeli, Gaziantep and Zonguldak. Province quotas and group totals remain unchanged.
+The corrected `Umut_senato_liste_cCc (2).xlsx`, sheet `İl-Parti Dağılımı`, supplies the starting elected seats for every province. Totals: AP 87, CHP 34, MGP 11, DP 8, MHP 1, Independents 9. MGP maps to the existing GP/CGP party (`CGP`), and Bağımsız maps to Independents (`IND`). The workbook supersedes all previous provisional totals and transfers. Each group retains 50 seats and every provincial quota is unchanged.
 
-All starting assignments are centralized in `out/html/data/senate-data.js`, including the provisional transfer list. Future corrected assignments should replace those initial counts. Saved games retain their existing Senate state; changing initial data alone deliberately does not overwrite an ongoing game.
+All starting assignments are centralized in `out/html/data/senate-data.js`. The historical comparison sheet is not the starting provincial allocation; its broken summary formulas are not used. The imported 67 rows reconcile exactly with the first sheet's totals.
+
+Older Senate saves upgrade only the starting seats of groups that have not yet held an in-game renewal. Completed election results, elected replacements, archived maps, presidential state and death-event acknowledgements remain intact. New games use the corrected allocation immediately.
 
 ## Presidents
 
