@@ -1577,3 +1577,14 @@ body #leader-tooltip-layer{z-index:2147483700!important}
 .permanent-desk-card.unavailable-card{opacity:.55}.municipal-control-map svg{display:block;width:100%;height:auto}.municipal-control-map path{stroke:#000;stroke-width:1}
 
 .dark-mode [style*="#242018"]{color:#fff!important}
+
+/* Scrollable Kurdish organization details, using the standard game panels. */
+.kurdish-organizations-link{font:inherit;font-weight:bold;color:#c2d93f;background:none;border:0;padding:0;text-decoration:underline dotted;cursor:pointer}
+.kurdish-organizations-open{overflow:hidden}
+.kurdish-organizations-backdrop{position:fixed;inset:0;z-index:2147483750;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+.kurdish-organizations-dialog{width:400px;height:500px;max-width:100%;max-height:calc(100dvh - 32px);box-sizing:border-box;display:flex;flex-direction:column;border:2px solid var(--border-color);background:var(--content-bg-color);color:var(--text-color);font:inherit;box-shadow:5px 5px 10px rgba(0,0,0,.2)}
+.kurdish-organizations-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border-color);flex-shrink:0}
+.kurdish-organizations-dialog h2{font:inherit;font-weight:bold;margin:0}
+.kurdish-organizations-close{font:inherit;font-size:1.4em;color:var(--text-color);background:var(--content-bg-color);border:1px solid var(--border-color);cursor:pointer;padding:0 8px}
+.kurdish-organizations-scroll{overflow-y:scroll;min-height:0;padding:16px;line-height:1.45;scrollbar-gutter:stable}
+.kurdish-organizations-scroll>span{margin-bottom:20px!important;padding-bottom:16px;border-bottom:1px solid var(--border-color)}
