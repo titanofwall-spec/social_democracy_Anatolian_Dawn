@@ -28,7 +28,28 @@ await page.evaluate(()=>{for(const k of Object.keys(localStorage))if(k.startsWit
 
 // A legacy localStorage slot remains readable without conversion or deletion.
 await page.evaluate(async()=>{const u=dendryUI;u.save_prefix+='_legacy';u.dendryEngine.state.qualities.resources=123;localStorage.setItem(u.save_prefix+'_0',JSON.stringify(u.dendryEngine.getExportableState()));localStorage.setItem(u.save_prefix+'_timestamp_0','Legacy save');u.dendryEngine.state.qualities.resources=0;await u.loadSlot('0');});assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.resources),123);
-await page.evaluate(()=>dendryUI.showSaveSlots());await page.waitForFunction(()=>document.getElementById('save_button_0').textContent==='Load');const downloadPromise=page.waitForEvent('download');await page.locator('#export_button_0').click();const download=await downloadPromise;await download.saveAs(exportPath);const exported=JSON.parse(fs.readFileSync(exportPath,'utf8'));assert.equal(exported.qualities.resources,123);
-await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.resources=0);await page.locator('#import_save').setInputFiles(exportPath);await page.waitForFunction(()=>dendryUI.dendryEngine.state.qualities.resources===123);
-await page.evaluate(()=>dendryUI.waitForSaves());assert.deepEqual(errors,[]);console.log('PASS Chrome: reproduced '+size+'-character campaign saved in all eight slots, survived reload, manual/quick load, rotating autosaves, legacy saves, export and import.');
+await page.evaluate(()=>dendryUI.showSaveSlots());
+for(let p=0;p<10;p++){
+ assert.equal(await page.locator('#save-page-label').innerText(),'Page '+(p+1)+' / 10');
+ assert.equal(await page.locator('#save-slot-rows .save_button').count(),15);
+ const slot=p*10+9;await page.waitForFunction(slot=>document.getElementById('save_button_'+slot)?.onclick!==null,slot);
+ await page.evaluate(slot=>{dendryUI.dendryEngine.state.qualities.resources=500+slot;},slot);
+ await page.locator('#save_button_'+slot).click();await page.waitForFunction(slot=>document.getElementById('save_button_'+slot).textContent==='Load',slot);
+ if(p<9)await page.getByRole('button',{name:'Next save page',exact:true}).click();
+}
+assert(await page.getByRole('button',{name:'Next save page',exact:true}).isDisabled());
+await page.evaluate(()=>dendryUI.loadSlot('99')); assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.resources),599);
+await page.evaluate(()=>dendryUI.showSaveSlots());
+await page.waitForFunction(()=>document.getElementById('export_button_99')?.onclick!==null&&!document.getElementById('export_button_99').disabled); console.log('Checking last-page export');const lastDownload=page.waitForEvent('download');await page.locator('#export_button_99').click();await (await lastDownload).saveAs(exportPath);assert.equal(JSON.parse(fs.readFileSync(exportPath,'utf8')).qualities.resources,599);
+await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.resources=0);await page.locator('#import_save').setInputFiles(exportPath);await page.waitForFunction(()=>dendryUI.dendryEngine.state.qualities.resources===599);await page.waitForFunction(()=>document.getElementById('save').style.display==='none');
+await page.reload();await page.waitForFunction(()=>window.dendryUI?._durableSavesInstalled);await page.evaluate(()=>{dendryUI.save_prefix+='_legacy';dendryUI.showSaveSlots();});
+for(let p=0;p<9;p++)await page.getByRole('button',{name:'Next save page',exact:true}).click();
+await page.waitForFunction(()=>document.getElementById('save_button_99').textContent==='Load');await page.evaluate(()=>dendryUI.loadSlot('99')); assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.resources),599);
+const timed=await page.evaluate(async()=>{const u=dendryUI,Q=u.dendryEngine.state.qualities;u.save_prefix+='_timed';Object.assign(Q,{year:1974,month:1,week:1});delete Q.save_autosave_calendar;
+ const records=async()=>{const db=await new Promise((resolve,reject)=>{const r=indexedDB.open(AnatolianSaveStorage.databaseName,1);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});try{return await Promise.all(['a2','a3','a4'].map(slot=>new Promise((resolve,reject)=>{const r=db.transaction('saves').objectStore('saves').get(u.save_prefix+'_'+slot);r.onsuccess=()=>resolve(r.result?JSON.parse(r.result.data).qualities.month:null);r.onerror=()=>reject(r.error);})));}finally{db.close();}};
+ const snapshots=[];await u.autosave();snapshots.push(await records());Q.month=2;Q.week=2;await u.autosave();snapshots.push(await records());Q.month=3;Q.week=1;await u.autosave();snapshots.push(await records());Q.month=5;await u.autosave();snapshots.push(await records());await u.saveSlot('99');await u.loadSlot('99');u.dendryEngine.state.qualities.month=7;await u.autosave();snapshots.push(await records());await u.autosave();snapshots.push(await records());return snapshots;});
+assert.deepEqual(timed,[[null,null,null],[null,null,null],[3,null,null],[5,5,null],[7,5,7],[7,5,7]]);
+await page.evaluate(()=>{const Q=dendryUI.dendryEngine.state.qualities;document.getElementById('content').innerHTML=AnatolianSenate.html(Q)+AnatolianKurdishOrganizations.organizationHtml(Q);});
+for(const label of ['Appointed','MBK','Ex Presidents','KG / Political Support']){const el=page.locator('#content .wide_tooltip-wrap').filter({hasText:label}).first();assert.equal(await el.locator('.wide_tooltip-tip').count(),1);await el.hover();assert.equal(await page.locator('#leader-tooltip-layer .wide_tooltip-tip').count(),1);}
+await page.evaluate(()=>dendryUI.waitForSaves());assert.deepEqual(errors,[]);console.log('PASS Chrome: large campaign, ten save pages, slot 100 reload/export/import, 2/4/6-month autosaves, legacy and failure recovery, and four portrait-style tooltips.');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));if(fs.existsSync(exportPath))fs.unlinkSync(exportPath);}})().catch(e=>{console.error(e);process.exitCode=1;});

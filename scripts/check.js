@@ -29,7 +29,7 @@ function collect(game) {
         else if (value && typeof value === 'object') Object.entries(value).forEach(([key, child]) => inspect(child, location + '.' + key));
     }
     inspect(game.scenes, 'scenes');
-    ['game.js', 'rules.js', 'kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'senate.js', 'card-actions.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'data.js'].forEach(file => stateKeys(fs.readFileSync(path.join(root, 'out/html', file), 'utf8')).forEach(key => {
+    ['save-storage.js', 'game.js', 'rules.js', 'kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'senate.js', 'card-actions.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'data.js'].forEach(file => stateKeys(fs.readFileSync(path.join(root, 'out/html', file), 'utf8')).forEach(key => {
         if (!uses.has(key)) uses.set(key, new Set());
         uses.get(key).add(file);
     }));
