@@ -1601,17 +1601,17 @@ body #leader-tooltip-layer{z-index:2147483700!important}
 .coalition-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px;border-bottom:1px solid var(--border-color);padding:8px 0}
 .coalition-summary p{margin:8px 0}
 .coalition-constituencies{position:relative;height:680px;margin:18px auto 0;max-width:1160px}
-.coalition-emblem{position:absolute;left:50%;top:35px;width:300px;transform:translateX(-50%);text-align:center}
-.coalition-emblem img{width:100%;height:200px;object-fit:contain}
+.coalition-emblem{position:absolute;left:50%;top:15px;width:520px;transform:translateX(-50%);text-align:center}
+.coalition-emblem img{width:100%;height:345px;object-fit:contain}
 .coalition-emblem p{font-weight:bold;margin:12px 0}
 .coalition-demographic{position:absolute;width:228px;box-sizing:border-box;border:1px solid var(--border-color);padding:12px 14px;background:var(--content-bg-color);transform:translateX(-50%)}
 .coalition-demographic h2{font:inherit;font-size:1.1em;font-weight:bold;margin:0 0 8px;text-align:center}
 .coalition-demographic dl{margin:0}.coalition-demographic dl div{display:flex;justify-content:space-between;gap:8px}.coalition-demographic dd{margin:0;font-variant-numeric:tabular-nums}.coalition-demographic p{font-size:.85em;margin:8px 0 0}
 .coalition-position-0{left:11%;top:0}.coalition-position-1{left:89%;top:0}
-.coalition-position-2{left:13%;top:220px}.coalition-position-3{left:87%;top:220px}
-.coalition-position-4{left:27%;top:430px}.coalition-position-5{left:50%;top:460px}.coalition-position-6{left:73%;top:430px}
+.coalition-position-2{left:11%;top:220px}.coalition-position-3{left:89%;top:220px}
+.coalition-position-4{left:27%;top:440px}.coalition-position-5{left:50%;top:440px}.coalition-position-6{left:73%;top:440px}
 .coalition-explanation{border-top:1px solid var(--border-color);padding-top:16px}
 .coalition-details h2{font-size:1.2em}.coalition-details p{margin:10px 0}
-@media(max-width:1050px){.coalition-demographic{width:200px;padding:10px}.coalition-emblem{width:250px}.coalition-position-0{left:12%}.coalition-position-1{left:88%}.coalition-position-4{left:23%}.coalition-position-6{left:77%}}
+@media(max-width:1050px){.coalition-demographic{width:200px;padding:10px}.coalition-emblem{width:360px}.coalition-emblem img{height:250px}.coalition-position-0,.coalition-position-2{left:12%}.coalition-position-1,.coalition-position-3{left:88%}.coalition-position-4{left:23%}.coalition-position-6{left:77%}}
 @media(max-width:760px){.coalition-backdrop{padding:10px}.coalition-window{max-height:calc(100dvh - 20px)}.coalition-body{padding:0 14px 18px}.coalition-heading{padding:12px 14px}.coalition-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.coalition-constituencies{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}.coalition-emblem{position:static;grid-column:1/-1;transform:none;width:220px;justify-self:center}.coalition-emblem img{height:145px}.coalition-demographic{position:static;transform:none;width:auto}.coalition-position-6{grid-column:1/-1}}
 @media(max-width:400px){.coalition-demographic{grid-column:1/-1}}
