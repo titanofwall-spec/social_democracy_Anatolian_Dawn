@@ -9429,7 +9429,7 @@
             "content": [
               {
                 "type": "magic",
-                "content": "<svg class=\"senate-election-parliament\" style=\"width:500px;height:250px\" aria-label=\"Elected Senate seat distribution\"></svg><div class=\"election-results-map\" data-election-kind=\"senate\"></div>"
+                "content": "<svg class=\"senate-election-parliament\" style=\"width:100%;height:auto\" aria-label=\"Republican Senate composition\"></svg><div class=\"election-results-map\" data-election-kind=\"senate\"></div>"
               },
               ""
             ]
