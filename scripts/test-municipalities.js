@@ -1,0 +1,12 @@
+const assert=require('assert');require('../out/html/rules.js');const M=require('../out/html/municipalities.js');
+const Q={year:1974,month:1,week:1,resources:100,municipalities_controlled:20,total_municipalities:67};
+const advance=t=>{const n=M.now(Q)+t;Q.year=Math.floor(n/24);Q.month=Math.floor(n%24/2)+1;Q.week=n%2+1;};
+assert.equal(M.levels(Q).Sanitation,'Failing to Keep Up');assert.equal(M.geceLevels(Q).Infrastructure,'Nonexistent');assert(!Q.municipal_development);assert(M.html(Q).includes('Municipalities Controlled: 20/67'));assert(!Q.municipal_development,'Rendering must not mutate saves');
+for(const [id,d]of Object.entries(M.definitions)){
+ if(d.parent)assert.equal(M.count(Q,d.parent),d.required);
+ for(let i=0;i<d.max;i++){assert.equal(M.reason(Q,id),'',id);assert(M.apply(Q,id));assert.equal(M.count(Q,id),i+1);if(i<d.max-1){assert(M.reason(Q,id));advance(d.cooldown-1);assert(M.reason(Q,id));advance(1);}}
+ assert(M.reason(Q,id));assert(!M.apply(Q,id));
+}
+assert.deepEqual(Object.values(M.levels(Q)),['Near 1970s Standards','Widespread Paved Roads','Keeping Pace with Urban Growth','Significant Cultural and Economic Opportunities']);
+assert.deepEqual(Object.values(M.geceLevels(Q)),['Significantly Slowed','Widespread Infrastructure','Evolving into Apartment Districts','Near Urban Standards','Local Factories Forming']);
+const restored=JSON.parse(JSON.stringify(Q));assert.deepEqual(M.levels(restored),M.levels(Q));assert(M.progress(restored).includes('8/8'));console.log('PASS municipal development, endpoints, exact half-month cooldown boundaries, old-save defaults and save roundtrip');

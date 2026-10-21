@@ -9,75 +9,144 @@ go-to: municipalities_menu
 
 = Municipalities and local governance
 
-In Turkey, the territories of the republic are divided among small municipalities which are firmly connected with the central government. Still, the municipalities are an integral part of Turkish politics and are useful for reaching out to demographics we normally aren't performing well with through an example of our governance and services.
+Our municipalities provide vital services and a practical opportunity to improve everyday life across the Republic.
 
 @municipalities_menu
 on-display: {! if(typeof renderMunicipalControlMap==='function')renderMunicipalControlMap(); !}
 
 {!<div class="municipal-control-map" aria-label="CHP control in the last municipal election"></div>!}
 
+- @istanbul: Istanbul Municipality
+- @east: Eastern Municipalities
+- @governance: Municipalities Across the Republic
+- @gecekondu: Gecekondu Issue
 - @back_to_main: Return to main menu.
-- @governance: Municipalities are responsible for many local tasks in which we can improve our performance and show to the people how a <span style="color: #E3000F;">**CHP**</span> government would look like.
-- @politics: The municipalities not only allow us to offer a vision of our administration but also to perhaps improve our political standing through the usage of local resources.
-- @no: We either won't or can't focus on the municipalities at this time.
+- @no: We will not take an action at the moment.
+
+@istanbul
+
+- @municipalities_menu: Return to municipal planning.
+
+@east
+
+- @municipalities_menu: Return to municipal planning.
 
 @governance
-choose-if: party_dissent < 15
-unavailable-subtitle: The party dissent is too high! We are unable to influence our local governments to improve our efficiency.
 
-- @waterlines: Urban municipalities often struggle with sewage management and providing clean water.
-- @publictransport: Public transport is a crucial part of urban life and most cities are lacking.
-- @libraries: City libraries can be built to support education and increase literature consumption.
-- @halkekmek: Municipal bakeries, organized under the programme "Halk Ekmek" can produce affordable bread to combat inflation and support working families.
+[+ {! return AnatolianMunicipalities.html(Q); !} +]
+
+- @waterlines: Improve Water and Sewage Infrastructure
+- @publictransport: Expand Public Transportation
+- @libraries: Establish City Libraries
+- @halkekmek: Establish Halk Ekmek Bakeries
+- @roads: Modernize Urban Roads
+- @municipalities_menu: Return to municipal planning.
+
+@gecekondu
+
+Houses illegally constructed by rural-to-urban migrants unable to afford formal housing, often erected rapidly enough to avoid immediate demolition and therefore called *gecekondu*, “placed at night”, have grown into vast informal districts around our expanding cities. These neighborhoods often lack proper roads, sewage, clean water, public transportation and the other services expected of modern urban life. Returning their inhabitants to the countryside is neither realistic nor desirable. Our task must instead be to slow uncontrolled migration where possible while gradually transforming these settlements into proper parts of our cities and providing their inhabitants with an honorable standard of living.
+
+[+ {! return AnatolianMunicipalities.html(Q); !} +]
+
+- @migration: Place Restrictions and Difficulties on Rural-to-Urban Migration
+- @infrastructure: Start Laying Out Infrastructure in Gecekondu Districts
+- @connect: Connect Gecekondu Districts into Proper Urban Areas
+- @regularization: Balance Legalization and Demolition of Gecekondu Property
+- @planning: Begin Large-Scale Urban Planning
+- @transport: Invest in Public Transportation and Public Services in Gecekondu Districts
+- @industry: Develop Local Industry and Economic Activity in Gecekondu Districts
 - @municipalities_menu: Return to municipal planning.
 
 @waterlines
-subtitle: -1 resources
-choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_chp += 1; petty_bourgeoisie_chp += 1; state_employees_chp += 1; {! AnatolianCardActions.commit(Q); !}
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"waterlines") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"waterlines"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"waterlines"); !}
 
-We have improved sewage management in our municipalities.
+Urban municipalities frequently struggle to provide sufficient clean water and sewage infrastructure for their growing populations.
 
 @publictransport
-subtitle: -1 resources
-choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_chp += 3; state_employees_chp += 1; {! AnatolianCardActions.commit(Q); !}
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"publictransport") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"publictransport"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"publictransport"); !}
 
-We have bought additional buses and started planning the construction of trams in city centers.
+Municipal buses, routes, depots and other forms of public transportation remain inadequate in many cities.
 
 @libraries
-subtitle: -1 resources
-choose-if: resources >= 1
-unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_chp += 2; state_employees_chp += 1; petty_bourgeoisie_chp += 1; {! AnatolianCardActions.commit(Q); !}
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"libraries") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"libraries"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"libraries"); !}
 
-The libraries we are building have already started attracting lots of students.
+Build municipal libraries to support education, literacy and the consumption of literature.
 
 @halkekmek
-subtitle: -2 resources
-choose-if: resources >= 2
-unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 2; workers_chp += 5; petty_bourgeoisie_chp += 3; state_employees_chp += 2; AP_relation -= 5; {! AnatolianCardActions.commit(Q); !}
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"halkekmek") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"halkekmek"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"halkekmek"); !}
 
-Many families are thankful to us for providing affordable bread. However, the political Right accuses us of "disrupting" the economy.
+Establish municipally operated bakeries under the Halk Ekmek programme to produce affordable bread, ease the effects of inflation and support working families.
 
-@politics
-choose-if: party_dissent < 15
-unavailable-subtitle: The party dissent is too high! We are unable to influence our local governments.
+@roads
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"roads") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"roads"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"roads"); !}
 
-Our municipal offices can host community events and strengthen our alliances, but we first need a clear plan on how to spend the limited funds and volunteers available.
+As the Republic has, for better or worse, shifted heavily toward road and automobile transport, many urban areas now urgently require modern paved roads. Invest in paving and improving municipal road networks.
 
-- @municipalities_menu: Return to municipal planning.
+@migration
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"migration") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"migration"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"migration"); !}
+
+Slow continuing migration and the growth of new informal settlements while improving conditions for their existing inhabitants.
+
+@infrastructure
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"infrastructure") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"infrastructure"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"infrastructure"); !}
+
+Extend water, sewage, electricity and roads into informal districts.
+
+@connect
+view-if: {! return AnatolianMunicipalities.count(Q,"infrastructure") >= 4; !}
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"connect") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"connect"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"connect"); !}
+
+Connect the completed infrastructure networks to the surrounding city, integrating these neighborhoods into its services.
+
+@regularization
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"regularization") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"regularization"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"regularization"); !}
+
+Legalize viable homes and clear unsafe construction that cannot be integrated, preparing neighborhoods for gradual redevelopment.
+
+@planning
+view-if: {! return AnatolianMunicipalities.count(Q,"regularization") >= 8; !}
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"planning") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"planning"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"planning"); !}
+
+Transform regularized districts through planned redevelopment into safer apartment neighborhoods. Their residents remain part of the city.
+
+@transport
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"transport") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"transport"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"transport"); !}
+
+Extend reliable transport and municipal services to connect residents with the wider city.
+
+@industry
+choose-if: {! return !AnatolianMunicipalities.reason(Q,"industry") !}
+unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"industry"); !} +]
+on-arrival: {! AnatolianMunicipalities.apply(Q,"industry"); !}
+
+Support small businesses, workshops and local industry so these neighborhoods can develop their own economic life.
 
 @no
 on-arrival: {! AnatolianCardActions.commit(Q); !}
-subtitle: Hold off on municipal initiatives.
-
-For now we will not expand our municipal efforts. We'll return to these proposals once the party is ready to commit resources.
+go-to: main.main_easy if difficulty < 0; main if difficulty >= 0
 
 @back_to_main
 on-arrival: {! AnatolianCardActions.back(this); !}
 go-to: main.main_easy if difficulty < 0; main if difficulty >= 0
-

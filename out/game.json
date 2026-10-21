@@ -10787,27 +10787,28 @@
       ],
       "options": [
         {
+          "id": "@municipalities.istanbul",
+          "title": "Istanbul Municipality"
+        },
+        {
+          "id": "@municipalities.east",
+          "title": "Eastern Municipalities"
+        },
+        {
+          "id": "@municipalities.governance",
+          "title": "Municipalities Across the Republic"
+        },
+        {
+          "id": "@municipalities.gecekondu",
+          "title": "Gecekondu Issue"
+        },
+        {
           "id": "@municipalities.back_to_main",
           "title": "Return to main menu."
         },
         {
-          "id": "@municipalities.governance",
-          "title": [
-            "Municipalities are responsible for many local tasks in which we can improve our performance and show to the people how a <span style=\"color: #E3000F;\">",
-            {
-              "type": "emphasis-2",
-              "content": "CHP"
-            },
-            "</span> government would look like."
-          ]
-        },
-        {
-          "id": "@municipalities.politics",
-          "title": "The municipalities not only allow us to offer a vision of our administration but also to perhaps improve our political standing through the usage of local resources."
-        },
-        {
           "id": "@municipalities.no",
-          "title": "We either won't or can't focus on the municipalities at this time."
+          "title": "We will not take an action at the moment."
         }
       ],
       "content": {
@@ -14028,47 +14029,11 @@
             ]
           },
           {
-            "type": "heading",
-            "content": "Municipality Control"
-          },
-          {
             "type": "paragraph",
             "content": [
-              "Municipality Control: ",
               {
                 "type": "insert",
                 "insert": 35
-              },
-              "/",
-              {
-                "type": "insert",
-                "insert": 36
-              },
-              " - ",
-              {
-                "type": "conditional",
-                "content": "Terrible ",
-                "predicate": 37
-              },
-              {
-                "type": "conditional",
-                "content": "Poor ",
-                "predicate": 38
-              },
-              {
-                "type": "conditional",
-                "content": "Divided ",
-                "predicate": 39
-              },
-              {
-                "type": "conditional",
-                "content": "Satisfactory ",
-                "predicate": 40
-              },
-              {
-                "type": "conditional",
-                "content": "Overwhelming ",
-                "predicate": 41
               },
               ""
             ]
@@ -14087,12 +14052,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 42
+                "insert": 36
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 43
+                "insert": 37
               },
               ""
             ]
@@ -14111,16 +14076,16 @@
                   " strength: ",
                   {
                     "type": "insert",
-                    "insert": 45
+                    "insert": 39
                   },
                   ", dissent: ",
                   {
                     "type": "insert",
-                    "insert": 46
+                    "insert": 40
                   },
                   " "
                 ],
-                "predicate": 44
+                "predicate": 38
               },
               ""
             ]
@@ -14135,12 +14100,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 47
+                "insert": 41
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 48
+                "insert": 42
               },
               ""
             ]
@@ -14155,12 +14120,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 49
+                "insert": 43
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 50
+                "insert": 44
               },
               ""
             ]
@@ -14178,7 +14143,7 @@
                   },
                   " "
                 ],
-                "predicate": 51
+                "predicate": 45
               },
               ""
             ]
@@ -14193,12 +14158,12 @@
               " strength: ",
               {
                 "type": "insert",
-                "insert": 52
+                "insert": 46
               },
               ", dissent: ",
               {
                 "type": "insert",
-                "insert": 53
+                "insert": 47
               },
               ""
             ]
@@ -14216,7 +14181,7 @@
                   },
                   " "
                 ],
-                "predicate": 54
+                "predicate": 48
               },
               ""
             ]
@@ -14234,7 +14199,7 @@
                   },
                   " "
                 ],
-                "predicate": 55
+                "predicate": 49
               },
               ""
             ]
@@ -14461,43 +14426,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['municipalities_controlled'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['total_municipalities'] || 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['municipality_control_level'] || 0) == 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['municipality_control_level'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['municipality_control_level'] || 0) == 2);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['municipality_control_level'] || 0) == 3);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['municipality_control_level'] || 0) == 4);"
+              "$code": "return AnatolianMunicipalities.html(Q);"
             }
           },
           {
@@ -19639,29 +19568,9 @@
         "type": "paragraph"
       }
     },
-    "municipalities.governance": {
-      "id": "municipalities.governance",
-      "chooseIf": {
-        "$code": "return ((Q['party_dissent'] || 0) < 15);"
-      },
-      "unavailableSubtitle": "The party dissent is too high! We are unable to influence our local governments to improve our efficiency.",
+    "municipalities.istanbul": {
+      "id": "municipalities.istanbul",
       "options": [
-        {
-          "id": "@municipalities.waterlines",
-          "title": "Urban municipalities often struggle with sewage management and providing clean water."
-        },
-        {
-          "id": "@municipalities.publictransport",
-          "title": "Public transport is a crucial part of urban life and most cities are lacking."
-        },
-        {
-          "id": "@municipalities.libraries",
-          "title": "City libraries can be built to support education and increase literature consumption."
-        },
-        {
-          "id": "@municipalities.halkekmek",
-          "title": "Municipal bakeries, organized under the programme \"Halk Ekmek\" can produce affordable bread to combat inflation and support working families."
-        },
         {
           "id": "@municipalities.municipalities_menu",
           "title": "Return to municipal planning."
@@ -23773,23 +23682,16 @@
         "type": "paragraph"
       }
     },
-    "municipalities.waterlines": {
-      "id": "municipalities.waterlines",
-      "subtitle": "-1 resources",
-      "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 1);"
-      },
-      "unavailableSubtitle": "Not enough resources.",
-      "onArrival": [
+    "municipalities.east": {
+      "id": "municipalities.east",
+      "options": [
         {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 1;"
-        },
-        {
-          "$code": "AnatolianCardActions.commit(Q);"
+          "id": "@municipalities.municipalities_menu",
+          "title": "Return to municipal planning."
         }
       ],
       "content": {
-        "content": "We have improved sewage management in our municipalities.",
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -26674,24 +26576,53 @@
         "type": "paragraph"
       }
     },
-    "municipalities.publictransport": {
-      "id": "municipalities.publictransport",
-      "subtitle": "-1 resources",
-      "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 1);"
-      },
-      "unavailableSubtitle": "Not enough resources.",
-      "onArrival": [
+    "municipalities.governance": {
+      "id": "municipalities.governance",
+      "options": [
         {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 1;"
+          "id": "@municipalities.waterlines",
+          "title": "Improve Water and Sewage Infrastructure"
         },
         {
-          "$code": "AnatolianCardActions.commit(Q);"
+          "id": "@municipalities.publictransport",
+          "title": "Expand Public Transportation"
+        },
+        {
+          "id": "@municipalities.libraries",
+          "title": "Establish City Libraries"
+        },
+        {
+          "id": "@municipalities.halkekmek",
+          "title": "Establish Halk Ekmek Bakeries"
+        },
+        {
+          "id": "@municipalities.roads",
+          "title": "Modernize Urban Roads"
+        },
+        {
+          "id": "@municipalities.municipalities_menu",
+          "title": "Return to municipal planning."
         }
       ],
       "content": {
-        "content": "We have bought additional buses and started planning the construction of trams in city centers.",
-        "type": "paragraph"
+        "content": {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ""
+          ]
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.html(Q);"
+            }
+          }
+        ]
       }
     },
     "police.investigate_corruption": {
@@ -28657,24 +28588,74 @@
         }
       ]
     },
-    "municipalities.libraries": {
-      "id": "municipalities.libraries",
-      "subtitle": "-1 resources",
-      "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 1);"
-      },
-      "unavailableSubtitle": "Not enough resources.",
-      "onArrival": [
+    "municipalities.gecekondu": {
+      "id": "municipalities.gecekondu",
+      "options": [
         {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 1;"
+          "id": "@municipalities.migration",
+          "title": "Place Restrictions and Difficulties on Rural-to-Urban Migration"
         },
         {
-          "$code": "AnatolianCardActions.commit(Q);"
+          "id": "@municipalities.infrastructure",
+          "title": "Start Laying Out Infrastructure in Gecekondu Districts"
+        },
+        {
+          "id": "@municipalities.connect",
+          "title": "Connect Gecekondu Districts into Proper Urban Areas"
+        },
+        {
+          "id": "@municipalities.regularization",
+          "title": "Balance Legalization and Demolition of Gecekondu Property"
+        },
+        {
+          "id": "@municipalities.planning",
+          "title": "Begin Large-Scale Urban Planning"
+        },
+        {
+          "id": "@municipalities.transport",
+          "title": "Invest in Public Transportation and Public Services in Gecekondu Districts"
+        },
+        {
+          "id": "@municipalities.industry",
+          "title": "Develop Local Industry and Economic Activity in Gecekondu Districts"
+        },
+        {
+          "id": "@municipalities.municipalities_menu",
+          "title": "Return to municipal planning."
         }
       ],
       "content": {
-        "content": "The libraries we are building have already started attracting lots of students.",
-        "type": "paragraph"
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              "Houses illegally constructed by rural-to-urban migrants unable to afford formal housing, often erected rapidly enough to avoid immediate demolition and therefore called ",
+              {
+                "type": "emphasis-1",
+                "content": "gecekondu"
+              },
+              ", “placed at night”, have grown into vast informal districts around our expanding cities. These neighborhoods often lack proper roads, sewage, clean water, public transportation and the other services expected of modern urban life. Returning their inhabitants to the countryside is neither realistic nor desirable. Our task must instead be to slow uncontrolled migration where possible while gradually transforming these settlements into proper parts of our cities and providing their inhabitants with an honorable standard of living."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.html(Q);"
+            }
+          }
+        ]
       }
     },
     "police.investigate_corruption_success": {
@@ -31569,23 +31550,32 @@
         "type": "paragraph"
       }
     },
-    "municipalities.halkekmek": {
-      "id": "municipalities.halkekmek",
-      "subtitle": "-2 resources",
+    "municipalities.waterlines": {
+      "id": "municipalities.waterlines",
       "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 2);"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"waterlines\")"
       },
-      "unavailableSubtitle": "Not enough resources.",
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"waterlines\");"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 5;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;"
-        },
-        {
-          "$code": "AnatolianCardActions.commit(Q);"
+          "$code": "AnatolianMunicipalities.apply(Q,\"waterlines\");"
         }
       ],
       "content": {
-        "content": "Many families are thankful to us for providing affordable bread. However, the political Right accuses us of \"disrupting\" the economy.",
+        "content": "Urban municipalities frequently struggle to provide sufficient clean water and sewage infrastructure for their growing populations.",
         "type": "paragraph"
       }
     },
@@ -33029,20 +33019,32 @@
         "type": "paragraph"
       }
     },
-    "municipalities.politics": {
-      "id": "municipalities.politics",
+    "municipalities.publictransport": {
+      "id": "municipalities.publictransport",
       "chooseIf": {
-        "$code": "return ((Q['party_dissent'] || 0) < 15);"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"publictransport\")"
       },
-      "unavailableSubtitle": "The party dissent is too high! We are unable to influence our local governments.",
-      "options": [
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"publictransport\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
         {
-          "id": "@municipalities.municipalities_menu",
-          "title": "Return to municipal planning."
+          "$code": "AnatolianMunicipalities.apply(Q,\"publictransport\");"
         }
       ],
       "content": {
-        "content": "Our municipal offices can host community events and strengthen our alliances, but we first need a clear plan on how to spend the limited funds and volunteers available.",
+        "content": "Municipal buses, routes, depots and other forms of public transportation remain inadequate in many cities.",
         "type": "paragraph"
       }
     },
@@ -36208,16 +36210,32 @@
         "type": "paragraph"
       }
     },
-    "municipalities.no": {
-      "id": "municipalities.no",
+    "municipalities.libraries": {
+      "id": "municipalities.libraries",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"libraries\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"libraries\");"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commit(Q);"
+          "$code": "AnatolianMunicipalities.apply(Q,\"libraries\");"
         }
       ],
-      "subtitle": "Hold off on municipal initiatives.",
       "content": {
-        "content": "For now we will not expand our municipal efforts. We'll return to these proposals once the party is ready to commit resources.",
+        "content": "Build municipal libraries to support education, literacy and the consumption of literature.",
         "type": "paragraph"
       }
     },
@@ -37319,63 +37337,34 @@
         "type": "paragraph"
       }
     },
-    "municipalities.back_to_main": {
-      "id": "municipalities.back_to_main",
+    "municipalities.halkekmek": {
+      "id": "municipalities.halkekmek",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"halkekmek\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"halkekmek\");"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.back(this);"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "main.main_easy",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) < 0);"
-          }
-        },
-        {
-          "id": "main",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) >= 0);"
-          }
+          "$code": "AnatolianMunicipalities.apply(Q,\"halkekmek\");"
         }
       ],
       "content": {
-        "content": "",
+        "content": "Establish municipally operated bakeries under the Halk Ekmek programme to produce affordable bread, ease the effects of inflation and support working families.",
         "type": "paragraph"
       }
-    },
-    "municipalities": {
-      "id": "municipalities",
-      "type": "scene",
-      "title": "Municipalities",
-      "newPage": true,
-      "isPinnedCard": true,
-      "chooseIf": {
-        "$code": "return (((Q['municipality_control_level'] || 0) != 0) && ((Q['municipality_timer'] || 0) <= 0));"
-      },
-      "unavailableSubtitle": "Municipal action is not currently available.",
-      "onArrival": [
-        {
-          "$code": "AnatolianCardActions.begin(this,\"municipalities\");Q.month_actions+=1;Q.municipality_timer=6;"
-        }
-      ],
-      "cardImage": "img/belediye.jpg",
-      "goTo": [
-        {
-          "id": "municipalities.municipalities_menu"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Municipalities and local governance"
-        },
-        {
-          "type": "paragraph",
-          "content": "In Turkey, the territories of the republic are divided among small municipalities which are firmly connected with the central government. Still, the municipalities are an integral part of Turkish politics and are useful for reaching out to demographics we normally aren't performing well with through an example of our governance and services."
-        }
-      ]
     },
     "police.ban_raiders": {
       "id": "police.ban_raiders",
@@ -39097,6 +39086,35 @@
         "type": "paragraph"
       }
     },
+    "municipalities.roads": {
+      "id": "municipalities.roads",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"roads\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"roads\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"roads\");"
+        }
+      ],
+      "content": {
+        "content": "As the Republic has, for better or worse, shifted heavily toward road and automobile transport, many urban areas now urgently require modern paved roads. Invest in paving and improving municipal road networks.",
+        "type": "paragraph"
+      }
+    },
     "police.investigate_tit": {
       "id": "police.investigate_tit",
       "viewIf": {
@@ -39713,6 +39731,35 @@
       "content": {
         "type": "heading",
         "content": "National Defense Ministry"
+      }
+    },
+    "municipalities.migration": {
+      "id": "municipalities.migration",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"migration\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"migration\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"migration\");"
+        }
+      ],
+      "content": {
+        "content": "Slow continuing migration and the growth of new informal settlements while improving conditions for their existing inhabitants.",
+        "type": "paragraph"
       }
     },
     "police.pursue_grey": {
@@ -40758,6 +40805,35 @@
         "type": "paragraph"
       }
     },
+    "municipalities.infrastructure": {
+      "id": "municipalities.infrastructure",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"infrastructure\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"infrastructure\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"infrastructure\");"
+        }
+      ],
+      "content": {
+        "content": "Extend water, sewage, electricity and roads into informal districts.",
+        "type": "paragraph"
+      }
+    },
     "police.pursue_raiders": {
       "id": "police.pursue_raiders",
       "viewIf": {
@@ -41464,6 +41540,38 @@
         }
       ]
     },
+    "municipalities.connect": {
+      "id": "municipalities.connect",
+      "viewIf": {
+        "$code": "return AnatolianMunicipalities.count(Q,\"infrastructure\") >= 4;"
+      },
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"connect\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"connect\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"connect\");"
+        }
+      ],
+      "content": {
+        "content": "Connect the completed infrastructure networks to the surrounding city, integrating these neighborhoods into its services.",
+        "type": "paragraph"
+      }
+    },
     "police.pursue_tit": {
       "id": "police.pursue_tit",
       "viewIf": {
@@ -42145,6 +42253,35 @@
         "type": "paragraph"
       }
     },
+    "municipalities.regularization": {
+      "id": "municipalities.regularization",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"regularization\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"regularization\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"regularization\");"
+        }
+      ],
+      "content": {
+        "content": "Legalize viable homes and clear unsafe construction that cannot be integrated, preparing neighborhoods for gradual redevelopment.",
+        "type": "paragraph"
+      }
+    },
     "police.underground": {
       "id": "police.underground",
       "viewIf": {
@@ -42796,6 +42933,38 @@
         "type": "paragraph"
       },
       "countVisitsMax": 1
+    },
+    "municipalities.planning": {
+      "id": "municipalities.planning",
+      "viewIf": {
+        "$code": "return AnatolianMunicipalities.count(Q,\"regularization\") >= 8;"
+      },
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"planning\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"planning\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"planning\");"
+        }
+      ],
+      "content": {
+        "content": "Transform regularized districts through planned redevelopment into safer apartment neighborhoods. Their residents remain part of the city.",
+        "type": "paragraph"
+      }
     },
     "police.clamp_ohp": {
       "id": "police.clamp_ohp",
@@ -43509,6 +43678,35 @@
         "type": "paragraph"
       }
     },
+    "municipalities.transport": {
+      "id": "municipalities.transport",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"transport\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"transport\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"transport\");"
+        }
+      ],
+      "content": {
+        "content": "Extend reliable transport and municipal services to connect residents with the wider city.",
+        "type": "paragraph"
+      }
+    },
     "police.ohal": {
       "id": "police.ohal",
       "chooseIf": {
@@ -44090,6 +44288,35 @@
         "type": "paragraph"
       }
     },
+    "municipalities.industry": {
+      "id": "municipalities.industry",
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"industry\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"industry\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"industry\");"
+        }
+      ],
+      "content": {
+        "content": "Support small businesses, workshops and local industry so these neighborhoods can develop their own economic life.",
+        "type": "paragraph"
+      }
+    },
     "police.easterncrime": {
       "id": "police.easterncrime",
       "chooseIf": {
@@ -44461,6 +44688,32 @@
         "type": "paragraph"
       }
     },
+    "municipalities.no": {
+      "id": "municipalities.no",
+      "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commit(Q);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "main.main_easy",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) < 0);"
+          }
+        },
+        {
+          "id": "main",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) >= 0);"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "shuffle_leadership.remove_gogus": {
       "id": "shuffle_leadership.remove_gogus",
       "title": "Remove Göğüş",
@@ -44668,6 +44921,64 @@
         "content": "Oil loans allow us to build resistance for any future turbulence in global petrol prices. The payments however will have a negative impact on our economic growth.",
         "type": "paragraph"
       }
+    },
+    "municipalities.back_to_main": {
+      "id": "municipalities.back_to_main",
+      "onArrival": [
+        {
+          "$code": "AnatolianCardActions.back(this);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "main.main_easy",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) < 0);"
+          }
+        },
+        {
+          "id": "main",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) >= 0);"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "municipalities": {
+      "id": "municipalities",
+      "type": "scene",
+      "title": "Municipalities",
+      "newPage": true,
+      "isPinnedCard": true,
+      "chooseIf": {
+        "$code": "return (((Q['municipality_control_level'] || 0) != 0) && ((Q['municipality_timer'] || 0) <= 0));"
+      },
+      "unavailableSubtitle": "Municipal action is not currently available.",
+      "onArrival": [
+        {
+          "$code": "AnatolianCardActions.begin(this,\"municipalities\");Q.month_actions+=1;Q.municipality_timer=6;"
+        }
+      ],
+      "cardImage": "img/belediye.jpg",
+      "goTo": [
+        {
+          "id": "municipalities.municipalities_menu"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Municipalities and local governance"
+        },
+        {
+          "type": "paragraph",
+          "content": "Our municipalities provide vital services and a practical opportunity to improve everyday life across the Republic."
+        }
+      ]
     },
     "shuffle_leadership.remove_paksut": {
       "id": "shuffle_leadership.remove_paksut",

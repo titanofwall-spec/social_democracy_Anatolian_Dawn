@@ -24,7 +24,7 @@ compiler.compileGame(files,(err,game)=>{
   const indexPath=path.join(root,'out/html/index.html');
   const html=fs.readFileSync(indexPath,'utf8').replace(/src="core\.js(?:\?[^"]*)?"/g,'src="core.js?v='+coreVersion+'"');
   let versioned=html;
-  for(const name of ['save-storage.js','game.js','rules.js', 'kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'card-actions.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','data/senate-data.js','senate.js','province-map.js']){
+  for(const name of ['save-storage.js','game.js','rules.js', 'kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'card-actions.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','data/senate-data.js','senate.js','province-map.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;
     const version=crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex').slice(0,12);
     const escaped=name.replace(/\./g,'\\.');
