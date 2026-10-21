@@ -1,6 +1,6 @@
 # National Coalition
 
-The permanent left navigation entry opens `status.national_coalition`, next to a left-side entry for the existing The Party view. Existing right-side party navigation is retained. It uses the standard menu, font and theme.
+A six-arrow icon in the left navigation opens a large National Coalition overlay. Seven demographic summaries surround a large CHP six-arrow emblem in a shallow U; the summary is above, and prestige, development and recent changes are below. The overlay supports both themes, keyboard focus, Escape, a close button and responsive scrolling. On small screens, the constituency panels stack. The former `status.national_coalition` page remains available for save compatibility, but is no longer a text navigation tab. Existing The Party entries are retained.
 
 ## Authoritative data and support
 
