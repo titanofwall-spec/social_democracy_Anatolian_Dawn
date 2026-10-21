@@ -1,4 +1,4 @@
-const tooltipList = [{searchString: "GP", explanationText: "<img src=img/cgplogo.png> Güven Partisi (Trust Party)"}, {
+const tooltipList = [{searchString: "MGP", explanationText: "<img src=img/cgplogo.png> Milli Güven Partisi (National Trust Party)"}, {
     searchString: "CHP",
     explanationText: "<img src=img/chp5_20251125_200815_0000.svg> Republican People's Party, our party."
 },
@@ -77,7 +77,7 @@ const tooltipList = [{searchString: "GP", explanationText: "<img src=img/cgplogo
 ];
 
 
-const colourList = [{word: "GP", style: "color: #5b7387; font-weight: bold;"}, {word: "MNP", style: "color: #054521; font-weight: bold;"}, {
+const colourList = [{word: "MGP", style: "color: #5b7387; font-weight: bold;"}, {word: "MNP", style: "color: #054521; font-weight: bold;"}, {
         word: "CHP",
         style: "color: #E3000F; font-weight: bold;"
 },
@@ -228,6 +228,6 @@ colourList.push({word:'TBP',style:'color:#c51b32;'});
 colourList.push({word:'MP',style:'color:#242018;'});
 
 // One source of truth for the weight of every party label.
-const boldPartyNames=new Set(['CHP','AP','CGP','GP','DP','MSP','MNP','MHP','TIP','TİP','TKP','TSİP','TSIP','TEP','SDP','TBP','MP','Independents','Kurdish Independents','Socialist Left','Others']);
+const boldPartyNames=new Set(['CHP','AP','CGP','MGP','DP','MSP','MNP','MHP','TIP','TİP','TKP','TSİP','TSIP','TEP','SDP','TBP','MP','Independents','Kurdish Independents','Socialist Left','Others']);
 colourList.forEach(entry=>{if(boldPartyNames.has(entry.word))entry.style=entry.style.replace(/font-weight\s*:[^;]+;?/g,'')+';font-weight:bold;';});
 ['Independents','Kurdish Independents'].forEach(name=>{if(!tooltipList.some(t=>t.searchString===name))tooltipList.push({searchString:name,explanationText:name});});

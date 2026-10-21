@@ -749,7 +749,7 @@ function getPartyIdeology(party, Q) {
         case 'TKP': return '<span style="color: #780808;">Far Left</span> (Marxism-Leninism)';
         case 'TEP': return '<span style="color: #910a0a;">Left Wing-Far Left</span> (National Democratic Revolution)';
         case 'SDP': return '<span style="color: #C42424;">Left Wing</span> (Democratic Socialism)';
-        case 'GP':
+        case 'MGP':
         case 'CGP':
             if (Q.CGP_party_leader === "Feyzioğlu") return '<span style="color: #484863;">Center-Center Right</span> (Right Kemalism)';
             return 'Unknown';
@@ -818,7 +818,7 @@ function getPartyIdeology(party, Q) {
             var relationText = getRelationshipText(Q['DP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;
         }
-        if ((searchString === 'CGP' || searchString === 'GP') && Q['CGP_relation'] !== undefined) {
+        if ((searchString === 'CGP' || searchString === 'MGP') && Q['CGP_relation'] !== undefined) {
             var ideology = getPartyIdeology(searchString, Q);
             var relationText = getRelationshipText(Q['CGP_relation']);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology + '<br>Relation: ' + relationText;

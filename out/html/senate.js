@@ -2,7 +2,7 @@
 const P=root.AnatolianProvinces||(typeof require==='function'?require('./provinces.js'):null),D=root.AnatolianSenateData||(typeof require==='function'?require('./data/senate-data.js'):null);
 const copy=x=>JSON.parse(JSON.stringify(x)),sum=x=>Object.values(x).reduce((a,b)=>a+b,0),stamp=Q=>Q.year*10000+Q.month*100+(Q.week===2?16:1);
 // 1981 is the continued constitutional schedule in the game's alternate timeline.
-const schedule=[{year:1973,month:10,group:'C'},{year:1975,month:10,group:'A'},{year:1977,month:6,group:'B'},{year:1979,month:10,group:'C'},{year:1981,month:6,group:'A'}];
+const schedule=[{year:1973,month:10,week:2,group:'C'},{year:1975,month:10,week:2,group:'A'},{year:1977,month:6,week:1,group:'B'},{year:1979,month:10,week:2,group:'C'},{year:1981,month:6,week:1,group:'A'}];
 const deaths={'İsmet İnönü':19731225,'Cevdet Sunay':19820522,'Fahri Korutürk':19871012,'Faruk Gürler':19750823,'Tekin Arıburun':19930812};
 const appointed='Chosen by the President, they were elected for a six-year term from among individuals who had rendered significant service to society, held a university degree, and had reached the age of 40. At least ten of these members were required to be chosen from among independents. Should a vacancy arise for any reason, the person elected to fill the seat would serve out the remainder of the term of the member they replaced. These senators formed a group within the Senate, electing one of their own as their leader and operating as a collective unit.';
 const mbk='The National Unity Committee is a military junta consisting of thirty-eight members of the Turkish Armed Forces, which seized political power by overthrowing the Democrat Party government in a coup on May 27, 1960, and was subsequently led by General Cemal Gürsel, the Commander of the Turkish Land Forces.';
@@ -19,14 +19,14 @@ function former(Q){const now=stamp(Q),winner=state(Q).president1973||Q.president
  return result;
 }
 const key=e=>'senate:'+e.year+':'+e.group;
-function due(Q){const s=state(Q);return schedule.find(e=>Q.year===e.year&&Q.month>=e.month&&!s.completed.includes(key(e)))||null;}
+function due(Q){const s=state(Q);return schedule.find(e=>Q.year===e.year&&(Q.month>e.month||(Q.month===e.month&&Q.week>=e.week))&&!s.completed.includes(key(e)))||null;}
 function elect(Q,e=due(Q)){
  if(!e)return null;const s=ensure(Q),id=key(e),existing=(Q.province_election_history||[]).find(x=>x.key===id);if(existing)return existing;
  // Senate returns never write lower-house votes, seats, or general election dates.
- const atElection={...copy(Q),year:e.year,month:e.month,week:1},snap=P.compute(atElection,false),provinces=snap.provinces.filter(p=>D.provinces.some(d=>d.id===p.id&&d.group===e.group));
+ const atElection={...copy(Q),year:e.year,month:e.month,week:e.week},snap=P.compute(atElection,false),provinces=snap.provinces.filter(p=>D.provinces.some(d=>d.id===p.id&&d.group===e.group));
  snap.partyKeys=Object.keys(snap.votes);const votes=Object.fromEntries(snap.partyKeys.map(k=>[k,0])),seats={...votes};
  for(const p of provinces){const config=D.provinces.find(d=>d.id===p.id),adjusted={...p.electionVotes};if(adjusted.IND)adjusted.IND*=p.independentFactor;p.seats=P.dhondt(adjusted,config.seats);s.provinces[p.id]=copy(p.seats);for(const k of snap.partyKeys){votes[k]+=p.votes[k]||0;seats[k]+=p.seats[k]||0;}}
- Object.assign(snap,{key:id,kind:'senate',group:e.group,year:e.year,month:e.month,week:1,provinces,votes,seats,totalVotes:sum(votes),totalPopulation:provinces.reduce((a,p)=>a+p.population,0),socialistLeftFormed:!!Q.socialist_left_formed,partyNames:Object.fromEntries(snap.partyKeys.map(k=>[k,P.label(Q,k)])),senateComposition:totals(Q)});
+ Object.assign(snap,{key:id,kind:'senate',group:e.group,year:e.year,month:e.month,week:e.week,provinces,votes,seats,totalVotes:sum(votes),totalPopulation:provinces.reduce((a,p)=>a+p.population,0),socialistLeftFormed:!!Q.socialist_left_formed,partyNames:Object.fromEntries(snap.partyKeys.map(k=>[k,P.label(Q,k)])),senateComposition:totals(Q)});
  snap.fractions=Object.fromEntries(Object.entries(votes).map(([k,v])=>[k,v/(snap.totalVotes||1)]));
  Q.province_election_history.push(copy(snap));if(!s.completed.includes(id))s.completed.push(id);return snap;
 }

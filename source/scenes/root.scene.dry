@@ -590,24 +590,8 @@ Q.cooperative_progress = 0;
 
 // Support for party by social group - Turkish political alignment baseline (1972)
 // Rural (45% of population)
-Q.rural_TIP = 0.4;
-Q.rural_chp = 13;
-Q.rural_AP = 44; // AP uses 'AP' variable
-Q.rural_CGP = 4;
-Q.rural_DP = 22;
-Q.rural_MSP = 9.6;
-Q.rural_MHP = 4;
-Q.rural_other = 3;
 
 // Workers (15% of population)
-Q.workers_TIP = 14;
-Q.workers_chp = 42;
-Q.workers_AP = 18; // AP
-Q.workers_CGP = 3;
-Q.workers_DP = 7;
-Q.workers_MSP = 10;
-Q.workers_MHP = 3;
-Q.workers_other = 3;
 
 // Apply union effects to worker support
 if (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {
@@ -619,54 +603,14 @@ if (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {
 }
 
 // Petty Bourgeoisie (15% of population)
-Q.petty_bourgeoisie_TIP = 0;
-Q.petty_bourgeoisie_chp = 15;
-Q.petty_bourgeoisie_AP = 36; // AP
-Q.petty_bourgeoisie_CGP = 9;
-Q.petty_bourgeoisie_DP = 15;
-Q.petty_bourgeoisie_MSP = 16;
-Q.petty_bourgeoisie_MHP = 7;
-Q.petty_bourgeoisie_other = 2;
 
 // State Employees (7% of population)
-Q.state_employees_TIP = 0;
-Q.state_employees_chp = 41;
-Q.state_employees_AP = 18; // AP
-Q.state_employees_CGP = 27;
-Q.state_employees_DP = 8;
-Q.state_employees_MSP = 0;
-Q.state_employees_MHP = 5;
-Q.state_employees_other = 3;
 
 // Capitalists and Land Owners (3% of population)
-Q.capitalists_TIP = 0;
-Q.capitalists_chp = 7;
-Q.capitalists_AP = 55; // AP
-Q.capitalists_CGP = 8;
-Q.capitalists_DP = 25;
-Q.capitalists_MSP = 5;
-Q.capitalists_MHP = 0;
-Q.capitalists_other = 0;
 
 // Alevis (10% of population)
-Q.alevis_TIP = 8;
-Q.alevis_chp = 63;
-Q.alevis_AP = 8; // AP
-Q.alevis_CGP = 1;
-Q.alevis_DP = 1;
-Q.alevis_MSP = 0;
-Q.alevis_MHP = 1;
-Q.alevis_other = 18;
 
 // Kurdish population: existing preferences are the nonpolitical baseline.
-Q.kurds_TIP = 8;
-Q.kurds_chp = 33;
-Q.kurds_AP = 32; // AP
-Q.kurds_CGP = 3;
-Q.kurds_DP = 2;
-Q.kurds_MSP = 3;
-Q.kurds_MHP = 0;
-Q.kurds_other = 19;
 
 
 // Current Parliament composition - Turkish baseline (1972)
@@ -736,7 +680,7 @@ Q.TEP_r = 0;
 Q.SDP_r = 0;
 
 // for changing the CGP's name to the DStP
-Q.CGP_name = "GP";
+Q.CGP_name = "MGP";
 Q.CGP_formed = 0; Q.MSP_formed = 0;
 AnatolianRules.refreshPartyNames(Q);
 

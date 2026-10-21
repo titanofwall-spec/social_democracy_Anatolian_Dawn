@@ -913,6 +913,8 @@
   "pro_republic",
   "pro_republic_disp",
   "progressive_coalition",
+  "province_aggregate_mirror",
+  "province_cell_model_version",
   "province_class_drivers",
   "province_election_history",
   "province_history_migrating",

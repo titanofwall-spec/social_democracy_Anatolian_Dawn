@@ -563,12 +563,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         }
         assert(!e._runPredicate(game.scenes.shuffle_leadership.viewIf,true),'No duplicate card in the party deck');
     });
-    test('GP and MNP names change only at their respective formation events', (e,Q) => {
-        assert.equal(Q.CGP_name,'GP');assert.equal(Q.MSP_name,'MNP');
-        e.goToScene('rightkemalistsplit');assert.equal(Q.CGP_name,'GP');
+    test('MGP and MNP names change only at their respective formation events', (e,Q) => {
+        assert.equal(Q.CGP_name,'MGP');assert.equal(Q.MSP_name,'MNP');
+        e.goToScene('rightkemalistsplit');assert.equal(Q.CGP_name,'MGP');
         e.goToScene('cgpformation');assert.equal(Q.CGP_name,'CGP');assert.equal(Q.MSP_name,'MNP');
         e.goToScene('msp_formation');assert.equal(Q.MSP_name,'MSP');
-        const old={CGP_name:'CGP',year:1972};rules.refreshPartyNames(old,{});assert.equal(old.CGP_name,'GP');assert.equal(old.MSP_name,'MNP');
+        const old={CGP_name:'CGP',year:1972};rules.refreshPartyNames(old,{});assert.equal(old.CGP_name,'MGP');assert.equal(old.MSP_name,'MNP');
         const later={};rules.refreshPartyNames(later,{cgpformation:1,msp_formation:1});assert.equal(later.CGP_name,'CGP');assert.equal(later.MSP_name,'MSP');
     });
     test('Every demographic includes every registered party preference', (e,Q) => {
