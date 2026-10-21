@@ -1,29 +1,5 @@
 title: Next month
-is-hand: true
-on-arrival: {!
-if (Q.advisor_action_timer <= 0) {
-    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';
-} else if (Q.advisor_action_timer == 1) {
-    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';
-} else {
-    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';
-}
-this.ui.setBg(Q.cyprus_mode != 0 ? 'img/harekat2.jpg' : 'img/map_4.jpg');
-!}
-max-cards: 3
-
-#Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
-
-
-- @cyprus_briefing_continue
-- @cyprus_atilla1_continue
-- @party
-- @dovevsbayonet
-- @govt
-- #advisor
-- @shuffle_leadership_pinned
-
-@main_easy
+new-page: true
 is-hand: true
 on-arrival: {!
 if (Q.advisor_action_timer <= 0) {
@@ -45,6 +21,36 @@ max-cards: 4
 - @party
 - @dovevsbayonet
 - @govt
+- @cabinet
+- @municipalities
+- #advisor
+- @shuffle_leadership_pinned
+
+@main_easy
+new-page: true
+is-hand: true
+on-arrival: {!
+if (Q.advisor_action_timer <= 0) {
+    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';
+} else if (Q.advisor_action_timer == 1) {
+    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';
+} else {
+    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';
+}
+this.ui.setBg(Q.cyprus_mode != 0 ? 'img/harekat2.jpg' : 'img/map_4.jpg');
+!}
+max-cards: 4
+
+#Here, the main deck will be displayed. Clicking on the deck draws a card into your hand. Clicking on a card activates that card.
+
+
+- @cyprus_briefing_continue
+- @cyprus_atilla1_continue
+- @party
+- @dovevsbayonet
+- @govt
+- @cabinet
+- @municipalities
 - #advisor
 - @shuffle_leadership_pinned
 

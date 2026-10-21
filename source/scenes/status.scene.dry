@@ -143,31 +143,13 @@ Head of the General Staff: [? if generalstaff == "Memduh Tağmaç": <span class=
 
 <span class="wide_tooltip-wrap">TSK<span class="wide_tooltip-tip"><img src="img/tsk.jpg">The Turkish Armed Forces, *Türk Silahlı Kuvvetleri.*</span></span> [? if army_in_government: is currently in government ?][? if not army_in_government and tsk_pacified: is currently pacified ?][? if not army_in_government and not tsk_pacified and coup_timer <= 3: is currently hopeful ?][? if not army_in_government and not tsk_pacified and coup_timer >= 4 and coup_timer <= 6: is currently observing the political situation ?][? if not army_in_government and not tsk_pacified and coup_timer >= 7 and coup_timer <= 9: TSK is currently irritated ?][? if not army_in_government and not tsk_pacified and coup_timer == 10: is currently agitated ?][? if not army_in_government and not tsk_pacified and coup_timer >= 11 and coup_timer <= 12: is currently alarmed ?][? if not army_in_government and not tsk_pacified and coup_timer >= 13 and coup_timer <= 14: is currently {!<span style="color: darkred;">mutinous</span>!} ?][? if not army_in_government and not tsk_pacified and coup_timer >= 15: is currently {!<span style="color: darkred;">mutinous and acting</span>!} ?]
 
-TBMM composition (seats):
-
-<span class="tooltip-text" title="Republican People's Party" style="color: #E3000F;">**CHP**</span>: [+ chp_seats +]
-
-<span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+ AP_seats +]
-<span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TİP**</span>: [+ TIP_seats +]
-<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_seats +]
-<span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_seats +]
-<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_seats +]
-<span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_seats +]
-[+ {! return AnatolianRules.extraPartyRows(Q,"seats"); !} +]
-
-
-
-[? if majority_threshold: Majority required: [+ majority_threshold +] seats ?]
-
-Last election vote share:
-
-[+ {! return AnatolianRules.partyVoteRows(Q,"results"); !} +]
-
 [? if CHP_in_government = 1 : Budget: [+ budget +] ?]
 
 Next general election: [+ next_election_month : month +] [+ next_election_year +]
 
 [? if next_local_election_year : Next municipal election: [+ next_local_election_month : month +] [+ next_local_election_year +] ?]
+
+Next Senate election: [+ {! return AnatolianSenate.nextElectionHtml(Q); !} +]
 
 @politics
 
@@ -207,9 +189,13 @@ TBP: Alevi Democracy (Mustafa Timisi)
 
 = TBMM
 
-{!<h3>The Senate</h3>!}
+{!<h3>Republican Senate</h3>!}
 
 [+ {! return typeof AnatolianSenate!=="undefined"?AnatolianSenate.html(Q):""; !} +]
+
+{!<h3>National Assembly</h3>!}
+
+[+ {! return AnatolianSenate.assemblyHtml(Q); !} +]
 
 = Union Relations
 

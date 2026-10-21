@@ -65,7 +65,6 @@ on-display: {! if(typeof renderElectionResultMap==='function')renderElectionResu
 
 = Municipal Election Results
 
-{!<svg class="local-election-parliament" style="width:500px;height:250px;max-width:100%" aria-label="Current TBMM parliament"></svg>!}
 
 {!<div class="election-results-map" data-election-kind="local" aria-label="Local election provincial results"></div>!}
 

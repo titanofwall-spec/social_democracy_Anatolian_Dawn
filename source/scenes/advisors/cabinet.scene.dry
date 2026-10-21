@@ -1,8 +1,7 @@
 title: Cabinet
 is-pinned-card: true
-tags: advisor
 card-image: img/ecevitcabinet.jpg
-view-if: difficulty < 0 and CHP_in_government and prime_minister_party = "CHP"
+view-if: CHP_in_government and (in_CHP_majority or chp_seats >= majority_threshold) and prime_minister_party = "CHP"
 on-arrival: last_cabinet_action = 1
 new-page: true
 

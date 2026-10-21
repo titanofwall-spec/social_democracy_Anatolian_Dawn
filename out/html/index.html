@@ -13,24 +13,26 @@
     <script src="d3-parliament.js?v=seat-outlines-20261006-1"></script>
     <script src="d3-linegraph.js?v=aa7e4eaf8f26"></script>
     <script src="data.js?v=014a54698a4f"></script>
-    <script src="rules.js?v=384d77a008b6"></script>
+    <script src="rules.js?v=c695fa50b35d"></script>
     <script src="data/province-data.js?v=8df5547593e6"></script>
-    <script src="card-actions.js?v=93dde3eb3e15"></script>
-    <script src="social-issues.js?v=b550d8abed90"></script>
+    <script src="card-actions.js?v=b4e3722f2953"></script>
+    <script src="social-issues.js?v=1c5a9bcf1cfd"></script>
     <script src="peoples-sector.js?v=a9f460a77091"></script>
     <script src="kurdish-organizations.js?v=30ae9974d780"></script>
-    <script src="provinces.js?v=d5b255064cbd"></script>
+    <script src="provinces.js?v=d15dd6c25db2"></script>
     <script src="data/senate-data.js?v=df0341ce1ae9"></script>
-    <script src="senate.js?v=922ad51f2691"></script>
-    <script src="province-map.js?v=bc99d1313901"></script>
+    <script src="senate.js?v=fc84c78a37a8"></script>
+    <script src="province-map.js?v=aabba91b8642"></script>
     <link rel="stylesheet" href="province-map.css?v=182b04a97d82">
     <script src="cyprus-atilla1.js?v=ba4d3430af99"></script>
     <script src="cyprus-campaign.js?v=0c6e08f34f2f"></script>
     <script src="cyprus-roadmap.js?v=4304d5921e7e"></script>
-    <script src="core.js?v=1efcf1b3f4fe"></script>
-    <script src="game.js?v=169d4ffacee7"></script>
+    <script src="core.js?v=7971a14bdd6e"></script>
+    <script src="game.js?v=cd42bf58957d"></script>
   </head>
   <body>
+    <button id="music-previous-btn" class="music-track-button" onclick="window.switchMusicTrack(-1)" title="Previous song" aria-label="Previous song">&lt;</button>
+    <button id="music-next-btn" class="music-track-button" onclick="window.switchMusicTrack(1)" title="Next song" aria-label="Next song">&gt;</button>
     <button id="music-toggle-btn" onclick="window.toggleMusicButton()" title="Toggle Music" aria-label="Toggle Music">
       <img id="music-on-icon" src="img/music_on.png" width="48" height="40" alt="Music On"/>
       <img id="music-off-icon" src="img/music_off.png" width="48" height="40" alt="Music Off" style="display:none"/>

@@ -10,6 +10,7 @@ card-image: img/portraits/necdetugur2.png
 
 The Interior Ministry controls internal security throughout the Turkish Republic.
 
+- @easterncrime: Clamp down on organized crime in the East.
 - @loyalty: Improve the loyalty of the Interior Ministry forces.
 - @recruit: Recruit more police forces.
 - @weaponry: Supplement the weaponry and the strength of the police forces.
@@ -161,3 +162,17 @@ unavailable-subtitle: The situation in the streets still can be managed through 
 on-arrival: grey_wolves_militancy -= 0.1; grey_wolves_strength -= 8; devyol_militancy -= 0.1; devyol_strength -= 8; raiders_strength -= 8; workers_chp -= 5; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; kurds_chp -= 3; alevis_chp -= 3; OHAL += 1
 
 Our voters are deeply irritated by our decision to initiate the militarization of the streets when we were the party promising to stop it. Ecevit's persona as the uncorrupted fighter for democracy breaks down as we resort to pragmatic actions we normally despise. However, hopefully this will be worth it for the motherland.
+
+@easterncrime
+choose-if: {! return Q.police_loyalty>=0.5 && Q.police_strength*Q.police_militancy>=55 && Q.eastern_crime>0; !}
+subtitle: The economic problems, largely due to the huge rates of crime and smuggling, in the East constitute a significant factor in the rise of Kurdish Nationalism.
+unavailable-subtitle: [? if police_loyalty <= 0.49 : Our police forces are too disorganized and unloyal for such operations. ?][? if police_force <= 54 : Our police forces aren't strong enough to enforce the law against organized crime in the East! ?][? if eastern_crime <= 0 : Large scale crime has already been exterminated in the East. ?]
+on-arrival: police_militancy -= 0.08; eastern_crime -= 1; kurds_chp += 3
+
+[? if eastern_crime >= 4 : We have raided some drug depots in the border regions, however more work is needed to solve the issue altogether. ?]
+[? if eastern_crime = 3 : Continuous raids and operations in the East have begun weakening the power of the local gangs! ?]
+[? if eastern_crime = 2 : The crime rates have been decreased significantly thanks to the determination of the security forces. ?]
+[? if eastern_crime = 1 : The region has largely been neutralized, with only isolated incidents remaining as remnants of past instability. ?]
+[? if eastern_crime = 0 : The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries. ?]
+
+

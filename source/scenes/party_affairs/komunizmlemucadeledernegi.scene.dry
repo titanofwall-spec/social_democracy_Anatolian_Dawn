@@ -1,6 +1,6 @@
 title: Association of Struggle Against Communism
 new-page: true
-view-if: kmd_timer <= 0
+view-if: kmd_timer <= 0 and kmd_prosecutions < 4
 on-arrival: month_actions += 1; kmd_timer = 12
 is-card: true
 card-image: img/komunizmlemucadeledernegi.jpg
@@ -13,6 +13,6 @@ Association of Struggle against Communism(Komünizmle Mücadele Derneği, KMD) i
 - @debuff: There is nothing we can do until we curb their influence.
 
 @debuff
-on-arrival: rural_chp -= 2; rural_AP += 2; petty_bourgeoisie_chp -= 3; petty_bourgeoisie_AP += 1; petty_bourgeoisie_mhp += 1; petty_bourgeoisie_msp += 1; grey_wolves_strength += 1.5
+on-arrival: {! var scale=Math.max(0,1-(Q.kmd_prosecutions||0)/4);Q.rural_chp-=2*scale;Q.rural_AP+=2*scale;Q.petty_bourgeoisie_chp-=3*scale;Q.petty_bourgeoisie_AP+=scale;Q.petty_bourgeoisie_MHP+=scale;Q.petty_bourgeoisie_MSP+=scale;Q.grey_wolves_strength+=1.5*scale; !}
 
 Spreading misinformation about our political standing and ideology, KMD hurts our attempts at reaching out to the previously conservative demographics.

@@ -135,6 +135,8 @@ Q.public_works_adopted = 0;
 // have we formed the iron front?
 // people's party support
 Q.peoples_party_support = 0;
+Q.kmd_prosecutions = 0;
+Q.eastern_crime = 5;
 // support for nationalizations
 Q.nationalization_support = 0;
 Q.nationalization_adopted = 0;
@@ -864,7 +866,7 @@ Q.timers = ['advisor_action',  'crisis_program',
             // govt
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
             'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',
-            'police',  'shuffle_cabinet', 'social_welfare',
+            'police',  'shuffle_cabinet',
             'homosexual_rights', 'economic_policy', 'coalition_affairs',
             'womens_rights', 'economic_democracy', 'religious_affairs_directorate', 'kurdish_issue',
             'dealing_with_toleration',
@@ -935,7 +937,7 @@ Q.labor_affairs_timer = 0;
 Q.military_policy_timer = 0;
 Q.police_timer = 0;
 Q.shuffle_cabinet_timer = 0;
-Q.social_welfare_timer = 0;
+
 Q.womens_rights_timer = 0;
 Q.homosexual_rights_timer = 0;
 Q.municipality_timer = 0;

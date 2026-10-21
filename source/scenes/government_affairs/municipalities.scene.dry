@@ -1,20 +1,22 @@
 title: Municipalities
 new-page: true
-is-card: true
-view-if: municipality_control_level != 0 and municipality_timer == 0
-on-arrival: month_actions += 1; municipality_timer = 6
-frequency: 5000
+is-pinned-card: true
+choose-if: municipality_control_level != 0 and municipality_timer <= 0
+unavailable-subtitle: Municipal action is not currently available.
+on-arrival: {! AnatolianCardActions.begin(this,"municipalities");Q.month_actions+=1;Q.municipality_timer=6; !}
 card-image: img/belediye.jpg
 go-to: municipalities_menu
-tags: govt_affairs
-#subtitle: The other branch of the government.
 
 = Municipalities and local governance
 
 In Turkey, the territories of the republic are divided among small municipalities which are firmly connected with the central government. Still, the municipalities are an integral part of Turkish politics and are useful for reaching out to demographics we normally aren't performing well with through an example of our governance and services.
 
 @municipalities_menu
+on-display: {! if(typeof renderMunicipalControlMap==='function')renderMunicipalControlMap(); !}
 
+{!<div class="municipal-control-map" aria-label="CHP control in the last municipal election"></div>!}
+
+- @back_to_main: Return to main menu.
 - @governance: Municipalities are responsible for many local tasks in which we can improve our performance and show to the people how a <span style="color: #E3000F;">**CHP**</span> government would look like.
 - @politics: The municipalities not only allow us to offer a vision of our administration but also to perhaps improve our political standing through the usage of local resources.
 - @no: We either won't or can't focus on the municipalities at this time.
@@ -33,7 +35,7 @@ unavailable-subtitle: The party dissent is too high! We are unable to influence 
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_chp += 1; petty_bourgeoisie_chp += 1; state_employees_chp += 1
+on-arrival: resources -= 1; workers_chp += 1; petty_bourgeoisie_chp += 1; state_employees_chp += 1; {! AnatolianCardActions.commit(Q); !}
 
 We have improved sewage management in our municipalities.
 
@@ -41,7 +43,7 @@ We have improved sewage management in our municipalities.
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_chp += 3; state_employees_chp += 1
+on-arrival: resources -= 1; workers_chp += 3; state_employees_chp += 1; {! AnatolianCardActions.commit(Q); !}
 
 We have bought additional buses and started planning the construction of trams in city centers.
 
@@ -49,7 +51,7 @@ We have bought additional buses and started planning the construction of trams i
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 1; workers_chp += 2; state_employees_chp += 1; petty_bourgeoisie_chp += 1
+on-arrival: resources -= 1; workers_chp += 2; state_employees_chp += 1; petty_bourgeoisie_chp += 1; {! AnatolianCardActions.commit(Q); !}
 
 The libraries we are building have already started attracting lots of students.
 
@@ -57,7 +59,7 @@ The libraries we are building have already started attracting lots of students.
 subtitle: -2 resources
 choose-if: resources >= 2
 unavailable-subtitle: Not enough resources.
-on-arrival: resources -= 2; workers_chp += 5; petty_bourgeoisie_chp += 3; state_employees_chp += 2; AP_relation -= 5
+on-arrival: resources -= 2; workers_chp += 5; petty_bourgeoisie_chp += 3; state_employees_chp += 2; AP_relation -= 5; {! AnatolianCardActions.commit(Q); !}
 
 Many families are thankful to us for providing affordable bread. However, the political Right accuses us of "disrupting" the economy.
 
@@ -70,6 +72,12 @@ Our municipal offices can host community events and strengthen our alliances, bu
 - @municipalities_menu: Return to municipal planning.
 
 @no
+on-arrival: {! AnatolianCardActions.commit(Q); !}
 subtitle: Hold off on municipal initiatives.
 
 For now we will not expand our municipal efforts. We'll return to these proposals once the party is ready to commit resources.
+
+@back_to_main
+on-arrival: {! AnatolianCardActions.back(this); !}
+go-to: main.main_easy if difficulty < 0; main if difficulty >= 0
+

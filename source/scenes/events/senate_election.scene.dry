@@ -1,10 +1,10 @@
-title: Senate Elections
+title: Republican Senate Elections
 new-page: true
 tags: event
 priority: -2
 view-if: {! return typeof AnatolianSenate!=="undefined" && !!AnatolianSenate.due(Q); !}
 
-= Senate Elections, [+ year +]
+= Republican Senate Elections, [+ year +]
 
 The provinces in Group [+ {! return AnatolianSenate.due(Q).group; !} +] will elect their senators.
 
@@ -15,7 +15,7 @@ new-page: true
 on-arrival: {! AnatolianSenate.elect(Q); !}
 on-display: {! if(typeof renderElectionResultMap!=="undefined")renderElectionResultMap('senate'); !}
 
-= Senate Election Results
+= Republican Senate Election Results
 
 Fifty elected seats have been renewed. The remaining elected senators retain their seats.
 

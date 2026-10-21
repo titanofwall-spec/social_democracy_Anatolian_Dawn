@@ -1566,3 +1566,14 @@ ul.pinned-cards.leadership-cards {
   ul.pinned-cards.leadership-cards { gap: 20px 8px; }
   .leadership-cards .card-caption { font-size: .88em; }
 }
+
+/* Match the original music control and reserve its neighboring track buttons. */
+#music-toggle-btn{right:50px}
+.music-track-button{position:fixed;top:10px;z-index:3;background:rgba(255,255,255,.9);border:2px solid #555;border-radius:8px;padding:4px 6px;cursor:pointer;line-height:40px;height:52px;width:34px;box-shadow:2px 2px 8px rgba(0,0,0,.3);font-family:inherit;font-size:24px;color:#000}
+#music-previous-btn{right:116px}#music-next-btn{right:10px}.music-track-button:hover{background:rgba(220,220,220,.95)}
+.dark-mode .mytooltiptext,.dark-mode .province-group-tip,.dark-mode #leader-tooltip-layer,.dark-mode #leader-tooltip-layer>span{color:#fff!important}
+.dark-mode .mytooltiptext b[style*="#242018"],.dark-mode .province-group-tip b[style*="#242018"]{color:#fff!important}
+body #leader-tooltip-layer{z-index:2147483700!important}
+.permanent-desk-card.unavailable-card{opacity:.55}.municipal-control-map svg{display:block;width:100%;height:auto}.municipal-control-map path{stroke:#000;stroke-width:1}
+
+.dark-mode [style*="#242018"]{color:#fff!important}

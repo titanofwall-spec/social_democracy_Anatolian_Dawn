@@ -43,6 +43,10 @@
       }
     };
 
+    // Permanent desk controls follow the four drawn-card slots.
+    var drawHand=ui.displayHand.bind(ui);
+    ui.displayHand=function(hand){drawHand(hand,4);if(ui.dendryEngine.state.qualities.cyprus_mode)return;var e=ui.dendryEngine,Q=e.state.qualities,list=document.querySelector('#content ul.hand');if(!list)return;list.querySelectorAll('.permanent-desk-card').forEach(function(el){el.remove();});['cabinet','municipalities'].forEach(function(id){var scene=e.game.scenes[id],choice=e._compileChoices(e.getCurrentScene()).find(function(c){return c.id===id;}),enabled=choice&&choice.canChoose,li=document.createElement('li');li.className='card-in-hand permanent-desk-card'+(enabled?'':' unavailable-card');li.dataset.deskCard=id;var link=document.createElement('a');link.className='card';link.href='#';link.setAttribute('aria-disabled',String(!enabled));link.title=scene.title;var img=document.createElement('img');img.className='card-img';img.src=scene.cardImage;link.append(img);link.onclick=function(event){event.preventDefault();event.stopPropagation();if(enabled)e.playPinnedCard(id);};var caption=document.createElement('span');caption.className='card-caption';caption.textContent=scene.title;li.append(link,caption);list.append(li);});};
+
     // Add optional styled tooltips to choice buttons without changing subtitles.
     window.buttonTooltips = {
       'campaigning.workers': 'Build support among urban workers.',
@@ -1135,6 +1139,7 @@ function getPartyIdeology(party, Q) {
 
   // Arrange the secretary to the leader’s left, with three member slots below.
   window.displayPinnedCards = function(cards) {
+    cards=cards.filter(function(c){return c.id!=="cabinet"&&c.id!=="municipalities";});
     var Q = window.dendryUI.dendryEngine.state.qualities;
     var leaderId = Q.party_leader_id || "";
     var secretaryId = Q.party_secretary_id || "";
@@ -1276,7 +1281,7 @@ function getPartyIdeology(party, Q) {
   var owner=null,layer=null;
   function hide(){if(layer)layer.remove();layer=null;owner=null;}
   function show(target,x,y){
-    var tip=target.querySelector('.mytooltiptext,.wide_tooltip-tip');if(!tip)return;
+    var tip=target.querySelector('.mytooltiptext,.wide_tooltip-tip,.province-group-tip');if(!tip)return;
     if(owner!==target){hide();owner=target;layer=document.createElement('div');layer.id='leader-tooltip-layer';layer.className='mytooltip wide_tooltip-wrap';layer.setAttribute('role','tooltip');
       var clone=tip.cloneNode(true),computed=getComputedStyle(tip);
       ['width','max-width','padding','font-size','font-family','line-height','font-weight','background-color','color','border','border-radius','box-shadow','text-align'].forEach(function(k){clone.style.setProperty(k,computed.getPropertyValue(k));});
@@ -1285,8 +1290,8 @@ function getPartyIdeology(party, Q) {
     var box=layer.getBoundingClientRect();var left=Math.max(8,Math.min(innerWidth-box.width-8,x-box.width/2));var top=y-box.height-18;if(top<8)top=Math.min(innerHeight-box.height-8,y+18);
     layer.style.left=left+'px';layer.style.top=Math.max(8,top)+'px';
   }
-  document.addEventListener('mousemove',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap'):null;if(t&&t.id!=='leader-tooltip-layer')show(t,e.clientX,e.clientY);else hide();});
-  document.addEventListener('focusin',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap'):null;if(t){var b=t.getBoundingClientRect();show(t,b.left+b.width/2,b.bottom);}});
+  document.addEventListener('mousemove',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap,.province-vote-group'):null;if(t&&t.id!=='leader-tooltip-layer')show(t,e.clientX,e.clientY);else hide();});
+  document.addEventListener('focusin',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap,.province-vote-group'):null;if(t){var b=t.getBoundingClientRect();show(t,b.left+b.width/2,b.bottom);}});
   document.addEventListener('focusout',hide);window.addEventListener('scroll',hide,true);
   new MutationObserver(function(){if(owner&&!owner.isConnected)hide();}).observe(document.documentElement,{childList:true,subtree:true});
 }());
@@ -1297,3 +1302,6 @@ window.openCyprusDiplomacy=function(country){
  if(!['greece','uk','us'].includes(country)||!Q.cyprus_mode||!Q.cyprus_atilla1_ending_seen||Q.cyprus_campaign_resolved||(Q.cyprus_campaign_phase==='atilla2'&&!Q.cyprus_atilla2_complete))return;
  e.goToScene('cyprus_diplomacy_'+country);
 };
+
+window.switchMusicTrack=function(direction){var ui=window.dendryUI;if(!ui)return;var tracks=Array.from(new Set((ui.audioPlaylist||[]).filter(function(t){return t&&t!=='none'&&t!=='null';})));if(tracks.length<2)return;var current=ui.currentAudioURL||'',index=tracks.findIndex(function(t){return current===t||(ui.currentAudio&&decodeURI(ui.currentAudio.src).endsWith(decodeURI(t)));});index=(index+direction+tracks.length)%tracks.length;var next=tracks[index];ui.audioQueue=[];if(!ui.currentAudio)ui.currentAudio=new Audio(next);else{ui.currentAudio.pause();ui.currentAudio.src=next;}ui.currentAudioURL=next;ui.currentAudio.loop=false;if(!ui.disable_audio)ui.currentAudio.play().catch(function(){});};
+
