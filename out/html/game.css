@@ -51,7 +51,7 @@ body.dark-mode .tools {
   border-width: 4px;
   border-color: #888;
 }
-header, #content, footer {
+header, #content, footer, .game-window {
   color: var(--text-color);
   margin: 0 auto;
   overflow: auto;
@@ -64,7 +64,7 @@ header, #content, footer {
 .normal-mode {
   max-width: 540px;
 }
-#content {
+#content, .game-window {
   position: relative;
   background-color: var(--content-bg-color);
   font-size: 1.1em;
@@ -149,7 +149,7 @@ header h2:before {
 #content h1:first-child {
   margin-top: 0.5em;
 }
-#content h1 {
+#content h1, .game-window h1 {
   margin: 1em 0 1em 0;
   font-size: 1.35em;
   font-weight: normal;
@@ -179,7 +179,7 @@ p.game-over {
   border-radius: 4px;
   color: #999;
 }
-ul.choices {
+ul.choices, .game-choice-panel {
   border: 2px solid #876;
   padding: 0;
   margin: 0.25em 0 0 0;
@@ -302,7 +302,7 @@ blockquote + blockquote.attribution {
 #qualities p {
   text-indent: 0;
 }
-#qualities h1 {
+#qualities h1, .game-section-title {
   font-size: 1.1em;
   font-weight: normal;
   text-align: center;
@@ -1592,26 +1592,26 @@ body #leader-tooltip-layer{z-index:2147483700!important}
 /* National Coalition: the party emblem surrounded by its electoral constituencies. */
 .national-coalition-icon img{display:block;width:29px;height:21px;object-fit:contain;margin:0 auto}
 .national-coalition-open{overflow:hidden}
-.coalition-backdrop{position:fixed;inset:0;z-index:2147483800;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
-.coalition-window{width:1240px;max-width:100%;max-height:calc(100dvh - 40px);background:var(--content-bg-color);color:var(--text-color);border:2px solid var(--border-color);font:inherit;display:flex;flex-direction:column;box-shadow:5px 5px 10px rgba(0,0,0,.25)}
+.coalition-backdrop{position:fixed;inset:0;z-index:2147483800;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+.coalition-window{overflow:hidden;width:1240px;max-width:100%;max-height:calc(100dvh - 40px);padding:0;display:flex;flex-direction:column}
 .coalition-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 24px;border-bottom:1px solid var(--border-color)}
-.coalition-heading h1{font:inherit;font-size:1.5em;font-weight:bold;margin:0}
-.coalition-close{font:inherit;font-size:1.5em;cursor:pointer;padding:0 9px;border:1px solid var(--border-color);color:var(--text-color);background:var(--content-bg-color)}
+.coalition-heading h1{flex:1;margin:.5em 0}
+.coalition-close{font:inherit;color:var(--link-color);cursor:pointer;padding:4px 8px}.coalition-close:hover,.coalition-close:focus{background:var(--link-hover-color);text-decoration:underline}
 .coalition-body{overflow-y:auto;min-height:0;padding:0 24px 24px}
 .coalition-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px;border-bottom:1px solid var(--border-color);padding:8px 0}
 .coalition-summary p{margin:8px 0}
-.coalition-constituencies{position:relative;height:680px;margin:18px auto 0;max-width:1160px}
+.coalition-constituencies{position:relative;height:720px;margin:18px auto 0;max-width:1160px}
 .coalition-emblem{position:absolute;left:50%;top:15px;width:520px;transform:translateX(-50%);text-align:center}
 .coalition-emblem img{width:100%;height:345px;object-fit:contain}
 .coalition-emblem p{font-weight:bold;margin:12px 0}
-.coalition-demographic{position:absolute;width:228px;box-sizing:border-box;border:1px solid var(--border-color);padding:12px 14px;background:var(--content-bg-color);transform:translateX(-50%)}
-.coalition-demographic h2{font:inherit;font-size:1.1em;font-weight:bold;margin:0 0 8px;text-align:center}
+.coalition-demographic{position:absolute;width:240px;height:216px;box-sizing:border-box;font-size:1rem;padding:12px 14px;margin:0;background:var(--content-bg-color);transform:translateX(-50%)}
+.coalition-demographic h2{margin:0 0 8px;min-height:2.8em;display:flex;align-items:center;justify-content:center}
 .coalition-demographic dl{margin:0}.coalition-demographic dl div{display:flex;justify-content:space-between;gap:8px}.coalition-demographic dd{margin:0;font-variant-numeric:tabular-nums}.coalition-demographic p{font-size:.85em;margin:8px 0 0}
 .coalition-position-0{left:11%;top:0}.coalition-position-1{left:89%;top:0}
-.coalition-position-2{left:11%;top:220px}.coalition-position-3{left:89%;top:220px}
-.coalition-position-4{left:27%;top:440px}.coalition-position-5{left:50%;top:440px}.coalition-position-6{left:73%;top:440px}
+.coalition-position-2{left:11%;top:240px}.coalition-position-3{left:89%;top:240px}
+.coalition-position-4{left:27%;top:480px}.coalition-position-5{left:50%;top:480px}.coalition-position-6{left:73%;top:480px}
 .coalition-explanation{border-top:1px solid var(--border-color);padding-top:16px}
 .coalition-details h2{font-size:1.2em}.coalition-details p{margin:10px 0}
 @media(max-width:1050px){.coalition-demographic{width:200px;padding:10px}.coalition-emblem{width:360px}.coalition-emblem img{height:250px}.coalition-position-0,.coalition-position-2{left:12%}.coalition-position-1,.coalition-position-3{left:88%}.coalition-position-4{left:23%}.coalition-position-6{left:77%}}
-@media(max-width:760px){.coalition-backdrop{padding:10px}.coalition-window{max-height:calc(100dvh - 20px)}.coalition-body{padding:0 14px 18px}.coalition-heading{padding:12px 14px}.coalition-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.coalition-constituencies{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}.coalition-emblem{position:static;grid-column:1/-1;transform:none;width:220px;justify-self:center}.coalition-emblem img{height:145px}.coalition-demographic{position:static;transform:none;width:auto}.coalition-position-6{grid-column:1/-1}}
+@media(max-width:760px){.coalition-backdrop{padding:10px}.coalition-window{max-height:calc(100dvh - 20px)}.coalition-body{padding:0 14px 18px}.coalition-heading{padding:12px 14px}.coalition-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.coalition-constituencies{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}.coalition-emblem{position:static;grid-column:1/-1;transform:none;width:220px;justify-self:center}.coalition-emblem img{height:145px}.coalition-demographic{position:static;transform:none;width:auto;height:auto}.coalition-position-6{grid-column:1/-1}}
 @media(max-width:400px){.coalition-demographic{grid-column:1/-1}}
