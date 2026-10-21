@@ -37,7 +37,7 @@ We sideline our connections with the labour and left-wing movements in favour of
 subtitle: This will incur dissent in the party. Are we sure?
 choose-if: cyprus_problem == 3
 unavailable-subtitle: There are no prerequisites for such a shift!
-on-arrival: workers_chp += 1; rural_chp += 1; state_employees_chp += 1; petty_bourgeoisie_chp += 1; alevis_chp += 1; kemalist_marxists_dissent += 5; left_kemalists_dissent += 5; third_worldists_dissent += 5; orthodox_kemalists_dissent += 5; strategy_united = 0; strategy_socdem = 0; strategy_res = 0; strategy_socfas = 0
+on-arrival: {! AnatolianNationalCoalition.awardCyprusDemographics(Q,"patriotic-strategy",1); !} kemalist_marxists_dissent += 5; left_kemalists_dissent += 5; third_worldists_dissent += 5; orthodox_kemalists_dissent += 5; strategy_united = 0; strategy_socdem = 0; strategy_res = 0; strategy_socfas = 0
 
 Much to the dismay of our party organizations, our party begins focusing on primarily nationalist and anti-imperialist rhetoric based on Ecevit's persona and his public image as the 'Conqueror of Cyprus'. While this attitude works well in appealing to new voters across class lines, our members are visibly annoyed by watching the party of Social Democracy become the party of Ecevit.
 

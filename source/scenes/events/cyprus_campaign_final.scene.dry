@@ -28,7 +28,7 @@ on-arrival: {! if(AnatolianRules.cyprusRoadmap.startEndingMusic)AnatolianRules.c
 
 [+ {! return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q).replace(/\n\n/g,'<br><br>') : ""; !} +]
 
-[? if cyprus_poll_reward_paid == 1 : The achievement increases CHP polling by [? if cyprus_atilla2_complete == 1 : 5 ?][? if cyprus_atilla2_complete != 1 : 3 ?] percentage points. ?]
+[? if cyprus_poll_reward_paid == 1 : The achievement adds to CHP's temporary Cyprus Prestige in National Coalition: + [? if cyprus_atilla2_complete == 1 : 5 ?][? if cyprus_atilla2_complete != 1 : 3 ?] percentage points. ?]
 
 - @root: [+ {! return Q.cyprus_final_result==='Güneş Plan'?"We have done it!":"Let us return to our people."; !} +]
 

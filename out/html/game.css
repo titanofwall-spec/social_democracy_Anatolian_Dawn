@@ -1573,7 +1573,7 @@ ul.pinned-cards.leadership-cards {
 #music-previous-btn{right:116px}#music-next-btn{right:10px}.music-track-button:hover{background:rgba(220,220,220,.95)}
 .dark-mode .mytooltiptext,.dark-mode .province-group-tip,.dark-mode #leader-tooltip-layer,.dark-mode #leader-tooltip-layer>span{color:#fff!important}
 .dark-mode .mytooltiptext b[style*="#242018"],.dark-mode .province-group-tip b[style*="#242018"]{color:#fff!important}
-body #leader-tooltip-layer{z-index:2147483700!important}
+body #leader-tooltip-layer{z-index:2147483600!important}
 .permanent-desk-card.unavailable-card{opacity:.55}.municipal-control-map svg{display:block;width:100%;height:auto}.municipal-control-map path{stroke:#000;stroke-width:1}
 
 .dark-mode [style*="#242018"]{color:#fff!important}
@@ -1581,7 +1581,7 @@ body #leader-tooltip-layer{z-index:2147483700!important}
 /* Scrollable Kurdish organization details, using the standard game panels. */
 .kurdish-organizations-link{font:inherit;font-weight:bold;color:#c2d93f;background:none;border:0;padding:0;text-decoration:underline dotted;cursor:pointer}
 .kurdish-organizations-open{overflow:hidden}
-.kurdish-organizations-backdrop{position:fixed;inset:0;z-index:2147483750;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
+.kurdish-organizations-backdrop{position:fixed;inset:0;z-index:2147483450;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:16px;box-sizing:border-box}
 .kurdish-organizations-dialog{width:400px;height:500px;max-width:100%;max-height:calc(100dvh - 32px);box-sizing:border-box;display:flex;flex-direction:column;border:2px solid var(--border-color);background:var(--content-bg-color);color:var(--text-color);font:inherit;box-shadow:5px 5px 10px rgba(0,0,0,.2)}
 .kurdish-organizations-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border-color);flex-shrink:0}
 .kurdish-organizations-dialog h2{font:inherit;font-weight:bold;margin:0}
@@ -1592,7 +1592,7 @@ body #leader-tooltip-layer{z-index:2147483700!important}
 /* National Coalition: the party emblem surrounded by its electoral constituencies. */
 .national-coalition-icon img{display:block;width:29px;height:21px;object-fit:contain;margin:0 auto}
 .national-coalition-open{overflow:hidden}
-.coalition-backdrop{position:fixed;inset:0;z-index:2147483800;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+.coalition-backdrop{position:fixed;inset:0;z-index:2147483500;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
 .coalition-window{overflow:hidden;width:1240px;max-width:100%;max-height:calc(100dvh - 40px);padding:0;display:flex;flex-direction:column}
 .coalition-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 24px;border-bottom:1px solid var(--border-color)}
 .coalition-heading h1{flex:1;margin:.5em 0}
@@ -1615,3 +1615,13 @@ body #leader-tooltip-layer{z-index:2147483700!important}
 @media(max-width:1050px){.coalition-demographic{width:200px;padding:10px}.coalition-emblem{width:360px}.coalition-emblem img{height:250px}.coalition-position-0,.coalition-position-2{left:12%}.coalition-position-1,.coalition-position-3{left:88%}.coalition-position-4{left:23%}.coalition-position-6{left:77%}}
 @media(max-width:760px){.coalition-backdrop{padding:10px}.coalition-window{max-height:calc(100dvh - 20px)}.coalition-body{padding:0 14px 18px}.coalition-heading{padding:12px 14px}.coalition-summary{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 12px}.coalition-constituencies{height:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}.coalition-emblem{position:static;grid-column:1/-1;transform:none;width:220px;justify-self:center}.coalition-emblem img{height:145px}.coalition-demographic{position:static;transform:none;width:auto;height:auto}.coalition-position-6{grid-column:1/-1}}
 @media(max-width:400px){.coalition-demographic{grid-column:1/-1}}
+
+/* Coalition labels retain the game's typography without prose indentation. */
+.coalition-summary p,.coalition-summary p b,.coalition-emblem p,.coalition-demographic p{ text-indent:0; }
+.coalition-summary p b,.coalition-demographic dt,.coalition-demographic h2{color:#E3000F;font-weight:bold}
+.coalition-heading{position:relative;display:block;text-align:center;padding-left:90px;padding-right:90px}
+.coalition-heading h1{width:100%;margin:.5em 0;text-align:center}
+.coalition-close{position:absolute;right:20px;top:50%;transform:translateY(-50%)}
+@media(max-width:760px){.coalition-heading{padding-left:65px;padding-right:65px}.coalition-close{right:8px}}
+
+.coalition-parameter-label,.coalition-details h2{color:#E3000F;font-weight:bold}

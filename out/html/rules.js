@@ -143,6 +143,7 @@
     }
     /** Structural initialization only. No political parameter has automatic growth. @param {GameState} Q */
     function ensureKurdishIssue(Q){
+        if(typeof Q.disk_endorsement==='string')Q.disk_endorsement=Q.disk_endorsement==='true';
         if(!Array.isArray(Q.parties)||!Array.isArray(Q.classes))return;
         if(typeof Q.eastern_crime!=='number')Q.eastern_crime=5;
         if(Q.kurdish_issue_version!==1){Q.kurdish_issue_version=1;Q.kurdish_issue_consciousness=.07;Q.kurdish_issue_radicalism=.02;Q.kurdish_issue_paramilitarism=0;Q.kurdish_population_weight=5;}

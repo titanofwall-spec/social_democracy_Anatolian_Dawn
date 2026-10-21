@@ -74,7 +74,7 @@ We have officially applied to join the EEC! Though it will take many years befor
 
 @americanbase
 choose-if: cyprus_problem == 3
-on-arrival: rural_chp += 3; workers_chp += 3; state_employees_chp += 3; petty_bourgeoisie_chp += 3; alevis_chp += 3; us_relation -= 0.1
+on-arrival: us_relation -= 0.1; {! AnatolianNationalCoalition.awardCyprusDemographics(Q,"american-bases",3); !}
 max-visits: 1
 
 With the exception of the İncirlik base we closed down all the American bases in our country as a reaction to the arms embargo. Our people cherish this determination though our relations with the US have deteriorated even further.
