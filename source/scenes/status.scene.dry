@@ -887,3 +887,7 @@ Diplomatic Leverage: [+ leverage_points +]
 = Kurdish Rights
 
 [+ {! return AnatolianSocialIssues.html(Q,"kurdish"); !} +]
+
+@national_coalition
+
+[+ {! return AnatolianNationalCoalition.html(Q); !} +]

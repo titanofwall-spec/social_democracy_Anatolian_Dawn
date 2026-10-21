@@ -68,3 +68,27 @@ The public works programme has become a popular rallying cry for our party. The 
 on-arrival: workers_chp += 3*(1-dissent); petty_bourgeoisie_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent)
 
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.
+
+@land_reform
+
+Define our commitment to the countryside. A stronger declaration opens more rural voters to CHP; lasting gains require implementation.
+
+- @rural_mild: Commit to practical rural improvements.
+- @rural_moderate: Commit to comprehensive land reform.
+- @rural_strong: Commit to transforming the countryside through land reform and Köykent.
+- @main_rally: Return to rally themes.
+
+@rural_mild
+on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"mild"); !}
+
+Our rural commitment opens a wider electoral audience.
+
+@rural_moderate
+on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"moderate"); !}
+
+Our land reform commitment opens a wider electoral audience.
+
+@rural_strong
+on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"strong"); !}
+
+Our commitment to rural transformation opens a wider electoral audience. Implementing it will take sustained work.

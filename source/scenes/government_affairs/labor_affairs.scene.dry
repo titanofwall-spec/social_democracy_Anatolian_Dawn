@@ -34,7 +34,7 @@ Our relations with the labour movement also depend on the actions we will take t
 - @labour_menu: Return to the Labour Menu.
 
 @national
-on-arrival: nationall += 1; disk_relation += 5; unemployment_modifier += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.5; workers_chp += 4; democracystatus += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: nationall += 1; disk_relation += 5; unemployment_modifier += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.5; workers_chp += 4; democracystatus += 1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.policy(Q,"labor-national",["workers"]); !}
 choose-if: nationall < 1
 unavailable-subtitle: We have already implemented collective bargaining!
 
@@ -43,7 +43,7 @@ Until now the employers were able to avoid paying their employees their rightful
 Due to the regularization of salaries inflation has slightly increased but this is nothing compared to its benefits.
 
 @kit
-on-arrival: kitt += 1; disk_relation += 5; inflation_modifier += 0.5; unemployment_modifier += 0.2; AP_relation -= 8; DP_relation -= 8; MSP_relation -= 4; democracystatus += 1; workers_chp += 4; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: kitt += 1; disk_relation += 5; inflation_modifier += 0.5; unemployment_modifier += 0.2; AP_relation -= 8; DP_relation -= 8; MSP_relation -= 4; democracystatus += 1; workers_chp += 4; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.policy(Q,"labor-kit",["workers"]); !}
 choose-if: kitt < 1
 unavailable-subtitle: We have already passed workplace democracy reforms!
 
@@ -53,14 +53,14 @@ However, the right sees this as an attempt at bringing 'ungodly' Socialism and o
 
 @ikincilgrev
 subtitle: Secondary strikes are additional strikes launched by labourers of other industries to support the workers striking in the case of exploitation.
-on-arrival: ikincilgrevv += 1; disk_relation += 8; inflation_modifier += 0.2; growth_modifier -= 0.2; unemployment_modifier += 0.2; AP_relation -= 5; workers_chp += 4; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: ikincilgrevv += 1; disk_relation += 8; inflation_modifier += 0.2; growth_modifier -= 0.2; unemployment_modifier += 0.2; AP_relation -= 5; workers_chp += 4; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.policy(Q,"labor-ikincilgrev",["workers"]); !}
 choose-if: ikincilgrevv < 1
 unavailable-subtitle: We have already legalized secondary strikes to some extent!
 
 Even though secondary strikes have been banned until now, we foster loopholes enabling the workers to support their brothers in need. AP accuses us of creating class conflict and calls our actions unlawful.
 
 @healthinspections
-on-arrival: healthinspectionss += 1; disk_relation += 5; democracystatus += 1; inflation_modifier += 0.2; unemployment_modifier += 0.2; growth_modifier -= 0.1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: healthinspectionss += 1; disk_relation += 5; democracystatus += 1; inflation_modifier += 0.2; unemployment_modifier += 0.2; growth_modifier -= 0.1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.policy(Q,"labor-healthinspections",["workers"]); !}
 choose-if: healthinspectionss < 1
 unavailable-subtitle: We have already made health inspections mandatory in large factories!
 
@@ -68,7 +68,7 @@ Major factories have often been able to avoid workplace safety and health inspec
 
 @lokavt
 subtitle: Employer lockouts are the inverse of worker strikes; in times of disagreement the employers lock their workplaces out and refuse to pay the workers their salaries until the workers succumb to their demands.
-on-arrival: lokavtt += 1; disk_relation += 8; AP_relation -= 5; democracystatus += 1; inflation_modifier += 0.5; unemployment_modifier -= 0.2; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: lokavtt += 1; disk_relation += 8; AP_relation -= 5; democracystatus += 1; inflation_modifier += 0.5; unemployment_modifier -= 0.2; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.policy(Q,"labor-lokavt",["workers"]); !}
 choose-if: lokavtt < 1
 unavailable-subtitle: We have already removed the right to lock out workers!
 
@@ -94,7 +94,7 @@ on-arrival: disk_relation += 2; workers_chp += 3; unemployment_modifier += 0.2; 
 Workplace investigations regarding violations of the labour laws are one of the important responsibilities of the Labour Ministry. The workers appreciate us finally taking action on this front.
 
 @syndicaterecognition
-on-arrival: disk_relation += 4; democracystatus += 1; {! Q.ps_bargaining=1; !}
+on-arrival: disk_relation += 4; democracystatus += 1; {! Q.ps_bargaining=1; !} {! AnatolianNationalCoalition.policy(Q,"labor-syndicaterecognition",["workers"]); !}
 
 Some of our smaller syndicates have struggled with getting recognition from the state in order to engage in negotiations of wages and many other things which left their member workers unrepresented. Easing up such restrictions will strengthen belief in the mutual negotiations.
 
