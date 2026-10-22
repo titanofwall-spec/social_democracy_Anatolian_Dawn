@@ -16,13 +16,20 @@ assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.sceneId),'coali
 const quota=await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.coalition_formation.pending.quota);
 for(const m of ['foreign','interior','justice','labor','defense','economic','finance','agriculture','education','industrial'].slice(0,quota))await pick('coalition_negotiations.min_'+m);
 await pick('coalition_negotiations.powers');await pick('coalition_negotiations.claims');
-const selected=await page.evaluate(()=>{const Q=dendryUI.dendryEngine.state.qualities;return AnatolianCoalitions.yellow(Q).slice(0,2).map(a=>a.row);});
-await pick('coalition_negotiations.player_list_'+selected[0]);await pick('coalition_negotiations.powers');await pick('coalition_negotiations.concessions');await pick('coalition_negotiations.partner_list_'+selected[1]);await pick('coalition_negotiations.powers');await pick('coalition_negotiations.sign');
+assert((await page.locator('#content').innerText()).includes('Demand contested affairs of the Defense Ministry'));
+assert((await page.locator('#content').innerText()).includes('3 contested affairs'));
+assert(!(await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices())).some(c=>c.id.includes('_list_')));
+await pick('coalition_negotiations.player_ministry_defense');await pick('coalition_negotiations.powers');
+assert(await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices().find(c=>c.id==='coalition_negotiations.sign').canChoose===false));
+await pick('coalition_negotiations.concessions');
+assert((await page.locator('#content').innerText()).includes('Concede contested affairs of the Education Ministry'));
+await pick('coalition_negotiations.partner_ministry_education');await pick('coalition_negotiations.powers');await pick('coalition_negotiations.sign');
+assert.deepEqual(await page.evaluate(()=>AnatolianCoalitions.counts(dendryUI.dendryEngine.state.qualities.coalition_government.rights)),{player:3,partner:3});
 const result=await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities,C=AnatolianCoalitions;Q.resources=10;Q.budget=100;Q.speculativee=0;const a=C.data.find(a=>a.row===6),before=Q.resources;e.goToScene(a.scenes[0]);const paid=before-Q.resources;const Y=Q.coalition_government.yellowUses;const blocked=C.data.find(a=>a.row===parseInt(Object.keys(Q.coalition_government.rights).find(k=>Q.coalition_government.rights[k]==='partner').split('-')[1]));const previous=e.state.sceneId;e.goToScene(blocked.scenes[0]);return {paid,Y,blocked:e.state.sceneId===previous,parties:C.ensure(Q).partners,active:C.active(Q),gov:Q.CHP_in_government,majority:Q.in_CHP_majority,seats:Q.chp_seats,installed:e._coalitionInstalled,scene:e.state.sceneId,resources:Q.resources,hook:e.__changeScene.toString().slice(0,180),mapped:Object.keys(C.byScene).length,reason:C.reason(Q,a.scenes[0]),id:a.scenes[0]};});
 assert.equal(result.paid,1);assert.equal(result.Y,1);assert(result.blocked);assert.deepEqual(result.parties,['MSP']);
 for(const dark of [false,true]){await page.evaluate(dark=>{document.body.classList.toggle('dark-mode',dark);const e=dendryUI.dendryEngine;e.state.qualities.coalition_dissent=20;e.goToScene('coalition_affairs');},dark);assert((await page.locator('#content').innerText()).includes('Unresolved uses: 1'));}
 await page.screenshot({path:path.resolve(__dirname,'../../tmp/coalition-browser.png'),fullPage:true});
-assert.deepEqual(errors,[]);console.log('PASS Chrome: interactive formation, ministry quota, optional balanced powers, binding concessions, repeat-use resource gate, dissent breakdown and light/dark rendering.');
+assert.deepEqual(errors,[]);console.log('PASS Chrome: interactive formation, ministry quota, ministry-wide bundles with visible affair counts, balanced totals, binding concessions, repeat-use resource gate, dissent breakdown and light/dark rendering.');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);process.exitCode=1;});
 
 
