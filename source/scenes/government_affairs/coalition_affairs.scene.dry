@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: govt_affairs
 on-arrival: month_actions += 1; coalition_affairs_timer = 5
-view-if: CHP_in_government = 1 and not in_CHP_majority and chp_seats < majority_threshold and coalition_dissent >= 1 and coalition_affairs_timer = 0
+view-if: CHP_in_government = 1 and not in_CHP_majority and chp_seats < majority_threshold and coalition_dissent >= 5 and coalition_affairs_timer = 0
 card-image: img/kabine.jpg
 #subtitle: There is dissent within our coalition.
 
@@ -12,6 +12,8 @@ card-image: img/kabine.jpg
 Our coalition is in trouble. Members of our right-wing coalition partner are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition.
 
 How do we reduce tensions with the coalition?
+
+[+ {! return typeof AnatolianCoalitions!=="undefined"?AnatolianCoalitions.summary(Q):""; !} +]
 
 - @promise_cuts: Agree to the bourgeois plans to cut welfare.
 - @resources: Use our party resources to support our allies.
@@ -22,7 +24,7 @@ How do we reduce tensions with the coalition?
 
 
 @promise_cuts
-on-arrival: workers_chp -= 5; workers_TIP += 5; welfare -= 1; budget += 1; coalition_dissent = 0
+on-arrival: workers_chp -= 5; workers_TIP += 5; welfare -= 1; budget += 1; {! Q.coalition_dissent=Math.max(0,(Q.coalition_dissent||0)-10); !}
 
 Fine. By cutting welfare, we have reduced dissent within the coalition.
 
@@ -31,7 +33,7 @@ subtitle: -2 resources
 view-if: historical_mode = 0
 unavailable-subtitle: Not enough resources (need 2).
 choose-if: resources >= 2
-on-arrival: resources -= 2; coalition_dissent -= 1; democracystatus -= 2
+on-arrival: resources -= 2; coalition_dissent -= 5; democracystatus -= 2
 
 By transferring campaign funds to our coalition partners, we can make our policies more acceptable to them. Some would call this corruption and a setback for democracy, but perhaps it is necessary.
 
@@ -40,19 +42,21 @@ By transferring campaign funds to our coalition partners, we can make our polici
 No. We will not do this.
 
 @bring_down
-subtitle: Bring down this government before our opponents do. There is no guarantee we will be able to force a snap election!
+title: The Coalition Government Resigns
 view-if: AP_votes <= 35 and AP_votes < chp_votes
-on-arrival: {! AnatolianRules.resetCabinet(Q); !} CHP_in_government = 0; in_grand_coalition = 0; in_democratic_coalition = 0; prime_minister = "Süleyman Demirel"; prime_minister_party = "AP"; AP_in_government = 1; MHP_in_government = 1; in_right_coalition = 1; MSP_in_government = 1; DP_in_government = 1; democracystatus -= 5
+on-arrival: {! AnatolianRules.resetCabinet(Q); if(typeof AnatolianCoalitions!=="undefined")AnatolianCoalitions.start(Q); !}
+go-to: coalition_negotiations
 
-We have called for a vote of no confidence in ourselves, and have brought down this government. However, the right-wing parties, seeing our electoral potential, refused snap elections and formed a 'Nationalist Front' coalition among themselves, comprising: AP, DP, MSP and MHP.
+= The Coalition Government Resigns
+
+Placeholder
 
 @bring_down2
-subtitle: Bring down this government before our opponents do. There is no guarantee we will be able to force a snap election!
+title: A New Government-Formation Mandate
 view-if: AP_votes > 35 and AP_votes > chp_votes
-on-arrival: {! AnatolianRules.resetCabinet(Q); !} CHP_in_government = 0; CHP_toleration = 0; in_grand_coalition = 0; in_democratic_coalition = 0; prime_minister = "Sadi Irmak"; I_in_government = 1; prime_minister_party = "I"; next_election_time = time + 6 if next_election_time > time+6; next_election_month = month + 3 if next_election_time >= time+6; next_election_year = year if next_election_time >= time+6; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; CHP_toleration = 0; pro_republic -= 5; state_employees_chp -= 3; rural_chp -= 3; petty_bourgeoisie_chp -= 3
+on-arrival: {! AnatolianRules.resetCabinet(Q); if(typeof AnatolianCoalitions!=="undefined")AnatolianCoalitions.start(Q); !}
+go-to: coalition_negotiations
 
-We have called for a vote of no confidence in ourselves, and have brought down this government. Prime Minister [+ prime_minister +] currently rules as acting prime minister.
+= A New Government-Formation Mandate
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
-
-
+Placeholder

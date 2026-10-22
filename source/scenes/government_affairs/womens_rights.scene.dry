@@ -2,7 +2,7 @@ title: Women's Rights
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-view-if: CHP_in_government = 1 and womens_rights_timer = 0 and prime_minister_party == "CHP"
+view-if: {! return Q.CHP_in_government === 1 && Q.womens_rights_timer === 0 && (Q.prime_minister_party == "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"prime"))); !}
 on-arrival: womens_rights_timer += 8; month_actions += 1
 card-image: img/ikd.jpg
 frequency: 100
@@ -45,7 +45,7 @@ Offering abortions on demand across the nation gives women control over their ow
 [? if MSP_in_government == 1 : Delegates from the MSP decry the achievements of this reform calling it "murder" and "immoral", damaging the stability of our coalition.?]
 
 @labor
-choose-if: labor_minister_party = "CHP"
+choose-if: {! return (Q.labor_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"womens_rights.labor"))); !}
 unavailable-subtitle: We need the Labour Ministry for this action!
 on-arrival: {! Q.social_equal_pay=1; Q.social_female_workforce=1; !} women_reform += 0.2; growth_modifier -= 0.2; inflation_modifier += 0.2; workers_chp += 4; state_employees_chp += 4; petty_bourgeoisie_chp -= 1; capitalists_chp -= 5; {! AnatolianRules.refreshEconomy(Q); !}
 
@@ -53,7 +53,7 @@ Even though men and women may be putting in the same labour and contributing the
 
 @maternity
 subtitle: -1 budget.
-choose-if: labor_minister_party = "CHP" and budget >= 1
+choose-if: {! return (Q.labor_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"womens_rights.maternity"))) && Q.budget >= 1; !}
 unavailable-subtitle: [? if labor_minister_party != "CHP" : We need the Labour Ministry for this action!?]  [? if budget < 1 : Requires 1 budget.?]
 view-if: maternityy == 0
 on-arrival: women_reform += 0.2; growth_modifier -= 0.1; workers_chp += 3; state_employees_chp += 3; petty_bourgeoisie_chp -= 1; budget -= 1; maternityy += 1; {! AnatolianRules.refreshEconomy(Q); !}
@@ -62,7 +62,7 @@ A maternity leave of 16 weeks is given to working women, 8 prenatal and 8 postna
 
 @maternity1
 view-if: maternityy == 1
-choose-if: labor_minister_party = "CHP"
+choose-if: {! return (Q.labor_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"womens_rights.maternity1"))); !}
 unavailable-subtitle: We need the Labour Ministry for this action!
 on-arrival: maternityy += 1
 
@@ -70,7 +70,7 @@ We work on extending the maternity leave from 16 weeks to 24 weeks in cooperatio
 
 @maternity2
 subtitle: -1 budget.
-choose-if: labor_minister_party = "CHP" and maternityy == 2 and budget >= 1
+choose-if: {! return (Q.labor_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"womens_rights.maternity2"))) && Q.maternityy == 2 && Q.budget >= 1; !}
 unavailable-subtitle: [? if labor_minister_party != "CHP" : We need the Labour Ministry for this action!?] [? if maternity != 2 : We have already established an extended maternity leave of 24 weeks!?]  [? if budget < 1 : Requires 1 budget.?]
 view-if: maternityy >= 2
 on-arrival: women_reform += 0.4; growth_modifier -= 0.1; workers_chp += 3; state_employees_chp += 3; petty_bourgeoisie_chp -= 1; budget -= 1; maternityy += 1; {! AnatolianRules.refreshEconomy(Q); !}

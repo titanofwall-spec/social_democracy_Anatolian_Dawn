@@ -1,0 +1,76 @@
+/* Coalition agreements persist for one cabinet. No elapsed effects run in rendering. */
+(function(root){'use strict';
+const data=root.AnatolianCoalitionActions||(typeof require==='function'?require('./data/coalition-actions.js'):[]);
+const byScene=Object.fromEntries(data.flatMap(a=>a.scenes.map(s=>[s,a])));
+const ministries=['foreign','interior','justice','labor','defense','economic','finance','agriculture','education','industrial'];
+const names={foreign:'Foreign Affairs',interior:'Interior',justice:'Justice',labor:'Labour',defense:'National Defense',economic:'Economics and Trade',finance:'Finance',agriculture:'Agriculture',education:'Education',industrial:'Industry'};
+const ministers={foreign:'Turan Güneş',interior:'Oğuzhan Asiltürk',justice:'Muammer Aksoy',labor:'Önder Sav',defense:'Hasan Esat Işık',economic:'Zeyyat Müezzinoğlu',finance:'Deniz Baykal',agriculture:'Orhan Eyüpoğlu',education:'Mustafa Üstündağ',industrial:'Abdülkerim Doğru'};
+const n=(v,d=0)=>typeof v==='number'&&Number.isFinite(v)?v:d;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const tick=Q=>n(Q.year,1972)*24+(n(Q.month,1)-1)*2+(n(Q.week,1)-1);
+const votes=(Q,p)=>n(Q[(p==='CHP'?'chp':p)+'_seats']);
+const display=(Q,p)=>p==='CGP'?(Q.CGP_name||'CGP'):p;
+function partners(Q){return ['AP','DP','MSP','CGP'].filter(p=>Q[p+'_in_government']===1);}
+function active(Q){return !!Q.CHP_in_government&&!Q.in_CHP_majority&&votes(Q,'CHP')<226&&partners(Q).length>0;}
+function ensure(Q){const all=['CHP','AP','DP','MSP','CGP'].filter(p=>Q[p+'_in_government']===1);if(all.length<2||Q.in_CHP_majority)return null;const ps=partners(Q),key=ps.join('/');let s=Q.coalition_government;if(!s||s.partners.join('/')!==key){s=Q.coalition_government={version:1,partners:ps,formed:tick(Q),last:tick(Q),rights:{},yellowUses:0,external:0,factors:{},migrated:true};}return s;}
+function end(Q){delete Q.coalition_government;Q.coalition_dissent=0;}
+function classification(a,ps){if(ps.some(p=>a.parties[p]==='red'))return 'red';return ps.some(p=>a.parties[p]==='yellow')?'yellow':'green';}
+function powerAccess(Q,scene){const a=byScene[scene];return !!a&&active(Q)&&classification(a,partners(Q))==='yellow'&&!reason(Q,scene);}
+function ministryAccess(Q,m){return active(Q)&&data.some(a=>a.ministry===m&&classification(a,partners(Q))==='yellow'&&!reason(Q,a.scenes[0]));}
+function cost(Q){return 1;}
+function reason(Q,scene){const a=byScene[scene];if(!a||!active(Q))return '';const s=ensure(Q),type=classification(a,s.partners),owner=s.rights[a.id];if(type==='green'&&a.ministry&&Q[a.ministry+'_minister_party']!=='CHP')return 'Requires the '+names[a.ministry]+' Ministry.';if(type==='red')return 'Opposed by the coalition partner.';if(type==='yellow'&&owner==='partner')return 'Assigned to the coalition partner by the binding agreement.';if(type==='yellow'&&owner!=='player'&&n(Q.resources)<cost(Q))return 'Requires '+cost(Q)+' party resource for this use.';return '';}
+function use(Q,scene){const a=byScene[scene];if(!a||!active(Q))return true;if(reason(Q,scene))return false;const s=ensure(Q);if(classification(a,s.partners)==='yellow'&&!s.rights[a.id]){Q.resources-=cost(Q);s.yellowUses++;}return true;}
+function description(Q,scene){const a=byScene[scene];if(!a||!active(Q))return '';const s=ensure(Q),type=classification(a,s.partners);if(type!=='yellow')return type==='green'?'Coalition: supported.':'Coalition: opposed.';return s.rights[a.id]==='player'?'Coalition: permanently assigned to CHP.':s.rights[a.id]==='partner'?'Coalition: assigned to the partner.':'Coalition: unresolved, '+cost(Q)+' resource per use.';}
+function yellow(Q){const f=Q.coalition_formation;return data.filter(a=>classification(a,f?.pending?.partners||[])==='yellow');}
+function counts(rights){return {player:Object.values(rights).filter(v=>v==='player').length,partner:Object.values(rights).filter(v=>v==='partner').length};}
+function allocate(Q,id,owner){const f=Q.coalition_formation;if(!f?.pending||!yellow(Q).some(a=>a.id===id))return false;const r=f.pending.rights;if(r[id]===owner)delete r[id];else r[id]=owner;return true;}
+function enough(Q,parties,external=[]){return [...parties,...external].reduce((sum,p)=>sum+votes(Q,p),0)>=226;}
+function start(Q){const previous=!!Q.coalition_previous_right||!!Q.in_right_coalition;end(Q);root.AnatolianRules.resetCabinet(Q);Q.I_in_government=1;Q.coalition_formation={year:Q.year,largest:Q.largest_party_key?(Q.largest_party_key==='chp'?'CHP':'AP'):(votes(Q,'CHP')>votes(Q,'AP')?'CHP':'AP'),stage:'mandate',index:0,pending:null,history:[],localBoost:false,previousRight:previous};const f=Q.coalition_formation;f.leader=f.largest;f.round='first';f.attempts=attempts(f);}
+function attempts(f){if(f.year===1973)return f.leader==='CHP'?(f.round==='renewed'?['MSP']:['CGP','MSP','AP']):['CGP','MSP','RIGHT','CHP'];return f.leader==='CHP'?['CGP','AP','DP','MSP']:['CGP','CHP','MSP','RIGHT'];}
+function current(Q){const f=Q.coalition_formation;return f?.attempts?.[f.index];}
+function candidate(Q){const f=Q.coalition_formation,p=current(Q);return p==='RIGHT'?{parties:['AP','MSP','CGP'],external:['DP'],leader:'AP'}:{parties:[f.leader,p],external:[],leader:f.leader};}
+function possible(Q){const c=candidate(Q);return c.parties.every(Boolean)&&enough(Q,c.parties,c.external);}
+function acceptable(Q){const c=candidate(Q);return possible(Q)&&c.parties.filter(p=>p!=='CHP').every(p=>n(Q[p+'_relation'],50)>=30);}
+function negotiate(Q){const f=Q.coalition_formation;if(!acceptable(Q))return false;const c=candidate(Q);f.pending={partners:c.parties.filter(p=>p!=='CHP'),parties:c.parties,leader:c.leader,external:c.external,rights:{},ministries:{}};if(!c.parties.includes('CHP')){f.stage='right';return true;}const chpShare=votes(Q,'CHP')/c.parties.reduce((a,p)=>a+votes(Q,p),0);f.pending.quota=clamp(Math.round(ministries.length*chpShare),1,ministries.length-1);f.stage='ministries';return true;}
+function next(Q){const f=Q.coalition_formation;f.history.push({leader:f.leader,partner:current(Q),outcome:'failed'});f.pending=null;f.index++;if(f.index<f.attempts.length){f.stage='attempt';return;}
+ if(f.year===1973&&f.round==='first'&&f.leader==='CHP'){f.stage='return';return;}
+ if(f.year===1973&&f.round==='second'&&f.largest==='CHP'&&f.leader==='AP'){f.stage='talu';return;}
+ if(f.round==='first'){f.stage=f.year!==1973&&f.leader==='CHP'&&f.previousRight?'right_final':'return';return;}
+ if(f.round==='renewed'){f.stage='return_final';return;}
+ if(f.leader==='CHP'&&f.round==='second'){f.stage='right_final';return;}
+ f.stage='caretaker';}
+function returnMandate(Q){const f=Q.coalition_formation;f.leader=f.leader==='CHP'?'AP':'CHP';f.round='second';f.attempts=f.year===1973&&f.leader==='AP'?['CHP']:attempts(f);f.index=0;f.stage='attempt';}
+function afterTalu(Q){const f=Q.coalition_formation;f.stage='waiting_local';Q.I_in_government=1;Q.prime_minister='Independent caretaker';Q.prime_minister_party='I';}
+function afterLocal(Q){const f=Q.coalition_formation;if(!f||f.year!==1973||Q.year!==1973)return false;
+ if(f.largest==='CHP'&&!f.localBoost){if(root.AnatolianNationalCoalition)root.AnatolianNationalCoalition.policy(Q,'local-1973-momentum',['workers','state_employees','petty_bourgeoisie'],.012);f.localBoost=true;}
+ if(f.stage!=='waiting_local')return false;
+ if(f.largest==='CHP'){if(!f.localBoost&&root.AnatolianNationalCoalition){root.AnatolianNationalCoalition.policy(Q,'local-1973-momentum',['workers','state_employees','petty_bourgeoisie'],.012);}f.localBoost=true;f.leader='CHP';f.round='renewed';f.attempts=['MSP'];f.index=0;f.stage='renewed';}
+ else f.stage='right_final';return true;}
+function finalRight(Q){const f=Q.coalition_formation;f.leader='AP';f.round='final';f.attempts=['RIGHT'];f.index=0;f.stage='attempt';}
+function toggleMinistry(Q,m){const p=Q.coalition_formation?.pending;if(!p||!ministries.includes(m))return false;if(p.ministries[m]==='CHP'){delete p.ministries[m];return true;}if(Object.values(p.ministries).filter(x=>x==='CHP').length>=p.quota)return false;p.ministries[m]='CHP';return true;}
+function ministryReady(Q){const p=Q.coalition_formation?.pending;return !!p&&Object.values(p.ministries).filter(x=>x==='CHP').length===p.quota;}
+function agreementReady(Q){const p=Q.coalition_formation?.pending;if(!p)return false;const c=counts(p.rights);return ministryReady(Q)&&c.player===c.partner;}
+function form(Q){const f=Q.coalition_formation,p=f?.pending;if(!p||!agreementReady(Q))return false;const saved=JSON.parse(JSON.stringify(p));root.AnatolianRules.resetCabinet(Q);Q.CHP_in_government=1;saved.partners.forEach(x=>Q[x+'_in_government']=1);Q.prime_minister_party=saved.leader;Q.prime_minister=saved.leader==='CHP'?'Bülent Ecevit':'Süleyman Demirel';
+ Q.in_grand_coalition=saved.partners.includes('AP')?1:0;Q.in_democratic_coalition=saved.partners.includes('CGP')?1:0;Q.in_msp_coalition=saved.partners.includes('MSP')?1:0;
+ ministries.forEach(m=>{Q[m+'_minister_party']=saved.ministries[m]||display(Q,saved.partners[0]);Q[m+'_minister']=saved.ministries[m]==='CHP'?ministers[m]:'Coalition nominee';});
+ Q.coalition_government={version:1,partners:saved.partners,formed:tick(Q),last:tick(Q),rights:saved.rights,ministries:saved.ministries,yellowUses:0,external:0,factors:{}};Q.coalition_dissent=0;f.stage='formed';f.history.push({parties:saved.parties,outcome:'formed'});return true;}
+function rightGovernment(Q){const f=Q.coalition_formation,c=f?.pending&&!f.pending.parties.includes('CHP')?f.pending:{parties:['AP','MSP','CGP'],external:['DP']};if(!enough(Q,c.parties,c.external))return false;root.AnatolianRules.resetCabinet(Q);c.parties.forEach(p=>Q[p+'_in_government']=1);Q.DP_external_support=c.external.includes('DP')?1:0;Q.DP_in_government=c.parties.includes('DP')?1:0;Q.in_right_coalition=1;Q.prime_minister_party='AP';Q.prime_minister=f?.round==='final'&&f.year!==1973?(f.year===1975?'Baykara':'Şentürk'):'Süleyman Demirel';ministries.forEach((m,i)=>{Q[m+'_minister_party']=display(Q,c.parties[i%c.parties.length]);Q[m+'_minister']='Coalition nominee';});if(f)f.stage='formed';ensure(Q);return true;}
+function majority(Q,party){root.AnatolianRules.resetCabinet(Q);Q[party+'_in_government']=1;Q.prime_minister_party=party;Q.prime_minister=party==='CHP'?'Bülent Ecevit':'Süleyman Demirel';Q.in_CHP_majority=party==='CHP'?1:0;ministries.forEach(m=>{Q[m+'_minister_party']=party;Q[m+'_minister']=party==='CHP'?ministers[m]:'Government nominee';});Q.coalition_formation.stage='formed';}
+function factors(Q){const s=ensure(Q);if(!s)return {R:0,P:0,S:0,F:0,E:0,X:0};const R=s.partners.reduce((v,p)=>v+(50-n(Q[p+'_relation'],50))/25,0)/s.partners.length;
+ const age=Math.max(0,(tick(Q)-s.formed)/2),until=Math.max(0,(n(Q.next_election_year,1981)*12+n(Q.next_election_month,6))-(n(Q.year)*12+n(Q.month)));
+ const P=-.5*Math.exp(-age/6)+.4*Math.min(age/36,1)+.8*Math.max(0,1-until/12);
+ const street=n(Q.far_left_force)+n(Q.far_right_force);const police=n(Q.police_strength)*n(Q.police_militancy,1)*n(Q.police_loyalty,1);
+ const S=clamp((street-police)/Math.max(50,street+police),-1,2)+(Q.OHAL? .5:0);
+ const F=clamp((50-(n(Q.us_relation,50)+n(Q.west_relation,50)+n(Q.soviet_relation,50)+n(Q.middle_east_relation,50))/4)/50,-1,1)+((Q.armsembargo||Q.cyprus_embargo_applied)? .3:0);
+ const E=clamp((n(Q.inflation,15)-20)/40+(n(Q.unemployed,7)-8)/12+(4-n(Q.economic_growth,4))/5+n(Q.forex_pressure)/150,-1.5,4);
+ const G=.04*s.yellowUses+.015*s.yellowUses*s.yellowUses;
+ const X=s.partners.reduce((v,p)=>v+(p==='AP'?1.2+.5*E+G:p==='CGP'?1+.6*S+.9*G:p==='DP'?1.4+1.05*G:2+1.3*G),0)+n(s.external);
+ const out={R,P,S,F,E,X,G,Y:s.yellowUses};for(const k of ['R','P','S','F','E','X'])out[k]+=n(s.adjustments?.[k]);return out;}
+function update(Q){const s=ensure(Q);if(!s)return;const now=tick(Q),elapsed=Math.max(0,now-s.last);if(!elapsed)return;const f=factors(Q);s.factors=f;Q.coalition_dissent=clamp(n(Q.coalition_dissent)+Object.entries(f).filter(([k])=>'RPSFEX'.includes(k)&&k.length===1).reduce((v,[k,x])=>v+x,0)*elapsed/2,0,100);s.last=now;}
+function external(Q,amount,component){const s=ensure(Q);if(!s)return;if(['R','P','S','F','E','X'].includes(component)){s.adjustments=s.adjustments||{};s.adjustments[component]=n(s.adjustments[component])+n(amount);}else Q.coalition_dissent=clamp(n(Q.coalition_dissent)+n(amount),0,100);}
+function summary(Q){const s=ensure(Q);if(!s)return '';const c=counts(s.rights),f=factors(Q);return '<p><b>Coalition Dissent:</b> '+n(Q.coalition_dissent).toFixed(2)+' / 100</p><p>Agreement: '+c.player+' player powers, '+c.partner+' partner powers; '+(data.filter(a=>classification(a,s.partners)==='yellow').length-c.player-c.partner)+' unresolved. Unresolved uses: '+s.yellowUses+'.</p><p>'+Object.entries({R:'Relations',P:'Political pressure',S:'Street security',F:'Foreign relations',E:'Economy',X:'Coalition factors'}).map(([k,label])=>label+' ('+k+'): '+f[k].toFixed(2)).join(', ')+' per month.</p>';}
+function install(e){if(e._coalitionInstalled)return;e._coalitionInstalled=true;if(e.state&&e.state.qualities)ensure(e.state.qualities);const compile=e._compileChoices;e._compileChoices=function(scene){return (compile.call(this,scene)||[]).map(c=>{const Q=this.state.qualities,r=reason(Q,c.id),d=description(Q,c.id);if(!d)return c;return {...c,canChoose:c.canChoose&&!r,subtitle:[c.subtitle,d,r].filter(Boolean).join(' ')};});};const raw=e._cardCompile;if(raw)e._cardCompile=function(scene){return (raw.call(this,scene)||[]).map(c=>({...c,canChoose:c.canChoose&&!reason(this.state.qualities,c.id)}));};const change=e.__changeScene;e.__changeScene=function(id){if(byScene[id]&&!use(this.state.qualities,id))return;return change.call(this,id);};}
+root.AnatolianCoalitions={data,byScene,ministries,names,powerAccess,ministryAccess,active,ensure,end,reason,use,description,yellow,counts,allocate,start,current,candidate,possible,acceptable,negotiate,next,returnMandate,afterTalu,afterLocal,finalRight,toggleMinistry,ministryReady,agreementReady,form,rightGovernment,majority,factors,update,external,summary,install};if(typeof module!=='undefined')module.exports=root.AnatolianCoalitions;
+})(globalThis);
+
+

@@ -1,7 +1,7 @@
 title: Education Ministry
 new-page: true
 is-card: true
-view-if: CHP_in_government = 1 and education_minister_party = "CHP" and education_science_timer == 0
+view-if: {! return Q.CHP_in_government === 1 && (Q.education_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"education"))) && Q.education_science_timer == 0; !}
 on-arrival: education_science_timer += 6; month_actions += 1
 card-image: img/portraits/MustafaUstundag.png
 go-to: ed_menu
@@ -55,7 +55,7 @@ Students have been excluded from decisions concerning their own education, while
 
 @teacher
 subtitle: -1 budget.
-choose-if: teacherr == 0 and MSP_in_government == 0 and AP_in_government == 0 and DP_in_government == 0 and budget >= 1
+choose-if: {! return Q.teacherr == 0 && (Q.MSP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.teacher"))) && (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.teacher"))) && (Q.DP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.teacher"))) && Q.budget >= 1; !}
 unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?] [? if teacherr == 1 : We have already increased political freedoms for our teachers! ?] [? if MSP_in_government == 1 or AP_in_government == 1 or DP_in_government == 1 : Our right-wing coalition partners prevent us from passing this reform! ?]
 on-arrival: democracystatus += 3; AP_relation -= 5; MSP_relation -= 5; DP_relation -= 5; teacherr += 1; growth_modifier += 0.2; budget -= 1; {! AnatolianRules.refreshEconomy(Q); !}
 
@@ -92,7 +92,7 @@ Family income and place of birth have too often determined which children may co
 @imamhatip
 subtitle: +1 budget.
 on-arrival: budget += 1; MSP_relation -= 10; imamhatipp += 1
-choose-if: MSP_in_government == 0 and AP_in_government == 0 and DP_in_government == 0 and imamhatipp < 3
+choose-if: {! return (Q.MSP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.imamhatip"))) && (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.imamhatip"))) && (Q.DP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.imamhatip"))) && Q.imamhatipp < 3; !}
 unavailable-subtitle: [? if imamhatipp < 3 : Our right-wing coalition partners will not let us cut funding for the religious schools! ?] [? if imamhatipp >= 3 : We have already cut their funding to oblivion! ?]
 
 Educational investment has been directed towards new İmam Hatip projects while general, technical and vocational schools remained neglected. We shall allow that no more by redirecting funds towards the genuine needs of national education.

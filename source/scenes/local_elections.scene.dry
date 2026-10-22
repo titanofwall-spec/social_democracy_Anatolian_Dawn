@@ -81,4 +81,5 @@ The municipal elections are complete. Control of the provinces now stands at [+ 
 - @back_to_root: Return to other affairs.
 
 @back_to_root
-go-to: root
+on-arrival: {! if(typeof AnatolianCoalitions!=="undefined")AnatolianCoalitions.afterLocal(Q); !}
+go-to: coalition_negotiations.route if {! return !!Q.coalition_formation&&["renewed","right_final"].includes(Q.coalition_formation.stage); !}; root if {! return !Q.coalition_formation||!["renewed","right_final"].includes(Q.coalition_formation.stage); !}

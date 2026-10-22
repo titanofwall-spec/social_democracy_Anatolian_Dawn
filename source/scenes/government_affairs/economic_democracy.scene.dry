@@ -111,7 +111,7 @@ We have begun transforming small cooperatives into larger organizations. We must
 @peoples_sector
 title: Integrate People's Sector into the Five Year Plan
 new-page: true
-choose-if: CHP_in_government and (economic_minister_party == "CHP" or finance_minister_party == "CHP")
+choose-if: {! return Q.CHP_in_government && ((Q.economic_minister_party == "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"economic"))) || (Q.finance_minister_party == "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"economic")))); !}
 unavailable-subtitle: Requires the Ministry of Economics or Finance.
 
 = Integrate People's Sector into the Five Year Plan
@@ -125,7 +125,7 @@ The Turkish economy is still developing and needs broad, long-term, state-led gr
 @cooperative_bank
 title: Establish the Cooperative Bank
 new-page: true
-choose-if: CHP_in_government and agriculture_minister_party == "CHP"
+choose-if: {! return Q.CHP_in_government && (Q.agriculture_minister_party == "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"agriculture"))); !}
 unavailable-subtitle: Requires the Ministry of Agriculture.
 
 = Establish the Cooperative Bank

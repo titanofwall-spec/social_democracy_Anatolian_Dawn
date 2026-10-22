@@ -1,9 +1,9 @@
 title: Vote of No Confidence
 subtitle: Our coalition partners call for our removal
 new-page: true
-view-if: CHP_in_government = 1 and (in_democratic_coalition = 1 or in_grand_coalition = 1 or in_popular_front = 1 or in_msp_coalition = 1) and coalition_dissent >= 4 and chp_votes < 50 and not constructive_vonc
+view-if: CHP_in_government = 1 and (in_democratic_coalition = 1 or in_grand_coalition = 1 or in_popular_front = 1 or in_msp_coalition = 1) and coalition_dissent >= 75 and chp_votes < 50 and not constructive_vonc
 tags: event
-on-arrival: coalition_dissent = 2 if coalition_dissent > 2
+on-arrival: coalition_dissent = 50 if coalition_dissent > 50
 go-to: vonc_menu
 
 = Vote of No Confidence
@@ -15,7 +15,8 @@ Our coalition partners have called for a vote of no confidence against us. If th
 - @let_it_happen: Accept the vote.
 
 @let_it_happen
-go-to: nationalist_front if in_msp_coalition = 1; caretaker
+on-arrival: {! if(typeof AnatolianCoalitions!=="undefined"){AnatolianRules.resetCabinet(Q);AnatolianCoalitions.start(Q);} !}
+go-to: coalition_negotiations if {! return typeof AnatolianCoalitions!=="undefined"; !}; caretaker if {! return typeof AnatolianCoalitions==="undefined"; !}
 
 @nationalist_front
 on-arrival: {!

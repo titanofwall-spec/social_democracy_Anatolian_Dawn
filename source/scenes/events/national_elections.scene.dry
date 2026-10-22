@@ -22,6 +22,7 @@ on-arrival: I_in_government = 0; {!
 // election vote share" section on the status screen can reflect the state at the last
 // election rather than whatever the current (possibly later-changed) state is.
 Q.socialist_left_formed_last_election = Q.socialist_left_formed;
+Q.coalition_previous_right=!!Q.in_right_coalition;
 // set old results
 // election threshold constitutional reform
 // banning parties
@@ -152,6 +153,7 @@ for (var party of Q.parties) {
     election_result[party] = Q[party + '_r'];
 }
 Q.election_records.push(election_result);
+if(typeof AnatolianCoalitions!=="undefined")AnatolianCoalitions.start(Q);
 !}
 on-departure: far_right_urgency = 1 if (far_right_urgency == 0 and MHP_r >= 15)
 on-display: {!
@@ -223,7 +225,7 @@ if (window && d3) {
     if(typeof renderElectionResultMap==='function')renderElectionResultMap('general');
 }
 !}
-go-to: coalition_menu
+go-to: coalition_negotiations if {! return typeof AnatolianCoalitions!=="undefined"; !}; coalition_menu if {! return typeof AnatolianCoalitions==="undefined"; !}
 
 = Election results
 

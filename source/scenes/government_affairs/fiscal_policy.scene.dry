@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: govt_affairs, cabinet
 on-arrival: fiscal_policy_timer += 6; month_actions += 1
-view-if: CHP_in_government = 1 and finance_minister_party = "CHP" and fiscal_policy_timer = 0
+view-if: {! return Q.CHP_in_government === 1 && (Q.finance_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"finance"))) && Q.fiscal_policy_timer === 0; !}
 card-image: img/portraits/DenizBaykal.jpg
 go-to: fiscal_menu
 #subtitle: Issues of taxation, budget, and tariffs.
@@ -44,7 +44,7 @@ Due to the rampant inflation of the last few years, many lower income families h
 @speculative
 subtitle: Speculative loans are used by companies to buy each other's stocks which creates the façade of growth without any improvement in production.
 on-arrival: industry_modifier += 5; growth_modifier += 0.5;  west_relation -= 5; us_relation -= 5; capitalists_chp -= 10; unemployment_modifier -= 0.5; speculativee += 1; {! AnatolianRules.refreshEconomy(Q); !}
-choose-if: speculativee == 0 and AP_in_government == 0
+choose-if: {! return Q.speculativee == 0 && (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"fiscal_policy.speculative"))); !}
 unavailable-subtitle: [? if speculativee == 1 : We have already implemented restrictions on speculative loans! ?] [? if AP_in_government == 1 : AP is against any tax reform undermining the rich! ?]
 
 Our regulation of speculative loans has forced companies to divert funds towards expansion instead of stock trading, pushing real growth up and unemployment down. However, the international bankers are irritated by us disciplining our financial market which worsens our relation with Western governments.
@@ -190,7 +190,7 @@ Current tariff level: [+ tariffs : taxation +]
 
 @luxury_tariffs
 subtitle: +1 budget.
-choose-if: AP_in_government == 0
+choose-if: {! return (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"fiscal_policy.luxury_tariffs"))); !}
 unavailable-subtitle: AP prevents us raising luxury tariffs!
 on-arrival: capitalists_chp -= 4; west_relation -= 3; budget += 1
 

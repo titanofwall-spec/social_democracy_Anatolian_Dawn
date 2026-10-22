@@ -86,6 +86,7 @@
         'in_emergency_government', 'in_minority_government', 'in_unity_government', 'in_right_coalition', 'in_CHP_majority', 'CHP_toleration', 'CHP_caretaker'];
     /** Clear all cabinet ownership before a new formation or caretaker transition. @param {GameState} Q */
     function resetCabinet(Q) {
+        delete Q.coalition_government; Q.DP_external_support=0;
         ['CHP', 'AP', 'TIP', 'MSP', 'MHP', 'CGP', 'DP', 'I'].forEach(function (party) { Q[party + '_in_government'] = 0; });
         coalitionFlags.forEach(function (flag) { Q[flag] = 0; });
         ministries.forEach(function (ministry) { Q[ministry + '_minister_party'] = 'I'; Q[ministry + '_minister'] = 'Vacant'; });

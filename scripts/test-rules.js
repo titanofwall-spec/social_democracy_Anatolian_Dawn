@@ -4,6 +4,7 @@ const rules = require('../out/html/rules.js');
 require('../out/html/cyprus-atilla1.js');
 require('../out/html/cyprus-campaign.js');
 require('../out/html/cyprus-roadmap.js');
+require('../out/html/coalitions.js');
 // Preserve the legacy campaign fixture; current-campaign tests use the real initializer.
 rules.cyprusCampaign.initialize = () => {};
 const check = require('./check.js');
@@ -118,20 +119,20 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
             assert.equal(Q[minister+'_minister_party'],'I',minister);
         assert.equal(Q.prime_minister_party,'I'); assert.equal(Q.CHP_in_government,0);
     });
-    test('Alternative coalition collapses clear ministries and align election clocks', (e,Q) => {
+    test('Coalition collapses clear ministries and reopen negotiations without forcing elections', (e,Q) => {
         Q.education_minister_party='CHP'; Q.TIP_in_government=1;
         Q.year=1974; Q.month=11; Q.next_election_time=Q.time+100;
         action(e,'coalition_affairs.bring_down2');
-        assert.equal(Q.next_election_time-Q.time,6); assert.equal(Q.next_election_year,1975); assert.equal(Q.next_election_month,2);
+        assert.equal(Q.next_election_time-Q.time,100); assert.equal(Q.coalition_formation.stage,'mandate');
         assert.equal(Q.education_minister_party,'I'); assert.equal(Q.TIP_in_government,0);
         Q.education_minister_party='CHP'; action(e,'coalition_affairs.bring_down');
-        assert.equal(Q.education_minister_party,'I'); assert.equal(Q.AP_in_government,1);
+        assert.equal(Q.education_minister_party,'I'); assert.equal(Q.AP_in_government,0); assert.equal(Q.coalition_formation.stage,'mandate');
     });
     test('Action gates use canonical economic, cabinet and leader fields', (e,Q) => {
         Q.economicreform=1; Q.inflation=10; Q.economic_growth=8; Q.unemployed=4;
         Q.west_relation=80; Q.cyprus_problem=2;
         assert(e._runPredicate(game.scenes['foreign_policy.aet'].chooseIf,true));
-        Q.AP_in_government=1; assert(!e._runPredicate(game.scenes['foreign_policy.east'].chooseIf,true));
+        Q.CHP_in_government=1; Q.AP_in_government=1; assert(e._runPredicate(game.scenes['foreign_policy.east'].chooseIf,true),'Soviet menu stays open; individual negotiated powers enforce coalition access');
         Q.CHP_party_leader='Ecevit'; Q.dissent=0.5;
         assert(e._runPredicate(game.scenes.party_disunity.viewIf,true));
         Q.year=1974; Q.advisor_action_timer=3; assert(!e._runPredicate(game.scenes['avcioglu.devrim'].chooseIf,true));
@@ -596,4 +597,5 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');
     if(process.env.REPAIR_RESULTS) fs.writeFileSync(process.env.REPAIR_RESULTS,JSON.stringify({passed,scenes:Object.keys(game.scenes).length},null,2));
 });
+
 

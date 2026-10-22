@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: govt_affairs, cabinet
 on-arrival: month_actions += 1; foreign_policy_timer += 6
-view-if: CHP_in_government = 1 and foreign_minister_party = "CHP" and  foreign_policy_timer <= 0
+view-if: {! return Q.CHP_in_government === 1 && (Q.foreign_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"foreign"))) &&  Q.foreign_policy_timer <= 0; !}
 card-image: img/portraits/TuranGunes.jpg
 go-to: fp_menu
 
@@ -49,7 +49,7 @@ We improve our relations with Western Europe.
 @negotiategunes
 subtitle: The Güneş Plan is a plan for the reunification of Cyprus under a confederation created by our exterior minister Turan Güneş. The plan suggests splitting the island into many decentralized zones across the island along ethnic lines. We have to negotiate a deal before the US Congress approves an arms embargo against us at the end of the year!
 view-if: cyprus_campaign_version != 2 and cyprus_problem == 3 and year < 1975
-choose-if: foreign_minister_party = "CHP"
+choose-if: {! return (Q.foreign_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"foreign_policy.negotiategunes"))); !}
 on-arrival: gunesplan += 1
 
 We negotiate the plan with our American counterparts who act as mediators between us and the Greeks. We have to sustain our efforts for a breakthrough in the negotiations.
@@ -57,7 +57,7 @@ We negotiate the plan with our American counterparts who act as mediators betwee
 @negotiatedenktas
 subtitle: Even though we have lost our chance with the Güneş Plan, it may still be possible to find a peaceful end to the Cyprus Problem. The Denktaş Plan is a plan for the reunification of Cyprus under a confederation created by the Turkish Cypriot leader Rauf Denktaş. The plan unlike the Güneş Plan entails a division of the island into two halves roughly along the invasion lines.
 view-if: cyprus_campaign_version != 2 and cyprus_problem == 3 and year >= 1975
-choose-if: foreign_minister_party = "CHP" and us_relation > 40
+choose-if: {! return (Q.foreign_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"foreign_policy.negotiatedenktas"))) && Q.us_relation > 40; !}
 unavailable-subtitle: Our relations with the US are not good enough to negotiate the Denktaş Plan!
 on-arrival: denktasplan += 1
 
@@ -81,7 +81,7 @@ With the exception of the İncirlik base we closed down all the American bases i
 
 
 @east
-choose-if: AP_in_government == 0 and DP_in_government == 0
+choose-if: {! return Q.CHP_in_government===1; !}
 unavailable-subtitle: Our coalition partners prevent us from fostering relations with the Soviets!
 
 Up until now our relations with the Eastern Bloc have been cold at best. However, after Stalin's death the Soviet attitude towards Turkey has shifted towards a reconciliatory direction. Even though we should keep our relations with the West in mind, we have a lot to gain from improved relations with the Soviet Union.

@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: govt_affairs, cabinet
 on-arrival: military_policy_timer += 6; month_actions += 1
-view-if: CHP_in_government = 1 and defense_minister_party = "CHP" and military_policy_timer <= 0
+view-if: {! return Q.CHP_in_government === 1 && (Q.defense_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"defense"))) && Q.military_policy_timer <= 0; !}
 card-image: img/portraits/Hasan_Esat_Isik.jpg
 go-to: menu
 
@@ -33,7 +33,7 @@ Despite the army officials' claim that they represent a group of interest wholly
 
 @OYAKstrict
 subtitle: It is a known fact that the army exerts influence over the financial and civil sectors through the OYAK funds.
-choose-if: CGP_in_government == 0
+choose-if: {! return (Q.CGP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"military_policy.OYAKstrict"))); !}
 unavailable_subtitle: Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!
 on-arrival: democracystatus += 2; coup_timer += 1
 
@@ -79,7 +79,7 @@ go-to: menu
 @budgetdecrease
 on-arrival: coup_timer += 2; budget += 1
 subtitle: +1 budget.
-choose-if: CGP_in_government == 0
+choose-if: {! return (Q.CGP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"military_policy.budgetdecrease"))); !}
 unavailable-subtitle: Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!
 
 We launch a campaign of inspections into the spending of the army. The army views attempts at curbing excessive spending as an act of disrespect and many high-ranking officials privately express their disapproval.

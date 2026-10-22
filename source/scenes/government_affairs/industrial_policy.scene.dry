@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: govt_affairs, cabinet
 on-arrival: industrial_policy_timer += 6; month_actions += 1
-view-if: CHP_in_government = 1 and industrial_minister_party = "CHP" and industrial_policy_timer <= 0
+view-if: {! return Q.CHP_in_government === 1 && (Q.industrial_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"industrial"))) && Q.industrial_policy_timer <= 0; !}
 card-image: img/portraits/TarhanErdem.jpg
 
 = Industrial Policy
@@ -60,7 +60,7 @@ on-arrival: unemployment_modifier -= 0.3; growth_modifier += 0.4; inflation_modi
 We utilize the state planning agency, DPT, to promote concentration of smaller businesses in industrial zones. As smaller businesses gather possible rivals to Turkish industrial giants begin to take shape.
 
 @kredi
-choose-if: MSP_in_government == 0
+choose-if: {! return (Q.MSP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"industrial_policy.kredi"))); !}
 unavailable-subtitle: MSP is the party of the anatolian petty bourgeoisie! They will prevent this action.
 on-arrival: growth_modifier += 0.6; inflation_modifier -= 1.5; petty_bourgeoisie_chp -= 4; industry_modifier += 5; {! AnatolianRules.refreshEconomy(Q); !}
 

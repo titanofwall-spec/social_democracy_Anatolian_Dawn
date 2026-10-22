@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 tags: govt_affairs, cabinet
 on-arrival: labor_affairs_timer += 6; month_actions += 1; labor_affairs_seen = 1
-view-if: CHP_in_government = 1 and labor_minister_party = "CHP" and labor_affairs_timer <= 0 and strike_term_seen = 0
+view-if: {! return Q.CHP_in_government === 1 && (Q.labor_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"labor"))) && Q.labor_affairs_timer <= 0 && Q.strike_term_seen === 0; !}
 card-image: img/portraits/OnderSav.jpg
 go-to: labour_menu
 #subtitle: Addressing labor unrest and strikes.
