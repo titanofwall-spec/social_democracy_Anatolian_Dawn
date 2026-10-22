@@ -16,7 +16,9 @@ General-election results enter `coalition_negotiations`. The largest party gets 
 
 Ministry bargaining uses an editable selection with a seat-proportional portfolio quota. This is a balancing choice, not a historical allocation. All ten ministerial portfolios can be selected; the partner receives the remainder. Later unilateral cabinet reshuffling is disabled for a signed agreement.
 
-Contested powers are demanded or conceded in whole ministry bundles. Each option shows the number of yellow actions in that ministry for the current partner. Government policy sections without a separate ministry remain available as whole-section bundles. Only contested actions move; green and red actions retain their original treatment. Selecting the same bundle again clears it, and selecting it for the opposite side transfers the whole bundle.
+Contested powers are selected individually inside ministry submenus. Only ministries assigned to CHP appear in either demands or concessions. Selecting a ministry opens its list; it never allocates a bundle. Policy sections use their responsible ministry's ownership requirements, or the prime minister's office for powers administered directly there. Existing action prerequisites still apply.
+
+Releasing a ministry during bargaining removes its pending allocations. Signing checks both equal totals and eligibility of every selected action. During government, negotiated rights cannot override ownership of a ministry: even unresolved or formerly player-owned actions in a partner's ministry remain unavailable.
 
 Contested powers can be claimed, conceded or left unresolved. Signing requires equal numbers claimed and conceded, including zero for zero. A power cannot belong to both parties. Ownership lasts for that cabinet and is cleared by cabinet resignation or replacement.
 
