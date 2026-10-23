@@ -21,6 +21,8 @@ Fifty elected seats have been renewed. The remaining elected senators retain the
 
 [+ {! return AnatolianSenate.html(Q); !} +]
 
+[+ {! return AnatolianSenate.changesHtml(Q); !} +]
+
 {!<svg class="senate-election-parliament" style="width:100%;height:auto" aria-label="Republican Senate composition"></svg><div class="election-results-map" data-election-kind="senate"></div>!}
 
 - @done: The Senate has been renewed.

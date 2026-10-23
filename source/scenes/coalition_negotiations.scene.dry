@@ -516,7 +516,7 @@ unavailable-subtitle: Choose the negotiated CHP share of ministries first.
 
 - @claims: 1. Demand Concessions
 - @concessions: 2. Offer Concessions
-- @sign: Sign the agreement, leaving all other yellow powers unresolved.
+- @sign: Sign the agreement, remaining contested affairs remain unresolved.
 - @ministries: Reconsider the ministry distribution.
 - @reject: End the negotiations.
 
@@ -529,7 +529,7 @@ new-page: true
 
 = Demand Concessions
 
-Placeholder
+There are certain affairs that we simply cannot do without, and will demand it for this coalition's effectiveness.
 
 - @player_koykent: Köykent Project
 - @player_ministry_agriculture: Agriculture Ministry
@@ -2331,7 +2331,7 @@ new-page: true
 
 = Offer Concessions
 
-Placeholder
+There are certain affairs that we can do without, and will concede them for this coalition's longevity.
 
 - @partner_koykent: Köykent Project
 - @partner_ministry_agriculture: Agriculture Ministry
@@ -4157,7 +4157,7 @@ on-arrival: {! AnatolianCoalitions.form(Q); !}
 
 = The Coalition Agreement Is Signed
 
-Placeholder
+[+ {! return AnatolianCoalitions.agreementText(Q); !} +]
 
 [+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
 

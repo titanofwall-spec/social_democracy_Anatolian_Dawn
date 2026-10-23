@@ -9520,6 +9520,16 @@
             "type": "paragraph",
             "content": [
               {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
                 "type": "magic",
                 "content": "<svg class=\"senate-election-parliament\" style=\"width:100%;height:auto\" aria-label=\"Republican Senate composition\"></svg><div class=\"election-results-map\" data-election-kind=\"senate\"></div>"
               },
@@ -9532,6 +9542,12 @@
             "type": "insert",
             "fn": {
               "$code": "return AnatolianSenate.html(Q);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianSenate.changesHtml(Q);"
             }
           }
         ]
@@ -49435,7 +49451,7 @@
         },
         {
           "id": "@coalition_negotiations.sign",
-          "title": "Sign the agreement, leaving all other yellow powers unresolved."
+          "title": "Sign the agreement, remaining contested affairs remain unresolved."
         },
         {
           "id": "@coalition_negotiations.ministries",
@@ -49701,7 +49717,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Placeholder"
+          "content": "There are certain affairs that we simply cannot do without, and will demand it for this coalition's effectiveness."
         }
       ]
     },
@@ -56851,7 +56867,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Placeholder"
+          "content": "There are certain affairs that we can do without, and will concede them for this coalition's longevity."
         }
       ]
     },
@@ -63128,10 +63144,6 @@
           },
           {
             "type": "paragraph",
-            "content": "Placeholder"
-          },
-          {
-            "type": "paragraph",
             "content": [
               {
                 "type": "insert",
@@ -63139,9 +63151,25 @@
               },
               ""
             ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.agreementText(Q);"
+            }
+          },
           {
             "type": "insert",
             "fn": {

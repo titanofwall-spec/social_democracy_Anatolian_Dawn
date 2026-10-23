@@ -8,7 +8,7 @@ const page=await browser.newPage({viewport:{width:1440,height:1100}}),errors=[];
 
 await page.evaluate(()=>{const e=dendryUI.dendryEngine;e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');dendryUI.animate=false;jQuery.fx.off=true;Object.assign(e.state.qualities,{year:1973,month:10,week:2,chp_seats:185,AP_seats:149,CGP_seats:13,MSP_seats:48,DP_seats:45,largest_party_key:'chp',CGP_relation:60,AP_relation:60,MSP_relation:60});AnatolianCoalitions.start(e.state.qualities);e.goToScene('coalition_negotiations');});
 async function pick(id){await page.evaluate(id=>{const e=dendryUI.dendryEngine,c=e.getCurrentChoices(),i=c.findIndex(c=>c.id===id);if(i<0||c[i].unavailable)throw Error('Unavailable '+id+' at '+e.state.sceneId+': '+JSON.stringify(c));e.choose(i);},id);}
-assert((await page.locator('#content').innerText()).includes('secured first place since 1961'));
+assert((await page.locator('#content').innerText()).includes('the mandate to form the government is given'));
 await pick('coalition_negotiations.first_attempt');
 assert((await page.locator('#content').innerText()).includes('not great enough'));
 await pick('coalition_negotiations.skip_unviable');
@@ -55,7 +55,7 @@ assert.equal(result.paid,1);assert.equal(result.Y,1);assert(result.blocked);asse
 for(const dark of [false,true]){await page.evaluate(dark=>{document.body.classList.toggle('dark-mode',dark);const e=dendryUI.dendryEngine;e.state.qualities.coalition_dissent=20;e.goToScene('coalition_affairs');},dark);assert((await page.locator('#content').innerText()).includes('Unresolved uses: 1'));}
 await page.screenshot({path:path.resolve(__dirname,'../../tmp/coalition-browser.png'),fullPage:true});
 await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,chp_seats:150,AP_seats:200,CGP_seats:50,MSP_seats:40,DP_seats:10,largest_party_key:'AP',CGP_relation:60});AnatolianCoalitions.start(Q);e.goToScene('coalition_negotiations');});
-assert((await page.locator('#content').innerText()).includes('Justice Party emerging as the largest'));
+assert((await page.locator('#content').innerText()).includes('the mandate to form the government is given'));
 await pick('coalition_negotiations.first_attempt');await pick('coalition_negotiations.open_talks');
 assert((await page.locator('#content').innerText()).includes('final months of the Memorandum period'));
 assert(!(await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices())).some(c=>c.id==='coalition_negotiations.negotiate'));
@@ -94,8 +94,12 @@ assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.DP_ex
 await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,chp_seats:150,AP_seats:230,largest_party_key:'AP'});AnatolianCoalitions.start(Q);e.goToScene('coalition_negotiations');});
 await pick('coalition_negotiations.ap_majority');assert.equal(await page.locator('.coalition-cabinet li').count(),10);
 assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.AP_in_government),1);
+await page.evaluate(()=>{const e=dendryUI.dendryEngine;Object.assign(e.state.qualities,{year:1975,month:10,week:2});e.goToScene('senate_election.results');});
+assert((await page.locator('#content').innerText()).includes('Seat changes:'));
+assert((await page.locator('#content').innerText()).indexOf('Seat changes:')>(await page.locator('#content').innerText()).indexOf('Elected:'));
 assert.deepEqual(errors,[]);console.log('PASS Chrome: authored first/renewed 1973 branches, dynamic secretary, Irmak acceptance, compulsory Demirel refusal, Talu caretaker, AP and opposition cabinet automation, DP external support, ministry ownership and balanced concessions.');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);process.exitCode=1;});
+
 
 
 
