@@ -1260,42 +1260,23 @@ function getPartyIdeology(party, Q) {
 
 }());
 
-// Position only the hovered tooltip, at most once per paint frame.
-(function () {
-    var pending = false, tooltip = null, x = 0, y = 0;
-    document.addEventListener('mousemove', function (event) {
-        var target = event.target instanceof Element ? event.target.closest('.mytooltip') : null;
-        tooltip = target ? target.querySelector('.mytooltiptext') : null;
-        if (!tooltip) return;
-        x = event.clientX; y = event.clientY;
-        if (pending) return;
-        pending = true;
-        window.requestAnimationFrame(function () {
-            pending = false;
-            if (!tooltip || !tooltip.isConnected) return;
-            tooltip.style.setProperty('--mouse-x', x + 'px');
-            tooltip.style.setProperty('--mouse-y', y + 'px');
-        });
-    });
-}());
-
 (function(){
   if (typeof MutationObserver === 'undefined') return;
-  var owner=null,layer=null;
-  function hide(){if(layer)layer.remove();layer=null;owner=null;}
+  var owner=null,layer=null,frame=0,pendingTarget=null,pendingX=0,pendingY=0,box=null;
+  function hide(){if(frame)cancelAnimationFrame(frame);frame=0;pendingTarget=null;if(layer)layer.remove();layer=null;owner=null;box=null;}
   function show(target,x,y){
     var tip=target.querySelector('.mytooltiptext,.wide_tooltip-tip,.province-group-tip');if(!tip)return;
     if(owner!==target){hide();owner=target;layer=document.createElement('div');layer.id='leader-tooltip-layer';layer.className='mytooltip wide_tooltip-wrap';layer.setAttribute('role','tooltip');
       var clone=tip.cloneNode(true),computed=getComputedStyle(tip);
       ['width','max-width','padding','font-size','font-family','line-height','font-weight','background-color','color','border','border-radius','box-shadow','text-align'].forEach(function(k){clone.style.setProperty(k,computed.getPropertyValue(k));});
-      clone.style.cssText+=';position:static;display:block;visibility:visible;opacity:1;transform:none;margin:0;transition:none;';layer.appendChild(clone);document.body.appendChild(layer);
+      clone.style.cssText+=';position:static;display:block;visibility:visible;opacity:1;transform:none;margin:0;transition:none;';layer.appendChild(clone);document.body.appendChild(layer);box=layer.getBoundingClientRect();
     }
-    var box=layer.getBoundingClientRect();var left=Math.max(8,Math.min(innerWidth-box.width-8,x-box.width/2));var top=y-box.height-18;if(top<8)top=Math.min(innerHeight-box.height-8,y+18);
+    var left=Math.max(8,Math.min(innerWidth-box.width-8,x-box.width/2));var top=y-box.height-18;if(top<8)top=Math.min(innerHeight-box.height-8,y+18);
     layer.style.left=left+'px';layer.style.top=Math.max(8,top)+'px';
   }
-  document.addEventListener('mousemove',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap,.province-vote-group'):null;if(t&&t.id!=='leader-tooltip-layer')show(t,e.clientX,e.clientY);else hide();});
+  document.addEventListener('mousemove',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap,.province-vote-group'):null;if(!t||t.id==='leader-tooltip-layer'){hide();return;}pendingTarget=t;pendingX=e.clientX;pendingY=e.clientY;if(!frame)frame=requestAnimationFrame(function(){frame=0;var target=pendingTarget;if(target&&target.isConnected)show(target,pendingX,pendingY);});});
   document.addEventListener('focusin',function(e){var t=e.target instanceof Element?e.target.closest('.mytooltip,.wide_tooltip-wrap,.province-vote-group'):null;if(t){var b=t.getBoundingClientRect();show(t,b.left+b.width/2,b.bottom);}});
-  document.addEventListener('focusout',hide);window.addEventListener('scroll',hide,true);
+  document.addEventListener('focusout',hide);window.addEventListener('scroll',hide,true);window.addEventListener('resize',hide);
   new MutationObserver(function(){if(owner&&!owner.isConnected)hide();}).observe(document.documentElement,{childList:true,subtree:true});
 }());
 
@@ -1309,4 +1290,10 @@ window.openCyprusDiplomacy=function(country){
 window.switchMusicTrack=function(direction){var ui=window.dendryUI;if(!ui)return;var tracks=Array.from(new Set((ui.audioPlaylist||[]).filter(function(t){return t&&t!=='none'&&t!=='null';})));if(tracks.length<2)return;var current=ui.currentAudioURL||'',index=tracks.findIndex(function(t){return current===t||(ui.currentAudio&&decodeURI(ui.currentAudio.src).endsWith(decodeURI(t)));});index=(index+direction+tracks.length)%tracks.length;var next=tracks[index];ui.audioQueue=[];if(!ui.currentAudio)ui.currentAudio=new Audio(next);else{ui.currentAudio.pause();ui.currentAudio.src=next;}ui.currentAudioURL=next;ui.currentAudio.loop=false;if(!ui.disable_audio)ui.currentAudio.play().catch(function(){});};
 
 
-(function(){if(typeof MutationObserver==='undefined'||!document.createTreeWalker)return;function shorten(node){var walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT),items=[];while(walker.nextNode())items.push(walker.currentNode);for(var text of items){if(['SCRIPT','STYLE','TEXTAREA'].includes(text.parentElement?.tagName))continue;var value=text.nodeValue.replace(/(\d+\.\d)\d+(?=%)/g,'$1');if(value!==text.nodeValue)text.nodeValue=value;}}function installPrecision(){var observer=new MutationObserver(function(records){for(var r of records)for(var node of r.addedNodes)if(node.nodeType===1)shorten(node);else if(node.nodeType===3){var value=node.nodeValue.replace(/(\d+\.\d)\d+(?=%)/g,'$1');if(value!==node.nodeValue)node.nodeValue=value;}});observer.observe(document.body,{childList:true,subtree:true});shorten(document.body);}if(document.body)installPrecision();else document.addEventListener('DOMContentLoaded',installPrecision,{once:true});})();
+// A render can add both a whole panel and its children in the same mutation batch.
+// Walk each resulting subtree once, rather than revisiting every descendant.
+(function(){if(typeof MutationObserver==='undefined'||!document.createTreeWalker)return;
+function shortenText(text){if(text.parentElement?.closest('script,style,textarea'))return;var value=text.nodeValue.replace(/(\d+\.\d)\d+(?=%)/g,'$1');if(value!==text.nodeValue)text.nodeValue=value;}
+function shorten(node){if(node.nodeType===3){shortenText(node);return;}var walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode())shortenText(walker.currentNode);}
+function installPrecision(){var observer=new MutationObserver(function(records){var roots=new Set();for(var record of records)for(var node of record.addedNodes)if(node.isConnected&&(node.nodeType===1||node.nodeType===3))roots.add(node);for(var root of roots){var ancestor=root.parentNode,covered=false;while(ancestor){if(roots.has(ancestor)){covered=true;break;}ancestor=ancestor.parentNode;}if(!covered)shorten(root);}});observer.observe(document.body,{childList:true,subtree:true});shorten(document.body);}
+if(document.body)installPrecision();else document.addEventListener('DOMContentLoaded',installPrecision,{once:true});})();

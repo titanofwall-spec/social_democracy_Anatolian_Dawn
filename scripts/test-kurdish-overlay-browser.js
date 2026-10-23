@@ -16,7 +16,7 @@ for(const dark of [false,true]){
  const before=await page.evaluate(()=>JSON.stringify(dendryUI.dendryEngine.state.qualities.kurdish_org_state));
  await trigger.click();const dialog=page.getByRole('dialog',{name:'KG / Political Support',exact:true});await dialog.waitFor();assert.equal(await dialog.locator('.kurdish-organizations-scroll>span').count(),11);
  const box=await dialog.boundingBox();assert(box.width<=400&&box.height<=500);
- assert(await dialog.getByText('T-KDP',{exact:true}).isVisible());assert((await dialog.innerText()).includes('Active members: Not configured'));
+ assert(await dialog.getByText('T-KDP',{exact:true}).isVisible());assert.match(await dialog.innerText(),/Active members:\s*[\d,]+/);assert(!(await dialog.innerText()).includes('Not configured'));assert(!(await dialog.innerText()).includes('Suitability:'));
  assert(await dialog.locator('.kurdish-organizations-scroll').evaluate(el=>getComputedStyle(el).overflowY==='scroll'&&el.scrollHeight>el.clientHeight));
  await dialog.locator('.kurdish-organizations-scroll').evaluate(el=>el.scrollTop=el.scrollHeight);assert(await dialog.getByText('Tekoşin',{exact:true}).isVisible());
  await page.keyboard.press('Escape');assert.equal(await page.locator('.kurdish-organizations-dialog').count(),0);assert(await trigger.evaluate(el=>document.activeElement===el));
