@@ -44,8 +44,8 @@ Due to the rampant inflation of the last few years, many lower income families h
 @speculative
 subtitle: Speculative loans are used by companies to buy each other's stocks which creates the façade of growth without any improvement in production.
 on-arrival: industry_modifier += 5; growth_modifier += 0.5;  west_relation -= 5; us_relation -= 5; capitalists_chp -= 10; unemployment_modifier -= 0.5; speculativee += 1; {! AnatolianRules.refreshEconomy(Q); !}
-choose-if: {! return Q.speculativee == 0 && (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"fiscal_policy.speculative"))); !}
-unavailable-subtitle: [? if speculativee == 1 : We have already implemented restrictions on speculative loans! ?] [? if AP_in_government == 1 : AP is against any tax reform undermining the rich! ?]
+choose-if: {! return (Q.speculativee || 0) === 0 && (typeof AnatolianCoalitions === "undefined" || !AnatolianCoalitions.reason(Q,"fiscal_policy.speculative")); !}
+unavailable-subtitle: [? if speculativee == 1 : We have already implemented restrictions on speculative loans! ?] {! return typeof AnatolianCoalitions === "undefined" ? "" : AnatolianCoalitions.reason(Q,"fiscal_policy.speculative"); !}
 
 Our regulation of speculative loans has forced companies to divert funds towards expansion instead of stock trading, pushing real growth up and unemployment down. However, the international bankers are irritated by us disciplining our financial market which worsens our relation with Western governments.
 

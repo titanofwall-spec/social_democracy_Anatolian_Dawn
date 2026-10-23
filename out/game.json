@@ -26720,7 +26720,7 @@
         }
       ],
       "chooseIf": {
-        "$code": "return Q.speculativee == 0 && (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.powerAccess(Q,\"fiscal_policy.speculative\")));"
+        "$code": "return (Q.speculativee || 0) === 0 && (typeof AnatolianCoalitions === \"undefined\" || !AnatolianCoalitions.reason(Q,\"fiscal_policy.speculative\"));"
       },
       "unavailableSubtitle": {
         "content": [
@@ -26731,9 +26731,8 @@
           },
           " ",
           {
-            "type": "conditional",
-            "content": "AP is against any tax reform undermining the rich!",
-            "predicate": 1
+            "type": "magic",
+            "content": " return typeof AnatolianCoalitions === \"undefined\" ? \"\" : AnatolianCoalitions.reason(Q,\"fiscal_policy.speculative\");"
           }
         ],
         "stateDependencies": [
@@ -26741,12 +26740,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return ((Q['speculativee'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['AP_in_government'] || 0) == 1);"
             }
           }
         ]
