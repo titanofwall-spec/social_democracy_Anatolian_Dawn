@@ -862,7 +862,7 @@ Q.timers = ['advisor_action',  'crisis_program',
              'media', 'enemies',
             'party_organizations', 'rally',
             'shuffle_leadership',  'peoples_party',
-            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'campaigning_ecevit', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',
+            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'campaigning_ecevit', 'kmd', 'culture', 'municipality', 'kemalizm', 'koykent_rally', 'remnants_of_inonu', 'strategy',
             // govt
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
             'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',
@@ -899,6 +899,7 @@ Q.enemies_timer = 0;
 Q.party_organizations_timer =  0;
 Q.rally_timer = 0;
 Q.kemalizm_timer = 0;
+Q.koykent_rally_timer = 0;
 Q.shuffle_leadership_timer = 0;
 Q.streetfighting_timer = 0;
 Q.peoples_party_timer = 0;

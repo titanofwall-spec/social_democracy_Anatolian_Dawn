@@ -98,6 +98,8 @@ Our commitment to rural transformation opens a wider electoral audience. Impleme
 
 @koykent_rally
 view-if: land_reform == 3
-on-arrival: rural_chp += 2*(1-dissent); {! var s=AnatolianNationalCoalition.ensure(Q);s.groups.rural.reach=Math.min(.75,s.groups.rural.reach+.003); !}
+choose-if: koykent_rally_timer <= 0
+unavailable-subtitle: We must allow time for our previous Köykent rally to take effect.
+on-arrival: {! AnatolianNationalCoalition.koykentRally(Q); !}
 
 We rally rural voters behind the Köykent project and broaden its electoral audience.
