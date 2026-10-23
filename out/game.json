@@ -13427,6 +13427,9 @@
       "onArrival": [
         {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['q0_lk_str'] = (Q['q0_lk_str'] || 0) + 1;"
+        },
+        {
+          "$code": "AnatolianNationalCoalition.consolidate(Q);"
         }
       ],
       "content": {
@@ -20417,6 +20420,9 @@
       "onArrival": [
         {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['q1_lk_str'] = (Q['q1_lk_str'] || 0) + 1;"
+        },
+        {
+          "$code": "AnatolianNationalCoalition.consolidate(Q);"
         }
       ],
       "content": {
@@ -27604,7 +27610,7 @@
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['women'] = (Q['women'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;"
         },
         {
-          "$code": "AnatolianNationalCoalition.developOrganization(Q,\"women\");"
+          "$code": "AnatolianNationalCoalition.developOrganization(Q,\"women\");AnatolianNationalCoalition.consolidate(Q);"
         }
       ],
       "content": [
@@ -30557,7 +30563,7 @@
           "$code": "AnatolianRules.adjustFactionStrength(Q, 'lk', 3);"
         },
         {
-          "$code": "AnatolianNationalCoalition.developOrganization(Q,\"youth\");"
+          "$code": "AnatolianNationalCoalition.developOrganization(Q,\"youth\");AnatolianNationalCoalition.consolidate(Q);"
         }
       ],
       "content": [

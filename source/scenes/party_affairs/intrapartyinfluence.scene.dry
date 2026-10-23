@@ -22,13 +22,13 @@ Now that we as the reformists have gained power in the party, we have the chance
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; q0_lk_str += 1
+on-arrival: resources -= 1; q0_lk_str += 1 {! AnatolianNationalCoalition.consolidate(Q); !}
 
 @q1
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; q1_lk_str += 1
+on-arrival: resources -= 1; q1_lk_str += 1 {! AnatolianNationalCoalition.consolidate(Q); !}
 
 @q3
 choose-if: resources > 0
