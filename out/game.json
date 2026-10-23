@@ -10944,20 +10944,13 @@
     },
     "municipalities.municipalities_menu": {
       "id": "municipalities.municipalities_menu",
+      "newPage": true,
       "onDisplay": [
         {
           "$code": "if(typeof renderMunicipalControlMap==='function')renderMunicipalControlMap();"
         }
       ],
       "options": [
-        {
-          "id": "@municipalities.istanbul",
-          "title": "Istanbul Municipality"
-        },
-        {
-          "id": "@municipalities.east",
-          "title": "Eastern Municipalities"
-        },
         {
           "id": "@municipalities.governance",
           "title": "Municipalities Across the Republic"
@@ -10975,16 +10968,26 @@
           "title": "We will not take an action at the moment."
         }
       ],
-      "content": {
-        "type": "paragraph",
-        "content": [
-          {
-            "type": "magic",
-            "content": "<div class=\"municipal-control-map\" aria-label=\"CHP control in the last municipal election\"></div>"
-          },
-          ""
-        ]
-      }
+      "content": [
+        {
+          "type": "heading",
+          "content": "Municipalities and Local Governance"
+        },
+        {
+          "type": "paragraph",
+          "content": "Our municipalities provide vital services and a practical opportunity to improve everyday life across the Republic."
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "magic",
+              "content": "<div class=\"municipal-control-map\" aria-label=\"CHP control in the last municipal election\"></div>"
+            },
+            ""
+          ]
+        }
+      ]
     },
     "parliamentary_resolution.return_to_scene": {
       "id": "parliamentary_resolution.return_to_scene",
@@ -14205,172 +14208,6 @@
               },
               ""
             ]
-          },
-          {
-            "type": "heading",
-            "content": "Internal Factions of the CHP"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" style=\"color: #701616;\" title=\"Marxists within the party desire a realignment of the party alongside Socialist elements. Even though many intellectuals such as Tevfik Rüştü Aras and Doğan Avcıoğlu subscribe to this faction, there is no central organization nor a figure that leads the Marxist camp, largely due to ideological differences. However, the general secretary, Kamil Kırıkoğlu, is the most prominent member in the party.\">Kemalist Marxists</span>"
-              },
-              " strength: ",
-              {
-                "type": "insert",
-                "insert": 35
-              },
-              ", dissent: ",
-              {
-                "type": "insert",
-                "insert": 36
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<span class=\"tooltip-text\" style=\"color: #b31f3b;\" title=\"The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor detachment from the right-wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so-called \"shackles of the US\".\">Third Worldists</span>"
-                  },
-                  " strength: ",
-                  {
-                    "type": "insert",
-                    "insert": 38
-                  },
-                  ", dissent: ",
-                  {
-                    "type": "insert",
-                    "insert": 39
-                  },
-                  " "
-                ],
-                "predicate": 37
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" style=\"color: #c76083;\" title=\"Left-Wing Kemalist aka the Left of Center movement is a movement within CHP led by poet Bülent Ecevit which wishes to compliment the Progressive nature of the party with Social Democracy and in face of the growing urban working class, instead of swimming against the current, desires to lead the stream.\">Left-Wing Kemalist</span>"
-              },
-              " strength: ",
-              {
-                "type": "insert",
-                "insert": 40
-              },
-              ", dissent: ",
-              {
-                "type": "insert",
-                "insert": 41
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" style=\"color: #ac8bb3;\" title=\"CHP was created as a middle class party to reinforce the Kemalist and the semi-bourgeoisie revolution of the military intelligentsia. Mostly the remnants of the one-party era and lead by the illustrious right-man in command of Ataturk, İsmet İnönü, the Reformist Kemalists reject any intrusion into the Left in fears of CHP losing its identity as the party that gave birth to the Turkish Republic, as a nation-state found on Corporatist principles.\">Reformist Kemalists</span>"
-              },
-              " strength: ",
-              {
-                "type": "insert",
-                "insert": 42
-              },
-              ", dissent: ",
-              {
-                "type": "insert",
-                "insert": 43
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<span style=\"color: #7A3C00;\">The Reformist Kemalist faction has been destroyed and left the party.</span>"
-                  },
-                  " "
-                ],
-                "predicate": 44
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" style=\"color: #5b7387;\" title=\"Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right-Wing Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right-Wing Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.\">Right-Wing Kemalists</span>"
-              },
-              " strength: ",
-              {
-                "type": "insert",
-                "insert": 45
-              },
-              ", dissent: ",
-              {
-                "type": "insert",
-                "insert": 46
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<span style=\"color: #7A3C00;\">Following Ecevit's ascension, the Right-Wing Kemalist faction has left the party to join the non-socialist opposition.</span>"
-                  },
-                  " "
-                ],
-                "predicate": 47
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "",
-                  {
-                    "type": "magic",
-                    "content": "<span style=\"color: #7A3C00;\">Satır's compromise keeps the Right-Wing Kemalists inside the CHP, at least for now.</span>"
-                  },
-                  " "
-                ],
-                "predicate": 48
-              },
-              ""
-            ]
           }
         ],
         "stateDependencies": [
@@ -14589,95 +14426,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return ((Q['disk_turkis_conflict'] || 0) >= 0.8);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['km_strength_label'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['kemalist_marxists_dissent'] || 0);"
-            },
-            "qdisplay": "dissent"
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (((Q['third_worldists_enabled'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['tw_strength_label'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['third_worldists_dissent'] || 0);"
-            },
-            "qdisplay": "dissent"
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['lk_strength_label'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['left_kemalists_dissent'] || 0);"
-            },
-            "qdisplay": "dissent"
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['ok_strength_label'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['orthodox_kemalists_dissent'] || 0);"
-            },
-            "qdisplay": "dissent"
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (((Q['orthodox_kemalist_destruction'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['rk_strength_label'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['right_kemalists_dissent'] || 0);"
-            },
-            "qdisplay": "dissent"
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (((Q['right_kemalist_split'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((!(((Q['right_kemalist_split'] || 0)) !== 0)) && (((Q['right_kemalist_deal'] || 0)) !== 0));"
             }
           }
         ]
@@ -19976,17 +19724,54 @@
         "type": "paragraph"
       }
     },
-    "municipalities.istanbul": {
-      "id": "municipalities.istanbul",
+    "municipalities.governance": {
+      "id": "municipalities.governance",
+      "newPage": true,
       "options": [
+        {
+          "id": "@municipalities.waterlines",
+          "title": "Improve Water and Sewage Infrastructure"
+        },
+        {
+          "id": "@municipalities.publictransport",
+          "title": "Expand Public Transportation"
+        },
+        {
+          "id": "@municipalities.libraries",
+          "title": "Establish City Libraries"
+        },
+        {
+          "id": "@municipalities.halkekmek",
+          "title": "Establish Halk Ekmek Bakeries"
+        },
+        {
+          "id": "@municipalities.roads",
+          "title": "Modernize Urban Roads"
+        },
         {
           "id": "@municipalities.municipalities_menu",
           "title": "Return to municipal planning."
         }
       ],
       "content": {
-        "content": "",
-        "type": "paragraph"
+        "content": {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ""
+          ]
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.municipalHtml(Q);"
+            }
+          }
+        ]
       }
     },
     "police.recruit": {
@@ -24198,17 +23983,75 @@
         "type": "paragraph"
       }
     },
-    "municipalities.east": {
-      "id": "municipalities.east",
+    "municipalities.gecekondu": {
+      "id": "municipalities.gecekondu",
+      "newPage": true,
       "options": [
+        {
+          "id": "@municipalities.migration",
+          "title": "Place Restrictions and Difficulties on Rural-to-Urban Migration"
+        },
+        {
+          "id": "@municipalities.infrastructure",
+          "title": "Start Laying Out Infrastructure in Gecekondu Districts"
+        },
+        {
+          "id": "@municipalities.connect",
+          "title": "Connect Gecekondu Districts into Proper Urban Areas"
+        },
+        {
+          "id": "@municipalities.regularization",
+          "title": "Balance Legalization and Demolition of Gecekondu Property"
+        },
+        {
+          "id": "@municipalities.planning",
+          "title": "Begin Large-Scale Urban Planning"
+        },
+        {
+          "id": "@municipalities.transport",
+          "title": "Invest in Public Transportation and Public Services in Gecekondu Districts"
+        },
+        {
+          "id": "@municipalities.industry",
+          "title": "Develop Local Industry and Economic Activity in Gecekondu Districts"
+        },
         {
           "id": "@municipalities.municipalities_menu",
           "title": "Return to municipal planning."
         }
       ],
       "content": {
-        "content": "",
-        "type": "paragraph"
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              "Houses illegally constructed by rural-to-urban migrants unable to afford formal housing, often erected rapidly enough to avoid immediate demolition and therefore called ",
+              {
+                "type": "emphasis-1",
+                "content": "gecekondu"
+              },
+              ", “placed at night”, have grown into vast informal districts around our expanding cities. These neighborhoods often lack proper roads, sewage, clean water, public transportation and the other services expected of modern urban life. Returning their inhabitants to the countryside is neither realistic nor desirable. Our task must instead be to slow uncontrolled migration where possible while gradually transforming these settlements into proper parts of our cities and providing their inhabitants with an honorable standard of living."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.geceHtml(Q);"
+            }
+          }
+        ]
       }
     },
     "police.weaponry": {
@@ -27168,53 +27011,47 @@
         "type": "paragraph"
       }
     },
-    "municipalities.governance": {
-      "id": "municipalities.governance",
-      "options": [
-        {
-          "id": "@municipalities.waterlines",
-          "title": "Improve Water and Sewage Infrastructure"
-        },
-        {
-          "id": "@municipalities.publictransport",
-          "title": "Expand Public Transportation"
-        },
-        {
-          "id": "@municipalities.libraries",
-          "title": "Establish City Libraries"
-        },
-        {
-          "id": "@municipalities.halkekmek",
-          "title": "Establish Halk Ekmek Bakeries"
-        },
-        {
-          "id": "@municipalities.roads",
-          "title": "Modernize Urban Roads"
-        },
-        {
-          "id": "@municipalities.municipalities_menu",
-          "title": "Return to municipal planning."
-        }
-      ],
-      "content": {
+    "municipalities.waterlines": {
+      "id": "municipalities.waterlines",
+      "subtitle": {
         "content": {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "insert",
-              "insert": 0
-            },
-            ""
-          ]
+          "type": "insert",
+          "insert": 0
         },
         "stateDependencies": [
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.html(Q);"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"waterlines\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
+      },
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"waterlines\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"waterlines\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"waterlines\");"
+        }
+      ],
+      "content": {
+        "content": "Urban municipalities frequently struggle to provide sufficient clean water and sewage infrastructure for their growing populations.",
+        "type": "paragraph"
       }
     },
     "police.investigate_corruption": {
@@ -29259,74 +29096,47 @@
         }
       ]
     },
-    "municipalities.gecekondu": {
-      "id": "municipalities.gecekondu",
-      "options": [
-        {
-          "id": "@municipalities.migration",
-          "title": "Place Restrictions and Difficulties on Rural-to-Urban Migration"
+    "municipalities.publictransport": {
+      "id": "municipalities.publictransport",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
         },
-        {
-          "id": "@municipalities.infrastructure",
-          "title": "Start Laying Out Infrastructure in Gecekondu Districts"
-        },
-        {
-          "id": "@municipalities.connect",
-          "title": "Connect Gecekondu Districts into Proper Urban Areas"
-        },
-        {
-          "id": "@municipalities.regularization",
-          "title": "Balance Legalization and Demolition of Gecekondu Property"
-        },
-        {
-          "id": "@municipalities.planning",
-          "title": "Begin Large-Scale Urban Planning"
-        },
-        {
-          "id": "@municipalities.transport",
-          "title": "Invest in Public Transportation and Public Services in Gecekondu Districts"
-        },
-        {
-          "id": "@municipalities.industry",
-          "title": "Develop Local Industry and Economic Activity in Gecekondu Districts"
-        },
-        {
-          "id": "@municipalities.municipalities_menu",
-          "title": "Return to municipal planning."
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              "Houses illegally constructed by rural-to-urban migrants unable to afford formal housing, often erected rapidly enough to avoid immediate demolition and therefore called ",
-              {
-                "type": "emphasis-1",
-                "content": "gecekondu"
-              },
-              ", “placed at night”, have grown into vast informal districts around our expanding cities. These neighborhoods often lack proper roads, sewage, clean water, public transportation and the other services expected of modern urban life. Returning their inhabitants to the countryside is neither realistic nor desirable. Our task must instead be to slow uncontrolled migration where possible while gradually transforming these settlements into proper parts of our cities and providing their inhabitants with an honorable standard of living."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              ""
-            ]
-          }
-        ],
         "stateDependencies": [
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.html(Q);"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"publictransport\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
+      },
+      "chooseIf": {
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"publictransport\")"
+      },
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianMunicipalities.reason(Q,\"publictransport\");"
+            }
+          }
+        ]
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianMunicipalities.apply(Q,\"publictransport\");"
+        }
+      ],
+      "content": {
+        "content": "Municipal buses, routes, depots and other forms of public transportation remain inadequate in many cities.",
+        "type": "paragraph"
       }
     },
     "police.investigate_corruption_success": {
@@ -32259,8 +32069,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.waterlines": {
-      "id": "municipalities.waterlines",
+    "municipalities.libraries": {
+      "id": "municipalities.libraries",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -32270,13 +32080,16 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"waterlines\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"libraries\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"waterlines\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"libraries\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -32287,18 +32100,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"waterlines\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"libraries\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"waterlines\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"libraries\");"
         }
       ],
       "content": {
-        "content": "Urban municipalities frequently struggle to provide sufficient clean water and sewage infrastructure for their growing populations.",
+        "content": "Build municipal libraries to support education, literacy and the consumption of literature.",
         "type": "paragraph"
       }
     },
@@ -33776,8 +33589,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.publictransport": {
-      "id": "municipalities.publictransport",
+    "municipalities.halkekmek": {
+      "id": "municipalities.halkekmek",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -33787,13 +33600,16 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"publictransport\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"halkekmek\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"publictransport\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"halkekmek\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -33804,18 +33620,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"publictransport\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"halkekmek\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"publictransport\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"halkekmek\");"
         }
       ],
       "content": {
-        "content": "Municipal buses, routes, depots and other forms of public transportation remain inadequate in many cities.",
+        "content": "Establish municipally operated bakeries under the Halk Ekmek programme to produce affordable bread, ease the effects of inflation and support working families.",
         "type": "paragraph"
       }
     },
@@ -35957,6 +35773,172 @@
               },
               ""
             ]
+          },
+          {
+            "type": "heading",
+            "content": "Internal Factions of the CHP"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<span class=\"tooltip-text\" style=\"color: #701616;\" title=\"Marxists within the party desire a realignment of the party alongside Socialist elements. Even though many intellectuals such as Tevfik Rüştü Aras and Doğan Avcıoğlu subscribe to this faction, there is no central organization nor a figure that leads the Marxist camp, largely due to ideological differences. However, the general secretary, Kamil Kırıkoğlu, is the most prominent member in the party.\">Kemalist Marxists</span>"
+              },
+              " strength: ",
+              {
+                "type": "insert",
+                "insert": 73
+              },
+              ", dissent: ",
+              {
+                "type": "insert",
+                "insert": 74
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<span class=\"tooltip-text\" style=\"color: #b31f3b;\" title=\"The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor detachment from the right-wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so-called \"shackles of the US\".\">Third Worldists</span>"
+                  },
+                  " strength: ",
+                  {
+                    "type": "insert",
+                    "insert": 76
+                  },
+                  ", dissent: ",
+                  {
+                    "type": "insert",
+                    "insert": 77
+                  },
+                  " "
+                ],
+                "predicate": 75
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<span class=\"tooltip-text\" style=\"color: #c76083;\" title=\"Left-Wing Kemalist aka the Left of Center movement is a movement within CHP led by poet Bülent Ecevit which wishes to compliment the Progressive nature of the party with Social Democracy and in face of the growing urban working class, instead of swimming against the current, desires to lead the stream.\">Left-Wing Kemalist</span>"
+              },
+              " strength: ",
+              {
+                "type": "insert",
+                "insert": 78
+              },
+              ", dissent: ",
+              {
+                "type": "insert",
+                "insert": 79
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<span class=\"tooltip-text\" style=\"color: #ac8bb3;\" title=\"CHP was created as a middle class party to reinforce the Kemalist and the semi-bourgeoisie revolution of the military intelligentsia. Mostly the remnants of the one-party era and lead by the illustrious right-man in command of Ataturk, İsmet İnönü, the Reformist Kemalists reject any intrusion into the Left in fears of CHP losing its identity as the party that gave birth to the Turkish Republic, as a nation-state found on Corporatist principles.\">Reformist Kemalists</span>"
+              },
+              " strength: ",
+              {
+                "type": "insert",
+                "insert": 80
+              },
+              ", dissent: ",
+              {
+                "type": "insert",
+                "insert": 81
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<span style=\"color: #7A3C00;\">The Reformist Kemalist faction has been destroyed and left the party.</span>"
+                  },
+                  " "
+                ],
+                "predicate": 82
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "magic",
+                "content": "<span class=\"tooltip-text\" style=\"color: #5b7387;\" title=\"Seeing the rising Left of Center movement as a pivot to Socialism and Communism, the Right-Wing Kemalists advocate for an increased emphasis on Kemalist Nationalism and Corporatism which would serve as a third and moderate alternative to the two wings of Turkish politics, the &quot;unnational&quot; left and the &quot;backward&quot; right. Even though Right-Wing Kemalists have formed a party led by Turhan Feyzioğlu, they still have many sympathizers within the party.\">Right-Wing Kemalists</span>"
+              },
+              " strength: ",
+              {
+                "type": "insert",
+                "insert": 83
+              },
+              ", dissent: ",
+              {
+                "type": "insert",
+                "insert": 84
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<span style=\"color: #7A3C00;\">Following Ecevit's ascension, the Right-Wing Kemalist faction has left the party to join the non-socialist opposition.</span>"
+                  },
+                  " "
+                ],
+                "predicate": 85
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "",
+                  {
+                    "type": "magic",
+                    "content": "<span style=\"color: #7A3C00;\">Satır's compromise keeps the Right-Wing Kemalists inside the CHP, at least for now.</span>"
+                  },
+                  " "
+                ],
+                "predicate": 86
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -36396,6 +36378,95 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['q5_rk_label'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['km_strength_label'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['kemalist_marxists_dissent'] || 0);"
+            },
+            "qdisplay": "dissent"
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['third_worldists_enabled'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['tw_strength_label'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['third_worldists_dissent'] || 0);"
+            },
+            "qdisplay": "dissent"
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['lk_strength_label'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['left_kemalists_dissent'] || 0);"
+            },
+            "qdisplay": "dissent"
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['ok_strength_label'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['orthodox_kemalists_dissent'] || 0);"
+            },
+            "qdisplay": "dissent"
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['orthodox_kemalist_destruction'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['rk_strength_label'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['right_kemalists_dissent'] || 0);"
+            },
+            "qdisplay": "dissent"
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['right_kemalist_split'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((!(((Q['right_kemalist_split'] || 0)) !== 0)) && (((Q['right_kemalist_deal'] || 0)) !== 0));"
             }
           }
         ]
@@ -37029,8 +37100,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.libraries": {
-      "id": "municipalities.libraries",
+    "municipalities.roads": {
+      "id": "municipalities.roads",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -37040,7 +37111,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"libraries\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"roads\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
@@ -37049,7 +37120,7 @@
         "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
       },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"libraries\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"roads\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -37060,18 +37131,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"libraries\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"roads\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"libraries\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"roads\");"
         }
       ],
       "content": {
-        "content": "Build municipal libraries to support education, literacy and the consumption of literature.",
+        "content": "As the Republic has, for better or worse, shifted heavily toward road and automobile transport, many urban areas now urgently require modern paved roads. Invest in paving and improving municipal road networks.",
         "type": "paragraph"
       }
     },
@@ -38198,8 +38269,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.halkekmek": {
-      "id": "municipalities.halkekmek",
+    "municipalities.migration": {
+      "id": "municipalities.migration",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -38209,16 +38280,13 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"halkekmek\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"migration\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
-      "viewIf": {
-        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
-      },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"halkekmek\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"migration\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -38229,18 +38297,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"halkekmek\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"migration\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"halkekmek\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"migration\");"
         }
       ],
       "content": {
-        "content": "Establish municipally operated bakeries under the Halk Ekmek programme to produce affordable bread, ease the effects of inflation and support working families.",
+        "content": "Slow continuing migration and the growth of new informal settlements while improving conditions for their existing inhabitants.",
         "type": "paragraph"
       }
     },
@@ -38945,8 +39013,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.roads": {
-      "id": "municipalities.roads",
+    "municipalities.infrastructure": {
+      "id": "municipalities.infrastructure",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -38956,16 +39024,13 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"roads\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"infrastructure\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
-      "viewIf": {
-        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
-      },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"roads\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"infrastructure\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -38976,18 +39041,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"roads\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"infrastructure\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"roads\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"infrastructure\");"
         }
       ],
       "content": {
-        "content": "As the Republic has, for better or worse, shifted heavily toward road and automobile transport, many urban areas now urgently require modern paved roads. Invest in paving and improving municipal road networks.",
+        "content": "Extend water, sewage, electricity and roads into informal districts.",
         "type": "paragraph"
       }
     },
@@ -39691,8 +39756,8 @@
         "content": "National Defense Ministry"
       }
     },
-    "municipalities.migration": {
-      "id": "municipalities.migration",
+    "municipalities.connect": {
+      "id": "municipalities.connect",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -39702,13 +39767,16 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"migration\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"connect\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
+      "viewIf": {
+        "$code": "return Q.CHP_in_government && AnatolianMunicipalities.count(Q,\"infrastructure\") >= 2;"
+      },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"migration\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"connect\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -39719,18 +39787,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"migration\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"connect\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"migration\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"connect\");"
         }
       ],
       "content": {
-        "content": "Slow continuing migration and the growth of new informal settlements while improving conditions for their existing inhabitants.",
+        "content": "Connect the completed infrastructure networks to the surrounding city, integrating these neighborhoods into its services.",
         "type": "paragraph"
       }
     },
@@ -41904,8 +41972,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.infrastructure": {
-      "id": "municipalities.infrastructure",
+    "municipalities.regularization": {
+      "id": "municipalities.regularization",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -41915,13 +41983,16 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"infrastructure\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"regularization\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
+      "viewIf": {
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
+      },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"infrastructure\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"regularization\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -41932,18 +42003,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"infrastructure\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"regularization\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"infrastructure\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"regularization\");"
         }
       ],
       "content": {
-        "content": "Extend water, sewage, electricity and roads into informal districts.",
+        "content": "Legalize viable homes and clear unsafe construction that cannot be integrated, preparing neighborhoods for gradual redevelopment.",
         "type": "paragraph"
       }
     },
@@ -42702,8 +42773,8 @@
         }
       ]
     },
-    "municipalities.connect": {
-      "id": "municipalities.connect",
+    "municipalities.planning": {
+      "id": "municipalities.planning",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -42713,16 +42784,16 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"connect\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"planning\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
       "viewIf": {
-        "$code": "return Q.CHP_in_government && AnatolianMunicipalities.count(Q,\"infrastructure\") >= 2;"
+        "$code": "return Q.CHP_in_government && AnatolianMunicipalities.count(Q,\"regularization\") >= 4;"
       },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"connect\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"planning\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -42733,18 +42804,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"connect\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"planning\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"connect\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"planning\");"
         }
       ],
       "content": {
-        "content": "Connect the completed infrastructure networks to the surrounding city, integrating these neighborhoods into its services.",
+        "content": "Transform regularized districts through planned redevelopment into safer apartment neighborhoods. Their residents remain part of the city.",
         "type": "paragraph"
       }
     },
@@ -43500,8 +43571,8 @@
         "type": "paragraph"
       }
     },
-    "municipalities.regularization": {
-      "id": "municipalities.regularization",
+    "municipalities.transport": {
+      "id": "municipalities.transport",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -43511,7 +43582,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"regularization\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"transport\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
@@ -43520,7 +43591,7 @@
         "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
       },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"regularization\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"transport\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -43531,18 +43602,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"regularization\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"transport\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"regularization\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"transport\");"
         }
       ],
       "content": {
-        "content": "Legalize viable homes and clear unsafe construction that cannot be integrated, preparing neighborhoods for gradual redevelopment.",
+        "content": "Extend reliable transport and municipal services to connect residents with the wider city.",
         "type": "paragraph"
       }
     },
@@ -44239,8 +44310,8 @@
       },
       "countVisitsMax": 1
     },
-    "municipalities.planning": {
-      "id": "municipalities.planning",
+    "municipalities.industry": {
+      "id": "municipalities.industry",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -44250,16 +44321,16 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"planning\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
+              "$code": "var c=AnatolianMunicipalities.cost(Q,\"industry\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
             }
           }
         ]
       },
       "viewIf": {
-        "$code": "return Q.CHP_in_government && AnatolianMunicipalities.count(Q,\"regularization\") >= 4;"
+        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
       },
       "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"planning\")"
+        "$code": "return !AnatolianMunicipalities.reason(Q,\"industry\")"
       },
       "unavailableSubtitle": {
         "content": {
@@ -44270,18 +44341,18 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"planning\");"
+              "$code": "return AnatolianMunicipalities.reason(Q,\"industry\");"
             }
           }
         ]
       },
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"planning\");"
+          "$code": "AnatolianMunicipalities.apply(Q,\"industry\");"
         }
       ],
       "content": {
-        "content": "Transform regularized districts through planned redevelopment into safer apartment neighborhoods. Their residents remain part of the city.",
+        "content": "Support small businesses, workshops and local industry so these neighborhoods can develop their own economic life.",
         "type": "paragraph"
       }
     },
@@ -45042,49 +45113,29 @@
         "type": "paragraph"
       }
     },
-    "municipalities.transport": {
-      "id": "municipalities.transport",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"transport\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
-            }
-          }
-        ]
-      },
-      "viewIf": {
-        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
-      },
-      "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"transport\")"
-      },
-      "unavailableSubtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"transport\");"
-            }
-          }
-        ]
-      },
+    "municipalities.no": {
+      "id": "municipalities.no",
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"transport\");"
+          "$code": "AnatolianCardActions.commit(Q);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "main.main_easy",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) < 0);"
+          }
+        },
+        {
+          "id": "main",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) >= 0);"
+          }
         }
       ],
       "content": {
-        "content": "Extend reliable transport and municipal services to connect residents with the wider city.",
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -45706,49 +45757,29 @@
         "type": "paragraph"
       }
     },
-    "municipalities.industry": {
-      "id": "municipalities.industry",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "var c=AnatolianMunicipalities.cost(Q,\"industry\");return c?c+\" resource\"+(c===1?\"\":\"s\"):\"\";"
-            }
-          }
-        ]
-      },
-      "viewIf": {
-        "$code": "return ((Q['CHP_in_government'] || 0) == 1);"
-      },
-      "chooseIf": {
-        "$code": "return !AnatolianMunicipalities.reason(Q,\"industry\")"
-      },
-      "unavailableSubtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianMunicipalities.reason(Q,\"industry\");"
-            }
-          }
-        ]
-      },
+    "municipalities.back_to_main": {
+      "id": "municipalities.back_to_main",
       "onArrival": [
         {
-          "$code": "AnatolianMunicipalities.apply(Q,\"industry\");"
+          "$code": "AnatolianCardActions.back(this);"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "main.main_easy",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) < 0);"
+          }
+        },
+        {
+          "id": "main",
+          "predicate": {
+            "$code": "return ((Q['difficulty'] || 0) >= 0);"
+          }
         }
       ],
       "content": {
-        "content": "Support small businesses, workshops and local industry so these neighborhoods can develop their own economic life.",
+        "content": "",
         "type": "paragraph"
       }
     },
@@ -46148,25 +46179,14 @@
         "type": "paragraph"
       }
     },
-    "municipalities.no": {
-      "id": "municipalities.no",
-      "onArrival": [
-        {
-          "$code": "AnatolianCardActions.commit(Q);"
-        }
-      ],
+    "municipalities.istanbul": {
+      "id": "municipalities.istanbul",
+      "viewIf": {
+        "$code": "return ((0) !== 0);"
+      },
       "goTo": [
         {
-          "id": "main.main_easy",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) < 0);"
-          }
-        },
-        {
-          "id": "main",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) >= 0);"
-          }
+          "id": "municipalities.municipalities_menu"
         }
       ],
       "content": {
@@ -46419,25 +46439,14 @@
         "type": "paragraph"
       }
     },
-    "municipalities.back_to_main": {
-      "id": "municipalities.back_to_main",
-      "onArrival": [
-        {
-          "$code": "AnatolianCardActions.back(this);"
-        }
-      ],
+    "municipalities.east": {
+      "id": "municipalities.east",
+      "viewIf": {
+        "$code": "return ((0) !== 0);"
+      },
       "goTo": [
         {
-          "id": "main.main_easy",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) < 0);"
-          }
-        },
-        {
-          "id": "main",
-          "predicate": {
-            "$code": "return ((Q['difficulty'] || 0) >= 0);"
-          }
+          "id": "municipalities.municipalities_menu"
         }
       ],
       "content": {

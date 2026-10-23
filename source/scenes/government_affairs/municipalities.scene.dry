@@ -12,28 +12,24 @@ go-to: municipalities_menu
 Our municipalities provide vital services and a practical opportunity to improve everyday life across the Republic.
 
 @municipalities_menu
+new-page: true
 on-display: {! if(typeof renderMunicipalControlMap==='function')renderMunicipalControlMap(); !}
+
+= Municipalities and Local Governance
+
+Our municipalities provide vital services and a practical opportunity to improve everyday life across the Republic.
 
 {!<div class="municipal-control-map" aria-label="CHP control in the last municipal election"></div>!}
 
-- @istanbul: Istanbul Municipality
-- @east: Eastern Municipalities
 - @governance: Municipalities Across the Republic
 - @gecekondu: Gecekondu Issue
 - @back_to_main: Return to main menu.
 - @no: We will not take an action at the moment.
 
-@istanbul
-
-- @municipalities_menu: Return to municipal planning.
-
-@east
-
-- @municipalities_menu: Return to municipal planning.
-
 @governance
+new-page: true
 
-[+ {! return AnatolianMunicipalities.html(Q); !} +]
+[+ {! return AnatolianMunicipalities.municipalHtml(Q); !} +]
 
 - @waterlines: Improve Water and Sewage Infrastructure
 - @publictransport: Expand Public Transportation
@@ -43,10 +39,11 @@ on-display: {! if(typeof renderMunicipalControlMap==='function')renderMunicipalC
 - @municipalities_menu: Return to municipal planning.
 
 @gecekondu
+new-page: true
 
 Houses illegally constructed by rural-to-urban migrants unable to afford formal housing, often erected rapidly enough to avoid immediate demolition and therefore called *gecekondu*, “placed at night”, have grown into vast informal districts around our expanding cities. These neighborhoods often lack proper roads, sewage, clean water, public transportation and the other services expected of modern urban life. Returning their inhabitants to the countryside is neither realistic nor desirable. Our task must instead be to slow uncontrolled migration where possible while gradually transforming these settlements into proper parts of our cities and providing their inhabitants with an honorable standard of living.
 
-[+ {! return AnatolianMunicipalities.html(Q); !} +]
+[+ {! return AnatolianMunicipalities.geceHtml(Q); !} +]
 
 - @migration: Place Restrictions and Difficulties on Rural-to-Urban Migration
 - @infrastructure: Start Laying Out Infrastructure in Gecekondu Districts
@@ -168,3 +165,12 @@ go-to: main.main_easy if difficulty < 0; main if difficulty >= 0
 @back_to_main
 on-arrival: {! AnatolianCardActions.back(this); !}
 go-to: main.main_easy if difficulty < 0; main if difficulty >= 0
+
+# Hidden redirects preserve saves made inside the removed empty categories.
+@istanbul
+view-if: 0
+go-to: municipalities_menu
+
+@east
+view-if: 0
+go-to: municipalities_menu
