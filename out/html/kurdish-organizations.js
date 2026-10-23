@@ -3,17 +3,17 @@
 'use strict';
 const R=root.AnatolianRules||(typeof require==='function'?require('./rules.js'):null);
 const config={version:1,unaffiliated:{u0:.80,u1:1.00,u2:.55,u3:.25},organizations:[
- {id:'t_kdp',name:'T-KDP',aliases:[],founded:[1965,1,1],initialSupport:500,a:.95,b:.30,c:.15,O:null,A:null},
- {id:'dhkd_tksp',name:'DHKD/TKSP',aliases:[],founded:[1974,12,1],initialSupport:250,a:.60,b:1.00,c:.20,O:null,A:null},
- {id:'ddkd_ppkk_kip',name:'DDKD/PPKK/KİP',aliases:['DDKD/KİP'],founded:[1975,1,1],initialSupport:1500,a:.20,b:.95,c:.50,O:null,A:null},
- {id:'asdkd_rizgari',name:'ASDKD/Rızgari',aliases:['ASDKD'],founded:[1976,3,1],initialSupport:500,a:.10,b:.85,c:.60,O:null,A:null},
- {id:'ala_rizgari',name:'Ala Rızgari',aliases:[],founded:[1979,1,1],initialSupport:1200,a:.03,b:.60,c:.85,O:null,A:null},
- {id:'kawa',name:'Kawa',aliases:[],founded:[1976,1,1],initialSupport:250,a:.03,b:.50,c:.85,O:null,A:null},
- {id:'denge_kawa',name:'Denge Kawa',aliases:[],founded:[1978,1,1],initialSupport:300,a:.04,b:.55,c:.70,O:null,A:null},
- {id:'red_kawa',name:'Red Kawa',aliases:[],founded:[1978,1,1],initialSupport:450,a:.02,b:.45,c:.90,O:null,A:null},
- {id:'t_kdp_kuk',name:'T-KDP/KUK',aliases:[],founded:[1978,5,1],initialSupport:1000,a:.05,b:.70,c:.90,O:null,A:null},
- {id:'kd_uko_pkk',name:'KD/UKO/PKK',aliases:[],founded:[1974,1,1],initialSupport:50,a:.01,b:.25,c:1.00,O:null,A:null},
- {id:'tekosin',name:'Tekoşin',aliases:[],founded:[1978,1,1],initialSupport:150,a:.02,b:.40,c:.90,O:null,A:null}
+ {id:'t_kdp',name:'T-KDP',aliases:[],founded:[1965,1,1],initialSupport:500,a:.95,b:.30,c:.15,O:0.7,A:0.1},
+ {id:'dhkd_tksp',name:'DHKD/TKSP',aliases:[],founded:[1974,12,1],initialSupport:250,a:.60,b:1.00,c:.20,O:0.8,A:0},
+ {id:'ddkd_ppkk_kip',name:'DDKD/PPKK/KİP',aliases:['DDKD/KİP'],founded:[1975,1,1],initialSupport:1500,a:.20,b:.95,c:.50,O:1,A:0.8},
+ {id:'asdkd_rizgari',name:'ASDKD/Rızgari',aliases:['ASDKD'],founded:[1976,3,1],initialSupport:500,a:.10,b:.85,c:.60,O:1,A:0.1},
+ {id:'ala_rizgari',name:'Ala Rızgari',aliases:[],founded:[1979,1,1],initialSupport:1200,a:.03,b:.60,c:.85,O:1,A:0.5},
+ {id:'kawa',name:'Kawa',aliases:[],founded:[1976,1,1],initialSupport:250,a:.03,b:.50,c:.85,O:1,A:1},
+ {id:'denge_kawa',name:'Denge Kawa',aliases:[],founded:[1978,1,1],initialSupport:300,a:.04,b:.55,c:.70,O:0.7,A:1},
+ {id:'red_kawa',name:'Red Kawa',aliases:[],founded:[1978,1,1],initialSupport:450,a:.02,b:.45,c:.90,O:1,A:1},
+ {id:'t_kdp_kuk',name:'T-KDP/KUK',aliases:[],founded:[1978,5,1],initialSupport:1000,a:.05,b:.70,c:.90,O:1,A:0.8},
+ {id:'kd_uko_pkk',name:'KD/UKO/PKK',aliases:[],founded:[1974,1,1],initialSupport:50,a:.01,b:.25,c:1.00,O:0.9,A:0.9},
+ {id:'tekosin',name:'Tekoşin',aliases:[],founded:[1978,1,1],initialSupport:150,a:.02,b:.40,c:.90,O:1,A:1}
 ]};
 const announcements=[
  {year:1965,date:[1965,1,1],title:'T-KDP Is Founded',ids:['t_kdp']},
@@ -89,7 +89,7 @@ function displayCounts(model){
 const count=v=>v===null?'Not configured':Math.floor(v).toLocaleString('en-US');
 const groupImages={"t_kdp": ["t-kdp"], "dhkd_tksp": ["dhkd"], "ddkd_ppkk_kip": ["kip", "ddkd"], "asdkd_rizgari": ["rizgari"], "ala_rizgari": ["rizgari"], "kawa": ["kawa"], "denge_kawa": ["kawa"], "red_kawa": ["kawa"], "t_kdp_kuk": ["kuk"], "kd_uko_pkk": ["pkk"], "tekosin": ["tekosin"]};
 function groupImageHtml(id){return (groupImages[id]||[]).map(img=>'<img src="img/kurdish/'+img+'.png" alt="" style="max-width:130px;max-height:100px;object-fit:contain;margin:4px 8px 8px 0">').join('');}
-function groupRows(model,counts){return model.activeOrganizations.map(g=>'<span style="display:block;margin-bottom:8px">'+groupImageHtml(g.id)+'<br><b style="color:#c2d93f">'+esc(g.name)+'</b><br>Suitability: '+g.score.toFixed(3)+'<br>'+(g.foundingSeed?'Founding supporters: ':'Political support: ')+counts[g.id].toLocaleString('en-US')+(g.foundingSeed?'':' ('+(g.share*100).toFixed(2)+'%)')+'<br>Active members: '+count(g.members)+'<br>Armed personnel: '+count(g.armed)+(g.configurationErrors.length?'<br>'+g.configurationErrors.map(e=>esc(e.field+': '+e.reason)).join('; '):'')+'</span>').join('');}
+function groupRows(model,counts){return model.activeOrganizations.map(g=>'<span style="display:block;margin-bottom:8px">'+groupImageHtml(g.id)+'<br><b style="color:#c2d93f">'+esc(g.name)+'</b><br>Political support: '+counts[g.id].toLocaleString('en-US')+(g.foundingSeed?'':' ('+(g.share*100).toFixed(2)+'%)')+'<br>Active members: '+count(g.members)+'<br>Armed personnel: '+count(g.armed)+'</span>').join('');}
 function organizationHtml(Q){const model=snapshot(Q),counts=displayCounts(model);return '<h3>Kurdish Political Organizations</h3><p>Politically conscious population: '+Math.round(model.PC).toLocaleString('en-US')+'</p><p><button type="button" class="kurdish-organizations-link" data-kurdish-organizations="support" aria-haspopup="dialog">KG / Political Support</button>: '+model.activeOrganizations.reduce((total,g)=>total+counts[g.id],0).toLocaleString('en-US')+' supporters.</p><p>Unaffiliated: '+counts.unaffiliated.toLocaleString('en-US')+'<br>Active members: '+count(model.totalMembers)+'<br>Armed personnel: '+count(model.totalArmed)+'</p>'+(model.mode==='normal'?'':'<p>Founding initialization. The listed seed populations have not yet been proportionally redistributed; normal allocation resumes next period.</p>');}
 function paramilitaryHtml(Q){const model=snapshot(Q),counts=displayCounts(model),rate=model.totalArmed!==null&&model.totalMembers!==null&&model.totalMembers>0?(100*model.totalArmed/model.totalMembers).toFixed(2)+'%':model.totalMembers===0?'0.00%':'Not configured';return '<p><button type="button" class="kurdish-organizations-link" data-kurdish-organizations="paramilitary" aria-haspopup="dialog">Kurdish Paramilitaries</button>: '+count(model.totalArmed)+' armed personnel.<br>Active members: '+count(model.totalMembers)+'<br>Armed share of members: '+rate+'</p>';}
 let overlay=null,previousFocus=null;
