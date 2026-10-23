@@ -9,7 +9,7 @@ card-image: img/kabine.jpg
 
 = Coalition Affairs
 
-Our coalition is in trouble. Members of our right-wing coalition partner are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition.
+Our coalition is in trouble. Members of [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition.
 
 How do we reduce tensions with the coalition?
 
@@ -35,7 +35,7 @@ unavailable-subtitle: Not enough resources (need 2).
 choose-if: resources >= 2
 on-arrival: resources -= 2; coalition_dissent -= 5; democracystatus -= 2
 
-By transferring campaign funds to our coalition partners, we can make our policies more acceptable to them. Some would call this corruption and a setback for democracy, but perhaps it is necessary.
+By transferring campaign funds to [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +], we can make our policies more acceptable to them. Some would call this corruption and a setback for democracy, but perhaps it is necessary.
 
 @no_change
 

@@ -19317,8 +19317,25 @@
         }
       ],
       "content": {
-        "content": "By transferring campaign funds to our coalition partners, we can make our policies more acceptable to them. Some would call this corruption and a setback for democracy, but perhaps it is necessary.",
-        "type": "paragraph"
+        "content": {
+          "type": "paragraph",
+          "content": [
+            "By transferring campaign funds to ",
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ", we can make our policies more acceptable to them. Some would call this corruption and a setback for democracy, but perhaps it is necessary."
+          ]
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
       }
     },
     "dealing_with_toleration.vonc": {
@@ -28576,7 +28593,14 @@
           },
           {
             "type": "paragraph",
-            "content": "Our coalition is in trouble. Members of our right-wing coalition partner are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition."
+            "content": [
+              "Our coalition is in trouble. Members of ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              " are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition."
+            ]
           },
           {
             "type": "paragraph",
@@ -28587,13 +28611,19 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 0
+                "insert": 1
               },
               ""
             ]
           }
         ],
         "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          },
           {
             "type": "insert",
             "fn": {
@@ -46181,7 +46211,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"foreign\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"foreign\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46201,7 +46231,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"interior\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"interior\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46221,7 +46251,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"justice\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"justice\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46241,7 +46271,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"labor\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"labor\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46261,7 +46291,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"defense\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"defense\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46281,7 +46311,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"economic\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"economic\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46301,7 +46331,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"finance\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"finance\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46321,7 +46351,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"agriculture\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"agriculture\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46341,7 +46371,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"education\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"education\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46361,7 +46391,7 @@
               {
                 "type": "insert",
                 "fn": {
-                  "$code": "return Q.coalition_formation.pending.ministries[\"industrial\"]||Q.coalition_formation.pending.partners[0];"
+                  "$code": "return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries[\"industrial\"]||Q.coalition_formation.pending.partners[0]);"
                 }
               }
             ]
@@ -46622,7 +46652,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"foreign\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"foreign\");"
@@ -46922,7 +46968,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"interior\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"interior\");"
@@ -47060,7 +47122,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"justice\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"justice\");"
@@ -47258,7 +47336,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"labor\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"labor\");"
@@ -47316,7 +47410,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"defense\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"defense\");"
@@ -47408,7 +47518,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"economic\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"economic\");"
@@ -47464,7 +47590,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"finance\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"finance\");"
@@ -47534,7 +47676,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"agriculture\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"agriculture\");"
@@ -47590,7 +47748,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"education\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"education\");"
@@ -47681,7 +47855,23 @@
       "chooseIf": {
         "$code": "var p=Q.coalition_formation.pending;return p.ministries[\"industrial\"]===\"CHP\"||Object.values(p.ministries).filter(x=>x===\"CHP\").length<p.quota;"
       },
-      "unavailableSubtitle": "The partner requires its proportional share of ministries. Release a ministry before requesting another.",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "insert",
+            "insert": 0
+          },
+          " requires its proportional share of ministries. Release a ministry before requesting another."
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.toggleMinistry(Q,\"industrial\");"
@@ -47777,10 +47967,15 @@
             "type": "insert",
             "insert": 0
           },
-          "; partner powers: ",
+          "; ",
           {
             "type": "insert",
             "insert": 1
+          },
+          " powers: ",
+          {
+            "type": "insert",
+            "insert": 2
           },
           ". Equal numbers are required; unselected powers remain unresolved."
         ],
@@ -47789,6 +47984,12 @@
             "type": "insert",
             "fn": {
               "$code": "return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player;"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
             }
           },
           {
@@ -47808,11 +48009,11 @@
       "options": [
         {
           "id": "@coalition_negotiations.claims",
-          "title": "Demand individual contested affairs."
+          "title": "1. Demand Concessions"
         },
         {
           "id": "@coalition_negotiations.concessions",
-          "title": "Concede individual contested affairs."
+          "title": "2. Offer Concessions"
         },
         {
           "id": "@coalition_negotiations.sign",
@@ -47901,7 +48102,7 @@
           "$code": "AnatolianCoalitions.prunePending(Q);"
         }
       ],
-      "title": "Demand Contested Affairs",
+      "title": "Demand Concessions",
       "subtitle": {
         "content": [
           "CHP: ",
@@ -47909,10 +48110,15 @@
             "type": "insert",
             "insert": 0
           },
-          " contested affairs; partner: ",
+          " contested affairs; ",
           {
             "type": "insert",
             "insert": 1
+          },
+          ": ",
+          {
+            "type": "insert",
+            "insert": 2
           },
           ". Equal totals are required."
         ],
@@ -47926,6 +48132,12 @@
           {
             "type": "insert",
             "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
               "$code": "return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner;"
             }
           }
@@ -47933,6 +48145,10 @@
       },
       "newPage": true,
       "options": [
+        {
+          "id": "@coalition_negotiations.player_koykent",
+          "title": "Köykent Project"
+        },
         {
           "id": "@coalition_negotiations.player_ministry_agriculture",
           "title": "Agriculture Ministry"
@@ -47997,7 +48213,7 @@
       "content": [
         {
           "type": "heading",
-          "content": "Demand Contested Affairs"
+          "content": "Demand Concessions"
         },
         {
           "type": "paragraph",
@@ -48104,18 +48320,6 @@
         "$code": "return AnatolianCoalitions.powerGroups(Q).some(g=>g.id===\"agriculture\");"
       },
       "options": [
-        {
-          "id": "@coalition_negotiations.player_list_4",
-          "title": "Begin the rural concentration efforts."
-        },
-        {
-          "id": "@coalition_negotiations.player_list_5",
-          "title": "Spread the Köykent settlements across Anatolia."
-        },
-        {
-          "id": "@coalition_negotiations.player_list_6",
-          "title": "Increase funding for the Köykent settlements."
-        },
         {
           "id": "@coalition_negotiations.player_list_7",
           "title": "Purchase and redistribute land."
@@ -48227,39 +48431,17 @@
     },
     "coalition_negotiations.player_list_4": {
       "id": "coalition_negotiations.player_list_4",
-      "title": "Demand: Begin the rural concentration efforts.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-4\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-4\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-4\",\"player\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.player_ministry_agriculture"
+          "id": "coalition_negotiations.claims"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Demand: Begin the rural concentration efforts."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -48346,39 +48528,17 @@
     },
     "coalition_negotiations.player_list_5": {
       "id": "coalition_negotiations.player_list_5",
-      "title": "Demand: Spread the Köykent settlements across Anatolia.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-5\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-5\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-5\",\"player\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.player_ministry_agriculture"
+          "id": "coalition_negotiations.claims"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Demand: Spread the Köykent settlements across Anatolia."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -48465,39 +48625,17 @@
     },
     "coalition_negotiations.player_list_6": {
       "id": "coalition_negotiations.player_list_6",
-      "title": "Demand: Increase funding for the Köykent settlements.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-6\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-6\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-6\",\"player\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.player_ministry_agriculture"
+          "id": "coalition_negotiations.claims"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Demand: Increase funding for the Köykent settlements."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -48594,7 +48732,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-7\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-7\");"
             }
           }
         ]
@@ -48713,7 +48851,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-8\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-8\");"
             }
           }
         ]
@@ -48832,7 +48970,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-9\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-9\");"
             }
           }
         ]
@@ -49106,7 +49244,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-10\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-10\");"
             }
           }
         ]
@@ -49240,7 +49378,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-11\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-11\");"
             }
           }
         ]
@@ -49354,7 +49492,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-12\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-12\");"
             }
           }
         ]
@@ -49468,7 +49606,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-13\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-13\");"
             }
           }
         ]
@@ -49582,7 +49720,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-14\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-14\");"
             }
           }
         ]
@@ -49696,7 +49834,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-15\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-15\");"
             }
           }
         ]
@@ -49789,7 +49927,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-16\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-16\");"
             }
           }
         ]
@@ -49882,7 +50020,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-17\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-17\");"
             }
           }
         ]
@@ -49975,7 +50113,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-18\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-18\");"
             }
           }
         ]
@@ -50116,10 +50254,6 @@
           "title": "Loosen restrictions on the teachers' freedom of expression in classrooms."
         },
         {
-          "id": "@coalition_negotiations.player_list_23",
-          "title": "Expand education opportunities in the Köykents."
-        },
-        {
           "id": "@coalition_negotiations.player_list_24",
           "title": "Increase scholarship and boarding school opportunities."
         },
@@ -50243,7 +50377,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-19\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-19\");"
             }
           }
         ]
@@ -50422,7 +50556,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-20\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-20\");"
             }
           }
         ]
@@ -50512,7 +50646,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-21\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-21\");"
             }
           }
         ]
@@ -50632,7 +50766,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-22\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-22\");"
             }
           }
         ]
@@ -50664,39 +50798,17 @@
     },
     "coalition_negotiations.player_list_23": {
       "id": "coalition_negotiations.player_list_23",
-      "title": "Demand: Expand education opportunities in the Köykents.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-23\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-23\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-23\",\"player\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.player_ministry_education"
+          "id": "coalition_negotiations.claims"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Demand: Expand education opportunities in the Köykents."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -50716,7 +50828,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-24\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-24\");"
             }
           }
         ]
@@ -50758,7 +50870,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-25\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-25\");"
             }
           }
         ]
@@ -50800,7 +50912,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-26\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-26\");"
             }
           }
         ]
@@ -50842,7 +50954,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-27\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-27\");"
             }
           }
         ]
@@ -50884,7 +50996,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-28\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-28\");"
             }
           }
         ]
@@ -51024,7 +51136,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-29\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-29\");"
             }
           }
         ]
@@ -51066,7 +51178,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-30\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-30\");"
             }
           }
         ]
@@ -51108,7 +51220,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-32\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-32\");"
             }
           }
         ]
@@ -51150,7 +51262,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-33\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-33\");"
             }
           }
         ]
@@ -51192,7 +51304,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-34\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-34\");"
             }
           }
         ]
@@ -51234,7 +51346,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-35\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-35\");"
             }
           }
         ]
@@ -51276,7 +51388,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-36\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-36\");"
             }
           }
         ]
@@ -51318,7 +51430,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-37\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-37\");"
             }
           }
         ]
@@ -51360,7 +51472,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-38\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-38\");"
             }
           }
         ]
@@ -51402,7 +51514,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-39\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-39\");"
             }
           }
         ]
@@ -51444,7 +51556,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-40\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-40\");"
             }
           }
         ]
@@ -51486,7 +51598,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-41\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-41\");"
             }
           }
         ]
@@ -51528,7 +51640,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-42\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-42\");"
             }
           }
         ]
@@ -51570,7 +51682,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-43\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-43\");"
             }
           }
         ]
@@ -51730,7 +51842,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-44\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-44\");"
             }
           }
         ]
@@ -51772,7 +51884,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-45\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-45\");"
             }
           }
         ]
@@ -51814,7 +51926,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-46\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-46\");"
             }
           }
         ]
@@ -51856,7 +51968,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-47\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-47\");"
             }
           }
         ]
@@ -51898,7 +52010,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-48\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-48\");"
             }
           }
         ]
@@ -51940,7 +52052,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-49\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-49\");"
             }
           }
         ]
@@ -51982,7 +52094,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-50\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-50\");"
             }
           }
         ]
@@ -52024,7 +52136,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-51\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-51\");"
             }
           }
         ]
@@ -52066,7 +52178,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-52\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-52\");"
             }
           }
         ]
@@ -52108,7 +52220,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-53\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-53\");"
             }
           }
         ]
@@ -52150,7 +52262,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-54\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-54\");"
             }
           }
         ]
@@ -52192,7 +52304,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-55\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-55\");"
             }
           }
         ]
@@ -52234,7 +52346,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-56\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-56\");"
             }
           }
         ]
@@ -52276,7 +52388,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-57\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-57\");"
             }
           }
         ]
@@ -52318,7 +52430,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-58\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-58\");"
             }
           }
         ]
@@ -52360,7 +52472,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-59\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-59\");"
             }
           }
         ]
@@ -52402,7 +52514,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-60\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-60\");"
             }
           }
         ]
@@ -52444,7 +52556,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-61\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-61\");"
             }
           }
         ]
@@ -52486,7 +52598,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-62\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-62\");"
             }
           }
         ]
@@ -52567,10 +52679,6 @@
           "title": "Restart investment for railway construction."
         },
         {
-          "id": "@coalition_negotiations.player_list_70",
-          "title": "Promote local industries in the Köykents."
-        },
-        {
           "id": "@coalition_negotiations.claims",
           "title": "Return to ministries."
         },
@@ -52602,7 +52710,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-63\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-63\");"
             }
           }
         ]
@@ -52644,7 +52752,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-64\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-64\");"
             }
           }
         ]
@@ -52686,7 +52794,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-65\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-65\");"
             }
           }
         ]
@@ -52728,7 +52836,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-66\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-66\");"
             }
           }
         ]
@@ -52770,7 +52878,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-67\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-67\");"
             }
           }
         ]
@@ -52812,7 +52920,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-68\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-68\");"
             }
           }
         ]
@@ -52854,7 +52962,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-69\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-69\");"
             }
           }
         ]
@@ -52886,39 +52994,17 @@
     },
     "coalition_negotiations.player_list_70": {
       "id": "coalition_negotiations.player_list_70",
-      "title": "Demand: Promote local industries in the Köykents.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-70\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-70\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-70\",\"player\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.player_ministry_industrial"
+          "id": "coalition_negotiations.claims"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Demand: Promote local industries in the Köykents."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -53012,7 +53098,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-71\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-71\");"
             }
           }
         ]
@@ -53054,7 +53140,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-72\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-72\");"
             }
           }
         ]
@@ -53096,7 +53182,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-73\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-73\");"
             }
           }
         ]
@@ -53138,7 +53224,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-74\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-74\");"
             }
           }
         ]
@@ -53180,7 +53266,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-75\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-75\");"
             }
           }
         ]
@@ -53222,7 +53308,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-76\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-76\");"
             }
           }
         ]
@@ -53264,7 +53350,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-77\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-77\");"
             }
           }
         ]
@@ -53306,7 +53392,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-78\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-78\");"
             }
           }
         ]
@@ -53430,7 +53516,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-81\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-81\");"
             }
           }
         ]
@@ -53472,7 +53558,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-82\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-82\");"
             }
           }
         ]
@@ -53514,7 +53600,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-83\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-83\");"
             }
           }
         ]
@@ -53556,7 +53642,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-84\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-84\");"
             }
           }
         ]
@@ -53598,7 +53684,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-86\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-86\");"
             }
           }
         ]
@@ -53640,7 +53726,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-87\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-87\");"
             }
           }
         ]
@@ -53682,7 +53768,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-88\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-88\");"
             }
           }
         ]
@@ -53724,7 +53810,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-89\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-89\");"
             }
           }
         ]
@@ -53766,7 +53852,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-90\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-90\");"
             }
           }
         ]
@@ -53808,7 +53894,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-92\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-92\");"
             }
           }
         ]
@@ -53924,7 +54010,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-95\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-95\");"
             }
           }
         ]
@@ -53966,7 +54052,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-96\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-96\");"
             }
           }
         ]
@@ -54008,7 +54094,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-98\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-98\");"
             }
           }
         ]
@@ -54050,7 +54136,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-99\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-99\");"
             }
           }
         ]
@@ -54092,7 +54178,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-100\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-100\");"
             }
           }
         ]
@@ -54134,7 +54220,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-101\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-101\");"
             }
           }
         ]
@@ -54176,7 +54262,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-102\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-102\");"
             }
           }
         ]
@@ -54218,7 +54304,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-103\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-103\");"
             }
           }
         ]
@@ -54326,7 +54412,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-104\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-104\");"
             }
           }
         ]
@@ -54368,7 +54454,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-105\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-105\");"
             }
           }
         ]
@@ -54410,7 +54496,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-106\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-106\");"
             }
           }
         ]
@@ -54452,7 +54538,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-107\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-107\");"
             }
           }
         ]
@@ -54494,7 +54580,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-110\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-110\");"
             }
           }
         ]
@@ -54536,7 +54622,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-111\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-111\");"
             }
           }
         ]
@@ -54648,7 +54734,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-113\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-113\");"
             }
           }
         ]
@@ -54690,7 +54776,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-114\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-114\");"
             }
           }
         ]
@@ -54732,7 +54818,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-116\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-116\");"
             }
           }
         ]
@@ -54774,7 +54860,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-117\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-117\");"
             }
           }
         ]
@@ -54816,7 +54902,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-118\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-118\");"
             }
           }
         ]
@@ -54858,7 +54944,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-119\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-119\");"
             }
           }
         ]
@@ -54900,7 +54986,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-120\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-120\");"
             }
           }
         ]
@@ -55020,7 +55106,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-122\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-122\");"
             }
           }
         ]
@@ -55062,7 +55148,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-123\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-123\");"
             }
           }
         ]
@@ -55104,7 +55190,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-124\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-124\");"
             }
           }
         ]
@@ -55146,7 +55232,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-125\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-125\");"
             }
           }
         ]
@@ -55188,7 +55274,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-126\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-126\");"
             }
           }
         ]
@@ -55230,7 +55316,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-127\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-127\");"
             }
           }
         ]
@@ -55272,7 +55358,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-128\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-128\");"
             }
           }
         ]
@@ -55314,7 +55400,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-129\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-129\");"
             }
           }
         ]
@@ -55356,7 +55442,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-130\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-130\");"
             }
           }
         ]
@@ -55464,7 +55550,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-131\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-131\");"
             }
           }
         ]
@@ -55506,7 +55592,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-132\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-132\");"
             }
           }
         ]
@@ -55548,7 +55634,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-133\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-133\");"
             }
           }
         ]
@@ -55590,7 +55676,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-134\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-134\");"
             }
           }
         ]
@@ -55632,7 +55718,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-135\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-135\");"
             }
           }
         ]
@@ -55674,7 +55760,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-136\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-136\");"
             }
           }
         ]
@@ -55774,7 +55860,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-137\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-137\");"
             }
           }
         ]
@@ -55816,7 +55902,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-139\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-139\");"
             }
           }
         ]
@@ -55858,7 +55944,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-140\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-140\");"
             }
           }
         ]
@@ -55900,7 +55986,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-141\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-141\");"
             }
           }
         ]
@@ -55937,7 +56023,7 @@
           "$code": "AnatolianCoalitions.prunePending(Q);"
         }
       ],
-      "title": "Concede Contested Affairs",
+      "title": "Offer Concessions",
       "subtitle": {
         "content": [
           "CHP: ",
@@ -55945,10 +56031,15 @@
             "type": "insert",
             "insert": 0
           },
-          " contested affairs; partner: ",
+          " contested affairs; ",
           {
             "type": "insert",
             "insert": 1
+          },
+          ": ",
+          {
+            "type": "insert",
+            "insert": 2
           },
           ". Equal totals are required."
         ],
@@ -55962,6 +56053,12 @@
           {
             "type": "insert",
             "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
               "$code": "return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner;"
             }
           }
@@ -55969,6 +56066,10 @@
       },
       "newPage": true,
       "options": [
+        {
+          "id": "@coalition_negotiations.partner_koykent",
+          "title": "Köykent Project"
+        },
         {
           "id": "@coalition_negotiations.partner_ministry_agriculture",
           "title": "Agriculture Ministry"
@@ -56033,7 +56134,7 @@
       "content": [
         {
           "type": "heading",
-          "content": "Concede Contested Affairs"
+          "content": "Offer Concessions"
         },
         {
           "type": "paragraph",
@@ -56063,18 +56164,6 @@
         "$code": "return AnatolianCoalitions.powerGroups(Q).some(g=>g.id===\"agriculture\");"
       },
       "options": [
-        {
-          "id": "@coalition_negotiations.partner_list_4",
-          "title": "Begin the rural concentration efforts."
-        },
-        {
-          "id": "@coalition_negotiations.partner_list_5",
-          "title": "Spread the Köykent settlements across Anatolia."
-        },
-        {
-          "id": "@coalition_negotiations.partner_list_6",
-          "title": "Increase funding for the Köykent settlements."
-        },
         {
           "id": "@coalition_negotiations.partner_list_7",
           "title": "Purchase and redistribute land."
@@ -56109,39 +56198,17 @@
     },
     "coalition_negotiations.partner_list_4": {
       "id": "coalition_negotiations.partner_list_4",
-      "title": "Concede: Begin the rural concentration efforts.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-4\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-4\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-4\",\"partner\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.partner_ministry_agriculture"
+          "id": "coalition_negotiations.concessions"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Concede: Begin the rural concentration efforts."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -56151,39 +56218,17 @@
     },
     "coalition_negotiations.partner_list_5": {
       "id": "coalition_negotiations.partner_list_5",
-      "title": "Concede: Spread the Köykent settlements across Anatolia.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-5\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-5\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-5\",\"partner\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.partner_ministry_agriculture"
+          "id": "coalition_negotiations.concessions"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Concede: Spread the Köykent settlements across Anatolia."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -56193,39 +56238,17 @@
     },
     "coalition_negotiations.partner_list_6": {
       "id": "coalition_negotiations.partner_list_6",
-      "title": "Concede: Increase funding for the Köykent settlements.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-6\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-6\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-6\",\"partner\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.partner_ministry_agriculture"
+          "id": "coalition_negotiations.concessions"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Concede: Increase funding for the Köykent settlements."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -56245,7 +56268,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-7\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-7\");"
             }
           }
         ]
@@ -56287,7 +56310,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-8\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-8\");"
             }
           }
         ]
@@ -56329,7 +56352,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-9\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-9\");"
             }
           }
         ]
@@ -56449,7 +56472,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-10\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-10\");"
             }
           }
         ]
@@ -56491,7 +56514,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-11\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-11\");"
             }
           }
         ]
@@ -56533,7 +56556,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-12\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-12\");"
             }
           }
         ]
@@ -56575,7 +56598,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-13\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-13\");"
             }
           }
         ]
@@ -56617,7 +56640,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-14\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-14\");"
             }
           }
         ]
@@ -56659,7 +56682,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-15\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-15\");"
             }
           }
         ]
@@ -56701,7 +56724,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-16\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-16\");"
             }
           }
         ]
@@ -56743,7 +56766,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-17\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-17\");"
             }
           }
         ]
@@ -56785,7 +56808,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-18\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-18\");"
             }
           }
         ]
@@ -56854,10 +56877,6 @@
           "title": "Loosen restrictions on the teachers' freedom of expression in classrooms."
         },
         {
-          "id": "@coalition_negotiations.partner_list_23",
-          "title": "Expand education opportunities in the Köykents."
-        },
-        {
           "id": "@coalition_negotiations.partner_list_24",
           "title": "Increase scholarship and boarding school opportunities."
         },
@@ -56909,7 +56928,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-19\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-19\");"
             }
           }
         ]
@@ -56951,7 +56970,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-20\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-20\");"
             }
           }
         ]
@@ -56993,7 +57012,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-21\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-21\");"
             }
           }
         ]
@@ -57035,7 +57054,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-22\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-22\");"
             }
           }
         ]
@@ -57067,39 +57086,17 @@
     },
     "coalition_negotiations.partner_list_23": {
       "id": "coalition_negotiations.partner_list_23",
-      "title": "Concede: Expand education opportunities in the Köykents.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-23\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-23\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-23\",\"partner\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.partner_ministry_education"
+          "id": "coalition_negotiations.concessions"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Concede: Expand education opportunities in the Köykents."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -57119,7 +57116,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-24\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-24\");"
             }
           }
         ]
@@ -57161,7 +57158,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-25\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-25\");"
             }
           }
         ]
@@ -57203,7 +57200,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-26\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-26\");"
             }
           }
         ]
@@ -57245,7 +57242,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-27\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-27\");"
             }
           }
         ]
@@ -57287,7 +57284,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-28\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-28\");"
             }
           }
         ]
@@ -57427,7 +57424,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-29\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-29\");"
             }
           }
         ]
@@ -57469,7 +57466,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-30\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-30\");"
             }
           }
         ]
@@ -57511,7 +57508,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-32\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-32\");"
             }
           }
         ]
@@ -57553,7 +57550,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-33\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-33\");"
             }
           }
         ]
@@ -57595,7 +57592,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-34\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-34\");"
             }
           }
         ]
@@ -57637,7 +57634,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-35\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-35\");"
             }
           }
         ]
@@ -57679,7 +57676,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-36\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-36\");"
             }
           }
         ]
@@ -57721,7 +57718,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-37\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-37\");"
             }
           }
         ]
@@ -57763,7 +57760,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-38\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-38\");"
             }
           }
         ]
@@ -57805,7 +57802,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-39\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-39\");"
             }
           }
         ]
@@ -57847,7 +57844,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-40\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-40\");"
             }
           }
         ]
@@ -57889,7 +57886,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-41\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-41\");"
             }
           }
         ]
@@ -57931,7 +57928,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-42\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-42\");"
             }
           }
         ]
@@ -57973,7 +57970,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-43\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-43\");"
             }
           }
         ]
@@ -58133,7 +58130,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-44\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-44\");"
             }
           }
         ]
@@ -58175,7 +58172,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-45\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-45\");"
             }
           }
         ]
@@ -58217,7 +58214,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-46\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-46\");"
             }
           }
         ]
@@ -58259,7 +58256,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-47\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-47\");"
             }
           }
         ]
@@ -58301,7 +58298,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-48\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-48\");"
             }
           }
         ]
@@ -58343,7 +58340,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-49\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-49\");"
             }
           }
         ]
@@ -58385,7 +58382,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-50\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-50\");"
             }
           }
         ]
@@ -58427,7 +58424,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-51\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-51\");"
             }
           }
         ]
@@ -58469,7 +58466,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-52\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-52\");"
             }
           }
         ]
@@ -58511,7 +58508,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-53\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-53\");"
             }
           }
         ]
@@ -58553,7 +58550,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-54\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-54\");"
             }
           }
         ]
@@ -58595,7 +58592,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-55\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-55\");"
             }
           }
         ]
@@ -58637,7 +58634,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-56\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-56\");"
             }
           }
         ]
@@ -58679,7 +58676,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-57\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-57\");"
             }
           }
         ]
@@ -58721,7 +58718,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-58\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-58\");"
             }
           }
         ]
@@ -58763,7 +58760,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-59\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-59\");"
             }
           }
         ]
@@ -58805,7 +58802,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-60\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-60\");"
             }
           }
         ]
@@ -58847,7 +58844,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-61\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-61\");"
             }
           }
         ]
@@ -58889,7 +58886,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-62\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-62\");"
             }
           }
         ]
@@ -58970,10 +58967,6 @@
           "title": "Restart investment for railway construction."
         },
         {
-          "id": "@coalition_negotiations.partner_list_70",
-          "title": "Promote local industries in the Köykents."
-        },
-        {
           "id": "@coalition_negotiations.concessions",
           "title": "Return to ministries."
         },
@@ -59005,7 +58998,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-63\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-63\");"
             }
           }
         ]
@@ -59047,7 +59040,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-64\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-64\");"
             }
           }
         ]
@@ -59089,7 +59082,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-65\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-65\");"
             }
           }
         ]
@@ -59131,7 +59124,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-66\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-66\");"
             }
           }
         ]
@@ -59173,7 +59166,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-67\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-67\");"
             }
           }
         ]
@@ -59215,7 +59208,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-68\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-68\");"
             }
           }
         ]
@@ -59257,7 +59250,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-69\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-69\");"
             }
           }
         ]
@@ -59289,39 +59282,17 @@
     },
     "coalition_negotiations.partner_list_70": {
       "id": "coalition_negotiations.partner_list_70",
-      "title": "Concede: Promote local industries in the Köykents.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-70\"]]||\"Unresolved\";"
-            }
-          }
-        ]
-      },
+      "title": "Köykent Project",
       "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-70\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-70\",\"partner\");"
-        }
-      ],
       "goTo": [
         {
-          "id": "coalition_negotiations.partner_ministry_industrial"
+          "id": "coalition_negotiations.concessions"
         }
       ],
       "content": [
         {
           "type": "heading",
-          "content": "Concede: Promote local industries in the Köykents."
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",
@@ -59415,7 +59386,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-71\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-71\");"
             }
           }
         ]
@@ -59457,7 +59428,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-72\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-72\");"
             }
           }
         ]
@@ -59499,7 +59470,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-73\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-73\");"
             }
           }
         ]
@@ -59541,7 +59512,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-74\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-74\");"
             }
           }
         ]
@@ -59583,7 +59554,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-75\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-75\");"
             }
           }
         ]
@@ -59625,7 +59596,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-76\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-76\");"
             }
           }
         ]
@@ -59667,7 +59638,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-77\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-77\");"
             }
           }
         ]
@@ -59709,7 +59680,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-78\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-78\");"
             }
           }
         ]
@@ -59833,7 +59804,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-81\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-81\");"
             }
           }
         ]
@@ -59875,7 +59846,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-82\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-82\");"
             }
           }
         ]
@@ -59917,7 +59888,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-83\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-83\");"
             }
           }
         ]
@@ -59959,7 +59930,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-84\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-84\");"
             }
           }
         ]
@@ -60001,7 +59972,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-86\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-86\");"
             }
           }
         ]
@@ -60043,7 +60014,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-87\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-87\");"
             }
           }
         ]
@@ -60085,7 +60056,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-88\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-88\");"
             }
           }
         ]
@@ -60127,7 +60098,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-89\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-89\");"
             }
           }
         ]
@@ -60169,7 +60140,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-90\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-90\");"
             }
           }
         ]
@@ -60211,7 +60182,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-92\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-92\");"
             }
           }
         ]
@@ -60327,7 +60298,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-95\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-95\");"
             }
           }
         ]
@@ -60369,7 +60340,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-96\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-96\");"
             }
           }
         ]
@@ -60411,7 +60382,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-98\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-98\");"
             }
           }
         ]
@@ -60453,7 +60424,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-99\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-99\");"
             }
           }
         ]
@@ -60495,7 +60466,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-100\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-100\");"
             }
           }
         ]
@@ -60537,7 +60508,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-101\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-101\");"
             }
           }
         ]
@@ -60579,7 +60550,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-102\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-102\");"
             }
           }
         ]
@@ -60621,7 +60592,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-103\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-103\");"
             }
           }
         ]
@@ -60729,7 +60700,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-104\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-104\");"
             }
           }
         ]
@@ -60771,7 +60742,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-105\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-105\");"
             }
           }
         ]
@@ -60813,7 +60784,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-106\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-106\");"
             }
           }
         ]
@@ -60855,7 +60826,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-107\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-107\");"
             }
           }
         ]
@@ -60897,7 +60868,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-110\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-110\");"
             }
           }
         ]
@@ -60939,7 +60910,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-111\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-111\");"
             }
           }
         ]
@@ -61051,7 +61022,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-113\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-113\");"
             }
           }
         ]
@@ -61093,7 +61064,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-114\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-114\");"
             }
           }
         ]
@@ -61135,7 +61106,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-116\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-116\");"
             }
           }
         ]
@@ -61177,7 +61148,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-117\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-117\");"
             }
           }
         ]
@@ -61219,7 +61190,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-118\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-118\");"
             }
           }
         ]
@@ -61261,7 +61232,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-119\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-119\");"
             }
           }
         ]
@@ -61303,7 +61274,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-120\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-120\");"
             }
           }
         ]
@@ -61423,7 +61394,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-122\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-122\");"
             }
           }
         ]
@@ -61465,7 +61436,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-123\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-123\");"
             }
           }
         ]
@@ -61507,7 +61478,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-124\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-124\");"
             }
           }
         ]
@@ -61549,7 +61520,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-125\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-125\");"
             }
           }
         ]
@@ -61591,7 +61562,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-126\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-126\");"
             }
           }
         ]
@@ -61633,7 +61604,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-127\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-127\");"
             }
           }
         ]
@@ -61675,7 +61646,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-128\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-128\");"
             }
           }
         ]
@@ -61717,7 +61688,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-129\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-129\");"
             }
           }
         ]
@@ -61759,7 +61730,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-130\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-130\");"
             }
           }
         ]
@@ -61867,7 +61838,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-131\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-131\");"
             }
           }
         ]
@@ -61909,7 +61880,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-132\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-132\");"
             }
           }
         ]
@@ -61951,7 +61922,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-133\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-133\");"
             }
           }
         ]
@@ -61993,7 +61964,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-134\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-134\");"
             }
           }
         ]
@@ -62035,7 +62006,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-135\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-135\");"
             }
           }
         ]
@@ -62077,7 +62048,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-136\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-136\");"
             }
           }
         ]
@@ -62177,7 +62148,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-137\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-137\");"
             }
           }
         ]
@@ -62219,7 +62190,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-139\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-139\");"
             }
           }
         ]
@@ -62261,7 +62232,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-140\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-140\");"
             }
           }
         ]
@@ -62303,7 +62274,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return ({player:\"Allocated to CHP\",partner:\"Conceded to the partner\"})[Q.coalition_formation.pending.rights[\"list-141\"]]||\"Unresolved\";"
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-141\");"
             }
           }
         ]
@@ -62326,6 +62297,90 @@
         {
           "type": "heading",
           "content": "Concede: Bring Religious Affairs Publications into Compliance with the Laws of the Republic"
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "coalition_negotiations.player_koykent": {
+      "id": "coalition_negotiations.player_koykent",
+      "title": "Köykent Project",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.projectSubtitle(Q);"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.projectAvailable(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocateProject(Q,\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.claims"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Köykent Project"
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "coalition_negotiations.partner_koykent": {
+      "id": "coalition_negotiations.partner_koykent",
+      "title": "Köykent Project",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.projectSubtitle(Q);"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.projectAvailable(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocateProject(Q,\"partner\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.concessions"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Köykent Project"
         },
         {
           "type": "paragraph",

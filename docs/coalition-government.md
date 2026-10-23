@@ -59,3 +59,7 @@ External events can call `AnatolianCoalitions.external(Q, amount)` for an immedi
 New negotiation events have descriptive titles and exactly `Placeholder` as their body, following the user's final instruction.
 
 Tests: `scripts/test-coalitions.js` and `scripts/test-coalitions-browser.js`, alongside the existing official regression suite and save-storage browser tests.
+
+## Köykent concession
+
+Köykent Project is a single immediate allocation choice shared across the five rights at workbook rows 4, 5, 6, 23 and 70. These five actions are absent from individual ministry allocation lists. Demanding, conceding, switching or clearing the project updates all five underlying rights together. The existing balance still counts five contested affairs. This grants policy cooperation, not ownership of another ministry; executing an action still requires its ministry. New menus are Demand Concessions and Offer Concessions, and allocation statuses identify the actual party through the standard party formatter.
