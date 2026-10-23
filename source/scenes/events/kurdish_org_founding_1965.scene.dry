@@ -10,6 +10,8 @@ on-arrival: {! AnatolianKurdishOrganizations.acknowledge(Q,1965); !}
 
 T-KDP are among the Kurdish political organizations established during 1965.
 
+{!<img src="img/kurdish/t-kdp.png" alt="T-KDP" style="display:block;max-width:100%;max-height:300px;margin:12px auto;object-fit:contain">!}
+
 - @acknowledge: Acknowledge.
 
 @acknowledge

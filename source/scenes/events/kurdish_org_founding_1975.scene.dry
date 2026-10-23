@@ -5,12 +5,13 @@ priority: 2
 max-visits: 1
 view-if: {! return typeof AnatolianKurdishOrganizations!=='undefined' && AnatolianKurdishOrganizations.announcementDue(Q,1975); !}
 on-arrival: {! AnatolianKurdishOrganizations.acknowledge(Q,1975); !}
+on-display: {! if(typeof AnatolianKurdishEventMedia!=="undefined")AnatolianKurdishEventMedia.sync(); !}
 
-= DDKD/PPKK/KİP Is Founded
+= KİP/DDKD/KÖİP/PPKK is founded
 
-DDKD/PPKK/KİP are among the Kurdish political organizations established during 1975.
+{!<img src="img/kurdish/kip.png" alt="KİP/DDKD/KÖİP/PPKK is founded" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
 
-**KİP/DDKD/KÖİP/PPKK is founded**
+{!<img src="img/kurdish/ddkd.png" alt="KİP/DDKD/KÖİP/PPKK is founded" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
 
 The bonds holding the fragile T-KDP together finally seem to have snapped. The long-standing left-wing faction of the party under Sait Kırmızıtoprak (nom de guerre Dr. Şivan) has finally formally split with the mainline party, beginning operations with the networks that left the party alongside them. Unlike their former comrades, Kırmızıtoprak's group was very quick to adopt a firmly pro-Soviet stance and establish a legal front named Devrimci Demokratik Kültür Dernekleri (Revolutionary Democratic Cultural Associations, DDKD for short) and has sent an armed core to get guerilla training in camps that belong to Palestinian resistance factions.
 

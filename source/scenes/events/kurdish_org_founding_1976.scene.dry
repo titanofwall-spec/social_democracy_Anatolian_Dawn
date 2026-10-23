@@ -5,12 +5,11 @@ priority: 2
 max-visits: 1
 view-if: {! return typeof AnatolianKurdishOrganizations!=='undefined' && AnatolianKurdishOrganizations.announcementDue(Q,1976); !}
 on-arrival: {! AnatolianKurdishOrganizations.acknowledge(Q,1976); !}
+on-display: {! if(typeof AnatolianKurdishEventMedia!=="undefined")AnatolianKurdishEventMedia.sync(); !}
 
-= Kawa and ASDKD Are Founded
+= Kawa is founded
 
-Kawa and ASDKD/Rızgari are among the Kurdish political organizations established during 1976.
-
-**Kawa is founded**
+{!<img src="img/kurdish/kawa.png" alt="Kawa is founded" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
 
 As the political consciousness of the Kurdish people rise, new fringes rise with them. Kawa, a radical, highly militant Maoist organisation, named after the mythical Kawa the Blacksmith who led his people to defeat a foreign tyrant in Kurdish mythology has been established, standing in contrast to both the right and left strains of the Kurdish movement. Kawa differs from the T-KDP in their opposition to ''Barzani feudalism'', to ''Özgürlük Yolu'' on the methods of struggle, and to KİP/DDKD on the Sino-Soviet split, while they have no specified ideological quarrel with PKK, their forces have engaged PKK guerillas numerous times in what has been described as a ''turf war'' between Kurdish organisations.
 
@@ -18,7 +17,16 @@ Kawa represents a growing ideological fringe, rising from the birth pains of a m
 
 In accordance with their line, Kawa organises violent and aggressive land occupations, armed riots and demonstrations against authorities and is rumoured to be also training and armed core of fighters to launch a full-scale guerilla war against the Turkish state.
 
-**Rizgarî is founded**
+- @rizgari: Continue.
+
+@rizgari
+title: Rizgarî is founded
+new-page: true
+on-display: {! if(typeof AnatolianKurdishEventMedia!=="undefined")AnatolianKurdishEventMedia.sync(); !}
+
+= Rizgarî is founded
+
+{!<img src="img/kurdish/rizgari.png" alt="Rizgarî is founded" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
 
 The Marxist-Leninist wave that is washing over the Kurdish movement has produced it's newest offspring. Descending from the political tradition of the now-banned Devrimci Doğu Kültür Ocakları (Revolutionary Eastern Cultural Hearths, DDKO for short) and based around the theoretical publication of the same name, Rizgarî (Liberation) has established itself as another cornerstone of the communist sections of the Kurdish movement.Though not especially militant, Rizgarî is still able to organise urban cadres and intellectuals to a worrying extent.
 

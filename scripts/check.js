@@ -29,7 +29,7 @@ function collect(game) {
         else if (value && typeof value === 'object') Object.entries(value).forEach(([key, child]) => inspect(child, location + '.' + key));
     }
     inspect(game.scenes, 'scenes');
-    ['save-storage.js', 'game.js', 'rules.js', 'kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'senate.js', 'card-actions.js', 'coalitions.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'data.js'].forEach(file => stateKeys(fs.readFileSync(path.join(root, 'out/html', file), 'utf8')).forEach(key => {
+    ['save-storage.js', 'game.js', 'rules.js', 'kurdish-event-media.js','kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'senate.js', 'card-actions.js', 'coalitions.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'data.js'].forEach(file => stateKeys(fs.readFileSync(path.join(root, 'out/html', file), 'utf8')).forEach(key => {
         if (!uses.has(key)) uses.set(key, new Set());
         uses.get(key).add(file);
     }));
@@ -56,7 +56,7 @@ if (require.main === module) {
                 assert(fs.existsSync(path.join(root, 'out/html', match[1])), source.name + ': missing ' + match[1]);
             }
         }
-        for (const file of ['save-storage.js','rules.js', 'kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'senate.js', 'card-actions.js', 'coalitions.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'game.js', 'data.js', 'd3-linegraph.js','provinces.js','province-map.js','data/province-data.js','data/senate-data.js','data/coalition-texts.js']) {
+        for (const file of ['save-storage.js','rules.js', 'kurdish-event-media.js','kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'senate.js', 'card-actions.js', 'coalitions.js', 'cyprus-atilla1.js', 'cyprus-campaign.js', 'cyprus-roadmap.js', 'game.js', 'data.js', 'd3-linegraph.js','provinces.js','province-map.js','data/province-data.js','data/senate-data.js','data/coalition-texts.js']) {
             const result = spawnSync(process.execPath, ['--check', path.join(root, 'out/html', file)], {stdio:'inherit'});
             assert.equal(result.status, 0, 'Syntax check: ' + file);
         }

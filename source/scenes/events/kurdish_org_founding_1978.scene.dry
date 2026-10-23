@@ -5,30 +5,47 @@ priority: 2
 max-visits: 1
 view-if: {! return typeof AnatolianKurdishOrganizations!=='undefined' && AnatolianKurdishOrganizations.announcementDue(Q,1978); !}
 on-arrival: {! AnatolianKurdishOrganizations.acknowledge(Q,1978); !}
+on-display: {! if(typeof AnatolianKurdishEventMedia!=="undefined")AnatolianKurdishEventMedia.sync(); !}
 
-= New Kurdish Political Organizations Emerge
+= Kawa fractures
 
-Denge Kawa, Red Kawa, Tekoşin and T-KDP/KUK are among the Kurdish political organizations established during 1978.
-
-**Kawa fractures**
+{!<img src="img/kurdish/kawa.png" alt="Kawa fractures" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
 
 Kawa, the steadfast vanguard of Maoism, the peasant and the worker in the Kurdish movement and one of the most violent Kurdish factions that we've had to contend with so far, seems to have fractured under the weight of it's own ideological radicalism. With the CPC adopting the ''Three Worlds Theory'', a radical, rejectionist faction has rebelled against the mainline organisation's acceptance of the theory, establishing Kızıl Kawa (Red Kawa). The remaining cadres compliant with the Beijing line have rallied around Ferit Uzun and established Denge Kawa (Voice of Kawa).
 
 The organisation's fracture was not a simple, peaceful affair however. Kawa's established networks have engaged each other in bloody skirmishes, causing more remote cells to be isolated, which the PKK has capitalised on. The turf wars between Kurdish factions are beginning to intensify beyond a point of no return as roaming bands of PKK fighters hunt down Kawa cadres in rural areas, contesting control with the goal of monopolising the Kurdish movement under themselves.
 
-**KUK is founded**
+- @tekosin: Continue.
+
+@tekosin
+title: Têkoşîn is founded
+new-page: true
+on-display: {! if(typeof AnatolianKurdishEventMedia!=="undefined")AnatolianKurdishEventMedia.sync(); !}
+
+= Têkoşîn is founded
+
+{!<img src="img/kurdish/tekosin.png" alt="Têkoşîn is founded" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
+
+Personalistic feuds within the PKK has caused some 50 militants belonging to cells in Tunceli and Gaziantep to split from the mainline PKK under the leadership of Seyfi Cengiz and Kamer Özkan to form ''Têkoşîn'' (Struggle). Despite it's lofty proclamations, theoretical background and it's strong Maoist inclinations the organisation's growth seems to have been stunted in it's founding phase, with the PKK mounting a brutal retaliation to the group, whom they have branded ''traitors'' and ''factionalists''.
+
+Though Têkoşîn currently does not possess much of a serious force, it's close ideological proximity with PKK have made it a possible shelter for guerillas not content with the ideological direction of the PKK or ones that are forced to end their ties with PKK. In the case that PKK's organisational capabilities are largely neutralised by security forces, it would not be unreasonable to expect an exodus to Têkoşîn.
+
+- @kuk: Continue.
+
+@kuk
+title: KUK is founded
+new-page: true
+on-display: {! if(typeof AnatolianKurdishEventMedia!=="undefined")AnatolianKurdishEventMedia.sync(); !}
+
+= KUK is founded
+
+{!<img src="img/kurdish/kuk.png" alt="KUK is founded" style="display:block;max-width:100%;max-height:300px;width:auto;height:auto;margin:12px auto;object-fit:contain">!}
 
 A new organisation has burst clean through the rotting carcass of T-KDP. With most of it's leadership imprisoned, murdered or exiled, most of it's networks either completely dismantled or brought to a non-operational state, a youth faction within T-KDP have established T-KDP/Kürdistan Ulusal Kurtuluşçuları (T-KDP/Kurdistan National Liberationists, T-KDP/KUK for short). Though much more left-leaning than the T-KDP's remaining networks and their leadership, KUK has opted to maintain a generally Barzanist political line with some noticeable tweaks.
 
 The organisation, despite adopting left-wing ideas of land reform and anti-imperialism, has also laid out that their first and foremost political demand is an independent and unified Kurdistan organised along Barzanist lines. KUK has also left behind the generally nonviolent strategies of the original T-KDP in favour of establishing mass organised armed networks of paramilitary, guerilla and militae forces modelled after the Barzani ''Peshmerga''.
 
 Despite their strong showing, KUK has increasingly found itself involved in a turf war with PKK, a turf war increasing in tenacity and violence by the day, and only time will tell if they can wash off their own people's blood from their hands quick and clean enough to pose a serious threat to security forces.
-
-**Têkoşîn is founded**
-
-Personalistic feuds within the PKK has caused some 50 militants belonging to cells in Tunceli and Gaziantep to split from the mainline PKK under the leadership of Seyfi Cengiz and Kamer Özkan to form ''Têkoşîn'' (Struggle). Despite it's lofty proclamations, theoretical background and it's strong Maoist inclinations the organisation's growth seems to have been stunted in it's founding phase, with the PKK mounting a brutal retaliation to the group, whom they have branded ''traitors'' and ''factionalists''.
-
-Though Têkoşîn currently does not possess much of a serious force, it's close ideological proximity with PKK have made it a possible shelter for guerillas not content with the ideological direction of the PKK or ones that are forced to end their ties with PKK. In the case that PKK's organisational capabilities are largely neutralised by security forces, it would not be unreasonable to expect an exodus to Têkoşîn.
 
 - @acknowledge: Acknowledge.
 

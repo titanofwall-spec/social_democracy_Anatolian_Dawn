@@ -196,27 +196,27 @@ const colourList = [{word: "MGP", style: "color: #5b7387; font-weight: bold;"}, 
 ];
 
 // Kurdish group localization intentionally remains empty.
-tooltipList.push({searchString:"T-KDP",explanationText:""});
+tooltipList.push({searchString:"T-KDP",explanationText:"<img src=\"img/kurdish/t-kdp.png\" alt=\"T-KDP\">"});
 colourList.push({word:"T-KDP",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"DHKD/TKSP",explanationText:""});
+tooltipList.push({searchString:"DHKD/TKSP",explanationText:"<img src=\"img/kurdish/dhkd.png\" alt=\"DHKD/TKSP\">"});
 colourList.push({word:"DHKD/TKSP",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"DDKD/PPKK/KİP",explanationText:""});
+tooltipList.push({searchString:"DDKD/PPKK/KİP",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"DDKD/PPKK/KİP\"><img src=\"img/kurdish/ddkd.png\" alt=\"DDKD/PPKK/KİP\">"});
 colourList.push({word:"DDKD/PPKK/KİP",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"ASDKD/Rızgari",explanationText:""});
+tooltipList.push({searchString:"ASDKD/Rızgari",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"ASDKD/Rızgari\">"});
 colourList.push({word:"ASDKD/Rızgari",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"Ala Rızgari",explanationText:""});
+tooltipList.push({searchString:"Ala Rızgari",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"Ala Rızgari\">"});
 colourList.push({word:"Ala Rızgari",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"Kawa",explanationText:""});
+tooltipList.push({searchString:"Kawa",explanationText:"<img src=\"img/kurdish/kawa.png\" alt=\"Kawa\">"});
 colourList.push({word:"Kawa",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"Denge Kawa",explanationText:""});
+tooltipList.push({searchString:"Denge Kawa",explanationText:"<img src=\"img/kurdish/kawa.png\" alt=\"Denge Kawa\">"});
 colourList.push({word:"Denge Kawa",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"Red Kawa",explanationText:""});
+tooltipList.push({searchString:"Red Kawa",explanationText:"<img src=\"img/kurdish/kawa.png\" alt=\"Red Kawa\">"});
 colourList.push({word:"Red Kawa",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"T-KDP/KUK",explanationText:""});
+tooltipList.push({searchString:"T-KDP/KUK",explanationText:"<img src=\"img/kurdish/kuk.png\" alt=\"T-KDP/KUK\">"});
 colourList.push({word:"T-KDP/KUK",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"KD/UKO/PKK",explanationText:""});
+tooltipList.push({searchString:"KD/UKO/PKK",explanationText:"<img src=\"img/kurdish/pkk.png\" alt=\"KD/UKO/PKK\">"});
 colourList.push({word:"KD/UKO/PKK",style:"color: #c2d93f; font-weight: bold;"});
-tooltipList.push({searchString:"Tekoşin",explanationText:""});
+tooltipList.push({searchString:"Tekoşin",explanationText:"<img src=\"img/kurdish/tekosin.png\" alt=\"Tekoşin\">"});
 colourList.push({word:"Tekoşin",style:"color: #c2d93f; font-weight: bold;"});
 colourList.push({word:"Kurdish Independents",style:"color: #c2d93f; font-weight: bold;"});
 
@@ -231,3 +231,39 @@ colourList.push({word:'MP',style:'color:#242018;'});
 const boldPartyNames=new Set(['CHP','AP','CGP','MGP','DP','MSP','MNP','MHP','TIP','TİP','TKP','TSİP','TSIP','TEP','SDP','TBP','MP','Independents','Kurdish Independents','Socialist Left','Others']);
 colourList.forEach(entry=>{if(boldPartyNames.has(entry.word))entry.style=entry.style.replace(/font-weight\s*:[^;]+;?/g,'')+';font-weight:bold;';});
 ['Independents','Kurdish Independents'].forEach(name=>{if(!tooltipList.some(t=>t.searchString===name))tooltipList.push({searchString:name,explanationText:name});});
+
+tooltipList.push({searchString:"PKK",explanationText:"<img src=\"img/kurdish/pkk.png\" alt=\"PKK\">"});
+colourList.push({word:"PKK",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"TKSP",explanationText:"<img src=\"img/kurdish/dhkd.png\" alt=\"TKSP\">"});
+colourList.push({word:"TKSP",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"DHKD",explanationText:"<img src=\"img/kurdish/dhkd.png\" alt=\"DHKD\">"});
+colourList.push({word:"DHKD",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"KİP",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"KİP\">"});
+colourList.push({word:"KİP",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"DDKD",explanationText:"<img src=\"img/kurdish/ddkd.png\" alt=\"DDKD\">"});
+colourList.push({word:"DDKD",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"KÖİP",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"KÖİP\">"});
+colourList.push({word:"KÖİP",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"PPKK",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"PPKK\">"});
+colourList.push({word:"PPKK",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"Rizgarî",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"Rizgarî\">"});
+colourList.push({word:"Rizgarî",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"Rızgarî",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"Rızgarî\">"});
+colourList.push({word:"Rızgarî",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"Têkoşîn",explanationText:"<img src=\"img/kurdish/tekosin.png\" alt=\"Têkoşîn\">"});
+colourList.push({word:"Têkoşîn",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"KUK",explanationText:"<img src=\"img/kurdish/kuk.png\" alt=\"KUK\">"});
+colourList.push({word:"KUK",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"PDK-T",explanationText:"<img src=\"img/kurdish/t-kdp.png\" alt=\"PDK-T\">"});
+colourList.push({word:"PDK-T",style:"color:#c2d93f;font-weight:bold;"});
