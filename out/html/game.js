@@ -22,7 +22,9 @@
       var display = ui[method].bind(ui);
       ui[method] = function() {
         if (ui.dendryEngine.state.qualities.cyprus_mode) return;
-        return display.apply(ui, arguments);
+        var result=display.apply(ui, arguments);
+        if(method==='displayDecks'){var content=document.getElementById('content');if(content){var old=document.getElementById('government-news');if(old)old.remove();var box=document.createElement('section');box.id='government-news';box.className='government-news';var title=document.createElement('b');title.textContent='News';var text=document.createElement('p');text.textContent=AnatolianNationalCoalition.ensure(ui.dendryEngine.state.qualities).news||'No government news.';box.append(title,text);content.prepend(box);}}
+        return result;
       };
     });
     ['drawCard', 'playCard', 'playPinnedCard'].forEach(function(method) {
@@ -1306,3 +1308,5 @@ window.openCyprusDiplomacy=function(country){
 
 window.switchMusicTrack=function(direction){var ui=window.dendryUI;if(!ui)return;var tracks=Array.from(new Set((ui.audioPlaylist||[]).filter(function(t){return t&&t!=='none'&&t!=='null';})));if(tracks.length<2)return;var current=ui.currentAudioURL||'',index=tracks.findIndex(function(t){return current===t||(ui.currentAudio&&decodeURI(ui.currentAudio.src).endsWith(decodeURI(t)));});index=(index+direction+tracks.length)%tracks.length;var next=tracks[index];ui.audioQueue=[];if(!ui.currentAudio)ui.currentAudio=new Audio(next);else{ui.currentAudio.pause();ui.currentAudio.src=next;}ui.currentAudioURL=next;ui.currentAudio.loop=false;if(!ui.disable_audio)ui.currentAudio.play().catch(function(){});};
 
+
+(function(){if(typeof MutationObserver==='undefined'||!document.createTreeWalker)return;function shorten(node){var walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT),items=[];while(walker.nextNode())items.push(walker.currentNode);for(var text of items){if(['SCRIPT','STYLE','TEXTAREA'].includes(text.parentElement?.tagName))continue;var value=text.nodeValue.replace(/(\d+\.\d)\d+(?=%)/g,'$1');if(value!==text.nodeValue)text.nodeValue=value;}}function installPrecision(){var observer=new MutationObserver(function(records){for(var r of records)for(var node of r.addedNodes)if(node.nodeType===1)shorten(node);else if(node.nodeType===3){var value=node.nodeValue.replace(/(\d+\.\d)\d+(?=%)/g,'$1');if(value!==node.nodeValue)node.nodeValue=value;}});observer.observe(document.body,{childList:true,subtree:true});shorten(document.body);}if(document.body)installPrecision();else document.addEventListener('DOMContentLoaded',installPrecision,{once:true});})();

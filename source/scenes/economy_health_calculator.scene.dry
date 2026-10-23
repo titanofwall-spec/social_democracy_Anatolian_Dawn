@@ -112,13 +112,13 @@ if (Q.apply_economy_effects == 1) {
         // Booming Economy: +0.83% per turn all demographics, +1.67% capitalists (percentages rounded)
         // (equivalent to +5% and +10% over 6 turns / 3 months)
         if (Q.CHP_in_government) {
-            Q.rural_chp += 0.833333;
-            Q.workers_chp += 0.833333;
-            Q.petty_bourgeoisie_chp += 0.833333;
-            Q.state_employees_chp += 0.833333;
-            Q.capitalists_chp += 1.666667;
-            Q.alevis_chp += 0.833333;
-            Q.kurds_chp += 0.833333;
+            Q.rural_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
+            Q.workers_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
+            Q.petty_bourgeoisie_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
+            Q.state_employees_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
+            Q.capitalists_chp += 1.666667 * (Q.national_coalition ? 0 : 1);
+            Q.alevis_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
+            Q.kurds_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
         } else if (Q.AP_in_government) {
             Q.rural_AP += 0.833333;
             Q.workers_AP += 0.833333;
@@ -140,13 +140,13 @@ if (Q.apply_economy_effects == 1) {
         // Unhealthy Economy: -0.33% per turn all demographics (percentage rounded)
         // (equivalent to -2% over 6 turns / 3 months)
         if (Q.CHP_in_government) {
-            Q.rural_chp -= 0.333333;
-            Q.workers_chp -= 0.333333;
-            Q.petty_bourgeoisie_chp -= 0.333333;
-            Q.state_employees_chp -= 0.333333;
-            Q.capitalists_chp -= 0.333333;
-            Q.alevis_chp -= 0.333333;
-            Q.kurds_chp -= 0.333333;
+            Q.rural_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
+            Q.workers_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
+            Q.petty_bourgeoisie_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
+            Q.state_employees_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
+            Q.capitalists_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
+            Q.alevis_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
+            Q.kurds_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
         } else if (Q.AP_in_government) {
             Q.rural_AP -= 0.333333;
             Q.workers_AP -= 0.333333;
@@ -168,13 +168,13 @@ if (Q.apply_economy_effects == 1) {
         // Crisis Economy: -0.67% per turn all demographics (percentage rounded)
         // (equivalent to -4% over 6 turns / 3 months)
         if (Q.CHP_in_government) {
-            Q.rural_chp -= 0.666667;
-            Q.workers_chp -= 0.666667;
-            Q.petty_bourgeoisie_chp -= 0.666667;
-            Q.state_employees_chp -= 0.666667;
-            Q.capitalists_chp -= 0.666667;
-            Q.alevis_chp -= 0.666667;
-            Q.kurds_chp -= 0.666667;
+            Q.rural_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
+            Q.workers_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
+            Q.petty_bourgeoisie_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
+            Q.state_employees_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
+            Q.capitalists_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
+            Q.alevis_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
+            Q.kurds_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
         } else if (Q.AP_in_government) {
             Q.rural_AP -= 0.666667;
             Q.workers_AP -= 0.666667;

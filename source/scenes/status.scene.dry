@@ -123,7 +123,7 @@ Q.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg,
 Resources available: [+ resources +]
 
 <span style="color: #E3000F;">**CHP**</span> position: [? if CHP_toleration : toleration ?][? if CHP_in_government : in government - ?][? if CHP_toleration == 0 and CHP_in_government == 0 and CHP_caretaker == 0 : opposition ?][? if CHP_caretaker : caretaker government ?]
-[? if in_democratic_coalition and CHP_in_government: Democratic Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_popular_front and CHP_in_government: Popular Front ?][? if in_left_front and CHP_in_government: Left Front ?][? if in_msp_coalition and CHP_in_government: Unholy Coalition ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
+[? if in_democratic_coalition and CHP_in_government: Kemalist Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_popular_front and CHP_in_government: Popular Front ?][? if in_left_front and CHP_in_government: Left Front ?][? if in_msp_coalition and CHP_in_government: Forced Marriage ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
 
 [? if CHP_in_government and not in_CHP_majority and not in_left_front : Coalition Dissent: [+ coalition_dissent +] / 100 ?]
 
@@ -203,7 +203,7 @@ DİSK: [+ disk_relation : relationships +]
 
 DİSK - TÜRK-İŞ Conflict: [? if disk_turkis_conflict < 0.20: Total DİSK Dominance ?][? if disk_turkis_conflict >= 0.20 and disk_turkis_conflict < 0.40: DİSK leaning ?][? if disk_turkis_conflict >= 0.40 and disk_turkis_conflict < 0.60: Balanced ?][? if disk_turkis_conflict >= 0.60 and disk_turkis_conflict < 0.80: TÜRK-İŞ leaning ?][? if disk_turkis_conflict >= 0.80: Total TÜRK-İŞ Dominance ?]
 
-[+ {! return AnatolianMunicipalities.html(Q); !} +]
+
 
 = Internal Factions of the CHP
 
@@ -891,3 +891,7 @@ Diplomatic Leverage: [+ leverage_points +]
 @national_coalition
 
 [+ {! return AnatolianNationalCoalition.html(Q); !} +]
+
+@municipalities
+
+[+ {! return AnatolianMunicipalities.html(Q); !} +]

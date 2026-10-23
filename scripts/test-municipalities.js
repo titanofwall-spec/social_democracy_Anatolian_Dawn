@@ -1,5 +1,5 @@
 const assert=require('assert');require('../out/html/rules.js');const M=require('../out/html/municipalities.js');
-const Q={year:1974,month:1,week:1,resources:100,municipalities_controlled:20,total_municipalities:67};
+const Q={year:1974,month:1,week:1,resources:100,CHP_in_government:1,municipalities_controlled:20,total_municipalities:67};
 const advance=t=>{const n=M.now(Q)+t;Q.year=Math.floor(n/24);Q.month=Math.floor(n%24/2)+1;Q.week=n%2+1;};
 assert.equal(M.levels(Q).Sanitation,'Failing to Keep Up');assert.equal(M.geceLevels(Q).Infrastructure,'Nonexistent');assert(!Q.municipal_development);assert(M.html(Q).includes('Municipalities Controlled: 20/67'));assert(!Q.municipal_development,'Rendering must not mutate saves');
 for(const [id,d]of Object.entries(M.definitions)){
@@ -9,4 +9,6 @@ for(const [id,d]of Object.entries(M.definitions)){
 }
 assert.deepEqual(Object.values(M.levels(Q)),['Near 1970s Standards','Widespread Paved Roads','Keeping Pace with Urban Growth','Significant Cultural and Economic Opportunities']);
 assert.deepEqual(Object.values(M.geceLevels(Q)),['Significantly Slowed','Widespread Infrastructure','Evolving into Apartment Districts','Near Urban Standards','Local Factories Forming']);
-const restored=JSON.parse(JSON.stringify(Q));assert.deepEqual(M.levels(restored),M.levels(Q));assert(M.progress(restored).includes('8/8'));console.log('PASS municipal development, endpoints, exact half-month cooldown boundaries, old-save defaults and save roundtrip');
+const restored=JSON.parse(JSON.stringify(Q));assert.deepEqual(M.levels(restored),M.levels(Q));assert(M.progress(restored).includes('4/4'));console.log('PASS municipal development, endpoints, exact half-month cooldown boundaries, old-save defaults and save roundtrip');
+
+for(const govt of [0,1]){const q={year:1974,month:1,week:1,resources:5,budget:5,CHP_in_government:govt};for(const id of ['libraries','halkekmek','roads','connect','regularization','planning','transport','industry'])if(!govt)assert(M.reason(q,id));assert(M.apply(q,'migration'));assert.equal(q.resources,govt?5:4);assert.equal(q.budget,5);assert(!M.html(q).includes('Land Regularization:'));}assert.equal(M.definitions.regularization.max,4);assert.equal(M.definitions.infrastructure.max,2);assert.equal(M.definitions.transport.max,3);const legacy={municipal_development:{counts:{regularization:8,infrastructure:4,transport:6},dates:{}}};assert.equal(M.count(legacy,'regularization'),4);assert.equal(M.geceLevels(legacy).Infrastructure,'Widespread Infrastructure');

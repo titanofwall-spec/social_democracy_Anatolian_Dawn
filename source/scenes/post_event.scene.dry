@@ -259,6 +259,7 @@ if (turnAdvanced) {
         Q.agricultural_price_status = "Very Low";
     }
 
+if(Q.week===1){
     // Increment agricultural price timer
     Q.agricultural_price_timer += 1;
 
@@ -267,9 +268,9 @@ if (turnAdvanced) {
         // Very High: -2% to workers, petty bourgeoisie, state employees every 2 months
         Q.agricultural_price_timer = 0;
         if (Q.CHP_in_government) {
-            Q.workers_chp -= 2;
-            Q.petty_bourgeoisie_chp -= 2;
-            Q.state_employees_chp -= 2;
+            Q.workers_chp -= 0.1;
+            Q.petty_bourgeoisie_chp -= 0.1;
+            Q.state_employees_chp -= 0.1;
         } else if (Q.AP_in_government) {
             Q.workers_AP -= 2;
             Q.petty_bourgeoisie_AP -= 2;
@@ -279,9 +280,9 @@ if (turnAdvanced) {
         // High: -1% to workers, petty bourgeoisie, state employees every 3 months
         Q.agricultural_price_timer = 0;
         if (Q.CHP_in_government) {
-            Q.workers_chp -= 1;
-            Q.petty_bourgeoisie_chp -= 1;
-            Q.state_employees_chp -= 1;
+            Q.workers_chp -= 0.05;
+            Q.petty_bourgeoisie_chp -= 0.05;
+            Q.state_employees_chp -= 0.05;
         } else if (Q.AP_in_government) {
             Q.workers_AP -= 1;
             Q.petty_bourgeoisie_AP -= 1;
@@ -291,7 +292,7 @@ if (turnAdvanced) {
         // Low: -1% to rural every 3 months
         Q.agricultural_price_timer = 0;
         if (Q.CHP_in_government) {
-            Q.rural_chp -= 1;
+            Q.rural_chp -= 0.05;
         } else if (Q.AP_in_government) {
             Q.rural_AP -= 1;
         }
@@ -299,7 +300,7 @@ if (turnAdvanced) {
         // Very Low: -2% to rural every 2 months
         Q.agricultural_price_timer = 0;
         if (Q.CHP_in_government) {
-            Q.rural_chp -= 2;
+            Q.rural_chp -= 0.1;
         } else if (Q.AP_in_government) {
             Q.rural_AP -= 2;
         }
@@ -310,6 +311,7 @@ if (turnAdvanced) {
         Q.agricultural_price_timer = 0;
     }
 
+}
 //////////////////////////////// Education & Science support/economic changes
     if (Q.major_curriculum && Q.major_curriculum == "democratic") {
         if (Q.pro_republic < 60) {
@@ -630,6 +632,8 @@ Q.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));
 
 // ─────────────────────────────────────────────────────────────────────────
 }
+
+if(turnAdvanced)AnatolianNationalCoalition.governmentTurn(Q);
 
 // ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached
 

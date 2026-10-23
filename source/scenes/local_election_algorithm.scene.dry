@@ -21,7 +21,7 @@ var tipSupport=partySupports.TIP||0;
 var normalization_total = total_support;
 if (Q.TIP_banned && tipSupport > 0) {
     var tip_transfer_support = 0;
-    if (Q.disk_endorsement) {
+    if (Q.disk_endorsement && !Q.socialist_left_formed) {
         tip_transfer_support = tipSupport / 2;
     }
     partySupports['chp'] = (partySupports['chp'] || 0) + tip_transfer_support;

@@ -1625,3 +1625,7 @@ body #leader-tooltip-layer{z-index:2147483600!important}
 @media(max-width:760px){.coalition-heading{padding-left:65px;padding-right:65px}.coalition-close{right:8px}}
 
 .coalition-parameter-label,.coalition-details h2{color:#E3000F;font-weight:bold}
+
+/* All added headings use the game typeface. */
+h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
+.government-news{border:4px double var(--border-color);background:var(--content-bg-color);color:var(--text-color);padding:8px;margin:8px 0;font:inherit}

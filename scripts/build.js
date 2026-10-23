@@ -30,7 +30,7 @@ compiler.compileGame(files,(err,game)=>{
     const escaped=name.replace(/\./g,'\\.');
     versioned=versioned.replace(new RegExp('src="'+escaped+'(?:\\?[^"]*)?"','g'),'src="'+name+'?v='+version+'"');
   }
-  for(const name of ['province-map.css']){const version=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html',name))).digest('hex').slice(0,12);versioned=versioned.replace(new RegExp('href="'+name.replace(/\./g,'\\.')+'(?:\\?[^"]*)?"','g'),'href="'+name+'?v='+version+'"');}
+  for(const name of ['province-map.css','game.css']){const version=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html',name))).digest('hex').slice(0,12);versioned=versioned.replace(new RegExp('href="'+name.replace(/\./g,'\\.')+'(?:\\?[^"]*)?"','g'),'href="'+name+'?v='+version+'"');}
   fs.writeFileSync(indexPath,versioned);
 
  });

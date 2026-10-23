@@ -16,7 +16,8 @@ Mass rallies are a common feature of multi party democracies, especially in the 
 - @kemalism: We inherit a great message, the message of modernity and progress, from our founder Atatürk. We are the party of Atatürk first and foremost.
 - @social_programs: Turkish society has historically always been one with great state presence, with the state taking care of many needs of its citizens. We can exploit this situation with our new social programs.
 - @pacifism: The military oversight over our democracy is nothing less of a tyranny.
-- @land_reform: Support the land reform!
+- @land_reform: Support Land Reform
+- @koykent_rally: Rally for Köykent
 - @public_works: Rally support for our public works programme.
 - @local: A mixture of various local and national concerns that resonate most with the audience.
 - @easy_discard
@@ -71,6 +72,7 @@ on-arrival: workers_chp += 3*(1-dissent); petty_bourgeoisie_chp += 1*(1-dissent)
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.
 
 @land_reform
+view-if: land_reform != 3
 
 Define our commitment to the countryside. A stronger declaration opens more rural voters to CHP; lasting gains require implementation.
 
@@ -90,6 +92,12 @@ on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"moderate"); !}
 Our land reform commitment opens a wider electoral audience.
 
 @rural_strong
-on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"strong"); !}
+on-arrival: {! Q.land_reform=3;AnatolianNationalCoalition.ruralRally(Q,"strong"); !}
 
 Our commitment to rural transformation opens a wider electoral audience. Implementing it will take sustained work.
+
+@koykent_rally
+view-if: land_reform == 3
+on-arrival: rural_chp += 2*(1-dissent); {! var s=AnatolianNationalCoalition.ensure(Q);s.groups.rural.reach=Math.min(.75,s.groups.rural.reach+.003); !}
+
+We rally rural voters behind the Köykent project and broaden its electoral audience.
