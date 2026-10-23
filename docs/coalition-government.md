@@ -56,10 +56,20 @@ External events can call `AnatolianCoalitions.external(Q, amount)` for an immedi
 
 `coalition_formation` preserves the mandate, attempts, pending ministries and powers, history and local-election breakpoint. `coalition_government` preserves cabinet partners, signed rights, Y, time anchor and component adjustments. Existing saves with a coalition migrate to an unresolved agreement without overwriting their cabinet allocation. JSON save/export/import includes both objects.
 
-New negotiation events have descriptive titles and exactly `Placeholder` as their body, following the user's final instruction.
+The 1973 event passages supplied by the player are stored in `data/coalition-texts.js` and selected by mandate, coalition, negotiation stage and outcome. Tracking notes are not displayed as titles. Unwritten branches retain their existing placeholders. Secretary references resolve the current leadership state when rendered.
 
 Tests: `scripts/test-coalitions.js` and `scripts/test-coalitions-browser.js`, alongside the existing official regression suite and save-storage browser tests.
 
 ## Köykent concession
 
 Köykent Project is a single immediate allocation choice shared across the five rights at workbook rows 4, 5, 6, 23 and 70. These five actions are absent from individual ministry allocation lists. Demanding, conceding, switching or clearing the project updates all five underlying rights together. The existing balance still counts five contested affairs. This grants policy cooperation, not ownership of another ministry; executing an action still requires its ministry. New menus are Demand Concessions and Offer Concessions, and allocation statuses identify the actual party through the standard party formatter.
+
+## Authored 1973 formation paths
+
+The first mandate event distinguishes CHP and AP victories. CGP, initial MSP, renewed MSP, CHP-led AP and AP-led CHP talks use separate introductions, meeting passages, cabinet passages and program passages. Arithmetic failures and abandoned negotiations select different supplied texts. Talu remains a refusal-only proposal and continues as the existing caretaker after returning the mandate.
+
+The CHP-led AP proposal uses Sadi Irmak as a non-partisan prime minister, with Ecevit and Demirel as deputy prime ministers, if accepted. AP's subsequent invitation after CHP has already returned the first mandate cannot produce a government: the supplied compulsory refusal is enforced. An AP-largest election retains the distinct, viable AP-led Grand Coalition route.
+
+When CHP is outside the proposed cabinet, only the discussion and outcome events are shown. Ministry allocation is calculated from the governing parties' seat strengths, excludes external DP support, and is appended to the cabinet-formation event. Player ministry selection and concession trading are bypassed and guarded against stale-save entry. A later right-wing fallback may obtain DP toleration without giving DP coalition membership or ministries. The supplied majority and minority formation passages are selected according to actual support.
+
+The MSP request to delay local elections is included as the supplied discussion passage. It does not silently change the election calendar; no acceptance effects or rewritten election-date system were supplied with this text update. Calendar annotations in the player's tracking notes do not create automatic time jumps.

@@ -10,7 +10,7 @@ Placeholder
 @route
 title: Government Formation
 new-page: true
-go-to: chp_majority if {! return Q.coalition_formation.stage==="mandate"&&Q.chp_seats>=226; !}; ap_majority if {! return Q.coalition_formation.stage==="mandate"&&Q.AP_seats>=226; !}; mandate if {! return Q.coalition_formation.stage==="mandate"&&Q.chp_seats<226&&Q.AP_seats<226; !}; mandate_return if {! return Q.coalition_formation.stage==="return"; !}; mandate_return_final if {! return Q.coalition_formation.stage==="return_final"; !}; talu if {! return Q.coalition_formation.stage==="talu"; !}; waiting if {! return Q.coalition_formation.stage==="waiting_local"; !}; renewed if {! return Q.coalition_formation.stage==="renewed"; !}; right_final if {! return Q.coalition_formation.stage==="right_final"; !}; caretaker if {! return Q.coalition_formation.stage==="caretaker"; !}; formed if {! return Q.coalition_formation.stage==="formed"; !}; attempt if {! return Q.coalition_formation.stage==="attempt"; !}
+go-to: mandate if {! return Q.coalition_formation.stage==="mandate"; !}; mandate_return if {! return Q.coalition_formation.stage==="return"; !}; mandate_return_final if {! return Q.coalition_formation.stage==="return_final"; !}; talu if {! return Q.coalition_formation.stage==="talu"; !}; waiting if {! return Q.coalition_formation.stage==="waiting_local"; !}; renewed if {! return Q.coalition_formation.stage==="renewed"; !}; right_final if {! return Q.coalition_formation.stage==="right_final"; !}; caretaker if {! return Q.coalition_formation.stage==="caretaker"; !}; formed if {! return Q.coalition_formation.stage==="formed"; !}; msp_transition if {! var f=Q.coalition_formation;return f.stage==="attempt"&&f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"&&!f.mspTransitionSeen; !}; attempt if {! var f=Q.coalition_formation;return f.stage==="attempt"&&!(f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"&&!f.mspTransitionSeen); !}
 
 = Government Formation
 
@@ -22,11 +22,14 @@ new-page: true
 
 = The Mandate to Form a Government
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"mandate"); !} +]
 
 - @first_attempt: Begin government-formation talks.
+- @chp_majority: Form the majority government.
+- @ap_majority: Review the new government.
 
 @first_attempt
+view-if: {! return Q.chp_seats<226&&Q.AP_seats<226; !}
 title: Opening Negotiations
 new-page: true
 on-arrival: {! Q.coalition_formation.stage="attempt"; !}
@@ -36,18 +39,133 @@ go-to: attempt
 
 Placeholder
 
+@msp_transition
+title: An Unlikely Proposal
+new-page: true
+on-arrival: {! Q.coalition_formation.mspTransitionSeen=true; !}
+
+= An Unlikely Proposal
+
+[+ {! return AnatolianCoalitions.eventText(Q,"msp_transition"); !} +]
+
+- @attempt: Consider the proposed coalition.
+
 @attempt
-title: Coalition Talks: [+ {! var c=AnatolianCoalitions.candidate(Q);return c.parties.map(p=>p==="CGP"?Q.CGP_name:p).join(" + "); !} +]
+title: Coalition Talks: [+ {! var c=AnatolianCoalitions.candidate(Q);return c.parties.map(p=>AnatolianCoalitions.partyLabel(Q,p)).join(" + "); !} +]
 new-page: true
 
-= Coalition Talks: [+ {! var c=AnatolianCoalitions.candidate(Q);return c.parties.map(p=>p==="CGP"?Q.CGP_name:p).join(" + "); !} +]
+= Coalition Talks: [+ {! var c=AnatolianCoalitions.candidate(Q);return c.parties.map(p=>AnatolianCoalitions.partyLabel(Q,p)).join(" + "); !} +]
+
+[+ {! return AnatolianCoalitions.eventText(Q,"intro"); !} +]
+
+- @open_talks: Begin the discussions.
+- @reject_invitation: Decline the invitation.
+- @skip_unviable: Continue to the next possibility.
+
+@open_talks
+title: Opening Coalition Discussions
+new-page: true
+view-if: {! return AnatolianCoalitions.possible(Q); !}
+on-arrival: {! Q.coalition_formation.talked=true; !}
+go-to: talks
+
+= Opening Coalition Discussions
 
 Placeholder
 
-- @negotiate: Negotiate a coalition agreement.
-- @reject: End these talks and continue the formation process.
+@skip_unviable
+title: No Parliamentary Majority
+new-page: true
+view-if: {! return !AnatolianCoalitions.possible(Q); !}
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+go-to: route
+
+= No Parliamentary Majority
+
+Placeholder
+
+@reject_invitation
+title: An Invitation Declined
+new-page: true
+view-if: {! return AnatolianCoalitions.forcedRefusal(Q); !}
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+
+= An Invitation Declined
+
+[+ {! return AnatolianCoalitions.eventText(Q,"failure"); !} +]
+
+- @route: Continue.
+
+@talks
+title: Coalition Negotiations
+new-page: true
+
+= Coalition Negotiations
+
+[+ {! return AnatolianCoalitions.eventText(Q,"talks"); !} +]
+
+- @negotiate: Proceed to cabinet negotiations.
+- @accept_nonpartisan: Accept Sadi Irmak as Prime Minister, with Ecevit and Demirel as Deputy Prime Ministers.
+- @msp_postponement: Discuss MSP's request concerning the local elections.
+- @reject: End these talks without agreement.
+- @npc_negotiate: Follow the outcome of the discussions.
+
+@accept_nonpartisan
+title: A Non-Partisan Prime Minister
+new-page: true
+view-if: {! return AnatolianCoalitions.nonpartisanProposal(Q); !}
+choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
+go-to: negotiate
+
+= A Non-Partisan Prime Minister
+
+Placeholder
+
+@msp_postponement
+title: The Date of the Local Elections
+new-page: true
+view-if: {! var f=Q.coalition_formation;return f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"; !}
+
+= The Date of the Local Elections
+
+[+ {! return AnatolianCoalitions.eventText(Q,"msp_postponement"); !} +]
+
+- @negotiate_after_msp: Continue to the cabinet discussions.
+- @reject: End these talks without agreement.
+
+@negotiate_after_msp
+title: Continuing the Coalition Discussions
+new-page: true
+choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
+go-to: negotiate
+
+= Continuing the Coalition Discussions
+
+Placeholder
+
+@npc_negotiate
+title: The Outcome of the Coalition Talks
+new-page: true
+view-if: {! return !AnatolianCoalitions.candidate(Q).parties.includes("CHP"); !}
+on-arrival: {! if(AnatolianCoalitions.acceptable(Q))AnatolianCoalitions.negotiate(Q); !}
+go-to: right_offer if {! return Q.coalition_formation.stage==="right"; !}; npc_failed if {! return Q.coalition_formation.stage!=="right"; !}
+
+= The Outcome of the Coalition Talks
+
+Placeholder
+
+@npc_failed
+title: Coalition Talks End Without Agreement
+new-page: true
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+go-to: route
+
+= Coalition Talks End Without Agreement
+
+Placeholder
 
 @negotiate
+view-if: {! var f=Q.coalition_formation;return AnatolianCoalitions.candidate(Q).parties.includes("CHP")&&!AnatolianCoalitions.forcedRefusal(Q)&&!AnatolianCoalitions.nonpartisanProposal(Q)&&!(f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"); !}
 title: Negotiating the Coalition Agreement
 new-page: true
 choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
@@ -60,13 +178,14 @@ go-to: right_offer if {! return Q.coalition_formation.stage==="right"; !}; minis
 Placeholder
 
 @reject
+view-if: {! return AnatolianCoalitions.candidate(Q).parties.includes("CHP"); !}
 title: Coalition Talks End Without Agreement
 new-page: true
 on-arrival: {! AnatolianCoalitions.next(Q); !}
 
 = Coalition Talks End Without Agreement
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"failure"); !} +]
 
 - @route: Continue.
 
@@ -76,7 +195,7 @@ new-page: true
 
 = The First Mandate Is Returned
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"return_first"); !} +]
 
 - @new_mandate: Proceed to the next government-formation attempt.
 
@@ -96,7 +215,7 @@ new-page: true
 
 = The Talu Proposal
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"talu_proposal"); !} +]
 
 - @refuse_talu: CHP refuses to support the Talu proposal.
 
@@ -107,7 +226,7 @@ on-arrival: {! AnatolianCoalitions.afterTalu(Q); !}
 
 = CHP Rejects the Talu Government
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"talu_failed"); !} +]
 
 - @root: Continue under the caretaker until the local elections.
 
@@ -127,7 +246,7 @@ new-page: true
 
 = A Renewed Mandate for Ecevit
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"renewed"); !} +]
 
 - @first_attempt: Reopen talks with MSP.
 
@@ -137,7 +256,7 @@ new-page: true
 
 = Ecevit Returns the Renewed Mandate
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"return_final"); !} +]
 
 - @right_final: Proceed to the right-wing government-formation attempt.
 
@@ -153,16 +272,17 @@ Placeholder
 - @attempt: Review the AP–MSP–CGP proposal with external DP support.
 
 @right_offer
-title: The AP–MSP–CGP Agreement
+title: A New Coalition Government
 new-page: true
+on-arrival: {! AnatolianCoalitions.rightGovernment(Q); !}
 
-= The AP–MSP–CGP Agreement
+= A New Coalition Government
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"formed"); !} +]
 
-- @right_nominee: Proceed to the next mandate.
-- @right_form: Recognize the coalition, supported externally by DP.
-- @reject: Talks fail.
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
+
+- @root: Return to other affairs.
 
 @right_nominee
 title: The Mandate for [+ {! return Q.coalition_formation.year===1975?"Baykara":"Şentürk"; !} +]
@@ -182,7 +302,9 @@ on-arrival: {! AnatolianCoalitions.rightGovernment(Q); !}
 
 = The Right-Wing Coalition Is Formed
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"formed"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
 
 - @root: Return to other affairs.
 
@@ -194,7 +316,9 @@ on-arrival: {! AnatolianCoalitions.rightGovernment(Q); !}
 
 = The AP–MSP–CGP Government
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"formed"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
 
 - @root: Return to other affairs.
 
@@ -209,6 +333,7 @@ Placeholder
 - @root: Continue under a caretaker government.
 
 @chp_majority
+view-if: chp_seats >= 226
 title: CHP Forms a Majority Government
 new-page: true
 on-arrival: {! AnatolianCoalitions.majority(Q,"CHP"); !}
@@ -220,24 +345,28 @@ Placeholder
 - @root: Return to other affairs.
 
 @ap_majority
+view-if: AP_seats >= 226
 title: AP Forms a Majority Government
 new-page: true
 on-arrival: {! AnatolianCoalitions.majority(Q,"AP"); !}
 
 = AP Forms a Majority Government
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"ap_majority"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
 
 - @root: Return to other affairs.
 
 @ministries
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
 subtitle: Select [+ {! return Q.coalition_formation.pending.quota; !} +] ministries for CHP.
 title: Distribution of Ministries
 new-page: true
 
 = Distribution of Ministries
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"cabinet"); !} +]
 
 - @min_foreign: Foreign Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["foreign"]||Q.coalition_formation.pending.partners[0]); !} +]
 - @min_interior: Interior Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["interior"]||Q.coalition_formation.pending.partners[0]); !} +]
@@ -373,6 +502,7 @@ go-to: ministries
 Placeholder
 
 @powers
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
 on-arrival: {! AnatolianCoalitions.prunePending(Q); !}
 subtitle: CHP powers: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player; !} +]; [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] powers: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner; !} +]. Equal numbers are required; unselected powers remain unresolved.
 title: Contested Policy Powers
@@ -382,7 +512,7 @@ unavailable-subtitle: Choose the negotiated CHP share of ministries first.
 
 = Contested Policy Powers
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"powers"); !} +]
 
 - @claims: 1. Demand Concessions
 - @concessions: 2. Offer Concessions
@@ -391,6 +521,7 @@ Placeholder
 - @reject: End the negotiations.
 
 @claims
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
 on-arrival: {! AnatolianCoalitions.prunePending(Q); !}
 title: Demand Concessions
 subtitle: CHP: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player; !} +] contested affairs; [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +]: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner; !} +]. Equal totals are required.
@@ -2192,6 +2323,7 @@ go-to: player_ministry_religious_affairs_directorate
 Placeholder
 
 @concessions
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
 on-arrival: {! AnatolianCoalitions.prunePending(Q); !}
 title: Offer Concessions
 subtitle: CHP: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player; !} +] contested affairs; [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +]: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner; !} +]. Equal totals are required.
@@ -4026,6 +4158,8 @@ on-arrival: {! AnatolianCoalitions.form(Q); !}
 = The Coalition Agreement Is Signed
 
 Placeholder
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
 
 - @root: Begin governing.
 

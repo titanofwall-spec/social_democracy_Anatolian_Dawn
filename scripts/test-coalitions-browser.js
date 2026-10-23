@@ -8,10 +8,19 @@ const page=await browser.newPage({viewport:{width:1440,height:1100}}),errors=[];
 
 await page.evaluate(()=>{const e=dendryUI.dendryEngine;e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');dendryUI.animate=false;jQuery.fx.off=true;Object.assign(e.state.qualities,{year:1973,month:10,week:2,chp_seats:185,AP_seats:149,CGP_seats:13,MSP_seats:48,DP_seats:45,largest_party_key:'chp',CGP_relation:60,AP_relation:60,MSP_relation:60});AnatolianCoalitions.start(e.state.qualities);e.goToScene('coalition_negotiations');});
 async function pick(id){await page.evaluate(id=>{const e=dendryUI.dendryEngine,c=e.getCurrentChoices(),i=c.findIndex(c=>c.id===id);if(i<0||c[i].unavailable)throw Error('Unavailable '+id+' at '+e.state.sceneId+': '+JSON.stringify(c));e.choose(i);},id);}
+assert((await page.locator('#content').innerText()).includes('secured first place since 1961'));
 await pick('coalition_negotiations.first_attempt');
-assert((await page.locator('#content').innerText()).includes('Placeholder'));
-await pick('coalition_negotiations.reject');await pick('coalition_negotiations.route');
-await pick('coalition_negotiations.negotiate');
+assert((await page.locator('#content').innerText()).includes('not great enough'));
+await pick('coalition_negotiations.skip_unviable');
+assert((await page.locator('#content').innerText()).includes('Deniz Baykal'));
+await pick('coalition_negotiations.attempt');await pick('coalition_negotiations.open_talks');
+assert((await page.locator('#content').innerText()).includes('Room 280'));
+assert((await page.locator('#content').innerText()).includes('Kamil Kırıkoğlu'));
+await page.evaluate(()=>{const Q=dendryUI.dendryEngine.state.qualities;Q.party_secretary='Eyüboğlu';Q.party_secretary_id='eyuboglu';});
+assert((await page.evaluate(()=>AnatolianCoalitions.eventText(dendryUI.dendryEngine.state.qualities,'talks'))).includes('Orhan Eyüboğlu'));
+await pick('coalition_negotiations.msp_postponement');
+assert((await page.locator('#content').innerText()).includes('postponed until May 1974'));
+await pick('coalition_negotiations.negotiate_after_msp');
 assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.sceneId),'coalition_negotiations.ministries');
 const quota=await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.coalition_formation.pending.quota);
 for(const m of ['foreign','interior','justice','labor','defense','economic','finance','agriculture','education','industrial'].slice(0,quota))await pick('coalition_negotiations.min_'+m);
@@ -45,8 +54,50 @@ const result=await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qu
 assert.equal(result.paid,1);assert.equal(result.Y,1);assert(result.blocked);assert.deepEqual(result.parties,['MSP']);
 for(const dark of [false,true]){await page.evaluate(dark=>{document.body.classList.toggle('dark-mode',dark);const e=dendryUI.dendryEngine;e.state.qualities.coalition_dissent=20;e.goToScene('coalition_affairs');},dark);assert((await page.locator('#content').innerText()).includes('Unresolved uses: 1'));}
 await page.screenshot({path:path.resolve(__dirname,'../../tmp/coalition-browser.png'),fullPage:true});
-assert.deepEqual(errors,[]);console.log('PASS Chrome: interactive formation, ministry quota, individual affairs inside ministry submenus, only owned ministries visible, balanced totals, binding concessions, repeat-use resource gate, dissent breakdown and light/dark rendering.');
+await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,chp_seats:150,AP_seats:200,CGP_seats:50,MSP_seats:40,DP_seats:10,largest_party_key:'AP',CGP_relation:60});AnatolianCoalitions.start(Q);e.goToScene('coalition_negotiations');});
+assert((await page.locator('#content').innerText()).includes('Justice Party emerging as the largest'));
+await pick('coalition_negotiations.first_attempt');await pick('coalition_negotiations.open_talks');
+assert((await page.locator('#content').innerText()).includes('final months of the Memorandum period'));
+assert(!(await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices())).some(c=>c.id==='coalition_negotiations.negotiate'));
+await pick('coalition_negotiations.npc_negotiate');
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.sceneId),'coalition_negotiations.right_offer');
+assert((await page.locator('#content').innerText()).includes('an agreement has finally been reached!'));
+assert.equal(await page.locator('.coalition-cabinet li').count(),10);
+await page.screenshot({path:path.resolve(__dirname,'../../tmp/authored-coalition-cabinet.png'),fullPage:false});
+assert(!(await page.locator('#content').innerText()).includes('Demand Concessions'));
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.CHP_in_government),0);
+await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,chp_seats:185,AP_seats:149,CGP_seats:13,MSP_seats:48,DP_seats:45,largest_party_key:'chp',AP_relation:60,MSP_relation:60});AnatolianCoalitions.start(Q);const f=Q.coalition_formation;f.index=2;f.stage='attempt';e.goToScene('coalition_negotiations.attempt');});
+await pick('coalition_negotiations.open_talks');
+assert((await page.locator('#content').innerText()).includes('Sadi Irmak'));
+await pick('coalition_negotiations.accept_nonpartisan');
+const apQuota=await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.coalition_formation.pending.quota);
+for(const m of ['foreign','interior','justice','labor','defense','economic','finance','agriculture','education','industrial'].slice(0,apQuota))await pick('coalition_negotiations.min_'+m);
+await pick('coalition_negotiations.powers');await pick('coalition_negotiations.sign');
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.prime_minister),'Sadi Irmak');
+assert((await page.locator('.coalition-cabinet').innerText()).includes('Deputy Prime Ministers:'));
+await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;AnatolianCoalitions.start(Q);const f=Q.coalition_formation;f.leader='AP';f.round='second';f.attempts=['CHP'];f.stage='attempt';e.goToScene('coalition_negotiations.attempt');});
+await pick('coalition_negotiations.open_talks');
+assert((await page.locator('#content').innerText()).includes('The audacity!'));
+assert.deepEqual(await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices().filter(c=>c.canChoose).map(c=>c.id)),['coalition_negotiations.reject']);
+await pick('coalition_negotiations.reject');await pick('coalition_negotiations.route');
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.sceneId),'coalition_negotiations.talu');
+await pick('coalition_negotiations.refuse_talu');
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.prime_minister),'Naim Talu');
+await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{month:12,local_largest_party_key:'chp',chp_local_votes_dec:37.36,chp_r:33.3});AnatolianCoalitions.afterLocal(Q);e.goToScene('coalition_negotiations.route');});
+assert((await page.locator('#content').innerText()).includes('At last, some good news!'));
+await pick('coalition_negotiations.first_attempt');await pick('coalition_negotiations.open_talks');
+assert((await page.locator('#content').innerText()).includes('neither Mr. Ecevit nor Mr. Erbakan'));
+await pick('coalition_negotiations.reject');await pick('coalition_negotiations.route');await pick('coalition_negotiations.right_final');await pick('coalition_negotiations.attempt');await pick('coalition_negotiations.open_talks');await pick('coalition_negotiations.npc_negotiate');
+assert((await page.locator('#content').innerText()).includes('Ferruh Bozbeyli'));
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.DP_in_government),0);
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.DP_external_support),1);
+await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,chp_seats:150,AP_seats:230,largest_party_key:'AP'});AnatolianCoalitions.start(Q);e.goToScene('coalition_negotiations');});
+await pick('coalition_negotiations.ap_majority');assert.equal(await page.locator('.coalition-cabinet li').count(),10);
+assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.AP_in_government),1);
+assert.deepEqual(errors,[]);console.log('PASS Chrome: authored first/renewed 1973 branches, dynamic secretary, Irmak acceptance, compulsory Demirel refusal, Talu caretaker, AP and opposition cabinet automation, DP external support, ministry ownership and balanced concessions.');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);process.exitCode=1;});
+
+
 
 
 

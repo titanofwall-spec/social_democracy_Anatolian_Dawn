@@ -278,6 +278,8 @@
   "chp_color",
   "chp_law",
   "chp_local_seats",
+  "chp_local_votes",
+  "chp_local_votes_dec",
   "chp_no",
   "chp_poll_votes",
   "chp_position",
