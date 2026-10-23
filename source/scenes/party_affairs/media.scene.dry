@@ -75,7 +75,7 @@ subtitle: There will be space for all factions to air their views.
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the different interpretations of Atatürk's path.
 view-if: I_government == 0
-on-arrival: marxist_kemalists_dissent -= 6; left_kemalists_dissent -= 6; orthodox_kemalists_dissent -= 6; right_kemalists_dissent -= 6;
+on-arrival: kemalist_marxists_dissent -= 6; left_kemalists_dissent -= 6; orthodox_kemalists_dissent -= 6; right_kemalists_dissent -= 6;
 
 This has been our media course historically, and it has successfully paved over the many tensions in our party.
 

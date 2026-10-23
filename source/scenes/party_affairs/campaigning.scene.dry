@@ -3,7 +3,7 @@ new-page: true
 on-arrival: month_actions += 1; campaigning_timer = 2
 max-visits: 36
 is-card: true
-frequency: 100
+frequency: 110
 tags: party_affairs
 view-if: CHP_party_leader == "İnönü" and campaigning_timer <= 0
 card-image: img/inonu_campaigning.jpeg
@@ -24,7 +24,7 @@ Whether or not we are in an electoral campaign, the party is always trying to br
 subtitle: -1 resource.
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: workers_chp += 3*(1-dissent);
+on-arrival: workers_chp += 3*(1-dissent); resources -= 1;
 
 We have increased our campaigning among the workers. The workers aren't really that enthusiastic about the continuation of the status quo.
 
@@ -58,7 +58,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: left_kemalists_dissent += 5; kemalist_marxists_dissent += 10; capitalists_chp += 3; resources -= 1
 
-We reaffirm our belief in corporatism and the market economy.
+We reaffirm our belief in corporatism and the market economy. The Kemalist Marxists and Left Kemalists disapprove, increasing their dissent.
 
 @root
 

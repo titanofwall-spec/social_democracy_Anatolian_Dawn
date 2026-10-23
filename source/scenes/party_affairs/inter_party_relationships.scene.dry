@@ -46,7 +46,7 @@ subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; AP_relation += 5*(1 - dissent)
-go-to: @antimilitary if year <= 1974; @enemies if year >= 1973
+go-to: @antimilitary if year <= 1974; @enemies if year > 1974
 
 @antimilitary
 on-arrival: AP_relation += 6*(1 - dissent)
@@ -72,7 +72,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 view-if: CHP_party_leader == "Ecevit"
 on-arrival: resources -= 1
-go-to: @surprising if year <= 1974; @coalition if year >= 1973 and MSP_in_government == 1 and CHP_in_government == 1; @hellnah if year >= 1973 and not MSP_in_government == 1 and CHP_in_government == 1
+go-to: @coalition if MSP_in_government == 1 and CHP_in_government == 1; @surprising if year <= 1974; @hellnah
 
 @surprising
 on-arrival: MSP_relation += 4*(1 - dissent)

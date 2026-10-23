@@ -862,7 +862,7 @@ Q.timers = ['advisor_action',  'crisis_program',
              'media', 'enemies',
             'party_organizations', 'rally',
             'shuffle_leadership',  'peoples_party',
-            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',
+            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'campaigning_ecevit', 'kmd', 'culture', 'municipality', 'kemalizm', 'remnants_of_inonu', 'strategy',
             // govt
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
             'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',

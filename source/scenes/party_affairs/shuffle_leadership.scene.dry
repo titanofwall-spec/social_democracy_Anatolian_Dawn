@@ -407,7 +407,7 @@ Mustafa Üstündağ is now a member.
 
 @add_rahsan
 title: Rahşan Ecevit
-subtitle: TThe wife of our new party leader, Bülent Ecevit. While she isn't a politician herself, the party can still benefit from her personality. {!<br><br>!}[? if difficulty < 2 : Actions - Emergency Fundraising ?]
+subtitle: The wife of our new party leader, Bülent Ecevit. While she isn't a politician herself, the party can still benefit from her personality. {!<br><br>!}[? if difficulty < 2 : Actions - Emergency Fundraising ?]
 is-card: true
 card-image: img/portraits/RahsanEcevit.jpeg
 tags: left_kemalist_advisor

@@ -14,8 +14,9 @@ if (Q.last_cabinet_action) {
 }
 // reset the timer...
 var card = this.game.scenes[this.state.prevTopSceneId];
-if (Q[card.id + "_timer"]) {
-    Q[card.id + "_timer"] = 0;
+var timerKey = AnatolianCardActions.timerKey(card.id);
+if (Q[timerKey]) {
+    Q[timerKey] = 0;
 }
 // reduce visit count
 if (this.state.visits[card.id]) {
