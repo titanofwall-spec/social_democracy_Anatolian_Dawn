@@ -524,29 +524,29 @@ go-to: menu
 
 **AP** - *Adalet Partisi* (Justice Party) - a center-right party that considers itself the continuation of DP after it was banned. They are led by Süleyman Demirel, a former engineer who likely wouldn't have been involved with politics his whole life if it wasn't for the coup. They have been our primary opponent for the past two decades.
 
-Current relations: [+ AP_relation : relationships +]
+Current relations: [+ AP_relation : party_relationships +]
 
 **[+ CGP_name +]** - [+ CGP_full_name +] - a splinter party of CHP, led by Turhan Feyzioğlu. After the pivot of the party to the left of center, many of the right-wing Kemalists have resigned from <span style="color: #E3000F;">**CHP**</span> and formed their own party.
 
-Current relations: [+ CGP_relation : relationships +]
+Current relations: [+ CGP_relation : party_relationships +]
 
 **DP** - *Demokratik Parti* (Democratic Party) - a populist conservative party formed by the right wing of AP as they claimed AP didn't properly represent the values of the former DP.
 
-Current relations: [+ DP_relation : relationships +]
+Current relations: [+ DP_relation : party_relationships +]
 
 **[+ MSP_name +]** - [+ MSP_full_name +] - an Islamist party that advocates for a mixed economy, the realignment of Turkish society along religious lines and increased emphasis on heavy industry. The party is currently led by Süleyman Arif Emre, an intellectual and former member of AP who was chosen to accelerate the formation of the party until the next election. However, the more popular face of MSP and the Islamist politics is Necmettin Erbakan, who desires a break with the conservative tradition of AP and the flourishing of an Islamist political tradition that is "the viable alternative between Socialism and Capitalism".
 
-Current relations: [+ MSP_relation : relationships +]
+Current relations: [+ MSP_relation : party_relationships +]
 
 **TİP** - *Türkiye İşçi Partisi* (Turkish Workers' Party) - a left-wing party that was dissolved during the memorandum period and is being reorganized behind the scenes. Originally a proponent of Democratic Socialism under Mehmet Ali Aybar's leadership, the military's attempts at shutting down Socialist movements of all kinds have prompted many leftists to lose belief in the political system and support revolutionary means, and the new TİP may be swung in either direction of the pendulum.
 
-Current relations: [+ TIP_relation : relationships +]
+Current relations: [+ TIP_relation : party_relationships +]
 
 
 
 **MHP** - *Milliyetçi Hareket Partisi* - (Nationalist Movement Party) - a far-right ultranationalist party. Born as a reformation of the old ultranationalist tradition along a synthesis of Turkic and Islamic elements, MHP is more of a paramilitary than it is a parliamentary party. Even though it was banned in the recent memorandum, its membership within the ranks of the Grey Wolves counts in the tens of thousands and it's rumored that more of them are being trained in the rural portions of Anatolia, commanded by Muzaffer Özdağ and Alparslan Türkeş as its "supreme leader" or "Başbuğ".
 
-Current relations: [+ MHP_relation : relationships +]
+Current relations: [+ MHP_relation : party_relationships +]
 
 **TBP** - Turkey Unity Party.
 

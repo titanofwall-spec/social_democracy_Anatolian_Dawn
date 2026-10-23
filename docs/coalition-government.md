@@ -28,7 +28,9 @@ Contested powers can be claimed, conceded or left unresolved. Signing requires e
 * Red actions: blocked by the partner.
 * Green actions: supported, subject to normal ministry ownership and action prerequisites.
 
-The one-resource price, proportional ministry quota and relations threshold of 30 are explicit initial balancing values in `coalitions.js`.
+The one-resource price and proportional ministry quota remain unchanged. Only Hostile relations (5 or below) block talks involving CHP; all higher relation levels permit negotiations when parliamentary arithmetic allows. Relations never choose whether CHP accepts Irmak or continues the MSP discussion. Governments without CHP are not gated by their relations with CHP.
+
+Relations contribute dynamically through R = average((50 − partner relation) / 25) in D(t+1) = D(t) + R + P + S + F + E + X. Poor relations increase ongoing dissent; strong relations restrain it. The existing coalition-specific X formulas remain unchanged. Party relation labels are Hostile, Adversarial, Uncooperative (the former Cold and Cool bands), Neutral, Cordial, Cooperative and Productive. Foreign relations retain their existing scale.
 
 The scene-entry hook enforces payment and binding concessions, while choice compilation and card availability use the same permissions. Existing budget, completion, project and cooldown prerequisites still apply. Merely opening the ministry card does not consume a coalition resource.
 

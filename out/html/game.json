@@ -14332,7 +14332,7 @@
             "fn": {
               "$code": "return (Q['TIP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
@@ -14363,21 +14363,21 @@
             "fn": {
               "$code": "return (Q['CGP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
             "fn": {
               "$code": "return (Q['AP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
             "fn": {
               "$code": "return (Q['DP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
@@ -14396,14 +14396,14 @@
             "fn": {
               "$code": "return (Q['MSP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
             "fn": {
               "$code": "return (Q['MHP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "predicate",
@@ -30821,6 +30821,10 @@
       "viewIf": {
         "$code": "return AnatolianCoalitions.possible(Q);"
       },
+      "chooseIf": {
+        "$code": "return AnatolianCoalitions.relationsAllowTalks(Q);"
+      },
+      "unavailableSubtitle": "Hostile relations prevent coalition talks.",
       "onArrival": [
         {
           "$code": "Q.coalition_formation.talked=true;"
@@ -32930,10 +32934,10 @@
     },
     "coalition_negotiations.skip_unviable": {
       "id": "coalition_negotiations.skip_unviable",
-      "title": "No Parliamentary Majority",
+      "title": "Coalition Talks Cannot Proceed",
       "newPage": true,
       "viewIf": {
-        "$code": "return !AnatolianCoalitions.possible(Q);"
+        "$code": "return !AnatolianCoalitions.possible(Q)||!AnatolianCoalitions.relationsAllowTalks(Q);"
       },
       "onArrival": [
         {
@@ -32948,7 +32952,7 @@
       "content": [
         {
           "type": "heading",
-          "content": "No Parliamentary Majority"
+          "content": "Coalition Talks Cannot Proceed"
         },
         {
           "type": "paragraph",
@@ -41789,7 +41793,7 @@
             "fn": {
               "$code": "return (Q['AP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
@@ -41808,14 +41812,14 @@
             "fn": {
               "$code": "return (Q['CGP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
             "fn": {
               "$code": "return (Q['DP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
@@ -41834,21 +41838,21 @@
             "fn": {
               "$code": "return (Q['MSP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
             "fn": {
               "$code": "return (Q['TIP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           },
           {
             "type": "insert",
             "fn": {
               "$code": "return (Q['MHP_relation'] || 0);"
             },
-            "qdisplay": "relationships"
+            "qdisplay": "party_relationships"
           }
         ]
       }
@@ -43557,7 +43561,7 @@
       "chooseIf": {
         "$code": "return AnatolianCoalitions.acceptable(Q);"
       },
-      "unavailableSubtitle": "Insufficient parliamentary seats or relations below 30.",
+      "unavailableSubtitle": "Insufficient parliamentary seats or Hostile relations.",
       "onArrival": [
         {
           "$code": "AnatolianCoalitions.negotiate(Q);"
@@ -63555,6 +63559,45 @@
           "min": 12,
           "max": 12,
           "output": "December"
+        }
+      ]
+    },
+    "party_relationships": {
+      "id": "party_relationships",
+      "type": "qdisplay",
+      "content": [
+        {
+          "max": 5,
+          "output": "Hostile"
+        },
+        {
+          "min": 5,
+          "max": 14.9,
+          "output": "Adversarial"
+        },
+        {
+          "min": 14.9,
+          "max": 39.9,
+          "output": "Uncooperative"
+        },
+        {
+          "min": 39.9,
+          "max": 54.9,
+          "output": "Neutral"
+        },
+        {
+          "min": 54.9,
+          "max": 64.9,
+          "output": "Cordial"
+        },
+        {
+          "min": 64.9,
+          "max": 74.9,
+          "output": "Cooperative"
+        },
+        {
+          "min": 74.9,
+          "output": "Productive"
         }
       ]
     },

@@ -704,13 +704,12 @@ window.displayText = function (text) {
     function getRelationshipText(value) {
         if (value === undefined || value === null) return '';
         if (value <= 5) return '<span style="color: #FF0000;">Hostile</span>';
-        if (value <= 14.9) return '<span style="color: #FF4500;">Frigid</span>';
-        if (value <= 29.9) return '<span style="color: #FF8C00;">Cold</span>';
-        if (value <= 39.9) return '<span style="color: #FFA500;">Cool</span>';
+        if (value <= 14.9) return '<span style="color: #FF4500;">Adversarial</span>';
+        if (value <= 39.9) return '<span style="color: #FFA500;">Uncooperative</span>';
         if (value <= 54.9) return '<span style="color: #FFD700;">Neutral</span>';
-        if (value <= 64.9) return '<span style="color: #9ACD32;">Warm</span>';
-        if (value <= 74.9) return '<span style="color: #32CD32;">Friendly</span>';
-        return '<span style="color: #008000;">Very friendly</span>';
+        if (value <= 64.9) return '<span style="color: #9ACD32;">Cordial</span>';
+        if (value <= 74.9) return '<span style="color: #32CD32;">Cooperative</span>';
+        return '<span style="color: #008000;">Productive</span>';
     }
 
     function getMilitancyText(value) {

@@ -155,17 +155,17 @@ Next Senate election: [+ {! return AnatolianSenate.nextElectionHtml(Q); !} +]
 
 = Inter-party Relations
 
-<span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TİP**</span>: [+ TIP_relation : relationships +]
+<span class="tooltip-text" title="Turkish Worker's Party" style="color: #8B0000;">**TİP**</span>: [+ TIP_relation : party_relationships +]
 
-<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_relation : relationships +]
+<span class="tooltip-text" title="[+ CGP_full_name +]" style="color: #5b7387;">**[? if not CGP_name: CGP?][? if CGP_name != 0 : [+ CGP_name +]?]**{!</span></span>!}: [+ CGP_relation : party_relationships +]
 
-<span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+AP_relation : relationships +]
+<span class="tooltip-text" title="Justice Party" style="color: #750a6f;">**AP**</span>: [+AP_relation : party_relationships +]
 
-<span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_relation : relationships +]
+<span class="tooltip-text" title="Democratic Party" style="color: #4a4d04;">**DP**</span>: [+ DP_relation : party_relationships +]
 
-<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_relation : relationships +]
+<span class="tooltip-text" title="[+ MSP_full_name +]" style="color: #054521;">**[+ MSP_name +]**</span>: [+ MSP_relation : party_relationships +]
 
-<span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_relation : relationships +]
+<span class="tooltip-text" title="Nationalist Movement Party" style="color: #954B00;">**MHP**</span>: [+ MHP_relation : party_relationships +]
 
 = Party Leaderships
 

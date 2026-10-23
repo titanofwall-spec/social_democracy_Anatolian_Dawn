@@ -97,8 +97,10 @@ assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.qualities.AP_in
 await page.evaluate(()=>{const e=dendryUI.dendryEngine;Object.assign(e.state.qualities,{year:1975,month:10,week:2});e.goToScene('senate_election.results');});
 assert((await page.locator('#content').innerText()).includes('Seat changes:'));
 assert((await page.locator('#content').innerText()).indexOf('Seat changes:')>(await page.locator('#content').innerText()).indexOf('Elected:'));
+for(const relation of [5,6,15,30,90]){await page.evaluate(relation=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,month:10,week:2,largest_party_key:'chp',chp_seats:185,AP_seats:149,AP_relation:relation});AnatolianCoalitions.start(Q);Q.coalition_formation.attempts=['AP'];Q.coalition_formation.index=0;e.goToScene('coalition_negotiations.attempt');},relation);const choices=await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices()),open=choices.find(c=>c.id==='coalition_negotiations.open_talks');assert.equal(open.canChoose,relation>5);if(relation>5){await pick('coalition_negotiations.open_talks');assert((await page.evaluate(()=>dendryUI.dendryEngine.getCurrentChoices())).some(c=>c.id==='coalition_negotiations.accept_nonpartisan'&&c.canChoose));}else assert(choices.some(c=>c.id==='coalition_negotiations.skip_unviable'&&c.canChoose));}
 assert.deepEqual(errors,[]);console.log('PASS Chrome: authored first/renewed 1973 branches, dynamic secretary, Irmak acceptance, compulsory Demirel refusal, Talu caretaker, AP and opposition cabinet automation, DP external support, ministry ownership and balanced concessions.');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);process.exitCode=1;});
+
 
 
 

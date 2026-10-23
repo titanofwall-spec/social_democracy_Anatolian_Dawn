@@ -66,6 +66,8 @@ new-page: true
 title: Opening Coalition Discussions
 new-page: true
 view-if: {! return AnatolianCoalitions.possible(Q); !}
+choose-if: {! return AnatolianCoalitions.relationsAllowTalks(Q); !}
+unavailable-subtitle: Hostile relations prevent coalition talks.
 on-arrival: {! Q.coalition_formation.talked=true; !}
 go-to: talks
 
@@ -74,13 +76,13 @@ go-to: talks
 Placeholder
 
 @skip_unviable
-title: No Parliamentary Majority
+title: Coalition Talks Cannot Proceed
 new-page: true
-view-if: {! return !AnatolianCoalitions.possible(Q); !}
+view-if: {! return !AnatolianCoalitions.possible(Q)||!AnatolianCoalitions.relationsAllowTalks(Q); !}
 on-arrival: {! AnatolianCoalitions.next(Q); !}
 go-to: route
 
-= No Parliamentary Majority
+= Coalition Talks Cannot Proceed
 
 Placeholder
 
@@ -169,7 +171,7 @@ view-if: {! var f=Q.coalition_formation;return AnatolianCoalitions.candidate(Q).
 title: Negotiating the Coalition Agreement
 new-page: true
 choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
-unavailable-subtitle: Insufficient parliamentary seats or relations below 30.
+unavailable-subtitle: Insufficient parliamentary seats or Hostile relations.
 on-arrival: {! AnatolianCoalitions.negotiate(Q); !}
 go-to: right_offer if {! return Q.coalition_formation.stage==="right"; !}; ministries if {! return Q.coalition_formation.stage==="ministries"; !}
 
