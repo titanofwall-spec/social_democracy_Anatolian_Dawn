@@ -957,6 +957,7 @@ Q.oil_inflation_effect = 0;
 Q.land_reform_effect_applied = false;
 Q.cooperative_effect_applied = false;
 Q.koykent_effect_applied = false;
+Q.koykent_achievement_seen = false;
 Q.tiger_1978_effect_applied = false;
 Q.tiger_1979_effect_applied = false;
 Q.tiger_1980_effect_applied = false;

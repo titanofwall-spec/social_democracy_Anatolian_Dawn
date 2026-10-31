@@ -23,6 +23,18 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  const select=s=>({votes:s.votes,seats:s.seats,classShares:s.classShares,transfer:s.transfer,totalVotes:s.totalVotes,provinces:s.provinces.map(p=>({id:p.id,votes:p.votes,seats:p.seats,winner:p.winner}))});
  const fixturePath=path.join(__dirname,'fixtures/performance-votes.json');
 
+if (process.env.UPDATE_PERFORMANCE_FIXTURES === '1') {
+  const updated = definitions.map(settings => {
+    const Q = deterministic(fresh(settings).state.qualities);
+    if (settings.prestige) N.addTemporary(Q, 'Cyprus Prestige', settings.prestige);
+    return [true, false].map(poll =>
+      select(provinces.compute(JSON.parse(JSON.stringify(Q)), poll))
+    );
+  });
+  fs.writeFileSync(fixturePath, JSON.stringify(updated, null, 2) + '\n');
+  output('Updated performance fixtures for the corrected Siirt demographics.');
+  return;
+}
  const fixtures=JSON.parse(fs.readFileSync(fixturePath,'utf8'));
  test('All provincial votes, winning parties and seats match pre-optimization fixtures',()=>{for(const [index,settings]of definitions.entries()){const Q=deterministic(fresh(settings).state.qualities);if(settings.prestige)N.addTemporary(Q,'Cyprus Prestige',settings.prestige);for(const [pi,poll]of [true,false].entries()){const actual=select(provinces.compute(JSON.parse(JSON.stringify(Q)),poll)),expected=fixtures[index][pi];assert.deepEqual(actual.votes,expected.votes);assert.deepEqual(actual.seats,expected.seats);assert.deepEqual(actual.provinces,expected.provinces);for(const key of Object.keys(actual.classShares))near(actual.classShares[key],expected.classShares[key],key,1e-10);near(actual.transfer,expected.transfer,'transfer',1e-8);const totals=provinces.pollingTotals(JSON.parse(JSON.stringify(Q)),true,poll);assert.deepEqual(totals.votes,expected.votes);assert.equal(totals.totalVotes,expected.totalVotes);assert.equal(totals.transfer,expected.transfer);}}});
  test('Linear D Hondt is identical to the original sorting algorithm, including ties',()=>{function reference(votes,seats){const out=Object.fromEntries(Object.keys(votes).map(k=>[k,0])),keys=Object.keys(votes).filter(k=>votes[k]>0);if(!keys.length)keys.push(Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0]);for(let i=0;i<seats;i++){keys.sort((a,b)=>votes[b]/(out[b]+1)-votes[a]/(out[a]+1)||a.localeCompare(b));out[keys[0]]++;}return out;}let seed=17;for(let i=0;i<400;i++){const votes={};for(const k of ['chp','AP','TIP','CGP','MSP','IND']){seed=(seed*1664525+1013904223)>>>0;votes[k]=i%5===0?100:seed%1000;}assert.deepEqual(provinces.dhondt(votes,i%35),reference(votes,i%35));}});

@@ -893,6 +893,10 @@ Diplomatic Leverage: [+ leverage_points +]
 
 [+ {! return AnatolianNationalCoalition.html(Q); !} +]
 
+@mission
+
+[+ {! return AnatolianMission.html(Q); !} +]
+
 @municipalities
 
 [+ {! return AnatolianMunicipalities.html(Q); !} +]

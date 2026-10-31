@@ -1,0 +1,22 @@
+title: Achievement of Köykent
+new-page: true
+tags: event
+priority: 5
+max-visits: 1
+view-if: {! return Q.land_reform === 3 && Number(Q.koykent_progress || 0) >= 7 && !Q.koykent_achievement_seen; !}
+on-arrival: {!
+if (!Q.koykent_achievement_seen) {
+    Q.koykent_achievement_seen = 1;
+    if (!Q.koykent_effect_applied) {
+        Q.rural_chp += 15;
+        Q.democracystatus += 10;
+        Q.koykent_effect_applied = true;
+    }
+}
+!}
+
+= Achievement of Köykent
+
+Yippie
+
+- @root: Continue.

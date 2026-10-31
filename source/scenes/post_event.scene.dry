@@ -2,6 +2,7 @@ title: Post Event
 new-page: true
 on-arrival: {!
 AnatolianRules.ensureKurdishIssue(Q);
+if(typeof AnatolianDynamicDemographics!=="undefined" && Q.started) AnatolianDynamicDemographics.ensure(Q);
 var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
 Q.cyprus_calendar_advance = 0;
@@ -113,6 +114,7 @@ if (turnAdvanced) {
         if (Q.month >= 13) {
             Q.month = 1;
             Q.year += 1;
+            if(typeof AnatolianDynamicDemographics!=="undefined") AnatolianDynamicDemographics.endYear(Q,Q.year-1);
             if (Q.CHP_in_government) {
                 Q.budget += 4 + (Q.yearly_budget || 0);
             }
@@ -657,12 +659,8 @@ if (Q.cooperative_progress >= 3 && !Q.cooperative_effect_applied) {
     Q.cooperative_effect_applied = true;
 }
 
-// Köykent effects (applied once)
-if (Q.koykent_progress >= 5 && !Q.koykent_effect_applied) {
-    Q.rural_chp += 15;
-    Q.democracystatus += 10;
-    Q.koykent_effect_applied = true;
-}
+// Köykent's +15 rural support / +10 democracy reward is awarded only by
+// events/achievement_of_koykent.scene.dry at progress 7 (exactly once).
 
 // Labour rights reform: set once when at least 3 one-time labour ministry reforms are passed
 if (!Q.labour_rights_reform) {
