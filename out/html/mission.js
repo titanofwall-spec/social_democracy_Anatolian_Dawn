@@ -21,18 +21,18 @@ function levels(Q){
 }
 function html(Q){
   const l=levels(Q),progress=cap(Q.koykent_progress,7),land=cap(Q.landreform_done,6),section=(title,fields)=>
-    '<h3>'+escape(title)+'</h3>'+fields.map(k=>'<p>'+escape(k)+': '+escape(l[k])+'</p>').join('');
+    '<h1>'+escape(title)+'</h1>'+fields.map(k=>'<p>'+escape(k)+': '+escape(l[k])+'</p>').join('');
   const pending=cap(Q.land_distribution_pending_stage,6),now=n(Q.year)*24+(n(Q.month)-1)*2+(n(Q.week)===2?1:0);
   const remaining=pending?Math.max(0,Math.ceil((n(Q.land_distribution_due_tick)-now)/2)):0;
-  return '<h2>Köykent Mission</h2>'+section('Policy and Planning',['Köykent Programme','Rural Concentration'])+
+  return '<h1>Köykent Mission</h1>'+section('Policy and Planning',['Köykent Programme','Rural Concentration'])+
     section('Infrastructure and Investment',['Nationwide Expansion','Köykent Funding'])+
     section('Economic and Social Development',['Local Industries','Educational Opportunities'])+
     '<p>Implementation Progress: '+progress+' / 7</p>'+
     '<p><small>Implementation milestones are distinct from the long-term socioeconomic maturation of Köykent settlements.</small></p>'+
-    '<h2>Agricultural Economy</h2>'+section('Distribution of Land',['Distribution of Land'])+
+    '<h1>Agricultural Economy</h1>'+section('Distribution of Land',['Distribution of Land'])+
     '<p>Completed distributions: '+land+' / 6</p>'+
     (pending?'<p>Distribution '+pending+' in progress; approximately '+remaining+' month(s) remaining until benefits and next stage.</p>':'')+
-    '<h3>Co-operativization of the Economy</h3>'+
+    '<h1>Co-operativization of the Economy</h1>'+
     '<p>Formation: '+escape(l['Cooperative Formation'])+'</p>'+
     '<p>Umbrella Organizations: '+escape(l['Cooperative Umbrella Organizations'])+'</p>'+
     '<p>Credit: '+escape(l['Cooperative Credit'])+'</p>';
