@@ -7,7 +7,7 @@
         property="ifiction:ifid" content="7FCDF039-2B77-4179-B795-CBAFA65253AA">
     <title>Anatolian Dawn - Egehan</title>
     <link rel="icon" type="image/jpeg" href="img/chp5_20251125_200815_0000.svg">
-    <link rel="stylesheet" type="text/css" href="game.css?v=503ebba70cb2">
+    <link rel="stylesheet" type="text/css" href="game.css?v=d1efdc4dcd0d">
     <script src="jquery-1.11.1.min.js"></script>
     <script src="d3.v7.min.js"></script>
     <script src="d3-parliament.js?v=seat-outlines-20261006-1"></script>
@@ -40,6 +40,7 @@
     <script src="save-storage.js?v=5198b85ae178"></script>
     <script src="cyprus-presentation.js?v=62e28a8808e5"></script>
     <script src="game.js?v=be6a605f87c7"></script>
+    <script src="header-achievements.js?v=1"></script>
     <script src="sandbox-menu.js?v=97e5bfba3327"></script>
   </head>
   <body>
@@ -389,18 +390,20 @@
 
     <div id='page'>
         <div id="mid_panel">
-            <header>
-                <h1 id="game-title">Anatolian Dawn: An Alternate History</h1>
-                <h2 id="game-author">Egehan</h2>
-
-                <div id="header-links">
-                    <a id="stats-link" onclick="window.showStats();" href="#">Library</a>
+            <header class="ad-command-header">
+                <div class="ad-title-stack">
+                    <div class="ad-title-ribbon ad-credit-ribbon"><h2 id="game-author">By Egehan</h2></div>
+                    <div class="ad-title-ribbon ad-game-ribbon"><h1 id="game-title">Anatolian Dawn</h1></div>
+                </div>
+                <nav id="header-links" class="ad-command-links" aria-label="Game menu">
                     <a onclick="dendryUI.showSaveSlots();" href="#">Save/Load</a>
                     <a onclick="window.showOptions();" href="#">Options</a>
+                    <a id="stats-link" onclick="window.showStats();" href="#">Library</a>
+                    <a href="#" onclick="window.showAchievementsPanel(event);return false;">Achievements</a>
                     <a onclick="window.showSandboxMenu(event);" href="#">Sandbox</a>
                     <a id="cyprus-end-day-link" onclick="window.cyprusAdvanceDay();" href="#" style="display:none;">Skip Day</a>
-                </div>
-           </header>
+                </nav>
+            </header>
     <div id="tools_wrapper">
            <div id='stats_sidebar' class='tools left'>
                 <div class="tab_container" id="stats_tab_container">

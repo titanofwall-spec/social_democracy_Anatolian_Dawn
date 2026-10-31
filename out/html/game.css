@@ -1677,3 +1677,166 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 
 /* Sidebar subsection headings stay below the existing major-section size. */
 #qualities .game-subsection-title{font-size:1em}
+
+/* ANATOLIAN DAWN — CONNECTED COMMAND HEADER v1
+   Reuses the same font, double-frame borders, theme tokens and tab highlights
+   as the existing game content and sidebars. */
+#mid_panel > header.ad-command-header {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(540px + 3.3em + 8px);
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  color: var(--text-color);
+  text-align: left;
+  overflow: visible;
+  float: none;
+}
+/* Keep the header and the wider main-content panel exactly aligned. */
+#mid_panel:has(> #content.wide-mode) > header.ad-command-header {
+  max-width: calc(700px + 3.3em + 8px);
+}
+#mid_panel > header.ad-command-header .ad-title-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  padding: 5px 17px 5px 14px;
+  margin-bottom: -3px;
+  background: #888; /* existing .game-window frame color */
+  clip-path: polygon(0 0, calc(100% - 19px) 0, 100% 100%, 0 100%);
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  background: var(--content-bg-color);
+  clip-path: polygon(0 0, calc(100% - 17px) 0, 100% 100%, 0 100%);
+}
+#mid_panel > header.ad-command-header .ad-credit-ribbon {
+  width: 48%;
+  min-height: 32px;
+  z-index: 2;
+}
+#mid_panel > header.ad-command-header .ad-game-ribbon {
+  width: 73%;
+  min-height: 51px;
+  z-index: 1;
+}
+#mid_panel > header.ad-command-header #game-title,
+#mid_panel > header.ad-command-header #game-author {
+  display: block;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  color: var(--text-color);
+  font-family: inherit;
+  font-weight: normal;
+  line-height: 1.15;
+  text-align: left;
+  text-shadow: none;
+  white-space: nowrap;
+}
+#mid_panel > header.ad-command-header #game-author {
+  font-size: .94em;
+  font-style: italic;
+}
+#mid_panel > header.ad-command-header #game-author::before { content: none; }
+#mid_panel > header.ad-command-header #game-title {
+  font-size: 1.65em;
+  font-weight: 600;
+  letter-spacing: .015em;
+}
+#mid_panel > header.ad-command-header #header-links.ad-command-links {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 2px;
+  float: none;
+  margin: 0;
+  padding: 5px 7px 0;
+  width: 100%;
+  min-height: 49px;
+  border: 4px double #888; /* the existing content-panel frame */
+  border-bottom: 0;
+  border-radius: 0;
+  background: var(--tab-bg-color);
+  box-shadow: none;
+}
+#mid_panel > header.ad-command-header #header-links.ad-command-links > a {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  margin: 0;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: .96em;
+  font-weight: normal;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--text-color);
+  background: var(--tab-color);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+#mid_panel > header.ad-command-header #header-links.ad-command-links > a:hover,
+#mid_panel > header.ad-command-header #header-links.ad-command-links > a:focus-visible {
+  background: var(--tab-hover-color);
+}
+#mid_panel > header.ad-command-header #header-links.ad-command-links > a:active {
+  background: var(--content-bg-color);
+}
+#mid_panel > header.ad-command-header #header-links.ad-command-links > a:focus-visible {
+  outline: 2px solid var(--border-color);
+  outline-offset: -2px;
+}
+/* The first border of #content becomes the shared joint with the menu strip. */
+#mid_panel:has(> header.ad-command-header) > #content {
+  border-top: 4px double #888;
+  margin-top: 0;
+}
+#ad-achievements-overlay { z-index: 9; }
+#ad-achievements-overlay .ad-achievements-window {
+  box-sizing: border-box;
+  width: min(640px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  margin: 24px auto;
+}
+#ad-achievements-overlay .ad-achievements-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--card-border-color);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+#ad-achievements-overlay .ad-achievements-controls h2 { margin: 0; font-size: 1.2em; }
+@media (max-width: 560px) {
+  #mid_panel > header.ad-command-header { max-width: 100%; }
+  #mid_panel > header.ad-command-header .ad-credit-ribbon { width: 66%; }
+  #mid_panel > header.ad-command-header .ad-game-ribbon { width: 89%; }
+  #mid_panel > header.ad-command-header #game-title { font-size: 1.25em; }
+  #mid_panel > header.ad-command-header #header-links.ad-command-links { gap: 2px; padding: 3px 4px 0; }
+  #mid_panel > header.ad-command-header #header-links.ad-command-links > a { font-size: .87em; padding: 7px 5px; }
+}
