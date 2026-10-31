@@ -1640,7 +1640,7 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 
 /* Quiet readiness cue: a steady gold halo, without flashing or movement. */
 .permanent-desk-card.municipality-ready > a.card {
-  box-shadow: 0 0 0 1px rgba(190, 145, 45, .55), 0 0 10px 2px rgba(210, 165, 55, .28);
+  box-shadow: 0 0 0 2px rgba(255, 215, 75, .95), 0 0 12px 4px rgba(255, 211, 52, .78), 0 0 27px 9px rgba(233, 163, 22, .43);
 }
 .municipal-map-caption { text-align: center; font-size: .85em; text-indent: 0; }
 
@@ -2194,4 +2194,13 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 }
 #mid_panel > header.ad-command-header #game-title {
   color: #000;
+}
+
+/* ANATOLIAN DAWN — MUNICIPALITY GOLD HALO v10 */
+/* Only the available Municipality card receives this steady golden readiness cue. */
+.permanent-desk-card.municipality-ready > a.card:hover,
+.permanent-desk-card.municipality-ready > a.card:focus-visible {
+  box-shadow: 0 0 0 2px rgba(255, 225, 100, 1),
+              0 0 15px 5px rgba(255, 213, 51, .88),
+              0 0 31px 11px rgba(233, 163, 22, .52);
 }
