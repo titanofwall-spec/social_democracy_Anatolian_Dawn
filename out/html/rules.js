@@ -301,9 +301,13 @@
     }
     /** @param {GameState} Q @param {string} group @param {boolean} initial */
     function securityAction(Q,group,initial) {
-        ensureSecurity(Q);if(!['grey_wolves','raiders','tit'].includes(group))return false;
+        ensureSecurity(Q);
+        var farLeft=['thkpc','devyol','tkpml'].includes(group);
+        if(!farLeft&&!['grey_wolves','raiders','tit'].includes(group))return false;
+        if(group==='thkpc'&&Q.thkpc_destroyed)return false;
+        if((group==='devyol'||group==='tkpml')&&!Q[group+'_formed'])return false;
         if(group==='raiders'&&!Q.raiders_formed)return false;
-        if(initial&&group!=='tit'&&(number(Q.far_right_force_percent)<35||Q[group+'_banned']))return false;
+        if(initial&&group!=='tit'&&(number(Q[farLeft?'far_left_force_percent':'far_right_force_percent'])<35||Q[group+'_banned']))return false;
         if(initial&&group==='tit'&&Q.tit_investigated)return false;
         if(!initial&&!(group==='tit'?Q.tit_investigated:Q[group+'_banned']))return false;
         if(initial&&group==='tit'){Q.tit_investigated=1;Q.investigate_far_right=number(Q.investigate_far_right)+1;return true;}

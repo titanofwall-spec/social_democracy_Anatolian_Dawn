@@ -61,6 +61,7 @@ Attacking the far-left THKP-C and similar organizations allows us to repair our 
 
 Many of the intellectuals associated with CHP too question our decision to move against the so-called 'smaller evil'.
 @navigation_return_main
+view-if: {! return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0)); !}
 title: Return
 go-to: main
 

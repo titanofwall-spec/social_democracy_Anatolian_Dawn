@@ -120,8 +120,7 @@ The Turkish economy is still developing and needs broad, long-term, state-led gr
 
 - @integrate_sector: Integrate the People's Sector
 - @fund_sector: Allocate funds to People's Sector
-- @economic_democracy: Back.
-- @navigation_return_peoples_sector: Return
+- @navigation_menu: Back.
 
 @cooperative_bank
 title: Establish the Cooperative Bank
@@ -135,8 +134,7 @@ The Cooperative Bank will give small producers access to credit without requirin
 
 - @found_bank: Found the Cooperative Bank
 - @fund_bank: Allocate funds to Cooperative Bank
-- @economic_democracy: Back.
-- @navigation_return_cooperative_bank: Return
+- @navigation_menu: Back.
 
 @nationalize_mines
 title: Nationalize Mines

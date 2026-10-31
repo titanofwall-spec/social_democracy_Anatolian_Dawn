@@ -593,6 +593,27 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     test('Embargo funding event appears even without prior investigations and gates clamps until read',(e,Q)=>{Object.assign(Q,{cyprus_embargo_applied:1,ohp_funding_due:1,CHP_in_government:1,cyprus_mode:0,year:1975,month:2,ohp_investigations:0});assert(rules.ohpFundingReady(Q));assert(!rules.ohpClampAvailable(Q));action(e,'ohp_funding');assert(Q.ohp_funding_event_seen);assert(!rules.ohpFundingReady(Q));for(let i=0;i<4;i++)rules.investigateUnderground(Q);assert(rules.ohpClampAvailable(Q));assert(rules.clampOHP(Q));});
     test('Far-right menu replaces initial options after each intervention',(e,Q)=>{Object.assign(Q,{CHP_in_government:1,interior_minister_party:'CHP',far_right_force_percent:35,raiders_formed:1});e.goToScene('police.investigate_far_right');let choices=e.getCurrentChoices();assert(choices.some(c=>c.id==='police.ban_grey'));assert(!choices.some(c=>c.id==='police.pursue_grey'));assert(rules.securityAction(Q,'grey_wolves',true));e.goToScene('police.investigate_far_right');choices=e.getCurrentChoices();assert(!choices.some(c=>c.id==='police.ban_grey'));assert(choices.some(c=>c.id==='police.pursue_grey'));});
 
+
+    test('Far-left groups begin banned and match far-right persecution effects',(e,Q)=>{
+        for(const group of ['thkpc','devyol','tkpml']){
+            assert.equal(Q[group+'_banned'],1);
+            Q[group+'_formed']=1;Q[group+'_strength']=100;Q[group+'_militancy']=.8;
+            assert(rules.securityAction(Q,group,false));assert.equal(Q[group+'_strength'],80);near(Q[group+'_militancy'],.77,'left prosecution');
+            assert(!rules.securityAction(Q,group,true));
+            Q[group+'_banned']=0;Q.far_left_force_percent=34.99;assert(!rules.securityAction(Q,group,true));
+            Q.far_left_force_percent=35;assert(rules.securityAction(Q,group,true));assert.equal(Q[group+'_strength'],48);near(Q[group+'_militancy'],.5005,'left ban');
+            for(let i=0;i<5;i++)rules.securityAction(Q,group,false);assert.equal(Q[group+'_strength'],0);assert(Q[group+'_militancy']>=0);
+        }
+    });
+    test('Far-left menu respects formation, destruction, bans and existing action costs',(e,Q)=>{
+        Q.devyol_formed=0;Q.tkpml_formed=0;e.goToScene('police.investigate_far_left');
+        let ids=e.getCurrentChoices().map(c=>c.id);assert(ids.includes('police.pursue_thkpc'));assert(!ids.includes('police.ban_thkpc'));assert(!ids.includes('police.pursue_devyol'));
+        Q.thkpc_destroyed=1;assert(!rules.securityAction(Q,'thkpc',false));assert(!rules.securityAction(Q,'devyol',false));assert(!rules.securityAction(Q,'tkpml',false));
+        Q.devyol_formed=1;Q.tkpml_formed=1;e.goToScene('police.investigate_far_left');ids=e.getCurrentChoices().map(c=>c.id);
+        assert(!ids.includes('police.pursue_thkpc'));assert(ids.includes('police.pursue_devyol'));assert(ids.includes('police.pursue_tkpml'));
+        const timer=Q.police_timer,actions=Q.month_actions;e.goToScene('police.navigation_menu');assert.equal(Q.police_timer,timer);assert.equal(Q.month_actions,actions);
+        assert(e.getCurrentChoices().some(c=>c.id==='police.investigate_far_left'));
+    });
     console.log=log;
     log('PASS: '+passed.length+' repair regression scenarios, including the unchanged TIP abstention/half-transfer rule.');
     if(process.env.REPAIR_RESULTS) fs.writeFileSync(process.env.REPAIR_RESULTS,JSON.stringify({passed,scenes:Object.keys(game.scenes).length},null,2));

@@ -63,6 +63,7 @@ on-arrival: petty_bourgeoisie_chp += 1; state_employees_chp += 1
 
 Literature is always influential in shaping opinions; however, most of the population lacks either access to or interest in literary sources.
 @navigation_return_main
+view-if: {! return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0)); !}
 title: Return
 go-to: main
 

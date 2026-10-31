@@ -46,7 +46,6 @@ subtitle: -1 budget. We will have to decide how the increased budget will be spe
 - @local2: Continue switching MKE deliveries towards internal production.
 - @westernimport: Import military equipment directly from the West.
 - @ee: Do not increase the military budget.
-- @navigation_return_budget: Return
 
 @local
 subtitle: -1 budget. MKE, Mechanical and Chemical Industry Corporation, is our main supplier of army products. However, we are currently dependent on Western imports.

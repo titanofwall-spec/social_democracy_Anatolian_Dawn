@@ -105,6 +105,7 @@ on-arrival: {! AnatolianNationalCoalition.koykentRally(Q); !}
 
 We rally rural voters behind the Köykent project and broaden its electoral audience.
 @navigation_return_main_rally
+view-if: {! return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0)); !}
 title: Return
 go-to: main
 

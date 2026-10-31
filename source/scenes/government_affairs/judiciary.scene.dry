@@ -77,6 +77,7 @@ on-arrival: kmd_prosecutions += 1; grey_wolves_strength -= 2; raiders_strength -
 
 We open investigations into the proceedings of the KMD. While actually banning them would be unconstitutional, our efforts put their activities under pressure and each investigation we conduct decreases their effectiveness in influencing the rural electorate.
 @navigation_return_main
+view-if: {! return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0) || (Q.last_advisor_action == 1 || Q.last_cabinet_action == 1)); !}
 title: Return
 go-to: main
 

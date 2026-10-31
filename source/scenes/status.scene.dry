@@ -279,13 +279,13 @@ if (Q.total_forces > 0) {
 }
 
 // Format strength values for display
-if (Q.thkpc_strength) {
+if (typeof Q.thkpc_strength === 'number') {
     Q.thkpc_strength_2 = Q.thkpc_strength.toFixed(1);
 }
-if (Q.tkpml_strength) {
+if (typeof Q.tkpml_strength === 'number') {
     Q.tkpml_strength_2 = Q.tkpml_strength.toFixed(1);
 }
-if (Q.devyol_strength) {
+if (typeof Q.devyol_strength === 'number') {
     Q.devyol_strength_2 = Q.devyol_strength.toFixed(1);
 }
 if (Q.police_strength) {
@@ -317,13 +317,19 @@ Q.army_aerial_desc = getStrengthDescription(Q.army_aerial_strength);
 
 [? if not thkpc_destroyed: {!<span class="tooltip-text" title="THKP-C (People's Liberation Party-Front of Turkey) is a far-left revolutionary organization.">THKP-C</span>!} Strength: [+ thkpc_strength_2 +] thousand ?]
 
+[? if not thkpc_destroyed: THKP-C Legal Status: [? if thkpc_banned: Banned ?][? if not thkpc_banned: Legal ?] ?]
+
 [? if not thkpc_destroyed: THKP-C Militarization: [+ thkpc_militancy : militancy +] ?]
 
 [? if devyol_formed: {!<span class="tooltip-text" title="DEV-YOL (Revolutionary Path) is a left-wing militant organization.">DEV-YOL</span>!} Strength: [+ devyol_strength_2 +] thousand ?]
 
+[? if devyol_formed: DEV-YOL Legal Status: [? if devyol_banned: Banned ?][? if not devyol_banned: Legal ?] ?]
+
 [? if devyol_formed: DEV-YOL Militarization: [+ devyol_militancy : militancy +] ?]
 
 [? if tkpml_formed: {!<span class="tooltip-text" title="TKP/ML TKP'ML is a Maoist terrorist group formed by İbrahim Kaypakkaya.">TKP/ML</span>!} Strength: [+ tkpml_strength_2 +] thousand ?]
+
+[? if tkpml_formed: TKP/ML Legal Status: [? if tkpml_banned: Banned ?][? if not tkpml_banned: Legal ?] ?]
 
 [? if tkpml_formed: TKP/ML Militarization: [+ tkpml_militancy : militancy +] ?]
 

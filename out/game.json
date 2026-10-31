@@ -10533,10 +10533,6 @@
         {
           "id": "@dealing_with_toleration.stay_course",
           "title": "No, we should stay the course."
-        },
-        {
-          "id": "@dealing_with_toleration.navigation_return_break_toleration",
-          "title": "Return"
         }
       ],
       "content": {
@@ -12645,8 +12641,7 @@
               {
                 "type": "insert",
                 "insert": 0
-              },
-              ""
+              }
             ]
           }
         ],
@@ -20177,10 +20172,9 @@
             " ",
             {
               "type": "conditional",
-              "content": "As a people's party, we have an easier time increasing support among the middle class than before. ",
+              "content": "As a people's party, we have an easier time increasing support among the middle class than before.",
               "predicate": 1
-            },
-            ""
+            }
           ]
         },
         "stateDependencies": [
@@ -20359,23 +20353,17 @@
         }
       ],
       "content": {
-        "content": [
-          {
-            "type": "paragraph",
-            "content": "Even though we are opposed to undemocratic forms of socialism, we still took the pragmatic route of contacting our \"allies\" down South."
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The Baath parties no longer view us as ideological allies, our efforts go in vain as our delegates are accused of being puppets of European \"soft leftism\". ",
-                "predicate": 0
-              },
-              ""
-            ]
-          }
-        ],
+        "content": {
+          "type": "paragraph",
+          "content": [
+            "Even though we are opposed to undemocratic forms of socialism, we still took the pragmatic route of contacting our \"allies\" down South. ",
+            {
+              "type": "conditional",
+              "content": "The Baath parties no longer view us as ideological allies, our efforts go in vain as our delegates are accused of being puppets of European \"soft leftism\".",
+              "predicate": 0
+            }
+          ]
+        },
         "stateDependencies": [
           {
             "type": "predicate",
@@ -20652,7 +20640,7 @@
       "id": "status.paramilitaries",
       "onArrival": [
         {
-          "$code": "// Recalculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Format strength values for display\nif (Q.thkpc_strength) {\n    Q.thkpc_strength_2 = Q.thkpc_strength.toFixed(1);\n}\nif (Q.tkpml_strength) {\n    Q.tkpml_strength_2 = Q.tkpml_strength.toFixed(1);\n}\nif (Q.devyol_strength) {\n    Q.devyol_strength_2 = Q.devyol_strength.toFixed(1);\n}\nif (Q.police_strength) {\n    Q.police_strength_2 = Q.police_strength.toFixed(1);\n}\nQ.grey_wolves_strength_2 = Math.max(0,AnatolianRules.number(Q.grey_wolves_strength)).toFixed(1);\nQ.raiders_strength_2 = Math.max(0,AnatolianRules.number(Q.raiders_strength)).toFixed(1);\nQ.tit_strength_2 = Math.max(0,AnatolianRules.number(Q.tit_strength)).toFixed(1);\n\n// Convert army strength values (0-1) to descriptive text\nfunction getStrengthDescription(value) {\n    if (value >= 0.8) return \"Excellent\";\n    else if (value >= 0.6) return \"Good\";\n    else if (value >= 0.5) return \"Sufficient\";\n    else if (value >= 0.4) return \"Adequate\";\n    else if (value >= 0.2) return \"Poor\";\n    else if (value >= 0.1) return \"Decrepit\";\n    else return \"Horrible\";\n}\n\nQ.army_land_desc = getStrengthDescription(Q.army_land_strength);\nQ.army_naval_desc = getStrengthDescription(Q.army_naval_strength);\nQ.army_aerial_desc = getStrengthDescription(Q.army_aerial_strength);"
+          "$code": "// Recalculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Format strength values for display\nif (typeof Q.thkpc_strength === 'number') {\n    Q.thkpc_strength_2 = Q.thkpc_strength.toFixed(1);\n}\nif (typeof Q.tkpml_strength === 'number') {\n    Q.tkpml_strength_2 = Q.tkpml_strength.toFixed(1);\n}\nif (typeof Q.devyol_strength === 'number') {\n    Q.devyol_strength_2 = Q.devyol_strength.toFixed(1);\n}\nif (Q.police_strength) {\n    Q.police_strength_2 = Q.police_strength.toFixed(1);\n}\nQ.grey_wolves_strength_2 = Math.max(0,AnatolianRules.number(Q.grey_wolves_strength)).toFixed(1);\nQ.raiders_strength_2 = Math.max(0,AnatolianRules.number(Q.raiders_strength)).toFixed(1);\nQ.tit_strength_2 = Math.max(0,AnatolianRules.number(Q.tit_strength)).toFixed(1);\n\n// Convert army strength values (0-1) to descriptive text\nfunction getStrengthDescription(value) {\n    if (value >= 0.8) return \"Excellent\";\n    else if (value >= 0.6) return \"Good\";\n    else if (value >= 0.5) return \"Sufficient\";\n    else if (value >= 0.4) return \"Adequate\";\n    else if (value >= 0.2) return \"Poor\";\n    else if (value >= 0.1) return \"Decrepit\";\n    else return \"Horrible\";\n}\n\nQ.army_land_desc = getStrengthDescription(Q.army_land_strength);\nQ.army_naval_desc = getStrengthDescription(Q.army_naval_strength);\nQ.army_aerial_desc = getStrengthDescription(Q.army_aerial_strength);"
         }
       ],
       "content": {
@@ -20700,14 +20688,38 @@
               {
                 "type": "conditional",
                 "content": [
-                  "THKP-C Militarization: ",
+                  "THKP-C Legal Status: ",
                   {
-                    "type": "insert",
-                    "insert": 3
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 3
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 4
                   },
                   " "
                 ],
                 "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "THKP-C Militarization: ",
+                  {
+                    "type": "insert",
+                    "insert": 6
+                  },
+                  " "
+                ],
+                "predicate": 5
               },
               ""
             ]
@@ -20726,11 +20738,35 @@
                   " Strength: ",
                   {
                     "type": "insert",
-                    "insert": 5
+                    "insert": 8
                   },
                   " thousand "
                 ],
-                "predicate": 4
+                "predicate": 7
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "DEV-YOL Legal Status: ",
+                  {
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 10
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 11
+                  },
+                  " "
+                ],
+                "predicate": 9
               },
               ""
             ]
@@ -20744,11 +20780,11 @@
                   "DEV-YOL Militarization: ",
                   {
                     "type": "insert",
-                    "insert": 7
+                    "insert": 13
                   },
                   " "
                 ],
-                "predicate": 6
+                "predicate": 12
               },
               ""
             ]
@@ -20767,11 +20803,35 @@
                   " Strength: ",
                   {
                     "type": "insert",
-                    "insert": 9
+                    "insert": 15
                   },
                   " thousand "
                 ],
-                "predicate": 8
+                "predicate": 14
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "TKP/ML Legal Status: ",
+                  {
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 17
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 18
+                  },
+                  " "
+                ],
+                "predicate": 16
               },
               ""
             ]
@@ -20785,11 +20845,11 @@
                   "TKP/ML Militarization: ",
                   {
                     "type": "insert",
-                    "insert": 11
+                    "insert": 20
                   },
                   " "
                 ],
-                "predicate": 10
+                "predicate": 19
               },
               ""
             ]
@@ -20814,7 +20874,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 12
+                "insert": 21
               },
               " thousand"
             ]
@@ -20825,7 +20885,7 @@
               "Police Militarization: ",
               {
                 "type": "insert",
-                "insert": 13
+                "insert": 22
               },
               ""
             ]
@@ -20836,7 +20896,7 @@
               "Police Loyalty: ",
               {
                 "type": "insert",
-                "insert": 14
+                "insert": 23
               },
               ""
             ]
@@ -20861,7 +20921,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 15
+                "insert": 24
               },
               " thousand"
             ]
@@ -20872,7 +20932,7 @@
               "Grey Wolves Militarization: ",
               {
                 "type": "insert",
-                "insert": 16
+                "insert": 25
               },
               ""
             ]
@@ -20891,11 +20951,11 @@
                   " Strength: ",
                   {
                     "type": "insert",
-                    "insert": 18
+                    "insert": 27
                   },
                   " thousand "
                 ],
-                "predicate": 17
+                "predicate": 26
               },
               ""
             ]
@@ -20909,11 +20969,11 @@
                   "Raiders Militarization: ",
                   {
                     "type": "insert",
-                    "insert": 20
+                    "insert": 29
                   },
                   " "
                 ],
-                "predicate": 19
+                "predicate": 28
               },
               ""
             ]
@@ -20928,7 +20988,7 @@
               " Strength: ",
               {
                 "type": "insert",
-                "insert": 21
+                "insert": 30
               },
               " thousand"
             ]
@@ -20939,7 +20999,7 @@
               "TİT Militarization: ",
               {
                 "type": "insert",
-                "insert": 22
+                "insert": 31
               },
               ""
             ]
@@ -20949,12 +21009,12 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 23
+                "insert": 32
               },
               ": ",
               {
                 "type": "insert",
-                "insert": 24
+                "insert": 33
               },
               "%"
             ]
@@ -20974,7 +21034,7 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 25
+                "insert": 34
               },
               ""
             ]
@@ -20985,7 +21045,7 @@
               {
                 "type": "conditional",
                 "content": "<h1>Distribution of Power</h1> ",
-                "predicate": 26
+                "predicate": 35
               },
               ""
             ]
@@ -20999,11 +21059,11 @@
                   "<h4>Democratic strength: ",
                   {
                     "type": "insert",
-                    "insert": 28
+                    "insert": 37
                   },
                   "%</h4>"
                 ],
-                "predicate": 27
+                "predicate": 36
               },
               ""
             ]
@@ -21022,11 +21082,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 30
+                    "insert": 39
                   },
                   "%"
                 ],
-                "predicate": 29
+                "predicate": 38
               },
               ""
             ]
@@ -21040,11 +21100,11 @@
                   "<h4><span style=\"color: #8B0000;\">Far</span>-<span style=\"color: #FF0000;\">left</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 32
+                    "insert": 41
                   },
                   "%</h4>"
                 ],
-                "predicate": 31
+                "predicate": 40
               },
               ""
             ]
@@ -21063,11 +21123,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 34
+                    "insert": 43
                   },
                   "%"
                 ],
-                "predicate": 33
+                "predicate": 42
               },
               ""
             ]
@@ -21086,11 +21146,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 36
+                    "insert": 45
                   },
                   "%"
                 ],
-                "predicate": 35
+                "predicate": 44
               },
               ""
             ]
@@ -21104,11 +21164,11 @@
                   "<h4><span style=\"color: #7A3C00;\">Far</span>-<span style=\"color: #CC6600;\">right</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 38
+                    "insert": 47
                   },
                   "%</h4>"
                 ],
-                "predicate": 37
+                "predicate": 46
               },
               ""
             ]
@@ -21127,11 +21187,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 40
+                    "insert": 49
                   },
                   "%"
                 ],
-                "predicate": 39
+                "predicate": 48
               },
               ""
             ]
@@ -21150,11 +21210,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 42
+                    "insert": 51
                   },
                   "%"
                 ],
-                "predicate": 41
+                "predicate": 50
               },
               ""
             ]
@@ -21173,11 +21233,11 @@
                   "</span>: ",
                   {
                     "type": "insert",
-                    "insert": 44
+                    "insert": 53
                   },
                   "%"
                 ],
-                "predicate": 43
+                "predicate": 52
               },
               ""
             ]
@@ -21192,51 +21252,51 @@
                   {
                     "type": "conditional",
                     "content": "street fighting is scarce",
-                    "predicate": 46
+                    "predicate": 55
                   },
                   {
                     "type": "conditional",
                     "content": "street fighting is under control",
-                    "predicate": 47
+                    "predicate": 56
                   },
                   {
                     "type": "conditional",
                     "content": "street fighting is increasing",
-                    "predicate": 48
+                    "predicate": 57
                   },
                   {
                     "type": "conditional",
                     "content": "street fighting is slipping out of the state's control",
-                    "predicate": 49
+                    "predicate": 58
                   },
                   {
                     "type": "conditional",
                     "content": "street fighting have split neighborhoods into two",
-                    "predicate": 50
+                    "predicate": 59
                   },
                   {
                     "type": "conditional",
                     "content": "street fighting have reached critical levels",
-                    "predicate": 51
+                    "predicate": 60
                   },
                   {
                     "type": "conditional",
                     "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
-                    "predicate": 52
+                    "predicate": 61
                   },
                   {
                     "type": "conditional",
                     "content": "and the streets are under Far Left control",
-                    "predicate": 53
+                    "predicate": 62
                   },
                   {
                     "type": "conditional",
                     "content": "and the streets are under Far Right control",
-                    "predicate": 54
+                    "predicate": 63
                   },
                   "."
                 ],
-                "predicate": 45
+                "predicate": 54
               },
               ""
             ]
@@ -21251,7 +21311,7 @@
               "Land Strength: ",
               {
                 "type": "insert",
-                "insert": 55
+                "insert": 64
               },
               ""
             ]
@@ -21262,7 +21322,7 @@
               "Naval Strength: ",
               {
                 "type": "insert",
-                "insert": 56
+                "insert": 65
               },
               ""
             ]
@@ -21273,7 +21333,7 @@
               "Aerial Strength: ",
               {
                 "type": "insert",
-                "insert": 57
+                "insert": 66
               }
             ]
           }
@@ -21289,6 +21349,24 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['thkpc_strength_2'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['thkpc_destroyed'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['thkpc_banned'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['thkpc_banned'] || 0)) !== 0));"
             }
           },
           {
@@ -21323,6 +21401,24 @@
             }
           },
           {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['devyol_banned'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['devyol_banned'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['devyol_formed'] || 0)) !== 0);"
+            }
+          },
+          {
             "type": "insert",
             "fn": {
               "$code": "return (Q['devyol_militancy'] || 0);"
@@ -21339,6 +21435,24 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['tkpml_strength_2'] || 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['tkpml_formed'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['tkpml_banned'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['tkpml_banned'] || 0)) !== 0));"
             }
           },
           {
@@ -24443,10 +24557,9 @@
             " ",
             {
               "type": "conditional",
-              "content": "As a people's party, we have an easier time increasing support among the middle class than before. ",
+              "content": "As a people's party, we have an easier time increasing support among the middle class than before.",
               "predicate": 1
-            },
-            ""
+            }
           ]
         },
         "stateDependencies": [
@@ -24564,14 +24677,11 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Kırıkoğlu in a brief visit to Ecevit's office mentions how it would be a mistake to strike leftist civil organizations. ",
-                "predicate": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "conditional",
+              "content": "Kırıkoğlu in a brief visit to Ecevit's office mentions how it would be a mistake to strike leftist civil organizations.",
+              "predicate": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -24942,7 +25052,7 @@
       "id": "root.start",
       "onArrival": [
         {
-          "$code": "Q.started = 1;\n// time elapsed (in half-months/bi-weekly periods)\nQ.time = 1;\nQ.year = 1972;\nQ.month = 1;\nQ.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)\n// how many actions have been taken this period?\nQ.month_actions = 0;\n\n// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves\nQ.difficulty = 0;\nQ.historical_mode = 0;\n// old demographics\nQ.old_demographics = 0;\n// use decimals for parliament seats\nQ.use_decimals = 1; // Enable decimal display for Turkish election results\n// Show narrative-only flavour events by default\nQ.flavour_events = 1;\n\n// party resources\nQ.resources = 2;\n// party dues\nQ.dues = 2;\n\n// the state of the party\n// overall dissent reduces every increase in party support.\nQ.dissent = 0.05;\nQ.dissent_percent = 5;\n\n// factions\nQ.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'right_kemalists', 'third_worldists'];\n\n// Third Worldists: a minor faction, disabled by default. Toggle Q.third_worldists_enabled\n// to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,\n// Internal Factions list), where it is positioned to the right of the Kemalist Marxists.\nQ.third_worldists_enabled = 0;\nQ.third_worldists_color = '#b31f3b';\nQ.third_worldists_dissent = 20;\n\n// Per-quarter faction strengths (source of truth)\n// Quarters: Grassroots(20%), Base(15%), Bureaucracy(25%), TBMM(20%), Intelligentsia(10%), Local Leadership(10%)\n// q2 (Bureaucracy) base values are lower because party leadership figures add +1 each dynamically.\n// Starting leadership: İnönü(ok), Kırıkoğlu(km), Ecevit(lk), Satır(ok) → bonus km=1, lk=1, ok=2, rk=0\n// So q2 base + bonus = effective: km(-1+1=0), lk(1+1=2), ok(2+2=4), rk(1+0=1)\nQ.q0_km_str = 2; Q.q0_lk_str = 4; Q.q0_ok_str = 2; Q.q0_rk_str = 1; Q.q0_tw_str = 3;\nQ.q1_km_str = 1; Q.q1_lk_str = 4; Q.q1_ok_str = 2; Q.q1_rk_str = 1; Q.q1_tw_str = 2;\nQ.q2_km_str = 0; Q.q2_lk_str = 1; Q.q2_ok_str = 2; Q.q2_rk_str = 1; Q.q2_tw_str = 1;\nQ.q3_km_str = 1; Q.q3_lk_str = 3; Q.q3_ok_str = 3; Q.q3_rk_str = 2; Q.q3_tw_str = 2;\nQ.q4_km_str = 2; Q.q4_lk_str = 4; Q.q4_ok_str = 2; Q.q4_rk_str = 1; Q.q4_tw_str = 2;\nQ.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str = 1;\n\n// Advisor-to-faction mapping for dynamic Bureaucracy quarter (q2) computation.\n// km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional\nQ._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';\n\nQ.kemalist_marxists_dissent = 20;\nQ.left_kemalists_dissent = 20;\nQ.orthodox_kemalists_dissent = 5;\nQ.right_kemalists_dissent = 10;\nQ.right_kemalist_deal = 0;\nQ.right_kemalists_resign = 0;\nQ.right_kemalist_split = 0;\nQ.orthodox_kemalist_destruction = 0;\n\n// Congress tracking\nQ.congress_upcoming = 1;\nQ.congress_year = 1972;\nQ.congress_month = 5;\nQ.congress_candidate_1 = \"ecevit\";\nQ.congress_candidate_2 = \"inonu\";\n// Faction support: 1 = candidate_1 (Ecevit), 2 = candidate_2 (İnönü), 0 = undecided\nQ.kemalist_marxists_support = 0;\nQ.left_kemalists_support = 1;\nQ.orthodox_kemalists_support = 2;\nQ.right_kemalists_support = 2;\nQ.third_worldists_support = 0;\n\n// secret events...\nQ.unions_independent = 0;\nQ.centrists_resign = 0;\nQ.left_split = 0;\nQ.reformists_resigned = 0;\n\n// Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)\nQ.inonu_stay = 0;\n\n// Status of the Turkish Democracy\nQ.democracystatus = 30\nQ.paramilitary_pressure_timer = 0;\nQ.ohp_strength=100;Q.ohp_investigations=0;Q.ohp_funding_due=0;Q.ohp_funding_event_seen=0;Q.tit_investigated=0;\n\n// crisis_urgency indicates how seriously the <span style=\"color: #E3000F;\">**CHP**</span> is taking the economic crisis - scale from 0 to 10.\nQ.crisis_urgency = 0;\nQ.far_right_urgency = 0;\n// radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.\nQ.radicalization = 0;\nQ.public_works_support = 0;\nQ.pacifism = 0;\nQ.democratization = 0;\nQ.communist_coalition = 0;\n// economic_plan: have we adopted *any* economic plan?\nQ.economic_plan = 0;\nQ.public_works_adopted = 0;\n// have we formed the iron front?\n// people's party support\nQ.peoples_party_support = 0;\nQ.kmd_prosecutions = 0;\nQ.eastern_crime = 5;\n// support for nationalizations\nQ.nationalization_support = 0;\nQ.nationalization_adopted = 0;\n// moderate economic plan\nQ.moderate_plan_support = 0;\nQ.moderate_plan_adopted = 0;\n\n// Cyprus\nQ.cyprus_mode = 0;\nQ.cyprus_resources_initialized = 0;\nQ.cyprus_support_bonus = 0;\nQ.cyprus_support_used = {};\nQ.cyprus_briefings_seen = [];\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching\n\n\n// organizations\n\n// inter-party relations\nQ.TIP_relation = 40;\nQ.CGP_relation = 35;\nQ.AP_relation = 30;\nQ.DP_relation = 20;\n// MSP and MHP are invariably hostile\nQ.MSP_relation = 10;\nQ.MHP_relation = 10;\n\n// DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977\nQ.DP_collapse = 0;\n\nQ.TIP_leader = \"Unorganized\";\n// alternative TIP leaders: Mehmet Ali Aybar, Behice Boran\nQ.TIP_party_leader = \"Unorganized\";\nQ.AP_leader = \"Demirel\";\nQ.AP_party_leader = \"Demirel\";\nQ.DP_leader = \"Bozbeyli\";\nQ.DP_party_leader = \"Bozbeyli\";\nQ.CGP_leader = \"Feyzioğlu\";\nQ.CGP_party_leader = \"Feyzioğlu\";\nQ.MSP_leader = \"Süleyman Arif\";\n// alternative MSP leader: Erbakan\nQ.MSP_party_leader = \"Banned\";\nQ.CHP_leader = \"İnönü\";\n// alternative <span style=\"color: #E3000F;\">**CHP**</span> leader: Ecevit\nQ.CHP_party_leader = \"İnönü\";\nQ.party_leader_id = \"inonu\";\nQ.party_secretary = \"Kırıkoğlu\";\nQ.party_secretary_id = \"kirikoglu\";\nQ.MHP_leader = \"Alparslan Türkeş\"\nQ.MHP_party_leader = \"Alparslan Türkeş\"\n\n// Municipality control system\nQ.municipalities_controlled = 21;\nQ.total_municipalities = 67;\nQ.municipality_control_level = 1; // 0=Terrible, 1=Poor, 2=Divided, 3=Satisfactory, 4=Overwhelming\nQ.local_total_seats = 67;\nQ.local_election_threshold = 8;\n\n// Interior affairs policy baselines (numeric: 0 = worst/bad start)\nQ.land_reform_level = 0;\nQ.natural_resources_level = 0;\nQ.workplace_democracy_level = 0;\nQ.peoples_sector_level = 0;\nQ.workplace_safety_level = 0;\nQ.minimum_wage_level = 0;\nQ.judicial_reform_level = 0;\nQ.counter_guerilla_discovered = 0;\nQ.counter_guerilla_level = 0;\nQ.education_funding_level = 0;\nQ.education_curriculum_level = 0;\nQ.university_freedom_level = 0;\nQ.university_prestige_level = 0;\nQ.womens_legal_level = 2;\nQ.womens_workplace_level = 0;\nQ.household_violence_level = 0;\n\n// The array of forces - Turkish paramilitary groups\n// Number of members (in thousands)\n// Far Left organizations\nQ.thkpc_strength = 2;\nQ.thkpc_militancy = 0.5;\nQ.thkpc_destroyed = 0;\nQ.thkpc_banned = 0;\n\nQ.tkpml_strength = 0.1;\nQ.tkpml_militancy = 0.8;\nQ.tkpml_formed = 0;\nQ.tkpml_banned = 0;\n\nQ.devyol_strength = 55;\nQ.devyol_militancy = 0.25;\nQ.devyol_formed = 0;\nQ.devyol_banned = 0;\n\n// State forces\nQ.police_strength = 60;\nQ.police_militancy = 0.8;\nQ.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)\n\n// Far Right organizations\nQ.grey_wolves_strength = 25;\nQ.grey_wolves_militancy = 0.1;\nQ.grey_wolves_banned = 0;\n\nQ.raiders_strength = 30;\nQ.raiders_militancy = 0.05;\nQ.raiders_formed = 0;\nQ.raiders_banned = 0;\n\nQ.tit_strength = 0.5;\nQ.tit_militancy = 0.9;\nQ.tit_banned = 0;\n\n// Keep these for compatibility with existing events, but set to 0 for Turkish context\n\n\n// Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)\nQ.army_land_strength = 0.4;\nQ.army_naval_strength = 0.4;\nQ.army_aerial_strength = 0.4;\n\n// Political Violence Calculation System\nQ.streetfighting_joever = 0;\n\n// Calculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\n// Grey Wolves street control vote bonus for middle class (petty bourgeoisie)\n// Applied at initialization only - recalculations happen elsewhere\nif (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_percent > Q.far_left_force_percent && Q.grey_wolves_force_percent > 30) {\n    Q.grey_wolves_control_bonus = Math.floor((Q.grey_wolves_force_percent - 30) / 10) * 4;\n    Q.petty_bourgeoisie_MHP += Q.grey_wolves_control_bonus;\n    // Ensure we don't exceed 100% and redistribute proportionally if needed\n    if (Q.petty_bourgeoisie_MHP > 100) {\n        Q.petty_bourgeoisie_MHP = 100;\n    }\n}\n\n// strength includes actual military and de facto reserves?\nQ.armed_forces_strength = 100;\nQ.armed_forces_militancy = 5;\nQ.armed_forces_loyalty = 0.2;\n\n// The state of the country\n\n// popular opinion\n// national ideology - on a binary scale\n// nationalism vs internationalism or pacifism or non-nationalism\nQ.nationalism = 80;\n// socialism vs capitalism\nQ.socialism = 6;\n// pro-republic vs anti-republic\nQ.pro_republic = 86;\n\nQ.emergency_rule = 0;\n\n// minimum percentage of votes to be represented in the Grand National Assembly\nQ.electoral_threshold = 0;\n// constitutional reform level\nQ.constitutional_reform = 0;\n// constructive vote of no confidence\nQ.constructive_vonc = 0;\n// reduction in presidential powers\nQ.presidential_powers = 0;\n// allows banning of non-constitutional parties\nQ.constitutional_protection = 0;\nQ.TIP_banned = 1;\nQ.MHP_banned = 0;\n\n// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.\n// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.\nQ.coup_progress = 0;\nQ.capital_strike_progress = 0;\n\n// TSK (Turkish Armed Forces) coup timer system (0-15)\nQ.coup_timer = 0;\n\n// TSK status tracking\nQ.army_in_government = 1; // Starting with Nihat Erim military government\nQ.tsk_pacified = 0;\n\n// Women's Rights\nQ.women_reform = 0\n\n// Union Relations system\nQ.disk_relation = 35; // Starting at \"cool\" (29.9-39.9 range)\nQ.disk_turkis_conflict = 0.50; // Starting at \"Balanced\" (0.40-0.60)\nQ.union_reform = \"no\";\n\n// Update army_in_government based on prime_minister_party\nif (Q.prime_minister_party == 'I') {\n    Q.army_in_government = 1;\n} else {\n    Q.army_in_government = 0;\n}\n\nQ.budget = 1;\nQ.yearly_budget = 0;\n\n// Proportion of different social groups - Turkish demographics circa 1972-1977\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\n\nQ.kurds = 5; // Fixed, provisional Kurdish population weight in the poll model.\n\n// income for industrial workers\nQ.income = 1600;\n\n// Historical economic baseline data by year (Turkish context)\nQ.historical_inflation = {\n    1972: 15.3,\n    1973: 15.8,\n    1974: 15.4,\n    1975: 19.0,\n    1976: 16.4,\n    1977: 22.5,\n    1978: 53.3,\n    1979: 62.0\n};\n\nQ.historical_gdp_growth = {\n    1972: 9.2,\n    1973: 4.9,\n    1974: 3.3,\n    1975: 6.1,\n    1976: 9.0,\n    1977: 3.0,\n    1978: 1.2,\n    1979: -0.5\n};\n\nQ.historical_unemployment = {\n    1972: 4.6,\n    1973: 6.5,\n    1974: 8.0,\n    1975: 7.5,\n    1976: 8.5,\n    1977: 9.7,\n    1978: 10.1,\n    1979: 8.9\n};\n\n// Set base economic values based on starting year (1972)\nQ.base_inflation = Q.historical_inflation[Q.year] || 15.3;\nQ.base_growth = Q.historical_gdp_growth[Q.year] || 9.2;\nQ.base_unemployment = Q.historical_unemployment[Q.year] || 4.6;\n\n// Player deviation variables (only these change via player actions)\nQ.inflation_modifier = 0;\nQ.growth_modifier = 0;\nQ.unemployment_modifier = 0;\nQ.industry_modifier = 0;\nQ.agriculture_modifier = 0;\nQ.forex_pressure_delayed_reduction = 0;\n\n// Set initial economic values from base + modifiers\nQ.inflation = Q.base_inflation + Q.inflation_modifier;\nQ.economic_growth = Q.base_growth + Q.growth_modifier;\nQ.unemployed = Q.base_unemployment + Q.unemployment_modifier;\n\n// Historical Industrial Production Index (base year 1972 = 100)\nQ.historical_industrial_index = {\n    1972: 100,\n    1973: 110,\n    1974: 120,\n    1975: 132,\n    1976: 145,\n    1977: 158,\n    1978: 150,\n    1979: 142\n};\n\n// Historical Agricultural Production Index (base year 1972 = 100)\nQ.historical_agricultural_index = {\n    1972: 100,\n    1973: 102,\n    1974: 105,\n    1975: 108,\n    1976: 111,\n    1977: 113,\n    1978: 115,\n    1979: 117\n};\n\nQ.base_industry_index = Q.historical_industrial_index[Q.year] || 100;\nQ.base_agriculture_index = Q.historical_agricultural_index[Q.year] || 100;\n\nQ.getForexFactors = function() {\n    var industry = Q.forex_industry_penalty || 0.6;\n    var ratio = Q.forex_agriculture_ratio || 3;\n    var agriculture = Q.forex_agriculture_penalty || industry / ratio;\n    return {industry: industry, agriculture: agriculture, ratio: ratio};\n};\n\n// Current Production Indices\nQ.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;\nQ.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;\n\n// Player modifications to production indices (cumulative effects from player actions)\nQ.industrial_player_modifier = 0;\nQ.agricultural_player_modifier = 0;\n\n// Variables for making production changes (used by government actions)\nQ.industrial_change = 0;\nQ.agricultural_change = 0;\nQ.agricultural_consumption_change = 0;\n\n// Agricultural Product Prices System\nQ.agricultural_consumption = 100; // Base consumption level (can be modified by player actions)\nQ.agricultural_product_prices = 1.0; // Consumption/Production ratio\nQ.agricultural_price_status = \"Sufficient\"; // Text status for display\nQ.agricultural_price_timer = 0; // Timer for applying political effects\n\n// Economic Health System\nQ.economy_health = 0;\nQ.economy_health_raw = 0;\nQ.economy_health_timer = 0;\nQ.inflation_score = 0;\nQ.unemployment_score = 0;\nQ.growth_score = 0;\nQ.health_economy_status = \"Stable\";\nQ.apply_economy_effects = 0;\n\n// Foreign Exchange Pressure System\nQ.forex_pressure = 45;\nQ.forex_multiplier = 1;\nQ.crisis_forex_flag = 0;\nQ.forex_pressure_drift = 2;\nQ.forex_industry_penalty = 0.6;\nQ.forex_agriculture_ratio = 3;\nQ.forex_agriculture_penalty = Q.forex_industry_penalty/Q.forex_agriculture_ratio;\nQ.last_economy_year = null;\n\n// economic expansion timer\nQ.economic_expansion = 0;\n\n// quality of life (as % of base year - currently unused)\nQ.rural_qol = 100;\nQ.workers_qol = 100;\nQ.petty_bourgeoisie_qol = 100;\nQ.state_employees_qol = 100;\nQ.capitalists_qol = 100;\nQ.alevis_qol = 100;\nQ.kurds_qol = 100;\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\n\n// Land Reform mechanics\nQ.koykent_progress = 0;\nQ.land_reform_progress = 0;\n// Implementation state: completed stages live in landreform_done; pending stage has no benefits yet.\nQ.land_distribution_pending_stage = 0;\nQ.land_distribution_due_tick = 0;\nQ.cooperative_progress = 0;\n\n// Support for party by social group - Turkish political alignment baseline (1972)\n// Rural (45% of population)\n\n// Workers (15% of population)\n\n// Apply union effects to worker support\nif (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {\n    // TÜRK-İŞ leaning: Worker support AP +5%\n    Q.workers_AP += 5;\n} else if (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance: Worker support AP +10%\n    Q.workers_AP += 10;\n}\n\n// Petty Bourgeoisie (15% of population)\n\n// State Employees (7% of population)\n\n// Capitalists and Land Owners (3% of population)\n\n// Alevis (10% of population)\n\n// Kurdish population: existing preferences are the nonpolitical baseline.\n\n\n// Current Parliament composition - Turkish baseline (1972)\n// Based on weighted demographic calculations\nQ.chp_r = 27.3;\nQ.TIP_r = 2.6;\nQ.AP_r = 46.5; // AP (Justice Party)\nQ.CGP_r = 6.5;\nQ.DP_r = 0;\nQ.MSP_r = 0;\nQ.MHP_r = 3.0;\nQ.other_r = 14.1;\n\n// diff from prev\nQ.old_chp_r = 27.3;\nQ.old_TIP_r = 2.6;\nQ.old_AP_r = 46.5; // AP\nQ.old_CGP_r = 6.5;\nQ.old_DP_r = 0;\nQ.old_MSP_r = 0;\nQ.old_MHP_r = 3.0;\nQ.old_other_r = 14.1;\n\n// Parliament seat distribution (initial TBMM composition, updates via elections)\nQ.total_seats = 450;\nQ.chp_seats = 143;\nQ.AP_seats = 224;\nQ.TIP_seats = 2;\nQ.CGP_seats = 26;\nQ.DP_seats = 36;\nQ.MSP_seats = 0;\nQ.MHP_seats = 1;\n Q.other_seats = 18;\nQ.majority_threshold = 226;\nQ.largest_party_key = 'AP';\nQ.largest_party = 'AP';\n\nQ.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;\nQ.grand_coalition = Q.democratic_coalition + Q.DP_seats;\nQ.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.far_right_coalition = Q.MSP_seats + Q.MHP_seats;\nQ.left_coalition = Q.chp_seats + Q.TIP_seats;\nQ.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;\nQ.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;\nQ.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\nQ.leverage = Q.chp_seats/1.5;\n\n// Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.\n// Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into\n// itself and its minor splinter parties (TKP, TSİP, TEP, SDP), each taking a fixed share of the\n// bloc's total vote.\nQ.socialist_left_formed = 0;\n// Snapshot of socialist_left_formed as of the last election, used to decide whether the\n// \"Last election vote share\" section on the status screen shows the Socialist Left\n// breakdown (it must reflect whether the split existed AT the last election, not whether\n// it currently exists).\nQ.socialist_left_formed_last_election = 0;\nQ.former_TIP_r = 0;\nQ.TIP_socialist_left_r = 0;\nQ.TKP_r = 0;\nQ.TSIP_r = 0;\nQ.TEP_r = 0;\nQ.SDP_r = 0;\n\n// for changing the CGP's name to the DStP\nQ.CGP_name = \"MGP\";\nQ.CGP_formed = 0; Q.MSP_formed = 0;\nAnatolianRules.refreshPartyNames(Q);\n\n// array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election\nQ.election_records = [];\n// party support records for every month\nQ.party_support_records = [];\n// inflation and unemployment records\nQ.economic_records = [];\n\n// Party Strategy\nQ.strategy_united = 0;\nQ.strategy_socdem = 0;\nQ.strategy_res = 0;\nQ.strategy_socfas = 0;\n\n// State of the government\nQ.president = \"Cevdet Sunay\";\n// starting prime_minister: Nihat Erim\n// starting prime minister: Nihat Erim\nQ.prime_minister = \"Nihat Erim\";\nQ.prime_minister_party = 'I';\nQ.CHP_in_government = 0;\nQ.AP_in_government = 0;\nQ.CGP_in_government = 0;\nQ.DP_in_government = 0;\nQ.MSP_in_government = 0;\nQ.TIP_in_government = 0;\nQ.MHP_in_government = 0;\nQ.I_in_government = 1;\nQ.generalstaff = \"Memduh Tağmaç\";\n\nQ.in_right_coalition = 0;\nQ.in_democratic_coalition = 0;\n// Grand coalition = <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP\n// also includes the \"new grand coalition\" of <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP + Others\nQ.in_grand_coalition = 0;\n// Popular front = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + Z + CGP\nQ.in_popular_front = 0;\n// left coalition = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + left-splinters\nQ.in_left_front = 0;\n// unholy coalition = <span style=\"color: #E3000F;\">**CHP**</span> + MSP\nQ.in_msp_coalition = 0;\nQ.in_emergency_government = 0;\nQ.in_CHP_majority = 0;\nQ.grand_coalition_failed = 0;\n// if the <span style=\"color: #E3000F;\">**CHP**</span> is ruling as part of a minority government\nQ.in_minority_government = 0;\n// national unity governmet\n\n// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.\nQ.coalition_dissent = 0;\n// dissent from the TIP, in a popular front or left front government\nQ.TIP_coalition_dissent = 0;\n\n// does the <span style=\"color: #E3000F;\">**CHP**</span> tolerate the government even if it is not a participant?\nQ.CHP_toleration = 0;\n\n// is the current government a presidential minority government?\nQ.minority_government = 0;\n\n// ministries - which parties control the ministries?\n// is the agricultural ministry useful at all?\nQ.foreign_minister = 'Independent minister';\nQ.foreign_minister_party = 'I';\nQ.interior_minister = 'Independent minister';\nQ.interior_minister_party = 'I';\nQ.justice_minister = 'Independent minister';\nQ.justice_minister_party = 'I';\nQ.labor_minister_party = 'I';\nQ.defense_minister = 'Independent minister';\nQ.defense_minister_party = 'I';\nQ.economic_minister = 'Independent minister';\nQ.economic_minister_party = 'I';\nQ.agriculture_minister = 'Independent minister';\nQ.agriculture_minister_party = 'I';\nQ.industrial_minister = 'Independent minister';\nQ.industrial_minister_party = 'I';\nQ.trade_minister = 'Independent minister';\nQ.trade_minister_party = 'I';\nQ.education_minister = 'Independent minister';\nQ.education_minister_party = 'I';\n\n// Events: what has occurred?\nQ.unemployment_insurance_seen = 0;\n// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...\nQ.unemployment_insurance_threshold = 10;\n\n//\nQ.economicreform = 0\nQ.aet = 0\nQ.oil = 0\n\n// Working rights promises\nQ.lockout_promise = 0;\nQ.working_rights_promise = 0;\n// Working rights achievements\nQ.lokavtt = 0;\nQ.nationall = 0;\nQ.kitt = 0;\nQ.ikincilgrevv = 0;\nQ.healthinspectionss = 0;\n// Set to 1 when at least 3 one-time labour ministry reforms have been passed\nQ.labour_rights_reform = 0;\n\n// have we reformed these institutions to be more democratic?\nQ.judicial_reform = 0;\nQ.bureaucratic_reform = 0;\nQ.military_reform = 0;\nQ.womens_rights = 0;\n// Level of welfare relative to the starting situation (can go negative)\nQ.welfare = 0;\n// level of support for farmers\nQ.agricultural_policy = 0;\nQ.land_reform = 0;\nQ.rural_land_reform_policy = 0;\nQ.works_program = 0;\nQ.public_works_implemented = 0;\n// Relations with the Western countries (France, UK).\nQ.west_relation = 45;\n// Relations with Eastern Bloc countries\nQ.east_relation = 0;\n// Relations with the Soviet Union\nQ.soviet_relation = 20;\n// Relations with the United States\nQ.us_relation = 45;\n// Relations with the Middle East countries\nQ.middle_east_relation = 45;\n// Cyprus Problem status: 0 = Unresolved, 1 = Status Quo, 2 = Confederation, 3 = Divided\nQ.cyprus_problem = 0;\nQ.gunesplan = 0\nQ.denktasplan = 0\nQ.armsembargo = 0\n// Cyprus effects tracking\nQ.cyprus_last_status = 0; // Track previous status to detect changes\nQ.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)\nQ.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)\n// How much have we exposed the secret rearmament programs?\n// nationalization_progress is part of the left economic plan.\nQ.nationalization_progress = 0;\n// socializations is part of the economic democracy card.\nQ.socializations = 0;\nQ.nationalize_budget = 4;\n// have there been any factory takeovers?\nQ.factory_takeovers = 0;\n// progress on the moderate economic plan\nQ.moderate_plan_progress = 0;\n// European Union negotiation process\nQ.eu = 0;\nQ.eu_progress = 0;\n// science/education\nQ.science = 0;\nQ.education_science = 0;\n\n// Tax rates relative to the starting situation\nQ.lower_tax_rates = 0;\nQ.upper_tax_rates = 0;\nQ.tariffs = 5;\n\nQ.electoral_threshold = 0;\n\n// our conduct in the government, and the conduct of our coalition opponents.\n// did the <span style=\"color: #E3000F;\">**CHP**</span> vote against the previous government in a vote of no confidence?\nQ.CHP_no_confidence = 0;\n// was the last <span style=\"color: #E3000F;\">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?\nQ.no_confidence_against_chp = 0;\n\n// Advisors/Leaders\n// n_advisors counts only swappable member slots (not leader or secretary)\nQ.n_advisors = 2;\n// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.\n// let's just put all of the timers here...\n// most party affairs and government affairs cards are on a timer.\nQ.timers = ['advisor_action',  'crisis_program',\n            'fundraising', 'ideology', 'intraparty',\n            'inter_party_relationships', 'international_relations',\n             'media', 'enemies',\n            'party_organizations', 'rally',\n            'shuffle_leadership',  'peoples_party',\n            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'campaigning_ecevit', 'kmd', 'culture', 'municipality', 'kemalizm', 'koykent_rally', 'remnants_of_inonu', 'strategy',\n            // govt\n            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',\n            'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',\n            'police',  'shuffle_cabinet',\n            'homosexual_rights', 'economic_policy', 'coalition_affairs',\n            'womens_rights', 'economic_democracy', 'religious_affairs_directorate', 'kurdish_issue',\n            'dealing_with_toleration',\n            'constitutional_reform', 'labor_rights',\n            'education_science', 'curriculum', 'avans', 'cutspending',\n            // events\n            'emergency_cuts', 'unemployment_insurance',\n\n            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',\n            'high_inflation', 'banking_crisis',\n            'understanding_enemy', ];\nQ.advisor_action_timer = 0;\n// party affairs timers\nQ.crisis_program_timer = 0;\nQ.fundraising_timer = 0;\nQ.ideology_timer = 0;\nQ.intraparty_timer = 0\nQ.poppy_campaign = 0;\nQ.strategy_timer = 0;\nQ.poppy_harvestation = 1;\nQ.inter_party_relationships_timer = 0;\nQ.international_relations_timer = 0;\nQ.western_socialist_contacts = 0;\nQ.socialist_international_member = 0;\nQ.avans_timer = 0;\nQ.remnants_of_inonu_timer = 0;\nQ.cutspending_timer = 0;\nQ.media_timer = 0;\nQ.enemies_timer = 0;\nQ.party_organizations_timer =  0;\nQ.rally_timer = 0;\nQ.kemalizm_timer = 0;\nQ.koykent_rally_timer = 0;\nQ.shuffle_leadership_timer = 0;\nQ.streetfighting_timer = 0;\nQ.peoples_party_timer = 0;\n// n_elections is the number of elections that have happened since the start of the game.\nQ.n_elections = 0;\n// number of elections without a clear majority.\nQ.no_majority_elections = 0;\n// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.\nQ.in_election = 1;\nQ.next_election_year = 1973;\nQ.next_election_month = 10;\nQ.next_election_time = 22;\nif (typeof Q.local_elections_held === 'undefined') {\n    Q.local_elections_held = 0;\n}\nif (typeof Q.next_local_election_year === 'undefined') {\n    Q.next_local_election_year = 1973;\n}\nif (typeof Q.next_local_election_month === 'undefined') {\n    Q.next_local_election_month = 12;\n}\nif (typeof Q.next_local_election_week === 'undefined') {\n    Q.next_local_election_week = 2;\n}\nif (typeof Q.next_local_election_time === 'undefined') {\n    Q.next_local_election_time = 0;\n}\n// government affairs timers\nQ.agricultural_policy_timer = 0;\nQ.domestic_enemies_timer = 0;\nQ.economic_policy_timer = 0;\nQ.fiscal_policy_timer = 0;\nQ.foreign_policy_timer = 0;\nQ.judiciary_timer = 0;\nQ.labor_affairs_timer = 0;\nQ.military_policy_timer = 0;\nQ.police_timer = 0;\nQ.shuffle_cabinet_timer = 0;\n\nQ.womens_rights_timer = 0;\nQ.homosexual_rights_timer = 0;\nQ.municipality_timer = 0;\nQ.economic_democracy_timer = 0;\nQ.religious_affairs_directorate_timer = 0;\nQ.kurdish_issue_timer = 0;\nQ.coalition_affairs_timer = 0;\nQ.industrial_policy_timer = 0;\n// Economic policy state\nQ.Tiger = 0;\nQ.imf_agreement = 0;\n\n// Tracking flags for one-time effects\nQ.oil_effect_applied = false;\nQ.oil_inflation_effect = 0;\nQ.land_reform_effect_applied = false;\nQ.cooperative_effect_applied = false;\nQ.koykent_effect_applied = false;\nQ.koykent_achievement_seen = false;\nQ.tiger_1978_effect_applied = false;\nQ.tiger_1979_effect_applied = false;\nQ.tiger_1980_effect_applied = false;\n\n// event timers\nQ.emergency_cuts_timer = 0;\nQ.unemployment_insurance_timer = 0;\nQ.TIP_ultimatum_timer = 0;\n\n//Cyprus attitudes\nQ.greece_attitude = 4;\nQ.uk_attitude = 50 + (Q.west_relation - 50);\nQ.us_attitude = 35 + (Q.us_relation - 50);\n\n// all the initial advisors are centrists.\n// Leader and Secretary have advisor=1 for display but are NOT counted in n_advisors.\n// Only Members (Ecevit, Satır) are counted in n_advisors.\nQ.inonu_advisor = 1; // İsmet İnönü (Party Leader, not in n_advisors)\nQ.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary, not in n_advisors)\nQ.ecevit_advisor = 1; // Bülent Ecevit (Member, counted in n_advisors)\nQ.satir_advisor = 1; // Kemal Satır (Member, counted in n_advisors)\n\n// left advisors\n\n// centrist alternate advisors\n\n// Reformist advisors\n\n// Labor advisors\n\n// Revisionist advisors\n\n\n// Nonfactional advisors\n\n// Turkish Right-Wing Kemalist advisors\nQ.gogus_advisor = 0; // Ali İhsan Göğüs (existing)\nQ.paksut_advisor = 0; // Emin Paksüt\nQ.celikbas_advisor = 0; // Fethi Çelikbaş\n\n// Turkish advisors - other factions\nQ.avcioglu_advisor = 0; // Doğan Avcıoğlu (Kemalist Marxist)\nQ.eyuboglu_advisor = 0; // Sabahattin Eyüboğlu (Reformist Kemalist)\n\n// Function to calculate municipality control level dynamically\nfunction getMunicipalityControlLevel() {\n    var controlled = Q.municipalities_controlled || 0;\n    var total = Q.total_municipalities || Q.local_total_seats || 67;\n    if (total <= 0) {\n        total = 67;\n    }\n    var ratio = controlled / total;\n    if (ratio <= (13 / 67)) {\n        return 0; // Terrible\n    } else if (ratio <= (26 / 67)) {\n        return 1; // Poor\n    } else if (ratio <= (34 / 67)) {\n        return 2; // Divided\n    } else if (ratio <= (40 / 67)) {\n        return 3; // Satisfactory\n    }\n    return 4; // Overwhelming\n}\n\n// Set initial municipality control level\nQ.municipality_control_level = getMunicipalityControlLevel();\n\n// Function to update municipality control level (call this whenever municipalities_controlled changes)\nfunction updateMunicipalityControlLevel() {\n    Q.municipality_control_level = getMunicipalityControlLevel();\n}\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nAnatolianRules.refreshVotes(Q);\nAnatolianRules.ensureKurdishIssue(Q);\nif(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);\nAnatolianPeoplesSector.ensure(Q);\nif(typeof AnatolianSenate!==\"undefined\")AnatolianSenate.ensure(Q);"
+          "$code": "Q.started = 1;\n// time elapsed (in half-months/bi-weekly periods)\nQ.time = 1;\nQ.year = 1972;\nQ.month = 1;\nQ.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)\n// how many actions have been taken this period?\nQ.month_actions = 0;\n\n// 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves\nQ.difficulty = 0;\nQ.historical_mode = 0;\n// old demographics\nQ.old_demographics = 0;\n// use decimals for parliament seats\nQ.use_decimals = 1; // Enable decimal display for Turkish election results\n// Show narrative-only flavour events by default\nQ.flavour_events = 1;\n\n// party resources\nQ.resources = 2;\n// party dues\nQ.dues = 2;\n\n// the state of the party\n// overall dissent reduces every increase in party support.\nQ.dissent = 0.05;\nQ.dissent_percent = 5;\n\n// factions\nQ.factions = ['kemalist_marxists', 'left_kemalists', 'orthodox_kemalists', 'right_kemalists', 'third_worldists'];\n\n// Third Worldists: a minor faction, disabled by default. Toggle Q.third_worldists_enabled\n// to 1 to make it appear in the party UI (Congress Seat Distribution, Party Quarters,\n// Internal Factions list), where it is positioned to the right of the Kemalist Marxists.\nQ.third_worldists_enabled = 0;\nQ.third_worldists_color = '#b31f3b';\nQ.third_worldists_dissent = 20;\n\n// Per-quarter faction strengths (source of truth)\n// Quarters: Grassroots(20%), Base(15%), Bureaucracy(25%), TBMM(20%), Intelligentsia(10%), Local Leadership(10%)\n// q2 (Bureaucracy) base values are lower because party leadership figures add +1 each dynamically.\n// Starting leadership: İnönü(ok), Kırıkoğlu(km), Ecevit(lk), Satır(ok) → bonus km=1, lk=1, ok=2, rk=0\n// So q2 base + bonus = effective: km(-1+1=0), lk(1+1=2), ok(2+2=4), rk(1+0=1)\nQ.q0_km_str = 2; Q.q0_lk_str = 4; Q.q0_ok_str = 2; Q.q0_rk_str = 1; Q.q0_tw_str = 3;\nQ.q1_km_str = 1; Q.q1_lk_str = 4; Q.q1_ok_str = 2; Q.q1_rk_str = 1; Q.q1_tw_str = 2;\nQ.q2_km_str = 0; Q.q2_lk_str = 1; Q.q2_ok_str = 2; Q.q2_rk_str = 1; Q.q2_tw_str = 1;\nQ.q3_km_str = 1; Q.q3_lk_str = 3; Q.q3_ok_str = 3; Q.q3_rk_str = 2; Q.q3_tw_str = 2;\nQ.q4_km_str = 2; Q.q4_lk_str = 4; Q.q4_ok_str = 2; Q.q4_rk_str = 1; Q.q4_tw_str = 2;\nQ.q5_km_str = 1; Q.q5_lk_str = 3; Q.q5_ok_str = 3; Q.q5_rk_str = 1; Q.q5_tw_str = 1;\n\n// Advisor-to-faction mapping for dynamic Bureaucracy quarter (q2) computation.\n// km = kemalist_marxist, lk = left_kemalist, ok = orthodox_kemalist, rk = right_kemalist, nf = nonfactional\nQ._advisor_factions = 'kirikoglu:km,avcioglu:km,selcuk:km,belli:km,ecevit:lk,baykal:lk,gunes:lk,aksoy:lk,ustundag:lk,rahsan:lk,topuz:lk,sav:lk,inonu:ok,satir:ok,eyuboglu:ok,gogus:rk,paksut:rk,celikbas:rk,muezzinoglu:nf,erdem:nf,ugur:nf,akan:nf';\n\nQ.kemalist_marxists_dissent = 20;\nQ.left_kemalists_dissent = 20;\nQ.orthodox_kemalists_dissent = 5;\nQ.right_kemalists_dissent = 10;\nQ.right_kemalist_deal = 0;\nQ.right_kemalists_resign = 0;\nQ.right_kemalist_split = 0;\nQ.orthodox_kemalist_destruction = 0;\n\n// Congress tracking\nQ.congress_upcoming = 1;\nQ.congress_year = 1972;\nQ.congress_month = 5;\nQ.congress_candidate_1 = \"ecevit\";\nQ.congress_candidate_2 = \"inonu\";\n// Faction support: 1 = candidate_1 (Ecevit), 2 = candidate_2 (İnönü), 0 = undecided\nQ.kemalist_marxists_support = 0;\nQ.left_kemalists_support = 1;\nQ.orthodox_kemalists_support = 2;\nQ.right_kemalists_support = 2;\nQ.third_worldists_support = 0;\n\n// secret events...\nQ.unions_independent = 0;\nQ.centrists_resign = 0;\nQ.left_split = 0;\nQ.reformists_resigned = 0;\n\n// Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)\nQ.inonu_stay = 0;\n\n// Status of the Turkish Democracy\nQ.democracystatus = 30\nQ.paramilitary_pressure_timer = 0;\nQ.ohp_strength=100;Q.ohp_investigations=0;Q.ohp_funding_due=0;Q.ohp_funding_event_seen=0;Q.tit_investigated=0;\n\n// crisis_urgency indicates how seriously the <span style=\"color: #E3000F;\">**CHP**</span> is taking the economic crisis - scale from 0 to 10.\nQ.crisis_urgency = 0;\nQ.far_right_urgency = 0;\n// radicalization indicates how radical the CHP's rhetoric is - scale from 0 to 10.\nQ.radicalization = 0;\nQ.public_works_support = 0;\nQ.pacifism = 0;\nQ.democratization = 0;\nQ.communist_coalition = 0;\n// economic_plan: have we adopted *any* economic plan?\nQ.economic_plan = 0;\nQ.public_works_adopted = 0;\n// have we formed the iron front?\n// people's party support\nQ.peoples_party_support = 0;\nQ.kmd_prosecutions = 0;\nQ.eastern_crime = 5;\n// support for nationalizations\nQ.nationalization_support = 0;\nQ.nationalization_adopted = 0;\n// moderate economic plan\nQ.moderate_plan_support = 0;\nQ.moderate_plan_adopted = 0;\n\n// Cyprus\nQ.cyprus_mode = 0;\nQ.cyprus_resources_initialized = 0;\nQ.cyprus_support_bonus = 0;\nQ.cyprus_support_used = {};\nQ.cyprus_briefings_seen = [];\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ._last_cyprus_mode = 0; // Track previous cyprus_mode to detect changes for music switching\n\n\n// organizations\n\n// inter-party relations\nQ.TIP_relation = 40;\nQ.CGP_relation = 35;\nQ.AP_relation = 30;\nQ.DP_relation = 20;\n// MSP and MHP are invariably hostile\nQ.MSP_relation = 10;\nQ.MHP_relation = 10;\n\n// DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977\nQ.DP_collapse = 0;\n\nQ.TIP_leader = \"Unorganized\";\n// alternative TIP leaders: Mehmet Ali Aybar, Behice Boran\nQ.TIP_party_leader = \"Unorganized\";\nQ.AP_leader = \"Demirel\";\nQ.AP_party_leader = \"Demirel\";\nQ.DP_leader = \"Bozbeyli\";\nQ.DP_party_leader = \"Bozbeyli\";\nQ.CGP_leader = \"Feyzioğlu\";\nQ.CGP_party_leader = \"Feyzioğlu\";\nQ.MSP_leader = \"Süleyman Arif\";\n// alternative MSP leader: Erbakan\nQ.MSP_party_leader = \"Banned\";\nQ.CHP_leader = \"İnönü\";\n// alternative <span style=\"color: #E3000F;\">**CHP**</span> leader: Ecevit\nQ.CHP_party_leader = \"İnönü\";\nQ.party_leader_id = \"inonu\";\nQ.party_secretary = \"Kırıkoğlu\";\nQ.party_secretary_id = \"kirikoglu\";\nQ.MHP_leader = \"Alparslan Türkeş\"\nQ.MHP_party_leader = \"Alparslan Türkeş\"\n\n// Municipality control system\nQ.municipalities_controlled = 21;\nQ.total_municipalities = 67;\nQ.municipality_control_level = 1; // 0=Terrible, 1=Poor, 2=Divided, 3=Satisfactory, 4=Overwhelming\nQ.local_total_seats = 67;\nQ.local_election_threshold = 8;\n\n// Interior affairs policy baselines (numeric: 0 = worst/bad start)\nQ.land_reform_level = 0;\nQ.natural_resources_level = 0;\nQ.workplace_democracy_level = 0;\nQ.peoples_sector_level = 0;\nQ.workplace_safety_level = 0;\nQ.minimum_wage_level = 0;\nQ.judicial_reform_level = 0;\nQ.counter_guerilla_discovered = 0;\nQ.counter_guerilla_level = 0;\nQ.education_funding_level = 0;\nQ.education_curriculum_level = 0;\nQ.university_freedom_level = 0;\nQ.university_prestige_level = 0;\nQ.womens_legal_level = 2;\nQ.womens_workplace_level = 0;\nQ.household_violence_level = 0;\n\n// The array of forces - Turkish paramilitary groups\n// Number of members (in thousands)\n// Far Left organizations\nQ.thkpc_strength = 2;\nQ.thkpc_militancy = 0.5;\nQ.thkpc_destroyed = 0;\nQ.thkpc_banned = 1;\n\nQ.tkpml_strength = 0.1;\nQ.tkpml_militancy = 0.8;\nQ.tkpml_formed = 0;\nQ.tkpml_banned = 1;\n\nQ.devyol_strength = 55;\nQ.devyol_militancy = 0.25;\nQ.devyol_formed = 0;\nQ.devyol_banned = 1;\n\n// State forces\nQ.police_strength = 60;\nQ.police_militancy = 0.8;\nQ.police_loyalty = 0.65; // Mostly loyal (0.54-0.71 range)\n\n// Far Right organizations\nQ.grey_wolves_strength = 25;\nQ.grey_wolves_militancy = 0.1;\nQ.grey_wolves_banned = 0;\n\nQ.raiders_strength = 30;\nQ.raiders_militancy = 0.05;\nQ.raiders_formed = 0;\nQ.raiders_banned = 0;\n\nQ.tit_strength = 0.5;\nQ.tit_militancy = 0.9;\nQ.tit_banned = 0;\n\n// Keep these for compatibility with existing events, but set to 0 for Turkish context\n\n\n// Turkish Army Strength (0-1 scale, starting at 0.4 = Adequate)\nQ.army_land_strength = 0.4;\nQ.army_naval_strength = 0.4;\nQ.army_aerial_strength = 0.4;\n\n// Political Violence Calculation System\nQ.streetfighting_joever = 0;\n\n// Calculate paramilitary force effectiveness (strength × militancy)\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\n// Grey Wolves street control vote bonus for middle class (petty bourgeoisie)\n// Applied at initialization only - recalculations happen elsewhere\nif (Q.grey_wolves_force_percent > Q.state_force_percent && Q.grey_wolves_force_percent > Q.far_left_force_percent && Q.grey_wolves_force_percent > 30) {\n    Q.grey_wolves_control_bonus = Math.floor((Q.grey_wolves_force_percent - 30) / 10) * 4;\n    Q.petty_bourgeoisie_MHP += Q.grey_wolves_control_bonus;\n    // Ensure we don't exceed 100% and redistribute proportionally if needed\n    if (Q.petty_bourgeoisie_MHP > 100) {\n        Q.petty_bourgeoisie_MHP = 100;\n    }\n}\n\n// strength includes actual military and de facto reserves?\nQ.armed_forces_strength = 100;\nQ.armed_forces_militancy = 5;\nQ.armed_forces_loyalty = 0.2;\n\n// The state of the country\n\n// popular opinion\n// national ideology - on a binary scale\n// nationalism vs internationalism or pacifism or non-nationalism\nQ.nationalism = 80;\n// socialism vs capitalism\nQ.socialism = 6;\n// pro-republic vs anti-republic\nQ.pro_republic = 86;\n\nQ.emergency_rule = 0;\n\n// minimum percentage of votes to be represented in the Grand National Assembly\nQ.electoral_threshold = 0;\n// constitutional reform level\nQ.constitutional_reform = 0;\n// constructive vote of no confidence\nQ.constructive_vonc = 0;\n// reduction in presidential powers\nQ.presidential_powers = 0;\n// allows banning of non-constitutional parties\nQ.constitutional_protection = 0;\nQ.TIP_banned = 1;\nQ.MHP_banned = 0;\n\n// coups and capital strikes happen when you upset the right or the capitalists too much with your policies. they're an additional check on your policies, when purely electoral checks don't suffice.\n// when coup_progress reaches 10 or capital_strike_progress reaches 10, there's a special event that launches the coup.\nQ.coup_progress = 0;\nQ.capital_strike_progress = 0;\n\n// TSK (Turkish Armed Forces) coup timer system (0-15)\nQ.coup_timer = 0;\n\n// TSK status tracking\nQ.army_in_government = 1; // Starting with Nihat Erim military government\nQ.tsk_pacified = 0;\n\n// Women's Rights\nQ.women_reform = 0\n\n// Union Relations system\nQ.disk_relation = 35; // Starting at \"cool\" (29.9-39.9 range)\nQ.disk_turkis_conflict = 0.50; // Starting at \"Balanced\" (0.40-0.60)\nQ.union_reform = \"no\";\n\n// Update army_in_government based on prime_minister_party\nif (Q.prime_minister_party == 'I') {\n    Q.army_in_government = 1;\n} else {\n    Q.army_in_government = 0;\n}\n\nQ.budget = 1;\nQ.yearly_budget = 0;\n\n// Proportion of different social groups - Turkish demographics circa 1972-1977\nQ.rural = 45; // Rural population\nQ.workers = 15; // Industrial workers\nQ.petty_bourgeoisie = 15; // Small business owners, artisans\nQ.state_employees = 7; // State employees and bureaucrats\nQ.capitalists = 3; // Capitalists and land owners\nQ.alevis = 10; // Alevi religious minority\n\nQ.kurds = 5; // Fixed, provisional Kurdish population weight in the poll model.\n\n// income for industrial workers\nQ.income = 1600;\n\n// Historical economic baseline data by year (Turkish context)\nQ.historical_inflation = {\n    1972: 15.3,\n    1973: 15.8,\n    1974: 15.4,\n    1975: 19.0,\n    1976: 16.4,\n    1977: 22.5,\n    1978: 53.3,\n    1979: 62.0\n};\n\nQ.historical_gdp_growth = {\n    1972: 9.2,\n    1973: 4.9,\n    1974: 3.3,\n    1975: 6.1,\n    1976: 9.0,\n    1977: 3.0,\n    1978: 1.2,\n    1979: -0.5\n};\n\nQ.historical_unemployment = {\n    1972: 4.6,\n    1973: 6.5,\n    1974: 8.0,\n    1975: 7.5,\n    1976: 8.5,\n    1977: 9.7,\n    1978: 10.1,\n    1979: 8.9\n};\n\n// Set base economic values based on starting year (1972)\nQ.base_inflation = Q.historical_inflation[Q.year] || 15.3;\nQ.base_growth = Q.historical_gdp_growth[Q.year] || 9.2;\nQ.base_unemployment = Q.historical_unemployment[Q.year] || 4.6;\n\n// Player deviation variables (only these change via player actions)\nQ.inflation_modifier = 0;\nQ.growth_modifier = 0;\nQ.unemployment_modifier = 0;\nQ.industry_modifier = 0;\nQ.agriculture_modifier = 0;\nQ.forex_pressure_delayed_reduction = 0;\n\n// Set initial economic values from base + modifiers\nQ.inflation = Q.base_inflation + Q.inflation_modifier;\nQ.economic_growth = Q.base_growth + Q.growth_modifier;\nQ.unemployed = Q.base_unemployment + Q.unemployment_modifier;\n\n// Historical Industrial Production Index (base year 1972 = 100)\nQ.historical_industrial_index = {\n    1972: 100,\n    1973: 110,\n    1974: 120,\n    1975: 132,\n    1976: 145,\n    1977: 158,\n    1978: 150,\n    1979: 142\n};\n\n// Historical Agricultural Production Index (base year 1972 = 100)\nQ.historical_agricultural_index = {\n    1972: 100,\n    1973: 102,\n    1974: 105,\n    1975: 108,\n    1976: 111,\n    1977: 113,\n    1978: 115,\n    1979: 117\n};\n\nQ.base_industry_index = Q.historical_industrial_index[Q.year] || 100;\nQ.base_agriculture_index = Q.historical_agricultural_index[Q.year] || 100;\n\nQ.getForexFactors = function() {\n    var industry = Q.forex_industry_penalty || 0.6;\n    var ratio = Q.forex_agriculture_ratio || 3;\n    var agriculture = Q.forex_agriculture_penalty || industry / ratio;\n    return {industry: industry, agriculture: agriculture, ratio: ratio};\n};\n\n// Current Production Indices\nQ.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;\nQ.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;\n\n// Player modifications to production indices (cumulative effects from player actions)\nQ.industrial_player_modifier = 0;\nQ.agricultural_player_modifier = 0;\n\n// Variables for making production changes (used by government actions)\nQ.industrial_change = 0;\nQ.agricultural_change = 0;\nQ.agricultural_consumption_change = 0;\n\n// Agricultural Product Prices System\nQ.agricultural_consumption = 100; // Base consumption level (can be modified by player actions)\nQ.agricultural_product_prices = 1.0; // Consumption/Production ratio\nQ.agricultural_price_status = \"Sufficient\"; // Text status for display\nQ.agricultural_price_timer = 0; // Timer for applying political effects\n\n// Economic Health System\nQ.economy_health = 0;\nQ.economy_health_raw = 0;\nQ.economy_health_timer = 0;\nQ.inflation_score = 0;\nQ.unemployment_score = 0;\nQ.growth_score = 0;\nQ.health_economy_status = \"Stable\";\nQ.apply_economy_effects = 0;\n\n// Foreign Exchange Pressure System\nQ.forex_pressure = 45;\nQ.forex_multiplier = 1;\nQ.crisis_forex_flag = 0;\nQ.forex_pressure_drift = 2;\nQ.forex_industry_penalty = 0.6;\nQ.forex_agriculture_ratio = 3;\nQ.forex_agriculture_penalty = Q.forex_industry_penalty/Q.forex_agriculture_ratio;\nQ.last_economy_year = null;\n\n// economic expansion timer\nQ.economic_expansion = 0;\n\n// quality of life (as % of base year - currently unused)\nQ.rural_qol = 100;\nQ.workers_qol = 100;\nQ.petty_bourgeoisie_qol = 100;\nQ.state_employees_qol = 100;\nQ.capitalists_qol = 100;\nQ.alevis_qol = 100;\nQ.kurds_qol = 100;\n\nQ.classes = ['rural', 'workers', 'petty_bourgeoisie', 'state_employees', 'capitalists', 'alevis', 'kurds'];\nQ.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];\n\n// Land Reform mechanics\nQ.koykent_progress = 0;\nQ.land_reform_progress = 0;\n// Implementation state: completed stages live in landreform_done; pending stage has no benefits yet.\nQ.land_distribution_pending_stage = 0;\nQ.land_distribution_due_tick = 0;\nQ.cooperative_progress = 0;\n\n// Support for party by social group - Turkish political alignment baseline (1972)\n// Rural (45% of population)\n\n// Workers (15% of population)\n\n// Apply union effects to worker support\nif (Q.disk_turkis_conflict >= 0.60 && Q.disk_turkis_conflict < 0.80) {\n    // TÜRK-İŞ leaning: Worker support AP +5%\n    Q.workers_AP += 5;\n} else if (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance: Worker support AP +10%\n    Q.workers_AP += 10;\n}\n\n// Petty Bourgeoisie (15% of population)\n\n// State Employees (7% of population)\n\n// Capitalists and Land Owners (3% of population)\n\n// Alevis (10% of population)\n\n// Kurdish population: existing preferences are the nonpolitical baseline.\n\n\n// Current Parliament composition - Turkish baseline (1972)\n// Based on weighted demographic calculations\nQ.chp_r = 27.3;\nQ.TIP_r = 2.6;\nQ.AP_r = 46.5; // AP (Justice Party)\nQ.CGP_r = 6.5;\nQ.DP_r = 0;\nQ.MSP_r = 0;\nQ.MHP_r = 3.0;\nQ.other_r = 14.1;\n\n// diff from prev\nQ.old_chp_r = 27.3;\nQ.old_TIP_r = 2.6;\nQ.old_AP_r = 46.5; // AP\nQ.old_CGP_r = 6.5;\nQ.old_DP_r = 0;\nQ.old_MSP_r = 0;\nQ.old_MHP_r = 3.0;\nQ.old_other_r = 14.1;\n\n// Parliament seat distribution (initial TBMM composition, updates via elections)\nQ.total_seats = 450;\nQ.chp_seats = 143;\nQ.AP_seats = 224;\nQ.TIP_seats = 2;\nQ.CGP_seats = 26;\nQ.DP_seats = 36;\nQ.MSP_seats = 0;\nQ.MHP_seats = 1;\n Q.other_seats = 18;\nQ.majority_threshold = 226;\nQ.largest_party_key = 'AP';\nQ.largest_party = 'AP';\n\nQ.democratic_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats;\nQ.grand_coalition = Q.democratic_coalition + Q.DP_seats;\nQ.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;\nQ.far_right_coalition = Q.MSP_seats + Q.MHP_seats;\nQ.left_coalition = Q.chp_seats + Q.TIP_seats;\nQ.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;\nQ.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;\nQ.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;\nQ.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;\nQ.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;\nQ.leverage = Q.chp_seats/1.5;\n\n// Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.\n// Once socialist_left_formed is set, TİP's (aggregate) vote share is displayed broken down into\n// itself and its minor splinter parties (TKP, TSİP, TEP, SDP), each taking a fixed share of the\n// bloc's total vote.\nQ.socialist_left_formed = 0;\n// Snapshot of socialist_left_formed as of the last election, used to decide whether the\n// \"Last election vote share\" section on the status screen shows the Socialist Left\n// breakdown (it must reflect whether the split existed AT the last election, not whether\n// it currently exists).\nQ.socialist_left_formed_last_election = 0;\nQ.former_TIP_r = 0;\nQ.TIP_socialist_left_r = 0;\nQ.TKP_r = 0;\nQ.TSIP_r = 0;\nQ.TEP_r = 0;\nQ.SDP_r = 0;\n\n// for changing the CGP's name to the DStP\nQ.CGP_name = \"MGP\";\nQ.CGP_formed = 0; Q.MSP_formed = 0;\nAnatolianRules.refreshPartyNames(Q);\n\n// array of objects of the form {date: Date(), CHP: 10, TIP: 12, ...} for each election\nQ.election_records = [];\n// party support records for every month\nQ.party_support_records = [];\n// inflation and unemployment records\nQ.economic_records = [];\n\n// Party Strategy\nQ.strategy_united = 0;\nQ.strategy_socdem = 0;\nQ.strategy_res = 0;\nQ.strategy_socfas = 0;\n\n// State of the government\nQ.president = \"Cevdet Sunay\";\n// starting prime_minister: Nihat Erim\n// starting prime minister: Nihat Erim\nQ.prime_minister = \"Nihat Erim\";\nQ.prime_minister_party = 'I';\nQ.CHP_in_government = 0;\nQ.AP_in_government = 0;\nQ.CGP_in_government = 0;\nQ.DP_in_government = 0;\nQ.MSP_in_government = 0;\nQ.TIP_in_government = 0;\nQ.MHP_in_government = 0;\nQ.I_in_government = 1;\nQ.generalstaff = \"Memduh Tağmaç\";\n\nQ.in_right_coalition = 0;\nQ.in_democratic_coalition = 0;\n// Grand coalition = <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP\n// also includes the \"new grand coalition\" of <span style=\"color: #E3000F;\">**CHP**</span> + Z + CGP + DP + Others\nQ.in_grand_coalition = 0;\n// Popular front = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + Z + CGP\nQ.in_popular_front = 0;\n// left coalition = <span style=\"color: #E3000F;\">**CHP**</span> + TIP + left-splinters\nQ.in_left_front = 0;\n// unholy coalition = <span style=\"color: #E3000F;\">**CHP**</span> + MSP\nQ.in_msp_coalition = 0;\nQ.in_emergency_government = 0;\nQ.in_CHP_majority = 0;\nQ.grand_coalition_failed = 0;\n// if the <span style=\"color: #E3000F;\">**CHP**</span> is ruling as part of a minority government\nQ.in_minority_government = 0;\n// national unity governmet\n\n// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.\nQ.coalition_dissent = 0;\n// dissent from the TIP, in a popular front or left front government\nQ.TIP_coalition_dissent = 0;\n\n// does the <span style=\"color: #E3000F;\">**CHP**</span> tolerate the government even if it is not a participant?\nQ.CHP_toleration = 0;\n\n// is the current government a presidential minority government?\nQ.minority_government = 0;\n\n// ministries - which parties control the ministries?\n// is the agricultural ministry useful at all?\nQ.foreign_minister = 'Independent minister';\nQ.foreign_minister_party = 'I';\nQ.interior_minister = 'Independent minister';\nQ.interior_minister_party = 'I';\nQ.justice_minister = 'Independent minister';\nQ.justice_minister_party = 'I';\nQ.labor_minister_party = 'I';\nQ.defense_minister = 'Independent minister';\nQ.defense_minister_party = 'I';\nQ.economic_minister = 'Independent minister';\nQ.economic_minister_party = 'I';\nQ.agriculture_minister = 'Independent minister';\nQ.agriculture_minister_party = 'I';\nQ.industrial_minister = 'Independent minister';\nQ.industrial_minister_party = 'I';\nQ.trade_minister = 'Independent minister';\nQ.trade_minister_party = 'I';\nQ.education_minister = 'Independent minister';\nQ.education_minister_party = 'I';\n\n// Events: what has occurred?\nQ.unemployment_insurance_seen = 0;\n// unemployment insurance event is seen if the unemployment level is at least 4 more than the threshold...\nQ.unemployment_insurance_threshold = 10;\n\n//\nQ.economicreform = 0\nQ.aet = 0\nQ.oil = 0\n\n// Working rights promises\nQ.lockout_promise = 0;\nQ.working_rights_promise = 0;\n// Working rights achievements\nQ.lokavtt = 0;\nQ.nationall = 0;\nQ.kitt = 0;\nQ.ikincilgrevv = 0;\nQ.healthinspectionss = 0;\n// Set to 1 when at least 3 one-time labour ministry reforms have been passed\nQ.labour_rights_reform = 0;\n\n// have we reformed these institutions to be more democratic?\nQ.judicial_reform = 0;\nQ.bureaucratic_reform = 0;\nQ.military_reform = 0;\nQ.womens_rights = 0;\n// Level of welfare relative to the starting situation (can go negative)\nQ.welfare = 0;\n// level of support for farmers\nQ.agricultural_policy = 0;\nQ.land_reform = 0;\nQ.rural_land_reform_policy = 0;\nQ.works_program = 0;\nQ.public_works_implemented = 0;\n// Relations with the Western countries (France, UK).\nQ.west_relation = 45;\n// Relations with Eastern Bloc countries\nQ.east_relation = 0;\n// Relations with the Soviet Union\nQ.soviet_relation = 20;\n// Relations with the United States\nQ.us_relation = 45;\n// Relations with the Middle East countries\nQ.middle_east_relation = 45;\n// Cyprus Problem status: 0 = Unresolved, 1 = Status Quo, 2 = Confederation, 3 = Divided\nQ.cyprus_problem = 0;\nQ.gunesplan = 0\nQ.denktasplan = 0\nQ.armsembargo = 0\n// Cyprus effects tracking\nQ.cyprus_last_status = 0; // Track previous status to detect changes\nQ.cyprus_confederation_timer = 0; // Timer for confederation positive effects (60; months = 5 years)\nQ.cyprus_divided_timer = 0; // Timer for divided positive effects (60; months = 5 years)\n// How much have we exposed the secret rearmament programs?\n// nationalization_progress is part of the left economic plan.\nQ.nationalization_progress = 0;\n// socializations is part of the economic democracy card.\nQ.socializations = 0;\nQ.nationalize_budget = 4;\n// have there been any factory takeovers?\nQ.factory_takeovers = 0;\n// progress on the moderate economic plan\nQ.moderate_plan_progress = 0;\n// European Union negotiation process\nQ.eu = 0;\nQ.eu_progress = 0;\n// science/education\nQ.science = 0;\nQ.education_science = 0;\n\n// Tax rates relative to the starting situation\nQ.lower_tax_rates = 0;\nQ.upper_tax_rates = 0;\nQ.tariffs = 5;\n\nQ.electoral_threshold = 0;\n\n// our conduct in the government, and the conduct of our coalition opponents.\n// did the <span style=\"color: #E3000F;\">**CHP**</span> vote against the previous government in a vote of no confidence?\nQ.CHP_no_confidence = 0;\n// was the last <span style=\"color: #E3000F;\">**CHP**</span> government taken down in a vote of no confidence by right-wing coalition partners?\nQ.no_confidence_against_chp = 0;\n\n// Advisors/Leaders\n// n_advisors counts only swappable member slots (not leader or secretary)\nQ.n_advisors = 2;\n// timer - this decrements by 1 every turn, and is set to 5 whenever an advisor action is used, so that you can only use one advisor action every 5 months.\n// let's just put all of the timers here...\n// most party affairs and government affairs cards are on a timer.\nQ.timers = ['advisor_action',  'crisis_program',\n            'fundraising', 'ideology', 'intraparty',\n            'inter_party_relationships', 'international_relations',\n             'media', 'enemies',\n            'party_organizations', 'rally',\n            'shuffle_leadership',  'peoples_party',\n            'party_disunity', 'union', 'union_visit', 'campaign', 'campaigning', 'campaigning_ecevit', 'kmd', 'culture', 'municipality', 'kemalizm', 'koykent_rally', 'remnants_of_inonu', 'strategy',\n            // govt\n            'agricultural_policy', 'domestic_enemies', 'fiscal_policy',\n            'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',\n            'police',  'shuffle_cabinet',\n            'homosexual_rights', 'economic_policy', 'coalition_affairs',\n            'womens_rights', 'economic_democracy', 'religious_affairs_directorate', 'kurdish_issue',\n            'dealing_with_toleration',\n            'constitutional_reform', 'labor_rights',\n            'education_science', 'curriculum', 'avans', 'cutspending',\n            // events\n            'emergency_cuts', 'unemployment_insurance',\n\n            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',\n            'high_inflation', 'banking_crisis',\n            'understanding_enemy', ];\nQ.advisor_action_timer = 0;\n// party affairs timers\nQ.crisis_program_timer = 0;\nQ.fundraising_timer = 0;\nQ.ideology_timer = 0;\nQ.intraparty_timer = 0\nQ.poppy_campaign = 0;\nQ.strategy_timer = 0;\nQ.poppy_harvestation = 1;\nQ.inter_party_relationships_timer = 0;\nQ.international_relations_timer = 0;\nQ.western_socialist_contacts = 0;\nQ.socialist_international_member = 0;\nQ.avans_timer = 0;\nQ.remnants_of_inonu_timer = 0;\nQ.cutspending_timer = 0;\nQ.media_timer = 0;\nQ.enemies_timer = 0;\nQ.party_organizations_timer =  0;\nQ.rally_timer = 0;\nQ.kemalizm_timer = 0;\nQ.koykent_rally_timer = 0;\nQ.shuffle_leadership_timer = 0;\nQ.streetfighting_timer = 0;\nQ.peoples_party_timer = 0;\n// n_elections is the number of elections that have happened since the start of the game.\nQ.n_elections = 0;\n// number of elections without a clear majority.\nQ.no_majority_elections = 0;\n// elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.\nQ.in_election = 1;\nQ.next_election_year = 1973;\nQ.next_election_month = 10;\nQ.next_election_time = 22;\nif (typeof Q.local_elections_held === 'undefined') {\n    Q.local_elections_held = 0;\n}\nif (typeof Q.next_local_election_year === 'undefined') {\n    Q.next_local_election_year = 1973;\n}\nif (typeof Q.next_local_election_month === 'undefined') {\n    Q.next_local_election_month = 12;\n}\nif (typeof Q.next_local_election_week === 'undefined') {\n    Q.next_local_election_week = 2;\n}\nif (typeof Q.next_local_election_time === 'undefined') {\n    Q.next_local_election_time = 0;\n}\n// government affairs timers\nQ.agricultural_policy_timer = 0;\nQ.domestic_enemies_timer = 0;\nQ.economic_policy_timer = 0;\nQ.fiscal_policy_timer = 0;\nQ.foreign_policy_timer = 0;\nQ.judiciary_timer = 0;\nQ.labor_affairs_timer = 0;\nQ.military_policy_timer = 0;\nQ.police_timer = 0;\nQ.shuffle_cabinet_timer = 0;\n\nQ.womens_rights_timer = 0;\nQ.homosexual_rights_timer = 0;\nQ.municipality_timer = 0;\nQ.economic_democracy_timer = 0;\nQ.religious_affairs_directorate_timer = 0;\nQ.kurdish_issue_timer = 0;\nQ.coalition_affairs_timer = 0;\nQ.industrial_policy_timer = 0;\n// Economic policy state\nQ.Tiger = 0;\nQ.imf_agreement = 0;\n\n// Tracking flags for one-time effects\nQ.oil_effect_applied = false;\nQ.oil_inflation_effect = 0;\nQ.land_reform_effect_applied = false;\nQ.cooperative_effect_applied = false;\nQ.koykent_effect_applied = false;\nQ.koykent_achievement_seen = false;\nQ.tiger_1978_effect_applied = false;\nQ.tiger_1979_effect_applied = false;\nQ.tiger_1980_effect_applied = false;\n\n// event timers\nQ.emergency_cuts_timer = 0;\nQ.unemployment_insurance_timer = 0;\nQ.TIP_ultimatum_timer = 0;\n\n//Cyprus attitudes\nQ.greece_attitude = 4;\nQ.uk_attitude = 50 + (Q.west_relation - 50);\nQ.us_attitude = 35 + (Q.us_relation - 50);\n\n// all the initial advisors are centrists.\n// Leader and Secretary have advisor=1 for display but are NOT counted in n_advisors.\n// Only Members (Ecevit, Satır) are counted in n_advisors.\nQ.inonu_advisor = 1; // İsmet İnönü (Party Leader, not in n_advisors)\nQ.kirikoglu_advisor = 1; // Kamil Kırıkoğlu (Party Secretary, not in n_advisors)\nQ.ecevit_advisor = 1; // Bülent Ecevit (Member, counted in n_advisors)\nQ.satir_advisor = 1; // Kemal Satır (Member, counted in n_advisors)\n\n// left advisors\n\n// centrist alternate advisors\n\n// Reformist advisors\n\n// Labor advisors\n\n// Revisionist advisors\n\n\n// Nonfactional advisors\n\n// Turkish Right-Wing Kemalist advisors\nQ.gogus_advisor = 0; // Ali İhsan Göğüs (existing)\nQ.paksut_advisor = 0; // Emin Paksüt\nQ.celikbas_advisor = 0; // Fethi Çelikbaş\n\n// Turkish advisors - other factions\nQ.avcioglu_advisor = 0; // Doğan Avcıoğlu (Kemalist Marxist)\nQ.eyuboglu_advisor = 0; // Sabahattin Eyüboğlu (Reformist Kemalist)\n\n// Function to calculate municipality control level dynamically\nfunction getMunicipalityControlLevel() {\n    var controlled = Q.municipalities_controlled || 0;\n    var total = Q.total_municipalities || Q.local_total_seats || 67;\n    if (total <= 0) {\n        total = 67;\n    }\n    var ratio = controlled / total;\n    if (ratio <= (13 / 67)) {\n        return 0; // Terrible\n    } else if (ratio <= (26 / 67)) {\n        return 1; // Poor\n    } else if (ratio <= (34 / 67)) {\n        return 2; // Divided\n    } else if (ratio <= (40 / 67)) {\n        return 3; // Satisfactory\n    }\n    return 4; // Overwhelming\n}\n\n// Set initial municipality control level\nQ.municipality_control_level = getMunicipalityControlLevel();\n\n// Function to update municipality control level (call this whenever municipalities_controlled changes)\nfunction updateMunicipalityControlLevel() {\n    Q.municipality_control_level = getMunicipalityControlLevel();\n}\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nAnatolianRules.refreshVotes(Q);\nAnatolianRules.ensureKurdishIssue(Q);\nif(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);\nAnatolianPeoplesSector.ensure(Q);\nif(typeof AnatolianSenate!==\"undefined\")AnatolianSenate.ensure(Q);"
         }
       ],
       "setBg": "img/map_4.jpg",
@@ -26974,10 +27084,6 @@
         {
           "id": "@military_policy.ee",
           "title": "Do not increase the military budget."
-        },
-        {
-          "id": "@military_policy.navigation_return_budget",
-          "title": "Return"
         }
       ],
       "content": {
@@ -27274,10 +27380,9 @@
             },
             {
               "type": "conditional",
-              "content": "The enacted Köykent project has revolutionized our rural support. ",
+              "content": "The enacted Köykent project has revolutionized our rural support.",
               "predicate": 6
-            },
-            ""
+            }
           ]
         },
         "stateDependencies": [
@@ -27447,14 +27552,11 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties splitting the right vote and not the larger AP. ",
-                "predicate": 0
-              },
-              ""
-            ]
+            "content": {
+              "type": "conditional",
+              "content": "Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties splitting the right vote and not the larger AP.",
+              "predicate": 0
+            }
           }
         ],
         "stateDependencies": [
@@ -29077,10 +29179,6 @@
         },
         {
           "id": "@easy_discard"
-        },
-        {
-          "id": "@land_reform.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": {
@@ -29122,10 +29220,9 @@
               },
               {
                 "type": "conditional",
-                "content": "We have announced the ambitious Köykent village-city project. ",
+                "content": "We have announced the ambitious Köykent village-city project.",
                 "predicate": 3
-              },
-              ""
+              }
             ]
           }
         ],
@@ -30390,10 +30487,9 @@
             },
             {
               "type": "conditional",
-              "content": "The quasi fascists and their militant dogs are the most urgent problem for us to deal with. ",
+              "content": "The quasi fascists and their militant dogs are the most urgent problem for us to deal with.",
               "predicate": 1
-            },
-            ""
+            }
           ]
         },
         "stateDependencies": [
@@ -31785,10 +31881,6 @@
         },
         {
           "id": "@easy_discard"
-        },
-        {
-          "id": "@coalition_affairs.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": {
@@ -31814,13 +31906,10 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "insert",
+              "insert": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -32370,6 +32459,9 @@
     },
     "culture.navigation_return_main": {
       "id": "culture.navigation_return_main",
+      "viewIf": {
+        "$code": "return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0));"
+      },
       "title": "Return",
       "goTo": [
         {
@@ -32740,10 +32832,6 @@
         },
         {
           "id": "@easy_discard"
-        },
-        {
-          "id": "@union_relations.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": [
@@ -33311,12 +33399,8 @@
           "title": "Allocate funds to People's Sector"
         },
         {
-          "id": "@economic_democracy",
+          "id": "@economic_democracy.navigation_menu",
           "title": "Back."
-        },
-        {
-          "id": "@economic_democracy.navigation_return_peoples_sector",
-          "title": "Return"
         }
       ],
       "content": [
@@ -33668,10 +33752,6 @@
         {
           "id": "@root",
           "title": "Take no further action."
-        },
-        {
-          "id": "@police.navigation_return_investigate_far_right",
-          "title": "Return"
         }
       ],
       "content": [
@@ -34406,10 +34486,6 @@
         },
         {
           "id": "@easy_discard"
-        },
-        {
-          "id": "@campaigning.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": [
@@ -34510,6 +34586,9 @@
     },
     "enemies.navigation_return_main": {
       "id": "enemies.navigation_return_main",
+      "viewIf": {
+        "$code": "return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0));"
+      },
       "title": "Return",
       "goTo": [
         {
@@ -34585,21 +34664,18 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "Previously, we had considered the ",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " as our prior enemies. Is a change of direction necessary? "
-                ],
-                "predicate": 0
-              },
-              ""
-            ]
+            "content": {
+              "type": "conditional",
+              "content": [
+                "Previously, we had considered the ",
+                {
+                  "type": "insert",
+                  "insert": 1
+                },
+                " as our prior enemies. Is a change of direction necessary?"
+              ],
+              "predicate": 0
+            }
           }
         ],
         "stateDependencies": [
@@ -34701,10 +34777,6 @@
         },
         {
           "id": "@cancel_advisor_action"
-        },
-        {
-          "id": "@international_relations.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": [
@@ -36618,12 +36690,8 @@
           "title": "Allocate funds to Cooperative Bank"
         },
         {
-          "id": "@economic_democracy",
+          "id": "@economic_democracy.navigation_menu",
           "title": "Back."
-        },
-        {
-          "id": "@economic_democracy.navigation_return_cooperative_bank",
-          "title": "Return"
         }
       ],
       "content": [
@@ -37297,10 +37365,6 @@
         },
         {
           "id": "@cancel_advisor_action"
-        },
-        {
-          "id": "@media.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": {
@@ -37322,21 +37386,18 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "The <span style=\"color: #E3000F;\">",
-                  {
-                    "type": "emphasis-2",
-                    "content": "CHP"
-                  },
-                  "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... "
-                ],
-                "predicate": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "conditional",
+              "content": [
+                "The <span style=\"color: #E3000F;\">",
+                {
+                  "type": "emphasis-2",
+                  "content": "CHP"
+                },
+                "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage..."
+              ],
+              "predicate": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -38123,6 +38184,9 @@
     },
     "judiciary.navigation_return_main": {
       "id": "judiciary.navigation_return_main",
+      "viewIf": {
+        "$code": "return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0) || (Q.last_advisor_action == 1 || Q.last_cabinet_action == 1));"
+      },
       "title": "Return",
       "goTo": [
         {
@@ -39459,10 +39523,6 @@
         },
         {
           "id": "@easy_discard"
-        },
-        {
-          "id": "@dealing_with_toleration.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": {
@@ -40936,10 +40996,6 @@
         },
         {
           "id": "@easy_discard"
-        },
-        {
-          "id": "@dealing_with_toleration.navigation_return_main",
-          "title": "Return"
         }
       ],
       "content": {
@@ -43904,40 +43960,24 @@
                 "content": "Investigators find that several far-right groups have access to weapons and contacts beyond their public organizations. Reports refer to a Counter-Guerrilla network, but the chains of command remain concealed. ",
                 "predicate": 0
               },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
+              " ",
               {
                 "type": "conditional",
                 "content": "The inquiry traces contacts to secret stay-behind preparations within the Cold War alliance. Similar networks abroad are associated with Operation Gladio. The ministry has identified connections, but does not yet know enough to intervene effectively. ",
                 "predicate": 1
               },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
+              " ",
               {
                 "type": "conditional",
                 "content": "Records point towards Özel Harp Dairesi, the Special Warfare Department under the General Staff. Its official purpose is resistance against an occupation, but the investigation finds indications of domestic political activity outside proper civilian oversight. ",
                 "predicate": 2
               },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
+              " ",
               {
                 "type": "conditional",
-                "content": "The government now understands the department’s hidden funding arrangements and the underground networks linked to it. The inquiry has gathered enough evidence to restrict clandestine support and impose civilian scrutiny. The department cannot be eliminated by a single decision, but its capacity can be weakened. ",
+                "content": "The government now understands the department’s hidden funding arrangements and the underground networks linked to it. The inquiry has gathered enough evidence to restrict clandestine support and impose civilian scrutiny. The department cannot be eliminated by a single decision, but its capacity can be weakened.",
                 "predicate": 3
-              },
-              ""
+              }
             ]
           }
         ],
@@ -44317,6 +44357,9 @@
     },
     "rally.navigation_return_main_rally": {
       "id": "rally.navigation_return_main_rally",
+      "viewIf": {
+        "$code": "return !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0));"
+      },
       "title": "Return",
       "goTo": [
         {
@@ -46057,63 +46100,40 @@
         }
       ],
       "content": {
-        "content": [
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "We have raided some drug depots in the border regions, however more work is needed to solve the issue altogether. ",
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Continuous raids and operations in the East have begun weakening the power of the local gangs! ",
-                "predicate": 1
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The crime rates have been decreased significantly thanks to the determination of the security forces. ",
-                "predicate": 2
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The region has largely been neutralized, with only isolated incidents remaining as remnants of past instability. ",
-                "predicate": 3
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries. ",
-                "predicate": 4
-              },
-              ""
-            ]
-          }
-        ],
+        "content": {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "conditional",
+              "content": "We have raided some drug depots in the border regions, however more work is needed to solve the issue altogether. ",
+              "predicate": 0
+            },
+            " ",
+            {
+              "type": "conditional",
+              "content": "Continuous raids and operations in the East have begun weakening the power of the local gangs! ",
+              "predicate": 1
+            },
+            " ",
+            {
+              "type": "conditional",
+              "content": "The crime rates have been decreased significantly thanks to the determination of the security forces. ",
+              "predicate": 2
+            },
+            " ",
+            {
+              "type": "conditional",
+              "content": "The region has largely been neutralized, with only isolated incidents remaining as remnants of past instability. ",
+              "predicate": 3
+            },
+            " ",
+            {
+              "type": "conditional",
+              "content": "The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries.",
+              "predicate": 4
+            }
+          ]
+        },
         "stateDependencies": [
           {
             "type": "predicate",
@@ -46568,13 +46588,10 @@
         },
         {
           "type": "paragraph",
-          "content": [
-            {
-              "type": "magic",
-              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
-            },
-            ""
-          ]
+          "content": {
+            "type": "magic",
+            "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+          }
         }
       ]
     },
@@ -46655,13 +46672,10 @@
         },
         {
           "type": "paragraph",
-          "content": [
-            {
-              "type": "magic",
-              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
-            },
-            ""
-          ]
+          "content": {
+            "type": "magic",
+            "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+          }
         }
       ]
     },
@@ -46851,74 +46865,8 @@
           "title": "Investigate illegal activity among the far right."
         },
         {
-          "id": "@police.ohal",
-          "title": "Declare OHAL(state of emergency) to put an end to the street fighting."
-        },
-        {
-          "id": "@root",
-          "title": "Take no action for now."
-        },
-        {
-          "id": "@easy_discard"
-        },
-        {
-          "id": "@cancel_advisor_action"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Internal Security"
-        },
-        {
-          "type": "paragraph",
-          "content": "The Interior Ministry controls internal security throughout the Turkish Republic."
-        }
-      ]
-    },
-    "police": {
-      "id": "police",
-      "type": "scene",
-      "title": "Internal Security",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "onArrival": [
-        {
-          "$code": "Q['police_timer'] = (Q['police_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "viewIf": {
-        "$code": "return Q.CHP_in_government === 1 && (Q.interior_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"interior\"))) && Q.police_timer <= 0;"
-      },
-      "cardImage": "img/portraits/necdetugur2.png",
-      "options": [
-        {
-          "id": "@police.easterncrime",
-          "title": "Clamp down on organized crime in the East."
-        },
-        {
-          "id": "@police.loyalty",
-          "title": "Improve the loyalty of the Interior Ministry forces."
-        },
-        {
-          "id": "@police.recruit",
-          "title": "Recruit more police forces."
-        },
-        {
-          "id": "@police.weaponry",
-          "title": "Supplement the weaponry and the strength of the police forces."
-        },
-        {
-          "id": "@police.investigate_corruption",
-          "title": "Investigate corruption by big businesses."
-        },
-        {
-          "id": "@police.investigate_far_right",
-          "title": "Investigate illegal activity among the far right."
+          "id": "@police.investigate_far_left",
+          "title": "Investigate illegal activity among the far left."
         },
         {
           "id": "@police.ohal",
@@ -47141,6 +47089,54 @@
         "type": "paragraph"
       }
     },
+    "police.investigate_far_left": {
+      "id": "police.investigate_far_left",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@police.ban_thkpc",
+          "title": "Ban THKP-C."
+        },
+        {
+          "id": "@police.pursue_thkpc",
+          "title": "Further Persecute THKP-C."
+        },
+        {
+          "id": "@police.ban_devyol",
+          "title": "Ban DEV-YOL."
+        },
+        {
+          "id": "@police.pursue_devyol",
+          "title": "Further Persecute DEV-YOL."
+        },
+        {
+          "id": "@police.ban_tkpml",
+          "title": "Ban TKP/ML."
+        },
+        {
+          "id": "@police.pursue_tkpml",
+          "title": "Further Persecute TKP/ML."
+        },
+        {
+          "id": "@root",
+          "title": "Take no further action."
+        },
+        {
+          "id": "@police.navigation_menu",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Investigate illegal activity among the far left"
+        },
+        {
+          "type": "paragraph",
+          "content": "The ministry can act against militant far-left organizations. These groups begin banned. Where a group is legal, an initial ban requires far-left strength to reach at least 35% and reduces membership by 40% and militarization by 35%. Further persecutions remove up to twenty thousand members and reduce militarization by 0.03."
+        }
+      ]
+    },
     "shuffle_leadership.remove_celikbas": {
       "id": "shuffle_leadership.remove_celikbas",
       "title": "Remove Çelikbaş",
@@ -47342,6 +47338,31 @@
       ],
       "content": {
         "content": "Oil loans allow us to build resistance for any future turbulence in global petrol prices. The payments however will have a negative impact on our economic growth.",
+        "type": "paragraph"
+      }
+    },
+    "police.ban_thkpc": {
+      "id": "police.ban_thkpc",
+      "viewIf": {
+        "$code": "return ((!(((Q['thkpc_destroyed'] || 0)) !== 0)) && (!(((Q['thkpc_banned'] || 0)) !== 0)));"
+      },
+      "chooseIf": {
+        "$code": "return ((Q['far_left_force_percent'] || 0) >= 35);"
+      },
+      "unavailableSubtitle": "Far-left strength must reach at least 35%.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'thkpc',true);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "THKP-C is banned. Membership falls by 40% and militarization by 35%. The network survives underground and requires further action.",
         "type": "paragraph"
       }
     },
@@ -47607,6 +47628,31 @@
       ],
       "content": {
         "content": "Through a series of agreements on temporary working permits, many of our unemployed citizens go to work in the Gulf Monarchies.",
+        "type": "paragraph"
+      }
+    },
+    "police.pursue_thkpc": {
+      "id": "police.pursue_thkpc",
+      "viewIf": {
+        "$code": "return ((!(((Q['thkpc_destroyed'] || 0)) !== 0)) && ((Q['thkpc_banned'] || 0) == 1));"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.number(Q.thkpc_strength)>0;"
+      },
+      "unavailableSubtitle": "There are no active members left to prosecute.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'thkpc',false);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "Further persecutions of THKP-C remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.",
         "type": "paragraph"
       }
     },
@@ -47918,6 +47964,31 @@
         ]
       }
     },
+    "police.ban_devyol": {
+      "id": "police.ban_devyol",
+      "viewIf": {
+        "$code": "return (((Q['devyol_formed'] || 0) == 1) && (!(((Q['devyol_banned'] || 0)) !== 0)));"
+      },
+      "chooseIf": {
+        "$code": "return ((Q['far_left_force_percent'] || 0) >= 35);"
+      },
+      "unavailableSubtitle": "Far-left strength must reach at least 35%.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'devyol',true);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "DEV-YOL is banned. Membership falls by 40% and militarization by 35%. The network survives underground and requires further action.",
+        "type": "paragraph"
+      }
+    },
     "shuffle_leadership.remove_akan": {
       "id": "shuffle_leadership.remove_akan",
       "title": "Remove Akan",
@@ -48051,6 +48122,31 @@
             }
           }
         ]
+      }
+    },
+    "police.pursue_devyol": {
+      "id": "police.pursue_devyol",
+      "viewIf": {
+        "$code": "return (((Q['devyol_formed'] || 0) == 1) && ((Q['devyol_banned'] || 0) == 1));"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.number(Q.devyol_strength)>0;"
+      },
+      "unavailableSubtitle": "There are no active members left to prosecute.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'devyol',false);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "Further persecutions of DEV-YOL remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.",
+        "type": "paragraph"
       }
     },
     "shuffle_leadership.remove_erdem": {
@@ -48280,6 +48376,31 @@
         }
       ]
     },
+    "police.ban_tkpml": {
+      "id": "police.ban_tkpml",
+      "viewIf": {
+        "$code": "return (((Q['tkpml_formed'] || 0) == 1) && (!(((Q['tkpml_banned'] || 0)) !== 0)));"
+      },
+      "chooseIf": {
+        "$code": "return ((Q['far_left_force_percent'] || 0) >= 35);"
+      },
+      "unavailableSubtitle": "Far-left strength must reach at least 35%.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'tkpml',true);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "TKP/ML is banned. Membership falls by 40% and militarization by 35%. The network survives underground and requires further action.",
+        "type": "paragraph"
+      }
+    },
     "shuffle_leadership.remove_ugur": {
       "id": "shuffle_leadership.remove_ugur",
       "title": "Remove Uğur",
@@ -48355,6 +48476,105 @@
         "content": "",
         "type": "paragraph"
       }
+    },
+    "police.pursue_tkpml": {
+      "id": "police.pursue_tkpml",
+      "viewIf": {
+        "$code": "return (((Q['tkpml_formed'] || 0) == 1) && ((Q['tkpml_banned'] || 0) == 1));"
+      },
+      "chooseIf": {
+        "$code": "return AnatolianRules.number(Q.tkpml_strength)>0;"
+      },
+      "unavailableSubtitle": "There are no active members left to prosecute.",
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.securityAction(Q,'tkpml',false);"
+        }
+      ],
+      "options": [
+        {
+          "id": "@root",
+          "title": "Continue."
+        }
+      ],
+      "content": {
+        "content": "Further persecutions of TKP/ML remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.",
+        "type": "paragraph"
+      }
+    },
+    "police": {
+      "id": "police",
+      "type": "scene",
+      "title": "Internal Security",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "onArrival": [
+        {
+          "$code": "Q['police_timer'] = (Q['police_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "viewIf": {
+        "$code": "return Q.CHP_in_government === 1 && (Q.interior_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"interior\"))) && Q.police_timer <= 0;"
+      },
+      "cardImage": "img/portraits/necdetugur2.png",
+      "options": [
+        {
+          "id": "@police.easterncrime",
+          "title": "Clamp down on organized crime in the East."
+        },
+        {
+          "id": "@police.loyalty",
+          "title": "Improve the loyalty of the Interior Ministry forces."
+        },
+        {
+          "id": "@police.recruit",
+          "title": "Recruit more police forces."
+        },
+        {
+          "id": "@police.weaponry",
+          "title": "Supplement the weaponry and the strength of the police forces."
+        },
+        {
+          "id": "@police.investigate_corruption",
+          "title": "Investigate corruption by big businesses."
+        },
+        {
+          "id": "@police.investigate_far_right",
+          "title": "Investigate illegal activity among the far right."
+        },
+        {
+          "id": "@police.investigate_far_left",
+          "title": "Investigate illegal activity among the far left."
+        },
+        {
+          "id": "@police.ohal",
+          "title": "Declare OHAL(state of emergency) to put an end to the street fighting."
+        },
+        {
+          "id": "@root",
+          "title": "Take no action for now."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@cancel_advisor_action"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Internal Security"
+        },
+        {
+          "type": "paragraph",
+          "content": "The Interior Ministry controls internal security throughout the Turkish Republic."
+        }
+      ]
     },
     "shuffle_leadership.add_advisors": {
       "id": "shuffle_leadership.add_advisors",
@@ -64960,9 +65180,9 @@
       "labor_affairs": true,
       "education_science": true,
       "economic_democracy": true,
-      "police": true,
       "fiscal_policy": true,
-      "foreign_policy": true
+      "foreign_policy": true,
+      "police": true
     },
     "cabinet": {
       "shuffle_cabinet": true,
@@ -64977,9 +65197,9 @@
       "labor_affairs": true,
       "education_science": true,
       "economic_democracy": true,
-      "police": true,
       "fiscal_policy": true,
-      "foreign_policy": true
+      "foreign_policy": true,
+      "police": true
     },
     "kemalist_marxist_advisor": {
       "shuffle_leadership.rm_main": true,

@@ -16,6 +16,7 @@ The Interior Ministry controls internal security throughout the Turkish Republic
 - @weaponry: Supplement the weaponry and the strength of the police forces.
 - @investigate_corruption: Investigate corruption by big businesses.
 - @investigate_far_right: Investigate illegal activity among the far right.
+- @investigate_far_left: Investigate illegal activity among the far left.
 - @ohal: Declare OHAL(state of emergency) to put an end to the street fighting.
 - @root: Take no action for now.
 - @easy_discard
@@ -70,7 +71,6 @@ The ministry can act against armed organizations and investigate the anti-commun
 - @underground: Investigate Far Right and Anti-Communist Underground.
 - @clamp_ohp: Clamp down on ÖHD.
 - @root: Take no further action.
-- @navigation_return_investigate_far_right: Return
 
 @ban_grey
 view-if: not grey_wolves_banned
@@ -194,7 +194,84 @@ The Interior Ministry controls internal security throughout the Turkish Republic
 - @weaponry: Supplement the weaponry and the strength of the police forces.
 - @investigate_corruption: Investigate corruption by big businesses.
 - @investigate_far_right: Investigate illegal activity among the far right.
+- @investigate_far_left: Investigate illegal activity among the far left.
 - @ohal: Declare OHAL(state of emergency) to put an end to the street fighting.
 - @root: Take no action for now.
 - @easy_discard
 - @cancel_advisor_action
+
+@investigate_far_left
+new-page: true
+
+= Investigate illegal activity among the far left
+
+The ministry can act against militant far-left organizations. These groups begin banned. Where a group is legal, an initial ban requires far-left strength to reach at least 35% and reduces membership by 40% and militarization by 35%. Further persecutions remove up to twenty thousand members and reduce militarization by 0.03.
+
+- @ban_thkpc: Ban THKP-C.
+- @pursue_thkpc: Further Persecute THKP-C.
+- @ban_devyol: Ban DEV-YOL.
+- @pursue_devyol: Further Persecute DEV-YOL.
+- @ban_tkpml: Ban TKP/ML.
+- @pursue_tkpml: Further Persecute TKP/ML.
+- @root: Take no further action.
+- @navigation_menu: Return
+
+@ban_thkpc
+view-if: not thkpc_destroyed and not thkpc_banned
+choose-if: far_left_force_percent >= 35
+unavailable-subtitle: Far-left strength must reach at least 35%.
+on-arrival: {! AnatolianRules.securityAction(Q,'thkpc',true); !}
+
+THKP-C is banned. Membership falls by 40% and militarization by 35%. The network survives underground and requires further action.
+
+- @root: Continue.
+
+@pursue_thkpc
+view-if: not thkpc_destroyed and thkpc_banned == 1
+choose-if: {! return AnatolianRules.number(Q.thkpc_strength)>0; !}
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'thkpc',false); !}
+
+Further persecutions of THKP-C remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.
+
+- @root: Continue.
+
+@ban_devyol
+view-if: devyol_formed == 1 and not devyol_banned
+choose-if: far_left_force_percent >= 35
+unavailable-subtitle: Far-left strength must reach at least 35%.
+on-arrival: {! AnatolianRules.securityAction(Q,'devyol',true); !}
+
+DEV-YOL is banned. Membership falls by 40% and militarization by 35%. The network survives underground and requires further action.
+
+- @root: Continue.
+
+@pursue_devyol
+view-if: devyol_formed == 1 and devyol_banned == 1
+choose-if: {! return AnatolianRules.number(Q.devyol_strength)>0; !}
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'devyol',false); !}
+
+Further persecutions of DEV-YOL remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.
+
+- @root: Continue.
+
+@ban_tkpml
+view-if: tkpml_formed == 1 and not tkpml_banned
+choose-if: far_left_force_percent >= 35
+unavailable-subtitle: Far-left strength must reach at least 35%.
+on-arrival: {! AnatolianRules.securityAction(Q,'tkpml',true); !}
+
+TKP/ML is banned. Membership falls by 40% and militarization by 35%. The network survives underground and requires further action.
+
+- @root: Continue.
+
+@pursue_tkpml
+view-if: tkpml_formed == 1 and tkpml_banned == 1
+choose-if: {! return AnatolianRules.number(Q.tkpml_strength)>0; !}
+unavailable-subtitle: There are no active members left to prosecute.
+on-arrival: {! AnatolianRules.securityAction(Q,'tkpml',false); !}
+
+Further persecutions of TKP/ML remove up to twenty thousand members from the active pool. Weapons seizures reduce militarization by 0.03. Surviving networks may still recruit again.
+
+- @root: Continue.
