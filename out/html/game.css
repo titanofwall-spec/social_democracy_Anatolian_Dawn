@@ -2153,7 +2153,7 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
     linear-gradient(90deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.22) 34%, rgba(0,0,0,.44) 100%),
     url('img/anatolian-dawn-eyes.png');
   background-size: cover;
-  background-position: center 44%;
+  background-position: center calc(44% - 35px);
   background-repeat: no-repeat;
 }
 #mid_panel > header.ad-command-header #game-title,
@@ -2182,3 +2182,5 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   #mid_panel > header.ad-command-header .ad-game-ribbon { min-height: 36px; }
   #mid_panel > header.ad-command-header #game-title { font-size: 1.22em; }
 }
+
+/* ANATOLIAN DAWN — TITLE RIBBON RAISE IMAGE v6 */
