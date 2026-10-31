@@ -7729,6 +7729,8 @@
     },
     "national_elections.post_national_elections": {
       "id": "national_elections.post_national_elections",
+      "title": "Election Results",
+      "newPage": true,
       "onArrival": [
         {
           "$code": "Q['I_in_government'] = 0;"
@@ -7747,18 +7749,10 @@
           "$code": "data = [\n    {\n        \"id\": \"TIP\",\n        \"legend\": \"TİP\",\n        \"name\": \"TİP\",\n        \"seats\": Q.TIP_seats,\n    }\n];\n\ndata = data.concat([\n    {\n        \"id\": \"chp\",\n        \"legend\": \"CHP\",\n        \"name\": \"CHP\",\n        \"seats\": Q.chp_seats,\n    },\n    {\n        \"id\": \"CGP\",\n        \"legend\": Q.CGP_name,\n        \"name\": Q.CGP_name,\n        \"seats\": Q.CGP_seats,\n    },\n    {\n        \"id\": \"AP\",\n        \"legend\": \"AP\",\n        \"name\": \"AP\",\n        \"seats\": Q.AP_seats,\n    },\n    {\n        \"id\": \"DP\",\n        \"legend\": \"DP\",\n        \"name\": \"DP\",\n        \"seats\": Q.DP_seats,\n    },\n    {\n        \"id\": \"MSP\",\n        \"legend\": Q.MSP_name,\n        \"name\": Q.MSP_name,\n        \"seats\": Q.MSP_seats,\n    },\n    {\n        \"id\": \"MHP\",\n        \"legend\": \"MHP\",\n        \"name\": \"MHP\",\n        \"seats\": Q.MHP_seats,\n    },\n]);\ndata=data.concat(AnatolianRules.extraPartyData(Q));\nif (window && d3) {\n    var width = 500;\n    var height = 500;\n    var electionParliaments=document.querySelectorAll('.national-election-parliament');\n    var electionParliament=electionParliaments[electionParliaments.length-1];\n    var screenWidth = document.getElementById('content').offsetWidth;\n    if (screenWidth < width - 50) {\n        width = screenWidth - 50;\n        height = width;\n        electionParliament.style.height = screenWidth/2 + \"px\";\n    }\n\n    var parliament = d3.parliament();\n    parliament.width(width).height(height).innerRadiusCoef(0.4);\n    parliament.enter.fromCenter(true).smallToBig(true);\n    parliament.exit.toCenter(false).bigToSmall(true);\n    d3.select(electionParliament).datum(data).call(parliament);\n    if(typeof renderElectionResultMap==='function')renderElectionResultMap('general');\n}"
         }
       ],
-      "goTo": [
+      "options": [
         {
-          "id": "coalition_negotiations",
-          "predicate": {
-            "$code": "return typeof AnatolianCoalitions!==\"undefined\";"
-          }
-        },
-        {
-          "id": "national_elections.coalition_menu",
-          "predicate": {
-            "$code": "return typeof AnatolianCoalitions===\"undefined\";"
-          }
+          "id": "@coalition_negotiations",
+          "title": "Now comes the task of government forming."
         }
       ],
       "content": {
@@ -8572,6 +8566,22 @@
             "content": [
               {
                 "type": "emphasis-2",
+                "content": [
+                  "Total seats: ",
+                  {
+                    "type": "insert",
+                    "insert": 53
+                  }
+                ]
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "emphasis-2",
                 "content": "Potential coalitions"
               },
               " ",
@@ -8588,7 +8598,7 @@
               "Left Coalition (CHP + TİP): ",
               {
                 "type": "insert",
-                "insert": 53
+                "insert": 54
               },
               " seats"
             ]
@@ -8599,20 +8609,9 @@
               "Kemalist Coalition (CHP + ",
               {
                 "type": "insert",
-                "insert": 54
-              },
-              "): ",
-              {
-                "type": "insert",
                 "insert": 55
               },
-              " seats"
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Grand Coalition (CHP + AP): ",
+              "): ",
               {
                 "type": "insert",
                 "insert": 56
@@ -8623,7 +8622,7 @@
           {
             "type": "paragraph",
             "content": [
-              "Forced Marriage (CHP + MSP): ",
+              "Grand Coalition (CHP + AP): ",
               {
                 "type": "insert",
                 "insert": 57
@@ -8634,15 +8633,10 @@
           {
             "type": "paragraph",
             "content": [
-              "Bourgeois Coalition (AP + ",
+              "Forced Marriage (CHP + MSP): ",
               {
                 "type": "insert",
                 "insert": 58
-              },
-              " + DP): ",
-              {
-                "type": "insert",
-                "insert": 59
               },
               " seats"
             ]
@@ -8650,7 +8644,12 @@
           {
             "type": "paragraph",
             "content": [
-              "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
+              "Bourgeois Coalition (AP + ",
+              {
+                "type": "insert",
+                "insert": 59
+              },
+              " + DP): ",
               {
                 "type": "insert",
                 "insert": 60
@@ -8661,17 +8660,24 @@
           {
             "type": "paragraph",
             "content": [
+              "Nationalist Front Coalition (AP + CGP + MSP + MHP): ",
               {
-                "type": "conditional",
-                "content": "The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ",
-                "predicate": 61
+                "type": "insert",
+                "insert": 61
               },
-              ""
+              " seats"
             ]
           },
           {
             "type": "paragraph",
-            "content": "There are some potential coalition arrangements."
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ",
+                "predicate": 62
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -8991,6 +8997,12 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['MP_seats'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['total_seats'] || 0);"
             }
           },
           {

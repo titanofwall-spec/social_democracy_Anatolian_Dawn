@@ -17,6 +17,8 @@ The Grand National Assembly elections are to be held now.
 
 - @election_algorithm: May we do our best...
 @post_national_elections
+title: Election Results
+new-page: true
 on-arrival: I_in_government = 0; {!
 // Snapshot whether the Socialist Left bloc existed as of this election, so the "Last
 // election vote share" section on the status screen can reflect the state at the last
@@ -225,7 +227,7 @@ if (window && d3) {
     if(typeof renderElectionResultMap==='function')renderElectionResultMap('general');
 }
 !}
-go-to: coalition_negotiations if {! return typeof AnatolianCoalitions!=="undefined"; !}; coalition_menu if {! return typeof AnatolianCoalitions==="undefined"; !}
+
 
 = Election results
 
@@ -262,6 +264,8 @@ go-to: coalition_negotiations if {! return typeof AnatolianCoalitions!=="undefin
 [? if {! return AnatolianRules.partyAvailable(Q,'MP'); !}: {!<tr><td>!} MP {!</td><td>!} [+ MP_r_disp +]% {!</td><td>!} [+ str_change_MP +] {!</td><td>!} [+ MP_seats +] {!</td></tr>!} ?]
 {!</table>!}
 
+**Total seats: [+ total_seats +]**
+
 **Potential coalitions** *(226 seats needed for a majority)*
 
 Left Coalition (CHP + TİP): [+ left_coalition +] seats
@@ -278,7 +282,7 @@ Nationalist Front Coalition (AP + CGP + MSP + MHP): [+ nationalist_front_coaliti
 
 [? if far_right_urgency <= 1 and MHP_r >= 15 : The rapid rise in MHP votes is extremely worrying. Many had believed that the party was moribund; now, some of us consider it to be the greatest threat to democracy in Turkey. ?]
 
-There are some potential coalition arrangements.
+- @coalition_negotiations: Now comes the task of government forming.
 
 @coalition_menu
 
