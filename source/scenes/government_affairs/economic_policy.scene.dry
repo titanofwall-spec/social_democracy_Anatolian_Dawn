@@ -124,6 +124,6 @@ unavailable-subtitle: This course of action cannot be taken at the same time as 
 subtitle: Continuing the export orientation. This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long-term) ↓↓↓; Growth ↑↑
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} Tiger += 1; forex_pressure -= 8; inflation_modifier += 17.5; disk_relation -= 15; forex_pressure_drift -= 3; growth_modifier += 2; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! AnatolianRules.refreshEconomy(Q); !}
 
-Finally we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered a great deal, but the light at the end of the tunnel is now beginning to shine through. Let's hope our citizens will forgive us for prescribing the painful medicine.
+Finally, we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered a great deal, but the light at the end of the tunnel is now beginning to shine through. Let's hope our citizens will forgive us for prescribing the painful medicine.
 
 With our fundamental reforms, the Turkish economy has begun moving out of its constant crisis state and now has developed resistance to global crises to some extent.
