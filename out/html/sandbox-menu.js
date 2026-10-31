@@ -43,9 +43,9 @@
     });
     const polls=[];
     demographics.forEach(([name,key])=>{
-      polls.push(pct(name+' CHP Support',key+'_chp','CHP preference within this voter group.'));
-      polls.push(pct(name+' Voter Potential',key==='kurds'?'kurdish_population_weight':key,
-        'Relative demographic weight in the electoral model.'));
+      polls.push({...pct(name+' CHP Support',key+'_chp','Direct cheat override of CHP support in this voter group.'),supportGroup:key});
+      polls.push({label:name+' Voter Potential',potential:key,min:0,max:100,
+        explanation:'Directly overrides this group’s voter potential without changing its population weight.'});
     });
     const left=[...(Q.thkpc_destroyed?[]:org('THKP-C','thkpc')),
       ...(Q.tkpml_formed?org('TKP/ML','tkpml'):[]),
@@ -64,7 +64,9 @@
           pct('DP Relation','DP_relation'),pct('MSP Relation','MSP_relation'),
           pct('MHP Relation','MHP_relation'),pct('TBP Relation','TBP_relation')]),
         sec('Party Factions',factions)]},
-      {name:'Polls',sections:[sec('Voter Groups',polls)]},
+      {name:'Polls',sections:[sec('Voter Groups',polls),
+        sec('Temporary Polling Cheats',[{label:'10 year long temporary +1% polling',action:'temporary-polling',
+          explanation:'Adds one national CHP polling percentage point per click, lasting ten years, shown as a single Temporary Political Effect.'}])]},
       {name:'Defense',sections:[
         sec('State Security',[
           entry('TSK Strength','armed_forces_strength',0,100000,'Turkish Armed Forces strength.'),
@@ -111,8 +113,24 @@
   }
   const nonCooldown=/^(?:coup|cyprus_|paramilitary_pressure|kurdish_issue|TIP_ultimatum|streetfighting|economic_reform|election)/i;
   function action(q,kind) {
+    if (kind==='temporary-polling'&&!root.AnatolianNationalCoalition) {
+      root.alert('National Coalition is not available.');return false;
+    }
     if (!confirmCheat(q)) return false;
     markCheated(q);
+    if (kind==='temporary-polling') {
+      const coalition=root.AnatolianNationalCoalition;
+      const state=coalition.ensure(q);
+      const title='Temporary 10 year cheat', id='sandbox-ten-year-polling';
+      const matches=state.temporary.filter(e=>e.id===id||e.title===title);
+      const existing=matches[0];
+      const points=matches.reduce((sum,e)=>sum+(Number(e.points)||0),0)+1;
+      const tick=(Number(q.year)||1972)*24+((Number(q.month)||1)-1)*2+(Number(q.week)===2?1:0);
+      const effect=existing||{id,title};
+      Object.assign(effect,{id,title,points,remaining:240,lastTick:tick,decayVersion:3,sandboxFixed:true});
+      state.temporary=state.temporary.filter(e=>e!==existing&&!matches.includes(e));
+      state.temporary.push(effect);
+    }
     if (kind==='budget')q.budget=(Number(q.budget)||0)+1;
     if (kind==='cooldowns') Object.keys(q).filter(k=>k.endsWith('_timer')&&!nonCooldown.test(k)&&typeof q[k]==='number').forEach(k=>{q[k]=0;});
     recalculate(q);
@@ -120,6 +138,16 @@
   }
   function valueOf(q,item) {
     if (item.faction) return factionShare(q,item.faction);
+    if (item.potential || item.supportGroup) {
+      const nc=root.AnatolianNationalCoalition;
+      const saved=q.national_coalition?.sandboxPollOverrides;
+      if (item.potential) {
+        const v=saved?.potential?.[item.potential];
+        return Number.isFinite(v)?v*100:(nc?nc.reach(q,item.potential)*100:0);
+      }
+      const v=saved?.support?.[item.supportGroup];
+      return Number.isFinite(v)?v*100:(Number(q[item.key])||0);
+    }
     const val=Number(q[item.key]);
     return Number.isFinite(val)?val*(item.scale||1):0;
   }
@@ -132,8 +160,22 @@
     if (item.faction&&!R().factionModel(q).active[item.faction]) {
       root.alert('This faction is not currently active.');return false;
     }
+    if ((item.potential||item.supportGroup)&&!root.AnatolianNationalCoalition) {
+      root.alert('National Coalition is not available.');return false;
+    }
     if (!confirmCheat(q))return false;
     markCheated(q);
+    if (item.potential||item.supportGroup) {
+      const s=root.AnatolianNationalCoalition.ensure(q);
+      if(!s.sandboxPollOverrides)s.sandboxPollOverrides={support:{},potential:{}};
+      if(!s.sandboxPollOverrides.support)s.sandboxPollOverrides.support={};
+      if(!s.sandboxPollOverrides.potential)s.sandboxPollOverrides.potential={};
+      if(item.potential)s.sandboxPollOverrides.potential[item.potential]=n/100;
+      else s.sandboxPollOverrides.support[item.supportGroup]=n/100;
+      // Never write demographic Q[c] weights: those represent population, not reach.
+      recalculate(q);
+      return true;
+    }
     if(item.faction) {
       if(n===100) {
         const model=R().factionModel(q);
@@ -162,7 +204,7 @@
     wrap.appendChild(label);
     const right=el('div','sandbox-controls');
     if(item.action){
-      const button=el('button','tab_button',item.action==='budget'?'+1 Budget':'Remove Cooldowns');
+      const button=el('button','tab_button',item.action==='budget'?'+1 Budget':item.action==='cooldowns'?'Remove Cooldowns':'+1% (10 Years)');
       button.type='button';button.onclick=()=>{if(action(q,item.action))render();};right.appendChild(button);
     }else{
       const input=el('input','sandbox-number');input.type='number';input.step='any';
