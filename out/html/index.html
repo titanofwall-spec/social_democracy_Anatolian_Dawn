@@ -39,6 +39,7 @@
     <script src="save-storage.js?v=5198b85ae178"></script>
     <script src="cyprus-presentation.js?v=62e28a8808e5"></script>
     <script src="game.js?v=be6a605f87c7"></script>
+    <script src="sandbox-menu.js?v=1"></script>
   </head>
   <body>
     <button id="music-previous-btn" class="music-track-button" onclick="window.switchMusicTrack(-1)" title="Previous song" aria-label="Previous song">&lt;</button>
@@ -395,6 +396,7 @@
                     <a id="stats-link" onclick="window.showStats();" href="#">Library</a>
                     <a onclick="dendryUI.showSaveSlots();" href="#">Save/Load</a>
                     <a onclick="window.showOptions();" href="#">Options</a>
+                    <a onclick="window.showSandboxMenu(event);" href="#">Sandbox</a>
                     <a id="cyprus-end-day-link" onclick="window.cyprusAdvanceDay();" href="#" style="display:none;">Skip Day</a>
                 </div>
            </header>
