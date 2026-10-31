@@ -15,9 +15,13 @@
     function refreshEconomy(Q) {
         var tigerActive = (Q.year === 1978 && Q.tiger_1978_effect_applied) ||
             (Q.year === 1979 && Q.tiger_1979_effect_applied) || (Q.year === 1980 && Q.tiger_1980_effect_applied);
-        Q.inflation = number(Q.base_inflation) + number(Q.inflation_modifier) - number(Q.oil_inflation_effect) - (tigerActive ? 30 : 0);
-        Q.economic_growth = number(Q.base_growth) + number(Q.growth_modifier) + (tigerActive ? 3 : 0);
-        Q.unemployed = Math.max(0.5, number(Q.base_unemployment) + number(Q.unemployment_modifier));
+        // Monthly macro output takes precedence after initialization; legacy policy modifiers
+        // remain INPUTS to the model, not a second, additive GDP/inflation calculation.
+        if (!(typeof root.AnatolianMacro !== 'undefined' && root.AnatolianMacro.headlines(Q))) {
+            Q.inflation = number(Q.base_inflation) + number(Q.inflation_modifier) - number(Q.oil_inflation_effect) - (tigerActive ? 30 : 0);
+            Q.economic_growth = number(Q.base_growth) + number(Q.growth_modifier) + (tigerActive ? 3 : 0);
+            Q.unemployed = Math.max(0.5, number(Q.base_unemployment) + number(Q.unemployment_modifier));
+        }
         Q.industrial_production_index = Math.max(0, number(Q.base_industry_index, 100) + number(Q.industry_modifier));
         Q.agricultural_production_index = Math.max(0, number(Q.base_agriculture_index, 100) + number(Q.agriculture_modifier));
         Q.forex_pressure = clamp(number(Q.forex_pressure), 0, 100);
