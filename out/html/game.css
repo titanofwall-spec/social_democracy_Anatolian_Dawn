@@ -1992,3 +1992,80 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   #mid_panel > header.ad-command-header #game-title { font-size: 1.23em; }
   #mid_panel > header.ad-command-header .ad-title-art { height: 80px; }
 }
+
+/* ANATOLIAN DAWN — TITLE EYES INSIDE RIBBON v4
+   Keeps the connected header, but moves the supplied eyes image INSIDE the
+   Anatolian Dawn ribbon as its background while preserving the mod's own
+   typography, borders and navigation strip. */
+#mid_panel > header.ad-command-header .ad-title-ribbon {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  padding: 0 22px 0 16px;
+  margin-bottom: -2px;
+  background: var(--content-bg-color);
+  clip-path: polygon(0 0, 94.5% 0, 100% 100%, 0 100%);
+  isolation: isolate;
+  overflow: hidden;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon::before {
+  content: none;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon .ad-ribbon-vector {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon .ad-ribbon-vector path {
+  fill: none;
+  stroke: #888;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+#mid_panel > header.ad-command-header .ad-credit-ribbon {
+  min-height: 42px;
+  z-index: 4;
+}
+#mid_panel > header.ad-command-header .ad-game-ribbon {
+  min-height: 39px;
+  z-index: 3;
+  background-image:
+    linear-gradient(90deg, rgba(0,0,0,.42) 0%, rgba(0,0,0,.28) 34%, rgba(0,0,0,.5) 100%),
+    url('img/anatolian-dawn-eyes.png');
+  background-size: cover;
+  background-position: center 46%;
+  background-repeat: no-repeat;
+}
+#mid_panel > header.ad-command-header #game-title,
+#mid_panel > header.ad-command-header #game-author {
+  position: relative;
+  z-index: 2;
+  font-family: inherit;
+}
+#mid_panel > header.ad-command-header #game-title {
+  color: #fff;
+  font-size: 1.58em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 2px rgba(255,255,255,.28), 0 0 6px rgba(255,255,255,.14);
+}
+#mid_panel > header.ad-command-header #game-author {
+  color: var(--text-color);
+}
+#mid_panel > header.ad-command-header #game-author::before { content: none; }
+@media (max-width: 560px) {
+  #mid_panel > header.ad-command-header .ad-title-ribbon {
+    padding-left: 12px;
+    padding-right: 17px;
+  }
+  #mid_panel > header.ad-command-header .ad-credit-ribbon { min-height: 39px; }
+  #mid_panel > header.ad-command-header .ad-game-ribbon { min-height: 36px; }
+  #mid_panel > header.ad-command-header #game-title { font-size: 1.22em; }
+}
