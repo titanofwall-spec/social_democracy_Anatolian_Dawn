@@ -20,6 +20,7 @@ card-image: img/cumhuriyet4.jpg
 - @ideological
 - @newideas
 - @return: We should not do anything with media at the moment.
+- @navigation_return_main: Return
 - @easy_discard
 - @cancel_advisor_action
 
@@ -84,5 +85,6 @@ choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Inaction in the face of atrocities equals silence.
 @navigation_return_main
 title: Return
+view-if: {! return Q.CHP_party_leader !== "Ecevit" && !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0) || Q.last_advisor_action == 1 || Q.last_cabinet_action == 1); !}
 go-to: main
 

@@ -37309,6 +37309,9 @@
     "media.navigation_return_main": {
       "id": "media.navigation_return_main",
       "title": "Return",
+      "viewIf": {
+        "$code": "return Q.CHP_party_leader !== \"Ecevit\" && !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0) || Q.last_advisor_action == 1 || Q.last_cabinet_action == 1);"
+      },
       "goTo": [
         {
           "id": "main"
@@ -37359,6 +37362,10 @@
         {
           "id": "@media.return",
           "title": "We should not do anything with media at the moment."
+        },
+        {
+          "id": "@media.navigation_return_main",
+          "title": "Return"
         },
         {
           "id": "@easy_discard"
