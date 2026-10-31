@@ -159,8 +159,8 @@ Civilian oversight and restrictions on hidden funding weaken ÖHD. Its strength 
 
 @ohal
 choose-if: OHAL = 0 and state_force_percent <= 49 or year >= 1978
-subtitle: Though a drastic move and something we are ideologically opposed to, we may be forced to declare a state of emergency and and restrict the civil rights in order to bring peace to the streets.
-unavailable-subtitle: The situation in the streets still can be managed through conventional means.
+subtitle: Though a drastic move and something we are ideologically opposed to, we may be forced to declare a state of emergency and restrict civil rights in order to bring peace to the streets.
+unavailable-subtitle: The situation in the streets can still be managed through conventional means.
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} grey_wolves_militancy -= 0.1; grey_wolves_strength -= 8; devyol_militancy -= 0.1; devyol_strength -= 8; raiders_strength -= 8; workers_chp -= 5; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; kurds_chp -= 3; alevis_chp -= 3; OHAL += 1
 
 Our voters are deeply irritated by our decision to initiate the militarization of the streets when we were the party promising to stop it. Ecevit's persona as the uncorrupted fighter for democracy breaks down as we resort to pragmatic actions we normally despise. However, hopefully this will be worth it for the motherland.
