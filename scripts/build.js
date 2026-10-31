@@ -32,7 +32,7 @@ compiler.compileGame(files,(err,game)=>{
   }
   if(!versioned.includes('id="mission_tab"')) {
     versioned=versioned.replace(/(<button[^>]*id="social_issues_tab"[^>]*>Social Issues<\/button>)/,
-      '$1\n                     <button class="tab_button" id="mission_tab" onclick="window.changeTab(\'status.mission\', \'mission_tab\');">Mission</button>');
+      '$1\n                     <button class="tab_button" id="mission_tab" onclick="window.changeTab(\'status.mission\', \'mission_tab\');">Land Reform</button>');
   }
   for(const name of ['cyprus-presentation.js','save-storage.js','game.js','rules.js', 'kurdish-event-media.js','kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','province-map.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;

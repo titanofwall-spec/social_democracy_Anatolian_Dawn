@@ -789,17 +789,25 @@ table {
     text-decoration-style: dotted;
 }
 
-/* Custom tab sizing - Exterior Affairs = Main + Politics, Economy = Defense + Polls */
-/* Main and Politics keep their natural sizes, Defense and Polls keep theirs */
-
-#exterior_affairs_tab {
-    width: 120px; /* Approximately Main (~45px) + Politics (~55px) */
-    min-width: 120px;
+/* Fixed two-column stats navigation; interaction styles remain shared above. */
+#stats_tab_container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: 4px;
 }
 
-#economy_tab {
-    width: 110px; /* Reduced from 120px */
-    min-width: 110px;
+#stats_tab_container > .tab_button {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 10px;
+}
+
+#stats_tab_container > #main_tab {
+    grid-column: 1 / -1;
 }
 
 /* Music toggle button - fixed top right corner */
