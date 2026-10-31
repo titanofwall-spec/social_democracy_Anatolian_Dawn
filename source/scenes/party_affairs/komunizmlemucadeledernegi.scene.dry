@@ -11,8 +11,14 @@ tags: party_affairs
 Association of Struggle against Communism(Komünizmle Mücadele Derneği, KMD) is an association formed in 1946 but expanded in the 1960s to prevent and later on stop the 'anarchy' associated with the activities of the far left. With an Islamic and Nationalist structure, many senior right-wing figures have served and are serving in the association. Though we are against Communism just as much as they are, they equate any form of leftism or progressivism with 'bolshevism' and therefore their actions affect us too. Organizing marches, meetings and rallies against the left, KMD is a serious thorn in our side and until they are dismantled, will continue harming our public appeal.
 
 - @debuff: There is nothing we can do until we curb their influence.
+- @navigation_return_main: Return
 
 @debuff
 on-arrival: {! var scale=Math.max(0,1-(Q.kmd_prosecutions||0)/4);Q.rural_chp-=2*scale;Q.rural_AP+=2*scale;Q.petty_bourgeoisie_chp-=3*scale;Q.petty_bourgeoisie_AP+=scale;Q.petty_bourgeoisie_MHP+=scale;Q.petty_bourgeoisie_MSP+=scale;Q.grey_wolves_strength+=1.5*scale; !}
 
 Spreading misinformation about our political standing and ideology, KMD hurts our attempts at reaching out to the previously conservative demographics.
+
+@navigation_return_main
+title: Return
+go-to: main
+

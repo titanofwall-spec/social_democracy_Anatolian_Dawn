@@ -20,6 +20,7 @@ Justice is the main instrument through which the state establishes trust and bel
 - @KMD: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
 - @easy_discard
 - @cancel_advisor_action
+- @navigation_return_main: Return
 
 @amnesty
 subtitle: This has been one of our promises for the election [? if MSP_in_government == 1 : and one of the policy agreements we had with MSP?].
@@ -75,3 +76,7 @@ unavailable-subtitle: The KMD has been neutralized.
 on-arrival: kmd_prosecutions += 1; grey_wolves_strength -= 2; raiders_strength -= 2
 
 We open investigations into the proceedings of the KMD. While actually banning them would be unconstitutional, our efforts put their activities under pressure and each investigation we conduct decreases their effectiveness in influencing the rural electorate.
+@navigation_return_main
+title: Return
+go-to: main
+

@@ -21,7 +21,7 @@ How do we reduce tensions with the coalition?
 - @bring_down2: Instead, we will bring down the government with a no-confidence vote, and call for new elections.
 - @no_change: Take none of these actions.
 - @easy_discard
-
+- @navigation_return_main: Return
 
 @promise_cuts
 on-arrival: workers_chp -= 5; workers_TIP += 5; welfare -= 1; budget += 1; {! Q.coalition_dissent=Math.max(0,(Q.coalition_dissent||0)-10); !}
@@ -60,3 +60,7 @@ go-to: coalition_negotiations
 = A New Government-Formation Mandate
 
 Placeholder
+@navigation_return_main
+title: Return
+go-to: main
+

@@ -530,6 +530,7 @@ We can pick from any number of ministries. Controlling a ministry allows us to d
 
 - #cabinet_portfolios
 - #drop_cabinet_portfolios
+- @navigation_return_ministries: Return
 
 @labor
 title: Labor Ministry
@@ -765,3 +766,7 @@ view-if: industrial_minister_party = "CHP"
 on-arrival: industrial_minister_party = "I"; leverage += 10;
 tags: drop_cabinet_portfolios
 go-to: ministries
+
+@navigation_return_ministries
+title: Return
+go-to: main

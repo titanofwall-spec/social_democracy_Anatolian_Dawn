@@ -14,6 +14,7 @@ For better or for worse, the party cannot exist without money.
 - @maintain: Maintain our current dues.
 - @reduce: Reduce dues.
 - @increase: Increase dues.
+- @navigation_return_main: Return
 
 @maintain
 subtitle: [+ dues +] resources gained.[? if socialist_international_member : (+1 from Socialist International) ?]
@@ -37,4 +38,8 @@ on-arrival: dues += 1; resources += dues; resources += 1 if socialist_internatio
 Our members grumble at this, and some of the less committed members leave. But now, we have access to additional resources.[? if socialist_international_member : Our membership in the Socialist International provides additional funding through international solidarity contributions. ?] 
 
 [? if unemployed >= 15 : Because of the presently high unemployment, our members are feeling the extra burden hard. ?]
+
+@navigation_return_main
+title: Return
+go-to: main
 

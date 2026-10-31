@@ -16,6 +16,7 @@ tags: party_affairs, disk
 - @meeting: Perhaps we can pay a visit to the chairman of DİSK, Kemal Türkler, and show our good intentions?
 - @root: We can't take any action right now.
 - @easy_discard
+- @navigation_return_main: Return
 
 @municipalities
 choose-if: municipality_control_level == 3 or municipality_control_level == 4
@@ -49,3 +50,7 @@ We have paid a visit to the DİSK headquarters. If we want to improve our relati
 @root
 
 We can't take any action regarding union relations right now.
+@navigation_return_main
+title: Return
+go-to: main
+

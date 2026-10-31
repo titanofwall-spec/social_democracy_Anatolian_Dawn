@@ -488,36 +488,6 @@
         "type": "paragraph"
       }
     },
-    "erdem": {
-      "id": "erdem",
-      "type": "scene",
-      "title": "Tarhan Erdem",
-      "isPinnedCard": true,
-      "tags": [
-        "advisor"
-      ],
-      "cardImage": "img/portraits/TarhanErdem.jpg",
-      "viewIf": {
-        "$code": "return ((Q['erdem_advisor'] || 0)===1);"
-      },
-      "newPage": true,
-      "options": [
-        {
-          "id": "@erdem.industry",
-          "title": "Erdem can take actions as the Minister of Industry."
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Tarhan Erdem"
-        },
-        {
-          "type": "paragraph",
-          "content": "Tarhan Erdem is an engineer who has previously proven his technocratic value with his successful experience in the National Sugar Factories."
-        }
-      ]
-    },
     "eyuboglu.orthodoxdissent": {
       "id": "eyuboglu.orthodoxdissent",
       "chooseIf": {
@@ -10527,6 +10497,10 @@
         {
           "id": "@dealing_with_toleration.stay_course",
           "title": "No, we should stay the course."
+        },
+        {
+          "id": "@dealing_with_toleration.navigation_return_break_toleration",
+          "title": "Return"
         }
       ],
       "content": {
@@ -13461,41 +13435,6 @@
         "type": "paragraph"
       }
     },
-    "komunizmlemucadeledernegi": {
-      "id": "komunizmlemucadeledernegi",
-      "type": "scene",
-      "title": "Association of Struggle Against Communism",
-      "newPage": true,
-      "viewIf": {
-        "$code": "return (((Q['kmd_timer'] || 0) <= 0) && ((Q['kmd_prosecutions'] || 0) < 4));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['kmd_timer'] = 12;"
-        }
-      ],
-      "isCard": true,
-      "cardImage": "img/komunizmlemucadeledernegi.jpg",
-      "tags": [
-        "party_affairs"
-      ],
-      "options": [
-        {
-          "id": "@komunizmlemucadeledernegi.debuff",
-          "title": "There is nothing we can do until we curb their influence."
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Association of Struggle Against Communism"
-        },
-        {
-          "type": "paragraph",
-          "content": "Association of Struggle against Communism(Komünizmle Mücadele Derneği, KMD) is an association formed in 1946 but expanded in the 1960s to prevent and later on stop the 'anarchy' associated with the activities of the far left. With an Islamic and Nationalist structure, many senior right-wing figures have served and are serving in the association. Though we are against Communism just as much as they are, they equate any form of leftism or progressivism with 'bolshevism' and therefore their actions affect us too. Organizing marches, meetings and rallies against the left, KMD is a serious thorn in our side and until they are dismantled, will continue harming our public appeal."
-        }
-      ]
-    },
     "media.silence": {
       "id": "media.silence",
       "title": "National Chief İnönü doesn't want to go into a conflict with the junta. Perhaps we should keep our silence...",
@@ -13591,6 +13530,10 @@
         },
         {
           "id": "@easy_discard"
+        },
+        {
+          "id": "@rally.navigation_return_main_rally",
+          "title": "Return"
         }
       ],
       "content": {
@@ -13628,6 +13571,10 @@
         {
           "id": "@shuffle_leadership.add_advisors",
           "title": "Add members"
+        },
+        {
+          "id": "@shuffle_leadership.navigation_return_rm_main",
+          "title": "Return"
         }
       ],
       "content": {
@@ -14751,6 +14698,53 @@
         "type": "paragraph"
       }
     },
+    "erdem.navigation_return_main": {
+      "id": "erdem.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "erdem": {
+      "id": "erdem",
+      "type": "scene",
+      "title": "Tarhan Erdem",
+      "isPinnedCard": true,
+      "tags": [
+        "advisor"
+      ],
+      "cardImage": "img/portraits/TarhanErdem.jpg",
+      "viewIf": {
+        "$code": "return ((Q['erdem_advisor'] || 0)===1);"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@erdem.industry",
+          "title": "Erdem can take actions as the Minister of Industry."
+        },
+        {
+          "id": "@erdem.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Tarhan Erdem"
+        },
+        {
+          "type": "paragraph",
+          "content": "Tarhan Erdem is an engineer who has previously proven his technocratic value with his successful experience in the National Sugar Factories."
+        }
+      ]
+    },
     "eyuboglu.partyorganization": {
       "id": "eyuboglu.partyorganization",
       "chooseIf": {
@@ -15439,57 +15433,6 @@
         "content": "",
         "type": "paragraph"
       }
-    },
-    "ecevitandworker": {
-      "id": "ecevitandworker",
-      "type": "scene",
-      "title": "A Visit to Nazilli",
-      "newPage": true,
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "maxVisits": 1,
-      "isCard": true,
-      "cardImage": "img/ecevitnazilli.png",
-      "faceImage": "img/ecevitveisci.png",
-      "tags": [
-        "dovevsbayonet"
-      ],
-      "options": [
-        {
-          "id": "@ecevitandworker.yes",
-          "title": "Yes, I promise. I will risk it all."
-        },
-        {
-          "id": "@ecevitandworker.no",
-          "title": "Uh, um, my purpose is -uh, not to tread on the values of our party"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "A Visit to Nazilli"
-        },
-        {
-          "type": "paragraph",
-          "content": "As a part of his visits to the party organizations across the nation in preparation for a grassroots movement, Ecevit has arrived in the town of Nazilli."
-        },
-        {
-          "type": "paragraph",
-          "content": "During his speech, once he started stumbling over his words, a worker among the watching crowd went to him, took his microphone and asked Ecevit:"
-        },
-        {
-          "type": "paragraph",
-          "content": "\"Ecevit, leave the rhetoric aside. Will you, for the sake of democracy, be ready to struggle against İnönü or not? Tell us this.\""
-        },
-        {
-          "type": "paragraph",
-          "content": "After a long pause, Ecevit answered:"
-        }
-      ],
-      "countVisitsMax": 1
     },
     "election_simulation.scenario_1977": {
       "id": "election_simulation.scenario_1977",
@@ -20442,6 +20385,58 @@
         "type": "paragraph"
       }
     },
+    "komunizmlemucadeledernegi.navigation_return_main": {
+      "id": "komunizmlemucadeledernegi.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "komunizmlemucadeledernegi": {
+      "id": "komunizmlemucadeledernegi",
+      "type": "scene",
+      "title": "Association of Struggle Against Communism",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return (((Q['kmd_timer'] || 0) <= 0) && ((Q['kmd_prosecutions'] || 0) < 4));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['kmd_timer'] = 12;"
+        }
+      ],
+      "isCard": true,
+      "cardImage": "img/komunizmlemucadeledernegi.jpg",
+      "tags": [
+        "party_affairs"
+      ],
+      "options": [
+        {
+          "id": "@komunizmlemucadeledernegi.debuff",
+          "title": "There is nothing we can do until we curb their influence."
+        },
+        {
+          "id": "@komunizmlemucadeledernegi.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Association of Struggle Against Communism"
+        },
+        {
+          "type": "paragraph",
+          "content": "Association of Struggle against Communism(Komünizmle Mücadele Derneği, KMD) is an association formed in 1946 but expanded in the 1960s to prevent and later on stop the 'anarchy' associated with the activities of the far left. With an Islamic and Nationalist structure, many senior right-wing figures have served and are serving in the association. Though we are against Communism just as much as they are, they equate any form of leftism or progressivism with 'bolshevism' and therefore their actions affect us too. Organizing marches, meetings and rallies against the left, KMD is a serious thorn in our side and until they are dismantled, will continue harming our public appeal."
+        }
+      ]
+    },
     "media.critique": {
       "id": "media.critique",
       "title": "The military government needs to go. Defy the laws and protest against the recent actions of the Junta.",
@@ -22358,6 +22353,74 @@
           "content": "workers.jpg: Marcus, Otto. Français : \"Prolétaires de Tous Les Pays, Unissez-Vous! 1901. http://cjouneau1.free.fr/4eme/mvt_ouvriers/socialisme.html, Wikimedia Commons, https://commons.wikimedia.org/wiki/File:Proletarier_aller_L%C3%A4nder,_vereinigt_euch_(cropped).jpg. Public Domain"
         }
       ]
+    },
+    "ecevitandworker.navigation_return_main": {
+      "id": "ecevitandworker.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "ecevitandworker": {
+      "id": "ecevitandworker",
+      "type": "scene",
+      "title": "A Visit to Nazilli",
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "maxVisits": 1,
+      "isCard": true,
+      "cardImage": "img/ecevitnazilli.png",
+      "faceImage": "img/ecevitveisci.png",
+      "tags": [
+        "dovevsbayonet"
+      ],
+      "options": [
+        {
+          "id": "@ecevitandworker.yes",
+          "title": "Yes, I promise. I will risk it all."
+        },
+        {
+          "id": "@ecevitandworker.no",
+          "title": "Uh, um, my purpose is -uh, not to tread on the values of our party"
+        },
+        {
+          "id": "@ecevitandworker.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "A Visit to Nazilli"
+        },
+        {
+          "type": "paragraph",
+          "content": "As a part of his visits to the party organizations across the nation in preparation for a grassroots movement, Ecevit has arrived in the town of Nazilli."
+        },
+        {
+          "type": "paragraph",
+          "content": "During his speech, once he started stumbling over his words, a worker among the watching crowd went to him, took his microphone and asked Ecevit:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Ecevit, leave the rhetoric aside. Will you, for the sake of democracy, be ready to struggle against İnönü or not? Tell us this.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "After a long pause, Ecevit answered:"
+        }
+      ],
+      "countVisitsMax": 1
     },
     "election_simulation.scenario_1979": {
       "id": "election_simulation.scenario_1979",
@@ -24594,50 +24657,6 @@
           }
         ]
       }
-    },
-    "fundraising": {
-      "id": "fundraising",
-      "type": "scene",
-      "title": "Fundraising",
-      "newPage": true,
-      "viewIf": {
-        "$code": "return (((Q['fundraising_timer'] || 0) <= 0) && ((!(((Q['historical_mode'] || 0)) !== 0))));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['fundraising_timer'] = 4;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "frequency": 300,
-      "isCard": true,
-      "cardImage": "img/ulus.png",
-      "tags": [
-        "party_affairs"
-      ],
-      "options": [
-        {
-          "id": "@fundraising.maintain",
-          "title": "Maintain our current dues."
-        },
-        {
-          "id": "@fundraising.reduce",
-          "title": "Reduce dues."
-        },
-        {
-          "id": "@fundraising.increase",
-          "title": "Increase dues."
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Fundraising"
-        },
-        {
-          "type": "paragraph",
-          "content": "For better or for worse, the party cannot exist without money."
-        }
-      ]
     },
     "international_relations.international": {
       "id": "international_relations.international",
@@ -26883,119 +26902,6 @@
         "type": "paragraph"
       }
     },
-    "land_reform": {
-      "id": "land_reform",
-      "type": "scene",
-      "title": "Land Reform",
-      "newPage": true,
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "maxVisits": 6,
-      "isCard": true,
-      "cardImage": "img/portraits/AliTopuz.jpeg",
-      "frequency": 100,
-      "tags": [
-        "government_affairs"
-      ],
-      "options": [
-        {
-          "id": "@land_reform.koykent",
-          "title": "Propose the Köykent project - transforming rural areas through planned village-cities."
-        },
-        {
-          "id": "@land_reform.land_distribution",
-          "title": "Commit to redistributing large estates to small farmers."
-        },
-        {
-          "id": "@land_reform.cooperatives",
-          "title": "Establish agricultural cooperatives to support small farmers."
-        },
-        {
-          "id": "@land_reform.root",
-          "title": "We cannot take action on land reform right now."
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Land Reform"
-          },
-          {
-            "type": "paragraph",
-            "content": "One of the most pressing issues of the republic is that of agriculture and the overwhelming control of the large landowners over Turkish agriculture. Severely hindering development in the rural areas and causing uncontrollable migration from the countryside to the cities, an answer needs to be found to the question of land ownership."
-          },
-          {
-            "type": "paragraph",
-            "content": "Since the foundation of the republic, CHP always viewed land reform and distribution to be a necessary prerequisite for the development of the countryside. However Atatürk didn't live long enough to achieve one of his perhaps most influential reforms and now it falls upon our shoulders to turn his dream into reality."
-          },
-          {
-            "type": "paragraph",
-            "content": "However, we first need to decide on a policy platform among the ones that are circulating in the party."
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Current status: ",
-              {
-                "type": "conditional",
-                "content": "No concrete land reform policy has been adopted. ",
-                "predicate": 0
-              },
-              {
-                "type": "conditional",
-                "content": "We have committed to establishing rural cooperatives. ",
-                "predicate": 1
-              },
-              {
-                "type": "conditional",
-                "content": "We have promised comprehensive land distribution programs. ",
-                "predicate": 2
-              },
-              {
-                "type": "conditional",
-                "content": "We have announced the ambitious Köykent village-city project. ",
-                "predicate": 3
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['land_reform'] || 0) == 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['land_reform'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['land_reform'] || 0) == 2);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['land_reform'] || 0) == 3);"
-            }
-          }
-        ]
-      },
-      "countVisitsMax": 6
-    },
     "military_policy.budget": {
       "id": "military_policy.budget",
       "subtitle": "-1 budget. We will have to decide how the increased budget will be spent.",
@@ -27015,6 +26921,10 @@
         {
           "id": "@military_policy.ee",
           "title": "Do not increase the military budget."
+        },
+        {
+          "id": "@military_policy.navigation_return_budget",
+          "title": "Return"
         }
       ],
       "content": {
@@ -27503,6 +27413,67 @@
           }
         ]
       }
+    },
+    "fundraising.navigation_return_main": {
+      "id": "fundraising.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "fundraising": {
+      "id": "fundraising",
+      "type": "scene",
+      "title": "Fundraising",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return (((Q['fundraising_timer'] || 0) <= 0) && ((!(((Q['historical_mode'] || 0)) !== 0))));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['fundraising_timer'] = 4;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "frequency": 300,
+      "isCard": true,
+      "cardImage": "img/ulus.png",
+      "tags": [
+        "party_affairs"
+      ],
+      "options": [
+        {
+          "id": "@fundraising.maintain",
+          "title": "Maintain our current dues."
+        },
+        {
+          "id": "@fundraising.reduce",
+          "title": "Reduce dues."
+        },
+        {
+          "id": "@fundraising.increase",
+          "title": "Increase dues."
+        },
+        {
+          "id": "@fundraising.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Fundraising"
+        },
+        {
+          "type": "paragraph",
+          "content": "For better or for worse, the party cannot exist without money."
+        }
+      ]
     },
     "international_relations.join_socialist_international": {
       "id": "international_relations.join_socialist_international",
@@ -28733,97 +28704,6 @@
         }
       ]
     },
-    "coalition_affairs": {
-      "id": "coalition_affairs",
-      "type": "scene",
-      "title": "Coalition Affairs",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "govt_affairs"
-      ],
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['coalition_affairs_timer'] = 5;"
-        }
-      ],
-      "viewIf": {
-        "$code": "return ((((((Q['CHP_in_government'] || 0)===1) && (!(((Q['in_CHP_majority'] || 0)) !== 0))) && ((Q['chp_seats'] || 0) < (Q['majority_threshold'] || 0))) && ((Q['coalition_dissent'] || 0) >= 5)) && ((Q['coalition_affairs_timer'] || 0)===0));"
-      },
-      "cardImage": "img/kabine.jpg",
-      "options": [
-        {
-          "id": "@coalition_affairs.promise_cuts",
-          "title": "Agree to the bourgeois plans to cut welfare."
-        },
-        {
-          "id": "@coalition_affairs.resources",
-          "title": "Use our party resources to support our allies."
-        },
-        {
-          "id": "@coalition_affairs.bring_down",
-          "title": "Instead, we will bring down the government with a no-confidence vote, and call for new elections."
-        },
-        {
-          "id": "@coalition_affairs.bring_down2",
-          "title": "Instead, we will bring down the government with a no-confidence vote, and call for new elections."
-        },
-        {
-          "id": "@coalition_affairs.no_change",
-          "title": "Take none of these actions."
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Coalition Affairs"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Our coalition is in trouble. Members of ",
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              " are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "How do we reduce tensions with the coalition?"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return typeof AnatolianCoalitions!==\"undefined\"?AnatolianCoalitions.summary(Q):\"\";"
-            }
-          }
-        ]
-      }
-    },
     "dealing_with_toleration.urge_failure": {
       "id": "dealing_with_toleration.urge_failure",
       "onArrival": [
@@ -29077,6 +28957,136 @@
         "content": "Even though secondary strikes have been banned until now, we foster loopholes enabling the workers to support their brothers in need. AP accuses us of creating class conflict and calls our actions unlawful.",
         "type": "paragraph"
       }
+    },
+    "land_reform.navigation_return_main": {
+      "id": "land_reform.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "land_reform": {
+      "id": "land_reform",
+      "type": "scene",
+      "title": "Land Reform",
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "maxVisits": 6,
+      "isCard": true,
+      "cardImage": "img/portraits/AliTopuz.jpeg",
+      "frequency": 100,
+      "tags": [
+        "government_affairs"
+      ],
+      "options": [
+        {
+          "id": "@land_reform.koykent",
+          "title": "Propose the Köykent project - transforming rural areas through planned village-cities."
+        },
+        {
+          "id": "@land_reform.land_distribution",
+          "title": "Commit to redistributing large estates to small farmers."
+        },
+        {
+          "id": "@land_reform.cooperatives",
+          "title": "Establish agricultural cooperatives to support small farmers."
+        },
+        {
+          "id": "@land_reform.root",
+          "title": "We cannot take action on land reform right now."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@land_reform.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Land Reform"
+          },
+          {
+            "type": "paragraph",
+            "content": "One of the most pressing issues of the republic is that of agriculture and the overwhelming control of the large landowners over Turkish agriculture. Severely hindering development in the rural areas and causing uncontrollable migration from the countryside to the cities, an answer needs to be found to the question of land ownership."
+          },
+          {
+            "type": "paragraph",
+            "content": "Since the foundation of the republic, CHP always viewed land reform and distribution to be a necessary prerequisite for the development of the countryside. However Atatürk didn't live long enough to achieve one of his perhaps most influential reforms and now it falls upon our shoulders to turn his dream into reality."
+          },
+          {
+            "type": "paragraph",
+            "content": "However, we first need to decide on a policy platform among the ones that are circulating in the party."
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "Current status: ",
+              {
+                "type": "conditional",
+                "content": "No concrete land reform policy has been adopted. ",
+                "predicate": 0
+              },
+              {
+                "type": "conditional",
+                "content": "We have committed to establishing rural cooperatives. ",
+                "predicate": 1
+              },
+              {
+                "type": "conditional",
+                "content": "We have promised comprehensive land distribution programs. ",
+                "predicate": 2
+              },
+              {
+                "type": "conditional",
+                "content": "We have announced the ambitious Köykent village-city project. ",
+                "predicate": 3
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['land_reform'] || 0) == 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['land_reform'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['land_reform'] || 0) == 2);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['land_reform'] || 0) == 3);"
+            }
+          }
+        ]
+      },
+      "countVisitsMax": 6
     },
     "military_policy.local": {
       "id": "military_policy.local",
@@ -30292,61 +30302,6 @@
         "type": "paragraph"
       }
     },
-    "culture": {
-      "id": "culture",
-      "type": "scene",
-      "title": "Culture and Arts",
-      "newPage": true,
-      "viewIf": {
-        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['culture_timer'] || 0) == 0));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['culture_timer'] = 0;"
-        }
-      ],
-      "isCard": true,
-      "cardImage": "img/semazen.jpg",
-      "tags": [
-        "party_affairs",
-        "culture"
-      ],
-      "options": [
-        {
-          "id": "@culture.theaters",
-          "title": "Diverting some of our resources to theaters may be a worthy investment."
-        },
-        {
-          "id": "@culture.anatolianrock",
-          "title": "A new music genre, blending anatolian culture with western rock music, Anatolian Rock is rising in popularity and many of its artists are sympathetic to the progressive ideals. Why couldn't we support these artists?"
-        },
-        {
-          "id": "@culture.mobilecinemas",
-          "title": "Our rural regions lack access to many of the modern forms of art, and an interesting new idea that has been proposed in the party has been to recruit mobile cinemas to reach out to our rural citizens."
-        },
-        {
-          "id": "@culture.mobilecinemas2",
-          "title": "Now that we have prepared the infrastructure for the mobile cinemas; we can begin utilizing them at full capacity."
-        },
-        {
-          "id": "@culture.literature",
-          "title": "Many literature circles are sympathetic to the democratic left and with an already thriving tradition, literature can become a front for advancing social ideas."
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Culture and Arts"
-        },
-        {
-          "type": "paragraph",
-          "content": "We are the self-proclaimed party of positivism, the party of science and arts. However, the recent attitude of our party towards new movements of art and indifference towards state pressure on free art has gathered doubts about this claim. Now it may be a good time to change this attitude."
-        }
-      ]
-    },
     "enemies.MHP": {
       "id": "enemies.MHP",
       "onArrival": [
@@ -30636,68 +30591,6 @@
         "content": "We can't take any action regarding union relations right now.",
         "type": "paragraph"
       }
-    },
-    "union_relations": {
-      "id": "union_relations",
-      "type": "scene",
-      "title": "Union Relations",
-      "newPage": true,
-      "viewIf": {
-        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['union_timer'] || 0) <= 0));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['union_timer'] = 0;"
-        }
-      ],
-      "isCard": true,
-      "cardImage": "img/disk.jpg",
-      "tags": [
-        "party_affairs",
-        "disk"
-      ],
-      "options": [
-        {
-          "id": "@union_relations.municipalities",
-          "title": "We can empower DİSK in the municipalities we hold, in spite of the right-wing syndicate, TÜRK-İŞ."
-        },
-        {
-          "id": "@union_relations.reform",
-          "title": "We can promise extensive labour reforms when we get into government. Failing to keep our promise will have severe consequences though."
-        },
-        {
-          "id": "@union_relations.funding",
-          "title": "We can transfer some of our party resources to DİSK, let's hope they don't disappear within the syndicate bureaucracy..."
-        },
-        {
-          "id": "@union_relations.meeting",
-          "title": "Perhaps we can pay a visit to the chairman of DİSK, Kemal Türkler, and show our good intentions?"
-        },
-        {
-          "id": "@union_relations.root",
-          "title": "We can't take any action right now."
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Union Relations"
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            "<span style=\"color: #E3000F;\">",
-            {
-              "type": "emphasis-2",
-              "content": "CHP"
-            },
-            "</span> has historically adopted the title of the \"people's party\", however such rhetoric has to be materialized with strong relations with the labour movement. The main left-wing syndicate, DİSK, seems to have taken interest in the direction our party has taken, but how can we improve our relations?"
-          ]
-        }
-      ]
     },
     "root.start_hard": {
       "id": "root.start_hard",
@@ -31774,6 +31667,114 @@
         "type": "paragraph"
       }
     },
+    "coalition_affairs.navigation_return_main": {
+      "id": "coalition_affairs.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "coalition_affairs": {
+      "id": "coalition_affairs",
+      "type": "scene",
+      "title": "Coalition Affairs",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "govt_affairs"
+      ],
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['coalition_affairs_timer'] = 5;"
+        }
+      ],
+      "viewIf": {
+        "$code": "return ((((((Q['CHP_in_government'] || 0)===1) && (!(((Q['in_CHP_majority'] || 0)) !== 0))) && ((Q['chp_seats'] || 0) < (Q['majority_threshold'] || 0))) && ((Q['coalition_dissent'] || 0) >= 5)) && ((Q['coalition_affairs_timer'] || 0)===0));"
+      },
+      "cardImage": "img/kabine.jpg",
+      "options": [
+        {
+          "id": "@coalition_affairs.promise_cuts",
+          "title": "Agree to the bourgeois plans to cut welfare."
+        },
+        {
+          "id": "@coalition_affairs.resources",
+          "title": "Use our party resources to support our allies."
+        },
+        {
+          "id": "@coalition_affairs.bring_down",
+          "title": "Instead, we will bring down the government with a no-confidence vote, and call for new elections."
+        },
+        {
+          "id": "@coalition_affairs.bring_down2",
+          "title": "Instead, we will bring down the government with a no-confidence vote, and call for new elections."
+        },
+        {
+          "id": "@coalition_affairs.no_change",
+          "title": "Take none of these actions."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@coalition_affairs.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Coalition Affairs"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "Our coalition is in trouble. Members of ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              " are constantly criticizing our progressive reforms and are threatening a no-confidence vote to bring down this coalition."
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "How do we reduce tensions with the coalition?"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.partnerLabel(Q);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return typeof AnatolianCoalitions!==\"undefined\"?AnatolianCoalitions.summary(Q):\"\";"
+            }
+          }
+        ]
+      }
+    },
     "dealing_with_toleration.improve_relations": {
       "id": "dealing_with_toleration.improve_relations",
       "title": "Improve relations with the parties of the coalition.",
@@ -32286,67 +32287,6 @@
         "type": "paragraph"
       }
     },
-    "campaigning": {
-      "id": "campaigning",
-      "type": "scene",
-      "title": "Campaigning",
-      "newPage": true,
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['campaigning_timer'] = 2;"
-        }
-      ],
-      "maxVisits": 36,
-      "isCard": true,
-      "frequency": 143,
-      "tags": [
-        "party_affairs"
-      ],
-      "viewIf": {
-        "$code": "return ((Q['CHP_party_leader'] == \"İnönü\") && ((Q['campaigning_timer'] || 0) <= 0));"
-      },
-      "cardImage": "img/inonu_campaigning.jpeg",
-      "options": [
-        {
-          "id": "@campaigning.workers",
-          "title": "The rising urban working class, attracted by our shift in policy."
-        },
-        {
-          "id": "@campaigning.petty_bourgeoisie",
-          "title": "The middle class of artisans, shopkeepers and the like, normally affiliated with liberal parties."
-        },
-        {
-          "id": "@campaigning.state_employees",
-          "title": "Citizens employed by the state and the bureaucracy."
-        },
-        {
-          "id": "@campaigning.rural",
-          "title": "Rural workers and small farmers, who have felt neglected by us in the past."
-        },
-        {
-          "id": "@campaigning.capitalists",
-          "title": "Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords...?"
-        },
-        {
-          "id": "@campaigning.root",
-          "title": "We either don't want to or cannot campaign right now."
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Campaigning"
-        },
-        {
-          "type": "paragraph",
-          "content": "Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?"
-        }
-      ],
-      "countVisitsMax": 36
-    },
     "campaigning_ecevit.kurds": {
       "id": "campaigning_ecevit.kurds",
       "subtitle": "Resources will decrease by 1. Kurdish support will increase.",
@@ -32363,6 +32303,78 @@
         "content": "We have increased our campaigning among the Kurds.",
         "type": "paragraph"
       }
+    },
+    "culture.navigation_return_main": {
+      "id": "culture.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "culture": {
+      "id": "culture",
+      "type": "scene",
+      "title": "Culture and Arts",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['culture_timer'] || 0) == 0));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['culture_timer'] = 0;"
+        }
+      ],
+      "isCard": true,
+      "cardImage": "img/semazen.jpg",
+      "tags": [
+        "party_affairs",
+        "culture"
+      ],
+      "options": [
+        {
+          "id": "@culture.theaters",
+          "title": "Diverting some of our resources to theaters may be a worthy investment."
+        },
+        {
+          "id": "@culture.anatolianrock",
+          "title": "A new music genre, blending anatolian culture with western rock music, Anatolian Rock is rising in popularity and many of its artists are sympathetic to the progressive ideals. Why couldn't we support these artists?"
+        },
+        {
+          "id": "@culture.mobilecinemas",
+          "title": "Our rural regions lack access to many of the modern forms of art, and an interesting new idea that has been proposed in the party has been to recruit mobile cinemas to reach out to our rural citizens."
+        },
+        {
+          "id": "@culture.mobilecinemas2",
+          "title": "Now that we have prepared the infrastructure for the mobile cinemas; we can begin utilizing them at full capacity."
+        },
+        {
+          "id": "@culture.literature",
+          "title": "Many literature circles are sympathetic to the democratic left and with an already thriving tradition, literature can become a front for advancing social ideas."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@culture.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Culture and Arts"
+        },
+        {
+          "type": "paragraph",
+          "content": "We are the self-proclaimed party of positivism, the party of science and arts. However, the recent attitude of our party towards new movements of art and indifference towards state pressure on free art has gathered doubts about this claim. Now it may be a good time to change this attitude."
+        }
+      ]
     },
     "enemies.THKPC": {
       "id": "enemies.THKPC",
@@ -32389,188 +32401,12 @@
         }
       ]
     },
-    "enemies": {
-      "id": "enemies",
-      "type": "scene",
-      "title": "Choosing Our Enemies",
-      "newPage": true,
-      "viewIf": {
-        "$code": "return ((((Q['year'] || 0) <= 1980) && ((Q['enemies_timer'] || 0) <= 0)) && (Q['CHP_party_leader'] == 'Ecevit'));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['enemies_timer'] = 18;"
-        }
-      ],
-      "maxVisits": 4,
-      "isCard": true,
-      "cardImage": "img/ahtapot.jpg",
-      "tags": [
-        "party_affairs"
-      ],
-      "options": [
-        {
-          "id": "@enemies.military",
-          "title": "The military that is strangling our democracy"
-        },
-        {
-          "id": "@enemies.bourgeois",
-          "title": "Our liberal archnemesis - AP."
-        },
-        {
-          "id": "@enemies.anti_dem",
-          "title": "The radical groups to our left and right, Communists, MHP and MSP"
-        },
-        {
-          "id": "@enemies.far_right",
-          "title": "The reactionaries - the MHP and MSP."
-        },
-        {
-          "id": "@enemies.MHP",
-          "title": "The MHP alone."
-        },
-        {
-          "id": "@enemies.THKPC",
-          "title": "Anti-parliamentary leftist groups such as THKP-C and TKP/ML"
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Choosing our enemies"
-          },
-          {
-            "type": "paragraph",
-            "content": "In our media and campaign materials, who should we consider as our main opponents?"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "Previously, we had considered the ",
-                  {
-                    "type": "insert",
-                    "insert": 1
-                  },
-                  " as our prior enemies. Is a change of direction necessary? "
-                ],
-                "predicate": 0
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['enemies'] || 0) != 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['enemies'] || 0);"
-            }
-          }
-        ]
-      },
-      "countVisitsMax": 4
-    },
     "international_relations.return": {
       "id": "international_relations.return",
       "content": {
         "content": "We do not need the international contacts at the moment.",
         "type": "paragraph"
       }
-    },
-    "international_relations": {
-      "id": "international_relations",
-      "type": "scene",
-      "title": "International Relations",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "party_affairs"
-      ],
-      "viewIf": {
-        "$code": "return ((Q['international_relations_timer'] || 0) <= 0);"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['international_relations_timer'] = (Q['international_relations_timer'] || 0) + 8;"
-        }
-      ],
-      "cardImage": "img/sosyalistenternasyonal.jpg",
-      "options": [
-        {
-          "id": "@international_relations.fr_uk",
-          "title": "The Western European Social Democrats, SPD, Labour and many others, have inspired us in many ways. Stronger ties can both help our nation and our party."
-        },
-        {
-          "id": "@international_relations.baath",
-          "title": "Even though we are firmly opposed to undemocratic forms of Socialism, Kemalism is still seen as a guide by many Baathists in the Arabian world."
-        },
-        {
-          "id": "@international_relations.international",
-          "title": "The Socialist International is a wide organization of Democratic Left parties and stronger ties, perhaps even membership, can benefit our party."
-        },
-        {
-          "id": "@international_relations.join_socialist_international",
-          "title": {
-            "content": {
-              "type": "conditional",
-              "content": "We have built enough contacts to formally join the Socialist International!",
-              "predicate": 0
-            },
-            "stateDependencies": [
-              {
-                "type": "predicate",
-                "fn": {
-                  "$code": "return ((Q['western_socialist_contacts'] || 0) >= 4);"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "id": "@international_relations.america",
-          "title": [
-            "İnönü once called <span style=\"color: #E3000F;\">",
-            {
-              "type": "emphasis-2",
-              "content": "CHP"
-            },
-            "</span> the Democrats of Turkey, can we salvage our relations with our \"allies\" over in the United States?"
-          ]
-        },
-        {
-          "id": "@international_relations.return",
-          "title": "We do not need international contacts at the moment."
-        },
-        {
-          "id": "@easy_discard"
-        },
-        {
-          "id": "@cancel_advisor_action"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "International Relations"
-        },
-        {
-          "type": "paragraph",
-          "content": "Even though the \"Left of Center\" movement that is dominating our party is an indigenous left movement molded into existence to suit the needs of the Turkish nation, it still was influenced a lot by the Social Democratic movements of Europe."
-        }
-      ]
     },
     "inter_party_relationships.antimilitary": {
       "id": "inter_party_relationships.antimilitary",
@@ -32790,6 +32626,85 @@
         "content": "Ecevit has been removed as a member. The Left-Wing Kemalist faction deeply disapproves.",
         "type": "paragraph"
       }
+    },
+    "union_relations.navigation_return_main": {
+      "id": "union_relations.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "union_relations": {
+      "id": "union_relations",
+      "type": "scene",
+      "title": "Union Relations",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['union_timer'] || 0) <= 0));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['union_timer'] = 0;"
+        }
+      ],
+      "isCard": true,
+      "cardImage": "img/disk.jpg",
+      "tags": [
+        "party_affairs",
+        "disk"
+      ],
+      "options": [
+        {
+          "id": "@union_relations.municipalities",
+          "title": "We can empower DİSK in the municipalities we hold, in spite of the right-wing syndicate, TÜRK-İŞ."
+        },
+        {
+          "id": "@union_relations.reform",
+          "title": "We can promise extensive labour reforms when we get into government. Failing to keep our promise will have severe consequences though."
+        },
+        {
+          "id": "@union_relations.funding",
+          "title": "We can transfer some of our party resources to DİSK, let's hope they don't disappear within the syndicate bureaucracy..."
+        },
+        {
+          "id": "@union_relations.meeting",
+          "title": "Perhaps we can pay a visit to the chairman of DİSK, Kemal Türkler, and show our good intentions?"
+        },
+        {
+          "id": "@union_relations.root",
+          "title": "We can't take any action right now."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@union_relations.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Union Relations"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "<span style=\"color: #E3000F;\">",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            "</span> has historically adopted the title of the \"people's party\", however such rhetoric has to be materialized with strong relations with the labour movement. The main left-wing syndicate, DİSK, seems to have taken interest in the direction our party has taken, but how can we improve our relations?"
+          ]
+        }
+      ]
     },
     "root.start_historical": {
       "id": "root.start_historical",
@@ -33284,6 +33199,10 @@
         {
           "id": "@national_elections.ministries",
           "title": "Now, we must select our ministries."
+        },
+        {
+          "id": "@dealing_with_toleration.navigation_return_new_grand_coalition",
+          "title": "Return"
         }
       ],
       "content": {
@@ -33334,6 +33253,10 @@
         {
           "id": "@economic_democracy",
           "title": "Back."
+        },
+        {
+          "id": "@economic_democracy.navigation_return_peoples_sector",
+          "title": "Return"
         }
       ],
       "content": [
@@ -33685,6 +33608,10 @@
         {
           "id": "@root",
           "title": "Take no further action."
+        },
+        {
+          "id": "@police.navigation_return_investigate_far_right",
+          "title": "Return"
         }
       ],
       "content": [
@@ -34359,6 +34286,84 @@
         ]
       }
     },
+    "campaigning.navigation_return_main": {
+      "id": "campaigning.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "campaigning": {
+      "id": "campaigning",
+      "type": "scene",
+      "title": "Campaigning",
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['campaigning_timer'] = 2;"
+        }
+      ],
+      "maxVisits": 36,
+      "isCard": true,
+      "frequency": 143,
+      "tags": [
+        "party_affairs"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['CHP_party_leader'] == \"İnönü\") && ((Q['campaigning_timer'] || 0) <= 0));"
+      },
+      "cardImage": "img/inonu_campaigning.jpeg",
+      "options": [
+        {
+          "id": "@campaigning.workers",
+          "title": "The rising urban working class, attracted by our shift in policy."
+        },
+        {
+          "id": "@campaigning.petty_bourgeoisie",
+          "title": "The middle class of artisans, shopkeepers and the like, normally affiliated with liberal parties."
+        },
+        {
+          "id": "@campaigning.state_employees",
+          "title": "Citizens employed by the state and the bureaucracy."
+        },
+        {
+          "id": "@campaigning.rural",
+          "title": "Rural workers and small farmers, who have felt neglected by us in the past."
+        },
+        {
+          "id": "@campaigning.capitalists",
+          "title": "Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords...?"
+        },
+        {
+          "id": "@campaigning.root",
+          "title": "We either don't want to or cannot campaign right now."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@campaigning.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Campaigning"
+        },
+        {
+          "type": "paragraph",
+          "content": "Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?"
+        }
+      ],
+      "countVisitsMax": 36
+    },
     "campaigning_ecevit.capitalists": {
       "id": "campaigning_ecevit.capitalists",
       "subtitle": "Resources will decrease by 1. Capitalist support will increase.",
@@ -34443,6 +34448,216 @@
         }
       ]
     },
+    "enemies.navigation_return_main": {
+      "id": "enemies.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "enemies": {
+      "id": "enemies",
+      "type": "scene",
+      "title": "Choosing Our Enemies",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return ((((Q['year'] || 0) <= 1980) && ((Q['enemies_timer'] || 0) <= 0)) && (Q['CHP_party_leader'] == 'Ecevit'));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['enemies_timer'] = 18;"
+        }
+      ],
+      "maxVisits": 4,
+      "isCard": true,
+      "cardImage": "img/ahtapot.jpg",
+      "tags": [
+        "party_affairs"
+      ],
+      "options": [
+        {
+          "id": "@enemies.military",
+          "title": "The military that is strangling our democracy"
+        },
+        {
+          "id": "@enemies.bourgeois",
+          "title": "Our liberal archnemesis - AP."
+        },
+        {
+          "id": "@enemies.anti_dem",
+          "title": "The radical groups to our left and right, Communists, MHP and MSP"
+        },
+        {
+          "id": "@enemies.far_right",
+          "title": "The reactionaries - the MHP and MSP."
+        },
+        {
+          "id": "@enemies.MHP",
+          "title": "The MHP alone."
+        },
+        {
+          "id": "@enemies.THKPC",
+          "title": "Anti-parliamentary leftist groups such as THKP-C and TKP/ML"
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@enemies.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Choosing our enemies"
+          },
+          {
+            "type": "paragraph",
+            "content": "In our media and campaign materials, who should we consider as our main opponents?"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "Previously, we had considered the ",
+                  {
+                    "type": "insert",
+                    "insert": 1
+                  },
+                  " as our prior enemies. Is a change of direction necessary? "
+                ],
+                "predicate": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['enemies'] || 0) != 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['enemies'] || 0);"
+            }
+          }
+        ]
+      },
+      "countVisitsMax": 4
+    },
+    "international_relations.navigation_return_main": {
+      "id": "international_relations.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "international_relations": {
+      "id": "international_relations",
+      "type": "scene",
+      "title": "International Relations",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "party_affairs"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['international_relations_timer'] || 0) <= 0);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['international_relations_timer'] = (Q['international_relations_timer'] || 0) + 8;"
+        }
+      ],
+      "cardImage": "img/sosyalistenternasyonal.jpg",
+      "options": [
+        {
+          "id": "@international_relations.fr_uk",
+          "title": "The Western European Social Democrats, SPD, Labour and many others, have inspired us in many ways. Stronger ties can both help our nation and our party."
+        },
+        {
+          "id": "@international_relations.baath",
+          "title": "Even though we are firmly opposed to undemocratic forms of Socialism, Kemalism is still seen as a guide by many Baathists in the Arabian world."
+        },
+        {
+          "id": "@international_relations.international",
+          "title": "The Socialist International is a wide organization of Democratic Left parties and stronger ties, perhaps even membership, can benefit our party."
+        },
+        {
+          "id": "@international_relations.join_socialist_international",
+          "title": {
+            "content": {
+              "type": "conditional",
+              "content": "We have built enough contacts to formally join the Socialist International!",
+              "predicate": 0
+            },
+            "stateDependencies": [
+              {
+                "type": "predicate",
+                "fn": {
+                  "$code": "return ((Q['western_socialist_contacts'] || 0) >= 4);"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "@international_relations.america",
+          "title": [
+            "İnönü once called <span style=\"color: #E3000F;\">",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            "</span> the Democrats of Turkey, can we salvage our relations with our \"allies\" over in the United States?"
+          ]
+        },
+        {
+          "id": "@international_relations.return",
+          "title": "We do not need international contacts at the moment."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@cancel_advisor_action"
+        },
+        {
+          "id": "@international_relations.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "International Relations"
+        },
+        {
+          "type": "paragraph",
+          "content": "Even though the \"Left of Center\" movement that is dominating our party is an indigenous left movement molded into existence to suit the needs of the Turkish nation, it still was influenced a lot by the Social Democratic movements of Europe."
+        }
+      ]
+    },
     "inter_party_relationships.enemies": {
       "id": "inter_party_relationships.enemies",
       "onArrival": [
@@ -34464,106 +34679,6 @@
       "content": {
         "content": "",
         "type": "paragraph"
-      }
-    },
-    "media": {
-      "id": "media",
-      "type": "scene",
-      "title": "Media",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "party_affairs"
-      ],
-      "viewIf": {
-        "$code": "return ((Q['media_timer'] || 0) <= 0);"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['media_timer'] = (Q['media_timer'] || 0) + 4;"
-        }
-      ],
-      "cardImage": "img/cumhuriyet4.jpg",
-      "options": [
-        {
-          "id": "@media.critique"
-        },
-        {
-          "id": "@media.silence"
-        },
-        {
-          "id": "@media.commercial"
-        },
-        {
-          "id": "@media.campaign"
-        },
-        {
-          "id": "@media.ideological"
-        },
-        {
-          "id": "@media.newideas"
-        },
-        {
-          "id": "@media.return",
-          "title": "We should not do anything with media at the moment."
-        },
-        {
-          "id": "@easy_discard"
-        },
-        {
-          "id": "@cancel_advisor_action"
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Media"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The media is heavily restricted under the military-appointed governments. ",
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "The <span style=\"color: #E3000F;\">",
-                  {
-                    "type": "emphasis-2",
-                    "content": "CHP"
-                  },
-                  "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... "
-                ],
-                "predicate": 1
-              },
-              ""
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (((Q['I_government'] || 0)) !== 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['I_government'] || 0) == 0);"
-            }
-          }
-        ]
       }
     },
     "party_disunity.expel_reformists": {
@@ -36616,73 +36731,6 @@
         "type": "paragraph"
       }
     },
-    "dealing_with_toleration": {
-      "id": "dealing_with_toleration",
-      "type": "scene",
-      "title": "Dealing with Toleration",
-      "newPage": true,
-      "isCard": true,
-      "cardImage": "img/tbmm.jpeg",
-      "viewIf": {
-        "$code": "return ((((Q['dealing_with_toleration_timer'] || 0) == 0) && (((Q['CHP_toleration'] || 0)) !== 0)) && (Q['prime_minister_party'] == \"AP\"));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['dealing_with_toleration_timer'] = (Q['dealing_with_toleration_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "tags": [
-        "govt_affairs"
-      ],
-      "options": [
-        {
-          "id": "@dealing_with_toleration.break_toleration"
-        },
-        {
-          "id": "@dealing_with_toleration.urge_against_austerity"
-        },
-        {
-          "id": "@dealing_with_toleration.improve_relations"
-        },
-        {
-          "id": "@dealing_with_toleration.new_grand_coalition"
-        },
-        {
-          "id": "@dealing_with_toleration.stay_course",
-          "title": "Stay the course, for stability's sake."
-        },
-        {
-          "id": "@easy_discard"
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Dealing with Toleration"
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "We are currently acting as external support for the government of Prime Minister ",
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              ". How should we use our position?"
-            ]
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['prime_minister'] || 0);"
-            }
-          }
-        ]
-      }
-    },
     "economic_democracy.cooperative_bank": {
       "id": "economic_democracy.cooperative_bank",
       "title": "Establish the Cooperative Bank",
@@ -36703,6 +36751,10 @@
         {
           "id": "@economic_democracy",
           "title": "Back."
+        },
+        {
+          "id": "@economic_democracy.navigation_return_cooperative_bank",
+          "title": "Return"
         }
       ],
       "content": [
@@ -36978,76 +37030,6 @@
         "content": "We open investigations into the proceedings of the KMD. While actually banning them would be unconstitutional, our efforts put their activities under pressure and each investigation we conduct decreases their effectiveness in influencing the rural electorate.",
         "type": "paragraph"
       }
-    },
-    "judiciary": {
-      "id": "judiciary",
-      "type": "scene",
-      "title": "Justice Ministry",
-      "newPage": true,
-      "isCard": true,
-      "viewIf": {
-        "$code": "return Q.CHP_in_government === 1 && (Q.justice_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"justice\"))) && Q.judiciary_timer === 0;"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['judiciary_timer'] = (Q['judiciary_timer'] || 0) + 6;"
-        }
-      ],
-      "cardImage": "img/portraits/MuammerAksoy.jpg",
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "options": [
-        {
-          "id": "@judiciary.amnesty",
-          "title": "Launch a general amnesty."
-        },
-        {
-          "id": "@judiciary.moderation",
-          "title": "Release a circular note of moderation in political cases."
-        },
-        {
-          "id": "@judiciary.prioritize",
-          "title": "Prioritize the investigation of right winger political violence."
-        },
-        {
-          "id": "@judiciary.prisonreform",
-          "title": "Work on improving the treatment of political prisoners in prisons."
-        },
-        {
-          "id": "@judiciary.investigate",
-          "title": "Investigate accusations of police violence and torture."
-        },
-        {
-          "id": "@judiciary.resist",
-          "title": "Resist against DGM, the state security courts."
-        },
-        {
-          "id": "@judiciary.constitutionalcourt",
-          "title": "Bring the DGMs to the constitutional court!"
-        },
-        {
-          "id": "@judiciary.KMD",
-          "title": "Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time."
-        },
-        {
-          "id": "@easy_discard"
-        },
-        {
-          "id": "@cancel_advisor_action"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Justice Ministry"
-        },
-        {
-          "type": "paragraph",
-          "content": "Justice is the main instrument through which the state establishes trust and belief in its authority. If we don't do the necessary reforms curbing right-wing influence in the bureaucracy and prevent political persecutions, it will be the stability of our democracy which will suffer the most. Likewise, improving the fairness of our judicial affairs can reestablish the trust in our democracy at a time when every group awaits its faltering for political benefit."
-        }
-      ]
     },
     "kurdish_issue.back_to_main": {
       "id": "kurdish_issue.back_to_main",
@@ -37385,6 +37367,123 @@
       "content": {
         "content": "Though they seem uninterested in cooperation, they are still the closest party to us ideologically on the right.",
         "type": "paragraph"
+      }
+    },
+    "media.navigation_return_main": {
+      "id": "media.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "media": {
+      "id": "media",
+      "type": "scene",
+      "title": "Media",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "party_affairs"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['media_timer'] || 0) <= 0);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['media_timer'] = (Q['media_timer'] || 0) + 4;"
+        }
+      ],
+      "cardImage": "img/cumhuriyet4.jpg",
+      "options": [
+        {
+          "id": "@media.critique"
+        },
+        {
+          "id": "@media.silence"
+        },
+        {
+          "id": "@media.commercial"
+        },
+        {
+          "id": "@media.campaign"
+        },
+        {
+          "id": "@media.ideological"
+        },
+        {
+          "id": "@media.newideas"
+        },
+        {
+          "id": "@media.return",
+          "title": "We should not do anything with media at the moment."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@cancel_advisor_action"
+        },
+        {
+          "id": "@media.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Media"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The media is heavily restricted under the military-appointed governments. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "The <span style=\"color: #E3000F;\">",
+                  {
+                    "type": "emphasis-2",
+                    "content": "CHP"
+                  },
+                  "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... "
+                ],
+                "predicate": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['I_government'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['I_government'] || 0) == 0);"
+            }
+          }
+        ]
       }
     },
     "party_disunity.expel_left": {
@@ -38008,6 +38107,19 @@
         "type": "paragraph"
       }
     },
+    "dealing_with_toleration.navigation_return_main": {
+      "id": "dealing_with_toleration.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "economic_democracy.nationalize_mines": {
       "id": "economic_democracy.nationalize_mines",
       "title": "Nationalize Mines",
@@ -38155,6 +38267,93 @@
         "content": "Up until now our relations with the Eastern Bloc have been cold at best. However, after Stalin's death the Soviet attitude towards Turkey has shifted towards a reconciliatory direction. Even though we should keep our relations with the West in mind, we have a lot to gain from improved relations with the Soviet Union.",
         "type": "paragraph"
       }
+    },
+    "judiciary.navigation_return_main": {
+      "id": "judiciary.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "judiciary": {
+      "id": "judiciary",
+      "type": "scene",
+      "title": "Justice Ministry",
+      "newPage": true,
+      "isCard": true,
+      "viewIf": {
+        "$code": "return Q.CHP_in_government === 1 && (Q.justice_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"justice\"))) && Q.judiciary_timer === 0;"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['judiciary_timer'] = (Q['judiciary_timer'] || 0) + 6;"
+        }
+      ],
+      "cardImage": "img/portraits/MuammerAksoy.jpg",
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "options": [
+        {
+          "id": "@judiciary.amnesty",
+          "title": "Launch a general amnesty."
+        },
+        {
+          "id": "@judiciary.moderation",
+          "title": "Release a circular note of moderation in political cases."
+        },
+        {
+          "id": "@judiciary.prioritize",
+          "title": "Prioritize the investigation of right winger political violence."
+        },
+        {
+          "id": "@judiciary.prisonreform",
+          "title": "Work on improving the treatment of political prisoners in prisons."
+        },
+        {
+          "id": "@judiciary.investigate",
+          "title": "Investigate accusations of police violence and torture."
+        },
+        {
+          "id": "@judiciary.resist",
+          "title": "Resist against DGM, the state security courts."
+        },
+        {
+          "id": "@judiciary.constitutionalcourt",
+          "title": "Bring the DGMs to the constitutional court!"
+        },
+        {
+          "id": "@judiciary.KMD",
+          "title": "Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@cancel_advisor_action"
+        },
+        {
+          "id": "@judiciary.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Justice Ministry"
+        },
+        {
+          "type": "paragraph",
+          "content": "Justice is the main instrument through which the state establishes trust and belief in its authority. If we don't do the necessary reforms curbing right-wing influence in the bureaucracy and prevent political persecutions, it will be the stability of our democracy which will suffer the most. Likewise, improving the fairness of our judicial affairs can reestablish the trust in our democracy at a time when every group awaits its faltering for political benefit."
+        }
+      ]
     },
     "kurdish_issue.decline": {
       "id": "kurdish_issue.decline",
@@ -38869,6 +39068,19 @@
         ]
       }
     },
+    "dealing_with_toleration.navigation_return_break_toleration": {
+      "id": "dealing_with_toleration.navigation_return_break_toleration",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "dealing_with_toleration.navigation_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "economic_democracy.nationalize_petrol": {
       "id": "economic_democracy.nationalize_petrol",
       "title": "Nationalize Petroleum",
@@ -39165,132 +39377,6 @@
         "type": "paragraph"
       }
     },
-    "party_disunity": {
-      "id": "party_disunity",
-      "type": "scene",
-      "title": "Party Disunity",
-      "newPage": true,
-      "isCard": true,
-      "viewIf": {
-        "$code": "return ((((Q['party_disunity_timer'] || 0)===0) && (Q['CHP_party_leader'] == \"Ecevit\")) && (((((((Q['dissent'] || 0) >= 0.3) || ((((Q['right_kemalists_dissent'] || 0) > 30) && (!(((Q['right_kemalists_resign'] || 0)) !== 0))))) || (((Q['left_kemalists_dissent'] || 0) > 30))) || (((Q['orthodox_kemalists_dissent'] || 0) > 30))) || (((Q['kemalist_marxists_dissent'] || 0) > 30)))));"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['party_disunity_timer'] = 4;"
-        }
-      ],
-      "cardImage": "img/egemenlikulusun.jpg",
-      "frequency": 100,
-      "tags": [
-        "party_affairs"
-      ],
-      "options": [
-        {
-          "id": "@party_disunity.enforce_unity"
-        },
-        {
-          "id": "@party_disunity.concessions_rightists"
-        },
-        {
-          "id": "@party_disunity.concessions_orthodox"
-        },
-        {
-          "id": "@party_disunity.concessions_left"
-        },
-        {
-          "id": "@party_disunity.concessions_marxist"
-        },
-        {
-          "id": "@party_disunity.do_nothing"
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": "Party Disunity"
-          },
-          {
-            "type": "paragraph",
-            "content": "The party is being torn apart by internal dissent. Upset at the leadership and general direction, factions have started sabotaging their rivals, hampering our efforts to win votes and carry out our policies."
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The right kemalists are upset at our direction. ",
-                "predicate": 0
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The left kemalists are displeased with the direction of our leadership. ",
-                "predicate": 1
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The orthodox kemalists disagree with our shift to left-wing rhetoric and opposition to top-down change. ",
-                "predicate": 2
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Kemalist marxists are losing faith in our leadership ",
-                "predicate": 3
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "Something must be done to reinforce party unity."
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['right_kemalists_dissent'] || 0) > 30);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['left_kemalists_dissent'] || 0) > 30);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['orthodox_kemalists_dissent'] || 0) > 30);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['kemalist_marxists_dissent'] || 0) > 30);"
-            }
-          }
-        ]
-      }
-    },
     "rally.rural_mild": {
       "id": "rally.rural_mild",
       "onArrival": [
@@ -39467,6 +39553,62 @@
             "type": "predicate",
             "fn": {
               "$code": "return (Q['largest_party'] == \"CHP\");"
+            }
+          }
+        ]
+      }
+    },
+    "dealing_with_toleration.navigation_menu": {
+      "id": "dealing_with_toleration.navigation_menu",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@dealing_with_toleration.break_toleration"
+        },
+        {
+          "id": "@dealing_with_toleration.urge_against_austerity"
+        },
+        {
+          "id": "@dealing_with_toleration.improve_relations"
+        },
+        {
+          "id": "@dealing_with_toleration.new_grand_coalition"
+        },
+        {
+          "id": "@dealing_with_toleration.stay_course",
+          "title": "Stay the course, for stability's sake."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@dealing_with_toleration.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Dealing with Toleration"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "We are currently acting as external support for the government of Prime Minister ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ". How should we use our position?"
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['prime_minister'] || 0);"
             }
           }
         ]
@@ -39736,35 +39878,6 @@
       "content": {
         "content": "The high command congratulates us for taking such a historic step.",
         "type": "paragraph"
-      }
-    },
-    "military_policy": {
-      "id": "military_policy",
-      "type": "scene",
-      "title": "National Defense Ministry",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "onArrival": [
-        {
-          "$code": "Q['military_policy_timer'] = (Q['military_policy_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "viewIf": {
-        "$code": "return Q.CHP_in_government === 1 && (Q.defense_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"defense\"))) && Q.military_policy_timer <= 0;"
-      },
-      "cardImage": "img/portraits/Hasan_Esat_Isik.jpg",
-      "goTo": [
-        {
-          "id": "military_policy.menu"
-        }
-      ],
-      "content": {
-        "type": "heading",
-        "content": "National Defense Ministry"
       }
     },
     "municipalities.connect": {
@@ -40615,6 +40728,149 @@
       "content": {
         "content": "We are stuck in a coalition with them, and it may be the best choice to maintain cordial relations.",
         "type": "paragraph"
+      }
+    },
+    "party_disunity.navigation_return_main": {
+      "id": "party_disunity.navigation_return_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "party_disunity": {
+      "id": "party_disunity",
+      "type": "scene",
+      "title": "Party Disunity",
+      "newPage": true,
+      "isCard": true,
+      "viewIf": {
+        "$code": "return ((((Q['party_disunity_timer'] || 0)===0) && (Q['CHP_party_leader'] == \"Ecevit\")) && (((((((Q['dissent'] || 0) >= 0.3) || ((((Q['right_kemalists_dissent'] || 0) > 30) && (!(((Q['right_kemalists_resign'] || 0)) !== 0))))) || (((Q['left_kemalists_dissent'] || 0) > 30))) || (((Q['orthodox_kemalists_dissent'] || 0) > 30))) || (((Q['kemalist_marxists_dissent'] || 0) > 30)))));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['party_disunity_timer'] = 4;"
+        }
+      ],
+      "cardImage": "img/egemenlikulusun.jpg",
+      "frequency": 100,
+      "tags": [
+        "party_affairs"
+      ],
+      "options": [
+        {
+          "id": "@party_disunity.enforce_unity"
+        },
+        {
+          "id": "@party_disunity.concessions_rightists"
+        },
+        {
+          "id": "@party_disunity.concessions_orthodox"
+        },
+        {
+          "id": "@party_disunity.concessions_left"
+        },
+        {
+          "id": "@party_disunity.concessions_marxist"
+        },
+        {
+          "id": "@party_disunity.do_nothing"
+        },
+        {
+          "id": "@party_disunity.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Party Disunity"
+          },
+          {
+            "type": "paragraph",
+            "content": "The party is being torn apart by internal dissent. Upset at the leadership and general direction, factions have started sabotaging their rivals, hampering our efforts to win votes and carry out our policies."
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The right kemalists are upset at our direction. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The left kemalists are displeased with the direction of our leadership. ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The orthodox kemalists disagree with our shift to left-wing rhetoric and opposition to top-down change. ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Kemalist marxists are losing faith in our leadership ",
+                "predicate": 3
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "Something must be done to reinforce party unity."
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['right_kemalists_dissent'] || 0) > 30);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['left_kemalists_dissent'] || 0) > 30);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['orthodox_kemalists_dissent'] || 0) > 30);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['kemalist_marxists_dissent'] || 0) > 30);"
+            }
+          }
+        ]
       }
     },
     "rally.rural_moderate": {
@@ -41823,6 +42079,90 @@
         "type": "paragraph"
       }
     },
+    "dealing_with_toleration.navigation_return_new_grand_coalition": {
+      "id": "dealing_with_toleration.navigation_return_new_grand_coalition",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "dealing_with_toleration.navigation_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "dealing_with_toleration": {
+      "id": "dealing_with_toleration",
+      "type": "scene",
+      "title": "Dealing with Toleration",
+      "newPage": true,
+      "isCard": true,
+      "cardImage": "img/tbmm.jpeg",
+      "viewIf": {
+        "$code": "return ((((Q['dealing_with_toleration_timer'] || 0) == 0) && (((Q['CHP_toleration'] || 0)) !== 0)) && (Q['prime_minister_party'] == \"AP\"));"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['dealing_with_toleration_timer'] = (Q['dealing_with_toleration_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "tags": [
+        "govt_affairs"
+      ],
+      "options": [
+        {
+          "id": "@dealing_with_toleration.break_toleration"
+        },
+        {
+          "id": "@dealing_with_toleration.urge_against_austerity"
+        },
+        {
+          "id": "@dealing_with_toleration.improve_relations"
+        },
+        {
+          "id": "@dealing_with_toleration.new_grand_coalition"
+        },
+        {
+          "id": "@dealing_with_toleration.stay_course",
+          "title": "Stay the course, for stability's sake."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@dealing_with_toleration.navigation_return_main",
+          "title": "Return"
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "Dealing with Toleration"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "We are currently acting as external support for the government of Prime Minister ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ". How should we use our position?"
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['prime_minister'] || 0);"
+            }
+          }
+        ]
+      }
+    },
     "economic_democracy.fund_sector": {
       "id": "economic_democracy.fund_sector",
       "title": "Allocate funds to People's Sector",
@@ -41981,6 +42321,48 @@
       "content": {
         "content": "We increased spending for the Social Security Institute. Our labourers appreciate this greatly.",
         "type": "paragraph"
+      }
+    },
+    "military_policy.navigation_return_budget": {
+      "id": "military_policy.navigation_return_budget",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "military_policy.menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "military_policy": {
+      "id": "military_policy",
+      "type": "scene",
+      "title": "National Defense Ministry",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "onArrival": [
+        {
+          "$code": "Q['military_policy_timer'] = (Q['military_policy_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "viewIf": {
+        "$code": "return Q.CHP_in_government === 1 && (Q.defense_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"defense\"))) && Q.military_policy_timer <= 0;"
+      },
+      "cardImage": "img/portraits/Hasan_Esat_Isik.jpg",
+      "goTo": [
+        {
+          "id": "military_policy.menu"
+        }
+      ],
+      "content": {
+        "type": "heading",
+        "content": "National Defense Ministry"
       }
     },
     "municipalities.regularization": {
@@ -43350,34 +43732,6 @@
         "type": "paragraph"
       }
     },
-    "rally": {
-      "id": "rally",
-      "type": "scene",
-      "title": "Political Rally",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "party_affairs"
-      ],
-      "viewIf": {
-        "$code": "return ((Q['rally_timer'] || 0) <= 0);"
-      },
-      "onArrival": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['rally_timer'] = 6;"
-        }
-      ],
-      "cardImage": "img/ecevitmiting3.jpg",
-      "goTo": [
-        {
-          "id": "rally.main_rally"
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
     "shuffle_leadership.remove_sav": {
       "id": "shuffle_leadership.remove_sav",
       "title": "Remove Sav",
@@ -44069,6 +44423,47 @@
             "qdisplay": "dissent"
           }
         ]
+      }
+    },
+    "rally.navigation_return_main_rally": {
+      "id": "rally.navigation_return_main_rally",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "rally": {
+      "id": "rally",
+      "type": "scene",
+      "title": "Political Rally",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "party_affairs"
+      ],
+      "viewIf": {
+        "$code": "return ((Q['rally_timer'] || 0) <= 0);"
+      },
+      "onArrival": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['rally_timer'] = 6;"
+        }
+      ],
+      "cardImage": "img/ecevitmiting3.jpg",
+      "goTo": [
+        {
+          "id": "rally.main_rally"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
       }
     },
     "shuffle_leadership.remove_avcioglu": {
@@ -44959,93 +45354,6 @@
         "type": "paragraph"
       }
     },
-    "economic_democracy": {
-      "id": "economic_democracy",
-      "type": "scene",
-      "title": "People's Sector",
-      "isCard": true,
-      "newPage": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "viewIf": {
-        "$code": "return !!Q.CHP_in_government && !(Q.economic_democracy_timer > 0);"
-      },
-      "frequency": 100,
-      "onArrival": [
-        {
-          "$code": "AnatolianCardActions.begin(this,\"economic_democracy\"); if(!(Q.economic_democracy_timer>0)){Q.economic_democracy_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"economic_democracy\"))Q.timers.push(\"economic_democracy\"); Q.month_actions=(Q.month_actions||0)+1;}"
-        }
-      ],
-      "cardImage": "img/peoples-sector.png",
-      "options": [
-        {
-          "id": "@economic_democracy.found_hayat",
-          "title": "Found HAYAT"
-        },
-        {
-          "id": "@economic_democracy.establish_iyak",
-          "title": "Found İYAK"
-        },
-        {
-          "id": "@economic_democracy.reform_iyak",
-          "title": "Reform İYAK"
-        },
-        {
-          "id": "@economic_democracy.reform_meyak",
-          "title": "Reform MEYAK"
-        },
-        {
-          "id": "@economic_democracy.establish_umbrella",
-          "title": "Establish Cooperative Umbrella Organizations"
-        },
-        {
-          "id": "@economic_democracy.expand_umbrella",
-          "title": "Expand Cooperative Umbrella Organizations"
-        },
-        {
-          "id": "@economic_democracy.peoples_sector",
-          "title": "Integrate People's Sector into the Five Year Plan"
-        },
-        {
-          "id": "@economic_democracy.cooperative_bank",
-          "title": "Establish the Cooperative Bank"
-        },
-        {
-          "id": "@economic_democracy.nationalize_mines",
-          "title": "Nationalize Mines"
-        },
-        {
-          "id": "@economic_democracy.nationalize_petrol",
-          "title": "Nationalize Petroleum"
-        },
-        {
-          "id": "@economic_democracy.back_to_main",
-          "title": "Back to main menu."
-        },
-        {
-          "id": "@economic_democracy.decline",
-          "title": "We will not take an action at the moment."
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "People's Sector"
-        },
-        {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "magic",
-              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
-            },
-            ""
-          ]
-        }
-      ]
-    },
     "fiscal_policy.cut_rich": {
       "id": "fiscal_policy.cut_rich",
       "title": "Cut income taxes for the rich.",
@@ -45719,6 +46027,19 @@
         "type": "paragraph"
       }
     },
+    "economic_democracy.navigation_return_peoples_sector": {
+      "id": "economic_democracy.navigation_return_peoples_sector",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "economic_democracy.navigation_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "fiscal_policy.raise_overall": {
       "id": "fiscal_policy.raise_overall",
       "subtitle": "+2 budget",
@@ -45937,76 +46258,6 @@
         ]
       }
     },
-    "police": {
-      "id": "police",
-      "type": "scene",
-      "title": "Internal Security",
-      "newPage": true,
-      "isCard": true,
-      "tags": [
-        "govt_affairs",
-        "cabinet"
-      ],
-      "onArrival": [
-        {
-          "$code": "Q['police_timer'] = (Q['police_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
-        }
-      ],
-      "viewIf": {
-        "$code": "return Q.CHP_in_government === 1 && (Q.interior_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"interior\"))) && Q.police_timer <= 0;"
-      },
-      "cardImage": "img/portraits/necdetugur2.png",
-      "options": [
-        {
-          "id": "@police.easterncrime",
-          "title": "Clamp down on organized crime in the East."
-        },
-        {
-          "id": "@police.loyalty",
-          "title": "Improve the loyalty of the Interior Ministry forces."
-        },
-        {
-          "id": "@police.recruit",
-          "title": "Recruit more police forces."
-        },
-        {
-          "id": "@police.weaponry",
-          "title": "Supplement the weaponry and the strength of the police forces."
-        },
-        {
-          "id": "@police.investigate_corruption",
-          "title": "Investigate corruption by big businesses."
-        },
-        {
-          "id": "@police.investigate_far_right",
-          "title": "Investigate illegal activity among the far right."
-        },
-        {
-          "id": "@police.ohal",
-          "title": "Declare OHAL(state of emergency) to put an end to the street fighting."
-        },
-        {
-          "id": "@root",
-          "title": "Take no action for now."
-        },
-        {
-          "id": "@easy_discard"
-        },
-        {
-          "id": "@cancel_advisor_action"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Internal Security"
-        },
-        {
-          "type": "paragraph",
-          "content": "The Interior Ministry controls internal security throughout the Turkish Republic."
-        }
-      ]
-    },
     "shuffle_leadership.remove_kirikoglu": {
       "id": "shuffle_leadership.remove_kirikoglu",
       "title": "Remove Kırıkoğlu",
@@ -46125,6 +46376,19 @@
         "type": "paragraph"
       }
     },
+    "economic_democracy.navigation_return_cooperative_bank": {
+      "id": "economic_democracy.navigation_return_cooperative_bank",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "economic_democracy.navigation_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "fiscal_policy.regressive": {
       "id": "fiscal_policy.regressive",
       "title": "Lower taxes on the rich, while increasing consumption taxes (which affect the working class more).",
@@ -46199,6 +46463,19 @@
       "goTo": [
         {
           "id": "municipalities.municipalities_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "police.navigation_return_investigate_far_right": {
+      "id": "police.navigation_return_investigate_far_right",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "police.navigation_menu"
         }
       ],
       "content": {
@@ -46340,6 +46617,163 @@
           }
         ]
       }
+    },
+    "economic_democracy.navigation_menu": {
+      "id": "economic_democracy.navigation_menu",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@economic_democracy.found_hayat",
+          "title": "Found HAYAT"
+        },
+        {
+          "id": "@economic_democracy.establish_iyak",
+          "title": "Found İYAK"
+        },
+        {
+          "id": "@economic_democracy.reform_iyak",
+          "title": "Reform İYAK"
+        },
+        {
+          "id": "@economic_democracy.reform_meyak",
+          "title": "Reform MEYAK"
+        },
+        {
+          "id": "@economic_democracy.establish_umbrella",
+          "title": "Establish Cooperative Umbrella Organizations"
+        },
+        {
+          "id": "@economic_democracy.expand_umbrella",
+          "title": "Expand Cooperative Umbrella Organizations"
+        },
+        {
+          "id": "@economic_democracy.peoples_sector",
+          "title": "Integrate People's Sector into the Five Year Plan"
+        },
+        {
+          "id": "@economic_democracy.cooperative_bank",
+          "title": "Establish the Cooperative Bank"
+        },
+        {
+          "id": "@economic_democracy.nationalize_mines",
+          "title": "Nationalize Mines"
+        },
+        {
+          "id": "@economic_democracy.nationalize_petrol",
+          "title": "Nationalize Petroleum"
+        },
+        {
+          "id": "@economic_democracy.back_to_main",
+          "title": "Back to main menu."
+        },
+        {
+          "id": "@economic_democracy.decline",
+          "title": "We will not take an action at the moment."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "People's Sector"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "magic",
+              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+            },
+            ""
+          ]
+        }
+      ]
+    },
+    "economic_democracy": {
+      "id": "economic_democracy",
+      "type": "scene",
+      "title": "People's Sector",
+      "isCard": true,
+      "newPage": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "viewIf": {
+        "$code": "return !!Q.CHP_in_government && !(Q.economic_democracy_timer > 0);"
+      },
+      "frequency": 100,
+      "onArrival": [
+        {
+          "$code": "AnatolianCardActions.begin(this,\"economic_democracy\"); if(!(Q.economic_democracy_timer>0)){Q.economic_democracy_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"economic_democracy\"))Q.timers.push(\"economic_democracy\"); Q.month_actions=(Q.month_actions||0)+1;}"
+        }
+      ],
+      "cardImage": "img/peoples-sector.png",
+      "options": [
+        {
+          "id": "@economic_democracy.found_hayat",
+          "title": "Found HAYAT"
+        },
+        {
+          "id": "@economic_democracy.establish_iyak",
+          "title": "Found İYAK"
+        },
+        {
+          "id": "@economic_democracy.reform_iyak",
+          "title": "Reform İYAK"
+        },
+        {
+          "id": "@economic_democracy.reform_meyak",
+          "title": "Reform MEYAK"
+        },
+        {
+          "id": "@economic_democracy.establish_umbrella",
+          "title": "Establish Cooperative Umbrella Organizations"
+        },
+        {
+          "id": "@economic_democracy.expand_umbrella",
+          "title": "Expand Cooperative Umbrella Organizations"
+        },
+        {
+          "id": "@economic_democracy.peoples_sector",
+          "title": "Integrate People's Sector into the Five Year Plan"
+        },
+        {
+          "id": "@economic_democracy.cooperative_bank",
+          "title": "Establish the Cooperative Bank"
+        },
+        {
+          "id": "@economic_democracy.nationalize_mines",
+          "title": "Nationalize Mines"
+        },
+        {
+          "id": "@economic_democracy.nationalize_petrol",
+          "title": "Nationalize Petroleum"
+        },
+        {
+          "id": "@economic_democracy.back_to_main",
+          "title": "Back to main menu."
+        },
+        {
+          "id": "@economic_democracy.decline",
+          "title": "We will not take an action at the moment."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "People's Sector"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "magic",
+              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+            },
+            ""
+          ]
+        }
+      ]
     },
     "fiscal_policy.tariffs": {
       "id": "fiscal_policy.tariffs",
@@ -46495,6 +46929,130 @@
         {
           "type": "paragraph",
           "content": "Our municipalities provide vital services and a practical opportunity to improve everyday life across the Republic."
+        }
+      ]
+    },
+    "police.navigation_menu": {
+      "id": "police.navigation_menu",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@police.easterncrime",
+          "title": "Clamp down on organized crime in the East."
+        },
+        {
+          "id": "@police.loyalty",
+          "title": "Improve the loyalty of the Interior Ministry forces."
+        },
+        {
+          "id": "@police.recruit",
+          "title": "Recruit more police forces."
+        },
+        {
+          "id": "@police.weaponry",
+          "title": "Supplement the weaponry and the strength of the police forces."
+        },
+        {
+          "id": "@police.investigate_corruption",
+          "title": "Investigate corruption by big businesses."
+        },
+        {
+          "id": "@police.investigate_far_right",
+          "title": "Investigate illegal activity among the far right."
+        },
+        {
+          "id": "@police.ohal",
+          "title": "Declare OHAL(state of emergency) to put an end to the street fighting."
+        },
+        {
+          "id": "@root",
+          "title": "Take no action for now."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@cancel_advisor_action"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Internal Security"
+        },
+        {
+          "type": "paragraph",
+          "content": "The Interior Ministry controls internal security throughout the Turkish Republic."
+        }
+      ]
+    },
+    "police": {
+      "id": "police",
+      "type": "scene",
+      "title": "Internal Security",
+      "newPage": true,
+      "isCard": true,
+      "tags": [
+        "govt_affairs",
+        "cabinet"
+      ],
+      "onArrival": [
+        {
+          "$code": "Q['police_timer'] = (Q['police_timer'] || 0) + 6;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+        }
+      ],
+      "viewIf": {
+        "$code": "return Q.CHP_in_government === 1 && (Q.interior_minister_party === \"CHP\" || (typeof AnatolianCoalitions!==\"undefined\"&&AnatolianCoalitions.ministryAccess(Q,\"interior\"))) && Q.police_timer <= 0;"
+      },
+      "cardImage": "img/portraits/necdetugur2.png",
+      "options": [
+        {
+          "id": "@police.easterncrime",
+          "title": "Clamp down on organized crime in the East."
+        },
+        {
+          "id": "@police.loyalty",
+          "title": "Improve the loyalty of the Interior Ministry forces."
+        },
+        {
+          "id": "@police.recruit",
+          "title": "Recruit more police forces."
+        },
+        {
+          "id": "@police.weaponry",
+          "title": "Supplement the weaponry and the strength of the police forces."
+        },
+        {
+          "id": "@police.investigate_corruption",
+          "title": "Investigate corruption by big businesses."
+        },
+        {
+          "id": "@police.investigate_far_right",
+          "title": "Investigate illegal activity among the far right."
+        },
+        {
+          "id": "@police.ohal",
+          "title": "Declare OHAL(state of emergency) to put an end to the street fighting."
+        },
+        {
+          "id": "@root",
+          "title": "Take no action for now."
+        },
+        {
+          "id": "@easy_discard"
+        },
+        {
+          "id": "@cancel_advisor_action"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Internal Security"
+        },
+        {
+          "type": "paragraph",
+          "content": "The Interior Ministry controls internal security throughout the Turkish Republic."
         }
       ]
     },
@@ -48127,6 +48685,10 @@
       "options": [
         {
           "id": "#kemalist_marxist_advisor"
+        },
+        {
+          "id": "@shuffle_leadership.navigation_return_kemalist_marxist",
+          "title": "Return"
         }
       ],
       "content": {
@@ -48189,6 +48751,10 @@
       "options": [
         {
           "id": "#left_kemalist_advisor"
+        },
+        {
+          "id": "@shuffle_leadership.navigation_return_left_kemalist",
+          "title": "Return"
         }
       ],
       "content": {
@@ -48245,6 +48811,10 @@
       "options": [
         {
           "id": "#orthodox_kemalist_advisor"
+        },
+        {
+          "id": "@shuffle_leadership.navigation_return_orthodox_kemalist",
+          "title": "Return"
         }
       ],
       "content": {
@@ -48368,6 +48938,10 @@
       "options": [
         {
           "id": "#right_kemalist_advisor"
+        },
+        {
+          "id": "@shuffle_leadership.navigation_return_right_kemalist",
+          "title": "Return"
         }
       ],
       "content": {
@@ -48656,6 +49230,10 @@
         },
         {
           "id": "#drop_cabinet_portfolios"
+        },
+        {
+          "id": "@national_elections.navigation_return_ministries",
+          "title": "Return"
         }
       ],
       "content": {
@@ -48701,6 +49279,10 @@
       "options": [
         {
           "id": "#nonfactional_advisor"
+        },
+        {
+          "id": "@shuffle_leadership.navigation_return_nonfactional",
+          "title": "Return"
         }
       ],
       "content": {
@@ -51224,71 +51806,6 @@
         "type": "paragraph"
       }
     },
-    "national_elections": {
-      "id": "national_elections",
-      "type": "scene",
-      "title": "Grand National Assembly Elections",
-      "newPage": true,
-      "tags": [
-        "event"
-      ],
-      "priority": -1,
-      "viewIf": {
-        "$code": "return (((((Q['year'] || 0)===(Q['next_election_year'] || 0)) && ((Q['month'] || 0) >= (Q['next_election_month'] || 0)))) || (((Q['year'] || 0) > (Q['next_election_year'] || 0))));"
-      },
-      "onDeparture": [
-        {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['in_election'] = 0;\nQ['next_election_year'] = ((Q['next_election_year'] || 0) + 4);\nQ['n_elections'] = (Q['n_elections'] || 0) + 1;\nQ['next_election_time'] = ((Q['time'] || 0) + 96);\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 20;"
-        }
-      ],
-      "setJump": "national_elections.post_national_elections",
-      "faceImage": "img/ataturkveinonu.jpg",
-      "options": [
-        {
-          "id": "@election_algorithm",
-          "title": "May we do our best..."
-        }
-      ],
-      "content": {
-        "content": [
-          {
-            "type": "heading",
-            "content": [
-              "Elections, ",
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              " ",
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": "The Grand National Assembly elections are to be held now."
-          }
-        ],
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['month'] || 0);"
-            },
-            "qdisplay": "month"
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['year'] || 0);"
-            }
-          }
-        ]
-      }
-    },
     "shuffle_leadership.add_erdem": {
       "id": "shuffle_leadership.add_erdem",
       "title": "Tarhan Erdem",
@@ -51378,6 +51895,84 @@
           "content": "Placeholder"
         }
       ]
+    },
+    "national_elections.navigation_return_ministries": {
+      "id": "national_elections.navigation_return_ministries",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "national_elections": {
+      "id": "national_elections",
+      "type": "scene",
+      "title": "Grand National Assembly Elections",
+      "newPage": true,
+      "tags": [
+        "event"
+      ],
+      "priority": -1,
+      "viewIf": {
+        "$code": "return (((((Q['year'] || 0)===(Q['next_election_year'] || 0)) && ((Q['month'] || 0) >= (Q['next_election_month'] || 0)))) || (((Q['year'] || 0) > (Q['next_election_year'] || 0))));"
+      },
+      "onDeparture": [
+        {
+          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;\nQ['in_election'] = 0;\nQ['next_election_year'] = ((Q['next_election_year'] || 0) + 4);\nQ['n_elections'] = (Q['n_elections'] || 0) + 1;\nQ['next_election_time'] = ((Q['time'] || 0) + 96);\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 20;"
+        }
+      ],
+      "setJump": "national_elections.post_national_elections",
+      "faceImage": "img/ataturkveinonu.jpg",
+      "options": [
+        {
+          "id": "@election_algorithm",
+          "title": "May we do our best..."
+        }
+      ],
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": [
+              "Elections, ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              " ",
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "The Grand National Assembly elections are to be held now."
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['month'] || 0);"
+            },
+            "qdisplay": "month"
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['year'] || 0);"
+            }
+          }
+        ]
+      }
     },
     "shuffle_leadership.add_ugur": {
       "id": "shuffle_leadership.add_ugur",
@@ -51496,6 +52091,336 @@
         "type": "paragraph"
       }
     },
+    "coalition_negotiations.player_list_13": {
+      "id": "coalition_negotiations.player_list_13",
+      "title": "Demand: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-13\");"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-13\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocate(Q,\"list-13\",\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.player_ministry_economic"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Demand: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards."
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "shuffle_leadership.navigation_return_rm_main": {
+      "id": "shuffle_leadership.navigation_return_rm_main",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "main"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "coalition_negotiations.player_list_14": {
+      "id": "coalition_negotiations.player_list_14",
+      "title": "Demand: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-14\");"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-14\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocate(Q,\"list-14\",\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.player_ministry_economic"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Demand: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash."
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "shuffle_leadership.navigation_return_kemalist_marxist": {
+      "id": "shuffle_leadership.navigation_return_kemalist_marxist",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "shuffle_leadership.advisor_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "coalition_negotiations.player_list_15": {
+      "id": "coalition_negotiations.player_list_15",
+      "title": "Demand: Reform the inefficient state corporations.",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-15\");"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-15\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocate(Q,\"list-15\",\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.player_ministry_economic"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Demand: Reform the inefficient state corporations."
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "shuffle_leadership.navigation_return_left_kemalist": {
+      "id": "shuffle_leadership.navigation_return_left_kemalist",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "shuffle_leadership.advisor_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "coalition_negotiations.player_list_16": {
+      "id": "coalition_negotiations.player_list_16",
+      "title": "Demand: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-16\");"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-16\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocate(Q,\"list-16\",\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.player_ministry_economic"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Demand: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice."
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "shuffle_leadership.navigation_return_orthodox_kemalist": {
+      "id": "shuffle_leadership.navigation_return_orthodox_kemalist",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "shuffle_leadership.advisor_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "coalition_negotiations.player_list_17": {
+      "id": "coalition_negotiations.player_list_17",
+      "title": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-17\");"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-17\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocate(Q,\"list-17\",\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.player_ministry_economic"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action."
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "shuffle_leadership.navigation_return_right_kemalist": {
+      "id": "shuffle_leadership.navigation_return_right_kemalist",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "shuffle_leadership.advisor_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "coalition_negotiations.player_list_18": {
+      "id": "coalition_negotiations.player_list_18",
+      "title": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.",
+      "subtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-18\");"
+            }
+          }
+        ]
+      },
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-18\");"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianCoalitions.allocate(Q,\"list-18\",\"player\");"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "coalition_negotiations.player_ministry_economic"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action."
+        },
+        {
+          "type": "paragraph",
+          "content": "Placeholder"
+        }
+      ]
+    },
+    "shuffle_leadership.navigation_return_nonfactional": {
+      "id": "shuffle_leadership.navigation_return_nonfactional",
+      "title": "Return",
+      "goTo": [
+        {
+          "id": "shuffle_leadership.advisor_menu"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
     "shuffle_leadership": {
       "id": "shuffle_leadership",
       "type": "scene",
@@ -51544,258 +52469,6 @@
         {
           "type": "paragraph",
           "content": "Removing members will increase dissent from their faction of the party, while selecting members will increase a faction's strength."
-        }
-      ]
-    },
-    "coalition_negotiations.player_list_13": {
-      "id": "coalition_negotiations.player_list_13",
-      "title": "Demand: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-13\");"
-            }
-          }
-        ]
-      },
-      "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-13\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-13\",\"player\");"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "coalition_negotiations.player_ministry_economic"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Demand: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards."
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
-    },
-    "coalition_negotiations.player_list_14": {
-      "id": "coalition_negotiations.player_list_14",
-      "title": "Demand: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-14\");"
-            }
-          }
-        ]
-      },
-      "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-14\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-14\",\"player\");"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "coalition_negotiations.player_ministry_economic"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Demand: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash."
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
-    },
-    "coalition_negotiations.player_list_15": {
-      "id": "coalition_negotiations.player_list_15",
-      "title": "Demand: Reform the inefficient state corporations.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-15\");"
-            }
-          }
-        ]
-      },
-      "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-15\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-15\",\"player\");"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "coalition_negotiations.player_ministry_economic"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Demand: Reform the inefficient state corporations."
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
-    },
-    "coalition_negotiations.player_list_16": {
-      "id": "coalition_negotiations.player_list_16",
-      "title": "Demand: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-16\");"
-            }
-          }
-        ]
-      },
-      "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-16\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-16\",\"player\");"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "coalition_negotiations.player_ministry_economic"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Demand: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice."
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
-    },
-    "coalition_negotiations.player_list_17": {
-      "id": "coalition_negotiations.player_list_17",
-      "title": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-17\");"
-            }
-          }
-        ]
-      },
-      "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-17\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-17\",\"player\");"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "coalition_negotiations.player_ministry_economic"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action."
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
-    },
-    "coalition_negotiations.player_list_18": {
-      "id": "coalition_negotiations.player_list_18",
-      "title": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.",
-      "subtitle": {
-        "content": {
-          "type": "insert",
-          "insert": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return AnatolianCoalitions.ownerText(Q,\"list-18\");"
-            }
-          }
-        ]
-      },
-      "newPage": true,
-      "viewIf": {
-        "$code": "return AnatolianCoalitions.yellow(Q).some(a=>a.id===\"list-18\");"
-      },
-      "onArrival": [
-        {
-          "$code": "AnatolianCoalitions.allocate(Q,\"list-18\",\"player\");"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "coalition_negotiations.player_ministry_economic"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action."
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
         }
       ]
     },
@@ -64269,7 +64942,6 @@
     "advisor": {
       "akan": true,
       "celikbas": true,
-      "erdem": true,
       "gogus": true,
       "isik": true,
       "kirikoglu": true,
@@ -64277,6 +64949,7 @@
       "rahsan": true,
       "ugur": true,
       "ustundag": true,
+      "erdem": true,
       "inonu": true,
       "muezzinoglu": true,
       "satir": true,
@@ -64386,11 +65059,11 @@
       "coalition_affairs": true,
       "religious_affairs_directorate": true,
       "womens_rights": true,
-      "dealing_with_toleration": true,
       "industrial_policy": true,
       "judiciary": true,
       "kurdish_issue": true,
       "agricultural_policy": true,
+      "dealing_with_toleration": true,
       "military_policy": true,
       "economic_policy": true,
       "labor_affairs": true,
@@ -64416,25 +65089,6 @@
       "police": true,
       "fiscal_policy": true,
       "foreign_policy": true
-    },
-    "party_affairs": {
-      "komunizmlemucadeledernegi": true,
-      "fundraising": true,
-      "strategy": true,
-      "culture": true,
-      "intrapartyinfluence": true,
-      "union_relations": true,
-      "campaigning": true,
-      "enemies": true,
-      "international_relations": true,
-      "party_organizations": true,
-      "campaigning_ecevit": true,
-      "media": true,
-      "remnantsofinonu": true,
-      "party_disunity": true,
-      "inter_party_relationships": true,
-      "rally": true,
-      "shuffle_leadership": true
     },
     "kemalist_marxist_advisor": {
       "shuffle_leadership.rm_main": true,
@@ -64486,14 +65140,30 @@
       "satir": true,
       "eyuboglu": true
     },
-    "dovevsbayonet": {
-      "ecevitandworker": true
-    },
     "endings": {
       "game_over.coup": true,
       "game_over.CHP_victorious": true,
       "game_over.opposition": true,
       "game_over.economy": true
+    },
+    "party_affairs": {
+      "komunizmlemucadeledernegi": true,
+      "fundraising": true,
+      "strategy": true,
+      "intrapartyinfluence": true,
+      "culture": true,
+      "party_organizations": true,
+      "union_relations": true,
+      "campaigning": true,
+      "campaigning_ecevit": true,
+      "enemies": true,
+      "international_relations": true,
+      "remnantsofinonu": true,
+      "media": true,
+      "party_disunity": true,
+      "inter_party_relationships": true,
+      "rally": true,
+      "shuffle_leadership": true
     },
     "remove_advisor": {
       "shuffle_leadership.remove_none": true,
@@ -64524,6 +65194,9 @@
     "left_kemalist": {
       "baykal": true,
       "ecevit": true
+    },
+    "dovevsbayonet": {
+      "ecevitandworker": true
     },
     "government_affairs": {
       "land_reform": true

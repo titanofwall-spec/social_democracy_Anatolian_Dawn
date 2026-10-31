@@ -70,6 +70,7 @@ The ministry can act against armed organizations and investigate the anti-commun
 - @underground: Investigate Far Right and Anti-Communist Underground.
 - @clamp_ohp: Clamp down on ÖHD.
 - @root: Take no further action.
+- @navigation_return_investigate_far_right: Return
 
 @ban_grey
 view-if: not grey_wolves_banned
@@ -176,3 +177,24 @@ on-arrival: police_militancy -= 0.08; eastern_crime -= 1; kurds_chp += 3
 [? if eastern_crime = 0 : The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries. ?]
 
 
+@navigation_return_investigate_far_right
+title: Return
+go-to: navigation_menu
+
+@navigation_menu
+new-page: true
+
+= Internal Security
+
+The Interior Ministry controls internal security throughout the Turkish Republic.
+
+- @easterncrime: Clamp down on organized crime in the East.
+- @loyalty: Improve the loyalty of the Interior Ministry forces.
+- @recruit: Recruit more police forces.
+- @weaponry: Supplement the weaponry and the strength of the police forces.
+- @investigate_corruption: Investigate corruption by big businesses.
+- @investigate_far_right: Investigate illegal activity among the far right.
+- @ohal: Declare OHAL(state of emergency) to put an end to the street fighting.
+- @root: Take no action for now.
+- @easy_discard
+- @cancel_advisor_action

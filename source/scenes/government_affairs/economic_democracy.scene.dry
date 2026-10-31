@@ -121,6 +121,7 @@ The Turkish economy is still developing and needs broad, long-term, state-led gr
 - @integrate_sector: Integrate the People's Sector
 - @fund_sector: Allocate funds to People's Sector
 - @economic_democracy: Back.
+- @navigation_return_peoples_sector: Return
 
 @cooperative_bank
 title: Establish the Cooperative Bank
@@ -135,6 +136,7 @@ The Cooperative Bank will give small producers access to credit without requirin
 - @found_bank: Found the Cooperative Bank
 - @fund_bank: Allocate funds to Cooperative Bank
 - @economic_democracy: Back.
+- @navigation_return_cooperative_bank: Return
 
 @nationalize_mines
 title: Nationalize Mines
@@ -215,3 +217,30 @@ go-to: root
 @decline
 on-arrival: {! AnatolianCardActions.commit(Q); !}
 go-to: root
+@navigation_return_peoples_sector
+title: Return
+go-to: navigation_menu
+
+@navigation_return_cooperative_bank
+title: Return
+go-to: navigation_menu
+
+@navigation_menu
+new-page: true
+
+= People's Sector
+
+{!<img src="img/peoples-sector.png" alt="People's Sector agricultural investment" style="display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain">!}
+
+- @found_hayat: Found HAYAT
+- @establish_iyak: Found İYAK
+- @reform_iyak: Reform İYAK
+- @reform_meyak: Reform MEYAK
+- @establish_umbrella: Establish Cooperative Umbrella Organizations
+- @expand_umbrella: Expand Cooperative Umbrella Organizations
+- @peoples_sector: Integrate People's Sector into the Five Year Plan
+- @cooperative_bank: Establish the Cooperative Bank
+- @nationalize_mines: Nationalize Mines
+- @nationalize_petrol: Nationalize Petroleum
+- @back_to_main: Back to main menu.
+- @decline: We will not take an action at the moment.

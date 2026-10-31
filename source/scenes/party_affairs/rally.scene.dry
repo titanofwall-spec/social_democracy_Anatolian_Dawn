@@ -21,6 +21,7 @@ Mass rallies are a common feature of multi party democracies, especially in the 
 - @public_works: Rally support for our public works programme.
 - @local: A mixture of various local and national concerns that resonate most with the audience.
 - @easy_discard
+- @navigation_return_main_rally: Return
 
 @class_struggle
 view-if: kemalist_marxists_strength >= 25 and CHP_party_leader == "Ecevit"
@@ -103,3 +104,7 @@ unavailable-subtitle: We must allow time for our previous Köykent rally to take
 on-arrival: {! AnatolianNationalCoalition.koykentRally(Q); !}
 
 We rally rural voters behind the Köykent project and broaden its electoral audience.
+@navigation_return_main_rally
+title: Return
+go-to: main
+

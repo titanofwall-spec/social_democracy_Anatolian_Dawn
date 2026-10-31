@@ -22,6 +22,7 @@ Current status: [? if land_reform == 0 : No concrete land reform policy has been
 - @cooperatives: Establish agricultural cooperatives to support small farmers.
 - @root: We cannot take action on land reform right now.
 - @easy_discard
+- @navigation_return_main: Return
 
 @koykent
 view-if: land_reform < 3
@@ -53,3 +54,7 @@ The party leadership has announced its intention to put rural cooperatives in it
 @root
 
 We cannot pursue land reform initiatives at this time.
+@navigation_return_main
+title: Return
+go-to: main
+

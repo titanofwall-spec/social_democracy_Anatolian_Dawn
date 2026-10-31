@@ -26,6 +26,7 @@ frequency: 1
 
 - #remove_advisor
 - @add_advisors: Add members
+- @navigation_return_rm_main: Return
 
 @remove_none
 title: Stop changing members.
@@ -271,26 +272,31 @@ frequency: 1
 view-if: n_advisors < 3
 
 - #kemalist_marxist_advisor
+- @navigation_return_kemalist_marxist: Return
 
 @left_kemalist
 view-if: n_advisors < 3
 
 - #left_kemalist_advisor
+- @navigation_return_left_kemalist: Return
 
 @orthodox_kemalist
 view-if: n_advisors < 3
 
 - #orthodox_kemalist_advisor
+- @navigation_return_orthodox_kemalist: Return
 
 @right_kemalist
 view-if: right_kemalists_strength > 0 and n_advisors < 3
 
 - #right_kemalist_advisor
+- @navigation_return_right_kemalist: Return
 
 @nonfactional
 view-if: n_advisors < 3
 
 - #nonfactional_advisor
+- @navigation_return_nonfactional: Return
 
 # kemalist marxist
 
@@ -572,3 +578,27 @@ go-to: advisor_menu
 tags: nonfactional_advisor
 
 # TODO: add radbruch, stampfer
+@navigation_return_rm_main
+title: Return
+go-to: main
+
+@navigation_return_kemalist_marxist
+title: Return
+go-to: advisor_menu
+
+@navigation_return_left_kemalist
+title: Return
+go-to: advisor_menu
+
+@navigation_return_orthodox_kemalist
+title: Return
+go-to: advisor_menu
+
+@navigation_return_right_kemalist
+title: Return
+go-to: advisor_menu
+
+@navigation_return_nonfactional
+title: Return
+go-to: advisor_menu
+

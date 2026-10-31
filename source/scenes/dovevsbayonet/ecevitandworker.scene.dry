@@ -19,6 +19,7 @@ After a long pause, Ecevit answered:
 
 - @yes: Yes, I promise. I will risk it all.
 - @no: Uh, um, my purpose is -uh, not to tread on the values of our party
+- @navigation_return_main: Return
 
 @yes
 subtitle: The battle begins...
@@ -26,3 +27,7 @@ on-arrival: q0_lk_str += 1; q1_lk_str += 1
 
 @no
 on-arrival: inonu_stay += 1; q0_lk_str -= 1; q1_lk_str -= 1
+@navigation_return_main
+title: Return
+go-to: main
+

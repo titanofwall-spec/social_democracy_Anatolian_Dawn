@@ -20,6 +20,7 @@ In our media and campaign materials, who should we consider as our main opponent
 - @MHP: The MHP alone.
 - @THKPC: Anti-parliamentary leftist groups such as THKP-C and TKP/ML
 - @easy_discard
+- @navigation_return_main: Return
 
 @military
 view-if: CHP_party_leader == "Ecevit" and army_in_government == 1
@@ -59,3 +60,7 @@ on-arrival: enemies = "THKPC"; coup_timer -= 1; TIP_relation -= 5; workers_TIP -
 Attacking the far-left THKP-C and similar organizations allows us to repair our relations with the military establishment. Though it is targeted towards far left **militants**, Socialist intellectuals express their disapproval of the party targeting the left when the grey wolves butcher leftist students in the streets and AP maul the workers' movement.
 
 Many of the intellectuals associated with CHP too question our decision to move against the so-called 'smaller evil'.
+@navigation_return_main
+title: Return
+go-to: main
+

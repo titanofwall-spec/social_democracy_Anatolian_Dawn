@@ -16,6 +16,7 @@ We are the self-proclaimed party of positivism, the party of science and arts. H
 - @mobilecinemas2: Now that we have prepared the infrastructure for the mobile cinemas; we can begin utilizing them at full capacity.
 - @literature: Many literature circles are sympathetic to the democratic left and with an already thriving tradition, literature can become a front for advancing social ideas.
 - @easy_discard
+- @navigation_return_main: Return
 
 @theaters
 subtitle: -1 resources
@@ -61,3 +62,7 @@ Our investments in the cinema sector have paid off and now <span style="color: #
 on-arrival: petty_bourgeoisie_chp += 1; state_employees_chp += 1
 
 Literature is always influential in shaping opinions; however, most of the population lacks either access to or interest in literary sources.
+@navigation_return_main
+title: Return
+go-to: main
+

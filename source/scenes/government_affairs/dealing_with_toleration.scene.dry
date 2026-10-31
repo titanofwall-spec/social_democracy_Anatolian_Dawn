@@ -17,6 +17,7 @@ We are currently acting as external support for the government of Prime Minister
 - @new_grand_coalition
 - @stay_course: Stay the course, for stability's sake.
 - @easy_discard
+- @navigation_return_main: Return
 
 @break_toleration
 view-if: not constructive_vonc
@@ -26,6 +27,7 @@ Are we sure about this? A vote of no confidence would trigger new elections, and
 
 - @vonc: Yes, end this arrangement!
 - @stay_course: No, we should stay the course.
+- @navigation_return_break_toleration: Return
 
 @vonc
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} CHP_in_government = 0; CHP_toleration = 0; in_grand_coalition = 0; prime_minister = "Süleyman Demirel"; prime_minister_party = "AP"; AP_in_government = 1; next_election_time = time + 6 if next_election_time > time+6; next_election_month = month + 3 if next_election_time >= time+6; next_election_year = year if next_election_time >= time+6; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; CHP_toleration = 0; pro_republic -= 5; state_employees_chp -= 3; rural_chp -= 3; petty_bourgeoisie_chp -= 3
@@ -76,9 +78,36 @@ Our negotiations have succeeded, and the Center Party and DP have agreed to form
 We are now part of a "constitutional coalition" government that includes all parties except the extremists of the TİP, MSP, and MHP. [+ prime_minister +] will remain as prime minister. Leftists in our party are skeptical of this arrangement.
 
 - @national_elections.ministries: Now, we must select our ministries.
+- @navigation_return_new_grand_coalition: Return
 
 
 
 @stay_course
 
 We will stay the course of toleration, for the sake of stability.
+@navigation_return_main
+title: Return
+go-to: main
+
+@navigation_return_break_toleration
+title: Return
+go-to: navigation_menu
+
+@navigation_menu
+new-page: true
+
+= Dealing with Toleration
+
+We are currently acting as external support for the government of Prime Minister [+ prime_minister +]. How should we use our position?
+
+- @break_toleration
+- @urge_against_austerity
+- @improve_relations
+- @new_grand_coalition
+- @stay_course: Stay the course, for stability's sake.
+- @easy_discard
+- @navigation_return_main: Return
+
+@navigation_return_new_grand_coalition
+title: Return
+go-to: navigation_menu

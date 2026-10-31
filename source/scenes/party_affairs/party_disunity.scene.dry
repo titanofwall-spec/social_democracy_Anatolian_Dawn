@@ -24,7 +24,7 @@ Something must be done to reinforce party unity.
 - @concessions_left
 - @concessions_marxist
 - @do_nothing
-
+- @navigation_return_main: Return
 
 @enforce_unity
 title: Enforce party discipline.
@@ -83,3 +83,7 @@ view-if: center_dissent > 30
 @expel_labor
 title: Expel the labor supporters.
 view-if: labor_dissent > 30
+@navigation_return_main
+title: Return
+go-to: main
+
