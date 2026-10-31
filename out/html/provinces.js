@@ -25,7 +25,30 @@ function ensure(Q){if(!Q.started||!Array.isArray(Q.parties)||!Q.parties.includes
 // Regional affinity weights gains toward strongholds. As a coalition expands beyond its
 // supplied starting support, further gains deepen local support before spreading into rival territory.
 // The weighted target remains unchanged; no province-win limit or starting-vote rewrite is applied.
-function shiftClass(Q,c,party,delta){if(!delta)return;const pop=populations(date(Q),Q),cells=rows.map(p=>({v:Q.province_pools[p.id].preferences[c],w:pop[p.id]*demographics(Q,p.id)[c]})),weight=cells.reduce((a,x)=>a+x.w,0)||1,base=cells.reduce((a,x)=>a+x.w*n(x.v[party]),0)/weight,target=clamp(base+delta,0,1);const initial=rows.reduce((a,p)=>a+pop[p.id]*demographics(Q,p.id)[c]*n(startingPreferences(p,c)[party]),0)/weight,expansion=Math.max(0,base-initial),concentration=clamp(1.5+8*expansion+200*Math.pow(Math.max(0,expansion-.15),2),1.5,8);for(const cell of cells){cell.p=clamp(n(cell.v[party]),.000001,.999999);cell.affinity=delta>0?clamp(Math.pow(cell.p/Math.max(.000001,base),concentration),.02,6):clamp(Math.sqrt(Math.max(.000001,base)/cell.p),.3,3);}const share=(cell,k)=>{const odds=Math.pow(k,cell.affinity);return cell.p*odds/(1-cell.p+cell.p*odds);};let lo=.000000001,hi=1000000000;for(let i=0;i<36;i++){const mid=Math.sqrt(lo*hi),average=cells.reduce((a,x)=>a+x.w*share(x,mid),0)/weight;if(average<target)lo=mid;else hi=mid;}const factor=Math.sqrt(lo*hi);for(const cell of cells){const v=cell.v,next=share(cell,factor),rest=Object.keys(v).filter(k=>k!==party),sumRest=rest.reduce((a,k)=>a+n(v[k]),0);v[party]=next;for(const k of rest)v[k]=sumRest?n(v[k])*(1-next)/sumRest:0;}}
+function shiftClass(Q,c,party,delta){
+ // All parties get the same log-odds swing. No regional concentration feedback.
+ if(!delta)return;
+ const pop=populations(date(Q),Q),cells=rows.map(p=>({v:Q.province_pools[p.id].preferences[c],w:pop[p.id]*demographics(Q,p.id)[c]}));
+ const weight=cells.reduce((a,x)=>a+x.w,0)||1;
+ const base=cells.reduce((a,x)=>a+x.w*n(x.v[party]),0)/weight;
+ const target=clamp(base+delta,0,1);
+ const share=(v,logOdds)=>{
+  const p=clamp(n(v[party]),.000001,.999999);
+  return 1/(1+((1-p)/p)*Math.exp(-clamp(logOdds,-40,40)));
+ };
+ let lo=-40,hi=40;
+ for(let i=0;i<52;i++){
+  const mid=(lo+hi)/2,avg=cells.reduce((a,x)=>a+x.w*share(x.v,mid),0)/weight;
+  if(avg<target)lo=mid;else hi=mid;
+ }
+ const oddsShift=(lo+hi)/2;
+ for(const cell of cells){
+  const v=cell.v,next=share(v,oddsShift),rest=Object.keys(v).filter(k=>k!==party);
+  const restTotal=rest.reduce((a,k)=>a+n(v[k]),0);
+  v[party]=next;
+  for(const k of rest)v[k]=restTotal?n(v[k])*(1-next)/restTotal:0;
+ }
+}
 function demographics(Q,id){return norm(Q.province_pools[id].demographics);}
 function sync(Q){if(!active(Q))return;const prior=Q.province_aggregate_mirror;
  if(prior)for(const c of classes){const old=n(prior[c]),next=n(Q[c]);if(old>0&&Math.abs(next-old)>1e-8)for(const p of rows)Q.province_pools[p.id].demographics[c]*=Math.max(0,next/old);
@@ -48,6 +71,63 @@ function roundProvinceVotes(prov,totals){
  candidates.sort((a,b)=>b.fraction-a.fraction||a.p.id.localeCompare(b.p.id)||a.k.localeCompare(b.k));for(const {p,k}of candidates)if(rowRemaining[p.id]>0&&remaining[k]>0){p.votes[k]++;rowRemaining[p.id]--;remaining[k]--;}
  for(const p of prov)for(const k of keys){const amount=Math.min(rowRemaining[p.id],remaining[k]);if(amount>0){p.votes[k]+=amount;rowRemaining[p.id]-=amount;remaining[k]-=amount;}}for(const p of prov){p.totalVotes=sum(p.votes);p.shares=norm(p.votes);}
 }
+// ANATOLIAN_UNIVERSAL_BALANCE_V3
+// Applied to each poll, general election and local election (all parties).
+// Preserve every province's valid-vote turnout and all national party totals,
+// except where a party already has an impossible >84.8% national majority.
+const PROVINCE_ABSOLUTE_MAX=.849;
+const PROVINCE_NATIONAL_EDGE_CAP=.848;
+const PROVINCE_MIN_MIX=.08;
+function applyProvincialVoteBalance(provinces,partyKeys){
+ if(!provinces.length||!partyKeys.length)return;
+ const national=Object.fromEntries(partyKeys.map(k=>[k,0]));
+ let total=0;
+ for(const p of provinces){
+  const row=sum(p.votes);total+=row;
+  for(const k of partyKeys)national[k]+=Math.max(0,n(p.votes[k]));
+ }
+ if(!(total>0))return;
+ for(const k of partyKeys)national[k]/=total;
+ const leader=partyKeys.reduce((best,k)=>national[k]>national[best]?k:best,partyKeys[0]);
+ if(national[leader]>PROVINCE_NATIONAL_EDGE_CAP){
+  // An 84.85% effective provincial maximum cannot coexist with
+  // nationwide support above 84.85%; preserve a 0.05pp safety margin.
+  // Reduce only this impossible national margin, spreading its overflow
+  // proportionally among already-supported alternatives.
+  const alternatives=partyKeys.filter(k=>k!==leader&&national[k]>0);
+  const fallback=alternatives.length?alternatives:partyKeys.filter(k=>k!==leader);
+  if(!fallback.length)return;
+  const otherNation=fallback.reduce((a,k)=>a+national[k],0);
+  for(const p of provinces){
+   const row=sum(p.votes);
+   p.votes[leader]=row*PROVINCE_NATIONAL_EDGE_CAP;
+   for(const k of partyKeys)if(k!==leader){
+    p.votes[k]=row*(1-PROVINCE_NATIONAL_EDGE_CAP)*(otherNation>0?national[k]/otherNation:(k===fallback[0]?1:0));
+   }
+  }
+  return;
+ }
+ let mix=PROVINCE_MIN_MIX;
+ for(const p of provinces){
+  const row=sum(p.votes);if(!(row>0))continue;
+  for(const k of partyKeys){
+   const local=Math.max(0,n(p.votes[k]))/row,avg=national[k];
+   // At 60% nationally the highest allowed provincial share is 74.95%.
+   // Lower national support retains the author's 1972 local distinctions.
+   const ceiling=Math.min(PROVINCE_ABSOLUTE_MAX,avg+.15+.60*Math.max(0,.60-avg))-.0005;
+   const floor=avg>=.15?.20*avg:0;
+   if(local>ceiling&&local>avg)mix=Math.max(mix,(local-ceiling)/(local-avg));
+   if(local<floor&&local<avg)mix=Math.max(mix,(floor-local)/(avg-local));
+  }
+ }
+ mix=clamp(mix+1e-9,0,1);
+ for(const p of provinces){
+  const row=sum(p.votes);
+  for(const k of partyKeys){
+   p.votes[k]=(1-mix)*Math.max(0,n(p.votes[k]))+mix*row*national[k];
+  }
+ }
+}
 function compute(Q,polling=true,independentFactors,kind='general',includeTemporary=true,totalsOnly=false){
  R.ensureKurdishIssue(Q);const context=preferenceContext(Q),y=date(Q),pop=populations(y,Q),t=clamp((y-1973)/4,0,1),prov=[],votes=Object.fromEntries(Q.parties.map(p=>[p,0])),classVotes=Object.fromEntries(classes.map(c=>[c,Object.fromEntries(Q.parties.map(p=>[p,0]))]));let transfer=0;
  for(const p of rows){const m=demographics(Q,p.id),turnoutA=p.elections[1973].total/(p.population[1970]+(p.population[1975]-p.population[1970])*.6),turnoutB=p.elections[1977].total/(p.population[1975]+(p.population[1980]-p.population[1975])*.4),valid=pop[p.id]*(turnoutA+(turnoutB-turnoutA)*t),pv=Object.fromEntries(Q.parties.map(k=>[k,0])),perClass={};
@@ -60,6 +140,7 @@ function compute(Q,polling=true,independentFactors,kind='general',includeTempora
   if(!polling&&kind!=='local'&&nc){if(endorsement!==null){const moved=n(pv.TIP)*endorsement;pv.TIP-=moved;pv.chp+=moved;transfer+=moved;}else transfer+=nc.tactical(Q,pv);}
   if(!polling&&Q.TIP_banned){const v=pv.TIP;if(!Q.socialist_left_formed&&Q.disk_endorsement&&(!nc||kind==='local')){pv.chp+=v/2;transfer+=v/2;}pv.TIP=0;}p.votes=pv;
  }
+ applyProvincialVoteBalance(prov,Q.parties);
  const roundTargets=distribute(Object.fromEntries(Q.parties.map(k=>[k,prov.reduce((a,p)=>a+n(p.votes[k]),0)])),Math.round(prov.reduce((a,p)=>a+sum(p.votes),0)));if(totalsOnly)return {votes:roundTargets,fractions:norm(roundTargets),totalVotes:sum(roundTargets),totalPopulation:sum(pop),transfer};roundProvinceVotes(prov,roundTargets);for(const p of prov)for(const k of Q.parties)votes[k]+=p.votes[k];
  const fractions=norm(votes),quota=seatQuotas(y),seats=Object.fromEntries(Q.parties.map(k=>[k,0])),electionVotes={};
  for(const p of prov){const v={...p.votes};if(polling&&Q.socialist_left_formed)for(const k of ['TKP','TSIP','TEP','SDP']){v.TIP+=n(v[k]);v[k]=0;}if(polling&&Q.TIP_banned)v.TIP=0;p.electionVotes=v;for(const k of Q.parties)electionVotes[k]=n(electionVotes[k])+n(v[k]);}
@@ -96,7 +177,7 @@ const colors={other:'#808080',chp:'#E3000F',AP:'#750a6f',CGP:'#5b7387',DP:'#4a4d
 const provinceOtherParties=['MP','TBP','IND','KI'];
 function reportingVotes(votes,national,socialistFormed){const keys=national?R.otherPollParties:provinceOtherParties,result={...votes};if(socialistFormed)for(const k of ['TKP','TSIP','TEP','SDP']){result.TIP=n(result.TIP)+n(result[k]);delete result[k];}result.other=0;for(const k of keys){result.other+=n(result[k]);delete result[k];}return result;}
 function label(Q,p){return ({chp:'CHP',TIP:'TİP',TSIP:'TSİP',CGP:Q.CGP_name||'MGP',MSP:Q.MSP_name||'MNP',IND:'Independents',KI:'Kurdish Independents',other:'Other'})[p]||p;}
-root.AnatolianProvinces={ensure,active,sync,shiftClass,compute,pollingTotals,addPollingPoints,projectVotes,applyElection,populations,nationalPopulation,demographics,seatQuotas,dhondt,label,colors,reportingVotes,provinceOtherParties,classPreferences,startingPreferences,data:D};
+root.AnatolianProvinces={balanceProvincialVotes:applyProvincialVoteBalance,ensure,active,sync,shiftClass,compute,pollingTotals,addPollingPoints,projectVotes,applyElection,populations,nationalPopulation,demographics,seatQuotas,dhondt,label,colors,reportingVotes,provinceOtherParties,classPreferences,startingPreferences,data:D};
 if(typeof module!=='undefined')module.exports=root.AnatolianProvinces;
 })(globalThis);
 
