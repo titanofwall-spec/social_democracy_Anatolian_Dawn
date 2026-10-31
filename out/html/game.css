@@ -2153,7 +2153,7 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
     linear-gradient(90deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.22) 34%, rgba(0,0,0,.44) 100%),
     url('img/anatolian-dawn-eyes.png');
   background-size: cover;
-  background-position: center calc(44% - 15px);
+  background-position: calc(50% + 20px) calc(44% - 15px);
   background-repeat: no-repeat;
 }
 #mid_panel > header.ad-command-header #game-title,
