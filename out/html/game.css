@@ -1674,3 +1674,6 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   .sandbox-row { flex-wrap:wrap; }
   .sandbox-label { width:100%; flex:auto; }
 }
+
+/* Sidebar subsection headings stay below the existing major-section size. */
+#qualities .game-subsection-title{font-size:1em}
