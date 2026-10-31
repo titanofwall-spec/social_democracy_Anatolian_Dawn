@@ -53,6 +53,9 @@ Q.flavour_events = 1;
 Q.resources = 2;
 // party dues
 Q.dues = 2;
+// Sandbox achievement eligibility is tracked per save branch.
+Q.sandbox_cheats_used = 0;
+Q.sandbox_branch_id = "";
 
 // the state of the party
 // overall dissent reduces every increase in party support.

@@ -3,6 +3,7 @@ new-page: true
 go-to: eg_menu
 on-arrival: {!
 Q.game_over = 1;
+if (!Q.sandbox_cheats_used && !(typeof AnatolianSandbox !== 'undefined' && AnatolianSandbox.cheated(Q))) {
 this.achieve('game_completed');
 if (Q.in_CHP_majority) this.achieve('majority_party');
 if (Q.CHP_in_government) this.achieve('in_government');
@@ -14,6 +15,7 @@ if (Q.homosexual_rights >= 2) this.achieve('equal_rights');
 if (Q.land_reform >= 3) this.achieve('land_reform');
 if (Q.cyprus_problem == 2) this.achieve('cyprus_agreement');
 if (Q.economic_democracy >= 3) this.achieve('economic_democracy');
+}
 !}
 
 = End
