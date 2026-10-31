@@ -2069,3 +2069,17 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   #mid_panel > header.ad-command-header .ad-game-ribbon { min-height: 36px; }
   #mid_panel > header.ad-command-header #game-title { font-size: 1.22em; }
 }
+
+/* ANATOLIAN DAWN — COMPACT BY EGEHAN RIBBON v5
+   Shorten ONLY the credit ribbon, preserving the title image, glow, SVG edge,
+   navigation and the game's own typography/theme. */
+#mid_panel > header.ad-command-header .ad-credit-ribbon {
+  width: clamp(148px, 35%, 212px);
+  min-height: 36px;
+}
+@media (max-width: 560px) {
+  #mid_panel > header.ad-command-header .ad-credit-ribbon {
+    width: clamp(140px, 47%, 195px);
+    min-height: 34px;
+  }
+}
