@@ -128,7 +128,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['judiciary_timer'] = (Q['judiciary_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'judiciary');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['judiciary_timer'] = (Q['judiciary_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -177,7 +180,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'land_reform');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -226,7 +232,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'international_relations');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -475,7 +484,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['industrial_policy_timer'] = (Q['industrial_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'industrial_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['industrial_policy_timer'] = (Q['industrial_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -597,7 +609,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'international_relations');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -677,7 +692,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'campaigning');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "content": {
@@ -751,7 +769,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['military_policy_timer'] = (Q['military_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'military_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['military_policy_timer'] = (Q['military_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -834,7 +855,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'media');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -952,7 +976,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['economic_policy_timer'] = (Q['economic_policy_timer'] || 0) - 8;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'economic_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['economic_policy_timer'] = (Q['economic_policy_timer'] || 0) - 8;"
         }
       ],
       "goTo": [
@@ -1320,7 +1347,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['agricultural_policy_timer'] = (Q['agricultural_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'agricultural_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['agricultural_policy_timer'] = (Q['agricultural_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -1332,6 +1362,41 @@
         "content": "",
         "type": "paragraph"
       }
+    },
+    "topuz": {
+      "id": "topuz",
+      "type": "scene",
+      "title": "Ali Topuz",
+      "isPinnedCard": true,
+      "tags": [
+        "advisor",
+        "left_kemalists"
+      ],
+      "cardImage": "img/portraits/AliTopuz.jpeg",
+      "viewIf": {
+        "$code": "return ((Q['topuz_advisor'] || 0)===1);"
+      },
+      "newPage": true,
+      "options": [
+        {
+          "id": "@topuz.ministry",
+          "title": "Topuz can take actions as the minister of agriculture"
+        },
+        {
+          "id": "@root",
+          "title": "Return to main"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Ali Topuz"
+        },
+        {
+          "type": "paragraph",
+          "content": "Ali Topuz is an architect heavily involved in the civil society organizations and has expertise in the area of agriculture and land reform."
+        }
+      ]
     },
     "ugur.interior": {
       "id": "ugur.interior",
@@ -1392,7 +1457,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['police_timer'] = (Q['police_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'police');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['police_timer'] = (Q['police_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -1505,7 +1573,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['education_science_timer'] = (Q['education_science_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'education_science');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['education_science_timer'] = (Q['education_science_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -1574,7 +1645,7 @@
       ],
       "onArrival": [
         {
-          "$code": "if (Q.month_actions > 0) {\n    Q.month_actions -= 1;\n}\nif (Q.last_advisor_action) {\n    Q.advisor_action_timer = 0;\n    Q.last_advisor_action = 0;\n}\nif (Q.last_cabinet_action) {\n    Q.last_cabinet_action = 0;\n}\n// reset the timer...\nvar card = this.game.scenes[this.state.prevTopSceneId];\nvar timerKey = AnatolianCardActions.timerKey(card.id);\nif (Q[timerKey]) {\n    Q[timerKey] = 0;\n}\n// reduce visit count\nif (this.state.visits[card.id]) {\n    this.state.visits[card.id] -= 1;\n}"
+          "$code": "if (!AnatolianCardActions.backAdvisor(this)) {\nif (Q.month_actions > 0) {\n    Q.month_actions -= 1;\n}\nif (Q.last_advisor_action) {\n    Q.advisor_action_timer = 0;\n    Q.last_advisor_action = 0;\n}\nif (Q.last_cabinet_action) {\n    Q.last_cabinet_action = 0;\n}\n// reset the timer...\nvar card = this.game.scenes[this.state.prevTopSceneId];\nvar timerKey = AnatolianCardActions.timerKey(card.id);\nif (Q[timerKey]) {\n    Q[timerKey] = 0;\n}\n// reduce visit count\nif (this.state.visits[card.id]) {\n    this.state.visits[card.id] -= 1;\n}\n}"
         }
       ],
       "content": {
@@ -10688,8 +10759,7 @@
               {
                 "type": "insert",
                 "insert": 1
-              },
-              ""
+              }
             ]
           }
         ],
@@ -10746,6 +10816,9 @@
       "id": "industrial_policy.industry1",
       "subtitle": "-3 budget. This will assist our efforts for our reorientation towards an export economy.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 3;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 10;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 5;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 3.5;\nQ['industryy'] = (Q['industryy'] || 0) + 1;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) + 4;"
         },
@@ -10816,6 +10889,9 @@
       },
       "unavailableSubtitle": "We have already passed a general amnesty.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['grey_wolves_strength'] = (Q['grey_wolves_strength'] || 0) + 10;\nQ['grey_wolves_militancy'] = (Q['grey_wolves_militancy'] || 0) + 0.05;\nQ['raiders_strength'] = (Q['raiders_strength'] || 0) + 5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 2;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + 5;\nQ['Amnesty'] = (Q['Amnesty'] || 0) + 1;\nQ['kurdish_independents_unlocked'] = 1;\n if (((Q['MSP_in_government'] || 0) == 1) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) - 1; }"
         }
@@ -10902,6 +10978,9 @@
       },
       "subtitle": "Radical reform",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['land_reform'] = 3;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) - 5;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) - 5;"
         }
@@ -10997,13 +11076,10 @@
         },
         {
           "type": "paragraph",
-          "content": [
-            {
-              "type": "magic",
-              "content": "<div class=\"municipal-control-map\" aria-label=\"CHP control in the last municipal election\"></div>"
-            },
-            ""
-          ]
+          "content": {
+            "type": "magic",
+            "content": "<div class=\"municipal-control-map\" aria-label=\"CHP control in the last municipal election\"></div>"
+          }
         }
       ]
     },
@@ -12625,6 +12701,9 @@
       "id": "police.loyalty",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q.police_loyalty=Math.min(1,AnatolianRules.number(Q.police_loyalty)+0.2);"
         }
       ],
@@ -13097,7 +13176,7 @@
       "isHand": true,
       "onArrival": [
         {
-          "$code": "if (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
+          "$code": "AnatolianCardActions.backAdvisor(this);\nif (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
         }
       ],
       "maxCards": 4,
@@ -13214,6 +13293,9 @@
       },
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (4.5 * (1 - (Q['dissent'] || 0)));\nQ['resources'] = (Q['resources'] || 0) - 1;"
         }
@@ -13374,6 +13456,9 @@
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['west_relation'] = (Q['west_relation'] || 0) + 3;"
         },
         {
@@ -13474,6 +13559,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) - 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 5;\nQ['coup_timer'] = (Q['coup_timer'] || 0) - 1;"
         }
       ],
@@ -13503,6 +13591,9 @@
       "unavailableSubtitle": "Not enough resources.",
       "subtitle": "-1 resources",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['media_timer'] = 0;"
         },
@@ -13635,6 +13726,9 @@
       },
       "unavailableSubtitle": "Our control over the municipalities is not sufficient enough!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 5;\nQ['disk_turkis_conflict'] = (Q['disk_turkis_conflict'] || 0) - 0.05;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;"
         }
@@ -14457,7 +14551,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'international_relations');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -14532,7 +14629,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['economic_minister_party'] = \"CHP\";\nQ['economic_minister'] = \"Avcıoğlu\";\nQ['economic_policy_timer'] = (Q['economic_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'economic_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['economic_minister_party'] = \"CHP\";\nQ['economic_minister'] = \"Avcıoğlu\";\nQ['economic_policy_timer'] = (Q['economic_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -14604,7 +14704,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['fiscal_policy_timer'] = (Q['fiscal_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'fiscal_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['fiscal_policy_timer'] = (Q['fiscal_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -14809,7 +14912,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'party_organizations');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -14881,7 +14987,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['foreign_policy_timer'] = (Q['foreign_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'foreign_policy');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['foreign_policy_timer'] = (Q['foreign_policy_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -15033,14 +15142,11 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable. ",
-                "predicate": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "conditional",
+              "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable.",
+              "predicate": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -15229,7 +15335,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'union_relations');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -15294,94 +15403,6 @@
           "</span> directly. Still, our efforts are taken seriously and valued."
         ]
       }
-    },
-    "topuz.land": {
-      "id": "topuz.land",
-      "subtitle": "Atatürk's unachieved final reform, Topuz can help us determine the party policy regarding the much needed land reform.",
-      "chooseIf": {
-        "$code": "return ((Q['advisor_action_timer'] || 0)===0);"
-      },
-      "unavailableSubtitle": {
-        "content": {
-          "type": "conditional",
-          "content": [
-            "",
-            {
-              "type": "insert",
-              "insert": 1
-            },
-            " months before next advisor action."
-          ],
-          "predicate": 0
-        },
-        "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['advisor_action_timer'] || 0) > 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['advisor_action_timer'] || 0);"
-            }
-          }
-        ]
-      },
-      "onArrival": [
-        {
-          "$code": "Q['advisor_action_timer'] = 3;"
-        }
-      ],
-      "goTo": [
-        {
-          "id": "land_reform"
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
-    "topuz": {
-      "id": "topuz",
-      "type": "scene",
-      "title": "Ali Topuz",
-      "isPinnedCard": true,
-      "tags": [
-        "advisor",
-        "left_kemalists"
-      ],
-      "cardImage": "img/portraits/AliTopuz.jpeg",
-      "viewIf": {
-        "$code": "return ((Q['topuz_advisor'] || 0)===1);"
-      },
-      "newPage": true,
-      "options": [
-        {
-          "id": "@topuz.ministry",
-          "title": "Topuz can take actions as the minister of agriculture"
-        },
-        {
-          "id": "@topuz.land",
-          "title": "Work on land reform policy"
-        },
-        {
-          "id": "@root",
-          "title": "Return to main"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "Ali Topuz"
-        },
-        {
-          "type": "paragraph",
-          "content": "Ali Topuz is an architect heavily involved in the civil society organizations and has expertise in the area of agriculture and land reform."
-        }
-      ]
     },
     "coalition_negotiations.mandate": {
       "id": "coalition_negotiations.mandate",
@@ -19563,6 +19584,9 @@
       "id": "industrial_policy.uretim",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.8;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 3;\nQ['economicaction'] = (Q['economicaction'] || 0) + 0.25;"
         },
         {
@@ -19586,6 +19610,9 @@
       },
       "unavailableSubtitle": "We have already released a circular note!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 2;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + 5;\nQ['moderationn'] = (Q['moderationn'] || 0) + 1;"
         }
@@ -19679,6 +19706,9 @@
       "subtitle": "Significant reform",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['land_reform'] = 2;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) - 3;"
         }
       ],
@@ -19701,6 +19731,9 @@
       },
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['coup_timer'] = (Q['coup_timer'] || 0) - 1;\nQ['budget'] = (Q['budget'] || 0) - 1;"
         }
@@ -19742,13 +19775,10 @@
       "content": {
         "content": {
           "type": "paragraph",
-          "content": [
-            {
-              "type": "insert",
-              "insert": 0
-            },
-            ""
-          ]
+          "content": {
+            "type": "insert",
+            "insert": 0
+          }
         },
         "stateDependencies": [
           {
@@ -19763,6 +19793,9 @@
     "police.recruit": {
       "id": "police.recruit",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['police_strength'] = (Q['police_strength'] || 0) + 16;\nQ['police_loyalty'] = (Q['police_loyalty'] || 0) - 0.05;"
         }
@@ -20153,6 +20186,9 @@
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (4.5 * (1 - (Q['dissent'] || 0)));\nQ['resources'] = (Q['resources'] || 0) - 1;"
         },
         {
@@ -20349,6 +20385,9 @@
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\n if (((Q['orthodox_kemalists_strength'] || 0) >= 24) ) { Q['middle_east_relation'] = (Q['middle_east_relation'] || 0) + 10; } \nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 5;"
         }
       ],
@@ -20470,6 +20509,9 @@
       "unavailableSubtitle": "The army has withdrawn their hands from the fragile democracy, for now...",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) - 5;\nQ['coup_timer'] = (Q['coup_timer'] || 0) + 1;\nQ['critique'] = (Q['critique'] || 0) + 1;"
         }
       ],
@@ -20503,6 +20545,9 @@
       "subtitle": "-1 resources",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['union_timer'] = 0;"
         },
         {
@@ -20525,6 +20570,9 @@
         "$code": "return (((Q['kemalist_marxists_strength'] || 0) >= 25) && (Q['CHP_party_leader'] == \"Ecevit\"));"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (1 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 5;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 5;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 10;"
         },
@@ -20597,6 +20645,9 @@
       },
       "unavailableSubtitle": "We have already promised extensive labour reforms. Now is the time to enact them.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 10;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['union_reform'] = (Q['yes'] || 0);"
         }
@@ -21808,14 +21859,11 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable. ",
-                "predicate": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "conditional",
+              "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable.",
+              "predicate": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -22112,7 +22160,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'rally');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -22160,7 +22211,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'municipalities');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -22362,7 +22416,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;\nQ['labor_affairs_timer'] = (Q['labor_affairs_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'labor_affairs');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;\nQ['labor_affairs_timer'] = (Q['labor_affairs_timer'] || 0) - 6;\nQ['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -22410,7 +22467,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'media');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -23855,6 +23915,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['koykent_progress'] = (Q['koykent_progress'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 3;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['CGP_relation'] = (Q['CGP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 5;"
         },
         {
@@ -23958,6 +24021,9 @@
       "unavailableSubtitle": "We have agreed with the IMF to not pursue state interventions!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 6;\nQ['black_market_risk'] = (Q['black_market_risk'] || 0) + 1;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 3;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
         },
         {
@@ -24006,6 +24072,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.3;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 3;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['curriculumm'] = (Q['curriculumm'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) - 2;"
         },
         {
@@ -24021,6 +24090,9 @@
       "id": "fiscal_policy.vergidilimi",
       "subtitle": "This will benefit groups with low income and hurt the higher income bracket.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['worker_chp'] = (Q['worker_chp'] || 0) + (4 * ((Q['dissent'] || 0) - 1));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (1 * ((Q['dissent'] || 0) - 1));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (2 * ((Q['dissent'] || 0) - 1));\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['vergidilimii'] = (Q['vergidilimii'] || 0) + 1;"
         }
@@ -24052,6 +24124,9 @@
       "id": "foreign_policy.improve_us",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['us_relation'] = (Q['us_relation'] || 0) + 8.75;"
         }
       ],
@@ -24064,6 +24139,9 @@
       "id": "industrial_policy.elektronik",
       "subtitle": "-2 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 3;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) + 4;\nQ['forex_pressure_drift'] = (Q['forex_pressure_drift'] || 0) - 1;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['electronicc'] = (Q['electronicc'] || 0) + 1;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 5;"
         },
@@ -24111,6 +24189,9 @@
     "judiciary.prioritize": {
       "id": "judiciary.prioritize",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['police_loyalty'] = (Q['police_loyalty'] || 0) - 0.05;\nQ['grey_wolves_strength'] = (Q['grey_wolves_strength'] || 0) - 4;\nQ['raiders_strength'] = (Q['raiders_strength'] || 0) - 6;"
         }
@@ -24168,6 +24249,9 @@
       "id": "labor_affairs.national",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['nationall'] = (Q['nationall'] || 0) + 1;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;"
         },
         {
@@ -24200,6 +24284,9 @@
       "subtitle": "Modest reform",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['land_reform'] = 1;\nQ['orthodox_kemalists_dissent'] = (Q['orthodox_kemalists_dissent'] || 0) - 5;"
         }
       ],
@@ -24222,6 +24309,9 @@
       },
       "unavailableSubtitle": "Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 2;\nQ['coup_timer'] = (Q['coup_timer'] || 0) + 1;"
         }
@@ -24283,13 +24373,10 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              ""
-            ]
+            "content": {
+              "type": "insert",
+              "insert": 0
+            }
           }
         ],
         "stateDependencies": [
@@ -24310,6 +24397,9 @@
         "$code": "return ((Q['budget'] || 0) >= 1);"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;"
         },
@@ -24540,6 +24630,9 @@
       },
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (7.5 * (1 - (Q['dissent'] || 0)));\nQ['resources'] = (Q['resources'] || 0) - 1;"
         }
@@ -24860,6 +24953,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + (5 * (1 - (Q['dissent'] || 0)));"
         },
         {
@@ -24916,6 +25012,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) + 1;\nQ['commercialized_media'] = (Q['commercialized_media'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));"
         }
       ],
@@ -24949,6 +25048,9 @@
       "subtitle": "-1 resources",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['culture_timer'] = 0;"
         },
         {
@@ -24971,6 +25073,9 @@
         "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (1 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));"
         },
@@ -25039,6 +25144,9 @@
       },
       "unavailableSubtitle": "Not enough resources.,",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;"
         }
@@ -25347,7 +25455,10 @@
       },
       "onArrival": [
         {
-          "$code": "Q['advisor_action_timer'] = 3;"
+          "$code": "AnatolianCardActions.beginAdvisor(this,'party_organizations');"
+        },
+        {
+          "$code": "Q['last_advisor_action'] = 1;"
         }
       ],
       "goTo": [
@@ -26735,6 +26846,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['koykent_progress'] = (Q['koykent_progress'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) - 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 6;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['CGP_relation'] = (Q['CGP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.8;\nQ['spreadd'] = (Q['spreadd'] || 0) + 1;"
         },
         {
@@ -26841,6 +26955,9 @@
       "unavailableSubtitle": "The general air of coldness between the western governments and us prevent us from taking debt from the international organizations!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;\nQ['budget'] = (Q['budget'] || 0) + 1;\nQ['forex_pressure_drift'] = (Q['forex_pressure_drift'] || 0) + 1;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
         },
         {
@@ -26891,6 +27008,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['rural_chp'] = (Q['rural_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['halkegitimm'] = (Q['halkegitimm'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2;\nQ['budget'] = (Q['budget'] || 0) - 1;"
         },
         {
@@ -26906,6 +27026,9 @@
       "id": "fiscal_policy.speculative",
       "subtitle": "Speculative loans are used by companies to buy each other's stocks which creates the façade of growth without any improvement in production.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['industry_modifier'] = (Q['industry_modifier'] || 0) + 5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;\nQ['west_relation'] = (Q['west_relation'] || 0) - 5;\nQ['us_relation'] = (Q['us_relation'] || 0) - 5;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 10;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['speculativee'] = (Q['speculativee'] || 0) + 1;"
         },
@@ -26947,6 +27070,9 @@
       "id": "foreign_policy.improve_west",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['west_relation'] = (Q['west_relation'] || 0) + 8.75;"
         }
       ],
@@ -26958,6 +27084,9 @@
     "industrial_policy.capacity": {
       "id": "industrial_policy.capacity",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.8;\nQ['capacityy'] = (Q['capacityy'] || 0) + 1;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 3;"
         },
@@ -26978,6 +27107,9 @@
       "id": "judiciary.prisonreform",
       "subtitle": "Political prisoners are often mistreated and placed in the same cells as rapists and murderers.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 1;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + 3;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 3;"
         }
@@ -27033,6 +27165,9 @@
     "labor_affairs.kit": {
       "id": "labor_affairs.kit",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['kitt'] = (Q['kitt'] || 0) + 1;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.2;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 8;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 8;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 4;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;"
         },
@@ -27126,6 +27261,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"waterlines\");"
         }
       ],
@@ -27136,6 +27274,11 @@
     },
     "police.investigate_corruption": {
       "id": "police.investigate_corruption",
+      "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        }
+      ],
       "goTo": [
         {
           "id": "police.investigate_corruption_success",
@@ -27293,7 +27436,7 @@
       "isHand": true,
       "onArrival": [
         {
-          "$code": "if (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
+          "$code": "AnatolianCardActions.backAdvisor(this);\nif (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
         }
       ],
       "maxCards": 4,
@@ -27339,6 +27482,9 @@
       },
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['rural_chp'] = (Q['rural_chp'] || 0) + (1.0499999999999998 * (1 - (Q['dissent'] || 0)));\nQ['resources'] = (Q['resources'] || 0) - 1;\n if (((Q['rural_policy'] || 0) >= 2) ) { Q['rural_chp'] = (Q['rural_chp'] || 0) + (2.25 * (1 - (Q['dissent'] || 0))); } \n if (((Q['rural_land_reform_policy'] || 0) >= 1) ) { Q['rural_chp'] = (Q['rural_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0))); } \n if (((Q['land_reform'] || 0) == 1) ) { Q['rural_chp'] = (Q['rural_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0))); } \n if (((Q['land_reform'] || 0) == 2) ) { Q['rural_chp'] = (Q['rural_chp'] || 0) + (4.5 * (1 - (Q['dissent'] || 0))); } \n if (((Q['land_reform'] || 0) == 3) ) { Q['rural_chp'] = (Q['rural_chp'] || 0) + (4.5 * (1 - (Q['dissent'] || 0))); }"
         }
@@ -27642,6 +27788,9 @@
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + (10 * (1 - (Q['dissent'] || 0)));"
         },
         {
@@ -27705,6 +27854,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['campaign_media'] = (Q['campaign_media'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));"
         }
       ],
@@ -27738,6 +27890,9 @@
       "subtitle": "-1 resources",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['women'] = (Q['women'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;"
         },
         {
@@ -27762,6 +27917,9 @@
       },
       "unavailableSubtitle": "We can't rely on Kemalist rhetoric only, people expect us to bring real change!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (1 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) - 5;\nQ['orthodox_kemalists_dissent'] = (Q['orthodox_kemalists_dissent'] || 0) - 5;"
         },
@@ -27916,6 +28074,9 @@
       },
       "unavailableSubtitle": "We have already visited the DİSK headquarters this year. Simply visiting them again will not improve our relations.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 2;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 2;\nQ['union_visit_timer'] = 12;"
         }
@@ -28835,6 +28996,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['koykent_progress'] = (Q['koykent_progress'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 2;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['CGP_relation'] = (Q['CGP_relation'] || 0) - 5;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 2;\nQ['yatirimm'] = (Q['yatirimm'] || 0) + 1;"
         },
         {
@@ -28969,6 +29133,9 @@
       "subtitle": "-1 budget, populist expansion. Budget ↓ Inflation ↑ Unemployment ↓ Exchange Pressure ↑ Growth ↑↑",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) + 2;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
         },
         {
@@ -28983,6 +29150,9 @@
     "education_science.student": {
       "id": "education_science.student",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['TIP_relation'] = (Q['TIP_relation'] || 0) + 5;\nQ['workers_TIP'] = (Q['workers_TIP'] || 0) + 2;\nQ['alevis_TIP'] = (Q['alevis_TIP'] || 0) + 2;\nQ['kurds_TIP'] = (Q['kurds_TIP'] || 0) + 2;\nQ['petty_bourgeoisie_TIP'] = (Q['petty_bourgeoisie_TIP'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 2;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['studentt'] = (Q['studentt'] || 0) + 1;"
         }
@@ -29028,6 +29198,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['gunesplan'] = (Q['gunesplan'] || 0) + 1;"
         }
       ],
@@ -29039,6 +29212,9 @@
     "industrial_policy.kobi": {
       "id": "industrial_policy.kobi",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.3;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.8;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 3;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 3;"
         },
@@ -29054,6 +29230,9 @@
     "judiciary.investigate": {
       "id": "judiciary.investigate",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 2;\nQ['police_loyalty'] = (Q['police_loyalty'] || 0) - 0.1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 4;"
         }
@@ -29111,6 +29290,9 @@
       "id": "labor_affairs.ikincilgrev",
       "subtitle": "Secondary strikes are additional strikes launched by labourers of other industries to support the workers striking in the case of exploitation.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['ikincilgrevv'] = (Q['ikincilgrevv'] || 0) + 1;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 8;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.2;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;"
         },
@@ -29267,6 +29449,9 @@
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['MKE'] = (Q['MKE'] || 0) + 1;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.4;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 4;"
         },
         {
@@ -29319,6 +29504,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"publictransport\");"
         }
       ],
@@ -29330,6 +29518,9 @@
     "police.investigate_corruption_success": {
       "id": "police.investigate_corruption_success",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['investigate_corruption'] = (Q['investigate_corruption'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\n if (((Q['inflation'] || 0) > 3) ) { Q['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.1; } \n if (((Q['inflation'] || 0) >= 8) ) { Q['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.2; }"
         },
@@ -30432,6 +30623,9 @@
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 5;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) + 10;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 4.5;\nQ['resources'] = (Q['resources'] || 0) - 1;"
         }
       ],
@@ -30516,6 +30710,9 @@
       },
       "unavailableSubtitle": "Not enough resources.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;"
         }
@@ -30644,6 +30841,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianRules.adjustFactionStrength(Q, 'km', 5);"
         },
         {
@@ -30680,6 +30880,9 @@
       "subtitle": "-1 resources",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['youth'] = (Q['youth'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;"
         },
         {
@@ -30706,6 +30909,9 @@
     "rally.social_programs": {
       "id": "rally.social_programs",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));"
         }
@@ -32066,6 +32272,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 3;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['teacherr'] = (Q['teacherr'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2;\nQ['budget'] = (Q['budget'] || 0) - 1;"
         },
         {
@@ -32081,6 +32290,9 @@
       "id": "fiscal_policy.cutspending",
       "subtitle": "+1 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 2;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 2;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 2;\nQ['cutspending_timer'] = (Q['cutspending_timer'] || 0) + 12;\nQ['budget'] = (Q['budget'] || 0) + 1;"
         }
@@ -32106,6 +32318,9 @@
       "unavailableSubtitle": "Our relations with the US are not good enough to negotiate the Denktaş Plan!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['denktasplan'] = (Q['denktasplan'] || 0) + 1;"
         }
       ],
@@ -32121,6 +32336,9 @@
       },
       "unavailableSubtitle": "MSP is the party of the anatolian petty bourgeoisie! They will prevent this action.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.6;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 1.5;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 4;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 5;"
         },
@@ -32140,6 +32358,9 @@
         "$code": "return ((Q['resistt'] || 0) < 3);"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 1;\nQ['TIP_relation'] = (Q['TIP_relation'] || 0) + 3;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 3;\nQ['resistt'] = (Q['resistt'] || 0) + 1;"
         }
@@ -32197,6 +32418,9 @@
       "id": "labor_affairs.healthinspections",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['healthinspectionss'] = (Q['healthinspectionss'] || 0) + 1;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 5;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.1;"
         },
         {
@@ -32222,6 +32446,9 @@
         "$code": "return ((Q['MKE'] || 0) > 0);"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['MKE'] = (Q['MKE'] || 0) + 1;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.4;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;\nQ['army_land_strength'] = (Q['army_land_strength'] || 0) + 0.05;\nQ['army_naval_strength'] = (Q['army_naval_strength'] || 0) + 0.05;\nQ['army_aerial_strength'] = (Q['army_aerial_strength'] || 0) + 0.05;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 4;"
         },
@@ -32271,6 +32498,9 @@
         ]
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianMunicipalities.apply(Q,\"libraries\");"
         }
@@ -32589,6 +32819,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) - 6;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) - 6;\nQ['orthodox_kemalists_dissent'] = (Q['orthodox_kemalists_dissent'] || 0) - 6;\nQ['right_kemalists_dissent'] = (Q['right_kemalists_dissent'] || 0) - 6;"
         }
       ],
@@ -32698,6 +32931,9 @@
       },
       "unavailableSubtitle": "The army has withdrawn their hand over the fragile democracy, for now.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['AP_relation'] = (Q['AP_relation'] || 0) + 2;\nQ['nationalism'] = (Q['nationalism'] || 0) - (2 * (1 - (Q['dissent'] || 0)));\n if (((Q['pacifism'] || 0) >= 3) ) { Q['workers_chp'] = (Q['workers_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0))); } \n if (((Q['pacifism'] || 0) >= 3) ) { Q['nationalism'] = (Q['nationalism'] || 0) - (3 * (1 - (Q['dissent'] || 0))); } \n if (((Q['pacifism'] || 0) >= 3) ) { Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0))); }"
         }
@@ -33279,6 +33515,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "var stage = (Q.landreform_done||0) + 1; var months = [0,3,4,6,8,10,12][stage]; Q.budget -= 1; Q.land_distribution_pending_stage = stage; Q.land_distribution_due_tick = Q.year*24 + (Q.month-1)*2 + (Q.week===2?1:0) + months*2; Q.agricultural_policy_timer = months;"
         }
       ],
@@ -33423,6 +33662,9 @@
       "subtitle": "Slight popularity decrease; Western relations slightly decrease; Exchange Pressure ↓↓; Industrial Production Index ↑; Agricultural Production Index ↑",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 2;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 2;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 2;\nQ['west_relation'] = (Q['west_relation'] || 0) - 4;\nQ['us_relation'] = (Q['us_relation'] || 0) - 4;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 4;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 3;\nQ['agriculture_modifier'] = (Q['agriculture_modifier'] || 0) + 3;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
         },
         {
@@ -33440,6 +33682,9 @@
       "id": "education_science.koykent",
       "subtitle": "-1 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 2;\nQ['budget'] = (Q['budget'] || 0) - 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 4;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['CGP_relation'] = (Q['CGP_relation'] || 0) - 5;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 5;\nQ['koykent_progress'] = (Q['koykent_progress'] || 0) + 1;\nQ['koykentegitimm'] = (Q['koykentegitimm'] || 0) + 1;"
         },
@@ -33513,6 +33758,9 @@
       "subtitle": "+1 budget.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['avans_timer'] = (Q['avans_timer'] || 0) + 12;\nQ['budget'] = (Q['budget'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.5;"
         },
         {
@@ -33536,6 +33784,9 @@
       },
       "unavailableSubtitle": "We have not achieved the prerequisites for an application yet! The prerequisites we have to achieve are: a reform of the Turkish economy, decent economic figures, good relations with Western Europe, a peaceful end to the Cyprus problem.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['aet'] = (Q['aet'] || 0) + 1;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 3;"
         }
@@ -33584,6 +33835,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 2;\nQ['demiryoluu'] = (Q['demiryoluu'] || 0) + 1;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 5;"
         },
         {
@@ -33606,6 +33860,9 @@
       },
       "unavailableSubtitle": "We have already brought the DGMs to the constitutional court!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['democracystatus'] = (Q['democracystatus'] || 0) + 2;\nQ['resistt'] = (Q['resistt'] || 0) + 1;"
         }
@@ -33631,6 +33888,9 @@
       "id": "labor_affairs.lokavt",
       "subtitle": "Employer lockouts are the inverse of worker strikes; in times of disagreement the employers lock their workplaces out and refuse to pay the workers their salaries until the workers succumb to their demands.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['lokavtt'] = (Q['lokavtt'] || 0) + 1;\nQ['disk_relation'] = (Q['disk_relation'] || 0) + 8;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.2;"
         },
@@ -33658,6 +33918,9 @@
       },
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['army_land_strength'] = (Q['army_land_strength'] || 0) + 0.1;\nQ['army_naval_strength'] = (Q['army_naval_strength'] || 0) + 0.1;\nQ['army_aerial_strength'] = (Q['army_aerial_strength'] || 0) + 0.1;\nQ['budget'] = (Q['budget'] || 0) - 1;"
         }
@@ -33704,6 +33967,9 @@
         ]
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianMunicipalities.apply(Q,\"halkekmek\");"
         }
@@ -34834,6 +35100,9 @@
       },
       "unavailableSubtitle": "The economic crisis is largely over now, and the public is no longer interested in hearing about it.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['public_works_support'] = (Q['public_works_support'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (6 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));"
         }
@@ -36654,6 +36923,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.5;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 3;\nQ['cooperative_done'] = (Q['cooperative_done'] || 0) + 1;\nQ['cooperative_progress'] = (Q['cooperative_done'] || 0);"
         },
         {
@@ -36712,6 +36984,9 @@
       },
       "subtitle": "-2 Budget; Budget ↓↓; Inflation ↑; Exchange Pressure ↓↓; Growth ↑↑",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 4;\nQ['budget'] = (Q['budget'] || 0) - 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 2;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
         },
@@ -36801,6 +37076,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['us_relation'] = (Q['us_relation'] || 0) - 0.1;"
         },
         {
@@ -36862,6 +37140,9 @@
         ]
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['koykent_progress'] = (Q['koykent_progress'] || 0) + 1;\nQ['koykenttt'] = (Q['koykenttt'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 3;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.8;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1;"
         },
@@ -36959,6 +37240,9 @@
       },
       "unavailableSubtitle": "The KMD has been neutralized.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['kmd_prosecutions'] = (Q['kmd_prosecutions'] || 0) + 1;\nQ['grey_wolves_strength'] = (Q['grey_wolves_strength'] || 0) - 2;\nQ['raiders_strength'] = (Q['raiders_strength'] || 0) - 2;"
         }
@@ -37068,6 +37352,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"roads\");"
         }
       ],
@@ -37086,6 +37373,9 @@
       },
       "unavailableSubtitle": "Far-right strength must reach at least 35%.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'grey_wolves',true);"
         }
@@ -37437,6 +37727,9 @@
     "rally.local": {
       "id": "rally.local",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (1 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));"
         }
@@ -38017,6 +38310,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['east_agri_done'] = (Q['east_agri_done'] || 0) + 1;"
         },
         {
@@ -38088,6 +38384,9 @@
       "unavailableSubtitle": "We have agreed with the IMF to not pursue state interventions!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;\nQ['disk_relation'] = (Q['disk_relation'] || 0) - 4;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.5;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
         },
         {
@@ -38136,6 +38435,9 @@
       "id": "fiscal_policy.istikraz",
       "subtitle": "+1 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 1;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.2;"
         },
@@ -38375,6 +38677,9 @@
       "id": "labor_affairs.hukukikoruma",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.2;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;"
         },
         {
@@ -38389,6 +38694,9 @@
     "military_policy.budgetdecrease": {
       "id": "military_policy.budgetdecrease",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['coup_timer'] = (Q['coup_timer'] || 0) + 2;\nQ['budget'] = (Q['budget'] || 0) + 1;"
         }
@@ -38438,6 +38746,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"migration\");"
         }
       ],
@@ -38456,6 +38767,9 @@
       },
       "unavailableSubtitle": "Far-right strength must reach at least 35%.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'raiders',true);"
         }
@@ -38702,6 +39016,11 @@
       "id": "root",
       "type": "scene",
       "title": "Root Scene",
+      "onArrival": [
+        {
+          "$code": "AnatolianCardActions.backAdvisor(this);"
+        }
+      ],
       "newPage": true,
       "goTo": [
         {
@@ -38928,6 +39247,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 3;\nQ['west_relation'] = (Q['west_relation'] || 0) - 5;\nQ['hashas_done'] = 1;"
         }
       ],
@@ -39118,6 +39440,9 @@
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 1;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2;"
         },
         {
@@ -39134,6 +39459,9 @@
       "subtitle": "+1 budget",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 1;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 1;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;"
         }
       ],
@@ -39146,6 +39474,9 @@
       "id": "foreign_policy.improve_east",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['soviet_relation'] = (Q['soviet_relation'] || 0) + 8.75;"
         }
       ],
@@ -39157,6 +39488,9 @@
     "labor_affairs.workplaceinspections": {
       "id": "labor_affairs.workplaceinspections",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;"
         },
@@ -39177,6 +39511,9 @@
       },
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['army_land_strength'] = (Q['army_land_strength'] || 0) + 0.1;\nQ['army_naval_strength'] = (Q['army_naval_strength'] || 0) + 0.1;\nQ['army_aerial_strength'] = (Q['army_aerial_strength'] || 0) + 0.1;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 4;"
         },
@@ -39224,6 +39561,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"infrastructure\");"
         }
       ],
@@ -39242,6 +39582,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'tit',true);"
         }
@@ -39333,6 +39676,9 @@
     "rally.rural_mild": {
       "id": "rally.rural_mild",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianNationalCoalition.ruralRally(Q,\"mild\");"
         }
@@ -39640,6 +39986,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['imf_agreement'] = 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 15;\nQ['forex_pressure_drift'] = (Q['forex_pressure_drift'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 4;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 5;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 3;\nQ['disk_relation'] = (Q['disk_relation'] || 0) - 10;"
         },
         {
@@ -39655,6 +40004,9 @@
       "id": "education_science.imamhatip",
       "subtitle": "+1 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) - 10;\nQ['imamhatipp'] = (Q['imamhatipp'] || 0) + 1;"
         }
@@ -39733,6 +40085,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (2 * (1 - (Q['dissent'] || 0)));\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 5;\n if ((((Q['in_grand_coalition'] || 0)) !== 0) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; } \nQ['AP_relation'] = (Q['AP_relation'] || 0) - 4;\nQ['upper_tax_rates'] = (Q['upper_tax_rates'] || 0) + 1;\nQ['lower_tax_rates'] = (Q['lower_tax_rates'] || 0) - 1;\nQ['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1;\n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; } \n if (((Q['upper_tax_rates'] || 0) > 3) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; } \n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 2; }"
         }
       ],
@@ -39744,6 +40099,9 @@
     "foreign_policy.friendship": {
       "id": "foreign_policy.friendship",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['friendshipp'] = (Q['friendshipp'] || 0) + 1;\nQ['soviet_relation'] = (Q['soviet_relation'] || 0) + 10;\nQ['us_relation'] = (Q['us_relation'] || 0) - 10;\nQ['west_relation'] = (Q['west_relation'] || 0) - 5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;"
         },
@@ -39792,6 +40150,9 @@
       "id": "labor_affairs.syndicaterecognition",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 4;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 1;"
         },
         {
@@ -39817,6 +40178,9 @@
       },
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['coup_timer'] = (Q['coup_timer'] || 0) - 1;\nQ['aselsann'] = (Q['aselsann'] || 0) + 1;\nQ['army_land_strength'] = (Q['army_land_strength'] || 0) + 0.1;\nQ['army_naval_strength'] = (Q['army_naval_strength'] || 0) + 0.1;\nQ['army_aerial_strength'] = (Q['army_aerial_strength'] || 0) + 0.1;\nQ['budget'] = (Q['budget'] || 0) - 1;"
         }
@@ -39864,6 +40228,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"connect\");"
         }
       ],
@@ -39882,6 +40249,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'grey_wolves',false);"
         }
@@ -40823,6 +41193,9 @@
       "id": "rally.rural_moderate",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q.land_reform=Math.max(Number(Q.land_reform)||0,2);AnatolianNationalCoalition.ruralRally(Q,\"moderate\");"
         }
       ],
@@ -41083,6 +41456,9 @@
       "subtitle": "This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long-term) ↓↓↓; Growth ↑↑",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['Tiger'] = (Q['Tiger'] || 0) + 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 8;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 17.5;\nQ['disk_relation'] = (Q['disk_relation'] || 0) - 15;\nQ['forex_pressure_drift'] = (Q['forex_pressure_drift'] || 0) - 3;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 3;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;"
         },
         {
@@ -41097,6 +41473,9 @@
     "education_science.TRT": {
       "id": "education_science.TRT",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 1;"
         }
@@ -41115,6 +41494,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['upper_tax_rates'] = (Q['upper_tax_rates'] || 0) + 1;\nQ['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1;\n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; } \n if (((Q['upper_tax_rates'] || 0) > 3) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; } \nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 4;\n if ((((Q['in_grand_coalition'] || 0)) !== 0) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; } \n if (((Q['capital_strike_progress'] || 0) >= 5) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) + 1; } \nQ['budget'] = (Q['budget'] || 0) + 1;\nQ['yearly_budget'] = (Q['yearly_budget'] || 0) + 1;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 4;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['finance_goal_completed'] = (Q['finance_goal_completed'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.6;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.4;\n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 2; }"
         },
         {
@@ -41129,6 +41511,9 @@
     "foreign_policy.credits": {
       "id": "foreign_policy.credits",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 2;\nQ['us_relation'] = (Q['us_relation'] || 0) - 5;\nQ['friendshipp'] = (Q['friendshipp'] || 0) + 1;"
         }
@@ -41181,6 +41566,9 @@
       },
       "unavailableSubtitle": "Requires 1 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 4;\nQ['budget'] = (Q['budget'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.2;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.5;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (6 * (1 - (Q['dissent'] || 0)));"
         },
@@ -41273,6 +41661,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"regularization\");"
         }
       ],
@@ -41291,6 +41682,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'raiders',false);"
         }
@@ -41618,6 +42012,9 @@
     "rally.rural_strong": {
       "id": "rally.rural_strong",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q.land_reform=3;AnatolianNationalCoalition.ruralRally(Q,\"strong\");"
         }
@@ -42899,6 +43296,9 @@
       "subtitle": "Continuing the export orientation. This will hike up the inflation! Inflation ↑↑↑; Exchange Pressure(short term) ↓↓; Exchange Pressure(long-term) ↓↓↓; Growth ↑↑",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['Tiger'] = (Q['Tiger'] || 0) + 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 8;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 17.5;\nQ['disk_relation'] = (Q['disk_relation'] || 0) - 15;\nQ['forex_pressure_drift'] = (Q['forex_pressure_drift'] || 0) - 3;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 3;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;"
         },
         {
@@ -42968,6 +43368,9 @@
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 1;"
         }
       ],
@@ -42986,6 +43389,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['yearly_budget'] = (Q['yearly_budget'] || 0) + 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 4;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;\nQ['TIP_coalition_dissent'] = (Q['TIP_coalition_dissent'] || 0) + 1;\nQ['lower_tax_rates'] = (Q['lower_tax_rates'] || 0) + 1;\n if (((Q['lower_tax_rates'] || 0) >= 2) ) { Q['workers_chp'] = (Q['workers_chp'] || 0) - 5; } \nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 1;"
         },
         {
@@ -43000,6 +43406,9 @@
     "foreign_policy.treaty": {
       "id": "foreign_policy.treaty",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.7;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.5;\nQ['us_relation'] = (Q['us_relation'] || 0) - 5;\nQ['treatyy'] = (Q['treatyy'] || 0) + 1;"
         },
@@ -43064,6 +43473,9 @@
       },
       "unavailableSubtitle": "Requires 1 budget.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['disk_relation'] = (Q['disk_relation'] || 0) + 2;\nQ['police_loyalty'] = (Q['police_loyalty'] || 0) - 0.05;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1.5;"
         },
@@ -43157,6 +43569,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"planning\");"
         }
       ],
@@ -43175,6 +43590,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'tit',false);"
         }
@@ -43677,6 +44095,9 @@
       "unavailableSubtitle": "We must allow time for our previous Köykent rally to take effect.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianNationalCoalition.koykentRally(Q);"
         }
       ],
@@ -43812,6 +44233,9 @@
       "unavailableSubtitle": "We don't have enough budget!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 2;"
         }
       ],
@@ -43846,6 +44270,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 2;\nQ['yearly_budget'] = (Q['yearly_budget'] || 0) - 2;\nQ['upper_tax_rates'] = (Q['upper_tax_rates'] || 0) - 1;\nQ['lower_tax_rates'] = (Q['lower_tax_rates'] || 0) - 1;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['DP_relation'] = (Q['DP_relation'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\nQ['AP_relation'] = (Q['AP_relation'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\n if (((Q['unemployed'] || 0) >= 5) ) { Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1.5; } \n if (((Q['upper_tax_rates'] || 0) < 0) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) - 1; } \nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.6;"
         },
         {
@@ -43860,6 +44287,9 @@
     "foreign_policy.export": {
       "id": "foreign_policy.export",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['agricultural_consumption'] = (Q['agricultural_consumption'] || 0) + 4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 1;"
         },
@@ -43928,6 +44358,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"transport\");"
         }
       ],
@@ -43942,6 +44375,9 @@
         "$code": "return AnatolianRules.number(Q.ohp_investigations)<4;"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.investigateUnderground(Q);"
         }
@@ -44611,6 +45047,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['yearly_budget'] = (Q['yearly_budget'] || 0) - 1;\nQ['lower_tax_rates'] = (Q['lower_tax_rates'] || 0) - 1;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (3 * (1 - (Q['dissent'] || 0)));\n if (((Q['unemployed'] || 0) >= 5) ) { Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.7; } \nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.6;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;\nQ['finance_goal_completed'] = (Q['finance_goal_completed'] || 0) + 1;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) - 3;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) - 3;"
         },
         {
@@ -44628,6 +45067,9 @@
         "$code": "return ((Q['friendshipp'] || 0) >= 1);"
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 2;\nQ['oil'] = (Q['oil'] || 0) + 1;"
         },
@@ -44695,6 +45137,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianMunicipalities.apply(Q,\"industry\");"
         }
       ],
@@ -44713,6 +45158,9 @@
       },
       "unavailableSubtitle": "ÖHD is already at its residual strength, or its embargo-related funding request must first be addressed.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.clampOHP(Q);"
         }
@@ -45321,6 +45769,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['yearly_budget'] = (Q['yearly_budget'] || 0) - 1;\nQ['upper_tax_rates'] = (Q['upper_tax_rates'] || 0) - 1;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\nQ['DP_relation'] = (Q['DP_relation'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['AP_relation'] = (Q['AP_relation'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.7;\n if (((Q['upper_tax_rates'] || 0) < 0) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) - 1; } \nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.6;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;"
         },
         {
@@ -45407,6 +45858,9 @@
       "subtitle": "Though a drastic move and something we are ideologically opposed to, we may be forced to declare a state of emergency and and restrict the civil rights in order to bring peace to the streets.",
       "unavailableSubtitle": "The situation in the streets still can be managed through conventional means.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['grey_wolves_militancy'] = (Q['grey_wolves_militancy'] || 0) - 0.1;\nQ['grey_wolves_strength'] = (Q['grey_wolves_strength'] || 0) - 8;\nQ['devyol_militancy'] = (Q['devyol_militancy'] || 0) - 0.1;\nQ['devyol_strength'] = (Q['devyol_strength'] || 0) - 8;\nQ['raiders_strength'] = (Q['raiders_strength'] || 0) - 8;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 5;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) - 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) - 3;\nQ['OHAL'] = (Q['OHAL'] || 0) + 1;"
         }
@@ -45989,6 +46443,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['budget'] = (Q['budget'] || 0) + 2;\nQ['yearly_budget'] = (Q['yearly_budget'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 4;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 4;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 4;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 3;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 2;\nQ['TIP_coalition_dissent'] = (Q['TIP_coalition_dissent'] || 0) + 1;\nQ['lower_tax_rates'] = (Q['lower_tax_rates'] || 0) + 1;\nQ['upper_tax_rates'] = (Q['upper_tax_rates'] || 0) + 1;\n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; } \n if (((Q['upper_tax_rates'] || 0) > 2) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; } \n if (((Q['lower_tax_rates'] || 0) > 1) ) { Q['workers_chp'] = (Q['workers_chp'] || 0) - 5; } \nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 1.1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.6;\n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 2; } \n if (((Q['upper_tax_rates'] || 0) > 1) ) { Q['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 2; }"
         },
         {
@@ -46021,6 +46478,9 @@
     "foreign_policy.arabrelation": {
       "id": "foreign_policy.arabrelation",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['middle_east_relation'] = (Q['middle_east_relation'] || 0) + 8.75;"
         }
@@ -46102,6 +46562,9 @@
         ]
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['police_militancy'] = (Q['police_militancy'] || 0) - 0.08;\nQ['eastern_crime'] = (Q['eastern_crime'] || 0) - 1;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;"
         }
@@ -46344,6 +46807,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) - 6;\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 3;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 3;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + (5 * (1 - (Q['dissent'] || 0)));\nQ['DP_relation'] = (Q['DP_relation'] || 0) + 5;\nQ['AP_relation'] = (Q['AP_relation'] || 0) + 4;\n if (((((Q['in_grand_coalition'] || 0)) !== 0) && ((Q['coalition_dissent'] || 0) > 0)) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) - 1; } \nQ['TIP_coalition_dissent'] = (Q['TIP_coalition_dissent'] || 0) + 1;\nQ['upper_tax_rates'] = (Q['upper_tax_rates'] || 0) - 1;\nQ['lower_tax_rates'] = (Q['lower_tax_rates'] || 0) + 1;\n if (((Q['lower_tax_rates'] || 0) >= 2) ) { Q['workers_chp'] = (Q['workers_chp'] || 0) - 5; } \n if (((Q['upper_tax_rates'] || 0) < 0) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) - 1; }"
         }
       ],
@@ -46360,6 +46826,9 @@
       },
       "unavailableSubtitle": "We have to improve our relations with the Arabian states first!",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['tradee'] = (Q['tradee'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.5;\nQ['agricultural_consumption'] = (Q['agricultural_consumption'] || 0) + 4;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 1;"
         },
@@ -46729,8 +47198,7 @@
               {
                 "type": "insert",
                 "insert": 0
-              },
-              ""
+              }
             ]
           }
         ],
@@ -46784,6 +47252,9 @@
         ]
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['panarabb'] = (Q['panarabb'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) + 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.4;\nQ['oil'] = (Q['oil'] || 0) + 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;"
         },
@@ -47037,6 +47508,9 @@
       "unavailableSubtitle": "AP prevents us raising luxury tariffs!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['capitalists_chp'] = (Q['capitalists_chp'] || 0) - 4;\nQ['west_relation'] = (Q['west_relation'] || 0) - 3;\nQ['budget'] = (Q['budget'] || 0) + 1;"
         }
       ],
@@ -47084,6 +47558,9 @@
         ]
       },
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "Q['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.4;\nQ['us_relation'] = (Q['us_relation'] || 0) - 5;"
         },
@@ -47286,6 +47763,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['tariffs'] = (Q['tariffs'] || 0) + 1;\n if (((Q['inflation'] || 0) > 0) ) { Q['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 3; } \n if (((Q['inflation'] || 0) <= 0) ) { Q['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 0.5; } \nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 1.5;\nQ['budget'] = (Q['budget'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) - 5;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 5;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['CGP_relation'] = (Q['CGP_relation'] || 0) - 5;\nQ['DP_relation'] = (Q['DP_relation'] || 0) - 5;\nQ['AP_relation'] = (Q['AP_relation'] || 0) - 5;\nQ['west_relation'] = (Q['west_relation'] || 0) - 5;\nQ['us_relation'] = (Q['us_relation'] || 0) - 5;\nQ['peoples_party_support'] = (Q['peoples_party_support'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 1;\n if (((Q['tariffs'] || 0) >= 3) ) { Q['capital_strike_progress'] = (Q['capital_strike_progress'] || 0) + 1; }"
         },
         {
@@ -47337,6 +47817,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['monarchyy'] = (Q['monarchyy'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.4;\nQ['oil'] = (Q['oil'] || 0) + 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;"
         },
         {
@@ -47358,6 +47841,9 @@
       },
       "unavailableSubtitle": "Far-left strength must reach at least 35%.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'thkpc',true);"
         }
@@ -47535,6 +48021,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['tariffs'] = (Q['tariffs'] || 0) - 1;\nQ['budget'] = (Q['budget'] || 0) - 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + (4 * (1 - (Q['dissent'] || 0)));\nQ['rural_chp'] = (Q['rural_chp'] || 0) - 4;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 3;\nQ['west_relation'] = (Q['west_relation'] || 0) + 5;\nQ['us_relation'] = (Q['us_relation'] || 0) + 5;\nQ['east_relation'] = (Q['east_relation'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) - 0.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) + 0.5;"
         },
         {
@@ -47627,6 +48116,9 @@
       },
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.4;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 0.5;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) - 2;"
         },
         {
@@ -47648,6 +48140,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'thkpc',false);"
         }
@@ -47945,6 +48440,9 @@
       "unavailableSubtitle": "We have already formed official relations with the PLA!",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "Q['fkoo'] = (Q['fkoo'] || 0) + 1;\nQ['us_relation'] = (Q['us_relation'] || 0) - 10;\nQ['west_relation'] = (Q['west_relation'] || 0) - 5;\nQ['middle_east_relation'] = (Q['middle_east_relation'] || 0) + 10;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 2;\nQ['state_employees_chp'] = (Q['state_employees_chp'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 2;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 2;\nQ['MSP_relation'] = (Q['MSP_relation'] || 0) + 5;\n if (((Q['MSP_in_government'] || 0) == 1) ) { Q['coalition_dissent'] = (Q['coalition_dissent'] || 0) - 1; }"
         }
       ],
@@ -47981,6 +48479,9 @@
       },
       "unavailableSubtitle": "Far-left strength must reach at least 35%.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'devyol',true);"
         }
@@ -48090,6 +48591,9 @@
       "unavailableSubtitle": "CHP must hold the Foreign Ministry, and both foreign relationships must meet the selected plan's threshold.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianRules.cyprusRoadmap.laterNegotiate(Q);"
         }
       ],
@@ -48112,13 +48616,10 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              ""
-            ]
+            "content": {
+              "type": "insert",
+              "insert": 0
+            }
           }
         ],
         "stateDependencies": [
@@ -48141,6 +48642,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'devyol',false);"
         }
@@ -48270,6 +48774,9 @@
       "unavailableSubtitle": "The selected plan needs four (Güneş) or six (Denktaş) completed rounds and the required US and Western Europe relations.",
       "onArrival": [
         {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
+        {
           "$code": "AnatolianRules.cyprusRoadmap.implementLater(Q);"
         }
       ],
@@ -48306,13 +48813,10 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 2
-              },
-              ""
-            ]
+            "content": {
+              "type": "insert",
+              "insert": 2
+            }
           }
         ],
         "stateDependencies": [
@@ -48393,6 +48897,9 @@
       },
       "unavailableSubtitle": "Far-left strength must reach at least 35%.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'tkpml',true);"
         }
@@ -48494,6 +49001,9 @@
       },
       "unavailableSubtitle": "There are no active members left to prosecute.",
       "onArrival": [
+        {
+          "$code": "AnatolianCardActions.commitAdvisor(Q);"
+        },
         {
           "$code": "AnatolianRules.securityAction(Q,'tkpml',false);"
         }
@@ -65064,13 +65574,13 @@
       "kirikoglu": true,
       "paksut": true,
       "rahsan": true,
+      "topuz": true,
       "ugur": true,
       "ustundag": true,
       "erdem": true,
       "inonu": true,
       "muezzinoglu": true,
       "satir": true,
-      "topuz": true,
       "avcioglu": true,
       "baykal": true,
       "belli": true,
@@ -65096,8 +65606,8 @@
     },
     "left_kemalists": {
       "rahsan": true,
-      "ustundag": true,
       "topuz": true,
+      "ustundag": true,
       "gunes": true,
       "aksoy": true,
       "sav": true

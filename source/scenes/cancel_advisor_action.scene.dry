@@ -2,6 +2,7 @@ title: Cancel action.
 view-if: last_advisor_action = 1 or last_cabinet_action = 1
 go-to: root
 on-arrival: {!
+if (!AnatolianCardActions.backAdvisor(this)) {
 if (Q.month_actions > 0) {
     Q.month_actions -= 1;
 }
@@ -21,5 +22,6 @@ if (Q[timerKey]) {
 // reduce visit count
 if (this.state.visits[card.id]) {
     this.state.visits[card.id] -= 1;
+}
 }
 !}

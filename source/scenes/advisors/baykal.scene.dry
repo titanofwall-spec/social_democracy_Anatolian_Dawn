@@ -18,13 +18,13 @@ A young and energetic figure within the party, Baykal can use his expertise in f
 subtitle: Baykal can help with our international contacts.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'international_relations'); !} last_advisor_action = 1
 go-to: international_relations
 
 @economy
 choose-if: CHP_in_government = 1 and finance_minister_party = "CHP" and advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if CHP_in_government = 0 : CHP is not in government. ?][? if finance_minister_party != "CHP" : The CHP does not control the finance ministry. ?]
-on-arrival: advisor_action_timer = 3; fiscal_policy_timer -= 6; last_advisor_action = 1
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'fiscal_policy'); !} last_advisor_action = 1; fiscal_policy_timer -= 6; last_advisor_action = 1
 go-to: fiscal_policy
 
 @coalitiontalks

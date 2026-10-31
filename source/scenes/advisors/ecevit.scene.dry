@@ -37,7 +37,7 @@ The temporary disputes are put aside and the party unites behind Ecevit.
 subtitle: Ecevit is a potent orator and he can put his literary skills into work in the mass rallies. Let us leave the ivory tower and go to the people.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 3;
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'rally'); !} last_advisor_action = 1;
 go-to: rally
 
 @partyorganizations
@@ -45,5 +45,5 @@ view-if: CHP_party_leader == "Ecevit"
 subtitle: As the party leader Ecevit has authority over the party organizations.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 3;
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'party_organizations'); !} last_advisor_action = 1;
 go-to: party_organizations

@@ -2,6 +2,7 @@ title: Next month
 new-page: true
 is-hand: true
 on-arrival: {!
+AnatolianCardActions.backAdvisor(this);
 if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Party Leadership - an action is available.';
 } else if (Q.advisor_action_timer == 1) {
@@ -30,6 +31,7 @@ max-cards: 4
 new-page: true
 is-hand: true
 on-arrival: {!
+AnatolianCardActions.backAdvisor(this);
 if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Party Leadership - an action is available.';
 } else if (Q.advisor_action_timer == 1) {

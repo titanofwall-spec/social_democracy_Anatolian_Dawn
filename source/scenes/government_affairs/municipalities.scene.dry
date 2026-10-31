@@ -58,7 +58,7 @@ Houses illegally constructed by rural-to-urban migrants unable to afford formal 
 subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"waterlines");return c?c+" resource"+(c===1?"":"s"):""; !} +]
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"waterlines") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"waterlines"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"waterlines"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"waterlines"); !}
 
 Urban municipalities frequently struggle to provide sufficient clean water and sewage infrastructure for their growing populations.
 
@@ -66,7 +66,7 @@ Urban municipalities frequently struggle to provide sufficient clean water and s
 subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"publictransport");return c?c+" resource"+(c===1?"":"s"):""; !} +]
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"publictransport") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"publictransport"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"publictransport"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"publictransport"); !}
 
 Municipal buses, routes, depots and other forms of public transportation remain inadequate in many cities.
 
@@ -75,7 +75,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"libraries");return c?c+" r
 view-if: CHP_in_government == 1
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"libraries") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"libraries"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"libraries"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"libraries"); !}
 
 Build municipal libraries to support education, literacy and the consumption of literature.
 
@@ -84,7 +84,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"halkekmek");return c?c+" r
 view-if: CHP_in_government == 1
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"halkekmek") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"halkekmek"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"halkekmek"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"halkekmek"); !}
 
 Establish municipally operated bakeries under the Halk Ekmek programme to produce affordable bread, ease the effects of inflation and support working families.
 
@@ -93,7 +93,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"roads");return c?c+" resou
 view-if: CHP_in_government == 1
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"roads") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"roads"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"roads"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"roads"); !}
 
 As the Republic has, for better or worse, shifted heavily toward road and automobile transport, many urban areas now urgently require modern paved roads. Invest in paving and improving municipal road networks.
 
@@ -101,7 +101,7 @@ As the Republic has, for better or worse, shifted heavily toward road and automo
 subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"migration");return c?c+" resource"+(c===1?"":"s"):""; !} +]
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"migration") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"migration"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"migration"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"migration"); !}
 
 Slow continuing migration and the growth of new informal settlements while improving conditions for their existing inhabitants.
 
@@ -109,7 +109,7 @@ Slow continuing migration and the growth of new informal settlements while impro
 subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"infrastructure");return c?c+" resource"+(c===1?"":"s"):""; !} +]
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"infrastructure") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"infrastructure"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"infrastructure"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"infrastructure"); !}
 
 Extend water, sewage, electricity and roads into informal districts.
 
@@ -118,7 +118,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"connect");return c?c+" res
 view-if: {! return Q.CHP_in_government && AnatolianMunicipalities.count(Q,"infrastructure") >= 2; !}
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"connect") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"connect"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"connect"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"connect"); !}
 
 Connect the completed infrastructure networks to the surrounding city, integrating these neighborhoods into its services.
 
@@ -127,7 +127,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"regularization");return c?
 view-if: CHP_in_government == 1
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"regularization") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"regularization"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"regularization"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"regularization"); !}
 
 Legalize viable homes and clear unsafe construction that cannot be integrated, preparing neighborhoods for gradual redevelopment.
 
@@ -136,7 +136,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"planning");return c?c+" re
 view-if: {! return Q.CHP_in_government && AnatolianMunicipalities.count(Q,"regularization") >= 4; !}
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"planning") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"planning"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"planning"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"planning"); !}
 
 Transform regularized districts through planned redevelopment into safer apartment neighborhoods. Their residents remain part of the city.
 
@@ -145,7 +145,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"transport");return c?c+" r
 view-if: CHP_in_government == 1
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"transport") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"transport"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"transport"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"transport"); !}
 
 Extend reliable transport and municipal services to connect residents with the wider city.
 
@@ -154,7 +154,7 @@ subtitle: [+ {! var c=AnatolianMunicipalities.cost(Q,"industry");return c?c+" re
 view-if: CHP_in_government == 1
 choose-if: {! return !AnatolianMunicipalities.reason(Q,"industry") !}
 unavailable-subtitle: [+ {! return AnatolianMunicipalities.reason(Q,"industry"); !} +]
-on-arrival: {! AnatolianMunicipalities.apply(Q,"industry"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMunicipalities.apply(Q,"industry"); !}
 
 Support small businesses, workshops and local industry so these neighborhoods can develop their own economic life.
 

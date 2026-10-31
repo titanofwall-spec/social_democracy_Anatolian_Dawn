@@ -18,14 +18,14 @@ Doğan Avcıoğlu is a famous Marxist historian, economist, politician and autho
 subtitle: Atatürk's unachieved final reform, Avcıoğlu can help us determine the party policy regarding the much needed land reform.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'land_reform'); !} last_advisor_action = 1
 go-to: land_reform
 
 @economicpolicy
 subtitle: If chosen the economy minister, Avcıoğlu will begin a transition towards a planned and socialist economy.
 choose-if: CHP_in_government = 1 and economic_minister_party == "CHP" and advisor_action_timer = 0
 unavailable-subtitle: [? if CHP_in_government == 0 : CHP is not in government. ?] [? if economic_minister_party != "CHP" : CHP does not hold the economy ministry. ?] [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; economic_minister_party = "CHP"; economic_minister = "Avcıoğlu"; economic_policy_timer -= 6; last_advisor_action = 1
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'economic_policy'); !} last_advisor_action = 1; economic_minister_party = "CHP"; economic_minister = "Avcıoğlu"; economic_policy_timer -= 6; last_advisor_action = 1
 go-to: economic_policy
 
 @devrim

@@ -26,7 +26,7 @@ Current status: [? if land_reform == 0 : No concrete land reform policy has been
 @koykent
 view-if: land_reform < 3
 subtitle: Radical reform
-on-arrival: land_reform = 3; left_kemalists_dissent -= 5; kemalist_marxists_dissent -= 5
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} land_reform = 3; left_kemalists_dissent -= 5; kemalist_marxists_dissent -= 5
 
 The Köykent project is a comprehensive reform proposed by Ecevit that aims to reorganize the countryside and the dispersed villages into larger city-like structures that specialize in agriculture. The Left-Wing Kemalist and Marxist Kemalist factions voice their support.
 
@@ -35,7 +35,7 @@ The party leadership has announced its intention to put the Köykent project in 
 @land_distribution
 view-if: land_reform < 2
 subtitle: Significant reform
-on-arrival: land_reform = 2; left_kemalists_dissent -= 3;
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} land_reform = 2; left_kemalists_dissent -= 3;
 
 We have committed to comprehensive land distribution, promising to break up large estates and redistribute land to small farmers. The Left-Wing Kemalist and the Reformist Kemalist factions voice their support.
 
@@ -44,7 +44,7 @@ The party leadership has announced its intention to focus on land distribution i
 @cooperatives
 view-if: land_reform < 1
 subtitle: Modest reform
-on-arrival: land_reform = 1; orthodox_kemalists_dissent -= 5
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} land_reform = 1; orthodox_kemalists_dissent -= 5
 
 We have announced support for establishing agricultural cooperatives to help small farmers access credit, equipment, and markets. While modest, this cooperative approach demonstrates our commitment to rural development. Reformist Kemalist and Right-Wing Kemalist factions voice their support.
 

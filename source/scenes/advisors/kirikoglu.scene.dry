@@ -18,5 +18,5 @@ He has been serving as the party secretary since 1971 and is one of the most pow
 subtitle: Kırıkoğlu was once a newspaper publisher and has longlasting ties with the Turkish media.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'media'); !} last_advisor_action = 1
 go-to: media

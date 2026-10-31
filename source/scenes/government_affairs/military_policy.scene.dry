@@ -27,7 +27,7 @@ The National Defense Ministry is the institution that enables cooperation betwee
 subtitle: -1 budget.
 choose-if: budget >= 1
 unavailable-subtitle: We don't have enough budget!
-on-arrival: coup_timer -= 1; budget -= 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} coup_timer -= 1; budget -= 1
 
 Despite the army officials' claim that they represent a group of interest wholly devoted to the defense of the republic and not interested in petty material matters, they too constitute a player in the financial sector. State funding for their private investment fund eases the worries of many and improves our relations with them.
 
@@ -35,7 +35,7 @@ Despite the army officials' claim that they represent a group of interest wholly
 subtitle: It is a known fact that the army exerts influence over the financial and civil sectors through the OYAK funds.
 choose-if: {! return (Q.CGP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"military_policy.OYAKstrict"))); !}
 unavailable_subtitle: Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!
-on-arrival: democracystatus += 2; coup_timer += 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} democracystatus += 2; coup_timer += 1
 
 Our investigations reveal connections formed between the major industrial conglomerates and the army officers. While these intrusions into the affairs of the army will provide stability for our democracy by limiting the influence of the armed forces, we need to be careful about angering the army too much.
 
@@ -52,7 +52,7 @@ subtitle: -1 budget. MKE, Mechanical and Chemical Industry Corporation, is our m
 view-if: MKE == 0
 choose-if: budget >= 1
 unavailable-subtitle: We don't have enough budget!
-on-arrival: budget -= 1; MKE += 1; capitalists_chp += 3; petty_bourgeoisie_chp += 2; forex_pressure -= 3; unemployment_modifier -= 0.4; growth_modifier += 0.4; industry_modifier += 4; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget -= 1; MKE += 1; capitalists_chp += 3; petty_bourgeoisie_chp += 2; forex_pressure -= 3; unemployment_modifier -= 0.4; growth_modifier += 0.4; industry_modifier += 4; {! AnatolianRules.refreshEconomy(Q); !}
 
 We begin shifting our equipment supplies from imports towards internal producers. Even though this is costly in the short term due to reestablishing our supply lines, the change reduces our dependence on foreign currency and aid.
 
@@ -61,7 +61,7 @@ We will be able to retake this action without a budget decrease in the future.
 @local2
 subtitle: MKE, Mechanical and Chemical Industry Corporation, is our main supplier of army products. However, we are currently dependent on Western imports.
 view-if: MKE > 0
-on-arrival: MKE += 1; capitalists_chp += 3; petty_bourgeoisie_chp += 2; forex_pressure -= 2; unemployment_modifier -= 0.4; growth_modifier += 0.4; army_land_strength += 0.05; army_naval_strength += 0.05; army_aerial_strength += 0.05; industry_modifier += 4; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} MKE += 1; capitalists_chp += 3; petty_bourgeoisie_chp += 2; forex_pressure -= 2; unemployment_modifier -= 0.4; growth_modifier += 0.4; army_land_strength += 0.05; army_naval_strength += 0.05; army_aerial_strength += 0.05; industry_modifier += 4; {! AnatolianRules.refreshEconomy(Q); !}
 
 We continue improving our arms industry capabilities. Due to our sustained efforts our armed capabilities have begun improving, though to a lesser extent than it would have been if we simply imported these equipment.
 
@@ -69,7 +69,7 @@ We continue improving our arms industry capabilities. Due to our sustained effor
 subtitle: -1 budget. This has been our policy for a long time.
 choose-if: budget >= 1
 unavailable-subtitle: We don't have enough budget!
-on-arrival: army_land_strength += 0.1; army_naval_strength += 0.1; army_aerial_strength += 0.1; budget -= 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} army_land_strength += 0.1; army_naval_strength += 0.1; army_aerial_strength += 0.1; budget -= 1
 
 We import weaponry from Western countries to meet our equipment demands as usual.
 
@@ -77,7 +77,7 @@ We import weaponry from Western countries to meet our equipment demands as usual
 go-to: menu
 
 @budgetdecrease
-on-arrival: coup_timer += 2; budget += 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} coup_timer += 2; budget += 1
 subtitle: +1 budget.
 choose-if: {! return (Q.CGP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"military_policy.budgetdecrease"))); !}
 unavailable-subtitle: Our coalition partner CGP is hostile to any attempts at limiting the influence of the army!
@@ -88,14 +88,14 @@ We launch a campaign of inspections into the spending of the army. The army view
 subtitle: -1 budget.
 choose-if: budget >= 1
 unavailable-subtitle: We don't have enough budget!
-on-arrival: budget -= 1; unemployment_modifier -= 0.5; army_land_strength += 0.1; army_naval_strength += 0.1; army_aerial_strength += 0.1; industry_modifier += 4; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget -= 1; unemployment_modifier -= 0.5; army_land_strength += 0.1; army_naval_strength += 0.1; army_aerial_strength += 0.1; industry_modifier += 4; {! AnatolianRules.refreshEconomy(Q); !}
 
 @ASELSAN
 subtitle: -1 budget. The TCG-Kocatepe incident has revealed the need for us to develop an independent arms industry, form a new Turkish arms company!
 view-if: aselsann == 0 and year > 1974
 choose-if: budget >= 1
 unavailable-subtitle: We don't have enough budget!
-on-arrival: coup_timer -= 1; aselsann += 1; army_land_strength += 0.1; army_naval_strength += 0.1; army_aerial_strength += 0.1; budget -= 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} coup_timer -= 1; aselsann += 1; army_land_strength += 0.1; army_naval_strength += 0.1; army_aerial_strength += 0.1; budget -= 1
 
 The high command congratulates us for taking such a historic step.
 

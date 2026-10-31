@@ -23,7 +23,7 @@ In addition to being a political party, the <span style="color: #E3000F;">**CHP*
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; media_timer = 0; {! AnatolianNationalCoalition.developOrganization(Q,"newspapers"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources -= 1; media_timer = 0; {! AnatolianNationalCoalition.developOrganization(Q,"newspapers"); !}
 go-to: media
 
 # TODO: differing outcomes based on whether you've seen media, and what kind of media you've supported.
@@ -33,21 +33,21 @@ go-to: media
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; workers_chp += 2; union_timer = 0 {! AnatolianNationalCoalition.developOrganization(Q,"workers"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources -= 1; workers_chp += 2; union_timer = 0 {! AnatolianNationalCoalition.developOrganization(Q,"workers"); !}
 go-to: union_relations
 
 @cultural
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; culture_timer = 0 {! AnatolianNationalCoalition.developOrganization(Q,"cultural"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources -= 1; culture_timer = 0 {! AnatolianNationalCoalition.developOrganization(Q,"cultural"); !}
 go-to: culture
 
 @women
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; women += 1; petty_bourgeoisie_chp += 2; workers_chp += 2; {! AnatolianNationalCoalition.developOrganization(Q,"women");AnatolianNationalCoalition.consolidate(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources -= 1; women += 1; petty_bourgeoisie_chp += 2; workers_chp += 2; {! AnatolianNationalCoalition.developOrganization(Q,"women");AnatolianNationalCoalition.consolidate(Q); !}
 
 "How can half of society fly into the skies when the other half is chained down?"
 
@@ -57,7 +57,7 @@ We have increased funding to the women's branch of the party.
 choose-if: resources > 0
 unavailable-subtitle: Not enough resources.
 subtitle: -1 resources
-on-arrival: resources -= 1; youth += 1; workers_chp += 3; state_employees_chp += 2; petty_bourgeoisie_chp += 2; {! AnatolianRules.adjustFactionStrength(Q, 'km', 2); !}  {! AnatolianRules.adjustFactionStrength(Q, 'lk', 3); !} {! AnatolianNationalCoalition.developOrganization(Q,"youth");AnatolianNationalCoalition.consolidate(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources -= 1; youth += 1; workers_chp += 3; state_employees_chp += 2; petty_bourgeoisie_chp += 2; {! AnatolianRules.adjustFactionStrength(Q, 'km', 2); !}  {! AnatolianRules.adjustFactionStrength(Q, 'lk', 3); !} {! AnatolianNationalCoalition.developOrganization(Q,"youth");AnatolianNationalCoalition.consolidate(Q); !}
 
 "O Turkish Youth! Your first duty is ever to preserve and defend the National independence, the Turkish Republic".
 

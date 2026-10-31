@@ -25,25 +25,25 @@ Mass rallies are a common feature of multi party democracies, especially in the 
 
 @class_struggle
 view-if: kemalist_marxists_strength >= 25 and CHP_party_leader == "Ecevit"
-on-arrival: workers_chp += 1*(1-dissent); state_employees_chp -= 5; rural_chp -= 3; petty_bourgeoisie_chp -= 5; capitalists_chp -= 10; {! AnatolianRules.adjustFactionStrength(Q, 'km', 10); !}  left_kemalists_dissent += 10; orthodox_kemalists_dissent += 20; right_kemalists_dissent += 30; disk_relation += 10; coup_timer += 3
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 1*(1-dissent); state_employees_chp -= 5; rural_chp -= 3; petty_bourgeoisie_chp -= 5; capitalists_chp -= 10; {! AnatolianRules.adjustFactionStrength(Q, 'km', 10); !}  left_kemalists_dissent += 10; orthodox_kemalists_dissent += 20; right_kemalists_dissent += 30; disk_relation += 10; coup_timer += 3
 
 Even though <span style="color: #E3000F;">**CHP**</span> stands for the working class, it preaches for justice, not worker domination. The Marxist rhetoric generally fall on deaf ears and gathers serious backlash from even the Left-Wing Kemalist within the party. Our enemies are quick to capitalize on this, calling us "unnational" and "godless marxists".
 
 @leftofcenter
 view-if: CHP_party_leader == "Ecevit"
-on-arrival: workers_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent); {! AnatolianRules.adjustFactionStrength(Q, 'lk', 3); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent); {! AnatolianRules.adjustFactionStrength(Q, 'lk', 3); !}
 
 We emphasize our social democratic ideals.
 
 @kemalism
 choose-if: kemalizm_timer <= 0
 unavailable-subtitle: We can't rely on Kemalist rhetoric only, people expect us to bring real change!
-on-arrival: workers_chp += 2*(1-dissent); state_employees_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); alevis_chp += 2*(1-dissent); left_kemalists_dissent -= 5; orthodox_kemalists_dissent -= 5; {! AnatolianRules.adjustFactionStrength(Q, 'ok', 3); !}  kemalizm_timer = 6
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 2*(1-dissent); state_employees_chp += 3*(1-dissent); rural_chp += 1*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent); alevis_chp += 2*(1-dissent); left_kemalists_dissent -= 5; orthodox_kemalists_dissent -= 5; {! AnatolianRules.adjustFactionStrength(Q, 'ok', 3); !}  kemalizm_timer = 6
 
 The Turkish nation, except for some radicals in the far away sections of the political spectrum, unite in their love for Atatürk. We have been using this rhetoric for the last 50 years though, and we can't gather enough votes by simply recalling Atatürk, we need to follow in his footsteps through policy platforms and actions.
 
 @social_programs
-on-arrival: workers_chp += 4*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent)
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 4*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent)
 
 Social programs are one of our most popular policies and we make this fact very clear.
 
@@ -51,7 +51,7 @@ Social programs are one of our most popular policies and we make this fact very 
 view-if: CHP_party_leader == "Ecevit"
 choose-if: army_in_government == 1
 unavailable-subtitle: The army has withdrawn their hand over the fragile democracy, for now.
-on-arrival: AP_relation += 2; nationalism -= 2*(1 - dissent); workers_chp += 4*(1 - dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; state_employees_chp += 4*(1-dissent) if pacifism >= 3
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} AP_relation += 2; nationalism -= 2*(1 - dissent); workers_chp += 4*(1 - dissent) if pacifism >= 3; nationalism -= 3*(1-dissent) if pacifism >= 3; state_employees_chp += 4*(1-dissent) if pacifism >= 3
 
 Our speakers denounce the military establishment and all their hegemony over the political affairs. Opposition to the military establishment is one of the few ideas we share with AP.
 
@@ -62,13 +62,13 @@ Our speakers denounce the military establishment and all their hegemony over the
 view-if: public_works_adopted = 1
 choose-if: return_to_normalcy = 0
 unavailable-subtitle: The economic crisis is largely over now, and the public is no longer interested in hearing about it.
-on-arrival: public_works_support += 1; workers_chp += 6*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent);
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} public_works_support += 1; workers_chp += 6*(1-dissent); rural_chp += 3*(1-dissent); state_employees_chp += 3*(1-dissent); petty_bourgeoisie_chp += 3*(1-dissent);
 
 The public works programme has become a popular rallying cry for our party. The workers are eager to go back to work, and that is exactly what the plan promises.
 
 
 @local
-on-arrival: workers_chp += 3*(1-dissent); petty_bourgeoisie_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent)
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 3*(1-dissent); petty_bourgeoisie_chp += 1*(1-dissent); state_employees_chp += 2*(1-dissent)
 
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the workers in this moment.
 
@@ -83,17 +83,17 @@ Define our commitment to the countryside. A stronger declaration opens more rura
 - @main_rally: Return to rally themes.
 
 @rural_mild
-on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"mild"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianNationalCoalition.ruralRally(Q,"mild"); !}
 
 Our rural commitment opens a wider electoral audience.
 
 @rural_moderate
-on-arrival: {! Q.land_reform=Math.max(Number(Q.land_reform)||0,2);AnatolianNationalCoalition.ruralRally(Q,"moderate"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! Q.land_reform=Math.max(Number(Q.land_reform)||0,2);AnatolianNationalCoalition.ruralRally(Q,"moderate"); !}
 
 Our land reform commitment opens a wider electoral audience.
 
 @rural_strong
-on-arrival: {! Q.land_reform=3;AnatolianNationalCoalition.ruralRally(Q,"strong"); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! Q.land_reform=3;AnatolianNationalCoalition.ruralRally(Q,"strong"); !}
 
 Our commitment to rural transformation opens a wider electoral audience. Implementing it will take sustained work.
 
@@ -101,7 +101,7 @@ Our commitment to rural transformation opens a wider electoral audience. Impleme
 view-if: land_reform == 3
 choose-if: koykent_rally_timer <= 0
 unavailable-subtitle: We must allow time for our previous Köykent rally to take effect.
-on-arrival: {! AnatolianNationalCoalition.koykentRally(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianNationalCoalition.koykentRally(Q); !}
 
 We rally rural voters behind the Köykent project and broaden its electoral audience.
 @navigation_return_main_rally

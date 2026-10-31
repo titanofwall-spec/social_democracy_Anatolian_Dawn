@@ -9,5 +9,9 @@ function install(e){if(e._cardCompile)return;e._cardCompile=e._compileChoices;e.
 function begin(e,id){install(e);const Q=e.state.qualities;if(Q.card_pending?.id!==id)Q.card_pending={id,timer:Q[timerKey(id)]||0,actions:Q.month_actions||0};}
 function back(e){const Q=e.state.qualities,p=Q.card_pending;if(!p)return;Q[timerKey(p.id)]=p.timer;Q.month_actions=p.actions;if(p.card&&p.origin){const hand=e.state.currentHands[p.origin]||(e.state.currentHands[p.origin]=[]);if(!hand.some(c=>c.id===p.id))hand.push(p.card);}delete Q.card_pending;}
 function commit(Q){delete Q.card_pending;}
-const api={install,available,begin,back,commit,timerKey};root.AnatolianCardActions=api;if(typeof module!=='undefined')module.exports=api;
+// Advisor menus are provisional until an actual action is chosen.
+function beginAdvisor(e,id){const Q=e.state.qualities;backAdvisor(e);const keys=['advisor_action_timer','last_advisor_action','month_actions','economic_minister','economic_minister_party',timerKey(id)];const values={};for(const key of keys)values[key]={exists:Object.prototype.hasOwnProperty.call(Q,key),value:Q[key]};Q.advisor_pending={id,values,visits:e.state.visits[id]||0};}
+function backAdvisor(e){const Q=e.state.qualities,p=Q.advisor_pending;if(!p)return false;for(const [key,saved]of Object.entries(p.values)){if(saved.exists)Q[key]=saved.value;else delete Q[key];}e.state.visits[p.id]=p.visits;delete Q.advisor_pending;if(Q.card_pending?.id===p.id)delete Q.card_pending;return true;}
+function commitAdvisor(Q){if(!Q.advisor_pending)return;Q.advisor_action_timer=3;delete Q.advisor_pending;}
+const api={beginAdvisor,backAdvisor,commitAdvisor,install,available,begin,back,commit,timerKey};root.AnatolianCardActions=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

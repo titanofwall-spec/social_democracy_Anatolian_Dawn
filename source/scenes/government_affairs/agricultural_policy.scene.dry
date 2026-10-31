@@ -36,7 +36,7 @@ The Köykent, literally a fusion of the words 'village' and 'town', project prop
 subtitle: -1 budget. We will begin our efforts by assigning a preliminary Köykent for each few villages and preparing the infrastructure for social services and workshops.
 choose-if: {! return Q.land_reform===3 && Q.koykent_progress===0 && Q.budget>=1 && (Q.landreform_done||0)>=3 && !(Q.land_distribution_pending_stage||0); !}
 unavailable-subtitle: [? if koykent_progress > 0 : We have already begun Köykent formations! ?][? if landreform_done < 3 : Finish the first three land-distribution stages before starting rural concentration. ?][? if land_distribution_pending_stage > 0 : The current land-distribution stage must finish first. ?][? if budget < 1 : We don't have enough budget! ?]
-on-arrival: koykent_progress += 1; budget -= 1; rural_chp += 3; AP_relation -= 5; CGP_relation -= 5; DP_relation -= 5; MSP_relation -= 5 {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} koykent_progress += 1; budget -= 1; rural_chp += 3; AP_relation -= 5; CGP_relation -= 5; DP_relation -= 5; MSP_relation -= 5 {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
 
 We begin crafting the plans for how we shall approach the distribution of social services and which industry should be promoted in which region. The Turkish villager has been chained to poverty and reaction for ages; we will make sure this era is over once and for all.
 
@@ -46,7 +46,7 @@ Our efforts upset the right-wing parties of course, since their political existe
 subtitle: -3 budget. We shall continue our efforts and begin the construction of Köykent settlements on a large scale.
 choose-if: koykent_progress == 1 and budget >= 3 and spreadd == 0
 unavailable-subtitle: [? if koykent_progress < 1 : We have already begun popularizing Köykents! ?] [? if budget < 3 : We don't have enough budget! ?] [? if spreadd == 1 : We have already begun spreading Köykent settlements! ?]
-on-arrival: koykent_progress += 1; budget -= 3; rural_chp += 6; AP_relation -= 5; CGP_relation -= 5; DP_relation -= 5; MSP_relation -= 5; growth_modifier += 0.2; unemployment_modifier -= 0.4; inflation_modifier += 0.8; spreadd += 1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} koykent_progress += 1; budget -= 3; rural_chp += 6; AP_relation -= 5; CGP_relation -= 5; DP_relation -= 5; MSP_relation -= 5; growth_modifier += 0.2; unemployment_modifier -= 0.4; inflation_modifier += 0.8; spreadd += 1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
 
 The Köykent programme is popularized across Anatolia and serious funds are diverted towards rural transformation.
 
@@ -54,7 +54,7 @@ The Köykent programme is popularized across Anatolia and serious funds are dive
 subtitle: -1 budget.
 choose-if: spreadd == 1 and yatirimm <= 2 and budget >= 1
 unavailable-subtitle: [? if spreadd == 0 : We have to complete the framework of the programme first! ?] [? if budget < 1 : We don't have enough budget! ?] [? if yatirimm == 3 : We have invested enough funds for the continuation of the project. ?]
-on-arrival: koykent_progress += 1; budget -= 1; rural_chp += 2; AP_relation -= 5; DP_relation -= 5; CGP_relation -= 5; MSP_relation -= 5; growth_modifier += 0.5; unemployment_modifier -= 1; inflation_modifier += 2; yatirimm += 1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} koykent_progress += 1; budget -= 1; rural_chp += 2; AP_relation -= 5; DP_relation -= 5; CGP_relation -= 5; MSP_relation -= 5; growth_modifier += 0.5; unemployment_modifier -= 1; inflation_modifier += 2; yatirimm += 1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
 
 @regular
 
@@ -68,7 +68,7 @@ on-arrival: koykent_progress += 1; budget -= 1; rural_chp += 2; AP_relation -= 5
 subtitle: -1 budget. Six stages; each provides benefits only when its implementation period ends (3, 4, 6, 8, 10 and 12 months respectively).
 choose-if: {! return Q.land_reform>1 && Q.budget>=1 && (Q.landreform_done||0)<6 && !(Q.land_distribution_pending_stage||0); !}
 unavailable-subtitle: [? if land_reform == 0 : We have not adopted a land reform policy. ?][? if land_reform == 1 : Comprehensive land distribution is not in our agricultural policy. ?][? if budget < 1 : We don't have enough budget! ?][? if land_distribution_pending_stage > 0 : The current redistribution stage is still underway. Its benefits arrive at completion. ?][? if landreform_done >= 6 : All six stages of land distribution have been completed. ?]
-on-arrival: {! var stage = (Q.landreform_done||0) + 1; var months = [0,3,4,6,8,10,12][stage]; Q.budget -= 1; Q.land_distribution_pending_stage = stage; Q.land_distribution_due_tick = Q.year*24 + (Q.month-1)*2 + (Q.week===2?1:0) + months*2; Q.agricultural_policy_timer = months; !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! var stage = (Q.landreform_done||0) + 1; var months = [0,3,4,6,8,10,12][stage]; Q.budget -= 1; Q.land_distribution_pending_stage = stage; Q.land_distribution_due_tick = Q.year*24 + (Q.month-1)*2 + (Q.week===2?1:0) + months*2; Q.agricultural_policy_timer = months; !}
 
 We allocate funds to purchase and redistribute agricultural land among farmers and rural citizens. This stage is now underway. It requires the indicated months of implementation before farmers receive the land and the economic and political benefits take effect. The next stage can begin only after the current one finishes.
 
@@ -76,7 +76,7 @@ We allocate funds to purchase and redistribute agricultural land among farmers a
 subtitle: Support cooperative formation.
 choose-if: cooperative_done <= 2
 unavailable-subtitle: [? if cooperative_done >= 3 : We have already done all we can to support cooperative formation. ?]
-on-arrival: growth_modifier += 0.3; inflation_modifier -= 0.5; rural_chp += 3; cooperative_done += 1; cooperative_progress = cooperative_done; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} growth_modifier += 0.3; inflation_modifier -= 0.5; rural_chp += 3; cooperative_done += 1; cooperative_progress = cooperative_done; {! AnatolianRules.refreshEconomy(Q); !}
 
 By supporting the formation of agricultural cooperatives, we help small farmers pool their resources, access better credit, and bring their goods to market more efficiently. The countryside becomes more productive and prices are stabilized.
 
@@ -84,7 +84,7 @@ By supporting the formation of agricultural cooperatives, we help small farmers 
 subtitle: -1 budget.
 choose-if: budget >= 1 and east_agri_done <= 2
 unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?][? if east_agri_done >= 3 : We have already implemented our eastern agricultural support program to its full extent. ?]
-on-arrival: budget -= 1; kurds_chp += 3; alevis_chp += 2; inflation_modifier += 0.5; growth_modifier += 0.3; east_agri_done += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget -= 1; kurds_chp += 3; alevis_chp += 2; inflation_modifier += 0.5; growth_modifier += 0.3; east_agri_done += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 We direct special subsidies toward eastern agricultural regions, helping develop farming communities in Anatolia's east. Economic development eases grievances and reduces the appeal of radical movements among the Kurdish and Alevi populations.
 
@@ -92,6 +92,6 @@ We direct special subsidies toward eastern agricultural regions, helping develop
 subtitle: +1 budget.
 choose-if: hashas_done == 0 and poppy_harvestation == 1
 unavailable-subtitle: [? if hashas_done == 1 : We have already re-legalized poppy cultivation. ?] [? if poppy_harvestation == 0 : Poppy cultivation is currently legal. ?]
-on-arrival: budget += 1; rural_chp += 3; west_relation -= 5; hashas_done = 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 1; rural_chp += 3; west_relation -= 5; hashas_done = 1
 
 We overturn the ban on poppy cultivation, allowing Turkish farmers to once again grow this traditional and profitable crop. Western governments express their displeasure, but our rural constituents welcome the decision.

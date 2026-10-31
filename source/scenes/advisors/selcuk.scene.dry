@@ -34,7 +34,7 @@ With the reestablishment of TİP and other small leftist parties, there is less 
 @author
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+on-arrival: {! AnatolianCardActions.beginAdvisor(this,'media'); !} last_advisor_action = 1
 go-to: media
 
 @marxistdissent

@@ -1,0 +1,268 @@
+{
+  "routes": [
+    {
+      "id": "aksoy.justice",
+      "target": "judiciary"
+    },
+    {
+      "id": "aksoy.internationalaffairs",
+      "target": "international_relations"
+    },
+    {
+      "id": "avcioglu.landreform",
+      "target": "land_reform"
+    },
+    {
+      "id": "avcioglu.economicpolicy",
+      "target": "economic_policy"
+    },
+    {
+      "id": "baykal.internationalaffairs",
+      "target": "international_relations"
+    },
+    {
+      "id": "baykal.economy",
+      "target": "fiscal_policy"
+    },
+    {
+      "id": "ecevit.meeting",
+      "target": "rally"
+    },
+    {
+      "id": "ecevit.partyorganizations",
+      "target": "party_organizations"
+    },
+    {
+      "id": "erdem.industry",
+      "target": "industrial_policy"
+    },
+    {
+      "id": "eyuboglu.partyorganization",
+      "target": "party_organizations"
+    },
+    {
+      "id": "eyuboglu.localgovernence",
+      "target": "municipalities"
+    },
+    {
+      "id": "gunes.internationalaffairs",
+      "target": "international_relations"
+    },
+    {
+      "id": "gunes.foreignministry",
+      "target": "foreign_policy"
+    },
+    {
+      "id": "inonu.campaign",
+      "target": "campaigning"
+    },
+    {
+      "id": "isik.ministry",
+      "target": "military_policy"
+    },
+    {
+      "id": "kirikoglu.mediaa",
+      "target": "media"
+    },
+    {
+      "id": "muezzinoglu.ministry",
+      "target": "economic_policy"
+    },
+    {
+      "id": "sav.diskrelation",
+      "target": "union_relations"
+    },
+    {
+      "id": "sav.labourministry",
+      "target": "labor_affairs"
+    },
+    {
+      "id": "selcuk.author",
+      "target": "media"
+    },
+    {
+      "id": "topuz.ministry",
+      "target": "agricultural_policy"
+    },
+    {
+      "id": "ugur.interior",
+      "target": "police"
+    },
+    {
+      "id": "ustundag.ministry",
+      "target": "education_science"
+    }
+  ],
+  "actions": [
+    "industrial_policy.industry1",
+    "judiciary.amnesty",
+    "land_reform.koykent",
+    "police.loyalty",
+    "campaigning.workers",
+    "international_relations.fr_uk",
+    "media.silence",
+    "party_organizations.newspapers",
+    "union_relations.municipalities",
+    "industrial_policy.uretim",
+    "judiciary.moderation",
+    "land_reform.land_distribution",
+    "military_policy.OYAK",
+    "police.recruit",
+    "campaigning.petty_bourgeoisie",
+    "international_relations.baath",
+    "media.critique",
+    "party_organizations.workers",
+    "rally.class_struggle",
+    "union_relations.reform",
+    "agricultural_policy.begin",
+    "economic_policy.pricecontrols",
+    "education_science.curriculum",
+    "fiscal_policy.vergidilimi",
+    "foreign_policy.improve_us",
+    "industrial_policy.elektronik",
+    "judiciary.prioritize",
+    "labor_affairs.national",
+    "land_reform.cooperatives",
+    "military_policy.OYAKstrict",
+    "police.weaponry",
+    "campaigning.state_employees",
+    "international_relations.international",
+    "media.commercial",
+    "party_organizations.cultural",
+    "rally.leftofcenter",
+    "union_relations.funding",
+    "agricultural_policy.spread",
+    "economic_policy.debt",
+    "education_science.halkegitim",
+    "fiscal_policy.speculative",
+    "foreign_policy.improve_west",
+    "industrial_policy.capacity",
+    "judiciary.prisonreform",
+    "labor_affairs.kit",
+    "municipalities.waterlines",
+    "police.investigate_corruption",
+    "campaigning.rural",
+    "international_relations.join_socialist_international",
+    "media.campaign",
+    "party_organizations.women",
+    "rally.kemalism",
+    "union_relations.meeting",
+    "agricultural_policy.yatirim",
+    "economic_policy.publicworks",
+    "education_science.student",
+    "foreign_policy.negotiategunes",
+    "industrial_policy.kobi",
+    "judiciary.investigate",
+    "labor_affairs.ikincilgrev",
+    "military_policy.local",
+    "municipalities.publictransport",
+    "police.investigate_corruption_success",
+    "campaigning.capitalists",
+    "international_relations.america",
+    "media.newideas",
+    "party_organizations.youth",
+    "rally.social_programs",
+    "education_science.teacher",
+    "fiscal_policy.cutspending",
+    "foreign_policy.negotiatedenktas",
+    "industrial_policy.kredi",
+    "judiciary.resist",
+    "labor_affairs.healthinspections",
+    "military_policy.local2",
+    "municipalities.libraries",
+    "media.ideological",
+    "rally.pacifism",
+    "agricultural_policy.landreform",
+    "economic_policy.importban",
+    "education_science.koykent",
+    "fiscal_policy.avans",
+    "foreign_policy.aet",
+    "industrial_policy.demiryolu",
+    "judiciary.constitutionalcourt",
+    "labor_affairs.lokavt",
+    "military_policy.westernimport",
+    "municipalities.halkekmek",
+    "rally.public_works",
+    "agricultural_policy.cooperative",
+    "economic_policy.export",
+    "foreign_policy.americanbase",
+    "industrial_policy.koykentindustry",
+    "judiciary.KMD",
+    "municipalities.roads",
+    "police.ban_grey",
+    "rally.local",
+    "agricultural_policy.east",
+    "economic_policy.stateplanning",
+    "fiscal_policy.istikraz",
+    "labor_affairs.hukukikoruma",
+    "military_policy.budgetdecrease",
+    "municipalities.migration",
+    "police.ban_raiders",
+    "agricultural_policy.hashas",
+    "education_science.scholarship",
+    "fiscal_policy.denetim",
+    "foreign_policy.improve_east",
+    "labor_affairs.workplaceinspections",
+    "military_policy.modernize",
+    "municipalities.infrastructure",
+    "police.investigate_tit",
+    "rally.rural_mild",
+    "economic_policy.standby",
+    "education_science.imamhatip",
+    "fiscal_policy.raise_progressive",
+    "foreign_policy.friendship",
+    "labor_affairs.syndicaterecognition",
+    "military_policy.ASELSAN",
+    "municipalities.connect",
+    "police.pursue_grey",
+    "rally.rural_moderate",
+    "economic_policy.tiger",
+    "education_science.TRT",
+    "fiscal_policy.raise_rich",
+    "foreign_policy.credits",
+    "labor_affairs.SSK",
+    "municipalities.regularization",
+    "police.pursue_raiders",
+    "rally.rural_strong",
+    "economic_policy.tiger2",
+    "education_science.art",
+    "fiscal_policy.raise_poor",
+    "foreign_policy.treaty",
+    "labor_affairs.istihdam",
+    "municipalities.planning",
+    "police.pursue_tit",
+    "rally.koykent_rally",
+    "education_science.more",
+    "fiscal_policy.cut_overall",
+    "foreign_policy.export",
+    "municipalities.transport",
+    "police.underground",
+    "fiscal_policy.cut_poor",
+    "foreign_policy.romanianoil",
+    "municipalities.industry",
+    "police.clamp_ohp",
+    "fiscal_policy.cut_rich",
+    "police.ohal",
+    "fiscal_policy.raise_overall",
+    "foreign_policy.arabrelation",
+    "police.easterncrime",
+    "fiscal_policy.regressive",
+    "foreign_policy.trade",
+    "foreign_policy.panarab1",
+    "fiscal_policy.luxury_tariffs",
+    "foreign_policy.panarab2",
+    "fiscal_policy.raise_tariffs",
+    "foreign_policy.monarchy1",
+    "police.ban_thkpc",
+    "fiscal_policy.lower_tariffs",
+    "foreign_policy.monarchy2",
+    "police.pursue_thkpc",
+    "foreign_policy.fko",
+    "police.ban_devyol",
+    "foreign_policy.cyprus_negotiations",
+    "police.pursue_devyol",
+    "foreign_policy.implement_cyprus",
+    "police.ban_tkpml",
+    "police.pursue_tkpml"
+  ]
+}

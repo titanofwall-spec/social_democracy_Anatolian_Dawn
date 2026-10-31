@@ -27,7 +27,7 @@ card-image: img/cumhuriyet4.jpg
 @silence
 title: National Chief İnönü doesn't want to go into a conflict with the junta. Perhaps we should keep our silence...
 view-if: CHP_party_leader == "İnönü"
-on-arrival: workers_chp -= 2; petty_bourgeoisie_chp -= 2; rural_chp -= 1; left_kemalists_dissent += 5; coup_timer -= 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp -= 2; petty_bourgeoisie_chp -= 2; rural_chp -= 1; left_kemalists_dissent += 5; coup_timer -= 1
 
 We keep our silence in the face of atrocities and injustice. The nation is overwhelmingly against the coup and Ecevit critiques the party attitude heavily, perhaps he has a good point...
 
@@ -36,7 +36,7 @@ title: The military government needs to go. Defy the laws and protest against th
 view-if: CHP_party_leader == "Ecevit"
 choose-if: I_in_government == 1
 unavailable-subtitle: The army has withdrawn their hands from the fragile democracy, for now...
-on-arrival: workers_chp += 2; petty_bourgeoisie_chp += 2; kemalist_marxists_dissent -= 5; coup_timer += 1; critique += 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 2; petty_bourgeoisie_chp += 2; kemalist_marxists_dissent -= 5; coup_timer += 1; critique += 1
 
 We direct our media attention to the authoritarian actions of the junta governments, such as the banning of worker strikes and the torture of left-wing intellectuals in prisons. We will not bow to the whims of the appointed.
 
@@ -46,7 +46,7 @@ choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis!
 subtitle: This might upset the hardliners, but it may bring in more funds.
 view-if: I_government == 0
-on-arrival: resources += 1; commercialized_media += 1; petty_bourgeoisie_chp += 3*(1 - dissent)
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources += 1; commercialized_media += 1; petty_bourgeoisie_chp += 3*(1 - dissent)
 
 Our commercialized newspapers are able to bring in more funds. However, this will limit our ability to influence the media.
 
@@ -56,7 +56,7 @@ choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis!
 subtitle: Our newspapers will focus on the electoral campaign.
 view-if: I_government == 0
-on-arrival: campaign_media += 1; workers_chp += 2*(1 - dissent); petty_bourgeoisie_chp += 2*(1 - dissent); state_employees_chp += 2*(1 - dissent)
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} campaign_media += 1; workers_chp += 2*(1 - dissent); petty_bourgeoisie_chp += 2*(1 - dissent); state_employees_chp += 2*(1 - dissent)
 
 The outlets print out news about the problems the nation faces and how a left-wing government could be the solution our people have been waiting for so long.
 
@@ -66,7 +66,7 @@ subtitle: A party without a vision is not a party but a gathering
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the spread of unorthodox ideas.
 view-if: I_government == 0
-on-arrival: {! AnatolianRules.adjustFactionStrength(Q, 'km', 5); !}  workers_chp += 1; newideas += 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianRules.adjustFactionStrength(Q, 'km', 5); !}  workers_chp += 1; newideas += 1
 
 We are happy to hear new voices raising their visions for a new Turkey.
 
@@ -76,7 +76,7 @@ subtitle: There will be space for all factions to air their views.
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the different interpretations of Atatürk's path.
 view-if: I_government == 0
-on-arrival: kemalist_marxists_dissent -= 6; left_kemalists_dissent -= 6; orthodox_kemalists_dissent -= 6; right_kemalists_dissent -= 6;
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} kemalist_marxists_dissent -= 6; left_kemalists_dissent -= 6; orthodox_kemalists_dissent -= 6; right_kemalists_dissent -= 6;
 
 This has been our media course historically, and it has successfully paved over the many tensions in our party.
 
