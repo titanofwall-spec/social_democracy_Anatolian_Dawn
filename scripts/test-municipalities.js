@@ -12,3 +12,14 @@ assert.deepEqual(Object.values(M.geceLevels(Q)),['Significantly Slowed','Widespr
 const restored=JSON.parse(JSON.stringify(Q));assert.deepEqual(M.levels(restored),M.levels(Q));assert(M.progress(restored).includes('4/4'));console.log('PASS municipal development, endpoints, exact half-month cooldown boundaries, old-save defaults and save roundtrip');
 
 for(const govt of [0,1]){const q={year:1974,month:1,week:1,resources:5,budget:5,CHP_in_government:govt};for(const id of ['libraries','halkekmek','roads','connect','regularization','planning','transport','industry'])if(!govt)assert(M.reason(q,id));assert(M.apply(q,'migration'));assert.equal(q.resources,govt?5:4);assert.equal(q.budget,5);assert(!M.html(q).includes('Land Regularization:'));}assert.equal(M.definitions.regularization.max,4);assert.equal(M.definitions.infrastructure.max,2);assert.equal(M.definitions.transport.max,3);const legacy={municipal_development:{counts:{regularization:8,infrastructure:4,transport:6},dates:{}}};assert.equal(M.count(legacy,'regularization'),4);assert.equal(M.geceLevels(legacy).Infrastructure,'Widespread Infrastructure');
+
+require('../out/html/data/province-data.js');
+const winners=M.startingMunicipalWinners;
+assert.deepEqual(Object.keys(winners).sort(),globalThis.AnatolianProvinceData.provinces.map(p=>p.id).sort());
+assert.deepEqual(Object.values(winners).reduce((o,k)=>(o[k]=(o[k]||0)+1,o),{}),{chp:21,IND:8,GP:3,AP:35});
+assert.equal(winners.adana,'chp');assert.equal(winners.ankara,'AP');assert.equal(winners.kahramanmaras,'chp');assert.equal(winners.urfa,'AP');assert.equal(winners.hakkari,'GP');
+const empty={province_election_history:[]},before=JSON.stringify(empty);assert.equal(M.controlSnapshot(empty),null);assert.equal(JSON.stringify(empty),before);
+const local1={kind:'local',year:1973,provinces:[{id:'adana',winner:'AP'}]},local2={kind:'local',year:1977,provinces:[{id:'ankara',winner:'chp'}]};
+assert.strictEqual(M.controlSnapshot({province_election_history:[local1,{kind:'general',year:1977},local2]}),local2);
+assert.equal(M.startingMunicipalWinners.adana,'chp');
+console.log('PASS all 67 supplied 1968 winners, CHP 21/67, name aliases, pure fallback, and latest-local-election replacement');

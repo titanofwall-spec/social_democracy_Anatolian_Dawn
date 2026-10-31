@@ -1637,3 +1637,9 @@ body #leader-tooltip-layer{z-index:2147483600!important}
 /* All added headings use the game typeface. */
 h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 .government-news{border:4px double var(--border-color);background:var(--content-bg-color);color:var(--text-color);padding:8px;margin:8px 0;font:inherit}
+
+/* Quiet readiness cue: a steady gold halo, without flashing or movement. */
+.permanent-desk-card.municipality-ready > a.card {
+  box-shadow: 0 0 0 1px rgba(190, 145, 45, .55), 0 0 10px 2px rgba(210, 165, 55, .28);
+}
+.municipal-map-caption { text-align: center; font-size: .85em; text-indent: 0; }

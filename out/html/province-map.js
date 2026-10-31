@@ -46,7 +46,14 @@ function renderElectionResultMap(kind){
  const parliaments=document.querySelectorAll(kind==='senate'?'.senate-election-parliament':'.local-election-parliament'),svg=kind==='local'||kind==='senate'?parliaments[parliaments.length-1]:null;if(svg&&kind==='senate')root.AnatolianSenate.renderChamber(svg,Q,snapshot);
 }
 root.renderElectionResultMap=renderElectionResultMap;
-root.renderMunicipalControlMap=function(){const Q=root.dendryUI?.dendryEngine?.state?.qualities,host=document.querySelector('.municipal-control-map');if(!Q||!host)return;const snapshot=Q.province_election_history?.filter(s=>s.kind==='local').slice(-1)[0];host.innerHTML='<div class="province-map-canvas">'+turkeyMapSvg()+'</div>';const provinceById=new Map((snapshot?.provinces||[]).map(p=>[p.id,p]));for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);path.style.fill=p?.winner==='chp'?P.colors.chp:'#808080';const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=p?p.name+': '+P.label(Q,p.winner):'No recorded municipal election';path.append(title);if(p)path.onclick=()=>openSnapshot(snapshot,p.id);}};
+root.renderMunicipalControlMap=function(){
+ const Q=root.dendryUI?.dendryEngine?.state?.qualities,host=document.querySelector('.municipal-control-map');if(!Q||!host)return;
+ const snapshot=root.AnatolianMunicipalities.controlSnapshot(Q),historical=!snapshot;
+ const provinces=snapshot?.provinces||P.data.provinces.map(p=>({id:p.id,name:p.name,winner:root.AnatolianMunicipalities.startingMunicipalWinners[p.id]}));
+ host.innerHTML='<div class="province-map-canvas">'+turkeyMapSvg()+'</div><p class="municipal-map-caption">'+(historical?'1968 local elections':'Latest local election · '+snapshot.year)+' · CHP municipalities in red</p>';
+ const provinceById=new Map(provinces.map(p=>[p.id,p]));
+ for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);path.style.fill=p?.winner==='chp'?P.colors.chp:'#808080';const title=document.createElementNS('http://www.w3.org/2000/svg','title');const winner=p?.winner==='GP'?'GP':p?.winner==='IND'?'Independent':p?P.label(Q,p.winner):'';title.textContent=p?p.name+': '+winner+(historical?' (1968)':''):'No recorded municipal election';path.append(title);if(p&&!historical)path.onclick=()=>openSnapshot(snapshot,p.id);}
+};
 
 function generalElectionYears(Q){const early=Q.next_election_year===1975||Q.province_election_history.some(s=>s.kind==='general'&&s.year===1975);return early?[1973,1975,1979]:[1973,1977,1981];}
 function open(){if(overlay){overlay.querySelector('button').focus();return;}owner=root.dendryUI?.dendryEngine?.state?.qualities;if(!owner)return;P.ensure(owner);root.AnatolianSenate?.ensure(owner);if(!P.active(owner))return;priorFocus=document.activeElement;overlay=document.createElement('div');overlay.className='province-map-backdrop';overlay.id='province-election-overlay';

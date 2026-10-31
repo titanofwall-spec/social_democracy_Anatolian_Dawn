@@ -1,4 +1,75 @@
 (function(root){'use strict';
+// User-supplied 1968 provincial-capital winners; ownership only, no invented vote totals.
+const startingMunicipalWinners=Object.freeze({
+  "adana": "chp",
+  "artvin": "chp",
+  "bilecik": "chp",
+  "bingol": "chp",
+  "canakkale": "chp",
+  "corum": "chp",
+  "diyarbakir": "chp",
+  "gumushane": "chp",
+  "hatay": "chp",
+  "kars": "chp",
+  "kocaeli": "chp",
+  "malatya": "chp",
+  "kahramanmaras": "chp",
+  "siirt": "chp",
+  "sinop": "chp",
+  "sivas": "chp",
+  "tokat": "chp",
+  "trabzon": "chp",
+  "tunceli": "chp",
+  "yozgat": "chp",
+  "zonguldak": "chp",
+  "balikesir": "IND",
+  "bursa": "IND",
+  "cankiri": "IND",
+  "elazig": "IND",
+  "kirklareli": "IND",
+  "kirsehir": "IND",
+  "nevsehir": "IND",
+  "nigde": "IND",
+  "hakkari": "GP",
+  "mardin": "GP",
+  "van": "GP",
+  "adiyaman": "AP",
+  "afyon": "AP",
+  "agri": "AP",
+  "amasya": "AP",
+  "ankara": "AP",
+  "antalya": "AP",
+  "aydin": "AP",
+  "bitlis": "AP",
+  "bolu": "AP",
+  "burdur": "AP",
+  "denizli": "AP",
+  "edirne": "AP",
+  "erzincan": "AP",
+  "erzurum": "AP",
+  "eskisehir": "AP",
+  "gaziantep": "AP",
+  "giresun": "AP",
+  "isparta": "AP",
+  "icel": "AP",
+  "istanbul": "AP",
+  "izmir": "AP",
+  "kastamonu": "AP",
+  "kayseri": "AP",
+  "konya": "AP",
+  "kutahya": "AP",
+  "manisa": "AP",
+  "mugla": "AP",
+  "mus": "AP",
+  "ordu": "AP",
+  "rize": "AP",
+  "sakarya": "AP",
+  "samsun": "AP",
+  "tekirdag": "AP",
+  "urfa": "AP",
+  "usak": "AP"
+});
+function controlSnapshot(Q){const local=(Q.province_election_history||[]).filter(s=>s.kind==='local');return local.length?local[local.length-1]:null;}
 const now=Q=>(Number(Q.year)||1970)*24+((Number(Q.month)||1)-1)*2+(Q.week===2?1:0);
 const definitions={waterlines:{max:3,cost:1,cooldown:6},publictransport:{max:4,cost:1,cooldown:6},libraries:{max:2,cost:1,cooldown:6},halkekmek:{max:2,cost:2,cooldown:6},roads:{max:3,cost:1,cooldown:6},migration:{max:1,cost:0,cooldown:12},infrastructure:{max:2,cost:0,cooldown:12},connect:{max:1,cost:0,parent:'infrastructure',required:2},regularization:{max:4,cost:0,cooldown:12},planning:{max:1,cost:0,parent:'regularization',required:4},transport:{max:3,cost:0,cooldown:8},industry:{max:3,cost:0,cooldown:8}};
 function state(Q){return Q.municipal_development||{counts:{},dates:{}};}
@@ -16,5 +87,5 @@ function municipalHtml(Q){return '<h1 class="game-section-title">Municipalities<
 function geceHtml(Q){return '<h1 class="game-section-title">Gecekondu Issue</h1>'+rows(geceLevels(Q));}
 function html(Q){return municipalHtml(Q)+geceHtml(Q);}
 
-const api={now,definitions,cost,count,reason,apply,levels,geceLevels,progress,municipalHtml,geceHtml,html};root.AnatolianMunicipalities=api;if(typeof module!=='undefined')module.exports=api;
+const api={startingMunicipalWinners,controlSnapshot,now,definitions,cost,count,reason,apply,levels,geceLevels,progress,municipalHtml,geceHtml,html};root.AnatolianMunicipalities=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
