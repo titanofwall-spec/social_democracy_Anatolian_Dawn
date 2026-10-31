@@ -563,6 +563,15 @@ Q.apply_economy_effects = 0;
 
 // Foreign Exchange Pressure System
 Q.forex_pressure = 45;
+// Onat monthly macro model inputs. Unspecified variables use explicit neutral defaults.
+Q.macro_model = null;
+Q.macro_savings_rate = 20;
+Q.macro_interest_rate = Q.base_inflation + 3;
+Q.macro_m2_growth = Q.base_inflation + Q.base_growth;
+Q.macro_mpc = 0.74;
+Q.macro_investment_K = 1;
+Q.macro_investment_Q = 1;
+Q.macro_investment_P = 0;
 Q.forex_multiplier = 1;
 Q.crisis_forex_flag = 0;
 Q.forex_pressure_drift = 2;
