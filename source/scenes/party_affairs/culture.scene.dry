@@ -45,9 +45,9 @@ view-if: cinemavalue == 0
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 2; rural_chp += 1; cinemavalue += 1
 
-Currently our rural areas lack access to most forms of art and an interesting idea brought up within the party was the employment of "mobile cinemas" to bring a previously nonexistent form of culture to the countryside. Showcasing films ranging from socially conscious dramas to educational documentaries, these mobile cinemas can be useful for many purposes. However sustained investments will be needed.
+Currently, our rural areas lack access to most forms of art and an interesting idea brought up within the party was the employment of "mobile cinemas" to bring a previously nonexistent form of culture to the countryside. Showcasing films ranging from socially conscious dramas to educational documentaries, these mobile cinemas can be useful for many purposes. However, sustained investments will be needed.
 
-The first stations are employed and satisfying results arrive from the test rounds. However more work needs to be done.
+The first stations are employed and satisfying results arrive from the test rounds. However, more work needs to be done.
 
 @mobilecinemas2
 subtitle: -1 resources
