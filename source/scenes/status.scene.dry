@@ -424,6 +424,7 @@ function mapLevel(level, labels) {
 }
 
 Q.land_reform_status = mapLevel(Q.land_reform_level, ["None", "Partial", "Land Reform"]);
+Q.land_reform_policy_status = ["Not Adopted", "Cooperatives Adopted", "Land Distribution Adopted", "Köykent Adopted"][Math.max(0,Math.min(3,Number(Q.land_reform)||0))];
 Q.natural_resources_policy = mapLevel(Q.natural_resources_level, ["Private", "Mixed", "Public"]);
 Q.workplace_democracy_status = mapLevel(Q.workplace_democracy_level, ["Absent", "Limited", "Strong"]);
 Q.peoples_sector_status = mapLevel(Q.peoples_sector_level, ["Non-existant", "Growing", "Robust"]);
@@ -446,7 +447,9 @@ Q.household_violence_status = mapLevel(Q.household_violence_level, ["Widespread"
 
 = Land Reform
 
-[+ land_reform_status +]
+Adopted Policy: [+ land_reform_policy_status +]
+
+Other Legislative Implementation: [+ land_reform_status +]
 
 = Economic Reforms
 

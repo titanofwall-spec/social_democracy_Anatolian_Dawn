@@ -637,6 +637,29 @@ Q.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));
 
 if(turnAdvanced)AnatolianNationalCoalition.governmentTurn(Q);
 
+// AGRICULTURAL_ECONOMY_REWORK_V1
+// Land redistribution runs for the stage-specific duration after the ministry pays for it.
+// Completion, not initiation, grants the economic effects and unlocks the next stage.
+// Stage 3 must be fully completed before the Köykent rural-concentration action.
+if (turnAdvanced && Q.land_distribution_pending_stage > 0 &&
+    Q.year*24 + (Q.month-1)*2 + (Q.week===2 ? 1 : 0) >= Q.land_distribution_due_tick) {
+    var finishedLandStage = Number(Q.land_distribution_pending_stage);
+    if (finishedLandStage === (Number(Q.landreform_done)||0)+1 && finishedLandStage <= 6) {
+        Q.landreform_done = finishedLandStage;
+        Q.land_reform_progress = Math.max(Number(Q.land_reform_progress)||0, finishedLandStage);
+        Q.unemployment_modifier -= 0.5;
+        Q.growth_modifier += 0.4;
+        Q.rural_chp += 4;
+        Q.AP_relation -= 5;
+        Q.DP_relation -= 5;
+        Q.MSP_relation -= 5;
+        AnatolianNationalCoalition.reform(Q,"land",finishedLandStage);
+        AnatolianRules.refreshEconomy(Q);
+    }
+    Q.land_distribution_pending_stage = 0;
+    Q.land_distribution_due_tick = 0;
+}
+
 // ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached
 
 // Oil effects (applied once)

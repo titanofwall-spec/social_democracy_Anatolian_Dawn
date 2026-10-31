@@ -88,7 +88,7 @@ on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"mild"); !}
 Our rural commitment opens a wider electoral audience.
 
 @rural_moderate
-on-arrival: {! AnatolianNationalCoalition.ruralRally(Q,"moderate"); !}
+on-arrival: {! Q.land_reform=Math.max(Number(Q.land_reform)||0,2);AnatolianNationalCoalition.ruralRally(Q,"moderate"); !}
 
 Our land reform commitment opens a wider electoral audience.
 

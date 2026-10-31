@@ -588,6 +588,9 @@ Q.parties = ['chp', 'TIP', 'AP', 'CGP', 'DP', 'MSP', 'MHP', 'other'];
 // Land Reform mechanics
 Q.koykent_progress = 0;
 Q.land_reform_progress = 0;
+// Implementation state: completed stages live in landreform_done; pending stage has no benefits yet.
+Q.land_distribution_pending_stage = 0;
+Q.land_distribution_due_tick = 0;
 Q.cooperative_progress = 0;
 
 // Support for party by social group - Turkish political alignment baseline (1972)

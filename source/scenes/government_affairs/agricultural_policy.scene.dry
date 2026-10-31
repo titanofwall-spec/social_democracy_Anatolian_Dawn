@@ -10,7 +10,7 @@ tags: govt_affairs, cabinet
 
 = Agricultural Policy
 
-Turkey is largely a rural nation that depends on agricultural production. Even though we historically have had problems with connecting with our rural provinces, as a governing party we must address the needs of our farmers. Feudalism still persists in the countryside which has to be dealt with.[? if rural_policy = 0 : We have not yet agreed on a party policy on agriculture. ?]
+Turkey is largely a rural nation that depends on agricultural production. Even though we historically have had problems with connecting with our rural provinces, as a governing party we must address the needs of our farmers. Feudalism still persists in the countryside which has to be dealt with.[? if land_reform == 0 : We have not yet agreed on a party policy on agriculture. ?][? if land_reform == 1 : Our party has adopted a cooperative-based rural policy. ?][? if land_reform == 2 : Our party has committed to comprehensive land redistribution. ?][? if land_reform == 3 : Our party has adopted the Köykent programme, including land redistribution. ?]
 
 @agriculture_menu
 
@@ -34,8 +34,8 @@ The Köykent, literally a fusion of the words 'village' and 'town', project prop
 
 @begin
 subtitle: -1 budget. We will begin our efforts by assigning a preliminary Köykent for each few villages and preparing the infrastructure for social services and workshops.
-choose-if: koykent_progress == 0 and budget >= 1
-unavailable-subtitle: [? if koykent_progress > 0 : We have already begun Köykent formations! ?] [? if budget < 1 : We don't have enough budget! ?]
+choose-if: {! return Q.land_reform===3 && Q.koykent_progress===0 && Q.budget>=1 && (Q.landreform_done||0)>=3 && !(Q.land_distribution_pending_stage||0); !}
+unavailable-subtitle: [? if koykent_progress > 0 : We have already begun Köykent formations! ?][? if landreform_done < 3 : Finish the first three land-distribution stages before starting rural concentration. ?][? if land_distribution_pending_stage > 0 : The current land-distribution stage must finish first. ?][? if budget < 1 : We don't have enough budget! ?]
 on-arrival: koykent_progress += 1; budget -= 1; rural_chp += 3; AP_relation -= 5; CGP_relation -= 5; DP_relation -= 5; MSP_relation -= 5 {! AnatolianNationalCoalition.reform(Q,"koykent",Q.koykent_progress); !}
 
 We begin crafting the plans for how we shall approach the distribution of social services and which industry should be promoted in which region. The Turkish villager has been chained to poverty and reaction for ages; we will make sure this era is over once and for all.
@@ -65,18 +65,18 @@ on-arrival: koykent_progress += 1; budget -= 1; rural_chp += 2; AP_relation -= 5
 - @agriculture_menu: Go back to the agricultural menu.
 
 @landreform
-subtitle: -1 budget.
-choose-if: land_reform > 1 and budget >= 1 and landreform_done <= 2
-unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?][? if land_reform == 0 : We haven't picked a land reform policy yet! ?][? if land_reform == 1 : Land Reform is not in our agricultural policy. ?][? if landreform_done >= 3 : We have already carried out our land reform program to the full extent. ?]
-on-arrival: budget -= 1; unemployment_modifier -= 0.5; growth_modifier += 0.4; rural_chp += 4; AP_relation -= 5; DP_relation -= 5; MSP_relation -= 5; landreform_done += 1; {! AnatolianRules.refreshEconomy(Q); !} {! AnatolianNationalCoalition.reform(Q,"land",Q.landreform_done); !}
+subtitle: -1 budget. Six stages; each provides benefits only when its implementation period ends (3, 4, 6, 8, 10 and 12 months respectively).
+choose-if: {! return Q.land_reform>1 && Q.budget>=1 && (Q.landreform_done||0)<6 && !(Q.land_distribution_pending_stage||0); !}
+unavailable-subtitle: [? if land_reform == 0 : We have not adopted a land reform policy. ?][? if land_reform == 1 : Comprehensive land distribution is not in our agricultural policy. ?][? if budget < 1 : We don't have enough budget! ?][? if land_distribution_pending_stage > 0 : The current redistribution stage is still underway. Its benefits arrive at completion. ?][? if landreform_done >= 6 : All six stages of land distribution have been completed. ?]
+on-arrival: {! var stage = (Q.landreform_done||0) + 1; var months = [0,3,4,6,8,10,12][stage]; Q.budget -= 1; Q.land_distribution_pending_stage = stage; Q.land_distribution_due_tick = Q.year*24 + (Q.month-1)*2 + (Q.week===2?1:0) + months*2; Q.agricultural_policy_timer = months; !}
 
-We use the ministry to purchase and redistribute agricultural land among our farmers and rural citizens. The rural population welcomes these measures, while the right-wing parties are predictably hostile.
+We allocate funds to purchase and redistribute agricultural land among farmers and rural citizens. This stage is now underway. It requires the indicated months of implementation before farmers receive the land and the economic and political benefits take effect. The next stage can begin only after the current one finishes.
 
 @cooperative
 subtitle: Support cooperative formation.
 choose-if: cooperative_done <= 2
 unavailable-subtitle: [? if cooperative_done >= 3 : We have already done all we can to support cooperative formation. ?]
-on-arrival: growth_modifier += 0.3; inflation_modifier -= 0.5; rural_chp += 3; cooperative_done += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: growth_modifier += 0.3; inflation_modifier -= 0.5; rural_chp += 3; cooperative_done += 1; cooperative_progress = cooperative_done; {! AnatolianRules.refreshEconomy(Q); !}
 
 By supporting the formation of agricultural cooperatives, we help small farmers pool their resources, access better credit, and bring their goods to market more efficiently. The countryside becomes more productive and prices are stabilized.
 
