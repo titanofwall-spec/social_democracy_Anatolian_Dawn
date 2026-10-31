@@ -92,6 +92,6 @@ We direct special subsidies toward eastern agricultural regions, helping develop
 subtitle: +1 budget.
 choose-if: hashas_done == 0 and poppy_harvestation == 1
 unavailable-subtitle: [? if hashas_done == 1 : We have already re-legalized poppy cultivation. ?] [? if poppy_harvestation == 0 : Poppy cultivation is currently legal. ?]
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 1; rural_chp += 3; west_relation -= 5; hashas_done = 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,"agricultural_policy.hashas","CHP"); !}
 
 We overturn the ban on poppy cultivation, allowing Turkish farmers to once again grow this traditional and profitable crop. Western governments express their displeasure, but our rural constituents welcome the decision.

@@ -2204,3 +2204,56 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
               0 0 15px 5px rgba(255, 213, 51, .88),
               0 0 31px 11px rgba(233, 163, 22, .52);
 }
+
+/* ANATOLIAN DAWN — CENTERED TITLE AND MATCHED 45-DEGREE EDGES v11
+   Change only title alignment and right-edge geometry. Use the existing
+   panel background, plain black title text, ribbon widths and fonts. */
+#mid_panel > header.ad-command-header .ad-credit-ribbon {
+  --ad-ribbon-diagonal: 42px; /* 42px-high ribbon = 45-degree right edge */
+}
+#mid_panel > header.ad-command-header .ad-game-ribbon {
+  --ad-ribbon-diagonal: 39px; /* 39px-high ribbon = the same 45-degree angle */
+  justify-content: center;
+  text-align: center;
+  /* The sloped tip is only half full-width. Center in its visual silhouette. */
+  padding-left: 14px;
+  padding-right: calc(14px + var(--ad-ribbon-diagonal) / 2);
+}
+#mid_panel > header.ad-command-header #game-title {
+  text-align: center;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon {
+  /* Pixel-based edge lengths avoid different angles on differently sized bars. */
+  clip-path: polygon(0 0, calc(100% - var(--ad-ribbon-diagonal)) 0,
+                     100% 100%, 0 100%);
+  border-top: 2px solid #888;
+  border-bottom: 2px solid #888;
+  border-left: 2px solid #888;
+}
+/* The old percentage-scaled SVG edges were stretched differently on each bar.
+   The antialiased diagonal below replaces only those stroke paths. */
+#mid_panel > header.ad-command-header .ad-title-ribbon .ad-ribbon-vector {
+  display: none;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--ad-ribbon-diagonal);
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(45deg,
+    transparent calc(50% - 1px), #888 calc(50% - 1px),
+    #888 calc(50% + 1px), transparent calc(50% + 1px));
+}
+@media (max-width: 560px) {
+  #mid_panel > header.ad-command-header .ad-credit-ribbon {
+    --ad-ribbon-diagonal: 39px;
+  }
+  #mid_panel > header.ad-command-header .ad-game-ribbon {
+    --ad-ribbon-diagonal: 36px;
+  }
+}

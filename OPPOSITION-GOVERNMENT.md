@@ -1,0 +1,17 @@
+# Opposition government policies
+
+Previously, `governmentTurn` rotated through four tiny modifiers. It did not use policy completion flags, transfer electoral support, or retain a policy record. A later CHP cabinet therefore saw the actual reforms as uncompleted.
+
+Opposition cabinets now implement a bounded set of existing policies: basic industrialization, electronics investment, railways, poppy legalization, curriculum reform, adult education centres, public works and export subsidies. Their effects are shared with the corresponding player scenes through `applyGovernmentPolicy`, so player prices/rewards and national completion flags have one authoritative definition. The regression fixture records the original player effects before extraction.
+
+Selection uses the existing green/yellow/red party classifications: the ministry holder must support the proposal and no cabinet member may oppose it. AP, DP, MSP and CGP prioritize different eligible programmes. External parliamentary support does not confer ministry ownership or credit. CGP/MGP ministry labels resolve to the same party. CHP-led, military and non-party caretaker cabinets do not run automatic opposition policies.
+
+An eligible cabinet acts immediately, then at most once per six half-month periods (three calendar months). Completed one-off policies are skipped, including policies completed before loading an older save. Repeatable policies retain their original repeatable behavior. Saved tick guards prevent double application on refresh or reload. Cabinet changes do not reset completed national reforms or the saved record.
+
+Automatic programmes use their own cabinet funding and do not alter the player's budget, resources, action points or advisor cooldown. Their national economic effects and completion flags are otherwise the same as the player policy. Headline production indexes update immediately; the existing monthly macro model consumes FX and employment changes at its next scheduled step. No extra macro step or clock advancement is triggered by rendering.
+
+The implementing party receives one tenth of the existing constituency support reward through `shiftClass` and the authoritative province pools. For actions without a player vote reward, small constituency profiles represent employment/infrastructure credit. This is a permanent transfer from existing voters, not an additive poll offset. Party availability, Kurdish conscious preferences, provincial balancing and D'Hondt remain in their existing paths. There is no blanket guaranteed national gain or new support floor.
+
+The Government panel now contains an expandable dated policy record. Coalition entries name the responsible ministry. National flags such as `industryy`, `electronicc`, `demiryoluu`, `hashas_done`, `curriculumm` and `halkegitimm` persist when CHP returns; their existing player options are therefore disabled as already accomplished. Saves made before this fix retain their previous tiny modifier changes, but no historical completion is fabricated from those generic messages.
+
+Validation: full npm test passed; nine focused scenario groups cover all four parties, original player effects, real economic outputs, coalition ownership/vetoes, external support, policy prerequisites, save/load, inherited player availability, cadence, rendering idempotence, caretakers and real post-event execution. npm check and build also pass. Originals are backed up outside the repository in the Codex workspace's opposition-government-backup directory. No commit or push was made.

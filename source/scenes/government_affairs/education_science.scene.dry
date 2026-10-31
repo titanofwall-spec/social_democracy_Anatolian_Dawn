@@ -34,7 +34,7 @@ As Ecevit says one of the most important features of Social Democracy is the sup
 subtitle: -2 budget. This will include changes in classroom sizes, the educational material used and objectives.
 choose-if: curriculumm == 0 and budget >= 2
 unavailable-subtitle: [? if curriculumm == 1 : We have already reformed our curriculum! ?] [? if budget < 2 : We don't have enough budget! ?]
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} unemployment_modifier -= 0.3; growth_modifier += 0.3; democracystatus += 3; rural_chp += 1; petty_bourgeoisie_chp += 3; workers_chp += 3; alevis_chp += 3; kurds_chp += 3; curriculumm += 1; budget -= 2; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,"education_science.curriculum","CHP"); !}
 
 Our schools have fallen behind the needs of the age, depriving our economy of the qualified workers it requires. We shall allow that no more by replacing rote instruction with research, practical training and creative work.
 
@@ -42,7 +42,7 @@ Our schools have fallen behind the needs of the age, depriving our economy of th
 subtitle: -1 budget.
 choose-if: halkegitimm == 0 and budget >= 1
 unavailable-subtitle: [? if halkegitimm == 1 : We have already created the Halk Eğitim centers! ?] [? if budget < 1 : We don't have enough budget! ?]
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} rural_chp += 1; petty_bourgeoisie_chp += 2; workers_chp += 4; alevis_chp += 3; kurds_chp += 3; halkegitimm += 1; growth_modifier += 0.2; budget -= 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,"education_science.halkegitim","CHP"); !}
 
 Millions of citizens have been left without literacy, vocational training or access to culture after their school years. We shall allow that no more by establishing Adult Education Centres throughout the country.
 

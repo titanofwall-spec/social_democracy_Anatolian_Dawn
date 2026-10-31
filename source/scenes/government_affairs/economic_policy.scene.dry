@@ -54,7 +54,7 @@ We once again reach out to the global market for hot cash to fuel our economy. W
 choose-if: budget >= 1 and imf_agreement == 0
 unavailable-subtitle: [? if budget == 0 : Requires 1 budget. ?] [? if imf_agreement = 1 : We have agreed with the IMF to not pursue state interventions! ?]
 subtitle: -1 budget, populist expansion. Budget ↓ Inflation ↑ Unemployment ↓ Exchange Pressure ↑ Growth ↑↑
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget -= 1; inflation_modifier += 2; growth_modifier += 1.5; unemployment_modifier -= 1; forex_pressure += 2; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,"economic_policy.publicworks","CHP"); !}
 
 We intervene in the economy to foster growth by creating public works programs.
 
@@ -78,7 +78,7 @@ Even though in the short term our citizens will suffer under higher prices, crea
 @export
 choose-if: budget >= 2
 subtitle: -2 Budget; Budget ↓↓; Inflation ↑; Exchange Pressure ↓↓; Growth ↑↑
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} forex_pressure -= 4; budget -= 2; inflation_modifier += 1.5; growth_modifier += 1.5; capitalists_chp += 2; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,"economic_policy.export","CHP"); !}
 
 The Turkish capital has long lacked any sort of competitive capability against foreign companies. Through targeted subsidies for companies choosing to sell their goods abroad and bring in foreign currency, we can perhaps increase their competitiveness on the world stage and build an industry capable of surviving harsh crises. Though the subsidies are a burden on the budget, without making the Turkish industry competitive a permanent economic solution cannot be achieved.
 

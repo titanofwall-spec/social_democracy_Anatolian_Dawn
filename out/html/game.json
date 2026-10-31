@@ -2188,7 +2188,7 @@
         },
         {
           "type": "paragraph",
-          "content": "AP is the center right to right-wing party that has been dominating Turkish politics for the last 10 years. Formed as a successor to the banned Democrat Party after the coup of 1960, AP quickly came to outgrow all the other self-proclaimed successors to the 'Demirkırat', a vulgarized version of the word 'Democrat' created by the masses not used to the word, tradition of the Democrat Party and established itself as the primary party of the right."
+          "content": "AP is the center-right to right-wing party that has been dominating Turkish politics for the last 10 years. Formed as a successor to the banned Democrat Party after the coup of 1960, AP quickly came to outgrow all the other self-proclaimed successors to the 'Demirkırat', a vulgarized version of the word 'Democrat' created by the masses not used to the word, tradition of the Democrat Party and established itself as the primary party of the right."
         },
         {
           "type": "paragraph",
@@ -2196,11 +2196,11 @@
         },
         {
           "type": "paragraph",
-          "content": "The leader of AP Süleyman Demirel is an interesting character. Born in 1925 to a family in rural Isparta, Demirel became a successful engineer and climbed the ladders of technical success. He began working in the general directorate of electrics in the early 50s, became a member of the leading council in 1953 and was appointed its leader by prime minister Adnan Menderes in 1955. After participating in politics for the first time by joining AP in 1962, he quickly rose within the party as well and was elected its leader in 1964. Serving as the prime minister between 1965 and 1971, his second term was cut short by the 12 March memorandum which began an era of military-dictated governments which still continues today. However, even though Demirel was the one whose government was forced into resignation by the military, both the military and the AP have been enthusiastic collaborators in governing the country since the military's memorandum on March 12th 1971."
+          "content": "The leader of AP, Süleyman Demirel, is an interesting character. Born in 1925 to a family in rural Isparta, Demirel became a successful engineer and climbed the ladders of technical success. He began working in the general directorate of electrics in the early 50s, became a member of the leading council in 1953 and was appointed its leader by Prime Minister Adnan Menderes in 1955. After participating in politics for the first time by joining AP in 1962, he quickly rose within the party as well and was elected its leader in 1964. Serving as the prime minister between 1965 and 1971, his second term was cut short by the 12 March memorandum which began an era of military-dictated governments which still continues today. However, even though Demirel was the one whose government was forced into resignation by the military, both the military and the AP have been enthusiastic collaborators in governing the country since the military's memorandum on March 12th 1971."
         },
         {
           "type": "paragraph",
-          "content": "Nowadays Demirel is associated with many adjectives: 'Barajlar Kralı' or 'The king of dams' by his followers due to his successes in development projects during the 1960s, 'Morrison' by his opponents in the party due to him briefly working for an American engineering company called Morrison and 'Çoban Sülü' or 'Shepherd Süleyman' due to his agrarian upbringing. Demirel is generally associated with technocracy, accessibility and most importantly his ability to politically survive against all odds and circumstances. However his liberalism should not lead us to think of him as a harmless figure; Demirel is a master of survival and has shown in the last decade his willingness to cooperate with the far right if it means controlling the left."
+          "content": "Nowadays, Demirel is associated with many adjectives: 'Barajlar Kralı' or 'The king of dams' by his followers due to his successes in development projects during the 1960s, 'Morrison' by his opponents in the party due to him briefly working for an American engineering company called Morrison and 'Çoban Sülü' or 'Shepherd Süleyman' due to his agrarian upbringing. Demirel is generally associated with technocracy, accessibility and most importantly his ability to politically survive against all odds and circumstances. However, his liberalism should not lead us to think of him as a harmless figure; Demirel is a master of survival and has shown in the last decade his willingness to cooperate with the far right if it means controlling the left."
         }
       ],
       "countVisitsMax": 1
@@ -6943,7 +6943,7 @@
         },
         {
           "type": "paragraph",
-          "content": "He had never wanted to be a part of this meal. Never wanted to be in this forsaken static party even! A party full of elitist bureaucrats away from and uninterested in the actual suffering of the workers and the masses. However circumstances had carried him to the spot of the secretariat. Not because İnönü or the other elites had a liking for his ideological stances. No, he had carried himself here through pure effort and discipline so that CHP can succeed in its historic mission of establishing an actual democracy with the barriers against a mass Socialist party removed. He did not care about what would happen to CHP next; it might as well end up in the dustbin of history."
+          "content": "He had never wanted to be a part of this meal. Never wanted to be in this forsaken static party even! A party full of elitist bureaucrats away from and uninterested in the actual suffering of the workers and the masses. However, circumstances had carried him to the spot of the secretariat. Not because İnönü or the other elites had a liking for his ideological stances. No, he had carried himself here through pure effort and discipline so that CHP can succeed in its historic mission of establishing an actual democracy with the barriers against a mass Socialist party removed. He did not care about what would happen to CHP next; it might as well end up in the dustbin of history."
         },
         {
           "type": "paragraph",
@@ -10119,7 +10119,7 @@
       "id": "TIP_introduction",
       "type": "scene",
       "title": "Workers' Party of Turkey",
-      "subtitle": "An introduction to the former powerhouse of Socialist politics.",
+      "subtitle": "An introduction to the former powerhouse of socialist politics.",
       "viewIf": {
         "$code": "return (((((Q['year'] || 0) == 1972) && ((Q['month'] || 0)===8)) && ((Q['week'] || 0)===2)) && (((Q['flavour_events'] || 0)) !== 0));"
       },
@@ -10153,15 +10153,15 @@
         },
         {
           "type": "paragraph",
-          "content": "A spectre used to haunt Anatolia just like it did across Europe a few decades prior, before it was exorcised by the army in the 12 March Memorandum. Workers' Party of Turkey, TİP, was formed in 1961 after the new liberal constitution lessened political restrictions and allowed for new forms of political expression to arise. The party, even though it was originally founded by non ideological cadres, evolved to represent a vision for Socialism uniquely suited to the circumstances surrounding Turkey and wholly committed to liberal democracy."
+          "content": "A spectre used to haunt Anatolia just like it did across Europe a few decades prior, before it was exorcised by the army in the 12 March Memorandum. The Workers' Party of Turkey (TİP) was formed in 1961 after the new liberal constitution lessened political restrictions and allowed for new forms of political expression to arise. The party, though originally founded by non-ideological cadres, evolved to represent a vision for Socialism uniquely suited to the circumstances surrounding Turkey and wholly committed to liberal democracy."
         },
         {
           "type": "paragraph",
-          "content": "The party in spite of hostility across much of the political spectrum managed to score a victory in the 1965 elections and send 15 delegates to the TBMM out of the 450 total representatives. The party, despite its total commitment to parliamentary democracy, shook the Turkish elites and bourgeoisie to their core and represented a new vision of progress and welfare for the downtrodden masses."
+          "content": "In spite of hostility across much of the political spectrum, the party managed to score a victory in the 1965 elections and send 15 delegates to the TBMM out of the 450 total representatives. The party, despite its total commitment to parliamentary democracy, shook the Turkish elites and bourgeoisie to their core and represented a new vision of progress and welfare for the downtrodden masses."
         },
         {
           "type": "paragraph",
-          "content": "In terms of ideology, TİP was marked by close ties with the rising syndicates and represented a form of <span class=\"wide_tooltip-wrap\">Democratic Socialism<span class=\"wide_tooltip-tip\"><img src=\"img/demsoc.jpg\">Democratic Socialism is a left-wing ideology that wishes to overthrow Capitalism and establish a Socialist economy through democratic means.</span></span> determined to break out of the political fringes. Differently from much of the other Socialist parties across Europe and the Middle East, the party regularly breached classical Socialist iconography. The party utilized visual instruments in colors such as blue and green and made use of symbols derived from Turkish culture in order to seek appeal in a population that was actively being indoctrinated to fear the stereotyped left."
+          "content": "In terms of ideology, TİP was marked by close ties with the rising syndicates and represented a form of <span class=\"wide_tooltip-wrap\">Democratic Socialism<span class=\"wide_tooltip-tip\"><img src=\"img/demsoc.jpg\">Democratic Socialism is a left-wing ideology that wishes to overthrow Capitalism and establish a Socialist economy through democratic means.</span></span> determined to break out of the political fringes. Unlike many other socialist parties across Europe and the Middle East, the party regularly breached classical Socialist iconography. The party utilized visual instruments in colors such as blue and green and made use of symbols derived from Turkish culture in order to seek appeal in a population that was actively being indoctrinated to fear the stereotyped left."
         },
         {
           "type": "paragraph",
@@ -10169,7 +10169,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Currently TİP is banned after the memorandum on 12 March 1971 and many of its members are imprisoned and undergoing reportedly horrible treatment. Even though the spectre haunting Anatolia has been exorcised, many on the left dream of one day reestablishing the mass party and having it lead a socialist united front committed to real change through democratic means. However Behice Boran holds the rights for party chairmanship due to her status as the leader prior to the ban, and many Socialists do not find resurrecting the fading ghost desirable if it means having the party controlled by the Leninists."
+          "content": "Currently, TİP is banned following the memorandum on 12 March 1971 and many of its members are imprisoned and undergoing reportedly horrible treatment. Even though the spectre haunting Anatolia has been exorcised, many on the left dream of one day reestablishing the mass party and having it lead a socialist united front committed to real change through democratic means. However, Behice Boran holds the rights for party chairmanship due to her status as the leader prior to the ban, and many Socialists do not find resurrecting the fading ghost desirable if it means having the party controlled by the Leninists."
         }
       ],
       "countVisitsMax": 1
@@ -10817,13 +10817,7 @@
       "subtitle": "-3 budget. This will assist our efforts for our reorientation towards an export economy.",
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) - 3;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 10;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 5;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 3.5;\nQ['industryy'] = (Q['industryy'] || 0) + 1;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) + 4;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"industrial_policy.industry1\",\"CHP\");"
         }
       ],
       "chooseIf": {
@@ -12720,7 +12714,8 @@
               {
                 "type": "insert",
                 "insert": 0
-              }
+              },
+              ""
             ]
           }
         ],
@@ -14290,9 +14285,10 @@
               },
               {
                 "type": "conditional",
-                "content": "Total TÜRK-İŞ Dominance",
+                "content": "Total TÜRK-İŞ Dominance ",
                 "predicate": 34
-              }
+              },
+              ""
             ]
           }
         ],
@@ -18480,7 +18476,7 @@
                 ],
                 "predicate": 1
               },
-              " His voice rang through the decrepit telephone;"
+              " His voice rang through the decrepit telephone:"
             ]
           }
         ],
@@ -18708,7 +18704,7 @@
         },
         {
           "type": "paragraph",
-          "content": "After a short silence, İnönü called out to his visitors around him;"
+          "content": "After a short silence, İnönü called out to his visitors around him:"
         }
       ],
       "countVisitsMax": 1
@@ -19125,7 +19121,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Finally a deal was finalized between the American and the Nihat Erim governments in early 1972 to first decrease the regional scope of poppy harvesting and then eliminate its production entirely. In exchange, the Americans would make a payment of 35 million dollars for the development efforts of substitutive crops and payment for the farmers destroying a year's worth of poppy crops instead of selling them to the market."
+          "content": "Finally, a deal was finalized between the American and the Nihat Erim governments in early 1972 to first decrease the regional scope of poppy harvesting and then eliminate its production entirely. In exchange, the Americans would make a payment of 35 million dollars for the development efforts of substitutive crops and payment for the farmers destroying a year's worth of poppy crops instead of selling them to the market."
         },
         {
           "type": "paragraph",
@@ -19569,7 +19565,7 @@
         },
         {
           "id": "@foreign_policy.americanbase",
-          "title": "As a reaction to the arms embargo, close the American bases in our soil!"
+          "title": "As a reaction to the arms embargo, close the American bases on our soil!"
         },
         {
           "id": "@foreign_policy.fp_menu",
@@ -21386,7 +21382,8 @@
               {
                 "type": "insert",
                 "insert": 66
-              }
+              },
+              ""
             ]
           }
         ],
@@ -23593,11 +23590,11 @@
         },
         {
           "type": "paragraph",
-          "content": "Kawa, the steadfast vanguard of Maoism, the peasant and the worker in the Kurdish movement and one of the most violent Kurdish factions that we've had to contend with so far, seems to have fractured under the weight of it's own ideological radicalism. With the CPC adopting the ''Three Worlds Theory'', a radical, rejectionist faction has rebelled against the mainline organisation's acceptance of the theory, establishing Kızıl Kawa (Red Kawa). The remaining cadres compliant with the Beijing line have rallied around Ferit Uzun and established Denge Kawa (Voice of Kawa)."
+          "content": "Kawa, the steadfast vanguard of Maoism, the peasant and the worker in the Kurdish movement and one of the most violent Kurdish factions that we've had to contend with so far, seems to have fractured under the weight of its own ideological radicalism. With the CPC adopting the ''Three Worlds Theory'', a radical, rejectionist faction has rebelled against the mainline organisation's acceptance of the theory, establishing Kızıl Kawa (Red Kawa). The remaining cadres compliant with the Beijing line have rallied around Ferit Uzun and established Denge Kawa (Voice of Kawa)."
         },
         {
           "type": "paragraph",
-          "content": "The organisation's fracture was not a simple, peaceful affair however. Kawa's established networks have engaged each other in bloody skirmishes, causing more remote cells to be isolated, which the PKK has capitalised on. The turf wars between Kurdish factions are beginning to intensify beyond a point of no return as roaming bands of PKK fighters hunt down Kawa cadres in rural areas, contesting control with the goal of monopolising the Kurdish movement under themselves."
+          "content": "The organisation's fracture was not a simple, peaceful affair, however. Kawa's established networks have engaged each other in bloody skirmishes, causing more remote cells to be isolated, which the PKK has capitalised on. The turf wars between Kurdish factions are beginning to intensify beyond a point of no return as roaming bands of PKK fighters hunt down Kawa cadres in rural areas, contesting control with the goal of monopolising the Kurdish movement under themselves."
         }
       ],
       "countVisitsMax": 1
@@ -24073,13 +24070,7 @@
       },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.3;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.3;\nQ['democracystatus'] = (Q['democracystatus'] || 0) + 3;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 3;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 3;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['curriculumm'] = (Q['curriculumm'] || 0) + 1;\nQ['budget'] = (Q['budget'] || 0) - 2;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"education_science.curriculum\",\"CHP\");"
         }
       ],
       "content": {
@@ -24141,13 +24132,7 @@
       "subtitle": "-2 budget.",
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) - 2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 3;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) + 4;\nQ['forex_pressure_drift'] = (Q['forex_pressure_drift'] || 0) - 1;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 0.5;\nQ['electronicc'] = (Q['electronicc'] || 0) + 1;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 5;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"industrial_policy.elektronik\",\"CHP\");"
         }
       ],
       "chooseIf": {
@@ -24737,11 +24722,11 @@
       "content": [
         {
           "type": "paragraph",
-          "content": "Currently our rural areas lack access to most forms of art and an interesting idea brought up within the party was the employment of \"mobile cinemas\" to bring a previously nonexistent form of culture to the countryside. Showcasing films ranging from socially conscious dramas to educational documentaries, these mobile cinemas can be useful for many purposes. However sustained investments will be needed."
+          "content": "Currently, our rural areas lack access to most forms of art and an interesting idea brought up within the party was the employment of \"mobile cinemas\" to bring a previously nonexistent form of culture to the countryside. Showcasing films ranging from socially conscious dramas to educational documentaries, these mobile cinemas can be useful for many purposes. However, sustained investments will be needed."
         },
         {
           "type": "paragraph",
-          "content": "The first stations are employed and satisfying results arrive from the test rounds. However more work needs to be done."
+          "content": "The first stations are employed and satisfying results arrive from the test rounds. However, more work needs to be done."
         }
       ]
     },
@@ -24771,11 +24756,14 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": "Kırıkoğlu in a brief visit to Ecevit's office mentions how it would be a mistake to strike leftist civil organizations.",
-              "predicate": 1
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Kırıkoğlu in a brief visit to Ecevit's office mentions how it would be a mistake to strike leftist civil organizations. ",
+                "predicate": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -26625,7 +26613,7 @@
         {
           "type": "paragraph",
           "content": [
-            "\"The Three Saplings\" refers to the former leaders of the Marxist Leninist militant group, THKO, who were caught last year days after the 1971 Memorandum. The Judiciary already having decided on their execution, <span style=\"color: #E3000F;\">",
+            "\"The Three Saplings\" refers to the former leaders of the Marxist Leninist militant group, THKO, who were caught last year days after the 1971 Memorandum. With the judiciary having already decided on their execution, <span style=\"color: #E3000F;\">",
             {
               "type": "emphasis-2",
               "content": "CHP"
@@ -26640,25 +26628,25 @@
         {
           "type": "paragraph",
           "content": [
-            "TBMM is in a state of chaos. Delegates from AP shout from their chambers, \"Three from us, three from them!\" referring to the former Right wing prime minister Menderes and two of his ministers who were executed after the 1960 coup. <span style=\"color: #E3000F;\">",
+            "TBMM is in a state of chaos. Delegates from AP shout from their chambers, \"Three from us, three from them!\" referring to the former right-wing prime minister Menderes and two of his ministers who were executed after the 1960 coup. <span style=\"color: #E3000F;\">",
             {
               "type": "emphasis-2",
               "content": "CHP"
             },
-            "</span> is divided on the issue, with the right preparing to vote for their execution while surprisingly İnönü has supported Ecevit's call for the cancellation of the execution with the following statement;"
+            "</span> is divided on the issue, with the right preparing to vote for their execution while surprisingly İnönü has supported Ecevit's call for the cancellation of the execution with the following statement:"
           ]
         },
         {
           "type": "paragraph",
-          "content": "\"The penalty of the culprits should be changed to a life sentence. These men, are younglings in essence and inexperienced. The state has already shown them and their others like them that their excesses will not give any results.\""
+          "content": "\"The penalty of the culprits should be changed to a life sentence. These men are younglings in essence and inexperienced. The state has already shown them and others like them that their excesses will not give any results.\""
         },
         {
           "type": "paragraph",
-          "content": "Ecevit has risen up in his seat and made these comments in response to the right winger calls for their immediate execution;"
+          "content": "Ecevit has risen up in his seat and made these comments in response to right-wingers' calls for their immediate execution:"
         },
         {
           "type": "paragraph",
-          "content": "\"I am against the death penalty as a principle. However today the reason I am calling for the sparing of the lives of Deniz Gezmiş, Yusuf Asland and Hüseyin İnan is not my principal rejection of capital punishment. As long as the death sentence exists within the laws, I am aware that my rejection of it on the basis of principles will be futile."
+          "content": "\"I am against the death penalty as a principle. However, today the reason I am calling for the sparing of the lives of Deniz Gezmiş, Yusuf Aslan and Hüseyin İnan is not my principal rejection of capital punishment. As long as the death sentence exists within the laws, I am aware that my rejection of it on the basis of principles will be futile."
         },
         {
           "type": "paragraph",
@@ -27009,13 +26997,7 @@
       },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['rural_chp'] = (Q['rural_chp'] || 0) + 1;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) + 2;\nQ['workers_chp'] = (Q['workers_chp'] || 0) + 4;\nQ['alevis_chp'] = (Q['alevis_chp'] || 0) + 3;\nQ['kurds_chp'] = (Q['kurds_chp'] || 0) + 3;\nQ['halkegitimm'] = (Q['halkegitimm'] || 0) + 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 0.2;\nQ['budget'] = (Q['budget'] || 0) - 1;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"education_science.halkegitim\",\"CHP\");"
         }
       ],
       "content": {
@@ -27695,15 +27677,18 @@
         "content": [
           {
             "type": "paragraph",
-            "content": "Attacking the reactionary far right is popular among the entire party. However AP is irritated by our unwillingness to raise the same level of opposition against the far left."
+            "content": "Attacking the reactionary far right is popular among the entire party. However, AP is irritated by our unwillingness to raise the same level of opposition against the far left."
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": "Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties splitting the right vote and not the larger AP.",
-              "predicate": 0
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties splitting the right vote and not the larger AP. ",
+                "predicate": 0
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -28319,7 +28304,8 @@
               {
                 "type": "insert",
                 "insert": 16
-              }
+              },
+              ""
             ]
           }
         ],
@@ -29134,13 +29120,7 @@
       "subtitle": "-1 budget, populist expansion. Budget ↓ Inflation ↑ Unemployment ↓ Exchange Pressure ↑ Growth ↑↑",
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 2;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['unemployment_modifier'] = (Q['unemployment_modifier'] || 0) - 1;\nQ['forex_pressure'] = (Q['forex_pressure'] || 0) + 2;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"economic_policy.publicworks\",\"CHP\");"
         }
       ],
       "content": {
@@ -29376,7 +29356,7 @@
           },
           {
             "type": "paragraph",
-            "content": "Since the foundation of the republic, CHP always viewed land reform and distribution to be a necessary prerequisite for the development of the countryside. However Atatürk didn't live long enough to achieve one of his perhaps most influential reforms and now it falls upon our shoulders to turn his dream into reality."
+            "content": "Since the foundation of the republic, CHP always viewed land reform and distribution to be a necessary prerequisite for the development of the countryside. However, Atatürk didn't live long enough to achieve one of his perhaps most influential reforms and now it falls upon our shoulders to turn his dream into reality."
           },
           {
             "type": "paragraph",
@@ -29403,9 +29383,10 @@
               },
               {
                 "type": "conditional",
-                "content": "We have announced the ambitious Köykent village-city project.",
+                "content": "We have announced the ambitious Köykent village-city project. ",
                 "predicate": 3
-              }
+              },
+              ""
             ]
           }
         ],
@@ -29965,7 +29946,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Between 1923 and 1938 under the leadership of Mustafa Kemal massive efforts at modernization would be made. A one-party state, with the aim of revolutionizing the nation and preparing it for Liberal Democracy would be established. H.C Armstrong would write at the last page of his biography of Kemal;"
+          "content": "Between 1923 and 1938, under the leadership of Mustafa Kemal, massive efforts at modernization would be made. A one-party state, with the aim of revolutionizing the nation and preparing it for Liberal Democracy would be established. H.C Armstrong would write on the last page of his biography of Kemal:"
         },
         {
           "type": "paragraph",
@@ -30095,7 +30076,7 @@
               "type": "emphasis-2",
               "content": "1938"
             },
-            ": Ataturk marches towards death and the whole nation watches him fade away. Starting to frequently fall into comas, he noted to Salih Bozok, his childhood friend after one of his last comas;"
+            ": Ataturk marches towards death and the whole nation watches him fade away. Starting to frequently fall into comas, he noted to Salih Bozok, his childhood friend after one of his last comas:"
           ]
         },
         {
@@ -30199,7 +30180,7 @@
               "type": "emphasis-2",
               "content": "1950"
             },
-            ": DP wins in a landslide, 55% to to 40% of <span style=\"color: #E3000F;\">",
+            ": DP wins in a landslide, 55% to 40% of <span style=\"color: #E3000F;\">",
             {
               "type": "emphasis-2",
               "content": "CHP"
@@ -30228,7 +30209,7 @@
               "type": "emphasis-2",
               "content": "1951"
             },
-            ": Turkey joins the Korean War as a precursor to join NATO. Nazım Hikmet, a Communist Turkish poet, writes the following poem as a response to Menderes's participation;"
+            ": Turkey joins the Korean War as a precursor to join NATO. Nazım Hikmet, a Communist Turkish poet, writes the following poem in response to Menderes's participation:"
           ]
         },
         {
@@ -30453,7 +30434,7 @@
               "type": "emphasis-2",
               "content": "1960"
             },
-            ": On the night of May 27, colonel Türkeş makes a declaration radiated across all radios in the nation;"
+            ": On the night of May 27, colonel Türkeş makes a declaration broadcast on radios across the nation:"
           ]
         },
         {
@@ -30470,7 +30451,7 @@
         },
         {
           "type": "paragraph",
-          "content": "They contacted him and asked him to join the organization. He responded;"
+          "content": "They contacted him and asked him to join the organization. He responded:"
         },
         {
           "type": "paragraph",
@@ -30478,7 +30459,7 @@
         },
         {
           "type": "paragraph",
-          "content": "After the coup plotters gave him 24 hours to think, he responded;"
+          "content": "After the coup plotters gave him 24 hours to think, he responded:"
         },
         {
           "type": "paragraph",
@@ -30504,7 +30485,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Menderes is executed by hanging due to \"treason against the nation\". This is definitely not well received by the public and Menderes transforms in the eyes of the people from a shady but charismatic politician to a national hero and martyr of democracy. His last words reinforce this sentiment as well;"
+          "content": "Menderes is executed by hanging due to \"treason against the nation\". This is definitely not well received by the public and Menderes transforms in the eyes of the people from a shady but charismatic politician to a national hero and martyr of democracy. His last words reinforce this sentiment as well:"
         },
         {
           "type": "paragraph",
@@ -30525,7 +30506,7 @@
               "type": "emphasis-2",
               "content": "CHP"
             },
-            "</span> fails to achieve a victory in the 1961 elections, winning only 36% of the vote against the 64% won by the remnants of the DP, especially Adalet Partisi(Justice Party) or AP. Nevertheless the junta forced the AP to go into a coalition with <span style=\"color: #E3000F;\">",
+            "</span> fails to achieve a victory in the 1961 elections, winning only 36% of the vote against the 64% won by the remnants of the DP, especially Adalet Partisi(Justice Party) or AP. Nevertheless, the junta forced the AP to go into a coalition with <span style=\"color: #E3000F;\">",
             {
               "type": "emphasis-2",
               "content": "CHP"
@@ -30553,7 +30534,7 @@
         },
         {
           "type": "paragraph",
-          "content": "The president's palace was holding a conference which included the president Cemal Gürsel, prime minister İsmet İnönü and many other ministers. While the coup failed to capture the streets, the chief guardian of the palace Cihat Alpan, who was appointed only a while ago, was a fierce supporter of Talat Aydemir and took everyone in the palace as hostages. With the whole government in his palm, Aydemir could have eliminated the whole administration but he chose to negotiate and missed a once-in-a-lifetime chance. İsmet İnönü, the old wolf, acclaimed when he heard that Aydemir was willing to negotiate;"
+          "content": "The president's palace was holding a conference which included the president Cemal Gürsel, prime minister İsmet İnönü and many other ministers. While the coup failed to capture the streets, the chief guardian of the palace Cihat Alpan, who was appointed only a while ago, was a fierce supporter of Talat Aydemir and took everyone in the palace as hostages. With the whole government in his palm, Aydemir could have eliminated the whole administration but he chose to negotiate and missed a once-in-a-lifetime chance. İsmet İnönü, the old wolf, acclaimed when he heard that Aydemir was willing to negotiate:"
         },
         {
           "type": "paragraph",
@@ -30648,7 +30629,7 @@
         }
       ],
       "content": {
-        "content": "We have increased our campaigning among the Alevi minority",
+        "content": "We have increased our campaigning among the Alevi minority.",
         "type": "paragraph"
       }
     },
@@ -30682,9 +30663,10 @@
             },
             {
               "type": "conditional",
-              "content": "The quasi fascists and their militant dogs are the most urgent problem for us to deal with.",
+              "content": "The quasi fascists and their militant dogs are the most urgent problem for us to deal with. ",
               "predicate": 1
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -31009,7 +30991,12 @@
                 "type": "insert",
                 "insert": 1
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -31093,10 +31080,11 @@
                     "type": "insert",
                     "insert": 10
                   },
-                  ""
+                  " "
                 ],
                 "predicate": 9
-              }
+              },
+              ""
             ]
           }
         ],
@@ -31330,7 +31318,7 @@
         },
         {
           "type": "paragraph",
-          "content": "After calling Ecevit a \"bandit\", İnönü has shouted from the podium: \"It's either me or Bülent\", trying to use his persona to prevent a humiliating defeat. Ecevit responded with a simple statement;"
+          "content": "After calling Ecevit a \"bandit\", İnönü has shouted from the podium: \"It's either me or Bülent\", trying to use his persona to prevent a humiliating defeat. Ecevit responded with a simple statement:"
         },
         {
           "type": "paragraph",
@@ -33256,10 +33244,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 12
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 12
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -33836,13 +33827,7 @@
       },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) - 1;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) - 2;\nQ['demiryoluu'] = (Q['demiryoluu'] || 0) + 1;\nQ['industry_modifier'] = (Q['industry_modifier'] || 0) + 5;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"industrial_policy.demiryolu\",\"CHP\");"
         }
       ],
       "content": {
@@ -34780,7 +34765,7 @@
         }
       ],
       "content": {
-        "content": "Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Left-Wing Kemalist disapprove of this action greatly.",
+        "content": "Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Left-Wing Kemalist factions strongly disapprove of this action.",
         "type": "paragraph"
       }
     },
@@ -34826,7 +34811,7 @@
         },
         {
           "id": "@campaigning_ecevit.kurds",
-          "title": "Kurds, who lack a mainstream political affiliation"
+          "title": "Kurds, who lack a mainstream political affiliation."
         },
         {
           "id": "@campaigning_ecevit.capitalists",
@@ -34931,18 +34916,21 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": [
-                "Previously, we had considered the ",
-                {
-                  "type": "insert",
-                  "insert": 1
-                },
-                " as our prior enemies. Is a change of direction necessary?"
-              ],
-              "predicate": 0
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "Previously, we had considered the ",
+                  {
+                    "type": "insert",
+                    "insert": 1
+                  },
+                  " as our prior enemies. Is a change of direction necessary? "
+                ],
+                "predicate": 0
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -35463,7 +35451,12 @@
                 "type": "magic",
                 "content": "</em>)<br>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35492,7 +35485,12 @@
                 ],
                 "predicate": 14
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<span style=\"color: #c76083;\">&#9632;</span> Left-Wing Kemalist: "
@@ -35513,7 +35511,12 @@
                 "type": "magic",
                 "content": "</em>)<br>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35542,7 +35545,12 @@
                 ],
                 "predicate": 19
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35571,7 +35579,12 @@
                 ],
                 "predicate": 22
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div>"
@@ -35598,7 +35611,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35619,7 +35637,12 @@
                 ],
                 "predicate": 26
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
@@ -35632,7 +35655,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35653,7 +35681,12 @@
                 ],
                 "predicate": 29
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35674,7 +35707,12 @@
                 ],
                 "predicate": 31
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">The Base (15%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
@@ -35687,7 +35725,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35708,7 +35751,12 @@
                 ],
                 "predicate": 34
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
@@ -35721,7 +35769,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35742,7 +35795,12 @@
                 ],
                 "predicate": 37
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35763,7 +35821,12 @@
                 ],
                 "predicate": 39
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Party Bureaucracy (25%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
@@ -35776,7 +35839,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35797,7 +35865,12 @@
                 ],
                 "predicate": 42
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
@@ -35810,7 +35883,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35831,7 +35909,12 @@
                 ],
                 "predicate": 45
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35852,7 +35935,12 @@
                 ],
                 "predicate": 47
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">TBMM Delegation (20%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
@@ -35865,7 +35953,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35886,7 +35979,12 @@
                 ],
                 "predicate": 50
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
@@ -35899,7 +35997,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35920,7 +36023,12 @@
                 ],
                 "predicate": 53
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35941,7 +36049,12 @@
                 ],
                 "predicate": 55
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Party Intelligentsia (10%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
@@ -35954,7 +36067,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -35975,7 +36093,12 @@
                 ],
                 "predicate": 58
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
@@ -35988,7 +36111,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36009,7 +36137,12 @@
                 ],
                 "predicate": 61
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36030,7 +36163,12 @@
                 ],
                 "predicate": 63
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div> <div style=\"border: 1px solid #ccc; padding: 4px; border-radius: 3px;\"> <div style=\"font-weight: bold;\">Local Leaderships (10%)</div> <div><span style=\"color: #701616;\">Kemalist Marxists:</span> "
@@ -36043,7 +36181,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36064,7 +36207,12 @@
                 ],
                 "predicate": 66
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "<div><span style=\"color: #c76083;\">Left-Wing Kemalist:</span> "
@@ -36077,7 +36225,12 @@
                 "type": "magic",
                 "content": "</div>"
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36098,7 +36251,12 @@
                 ],
                 "predicate": 69
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36119,7 +36277,12 @@
                 ],
                 "predicate": 71
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "magic",
                 "content": "</div> </div>"
@@ -36216,7 +36379,12 @@
                 "type": "insert",
                 "insert": 81
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36249,7 +36417,12 @@
                 "type": "insert",
                 "insert": 84
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36262,7 +36435,12 @@
                 ],
                 "predicate": 85
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -36271,10 +36449,11 @@
                     "type": "magic",
                     "content": "<span style=\"color: #7A3C00;\">Satır's compromise keeps the Right-Wing Kemalists inside the CHP, at least for now.</span>"
                   },
-                  ""
+                  " "
                 ],
                 "predicate": 86
-              }
+              },
+              ""
             ]
           }
         ],
@@ -36986,13 +37165,7 @@
       "subtitle": "-2 Budget; Budget ↓↓; Inflation ↑; Exchange Pressure ↓↓; Growth ↑↑",
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['forex_pressure'] = (Q['forex_pressure'] || 0) - 4;\nQ['budget'] = (Q['budget'] || 0) - 2;\nQ['inflation_modifier'] = (Q['inflation_modifier'] || 0) + 1.5;\nQ['growth_modifier'] = (Q['growth_modifier'] || 0) + 1.5;\nQ['capitalists_chp'] = (Q['capitalists_chp'] || 0) + 2;\nQ['economicaction'] = (Q['economicaction'] || 0) + 1;"
-        },
-        {
-          "$code": "AnatolianRules.refreshEconomy(Q);"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"economic_policy.export\",\"CHP\");"
         }
       ],
       "content": {
@@ -37826,7 +37999,7 @@
                   "",
                   {
                     "type": "magic",
-                    "content": " <div id=\"cyprus-diplomacy-header\"> <div class=\"cyprus-diplomacy-top\"> <button id=\"cyprus-greece-btn\" onclick=\"window.openCyprusDiplomacy('greece')\" class=\"cyprus-diplomacy-btn\" type=\"button\"> <img src=\"cyprusgame/greek.webp\" alt=\"Greece\"> <span class=\"cyprustext\">"
+                    "content": "  <div id=\"cyprus-diplomacy-header\"> <div class=\"cyprus-diplomacy-top\"> <button id=\"cyprus-greece-btn\" onclick=\"window.openCyprusDiplomacy('greece')\" class=\"cyprus-diplomacy-btn\" type=\"button\"> <img src=\"cyprusgame/greek.webp\" alt=\"Greece\"> <span class=\"cyprustext\">"
                   },
                   {
                     "type": "conditional",
@@ -37892,13 +38065,23 @@
                 ],
                 "predicate": 8
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "Selected proposal: Güneş Plan. ",
                 "predicate": 10
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "Selected proposal: Denktaş Plan. ",
@@ -37989,7 +38172,12 @@
                 ],
                 "predicate": 21
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": [
@@ -37998,10 +38186,11 @@
                     "type": "insert",
                     "insert": 24
                   },
-                  "."
+                  ". "
                 ],
                 "predicate": 23
-              }
+              },
+              ""
             ]
           }
         ],
@@ -39094,10 +39283,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 3
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 3
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -39248,10 +39440,7 @@
       },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commitAdvisor(Q);"
-        },
-        {
-          "$code": "Q['budget'] = (Q['budget'] || 0) + 1;\nQ['rural_chp'] = (Q['rural_chp'] || 0) + 3;\nQ['west_relation'] = (Q['west_relation'] || 0) - 5;\nQ['hashas_done'] = 1;"
+          "$code": "AnatolianCardActions.commitAdvisor(Q); AnatolianNationalCoalition.applyGovernmentPolicy(Q,\"agricultural_policy.hashas\",\"CHP\");"
         }
       ],
       "content": {
@@ -39310,9 +39499,10 @@
               },
               {
                 "type": "conditional",
-                "content": "Our party has adopted the Köykent programme, including land redistribution.",
+                "content": "Our party has adopted the Köykent programme, including land redistribution. ",
                 "predicate": 3
-              }
+              },
+              ""
             ]
           }
         ],
@@ -39718,10 +39908,13 @@
       "content": {
         "content": {
           "type": "paragraph",
-          "content": {
-            "type": "insert",
-            "insert": 0
-          }
+          "content": [
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ""
+          ]
         },
         "stateDependencies": [
           {
@@ -41234,10 +41427,13 @@
       "content": {
         "content": {
           "type": "paragraph",
-          "content": {
-            "type": "insert",
-            "insert": 0
-          }
+          "content": [
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ""
+          ]
         },
         "stateDependencies": [
           {
@@ -42054,10 +42250,13 @@
       "content": {
         "content": {
           "type": "paragraph",
-          "content": {
-            "type": "insert",
-            "insert": 0
-          }
+          "content": [
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ""
+          ]
         },
         "stateDependencies": [
           {
@@ -42178,7 +42377,12 @@
                 "content": "caretaker government ",
                 "predicate": 12
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "Kemalist Coalition ",
@@ -42294,6 +42498,16 @@
           {
             "type": "paragraph",
             "content": [
+              {
+                "type": "insert",
+                "insert": 27
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               "President: ",
               {
                 "type": "conditional",
@@ -42301,11 +42515,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 28
+                    "insert": 29
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/cevdetsunay.jpg\">President Cevdet Sunay. A conservative and a staunch anti communist, he has been president of the republic since 1966 and is currently directing the military junta strangling our democracy.</span></span> "
                 ],
-                "predicate": 27
+                "predicate": 28
               },
               {
                 "type": "conditional",
@@ -42313,11 +42527,11 @@
                   "<span class=\"wide_tooltip-wrap\"><span style=\"color: #929292;\">",
                   {
                     "type": "insert",
-                    "insert": 30
+                    "insert": 31
                   },
                   "</span><span class=\"wide_tooltip-tip\"><img src=\"img/fahrikoruturk.jpg\">President Fahri Korutürk. Even though he is a military man like all the others, perhaps he will be more moderate...</span></span> "
                 ],
-                "predicate": 29
+                "predicate": 30
               },
               " ",
               {
@@ -42326,11 +42540,11 @@
                   "<span class=\"wide_tooltip-wrap\"> <span style=\"color: #70386D;\">",
                   {
                     "type": "insert",
-                    "insert": 32
+                    "insert": 33
                   },
                   "</span><span class=\"wide_tooltip-tip\"><img src=\"img/tekinariburun.jpg\">President Tekin Arıburun. A conservative and a nominal AP ally, his election is a bad signal for us. </span></span> "
                 ],
-                "predicate": 31
+                "predicate": 32
               },
               {
                 "type": "conditional",
@@ -42338,11 +42552,11 @@
                   "<span class=\"wide_tooltip-wrap\"><span style=\"color: #584404;\">",
                   {
                     "type": "insert",
-                    "insert": 34
+                    "insert": 35
                   },
                   "</span><span class=\"wide_tooltip-tip\"><img src=\"img/farukgurler.png\">President Faruk Gürler. He became the favourite of the junta after refusing to participate in the earlier Left Kemalist coup. Even though he is more left wing than many of his peers, his presidency still signals the continuation of military oversight over parliamentary democracy.</span></span> "
                 ],
-                "predicate": 33
+                "predicate": 34
               },
               ""
             ]
@@ -42357,11 +42571,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 36
+                    "insert": 37
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/nihaterim.jpg\">Prime Minister Nihat Erim. A Right-Wing Kemalist who was one of the leading figures against the insurgent Left of Center movement in CHP, he has been chosen by the military junta to lead the government that followed the 12 March 1971 memorandum. </span></span> "
                 ],
-                "predicate": 35
+                "predicate": 36
               },
               " ",
               {
@@ -42370,11 +42584,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 38
+                    "insert": 39
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A Right-Wing Kemalist and one of the founders of CGP, he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
                 ],
-                "predicate": 37
+                "predicate": 38
               },
               " ",
               {
@@ -42383,11 +42597,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 40
+                    "insert": 41
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/NaimTalu.jpg\">Prime Minister Naim Talu. Supported by CGP and AP, he has vowed to lead a \"nonpartisan\" government whose purpose is to lead the nation to the general elections. </span></span> "
                 ],
-                "predicate": 39
+                "predicate": 40
               },
               " ",
               {
@@ -42396,11 +42610,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 42
+                    "insert": 43
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/NuriBayar.jpg\">Prime Minister Nuri Bayar. A conservative and the former spokesperson of the AP, he is leading the current center right-wing government formed by CGP, AP and DP. </span></span> "
                 ],
-                "predicate": 41
+                "predicate": 42
               },
               " ",
               {
@@ -42409,11 +42623,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 44
+                    "insert": 45
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim1.webp\">Karaoğlan Ecevit. The leader of our new CHP, a lot about the future of our country and democracy depends on his shoulders shaking with energy. Türk Halkına Layık Ol Karaoğlan! </span></span> "
                 ],
-                "predicate": 43
+                "predicate": 44
               },
               "  ",
               {
@@ -42422,11 +42636,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 46
+                    "insert": 47
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim.jpg\">Karaoğlan Ecevit. Even though circumstances are deteriorating and the system is resisting not to change, he can't give up now. <br> \"the deer that was shot in the depths of the forest <br>the animals are silent with your pain <br> in their horns, hoofs and eyes, <br> is the love the hunter couldn't extinguish\"</span></span> "
                 ],
-                "predicate": 45
+                "predicate": 46
               },
               " ",
               {
@@ -42435,11 +42649,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 48
+                    "insert": 49
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/demirell.jpg\">Prime Minister Süleyman Demirel. An expert of political survival who by collaboration with the far right is currently killing the democracy for it.</span></span> "
                 ],
-                "predicate": 47
+                "predicate": 48
               },
               " ",
               {
@@ -42448,16 +42662,16 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 50
+                    "insert": 51
                   },
                   " "
                 ],
-                "predicate": 49
+                "predicate": 50
               },
               " (",
               {
                 "type": "insert",
-                "insert": 51
+                "insert": 52
               },
               ")"
             ]
@@ -42472,11 +42686,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 53
+                    "insert": 54
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Memduh Tağmaç. He is the man who coordinated the 12 March 1971 Memorandum as a reaction to the Socialist-Kemalist coup attempt on 9 March. Afterwards, he is known to have purged all the members of the Left Kemalist clique in the army. </span></span> "
                 ],
-                "predicate": 52
+                "predicate": 53
               },
               " ",
               {
@@ -42485,11 +42699,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 55
+                    "insert": 56
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/farukgurler.png\">Chief of Staff Faruk Gürler. Normally having leftist tendencies, he nevertheless refused to participate in the coup attempt on 9 March which made him a favourite of the junta.</span></span> "
                 ],
-                "predicate": 54
+                "predicate": 55
               },
               " ",
               {
@@ -42498,11 +42712,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 57
+                    "insert": 58
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/portraits/SemihSancar.jpg\">Chief of Staff Semih Sancar. </span></span> "
                 ],
-                "predicate": 56
+                "predicate": 57
               },
               " ",
               {
@@ -42511,11 +42725,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 59
+                    "insert": 60
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Kenan Evren. Even though appointed on the premise of being a nonpartisan figure, not much is known about his true intentions. </span></span> "
                 ],
-                "predicate": 58
+                "predicate": 59
               },
               ""
             ]
@@ -42532,37 +42746,37 @@
               {
                 "type": "conditional",
                 "content": "is currently in government ",
-                "predicate": 60
-              },
-              {
-                "type": "conditional",
-                "content": "is currently pacified ",
                 "predicate": 61
               },
               {
                 "type": "conditional",
-                "content": "is currently hopeful ",
+                "content": "is currently pacified ",
                 "predicate": 62
               },
               {
                 "type": "conditional",
-                "content": "is currently observing the political situation ",
+                "content": "is currently hopeful ",
                 "predicate": 63
               },
               {
                 "type": "conditional",
-                "content": "TSK is currently irritated ",
+                "content": "is currently observing the political situation ",
                 "predicate": 64
               },
               {
                 "type": "conditional",
-                "content": "is currently agitated ",
+                "content": "TSK is currently irritated ",
                 "predicate": 65
               },
               {
                 "type": "conditional",
-                "content": "is currently alarmed ",
+                "content": "is currently agitated ",
                 "predicate": 66
+              },
+              {
+                "type": "conditional",
+                "content": "is currently alarmed ",
+                "predicate": 67
               },
               {
                 "type": "conditional",
@@ -42574,7 +42788,7 @@
                   },
                   " "
                 ],
-                "predicate": 67
+                "predicate": 68
               },
               {
                 "type": "conditional",
@@ -42586,7 +42800,7 @@
                   },
                   " "
                 ],
-                "predicate": 68
+                "predicate": 69
               },
               ""
             ]
@@ -42600,11 +42814,11 @@
                   "Budget: ",
                   {
                     "type": "insert",
-                    "insert": 70
+                    "insert": 71
                   },
                   " "
                 ],
-                "predicate": 69
+                "predicate": 70
               },
               ""
             ]
@@ -42615,12 +42829,12 @@
               "Next general election: ",
               {
                 "type": "insert",
-                "insert": 71
+                "insert": 72
               },
               " ",
               {
                 "type": "insert",
-                "insert": 72
+                "insert": 73
               },
               ""
             ]
@@ -42634,16 +42848,16 @@
                   "Next municipal election: ",
                   {
                     "type": "insert",
-                    "insert": 74
+                    "insert": 75
                   },
                   " ",
                   {
                     "type": "insert",
-                    "insert": 75
+                    "insert": 76
                   },
                   " "
                 ],
-                "predicate": 73
+                "predicate": 74
               },
               ""
             ]
@@ -42654,8 +42868,9 @@
               "Next Senate election: ",
               {
                 "type": "insert",
-                "insert": 76
-              }
+                "insert": 77
+              },
+              ""
             ]
           }
         ],
@@ -42826,6 +43041,12 @@
               "$code": "return (Q['democracystatus'] || 0);"
             },
             "qdisplay": "democracystatus"
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianNationalCoalition.governmentActivityHtml(Q);"
+            }
           },
           {
             "type": "predicate",
@@ -43309,7 +43530,7 @@
       "content": [
         {
           "type": "paragraph",
-          "content": "Finally we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered a great deal, but the light at the end of the tunnel is now beginning to shine through. Let's hope our citizens will forgive us for prescribing the painful medicine."
+          "content": "Finally, we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered a great deal, but the light at the end of the tunnel is now beginning to shine through. Let's hope our citizens will forgive us for prescribing the painful medicine."
         },
         {
           "type": "paragraph",
@@ -44404,24 +44625,40 @@
                 "content": "Investigators find that several far-right groups have access to weapons and contacts beyond their public organizations. Reports refer to a Counter-Guerrilla network, but the chains of command remain concealed. ",
                 "predicate": 0
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "The inquiry traces contacts to secret stay-behind preparations within the Cold War alliance. Similar networks abroad are associated with Operation Gladio. The ministry has identified connections, but does not yet know enough to intervene effectively. ",
                 "predicate": 1
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
                 "content": "Records point towards Özel Harp Dairesi, the Special Warfare Department under the General Staff. Its official purpose is resistance against an occupation, but the investigation finds indications of domestic political activity outside proper civilian oversight. ",
                 "predicate": 2
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
-                "content": "The government now understands the department’s hidden funding arrangements and the underground networks linked to it. The inquiry has gathered enough evidence to restrict clandestine support and impose civilian scrutiny. The department cannot be eliminated by a single decision, but its capacity can be weakened.",
+                "content": "The government now understands the department’s hidden funding arrangements and the underground networks linked to it. The inquiry has gathered enough evidence to restrict clandestine support and impose civilian scrutiny. The department cannot be eliminated by a single decision, but its capacity can be weakened. ",
                 "predicate": 3
-              }
+              },
+              ""
             ]
           }
         ],
@@ -45821,7 +46058,7 @@
         }
       ],
       "content": {
-        "content": "The Middle East is currently roughly divided into two blocs, the Conservative Monarchies and the Socialist Pan-Arabists. However thankfully we do not have to pick a side and we should work towards fostering ties with both factions. The Gulf Monarchies have stronger relations with the US while conversely the Pan-Arabists are closer to the USSR, a factor we should keep in mind when improving relations. Due to the Iranian Monarchy's hostile attitude towards us, improving relations with them is not an option.",
+        "content": "The Middle East is currently roughly divided into two blocs, the Conservative Monarchies and the Socialist Pan-Arabists. However, thankfully, we do not have to pick a side and we should work towards fostering ties with both factions. The Gulf Monarchies have stronger relations with the US while conversely the Pan-Arabists are closer to the USSR, a factor we should keep in mind when improving relations. Due to the Iranian Monarchy's hostile attitude towards us, improving relations with them is not an option.",
         "type": "paragraph"
       }
     },
@@ -45856,8 +46093,8 @@
       "chooseIf": {
         "$code": "return (((Q['OHAL'] || 0)===0) && (((Q['state_force_percent'] || 0) <= 49) || ((Q['year'] || 0) >= 1978)));"
       },
-      "subtitle": "Though a drastic move and something we are ideologically opposed to, we may be forced to declare a state of emergency and and restrict the civil rights in order to bring peace to the streets.",
-      "unavailableSubtitle": "The situation in the streets still can be managed through conventional means.",
+      "subtitle": "Though a drastic move and something we are ideologically opposed to, we may be forced to declare a state of emergency and restrict civil rights in order to bring peace to the streets.",
+      "unavailableSubtitle": "The situation in the streets can still be managed through conventional means.",
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commitAdvisor(Q);"
@@ -46571,40 +46808,63 @@
         }
       ],
       "content": {
-        "content": {
-          "type": "paragraph",
-          "content": [
-            {
-              "type": "conditional",
-              "content": "We have raided some drug depots in the border regions, however more work is needed to solve the issue altogether. ",
-              "predicate": 0
-            },
-            " ",
-            {
-              "type": "conditional",
-              "content": "Continuous raids and operations in the East have begun weakening the power of the local gangs! ",
-              "predicate": 1
-            },
-            " ",
-            {
-              "type": "conditional",
-              "content": "The crime rates have been decreased significantly thanks to the determination of the security forces. ",
-              "predicate": 2
-            },
-            " ",
-            {
-              "type": "conditional",
-              "content": "The region has largely been neutralized, with only isolated incidents remaining as remnants of past instability. ",
-              "predicate": 3
-            },
-            " ",
-            {
-              "type": "conditional",
-              "content": "The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries.",
-              "predicate": 4
-            }
-          ]
-        },
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "We have raided some drug depots in the border regions, however more work is needed to solve the issue altogether. ",
+                "predicate": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Continuous raids and operations in the East have begun weakening the power of the local gangs! ",
+                "predicate": 1
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The crime rates have been decreased significantly thanks to the determination of the security forces. ",
+                "predicate": 2
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The region has largely been neutralized, with only isolated incidents remaining as remnants of past instability. ",
+                "predicate": 3
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The region has been completely neutralized; the region at last enjoys lasting order and stability. Many are grateful to our party for ending the lawlessness which has persisted for centuries. ",
+                "predicate": 4
+              },
+              ""
+            ]
+          }
+        ],
         "stateDependencies": [
           {
             "type": "predicate",
@@ -48617,10 +48877,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 0
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -48814,10 +49077,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 2
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 2
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -48873,12 +49139,12 @@
         },
         {
           "type": "paragraph",
-          "content": "Turkey is at the intersection of the global blocs and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East."
+          "content": "Turkey is at the intersection of the global blocs, and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East."
         },
         {
           "type": "paragraph",
           "content": [
-            "Through our foreign policy initiatives we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '",
+            "Through our foreign policy initiatives, we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '",
             {
               "type": "emphasis-2",
               "content": "Peace at home, peace in the world."
@@ -54306,7 +54572,7 @@
         },
         {
           "id": "@coalition_negotiations.player_list_49",
-          "title": "As a reaction to the arms embargo, close the American bases in our soil!"
+          "title": "As a reaction to the arms embargo, close the American bases on our soil!"
         },
         {
           "id": "@coalition_negotiations.player_list_50",
@@ -54592,7 +54858,7 @@
     },
     "coalition_negotiations.player_list_49": {
       "id": "coalition_negotiations.player_list_49",
-      "title": "Demand: As a reaction to the arms embargo, close the American bases in our soil!",
+      "title": "Demand: As a reaction to the arms embargo, close the American bases on our soil!",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -54624,7 +54890,7 @@
       "content": [
         {
           "type": "heading",
-          "content": "Demand: As a reaction to the arms embargo, close the American bases in our soil!"
+          "content": "Demand: As a reaction to the arms embargo, close the American bases on our soil!"
         },
         {
           "type": "paragraph",
@@ -60608,7 +60874,7 @@
         },
         {
           "id": "@coalition_negotiations.partner_list_49",
-          "title": "As a reaction to the arms embargo, close the American bases in our soil!"
+          "title": "As a reaction to the arms embargo, close the American bases on our soil!"
         },
         {
           "id": "@coalition_negotiations.partner_list_50",
@@ -60894,7 +61160,7 @@
     },
     "coalition_negotiations.partner_list_49": {
       "id": "coalition_negotiations.partner_list_49",
-      "title": "Concede: As a reaction to the arms embargo, close the American bases in our soil!",
+      "title": "Concede: As a reaction to the arms embargo, close the American bases on our soil!",
       "subtitle": {
         "content": {
           "type": "insert",
@@ -60926,7 +61192,7 @@
       "content": [
         {
           "type": "heading",
-          "content": "Concede: As a reaction to the arms embargo, close the American bases in our soil!"
+          "content": "Concede: As a reaction to the arms embargo, close the American bases on our soil!"
         },
         {
           "type": "paragraph",

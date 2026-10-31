@@ -1,0 +1,137 @@
+[
+  {
+    "id": "industrial_policy.industry1",
+    "flag": "industryy",
+    "label": "Basic industrialization push",
+    "effects": {
+      "budget": -3,
+      "industry_modifier": 10,
+      "growth_modifier": 1.5,
+      "unemployment_modifier": -0.5,
+      "inflation_modifier": 3.5,
+      "industryy": 1,
+      "economicaction": 1,
+      "forex_pressure": 4
+    },
+    "support": {
+      "capitalists": 5,
+      "petty_bourgeoisie": 2
+    },
+    "sets": {}
+  },
+  {
+    "id": "industrial_policy.elektronik",
+    "flag": "electronicc",
+    "label": "Electronics industry investment",
+    "effects": {
+      "budget": -2,
+      "growth_modifier": 1.5,
+      "inflation_modifier": 3,
+      "forex_pressure": 4,
+      "forex_pressure_drift": -1,
+      "unemployment_modifier": -0.5,
+      "electronicc": 1,
+      "industry_modifier": 5
+    },
+    "support": {},
+    "sets": {}
+  },
+  {
+    "id": "industrial_policy.demiryolu",
+    "flag": "demiryoluu",
+    "label": "Railway investment",
+    "effects": {
+      "budget": -1,
+      "growth_modifier": 1,
+      "inflation_modifier": -2,
+      "demiryoluu": 1,
+      "industry_modifier": 5
+    },
+    "support": {},
+    "sets": {}
+  },
+  {
+    "id": "agricultural_policy.hashas",
+    "flag": "hashas_done",
+    "label": "Legalized poppy cultivation",
+    "effects": {
+      "budget": 1,
+      "west_relation": -5
+    },
+    "support": {
+      "rural": 3
+    },
+    "sets": {
+      "hashas_done": 1
+    }
+  },
+  {
+    "id": "education_science.curriculum",
+    "flag": "curriculumm",
+    "label": "Curriculum reform",
+    "effects": {
+      "unemployment_modifier": -0.3,
+      "growth_modifier": 0.3,
+      "democracystatus": 3,
+      "curriculumm": 1,
+      "budget": -2
+    },
+    "support": {
+      "rural": 1,
+      "petty_bourgeoisie": 3,
+      "workers": 3,
+      "alevis": 3,
+      "kurds": 3
+    },
+    "sets": {}
+  },
+  {
+    "id": "education_science.halkegitim",
+    "flag": "halkegitimm",
+    "label": "Adult education centres",
+    "effects": {
+      "halkegitimm": 1,
+      "growth_modifier": 0.2,
+      "budget": -1
+    },
+    "support": {
+      "rural": 1,
+      "petty_bourgeoisie": 2,
+      "workers": 4,
+      "alevis": 3,
+      "kurds": 3
+    },
+    "sets": {}
+  },
+  {
+    "id": "economic_policy.publicworks",
+    "flag": null,
+    "label": "Public works programme",
+    "effects": {
+      "budget": -1,
+      "inflation_modifier": 2,
+      "growth_modifier": 1.5,
+      "unemployment_modifier": -1,
+      "forex_pressure": 2,
+      "economicaction": 1
+    },
+    "support": {},
+    "sets": {}
+  },
+  {
+    "id": "economic_policy.export",
+    "flag": null,
+    "label": "Export subsidies",
+    "effects": {
+      "forex_pressure": -4,
+      "budget": -2,
+      "inflation_modifier": 1.5,
+      "growth_modifier": 1.5,
+      "economicaction": 1
+    },
+    "support": {
+      "capitalists": 2
+    },
+    "sets": {}
+  }
+]
