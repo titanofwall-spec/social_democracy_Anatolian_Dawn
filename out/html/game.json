@@ -13102,7 +13102,7 @@
       "isHand": true,
       "onArrival": [
         {
-          "$code": "if (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.ui.setBg(Q.cyprus_mode != 0 ? 'img/harekat2.jpg' : 'img/map_4.jpg');"
+          "$code": "if (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
         }
       ],
       "maxCards": 4,
@@ -18724,7 +18724,6 @@
       ],
       "newPage": true,
       "setBg": "img/kibriss.jpg",
-      "audio": "music/gercekkibris1.m4a",
       "onArrival": [
         {
           "$code": "Q.cyprus_mode = 1;\nQ.cyprus_briefings_seen = [];\nQ.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nAnatolianRules.cyprusAtilla1.initialize(Q);\nQ.cyprus_end_shown = 0;\nQ._last_cyprus_mode = 1;\nQ.cyprus_day = 15;\nQ.cyprus_month = 7;\nQ.cyprus_year = 1974;\nQ.cyprus_date_display = 'July 15, 1974';\nAnatolianRules.cyprusAtilla1.initializeSupport(Q);\nAnatolianRules.cyprusCampaign.initialize(Q);\nupdateCyprusWidth();"
@@ -27170,7 +27169,7 @@
       "isHand": true,
       "onArrival": [
         {
-          "$code": "if (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.ui.setBg(Q.cyprus_mode != 0 ? 'img/harekat2.jpg' : 'img/map_4.jpg');"
+          "$code": "if (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
         }
       ],
       "maxCards": 4,
@@ -38787,7 +38786,7 @@
       "id": "root.start_main",
       "onArrival": [
         {
-          "$code": "if (Q.cyprus_mode == 1) {\n    this.ui.audio('shuffle music/gercekkibris1.m4a music/12.mp3');\n} else {\n    this.ui.audio('shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n}"
+          "$code": "if (Q.cyprus_mode == 1) {\n    this.ui.audio('clear shuffle music/gercekkibris1.m4a music/cyprus.m4a music/cyprus1.m4a');\n} else {\n    this.ui.audio('shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n}"
         }
       ],
       "newPage": true,

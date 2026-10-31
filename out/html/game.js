@@ -12,6 +12,7 @@
   var main = function(dendryUI) {
     ui = dendryUI;
     game = ui.game;
+    AnatolianCyprusPresentation.install(ui);
     AnatolianSaveStorage.install(ui);
     AnatolianCardActions.install(ui.dendryEngine);
     AnatolianCoalitions.install(ui.dendryEngine);
@@ -155,10 +156,7 @@
     // Replace only the basemap, retaining selection, keyboard controls and support actions.
     var image = panel.querySelector('#basemap image');
     var mapSource = rules.mapImage(Q);
-    if (image.getAttribute('href') !== mapSource) {
-      image.setAttribute('href',mapSource);
-      image.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href',mapSource);
-    }
+    AnatolianCyprusPresentation.updateMap(image,mapSource);
     // Dendry appends choices after rendering text. Move controls below those choices.
     content.appendChild(panel);
     window.setupCyprusSideClicks();
@@ -236,8 +234,9 @@
         if(Array.from(svg.querySelectorAll('.sba')).some(function(p){return p.isPointInFill(point);}))return;
         var x=Math.floor(point.x),y=Math.floor(point.y);
         if(x<0||y<0||x>=4250||y>=2573)return;
+        function readPixel(px,py){var canvas=record.context.canvas;return record.context.getImageData(Math.min(canvas.width-1,Math.max(0,Math.floor(px*canvas.width/4250))),Math.min(canvas.height-1,Math.max(0,Math.floor(py*canvas.height/2573))),1,1).data;}
         function sideAt(px,py){
-          var c=record.context.getImageData(px,py,1,1).data;
+          var c=readPixel(px,py);
           if(c[0]>c[2]*1.15&&c[0]>c[1]*1.15)return 'turkish';
           if(c[2]>c[0]*1.05&&c[2]>35)return 'greek';
           return '';
@@ -246,7 +245,7 @@
         if(!side){
           // White borders and city markers belong to the nearest colored land.
           // Black sea pixels and British bases never select a side.
-          var c=record.context.getImageData(x,y,1,1).data;
+          var c=readPixel(x,y);
           if(Math.max(c[0],c[1],c[2])<35)return;
           for(var radius=2;radius<=40&&!side;radius+=2){
             for(var angle=0;angle<8&&!side;angle++){
@@ -1066,6 +1065,7 @@ function getPartyIdeology(party, Q) {
   };
 
   window.onDisplayContent = function() {
+      if(typeof AnatolianCyprusPresentation!=="undefined")AnatolianCyprusPresentation.sync();
       // Title screens have no initialized simulation or portraits to display.
       if (window.dendryUI.dendryEngine.state.qualities.started) {
           var Q = window.dendryUI.dendryEngine.state.qualities;

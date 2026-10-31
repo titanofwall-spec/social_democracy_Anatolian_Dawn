@@ -9,7 +9,7 @@ if (Q.advisor_action_timer <= 0) {
 } else {
     Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';
 }
-this.ui.setBg(Q.cyprus_mode != 0 ? 'img/harekat2.jpg' : 'img/map_4.jpg');
+this.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);
 !}
 max-cards: 4
 
@@ -37,7 +37,7 @@ if (Q.advisor_action_timer <= 0) {
 } else {
     Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';
 }
-this.ui.setBg(Q.cyprus_mode != 0 ? 'img/harekat2.jpg' : 'img/map_4.jpg');
+this.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);
 !}
 max-cards: 4
 

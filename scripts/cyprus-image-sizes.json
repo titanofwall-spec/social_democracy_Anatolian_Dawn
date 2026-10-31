@@ -1,0 +1,219 @@
+{
+  "resized": [
+    {
+      "file": "out/html/cyprusgame/frontlines/atilla2-day1.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7011838,
+      "bytesAfter": 2151758
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/atilla2-day2.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 6973500,
+      "bytesAfter": 2160132
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/atilla2-day3.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 6940111,
+      "bytesAfter": 2154004
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/atilla2-day4.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 6935196,
+      "bytesAfter": 2154846
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/august-1.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7029151,
+      "bytesAfter": 2144287
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-20.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7029929,
+      "bytesAfter": 2139358
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-21.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7029840,
+      "bytesAfter": 2139903
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-22.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7028220,
+      "bytesAfter": 2138141
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-23.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7029536,
+      "bytesAfter": 2139831
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-24.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7031134,
+      "bytesAfter": 2142191
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-25.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7031605,
+      "bytesAfter": 2144533
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-26.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7030949,
+      "bytesAfter": 2144480
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-27-28.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7029696,
+      "bytesAfter": 2144281
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/july-30-31.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7029441,
+      "bytesAfter": 2144249
+    },
+    {
+      "file": "out/html/cyprusgame/frontlines/pre-operation.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 7069741,
+      "bytesAfter": 2191364
+    },
+    {
+      "file": "out/html/cyprusgame/cyprus_map.png",
+      "before": [
+        4250,
+        2573
+      ],
+      "after": [
+        2125,
+        1287
+      ],
+      "bytesBefore": 491250,
+      "bytesAfter": 892311
+    }
+  ],
+  "unchangedEndings": {
+    "out/html/cyprusgame/endings/denktas.png": "4045a22557973fd63db27fc9d31fa7e7a2038ef72b9db4196766a07809bb1534",
+    "out/html/cyprusgame/endings/gunes.png": "3b84437faa6f587b2f944dd610e4f8c34a01423ae99ff188e9f96ef56213bb45",
+    "out/html/cyprusgame/endings/historical.png": "cca3cb55bd702bbb0d46d8094bb9ef7259df094b4892a0d2ab5be3790ef9cd6d",
+    "out/html/cyprusgame/endings/unitary.png": "55435840d66b93d328691da8a83bf17a9f705136ab6f9bc8ce88ce1152f65192",
+    "out/html/cyprusgame/frontlines/division-enlarged.png": "21419317ce2c9a0640ad5b8e2fc312a05367dd74c3994e2a89fa5cf52f0cce04"
+  }
+}
