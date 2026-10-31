@@ -1904,3 +1904,91 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   #cyprus-map-day-action {padding: 8px 10px; font-size: .9em; white-space: normal;}
 }
 
+/* ANATOLIAN DAWN — TITLE EYES + VECTOR RIBBONS v2
+   Follow the existing game panel variables and Minion Pro typography.
+   SVG paths remove the mismatched nested clip-path edge and render crisp slopes. */
+#mid_panel > header.ad-command-header .ad-title-ribbon {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  padding: 0 22px 0 16px;
+  margin-bottom: -2px;
+  background: transparent;
+  clip-path: none;
+  isolation: isolate;
+  overflow: visible;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon::before {
+  content: none;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon .ad-ribbon-vector {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+#mid_panel > header.ad-command-header .ad-title-ribbon .ad-ribbon-vector path {
+  fill: var(--content-bg-color);
+  stroke: #888;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+#mid_panel > header.ad-command-header .ad-credit-ribbon {
+  min-height: 41px; /* slightly thicker than the original 32px */
+  z-index: 4;
+}
+#mid_panel > header.ad-command-header .ad-game-ribbon {
+  min-height: 45px; /* slightly thinner than the original 51px */
+  z-index: 3;
+}
+#mid_panel > header.ad-command-header .ad-game-ribbon .ad-ribbon-vector path {
+  fill: #242424; /* same graphite used by the game's existing dark-mode panel */
+}
+#mid_panel > header.ad-command-header #game-title {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  font-size: 1.6em;
+  font-weight: 600;
+  text-shadow: 0 0 2px rgba(255,255,255,.25), 0 0 7px rgba(255,255,255,.13);
+}
+#mid_panel > header.ad-command-header #game-author {
+  position: relative;
+  z-index: 1;
+  font-family: inherit;
+}
+#mid_panel > header.ad-command-header .ad-title-art {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: clamp(78px, 10vw, 112px);
+  margin: -1px 0 -4px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border: 4px double #888; /* the same native panel border */
+  background: #000;
+}
+#mid_panel > header.ad-command-header .ad-title-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 49%;
+}
+@media (max-width: 560px) {
+  #mid_panel > header.ad-command-header .ad-title-ribbon {
+    padding-left: 12px;
+    padding-right: 17px;
+  }
+  #mid_panel > header.ad-command-header .ad-credit-ribbon { min-height: 38px; }
+  #mid_panel > header.ad-command-header .ad-game-ribbon { min-height: 42px; }
+  #mid_panel > header.ad-command-header #game-title { font-size: 1.23em; }
+  #mid_panel > header.ad-command-header .ad-title-art { height: 80px; }
+}
