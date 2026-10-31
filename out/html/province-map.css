@@ -14,3 +14,7 @@
 .province-map-open-button{background:var(--content-bg-color);border:4px double var(--border-color);color:var(--text-color);font-family:inherit}.province-map-window button,.province-detail button{font-family:inherit}.province-map-tabs button:hover:not(:disabled){background:var(--tab-hover-color)}.province-map-tabs button.active{font-weight:bold}.province-map-window th,.province-detail th{font-weight:bold}
 
 .election-results-map{width:100%;margin:16px 0}.election-results-map .province-map-canvas svg{margin:0;width:100%;height:auto}.election-results-map path{vector-effect:non-scaling-stroke}
+
+/* Disabled until the player enables it in Options; applies to every existing and future map. */
+.turkey-physical-overlay{display:none}
+html.physical-map-enabled .turkey-physical-overlay{display:inline}

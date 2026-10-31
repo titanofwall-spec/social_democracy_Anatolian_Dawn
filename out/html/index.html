@@ -28,14 +28,14 @@
     <script src="national-coalition.js?v=e236094d46e3"></script>
     <script src="data/senate-data.js?v=df0341ce1ae9"></script>
     <script src="senate.js?v=6eed2d966ef7"></script>
-    <script src="province-map.js?v=2bf6cb08ffad"></script>
-    <link rel="stylesheet" href="province-map.css?v=182b04a97d82">
+    <script src="province-map.js?v=61fc584f9dbb"></script>
+    <link rel="stylesheet" href="province-map.css?v=cfd136f4634a">
     <script src="cyprus-atilla1.js?v=ba4d3430af99"></script>
     <script src="cyprus-campaign.js?v=0c6e08f34f2f"></script>
     <script src="cyprus-roadmap.js?v=e86a7308836d"></script>
     <script src="core.js?v=d2bc6e98aa4c"></script>
     <script src="save-storage.js?v=5198b85ae178"></script>
-    <script src="game.js?v=471c8b6bbd09"></script>
+    <script src="game.js?v=3a9184e2403e"></script>
   </head>
   <body>
     <button id="music-previous-btn" class="music-track-button" onclick="window.switchMusicTrack(-1)" title="Previous song" aria-label="Previous song">&lt;</button>
@@ -154,6 +154,14 @@
                 <tr>
                     <td> <hr> </td>
                 </tr>
+                <tr>
+                    <td>Physical map overlay:</td>
+                    <td><label for="physical_map_yes">On</label></td>
+                    <td><input type="radio" id="physical_map_yes" name="physical_map" value="1" onclick="window.setPhysicalMapOverlay(true);"></td>
+                    <td><label for="physical_map_no">Off</label></td>
+                    <td><input type="radio" id="physical_map_no" name="physical_map" value="0" checked onclick="window.setPhysicalMapOverlay(false);"></td>
+                </tr>
+                <tr><td><hr></td></tr>
                 <tr>
                     <td>
                         Color scheme:

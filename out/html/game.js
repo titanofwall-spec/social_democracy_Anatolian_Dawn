@@ -620,6 +620,9 @@ window.updateTitleScreenImages = function() {
 
   // populates the checkboxes in the options view
   window.populateOptions = function() {
+    var physicalMap = document.documentElement.classList.contains('physical-map-enabled');
+    document.getElementById('physical_map_yes').checked = physicalMap;
+    document.getElementById('physical_map_no').checked = !physicalMap;
     var disable_bg = window.dendryUI.disable_bg;
     var animate = window.dendryUI.animate;
     var disable_audio = window.dendryUI.disable_audio;

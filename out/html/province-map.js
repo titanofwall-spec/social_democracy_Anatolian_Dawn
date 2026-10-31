@@ -3,6 +3,10 @@
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num=v=>Math.round(Number(v)||0).toLocaleString('en-US'),pct=v=>(100*(Number(v)||0)).toFixed(2)+'%';
 const names={rural:'Rural',workers:'Workers',capitalists:'Capitalists',petty_bourgeoisie:'Petty bourgeoisie',state_employees:'State employees',alevis:'Alevis',kurds:'Kurdish population'};
+// Display preference is independent of campaign saves; an unset preference defaults off.
+const physicalMapSetting='anatolian-dawn-physical-map-overlay';
+root.setPhysicalMapOverlay=function(enabled,persist=true){enabled=!!enabled;document.documentElement.classList.toggle('physical-map-enabled',enabled);const yes=document.getElementById('physical_map_yes'),no=document.getElementById('physical_map_no');if(yes)yes.checked=enabled;if(no)no.checked=!enabled;if(persist)try{root.localStorage.setItem(physicalMapSetting,enabled?'on':'off');}catch(error){/* The session toggle still works if storage is unavailable. */}};
+let initialPhysicalMap=false;try{initialPhysicalMap=root.localStorage.getItem(physicalMapSetting)==='on';}catch(error){}root.setPhysicalMapOverlay(initialPhysicalMap,false);
 let overlay=null,detail=null,priorFocus=null,current=null,owner=null;
 function closeDetail(){if(detail){detail.remove();detail=null;if(overlay)overlay.querySelector('.province-current')?.focus();}}
 function close(){closeDetail();if(overlay){overlay.remove();overlay=null;document.body.classList.remove('province-map-open');priorFocus?.focus();}}
