@@ -2184,3 +2184,14 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 }
 
 /* ANATOLIAN DAWN — TITLE RIBBON RAISE IMAGE v6 */
+
+/* ANATOLIAN DAWN — PLAIN TITLE RIBBON v9 */
+/* No photographic image or dark overlay: use the existing game panel theme.
+   Only the background and text color are changed; all other title styling stays. */
+#mid_panel > header.ad-command-header .ad-game-ribbon {
+  background-image: none;
+  background-color: var(--content-bg-color);
+}
+#mid_panel > header.ad-command-header #game-title {
+  color: #000;
+}
