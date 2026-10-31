@@ -16,7 +16,7 @@ Whether or not we are in an electoral campaign, the party is always trying to br
 - @state_employees: Citizens employed by the state and the bureaucracy.
 - @rural: Rural workers and small farmers, who have felt neglected by us in the past.
 - @alevis: The Shiite minority that is generally grateful for saving them from the grasp of the Sunni Ottomans.
-- @kurds: Kurds, who lack a mainstream political affiliation
+- @kurds: Kurds, who lack a mainstream political affiliation.
 - @capitalists: Perhaps we can try to maintain our dissolving ties with the industrialists and the landlords...?
 - @root: We either don't want to or cannot campaign right now.
 - @easy_discard
@@ -59,7 +59,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources
 on-arrival: alevis_chp += 7.5; resources -= 1
 
-We have increased our campaigning among the Alevi minority
+We have increased our campaigning among the Alevi minority.
 
 @kurds
 subtitle: Resources will decrease by 1. Kurdish support will increase.
@@ -75,4 +75,4 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: left_kemalists_dissent += 5; kemalist_marxists_dissent += 10; capitalists_chp += 1.5; resources -= 1
 
-Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Left-Wing Kemalist disapprove of this action greatly.
+Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Left-Wing Kemalist factions strongly disapprove of this action.
