@@ -45,7 +45,7 @@ We focus our party efforts on raising awareness against left wing and right wing
 @far_right
 on-arrival: enemies = "far right"; left_kemalists_dissent -= 5; kemalist_marxists_dissent -= 5; orthodox_kemalists_dissent -= 5; MSP_relation -= 10; MHP_relation -= 10; AP_relation -= 5
 
-Attacking the reactionary far right is popular among the entire party. However AP is irritated by our unwillingness to raise the same level of opposition against the far left.
+Attacking the reactionary far right is popular among the entire party. However, AP is irritated by our unwillingness to raise the same level of opposition against the far left.
 
 [? if year >= 1977 : Many of our delegates are also confused as to why we are focusing our efforts on the smaller parties splitting the right vote and not the larger AP. ?]
 

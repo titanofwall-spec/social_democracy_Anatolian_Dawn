@@ -9,9 +9,9 @@ go-to: fp_menu
 
 = Foreign Policy
 
-Turkey is at the intersection of the global blocs and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East.
+Turkey is at the intersection of the global blocs, and even though we are a member of NATO, we have to manage our relations with all our neighbors. There are four main partners we have to consider: The United States, Western Europe, The USSR and the Middle East.
 
-Through our foreign policy initiatives we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '**Peace at home, peace in the world.**'. Even though since the 1950s the nation has moved towards the Western Alliance and NATO, decent and peaceful relations with all our neighbors are a key tenet of our foreign policy.
+Through our foreign policy initiatives, we can secure trade agreements, loans and decide our level of integration in the Western alliance. CHP's foreign policy up until now has been one of armed non-interventionism, often summed up in Atatürk's saying '**Peace at home, peace in the world.**'. Even though since the 1950s the nation has moved towards the Western Alliance and NATO, decent and peaceful relations with all our neighbors are a key tenet of our foreign policy.
 
 @fp_menu
 
@@ -33,7 +33,7 @@ Turkey is a crucial member of the Western Alliance and of NATO. Our Western alli
 - @negotiategunes: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
 - @negotiatedenktas: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
 - @aet: Apply to join the European Economic Community, EEC!
-- @americanbase: As a reaction to the arms embargo, close the American bases in our soil!
+- @americanbase: As a reaction to the arms embargo, close the American bases on our soil!
 - @fp_menu: Return to the foreign policy menu.
 
 @improve_us
@@ -138,7 +138,7 @@ Turkey largely depends on foreign energy to power its growing industry and citie
 
 @middleeast
 
-The Middle East is currently roughly divided into two blocs, the Conservative Monarchies and the Socialist Pan-Arabists. However thankfully we do not have to pick a side and we should work towards fostering ties with both factions. The Gulf Monarchies have stronger relations with the US while conversely the Pan-Arabists are closer to the USSR, a factor we should keep in mind when improving relations. Due to the Iranian Monarchy's hostile attitude towards us, improving relations with them is not an option.
+The Middle East is currently roughly divided into two blocs, the Conservative Monarchies and the Socialist Pan-Arabists. However, thankfully, we do not have to pick a side and we should work towards fostering ties with both factions. The Gulf Monarchies have stronger relations with the US while conversely the Pan-Arabists are closer to the USSR, a factor we should keep in mind when improving relations. Due to the Iranian Monarchy's hostile attitude towards us, improving relations with them is not an option.
 
 - @arabrelation: Improve relations with the Arabian States.
 - @trade: Foster trade with the Arabian States.
