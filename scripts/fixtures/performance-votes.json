@@ -21223,97 +21223,97 @@
     {
       "votes": {
         "chp": 3830812,
-        "TIP": 418023,
-        "AP": 3923157,
-        "CGP": 729453,
-        "DP": 1773124,
-        "MSP": 1066909,
-        "MHP": 494370,
-        "TBP": 94816,
+        "TIP": 396470,
+        "AP": 4207148,
+        "CGP": 685924,
+        "DP": 1667317,
+        "MSP": 1003244,
+        "MHP": 464870,
+        "TBP": 89158,
         "MP": 0,
-        "IND": 239298
+        "IND": 225019
       },
       "seats": {
-        "chp": 161,
+        "chp": 169,
         "TIP": 0,
-        "AP": 174,
-        "CGP": 17,
-        "DP": 62,
-        "MSP": 31,
-        "MHP": 4,
+        "AP": 186,
+        "CGP": 13,
+        "DP": 53,
+        "MSP": 25,
+        "MHP": 3,
         "TBP": 0,
         "MP": 0,
         "IND": 1
       },
       "classShares": {
-        "workers_chp": 39.88460459246243,
-        "workers_TIP": 5.117148659334859,
-        "workers_AP": 31.63220064848292,
-        "workers_CGP": 3.2353678824710075,
-        "workers_DP": 8.15056248395902,
-        "workers_MSP": 5.479577736002398,
-        "workers_MHP": 4.270225334893778,
-        "workers_TBP": 0.013040574818697854,
+        "workers_chp": 39.29446537271711,
+        "workers_TIP": 4.811795841496005,
+        "workers_AP": 33.92200199644568,
+        "workers_CGP": 3.0423055414237843,
+        "workers_DP": 7.66419841929414,
+        "workers_MSP": 5.152597885768218,
+        "workers_MHP": 4.0154105101499225,
+        "workers_TBP": 0.012262411718068803,
         "workers_MP": 0,
-        "workers_IND": 2.2172720875749006,
-        "capitalists_chp": 18.38066575799246,
-        "capitalists_TIP": 0.3093284218172907,
-        "capitalists_AP": 47.098017871131844,
-        "capitalists_CGP": 5.535898851681865,
-        "capitalists_DP": 20.75772903897021,
-        "capitalists_MSP": 2.667442048982125,
-        "capitalists_MHP": 2.649117929807896,
-        "capitalists_TBP": 0.015017504639001845,
+        "workers_IND": 2.084962020987068,
+        "capitalists_chp": 17.03129179776776,
+        "capitalists_TIP": 0.29087003580435977,
+        "capitalists_AP": 50.50736349352898,
+        "capitalists_CGP": 5.205558182264677,
+        "capitalists_DP": 19.519064408341947,
+        "capitalists_MSP": 2.5082692360929233,
+        "capitalists_MHP": 2.4910385620766853,
+        "capitalists_TBP": 0.014121373284666075,
         "capitalists_MP": 0,
-        "capitalists_IND": 2.5867825749772924,
-        "petty_bourgeoisie_chp": 28.081208339111342,
-        "petty_bourgeoisie_TIP": 1.2626613317809061,
-        "petty_bourgeoisie_AP": 33.47211366634348,
-        "petty_bourgeoisie_CGP": 4.370937927562731,
-        "petty_bourgeoisie_DP": 18.018214703326915,
-        "petty_bourgeoisie_MSP": 9.955704668155214,
-        "petty_bourgeoisie_MHP": 3.6126855978095187,
-        "petty_bourgeoisie_TBP": 0.007201115635295448,
+        "capitalists_IND": 2.4324229108380004,
+        "petty_bourgeoisie_chp": 27.952426431770007,
+        "petty_bourgeoisie_TIP": 1.1873152315787732,
+        "petty_bourgeoisie_AP": 35.895103196666675,
+        "petty_bourgeoisie_CGP": 4.110113335268499,
+        "petty_bourgeoisie_DP": 16.94302361579626,
+        "petty_bourgeoisie_MSP": 9.3616233395921,
+        "petty_bourgeoisie_MHP": 3.3971077827611738,
+        "petty_bourgeoisie_TBP": 0.00677140739400572,
         "petty_bourgeoisie_MP": 0,
-        "petty_bourgeoisie_IND": 1.219272650274586,
-        "state_employees_chp": 40.885514636359396,
-        "state_employees_TIP": 4.3777056088483,
-        "state_employees_AP": 26.119332828395997,
-        "state_employees_CGP": 12.081346951973652,
-        "state_employees_DP": 6.736501084846309,
-        "state_employees_MSP": 2.762138336709567,
-        "state_employees_MHP": 3.6762608651300175,
-        "state_employees_TBP": 0.019073614716895008,
+        "petty_bourgeoisie_IND": 1.1465156591725176,
+        "state_employees_chp": 40.96368215947864,
+        "state_employees_TIP": 4.116477172404064,
+        "state_employees_AP": 28.010067026214696,
+        "state_employees_CGP": 11.360423332069773,
+        "state_employees_DP": 6.334517533932689,
+        "state_employees_MSP": 2.597314763949692,
+        "state_employees_MHP": 3.456889357868774,
+        "state_employees_TBP": 0.01793544532063333,
         "state_employees_MP": 0,
-        "state_employees_IND": 3.3421260730198425,
-        "rural_chp": 23.31928288189149,
-        "rural_TIP": 0.770088476302547,
-        "rural_AP": 35.7256146398854,
-        "rural_CGP": 5.3626877139084215,
-        "rural_DP": 18.117839290326902,
-        "rural_MSP": 10.366879697037223,
-        "rural_MHP": 4.131482804624693,
-        "rural_TBP": 0.012469949930438045,
+        "state_employees_IND": 3.142693208761027,
+        "rural_chp": 23.177057706180737,
+        "rural_TIP": 0.7241354071464955,
+        "rural_AP": 38.31173128312094,
+        "rural_CGP": 5.042682978137352,
+        "rural_DP": 17.036703359214073,
+        "rural_MSP": 9.748262545488972,
+        "rural_MHP": 3.884947087132192,
+        "rural_TBP": 0.011725837417188613,
         "rural_MP": 0,
-        "rural_IND": 2.193654546092881,
-        "alevis_chp": 55.57451968627023,
-        "alevis_TIP": 9.690605089969697,
-        "alevis_AP": 9.43943350363706,
-        "alevis_CGP": 3.196220870094193,
-        "alevis_DP": 5.081350781181545,
-        "alevis_MSP": 1.7267228358371238,
-        "alevis_MHP": 3.4277061166289884,
-        "alevis_TBP": 10.593453103632621,
+        "rural_IND": 2.062753796162053,
+        "alevis_chp": 56.978918374753505,
+        "alevis_TIP": 9.112342903783697,
+        "alevis_AP": 10.122738083069468,
+        "alevis_CGP": 3.0054945273411438,
+        "alevis_DP": 4.7781341105790744,
+        "alevis_MSP": 1.6236850468943083,
+        "alevis_MHP": 3.22316648115704,
+        "alevis_TBP": 9.961315760908168,
         "alevis_MP": 0,
-        "alevis_IND": 1.2699880127485412,
-        "kurds_chp": 25.50656087750902,
-        "kurds_TIP": 9.021582441779245,
-        "kurds_AP": 21.80023069984421,
-        "kurds_CGP": 14.617081332023535,
-        "kurds_DP": 13.578839396185508,
-        "kurds_MSP": 12.423337941456463,
-        "kurds_MHP": 2.9057475982946737,
-        "kurds_TBP": 0.1466197129073684,
+        "alevis_IND": 1.1942047115136043,
+        "kurds_chp": 26.789962627541875,
+        "kurds_TIP": 8.76609206181757,
+        "kurds_AP": 23.37831242097152,
+        "kurds_CGP": 13.744844219042493,
+        "kurds_DP": 12.768556727331903,
+        "kurds_MSP": 11.682006879974043,
+        "kurds_MHP": 2.7323545084829965,
+        "kurds_TBP": 0.13787055483760702,
         "kurds_MP": 0,
         "kurds_IND": 0
       },
@@ -21323,1994 +21323,16 @@
         {
           "id": "adana",
           "votes": {
-            "chp": 131808,
-            "TIP": 9771,
-            "AP": 92355,
-            "CGP": 16203,
-            "DP": 57456,
-            "MSP": 22242,
-            "MHP": 35196,
-            "TBP": 2709,
-            "MP": 0,
-            "IND": 9032
-          },
-          "seats": {
-            "chp": 5,
-            "TIP": 0,
-            "AP": 4,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 1,
-            "MHP": 1,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "adiyaman",
-          "votes": {
-            "chp": 30462,
-            "TIP": 9057,
-            "AP": 29825,
-            "CGP": 11076,
-            "DP": 4614,
-            "MSP": 15597,
-            "MHP": 1827,
-            "TBP": 138,
-            "MP": 0,
-            "IND": 90
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "afyon",
-          "votes": {
-            "chp": 32777,
-            "TIP": 3266,
-            "AP": 60632,
-            "CGP": 12735,
-            "DP": 26888,
-            "MSP": 18708,
-            "MHP": 9473,
-            "TBP": 267,
-            "MP": 0,
-            "IND": 2255
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "agri",
-          "votes": {
-            "chp": 17657,
-            "TIP": 5210,
-            "AP": 15903,
-            "CGP": 20408,
-            "DP": 10174,
-            "MSP": 10340,
-            "MHP": 7111,
-            "TBP": 321,
-            "MP": 0,
-            "IND": 1606
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 1,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "CGP"
-        },
-        {
-          "id": "amasya",
-          "votes": {
-            "chp": 28493,
-            "TIP": 3888,
-            "AP": 29122,
-            "CGP": 15150,
-            "DP": 7333,
-            "MSP": 13592,
-            "MHP": 5784,
-            "TBP": 2534,
-            "MP": 0,
-            "IND": 2480
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 1,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "ankara",
-          "votes": {
-            "chp": 283846,
-            "TIP": 24673,
-            "AP": 229887,
-            "CGP": 26025,
-            "DP": 88623,
-            "MSP": 52112,
-            "MHP": 43434,
-            "TBP": 3408,
-            "MP": 0,
-            "IND": 20245
-          },
-          "seats": {
-            "chp": 11,
-            "TIP": 0,
-            "AP": 9,
-            "CGP": 1,
-            "DP": 3,
-            "MSP": 2,
-            "MHP": 1,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "antalya",
-          "votes": {
-            "chp": 54262,
-            "TIP": 3287,
-            "AP": 79865,
-            "CGP": 7499,
-            "DP": 39778,
-            "MSP": 7822,
-            "MHP": 9100,
-            "TBP": 448,
-            "MP": 0,
-            "IND": 1716
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 4,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "artvin",
-          "votes": {
-            "chp": 28407,
-            "TIP": 1224,
-            "AP": 27360,
-            "CGP": 5530,
-            "DP": 5762,
-            "MSP": 4304,
-            "MHP": 77,
-            "TBP": 28,
-            "MP": 0,
-            "IND": 764
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "aydin",
-          "votes": {
-            "chp": 56680,
-            "TIP": 3923,
-            "AP": 72275,
-            "CGP": 2395,
-            "DP": 68951,
-            "MSP": 4269,
-            "MHP": 3719,
-            "TBP": 183,
-            "MP": 0,
-            "IND": 966
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "balikesir",
-          "votes": {
-            "chp": 85522,
-            "TIP": 6429,
-            "AP": 143444,
-            "CGP": 9524,
-            "DP": 20657,
-            "MSP": 17882,
-            "MHP": 5894,
-            "TBP": 899,
-            "MP": 0,
-            "IND": 3154
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 6,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "bilecik",
-          "votes": {
-            "chp": 14727,
-            "TIP": 736,
-            "AP": 23398,
-            "CGP": 1788,
-            "DP": 2314,
-            "MSP": 5227,
-            "MHP": 1183,
-            "TBP": 32,
-            "MP": 0,
-            "IND": 322
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "bingol",
-          "votes": {
-            "chp": 15319,
-            "TIP": 3407,
-            "AP": 14803,
-            "CGP": 378,
-            "DP": 8664,
-            "MSP": 12620,
-            "MHP": 429,
-            "TBP": 1900,
-            "MP": 0,
-            "IND": 836
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "bitlis",
-          "votes": {
-            "chp": 12329,
-            "TIP": 2934,
-            "AP": 30185,
-            "CGP": 1978,
-            "DP": 982,
-            "MSP": 5926,
-            "MHP": 253,
-            "TBP": 507,
-            "MP": 0,
-            "IND": 1890
-          },
-          "seats": {
-            "chp": 0,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "bolu",
-          "votes": {
-            "chp": 25812,
-            "TIP": 2240,
-            "AP": 63431,
-            "CGP": 29622,
-            "DP": 8510,
-            "MSP": 18197,
-            "MHP": 2770,
-            "TBP": 54,
-            "MP": 0,
-            "IND": 1600
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 1,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "burdur",
-          "votes": {
-            "chp": 19670,
-            "TIP": 1124,
-            "AP": 18373,
-            "CGP": 9502,
-            "DP": 11800,
-            "MSP": 4585,
-            "MHP": 5626,
-            "TBP": 5,
-            "MP": 0,
-            "IND": 54
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "bursa",
-          "votes": {
-            "chp": 91914,
-            "TIP": 7676,
-            "AP": 182911,
-            "CGP": 8365,
-            "DP": 31934,
-            "MSP": 23141,
-            "MHP": 5680,
-            "TBP": 159,
-            "MP": 0,
-            "IND": 1601
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 7,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "canakkale",
-          "votes": {
-            "chp": 46020,
-            "TIP": 3190,
-            "AP": 66811,
-            "CGP": 2870,
-            "DP": 16797,
-            "MSP": 5688,
-            "MHP": 2600,
-            "TBP": 180,
-            "MP": 0,
-            "IND": 1927
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "cankiri",
-          "votes": {
-            "chp": 13291,
-            "TIP": 1375,
-            "AP": 31020,
-            "CGP": 2509,
-            "DP": 15810,
-            "MSP": 8897,
-            "MHP": 6567,
-            "TBP": 471,
-            "MP": 0,
-            "IND": 1574
-          },
-          "seats": {
-            "chp": 0,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "corum",
-          "votes": {
-            "chp": 51046,
-            "TIP": 4905,
-            "AP": 36074,
-            "CGP": 8111,
-            "DP": 38790,
-            "MSP": 27964,
-            "MHP": 6000,
-            "TBP": 3104,
-            "MP": 0,
-            "IND": 2676
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "denizli",
-          "votes": {
-            "chp": 53641,
-            "TIP": 3825,
-            "AP": 62079,
-            "CGP": 5175,
-            "DP": 47983,
-            "MSP": 6573,
-            "MHP": 3158,
-            "TBP": 40,
-            "MP": 0,
-            "IND": 294
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "diyarbakir",
-          "votes": {
-            "chp": 49586,
-            "TIP": 10937,
-            "AP": 37435,
-            "CGP": 10573,
-            "DP": 25193,
-            "MSP": 22740,
-            "MHP": 6220,
-            "TBP": 509,
-            "MP": 0,
-            "IND": 924
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "edirne",
-          "votes": {
-            "chp": 44233,
-            "TIP": 4953,
-            "AP": 50728,
-            "CGP": 3835,
-            "DP": 8977,
-            "MSP": 1861,
-            "MHP": 1900,
-            "TBP": 124,
-            "MP": 0,
-            "IND": 1022
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "elazig",
-          "votes": {
-            "chp": 34440,
-            "TIP": 5006,
-            "AP": 33099,
-            "CGP": 3106,
-            "DP": 11387,
-            "MSP": 24509,
-            "MHP": 6037,
-            "TBP": 650,
-            "MP": 0,
-            "IND": 487
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "erzincan",
-          "votes": {
-            "chp": 35132,
-            "TIP": 2454,
-            "AP": 24689,
-            "CGP": 2699,
-            "DP": 3084,
-            "MSP": 10550,
-            "MHP": 4888,
-            "TBP": 1631,
-            "MP": 0,
-            "IND": 500
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "erzurum",
-          "votes": {
-            "chp": 46830,
-            "TIP": 6267,
-            "AP": 55153,
-            "CGP": 8720,
-            "DP": 29395,
-            "MSP": 48447,
-            "MHP": 9113,
-            "TBP": 4333,
-            "MP": 0,
-            "IND": 10662
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 3,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "eskisehir",
-          "votes": {
-            "chp": 49320,
-            "TIP": 5047,
-            "AP": 71468,
-            "CGP": 7733,
-            "DP": 16301,
-            "MSP": 11089,
-            "MHP": 7621,
-            "TBP": 422,
-            "MP": 0,
-            "IND": 2747
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 4,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "gaziantep",
-          "votes": {
-            "chp": 65823,
-            "TIP": 5756,
-            "AP": 37196,
-            "CGP": 23876,
-            "DP": 37157,
-            "MSP": 16561,
-            "MHP": 10638,
-            "TBP": 846,
-            "MP": 0,
-            "IND": 2633
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 1,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "giresun",
-          "votes": {
-            "chp": 39533,
-            "TIP": 2015,
-            "AP": 38608,
-            "CGP": 4294,
-            "DP": 32764,
-            "MSP": 8414,
-            "MHP": 12223,
-            "TBP": 70,
-            "MP": 0,
-            "IND": 1451
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "gumushane",
-          "votes": {
-            "chp": 18182,
-            "TIP": 966,
-            "AP": 34285,
-            "CGP": 1687,
-            "DP": 2541,
-            "MSP": 15907,
-            "MHP": 4283,
-            "TBP": 773,
-            "MP": 0,
-            "IND": 8588
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "hakkari",
-          "votes": {
-            "chp": 10889,
-            "TIP": 2014,
-            "AP": 11019,
-            "CGP": 1337,
-            "DP": 9848,
-            "MSP": 490,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "seats": {
-            "chp": 0,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "hatay",
-          "votes": {
-            "chp": 65255,
-            "TIP": 8087,
-            "AP": 47978,
-            "CGP": 13929,
-            "DP": 35130,
-            "MSP": 8881,
-            "MHP": 11656,
-            "TBP": 7131,
-            "MP": 0,
-            "IND": 3574
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "icel",
-          "votes": {
-            "chp": 75382,
-            "TIP": 4088,
-            "AP": 67634,
-            "CGP": 4553,
-            "DP": 41244,
-            "MSP": 4353,
-            "MHP": 17886,
-            "TBP": 1179,
-            "MP": 0,
-            "IND": 6347
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "isparta",
-          "votes": {
-            "chp": 16228,
-            "TIP": 1409,
-            "AP": 60194,
-            "CGP": 2739,
-            "DP": 12791,
-            "MSP": 4703,
-            "MHP": 1705,
-            "TBP": 169,
-            "MP": 0,
-            "IND": 338
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "istanbul",
-          "votes": {
-            "chp": 519286,
-            "TIP": 70209,
-            "AP": 378425,
-            "CGP": 38819,
-            "DP": 108048,
-            "MSP": 75710,
-            "MHP": 27182,
-            "TBP": 3150,
-            "MP": 0,
-            "IND": 20116
-          },
-          "seats": {
-            "chp": 19,
-            "TIP": 0,
-            "AP": 14,
-            "CGP": 1,
-            "DP": 3,
-            "MSP": 2,
-            "MHP": 1,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "izmir",
-          "votes": {
-            "chp": 228415,
-            "TIP": 19681,
-            "AP": 248640,
-            "CGP": 16004,
-            "DP": 57243,
-            "MSP": 18046,
-            "MHP": 7948,
-            "TBP": 888,
-            "MP": 0,
-            "IND": 4551
-          },
-          "seats": {
-            "chp": 8,
-            "TIP": 0,
-            "AP": 8,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "kahramanmaras",
-          "votes": {
-            "chp": 57078,
-            "TIP": 5263,
-            "AP": 36280,
-            "CGP": 4215,
-            "DP": 24923,
-            "MSP": 36725,
-            "MHP": 12409,
-            "TBP": 3565,
-            "MP": 0,
-            "IND": 2281
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 2,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "kars",
-          "votes": {
-            "chp": 76525,
-            "TIP": 15872,
-            "AP": 31183,
-            "CGP": 11545,
-            "DP": 31497,
-            "MSP": 10818,
-            "MHP": 6177,
-            "TBP": 2711,
-            "MP": 0,
-            "IND": 8257
-          },
-          "seats": {
-            "chp": 4,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "kastamonu",
-          "votes": {
-            "chp": 31082,
-            "TIP": 2841,
-            "AP": 57002,
-            "CGP": 21224,
-            "DP": 17538,
-            "MSP": 5991,
-            "MHP": 10828,
-            "TBP": 68,
-            "MP": 0,
-            "IND": 2861
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 1,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "kayseri",
-          "votes": {
-            "chp": 44817,
-            "TIP": 5041,
-            "AP": 54922,
-            "CGP": 37914,
-            "DP": 12032,
-            "MSP": 22622,
-            "MHP": 16360,
-            "TBP": 873,
-            "MP": 0,
-            "IND": 2939
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 2,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "kirklareli",
-          "votes": {
-            "chp": 35999,
-            "TIP": 4400,
-            "AP": 42009,
-            "CGP": 2635,
-            "DP": 8840,
-            "MSP": 1789,
-            "MHP": 1478,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "kirsehir",
-          "votes": {
-            "chp": 18637,
-            "TIP": 1611,
-            "AP": 9728,
-            "CGP": 4523,
-            "DP": 9934,
-            "MSP": 6429,
-            "MHP": 5665,
-            "TBP": 1139,
-            "MP": 0,
-            "IND": 6644
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "kocaeli",
-          "votes": {
-            "chp": 47314,
-            "TIP": 3600,
-            "AP": 52874,
-            "CGP": 6195,
-            "DP": 17803,
-            "MSP": 20216,
-            "MHP": 2330,
-            "TBP": 226,
-            "MP": 0,
-            "IND": 1946
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "konya",
-          "votes": {
-            "chp": 84063,
-            "TIP": 7913,
-            "AP": 54318,
-            "CGP": 40088,
-            "DP": 155715,
-            "MSP": 45064,
-            "MHP": 17666,
-            "TBP": 433,
-            "MP": 0,
-            "IND": 4095
-          },
-          "seats": {
-            "chp": 4,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 1,
-            "DP": 7,
-            "MSP": 2,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "DP"
-        },
-        {
-          "id": "kutahya",
-          "votes": {
-            "chp": 28561,
-            "TIP": 1855,
-            "AP": 66496,
-            "CGP": 7935,
-            "DP": 25874,
-            "MSP": 15093,
-            "MHP": 5911,
-            "TBP": 197,
-            "MP": 0,
-            "IND": 2887
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "malatya",
-          "votes": {
-            "chp": 66854,
-            "TIP": 9582,
-            "AP": 26339,
-            "CGP": 9605,
-            "DP": 9715,
-            "MSP": 25562,
-            "MHP": 4165,
-            "TBP": 8621,
-            "MP": 0,
-            "IND": 7334
-          },
-          "seats": {
-            "chp": 4,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "manisa",
-          "votes": {
-            "chp": 87326,
-            "TIP": 7017,
-            "AP": 133463,
-            "CGP": 6265,
-            "DP": 39472,
-            "MSP": 20114,
-            "MHP": 10059,
-            "TBP": 600,
-            "MP": 0,
-            "IND": 2507
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 6,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "mardin",
-          "votes": {
-            "chp": 35294,
-            "TIP": 7972,
-            "AP": 35856,
-            "CGP": 21305,
-            "DP": 38385,
-            "MSP": 15787,
-            "MHP": 1637,
-            "TBP": 1011,
-            "MP": 0,
-            "IND": 2479
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 1,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "DP"
-        },
-        {
-          "id": "mugla",
-          "votes": {
-            "chp": 45237,
-            "TIP": 2267,
-            "AP": 53885,
-            "CGP": 8002,
-            "DP": 31496,
-            "MSP": 3666,
-            "MHP": 1970,
-            "TBP": 34,
-            "MP": 0,
-            "IND": 227
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "mus",
-          "votes": {
-            "chp": 19215,
-            "TIP": 7153,
-            "AP": 10921,
-            "CGP": 9236,
-            "DP": 8063,
-            "MSP": 12024,
-            "MHP": 1061,
-            "TBP": 3697,
-            "MP": 0,
-            "IND": 5695
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "nevsehir",
-          "votes": {
-            "chp": 18029,
-            "TIP": 1358,
-            "AP": 26873,
-            "CGP": 3793,
-            "DP": 4511,
-            "MSP": 9506,
-            "MHP": 4711,
-            "TBP": 764,
-            "MP": 0,
-            "IND": 2271
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "nigde",
-          "votes": {
-            "chp": 26871,
-            "TIP": 2809,
-            "AP": 30827,
-            "CGP": 10027,
-            "DP": 33722,
-            "MSP": 9476,
-            "MHP": 11580,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "DP"
-        },
-        {
-          "id": "ordu",
-          "votes": {
-            "chp": 51352,
-            "TIP": 2897,
-            "AP": 30840,
-            "CGP": 6870,
-            "DP": 47030,
-            "MSP": 9531,
-            "MHP": 11026,
-            "TBP": 4244,
-            "MP": 0,
-            "IND": 27340
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 3,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 1
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "rize",
-          "votes": {
-            "chp": 32229,
-            "TIP": 1441,
-            "AP": 35239,
-            "CGP": 2774,
-            "DP": 16766,
-            "MSP": 17788,
-            "MHP": 2970,
-            "TBP": 13,
-            "MP": 0,
-            "IND": 448
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "sakarya",
-          "votes": {
-            "chp": 38306,
-            "TIP": 2671,
-            "AP": 48459,
-            "CGP": 5850,
-            "DP": 39443,
-            "MSP": 20553,
-            "MHP": 4545,
-            "TBP": 140,
-            "MP": 0,
-            "IND": 1311
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "samsun",
-          "votes": {
-            "chp": 79380,
-            "TIP": 4773,
-            "AP": 112717,
-            "CGP": 7902,
-            "DP": 34782,
-            "MSP": 26956,
-            "MHP": 6532,
-            "TBP": 911,
-            "MP": 0,
-            "IND": 5765
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 5,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "urfa",
-          "votes": {
-            "chp": 43367,
-            "TIP": 9720,
-            "AP": 52400,
-            "CGP": 3040,
-            "DP": 30682,
-            "MSP": 18727,
-            "MHP": 1552,
-            "TBP": 3,
-            "MP": 0,
-            "IND": 0
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 3,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "siirt",
-          "votes": {
-            "chp": 17008,
-            "TIP": 7152,
-            "AP": 12337,
-            "CGP": 42024,
-            "DP": 10475,
-            "MSP": 5816,
-            "MHP": 1247,
-            "TBP": 998,
-            "MP": 0,
-            "IND": 4661
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 0,
-            "CGP": 3,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "CGP"
-        },
-        {
-          "id": "sinop",
-          "votes": {
-            "chp": 22588,
-            "TIP": 3782,
-            "AP": 20570,
-            "CGP": 3837,
-            "DP": 12787,
-            "MSP": 4351,
-            "MHP": 4242,
-            "TBP": 6438,
-            "MP": 0,
-            "IND": 3774
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "sivas",
-          "votes": {
-            "chp": 73220,
-            "TIP": 12617,
-            "AP": 43690,
-            "CGP": 5343,
-            "DP": 19760,
-            "MSP": 45228,
-            "MHP": 13053,
-            "TBP": 1163,
-            "MP": 0,
-            "IND": 4335
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 2,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "tekirdag",
-          "votes": {
-            "chp": 32326,
-            "TIP": 3661,
-            "AP": 43373,
-            "CGP": 13491,
-            "DP": 10440,
-            "MSP": 2396,
-            "MHP": 2095,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "tokat",
-          "votes": {
-            "chp": 53757,
-            "TIP": 4532,
-            "AP": 39680,
-            "CGP": 8377,
-            "DP": 30450,
-            "MSP": 25224,
-            "MHP": 11306,
-            "TBP": 10920,
-            "MP": 0,
-            "IND": 9214
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "trabzon",
-          "votes": {
-            "chp": 65855,
-            "TIP": 2090,
-            "AP": 55280,
-            "CGP": 11080,
-            "DP": 40068,
-            "MSP": 22811,
-            "MHP": 8317,
-            "TBP": 33,
-            "MP": 0,
-            "IND": 1316
-          },
-          "seats": {
-            "chp": 3,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 2,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "tunceli",
-          "votes": {
-            "chp": 26876,
-            "TIP": 8095,
-            "AP": 7405,
-            "CGP": 283,
-            "DP": 536,
-            "MSP": 905,
-            "MHP": 409,
-            "TBP": 4116,
-            "MP": 0,
-            "IND": 501
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 0,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "usak",
-          "votes": {
-            "chp": 25508,
-            "TIP": 1651,
-            "AP": 25660,
-            "CGP": 3516,
-            "DP": 12183,
-            "MSP": 3567,
-            "MHP": 2734,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 2,
-            "CGP": 0,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        },
-        {
-          "id": "van",
-          "votes": {
-            "chp": 15303,
-            "TIP": 5347,
-            "AP": 22560,
-            "CGP": 54621,
-            "DP": 1638,
-            "MSP": 4741,
-            "MHP": 1008,
-            "TBP": 121,
-            "MP": 0,
-            "IND": 487
-          },
-          "seats": {
-            "chp": 0,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 3,
-            "DP": 0,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "CGP"
-        },
-        {
-          "id": "yozgat",
-          "votes": {
-            "chp": 37746,
-            "TIP": 3577,
-            "AP": 27127,
-            "CGP": 4703,
-            "DP": 27593,
-            "MSP": 22494,
-            "MHP": 18100,
-            "TBP": 2055,
-            "MP": 0,
-            "IND": 4057
-          },
-          "seats": {
-            "chp": 2,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 1,
-            "MHP": 1,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "chp"
-        },
-        {
-          "id": "zonguldak",
-          "votes": {
-            "chp": 100872,
-            "TIP": 6434,
-            "AP": 116540,
-            "CGP": 10488,
-            "DP": 24048,
-            "MSP": 16992,
-            "MHP": 6046,
-            "TBP": 460,
-            "MP": 0,
-            "IND": 4644
-          },
-          "seats": {
-            "chp": 4,
-            "TIP": 0,
-            "AP": 4,
-            "CGP": 0,
-            "DP": 1,
-            "MSP": 0,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "AP"
-        }
-      ]
-    },
-    {
-      "votes": {
-        "chp": 4015866,
-        "TIP": 0,
-        "AP": 3923157,
-        "CGP": 729453,
-        "DP": 1773124,
-        "MSP": 1066908,
-        "MHP": 494371,
-        "TBP": 94816,
-        "MP": 0,
-        "IND": 239298
-      },
-      "seats": {
-        "chp": 171,
-        "TIP": 0,
-        "AP": 166,
-        "CGP": 17,
-        "DP": 62,
-        "MSP": 29,
-        "MHP": 4,
-        "TBP": 0,
-        "MP": 0,
-        "IND": 1
-      },
-      "classShares": {
-        "workers_chp": 39.88460459246243,
-        "workers_TIP": 5.117148659334859,
-        "workers_AP": 31.63220064848292,
-        "workers_CGP": 3.2353678824710075,
-        "workers_DP": 8.15056248395902,
-        "workers_MSP": 5.479577736002398,
-        "workers_MHP": 4.270225334893778,
-        "workers_TBP": 0.013040574818697854,
-        "workers_MP": 0,
-        "workers_IND": 2.2172720875749006,
-        "capitalists_chp": 18.38066575799246,
-        "capitalists_TIP": 0.3093284218172907,
-        "capitalists_AP": 47.098017871131844,
-        "capitalists_CGP": 5.535898851681865,
-        "capitalists_DP": 20.75772903897021,
-        "capitalists_MSP": 2.667442048982125,
-        "capitalists_MHP": 2.649117929807896,
-        "capitalists_TBP": 0.015017504639001845,
-        "capitalists_MP": 0,
-        "capitalists_IND": 2.5867825749772924,
-        "petty_bourgeoisie_chp": 28.081208339111342,
-        "petty_bourgeoisie_TIP": 1.2626613317809061,
-        "petty_bourgeoisie_AP": 33.47211366634348,
-        "petty_bourgeoisie_CGP": 4.370937927562731,
-        "petty_bourgeoisie_DP": 18.018214703326915,
-        "petty_bourgeoisie_MSP": 9.955704668155214,
-        "petty_bourgeoisie_MHP": 3.6126855978095187,
-        "petty_bourgeoisie_TBP": 0.007201115635295448,
-        "petty_bourgeoisie_MP": 0,
-        "petty_bourgeoisie_IND": 1.219272650274586,
-        "state_employees_chp": 40.885514636359396,
-        "state_employees_TIP": 4.3777056088483,
-        "state_employees_AP": 26.119332828395997,
-        "state_employees_CGP": 12.081346951973652,
-        "state_employees_DP": 6.736501084846309,
-        "state_employees_MSP": 2.762138336709567,
-        "state_employees_MHP": 3.6762608651300175,
-        "state_employees_TBP": 0.019073614716895008,
-        "state_employees_MP": 0,
-        "state_employees_IND": 3.3421260730198425,
-        "rural_chp": 23.31928288189149,
-        "rural_TIP": 0.770088476302547,
-        "rural_AP": 35.7256146398854,
-        "rural_CGP": 5.3626877139084215,
-        "rural_DP": 18.117839290326902,
-        "rural_MSP": 10.366879697037223,
-        "rural_MHP": 4.131482804624693,
-        "rural_TBP": 0.012469949930438045,
-        "rural_MP": 0,
-        "rural_IND": 2.193654546092881,
-        "alevis_chp": 55.57451968627023,
-        "alevis_TIP": 9.690605089969697,
-        "alevis_AP": 9.43943350363706,
-        "alevis_CGP": 3.196220870094193,
-        "alevis_DP": 5.081350781181545,
-        "alevis_MSP": 1.7267228358371238,
-        "alevis_MHP": 3.4277061166289884,
-        "alevis_TBP": 10.593453103632621,
-        "alevis_MP": 0,
-        "alevis_IND": 1.2699880127485412,
-        "kurds_chp": 25.50656087750902,
-        "kurds_TIP": 9.021582441779245,
-        "kurds_AP": 21.80023069984421,
-        "kurds_CGP": 14.617081332023535,
-        "kurds_DP": 13.578839396185508,
-        "kurds_MSP": 12.423337941456463,
-        "kurds_MHP": 2.9057475982946737,
-        "kurds_TBP": 0.1466197129073684,
-        "kurds_MP": 0,
-        "kurds_IND": 0
-      },
-      "transfer": 185054.9022413805,
-      "totalVotes": 12336993,
-      "provinces": [
-        {
-          "id": "adana",
-          "votes": {
-            "chp": 138053,
-            "TIP": 0,
-            "AP": 90434,
-            "CGP": 16203,
-            "DP": 57456,
-            "MSP": 22243,
-            "MHP": 35196,
-            "TBP": 2709,
-            "MP": 0,
-            "IND": 9032
+            "chp": 134136,
+            "TIP": 9246,
+            "AP": 99074,
+            "CGP": 15236,
+            "DP": 54028,
+            "MSP": 20915,
+            "MHP": 33096,
+            "TBP": 2548,
+            "MP": 0,
+            "IND": 8493
           },
           "seats": {
             "chp": 6,
@@ -23329,44 +21351,44 @@
         {
           "id": "adiyaman",
           "votes": {
-            "chp": 34472,
-            "TIP": 0,
-            "AP": 29825,
-            "CGP": 11076,
-            "DP": 4614,
-            "MSP": 15597,
-            "MHP": 1827,
-            "TBP": 137,
+            "chp": 30732,
+            "TIP": 8618,
+            "AP": 31984,
+            "CGP": 10415,
+            "DP": 4339,
+            "MSP": 14666,
+            "MHP": 1718,
+            "TBP": 129,
             "MP": 0,
-            "IND": 90
+            "IND": 85
           },
           "seats": {
             "chp": 2,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 0,
             "DP": 0,
-            "MSP": 1,
+            "MSP": 0,
             "MHP": 0,
             "TBP": 0,
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "afyon",
           "votes": {
-            "chp": 34223,
-            "TIP": 0,
-            "AP": 60632,
-            "CGP": 12735,
-            "DP": 26888,
-            "MSP": 18708,
-            "MHP": 9473,
-            "TBP": 267,
+            "chp": 32779,
+            "TIP": 3071,
+            "AP": 65021,
+            "CGP": 11975,
+            "DP": 25283,
+            "MSP": 17592,
+            "MHP": 8908,
+            "TBP": 251,
             "MP": 0,
-            "IND": 2255
+            "IND": 2121
           },
           "seats": {
             "chp": 2,
@@ -23385,44 +21407,16 @@
         {
           "id": "agri",
           "votes": {
-            "chp": 19963,
-            "TIP": 0,
-            "AP": 15903,
-            "CGP": 20408,
-            "DP": 10174,
-            "MSP": 10340,
-            "MHP": 7111,
-            "TBP": 321,
+            "chp": 19623,
+            "TIP": 5074,
+            "AP": 17054,
+            "CGP": 19191,
+            "DP": 9567,
+            "MSP": 9723,
+            "MHP": 6686,
+            "TBP": 302,
             "MP": 0,
-            "IND": 1606
-          },
-          "seats": {
-            "chp": 1,
-            "TIP": 0,
-            "AP": 1,
-            "CGP": 1,
-            "DP": 0,
-            "MSP": 1,
-            "MHP": 0,
-            "TBP": 0,
-            "MP": 0,
-            "IND": 0
-          },
-          "winner": "CGP"
-        },
-        {
-          "id": "amasya",
-          "votes": {
-            "chp": 30214,
-            "TIP": 0,
-            "AP": 29122,
-            "CGP": 15150,
-            "DP": 7333,
-            "MSP": 13592,
-            "MHP": 5784,
-            "TBP": 2534,
-            "MP": 0,
-            "IND": 2480
+            "IND": 1510
           },
           "seats": {
             "chp": 2,
@@ -23439,24 +21433,52 @@
           "winner": "chp"
         },
         {
+          "id": "amasya",
+          "votes": {
+            "chp": 29412,
+            "TIP": 3658,
+            "AP": 31230,
+            "CGP": 14246,
+            "DP": 6896,
+            "MSP": 12781,
+            "MHP": 5438,
+            "TBP": 2383,
+            "MP": 0,
+            "IND": 2332
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
           "id": "ankara",
           "votes": {
-            "chp": 294768,
-            "TIP": 0,
-            "AP": 229887,
-            "CGP": 26025,
-            "DP": 88623,
-            "MSP": 52112,
-            "MHP": 43435,
-            "TBP": 3408,
+            "chp": 282546,
+            "TIP": 23286,
+            "AP": 246528,
+            "CGP": 24472,
+            "DP": 83335,
+            "MSP": 49002,
+            "MHP": 40843,
+            "TBP": 3204,
             "MP": 0,
-            "IND": 20245
+            "IND": 19037
           },
           "seats": {
             "chp": 11,
             "TIP": 0,
-            "AP": 9,
-            "CGP": 1,
+            "AP": 10,
+            "CGP": 0,
             "DP": 3,
             "MSP": 2,
             "MHP": 1,
@@ -23469,16 +21491,16 @@
         {
           "id": "antalya",
           "votes": {
-            "chp": 55717,
-            "TIP": 0,
-            "AP": 79865,
-            "CGP": 7499,
-            "DP": 39778,
-            "MSP": 7822,
-            "MHP": 9100,
-            "TBP": 448,
+            "chp": 52633,
+            "TIP": 3095,
+            "AP": 85646,
+            "CGP": 7052,
+            "DP": 37404,
+            "MSP": 7355,
+            "MHP": 8557,
+            "TBP": 421,
             "MP": 0,
-            "IND": 1716
+            "IND": 1614
           },
           "seats": {
             "chp": 2,
@@ -23497,21 +21519,21 @@
         {
           "id": "artvin",
           "votes": {
-            "chp": 28949,
-            "TIP": 0,
-            "AP": 27360,
-            "CGP": 5530,
-            "DP": 5762,
-            "MSP": 4304,
-            "MHP": 77,
-            "TBP": 28,
+            "chp": 27482,
+            "TIP": 1151,
+            "AP": 29341,
+            "CGP": 5201,
+            "DP": 5418,
+            "MSP": 4047,
+            "MHP": 72,
+            "TBP": 26,
             "MP": 0,
-            "IND": 764
+            "IND": 718
           },
           "seats": {
-            "chp": 2,
+            "chp": 1,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 0,
             "DP": 0,
             "MSP": 0,
@@ -23520,21 +21542,21 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "aydin",
           "votes": {
-            "chp": 58416,
-            "TIP": 0,
-            "AP": 72275,
-            "CGP": 2395,
-            "DP": 68951,
-            "MSP": 4269,
-            "MHP": 3719,
-            "TBP": 184,
+            "chp": 56479,
+            "TIP": 3694,
+            "AP": 77506,
+            "CGP": 2252,
+            "DP": 64837,
+            "MSP": 4014,
+            "MHP": 3497,
+            "TBP": 173,
             "MP": 0,
-            "IND": 966
+            "IND": 909
           },
           "seats": {
             "chp": 2,
@@ -23553,16 +21575,16 @@
         {
           "id": "balikesir",
           "votes": {
-            "chp": 88368,
-            "TIP": 0,
-            "AP": 143445,
-            "CGP": 9524,
-            "DP": 20657,
-            "MSP": 17881,
-            "MHP": 5894,
-            "TBP": 899,
+            "chp": 78979,
+            "TIP": 6049,
+            "AP": 153828,
+            "CGP": 8956,
+            "DP": 19424,
+            "MSP": 16815,
+            "MHP": 5542,
+            "TBP": 846,
             "MP": 0,
-            "IND": 3154
+            "IND": 2966
           },
           "seats": {
             "chp": 3,
@@ -23581,16 +21603,16 @@
         {
           "id": "bilecik",
           "votes": {
-            "chp": 15053,
-            "TIP": 0,
-            "AP": 23398,
-            "CGP": 1788,
-            "DP": 2314,
-            "MSP": 5227,
-            "MHP": 1183,
-            "TBP": 32,
+            "chp": 13724,
+            "TIP": 693,
+            "AP": 25093,
+            "CGP": 1681,
+            "DP": 2176,
+            "MSP": 4915,
+            "MHP": 1112,
+            "TBP": 30,
             "MP": 0,
-            "IND": 322
+            "IND": 303
           },
           "seats": {
             "chp": 1,
@@ -23609,16 +21631,16 @@
         {
           "id": "bingol",
           "votes": {
-            "chp": 16828,
-            "TIP": 0,
-            "AP": 14803,
-            "CGP": 378,
-            "DP": 8664,
-            "MSP": 12620,
-            "MHP": 429,
-            "TBP": 1900,
+            "chp": 15829,
+            "TIP": 3307,
+            "AP": 15875,
+            "CGP": 355,
+            "DP": 8147,
+            "MSP": 11867,
+            "MHP": 403,
+            "TBP": 1787,
             "MP": 0,
-            "IND": 836
+            "IND": 786
           },
           "seats": {
             "chp": 1,
@@ -23632,21 +21654,21 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "bitlis",
           "votes": {
-            "chp": 13628,
-            "TIP": 0,
-            "AP": 30185,
-            "CGP": 1978,
-            "DP": 982,
-            "MSP": 5926,
-            "MHP": 253,
-            "TBP": 507,
+            "chp": 10908,
+            "TIP": 2859,
+            "AP": 32370,
+            "CGP": 1860,
+            "DP": 923,
+            "MSP": 5572,
+            "MHP": 238,
+            "TBP": 477,
             "MP": 0,
-            "IND": 1890
+            "IND": 1777
           },
           "seats": {
             "chp": 0,
@@ -23665,16 +21687,16 @@
         {
           "id": "bolu",
           "votes": {
-            "chp": 26804,
-            "TIP": 0,
-            "AP": 63431,
-            "CGP": 29622,
-            "DP": 8510,
-            "MSP": 18197,
-            "MHP": 2770,
-            "TBP": 54,
+            "chp": 24979,
+            "TIP": 2106,
+            "AP": 68022,
+            "CGP": 27855,
+            "DP": 8002,
+            "MSP": 17111,
+            "MHP": 2605,
+            "TBP": 51,
             "MP": 0,
-            "IND": 1600
+            "IND": 1505
           },
           "seats": {
             "chp": 1,
@@ -23693,16 +21715,16 @@
         {
           "id": "burdur",
           "votes": {
-            "chp": 20168,
-            "TIP": 0,
-            "AP": 18373,
-            "CGP": 9502,
-            "DP": 11800,
-            "MSP": 4585,
-            "MHP": 5625,
+            "chp": 20291,
+            "TIP": 1057,
+            "AP": 19703,
+            "CGP": 8935,
+            "DP": 11096,
+            "MSP": 4311,
+            "MHP": 5290,
             "TBP": 5,
             "MP": 0,
-            "IND": 54
+            "IND": 51
           },
           "seats": {
             "chp": 1,
@@ -23721,16 +21743,16 @@
         {
           "id": "bursa",
           "votes": {
-            "chp": 95313,
-            "TIP": 0,
-            "AP": 182911,
-            "CGP": 8364,
-            "DP": 31934,
-            "MSP": 23141,
-            "MHP": 5680,
-            "TBP": 159,
+            "chp": 83352,
+            "TIP": 7227,
+            "AP": 196152,
+            "CGP": 7865,
+            "DP": 30028,
+            "MSP": 21761,
+            "MHP": 5341,
+            "TBP": 150,
             "MP": 0,
-            "IND": 1601
+            "IND": 1505
           },
           "seats": {
             "chp": 3,
@@ -23749,16 +21771,16 @@
         {
           "id": "canakkale",
           "votes": {
-            "chp": 47432,
-            "TIP": 0,
-            "AP": 66811,
-            "CGP": 2870,
-            "DP": 16797,
-            "MSP": 5688,
-            "MHP": 2600,
-            "TBP": 180,
+            "chp": 43167,
+            "TIP": 3000,
+            "AP": 71648,
+            "CGP": 2698,
+            "DP": 15795,
+            "MSP": 5349,
+            "MHP": 2445,
+            "TBP": 169,
             "MP": 0,
-            "IND": 1927
+            "IND": 1812
           },
           "seats": {
             "chp": 2,
@@ -23777,16 +21799,16 @@
         {
           "id": "cankiri",
           "votes": {
-            "chp": 13900,
-            "TIP": 0,
-            "AP": 31020,
-            "CGP": 2509,
-            "DP": 15810,
-            "MSP": 8897,
-            "MHP": 6567,
-            "TBP": 471,
+            "chp": 13266,
+            "TIP": 1293,
+            "AP": 33265,
+            "CGP": 2359,
+            "DP": 14867,
+            "MSP": 8366,
+            "MHP": 6175,
+            "TBP": 443,
             "MP": 0,
-            "IND": 1574
+            "IND": 1480
           },
           "seats": {
             "chp": 0,
@@ -23805,16 +21827,16 @@
         {
           "id": "corum",
           "votes": {
-            "chp": 53218,
-            "TIP": 0,
-            "AP": 36074,
-            "CGP": 8111,
-            "DP": 38790,
-            "MSP": 27963,
-            "MHP": 6000,
-            "TBP": 3104,
+            "chp": 53885,
+            "TIP": 4625,
+            "AP": 38686,
+            "CGP": 7627,
+            "DP": 36475,
+            "MSP": 26295,
+            "MHP": 5642,
+            "TBP": 2919,
             "MP": 0,
-            "IND": 2676
+            "IND": 2516
           },
           "seats": {
             "chp": 2,
@@ -23833,16 +21855,16 @@
         {
           "id": "denizli",
           "votes": {
-            "chp": 55334,
-            "TIP": 0,
-            "AP": 62079,
-            "CGP": 5175,
-            "DP": 47983,
-            "MSP": 6573,
-            "MHP": 3158,
-            "TBP": 40,
+            "chp": 53145,
+            "TIP": 3600,
+            "AP": 66572,
+            "CGP": 4867,
+            "DP": 45120,
+            "MSP": 6181,
+            "MHP": 2969,
+            "TBP": 38,
             "MP": 0,
-            "IND": 294
+            "IND": 276
           },
           "seats": {
             "chp": 2,
@@ -23861,16 +21883,16 @@
         {
           "id": "diyarbakir",
           "votes": {
-            "chp": 54428,
-            "TIP": 0,
-            "AP": 37435,
-            "CGP": 10573,
-            "DP": 25193,
-            "MSP": 22740,
-            "MHP": 6220,
-            "TBP": 509,
+            "chp": 51147,
+            "TIP": 10615,
+            "AP": 40145,
+            "CGP": 9942,
+            "DP": 23689,
+            "MSP": 21383,
+            "MHP": 5848,
+            "TBP": 479,
             "MP": 0,
-            "IND": 924
+            "IND": 869
           },
           "seats": {
             "chp": 3,
@@ -23889,16 +21911,16 @@
         {
           "id": "edirne",
           "votes": {
-            "chp": 46426,
-            "TIP": 0,
-            "AP": 50728,
-            "CGP": 3835,
-            "DP": 8977,
-            "MSP": 1861,
-            "MHP": 1900,
-            "TBP": 124,
+            "chp": 41914,
+            "TIP": 4658,
+            "AP": 54400,
+            "CGP": 3606,
+            "DP": 8441,
+            "MSP": 1750,
+            "MHP": 1787,
+            "TBP": 116,
             "MP": 0,
-            "IND": 1022
+            "IND": 961
           },
           "seats": {
             "chp": 2,
@@ -23917,16 +21939,16 @@
         {
           "id": "elazig",
           "votes": {
-            "chp": 36656,
-            "TIP": 0,
-            "AP": 33099,
-            "CGP": 3106,
-            "DP": 11387,
-            "MSP": 24509,
-            "MHP": 6037,
-            "TBP": 650,
+            "chp": 34971,
+            "TIP": 4835,
+            "AP": 35495,
+            "CGP": 2921,
+            "DP": 10707,
+            "MSP": 23046,
+            "MHP": 5677,
+            "TBP": 611,
             "MP": 0,
-            "IND": 487
+            "IND": 458
           },
           "seats": {
             "chp": 2,
@@ -23940,21 +21962,21 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "erzincan",
           "votes": {
-            "chp": 36219,
-            "TIP": 0,
-            "AP": 24689,
-            "CGP": 2699,
-            "DP": 3084,
-            "MSP": 10550,
-            "MHP": 4888,
-            "TBP": 1631,
+            "chp": 34870,
+            "TIP": 2322,
+            "AP": 26477,
+            "CGP": 2538,
+            "DP": 2900,
+            "MSP": 9921,
+            "MHP": 4596,
+            "TBP": 1533,
             "MP": 0,
-            "IND": 500
+            "IND": 470
           },
           "seats": {
             "chp": 2,
@@ -23973,16 +21995,16 @@
         {
           "id": "erzurum",
           "votes": {
-            "chp": 49604,
-            "TIP": 0,
-            "AP": 55153,
-            "CGP": 8720,
-            "DP": 29395,
-            "MSP": 48447,
-            "MHP": 9113,
-            "TBP": 4333,
+            "chp": 49735,
+            "TIP": 5974,
+            "AP": 59146,
+            "CGP": 8199,
+            "DP": 27641,
+            "MSP": 45556,
+            "MHP": 8570,
+            "TBP": 4074,
             "MP": 0,
-            "IND": 10662
+            "IND": 10025
           },
           "seats": {
             "chp": 3,
@@ -24001,16 +22023,16 @@
         {
           "id": "eskisehir",
           "votes": {
-            "chp": 51554,
-            "TIP": 0,
-            "AP": 71469,
-            "CGP": 7733,
-            "DP": 16301,
-            "MSP": 11089,
-            "MHP": 7621,
-            "TBP": 422,
+            "chp": 47183,
+            "TIP": 4750,
+            "AP": 76642,
+            "CGP": 7272,
+            "DP": 15328,
+            "MSP": 10427,
+            "MHP": 7166,
+            "TBP": 397,
             "MP": 0,
-            "IND": 2747
+            "IND": 2583
           },
           "seats": {
             "chp": 2,
@@ -24029,16 +22051,16 @@
         {
           "id": "gaziantep",
           "votes": {
-            "chp": 68370,
-            "TIP": 0,
-            "AP": 37196,
-            "CGP": 23877,
-            "DP": 37157,
-            "MSP": 16561,
-            "MHP": 10638,
-            "TBP": 846,
+            "chp": 68889,
+            "TIP": 5469,
+            "AP": 39889,
+            "CGP": 22452,
+            "DP": 34940,
+            "MSP": 15573,
+            "MHP": 10003,
+            "TBP": 795,
             "MP": 0,
-            "IND": 2633
+            "IND": 2476
           },
           "seats": {
             "chp": 3,
@@ -24057,16 +22079,16 @@
         {
           "id": "giresun",
           "votes": {
-            "chp": 40425,
-            "TIP": 0,
-            "AP": 38608,
-            "CGP": 4294,
-            "DP": 32764,
-            "MSP": 8414,
-            "MHP": 12223,
-            "TBP": 70,
+            "chp": 40392,
+            "TIP": 1896,
+            "AP": 41403,
+            "CGP": 4037,
+            "DP": 30809,
+            "MSP": 7912,
+            "MHP": 11494,
+            "TBP": 65,
             "MP": 0,
-            "IND": 1451
+            "IND": 1364
           },
           "seats": {
             "chp": 2,
@@ -24080,21 +22102,21 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "gumushane",
           "votes": {
-            "chp": 18609,
-            "TIP": 0,
-            "AP": 34286,
-            "CGP": 1687,
-            "DP": 2541,
-            "MSP": 15907,
-            "MHP": 4283,
-            "TBP": 773,
+            "chp": 17771,
+            "TIP": 910,
+            "AP": 36767,
+            "CGP": 1587,
+            "DP": 2389,
+            "MSP": 14958,
+            "MHP": 4028,
+            "TBP": 726,
             "MP": 0,
-            "IND": 8588
+            "IND": 8076
           },
           "seats": {
             "chp": 1,
@@ -24113,21 +22135,21 @@
         {
           "id": "hakkari",
           "votes": {
-            "chp": 11781,
-            "TIP": 0,
-            "AP": 11019,
-            "CGP": 1337,
-            "DP": 9848,
-            "MSP": 490,
+            "chp": 10819,
+            "TIP": 1983,
+            "AP": 11817,
+            "CGP": 1257,
+            "DP": 9260,
+            "MSP": 461,
             "MHP": 0,
             "TBP": 0,
             "MP": 0,
             "IND": 0
           },
           "seats": {
-            "chp": 1,
+            "chp": 0,
             "TIP": 0,
-            "AP": 0,
+            "AP": 1,
             "CGP": 0,
             "DP": 0,
             "MSP": 0,
@@ -24136,28 +22158,28 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "hatay",
           "votes": {
-            "chp": 68835,
-            "TIP": 0,
-            "AP": 47978,
-            "CGP": 13929,
-            "DP": 35130,
-            "MSP": 8881,
-            "MHP": 11656,
-            "TBP": 7131,
+            "chp": 67040,
+            "TIP": 7620,
+            "AP": 51451,
+            "CGP": 13098,
+            "DP": 33034,
+            "MSP": 8351,
+            "MHP": 10960,
+            "TBP": 6706,
             "MP": 0,
-            "IND": 3574
+            "IND": 3361
           },
           "seats": {
             "chp": 3,
             "TIP": 0,
-            "AP": 2,
+            "AP": 3,
             "CGP": 0,
-            "DP": 2,
+            "DP": 1,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,
@@ -24169,16 +22191,16 @@
         {
           "id": "icel",
           "votes": {
-            "chp": 77192,
-            "TIP": 0,
-            "AP": 67634,
-            "CGP": 4553,
-            "DP": 41244,
-            "MSP": 4353,
-            "MHP": 17886,
-            "TBP": 1179,
+            "chp": 75237,
+            "TIP": 3845,
+            "AP": 72530,
+            "CGP": 4282,
+            "DP": 38783,
+            "MSP": 4093,
+            "MHP": 16819,
+            "TBP": 1109,
             "MP": 0,
-            "IND": 6347
+            "IND": 5968
           },
           "seats": {
             "chp": 3,
@@ -24197,21 +22219,21 @@
         {
           "id": "isparta",
           "votes": {
-            "chp": 16851,
-            "TIP": 0,
-            "AP": 60194,
-            "CGP": 2739,
-            "DP": 12791,
-            "MSP": 4703,
-            "MHP": 1705,
-            "TBP": 170,
+            "chp": 13321,
+            "TIP": 1333,
+            "AP": 64515,
+            "CGP": 2576,
+            "DP": 12028,
+            "MSP": 4423,
+            "MHP": 1603,
+            "TBP": 159,
             "MP": 0,
-            "IND": 338
+            "IND": 318
           },
           "seats": {
-            "chp": 1,
+            "chp": 0,
             "TIP": 0,
-            "AP": 3,
+            "AP": 4,
             "CGP": 0,
             "DP": 0,
             "MSP": 0,
@@ -24225,25 +22247,25 @@
         {
           "id": "istanbul",
           "votes": {
-            "chp": 550367,
-            "TIP": 0,
-            "AP": 378425,
-            "CGP": 38819,
-            "DP": 108048,
-            "MSP": 75709,
-            "MHP": 27182,
-            "TBP": 3150,
+            "chp": 512251,
+            "TIP": 66143,
+            "AP": 405819,
+            "CGP": 36503,
+            "DP": 101600,
+            "MSP": 71192,
+            "MHP": 25560,
+            "TBP": 2962,
             "MP": 0,
-            "IND": 20116
+            "IND": 18915
           },
           "seats": {
-            "chp": 20,
+            "chp": 19,
             "TIP": 0,
-            "AP": 13,
+            "AP": 15,
             "CGP": 1,
             "DP": 3,
             "MSP": 2,
-            "MHP": 1,
+            "MHP": 0,
             "TBP": 0,
             "MP": 0,
             "IND": 0
@@ -24253,23 +22275,23 @@
         {
           "id": "izmir",
           "votes": {
-            "chp": 237127,
-            "TIP": 0,
-            "AP": 248640,
-            "CGP": 16005,
-            "DP": 57243,
-            "MSP": 18046,
-            "MHP": 7948,
-            "TBP": 888,
+            "chp": 217803,
+            "TIP": 18540,
+            "AP": 266639,
+            "CGP": 15049,
+            "DP": 53827,
+            "MSP": 16970,
+            "MHP": 7474,
+            "TBP": 835,
             "MP": 0,
-            "IND": 4551
+            "IND": 4279
           },
           "seats": {
             "chp": 8,
             "TIP": 0,
-            "AP": 8,
+            "AP": 9,
             "CGP": 0,
-            "DP": 2,
+            "DP": 1,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,
@@ -24281,24 +22303,24 @@
         {
           "id": "kahramanmaras",
           "votes": {
-            "chp": 59408,
-            "TIP": 0,
-            "AP": 36280,
-            "CGP": 4215,
-            "DP": 24923,
-            "MSP": 36725,
-            "MHP": 12409,
-            "TBP": 3565,
+            "chp": 59744,
+            "TIP": 4990,
+            "AP": 38906,
+            "CGP": 3963,
+            "DP": 23437,
+            "MSP": 34533,
+            "MHP": 11668,
+            "TBP": 3353,
             "MP": 0,
-            "IND": 2281
+            "IND": 2145
           },
           "seats": {
             "chp": 3,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 0,
             "DP": 1,
-            "MSP": 2,
+            "MSP": 1,
             "MHP": 0,
             "TBP": 0,
             "MP": 0,
@@ -24309,23 +22331,23 @@
         {
           "id": "kars",
           "votes": {
-            "chp": 83552,
-            "TIP": 0,
-            "AP": 31183,
-            "CGP": 11545,
-            "DP": 31497,
-            "MSP": 10818,
-            "MHP": 6177,
-            "TBP": 2711,
+            "chp": 79351,
+            "TIP": 15027,
+            "AP": 33440,
+            "CGP": 10856,
+            "DP": 29617,
+            "MSP": 10172,
+            "MHP": 5809,
+            "TBP": 2549,
             "MP": 0,
-            "IND": 8257
+            "IND": 7764
           },
           "seats": {
             "chp": 5,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 0,
-            "DP": 2,
+            "DP": 1,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,
@@ -24337,16 +22359,16 @@
         {
           "id": "kastamonu",
           "votes": {
-            "chp": 32340,
-            "TIP": 0,
-            "AP": 57002,
-            "CGP": 21224,
-            "DP": 17538,
-            "MSP": 5991,
-            "MHP": 10828,
-            "TBP": 68,
+            "chp": 30617,
+            "TIP": 2672,
+            "AP": 61128,
+            "CGP": 19957,
+            "DP": 16491,
+            "MSP": 5634,
+            "MHP": 10182,
+            "TBP": 63,
             "MP": 0,
-            "IND": 2861
+            "IND": 2691
           },
           "seats": {
             "chp": 1,
@@ -24365,16 +22387,16 @@
         {
           "id": "kayseri",
           "votes": {
-            "chp": 47049,
-            "TIP": 0,
-            "AP": 54922,
-            "CGP": 37914,
-            "DP": 12032,
-            "MSP": 22622,
-            "MHP": 16360,
-            "TBP": 873,
+            "chp": 46662,
+            "TIP": 4754,
+            "AP": 58897,
+            "CGP": 35651,
+            "DP": 11314,
+            "MSP": 21273,
+            "MHP": 15384,
+            "TBP": 821,
             "MP": 0,
-            "IND": 2939
+            "IND": 2764
           },
           "seats": {
             "chp": 2,
@@ -24393,13 +22415,13 @@
         {
           "id": "kirklareli",
           "votes": {
-            "chp": 37947,
-            "TIP": 0,
-            "AP": 42009,
-            "CGP": 2635,
-            "DP": 8840,
-            "MSP": 1789,
-            "MHP": 1478,
+            "chp": 34100,
+            "TIP": 4138,
+            "AP": 45050,
+            "CGP": 2477,
+            "DP": 8313,
+            "MSP": 1682,
+            "MHP": 1390,
             "TBP": 0,
             "MP": 0,
             "IND": 0
@@ -24421,23 +22443,23 @@
         {
           "id": "kirsehir",
           "votes": {
-            "chp": 19350,
-            "TIP": 0,
-            "AP": 9728,
-            "CGP": 4523,
-            "DP": 9934,
-            "MSP": 6429,
-            "MHP": 5665,
-            "TBP": 1139,
+            "chp": 20066,
+            "TIP": 1526,
+            "AP": 10432,
+            "CGP": 4253,
+            "DP": 9342,
+            "MSP": 6046,
+            "MHP": 5327,
+            "TBP": 1071,
             "MP": 0,
-            "IND": 6644
+            "IND": 6247
           },
           "seats": {
-            "chp": 1,
+            "chp": 2,
             "TIP": 0,
             "AP": 1,
             "CGP": 0,
-            "DP": 1,
+            "DP": 0,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,
@@ -24449,16 +22471,16 @@
         {
           "id": "kocaeli",
           "votes": {
-            "chp": 48908,
-            "TIP": 0,
-            "AP": 52874,
-            "CGP": 6194,
-            "DP": 17803,
-            "MSP": 20216,
-            "MHP": 2330,
-            "TBP": 226,
+            "chp": 46600,
+            "TIP": 3393,
+            "AP": 56702,
+            "CGP": 5825,
+            "DP": 16741,
+            "MSP": 19009,
+            "MHP": 2191,
+            "TBP": 213,
             "MP": 0,
-            "IND": 1946
+            "IND": 1830
           },
           "seats": {
             "chp": 2,
@@ -24477,16 +22499,16 @@
         {
           "id": "konya",
           "votes": {
-            "chp": 87566,
-            "TIP": 0,
-            "AP": 54318,
-            "CGP": 40088,
-            "DP": 155715,
-            "MSP": 45064,
-            "MHP": 17666,
-            "TBP": 433,
+            "chp": 96252,
+            "TIP": 7490,
+            "AP": 58250,
+            "CGP": 37696,
+            "DP": 146423,
+            "MSP": 42375,
+            "MHP": 16612,
+            "TBP": 407,
             "MP": 0,
-            "IND": 4095
+            "IND": 3850
           },
           "seats": {
             "chp": 4,
@@ -24505,16 +22527,16 @@
         {
           "id": "kutahya",
           "votes": {
-            "chp": 29383,
-            "TIP": 0,
-            "AP": 66496,
-            "CGP": 7934,
-            "DP": 25874,
-            "MSP": 15093,
-            "MHP": 5911,
-            "TBP": 197,
+            "chp": 27313,
+            "TIP": 1745,
+            "AP": 71309,
+            "CGP": 7461,
+            "DP": 24330,
+            "MSP": 14192,
+            "MHP": 5559,
+            "TBP": 185,
             "MP": 0,
-            "IND": 2887
+            "IND": 2715
           },
           "seats": {
             "chp": 1,
@@ -24533,16 +22555,16 @@
         {
           "id": "malatya",
           "votes": {
-            "chp": 71096,
-            "TIP": 0,
-            "AP": 26339,
-            "CGP": 9605,
-            "DP": 9715,
-            "MSP": 25562,
-            "MHP": 4165,
-            "TBP": 8621,
+            "chp": 69365,
+            "TIP": 9043,
+            "AP": 28245,
+            "CGP": 9032,
+            "DP": 9135,
+            "MSP": 24036,
+            "MHP": 3917,
+            "TBP": 8107,
             "MP": 0,
-            "IND": 7334
+            "IND": 6897
           },
           "seats": {
             "chp": 4,
@@ -24561,21 +22583,21 @@
         {
           "id": "manisa",
           "votes": {
-            "chp": 90432,
-            "TIP": 0,
-            "AP": 133463,
-            "CGP": 6265,
-            "DP": 39472,
-            "MSP": 20114,
-            "MHP": 10059,
-            "TBP": 600,
+            "chp": 82793,
+            "TIP": 6604,
+            "AP": 143125,
+            "CGP": 5891,
+            "DP": 37116,
+            "MSP": 18914,
+            "MHP": 9459,
+            "TBP": 564,
             "MP": 0,
-            "IND": 2507
+            "IND": 2357
           },
           "seats": {
-            "chp": 4,
+            "chp": 3,
             "TIP": 0,
-            "AP": 5,
+            "AP": 6,
             "CGP": 0,
             "DP": 1,
             "MSP": 0,
@@ -24589,44 +22611,44 @@
         {
           "id": "mardin",
           "votes": {
-            "chp": 38823,
-            "TIP": 0,
-            "AP": 35856,
-            "CGP": 21305,
-            "DP": 38385,
-            "MSP": 15787,
-            "MHP": 1637,
-            "TBP": 1011,
+            "chp": 37654,
+            "TIP": 7826,
+            "AP": 38452,
+            "CGP": 20034,
+            "DP": 36094,
+            "MSP": 14845,
+            "MHP": 1539,
+            "TBP": 951,
             "MP": 0,
-            "IND": 2479
+            "IND": 2331
           },
           "seats": {
             "chp": 2,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 1,
-            "DP": 2,
+            "DP": 1,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "mugla",
           "votes": {
-            "chp": 46240,
-            "TIP": 0,
-            "AP": 53884,
-            "CGP": 8003,
-            "DP": 31496,
-            "MSP": 3666,
-            "MHP": 1970,
-            "TBP": 34,
+            "chp": 44179,
+            "TIP": 2133,
+            "AP": 57785,
+            "CGP": 7525,
+            "DP": 29616,
+            "MSP": 3447,
+            "MHP": 1853,
+            "TBP": 32,
             "MP": 0,
-            "IND": 227
+            "IND": 214
           },
           "seats": {
             "chp": 2,
@@ -24645,21 +22667,21 @@
         {
           "id": "mus",
           "votes": {
-            "chp": 22381,
-            "TIP": 0,
-            "AP": 10921,
-            "CGP": 9236,
-            "DP": 8063,
-            "MSP": 12024,
-            "MHP": 1061,
-            "TBP": 3697,
+            "chp": 21099,
+            "TIP": 6852,
+            "AP": 11711,
+            "CGP": 8685,
+            "DP": 7582,
+            "MSP": 11306,
+            "MHP": 998,
+            "TBP": 3477,
             "MP": 0,
-            "IND": 5695
+            "IND": 5355
           },
           "seats": {
-            "chp": 2,
+            "chp": 1,
             "TIP": 0,
-            "AP": 0,
+            "AP": 1,
             "CGP": 0,
             "DP": 0,
             "MSP": 1,
@@ -24673,16 +22695,16 @@
         {
           "id": "nevsehir",
           "votes": {
-            "chp": 18630,
-            "TIP": 0,
-            "AP": 26873,
-            "CGP": 3793,
-            "DP": 4511,
-            "MSP": 9506,
-            "MHP": 4711,
-            "TBP": 764,
+            "chp": 17690,
+            "TIP": 1277,
+            "AP": 28819,
+            "CGP": 3567,
+            "DP": 4241,
+            "MSP": 8939,
+            "MHP": 4430,
+            "TBP": 718,
             "MP": 0,
-            "IND": 2271
+            "IND": 2135
           },
           "seats": {
             "chp": 1,
@@ -24701,13 +22723,13 @@
         {
           "id": "nigde",
           "votes": {
-            "chp": 28115,
-            "TIP": 0,
-            "AP": 30827,
-            "CGP": 10027,
-            "DP": 33722,
-            "MSP": 9476,
-            "MHP": 11580,
+            "chp": 28666,
+            "TIP": 2650,
+            "AP": 33059,
+            "CGP": 9428,
+            "DP": 31709,
+            "MSP": 8911,
+            "MHP": 10889,
             "TBP": 0,
             "MP": 0,
             "IND": 0
@@ -24724,28 +22746,28 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "DP"
+          "winner": "AP"
         },
         {
           "id": "ordu",
           "votes": {
-            "chp": 52635,
-            "TIP": 0,
-            "AP": 30840,
-            "CGP": 6869,
-            "DP": 47030,
-            "MSP": 9531,
-            "MHP": 11026,
-            "TBP": 4244,
+            "chp": 55620,
+            "TIP": 2725,
+            "AP": 33073,
+            "CGP": 6459,
+            "DP": 44224,
+            "MSP": 8962,
+            "MHP": 10368,
+            "TBP": 3991,
             "MP": 0,
-            "IND": 27340
+            "IND": 25708
           },
           "seats": {
             "chp": 3,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 0,
-            "DP": 3,
+            "DP": 2,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,
@@ -24757,16 +22779,16 @@
         {
           "id": "rize",
           "votes": {
-            "chp": 32867,
-            "TIP": 0,
-            "AP": 35239,
-            "CGP": 2773,
-            "DP": 16766,
-            "MSP": 17788,
-            "MHP": 2970,
-            "TBP": 13,
+            "chp": 32196,
+            "TIP": 1355,
+            "AP": 37790,
+            "CGP": 2608,
+            "DP": 15766,
+            "MSP": 16726,
+            "MHP": 2793,
+            "TBP": 12,
             "MP": 0,
-            "IND": 448
+            "IND": 422
           },
           "seats": {
             "chp": 1,
@@ -24785,24 +22807,24 @@
         {
           "id": "sakarya",
           "votes": {
-            "chp": 39488,
-            "TIP": 0,
-            "AP": 48459,
-            "CGP": 5850,
-            "DP": 39443,
-            "MSP": 20553,
-            "MHP": 4545,
-            "TBP": 140,
+            "chp": 39240,
+            "TIP": 2516,
+            "AP": 51967,
+            "CGP": 5501,
+            "DP": 37090,
+            "MSP": 19327,
+            "MHP": 4273,
+            "TBP": 131,
             "MP": 0,
-            "IND": 1311
+            "IND": 1233
           },
           "seats": {
-            "chp": 1,
+            "chp": 2,
             "TIP": 0,
             "AP": 2,
             "CGP": 0,
             "DP": 1,
-            "MSP": 1,
+            "MSP": 0,
             "MHP": 0,
             "TBP": 0,
             "MP": 0,
@@ -24813,16 +22835,16 @@
         {
           "id": "samsun",
           "votes": {
-            "chp": 81493,
-            "TIP": 0,
-            "AP": 112717,
-            "CGP": 7903,
-            "DP": 34782,
-            "MSP": 26956,
-            "MHP": 6532,
-            "TBP": 911,
+            "chp": 76448,
+            "TIP": 4490,
+            "AP": 120876,
+            "CGP": 7431,
+            "DP": 32706,
+            "MSP": 25347,
+            "MHP": 6142,
+            "TBP": 857,
             "MP": 0,
-            "IND": 5765
+            "IND": 5421
           },
           "seats": {
             "chp": 3,
@@ -24841,13 +22863,13 @@
         {
           "id": "urfa",
           "votes": {
-            "chp": 47670,
-            "TIP": 0,
-            "AP": 52400,
-            "CGP": 3040,
-            "DP": 30682,
-            "MSP": 18727,
-            "MHP": 1553,
+            "chp": 43029,
+            "TIP": 9487,
+            "AP": 56193,
+            "CGP": 2858,
+            "DP": 28851,
+            "MSP": 17610,
+            "MHP": 1460,
             "TBP": 3,
             "MP": 0,
             "IND": 0
@@ -24869,22 +22891,22 @@
         {
           "id": "siirt",
           "votes": {
-            "chp": 20173,
-            "TIP": 0,
-            "AP": 12337,
-            "CGP": 42024,
-            "DP": 10475,
-            "MSP": 5817,
-            "MHP": 1247,
-            "TBP": 998,
+            "chp": 20207,
+            "TIP": 6952,
+            "AP": 13230,
+            "CGP": 39516,
+            "DP": 9850,
+            "MSP": 5469,
+            "MHP": 1172,
+            "TBP": 939,
             "MP": 0,
-            "IND": 4661
+            "IND": 4383
           },
           "seats": {
             "chp": 1,
             "TIP": 0,
-            "AP": 0,
-            "CGP": 3,
+            "AP": 1,
+            "CGP": 2,
             "DP": 0,
             "MSP": 0,
             "MHP": 0,
@@ -24897,16 +22919,16 @@
         {
           "id": "sinop",
           "votes": {
-            "chp": 24262,
-            "TIP": 0,
-            "AP": 20570,
-            "CGP": 3837,
-            "DP": 12787,
-            "MSP": 4351,
-            "MHP": 4242,
-            "TBP": 6438,
+            "chp": 23428,
+            "TIP": 3567,
+            "AP": 22059,
+            "CGP": 3608,
+            "DP": 12024,
+            "MSP": 4092,
+            "MHP": 3988,
+            "TBP": 6054,
             "MP": 0,
-            "IND": 3774
+            "IND": 3549
           },
           "seats": {
             "chp": 1,
@@ -24925,23 +22947,23 @@
         {
           "id": "sivas",
           "votes": {
-            "chp": 78806,
-            "TIP": 0,
-            "AP": 43690,
-            "CGP": 5343,
-            "DP": 19760,
-            "MSP": 45228,
-            "MHP": 13053,
-            "TBP": 1162,
+            "chp": 75830,
+            "TIP": 12148,
+            "AP": 46853,
+            "CGP": 5025,
+            "DP": 18581,
+            "MSP": 42529,
+            "MHP": 12274,
+            "TBP": 1093,
             "MP": 0,
-            "IND": 4335
+            "IND": 4076
           },
           "seats": {
-            "chp": 3,
+            "chp": 4,
             "TIP": 0,
             "AP": 2,
             "CGP": 0,
-            "DP": 1,
+            "DP": 0,
             "MSP": 2,
             "MHP": 0,
             "TBP": 0,
@@ -24953,13 +22975,13 @@
         {
           "id": "tekirdag",
           "votes": {
-            "chp": 33946,
-            "TIP": 0,
-            "AP": 43373,
-            "CGP": 13492,
-            "DP": 10440,
-            "MSP": 2396,
-            "MHP": 2095,
+            "chp": 31098,
+            "TIP": 3445,
+            "AP": 46513,
+            "CGP": 12686,
+            "DP": 9817,
+            "MSP": 2253,
+            "MHP": 1970,
             "TBP": 0,
             "MP": 0,
             "IND": 0
@@ -24981,16 +23003,16 @@
         {
           "id": "tokat",
           "votes": {
-            "chp": 55763,
-            "TIP": 0,
-            "AP": 39680,
-            "CGP": 8377,
-            "DP": 30450,
-            "MSP": 25224,
-            "MHP": 11306,
-            "TBP": 10920,
+            "chp": 56848,
+            "TIP": 4267,
+            "AP": 42553,
+            "CGP": 7877,
+            "DP": 28633,
+            "MSP": 23719,
+            "MHP": 10631,
+            "TBP": 10268,
             "MP": 0,
-            "IND": 9214
+            "IND": 8664
           },
           "seats": {
             "chp": 3,
@@ -25009,23 +23031,23 @@
         {
           "id": "trabzon",
           "votes": {
-            "chp": 66780,
-            "TIP": 0,
-            "AP": 55280,
-            "CGP": 11080,
-            "DP": 40068,
-            "MSP": 22811,
-            "MHP": 8317,
-            "TBP": 33,
+            "chp": 66968,
+            "TIP": 1966,
+            "AP": 59282,
+            "CGP": 10418,
+            "DP": 37677,
+            "MSP": 21449,
+            "MHP": 7821,
+            "TBP": 31,
             "MP": 0,
-            "IND": 1316
+            "IND": 1238
           },
           "seats": {
             "chp": 3,
             "TIP": 0,
-            "AP": 2,
+            "AP": 3,
             "CGP": 0,
-            "DP": 2,
+            "DP": 1,
             "MSP": 1,
             "MHP": 0,
             "TBP": 0,
@@ -25037,16 +23059,16 @@
         {
           "id": "tunceli",
           "votes": {
-            "chp": 28540,
-            "TIP": 0,
-            "AP": 9324,
-            "CGP": 283,
-            "DP": 536,
-            "MSP": 905,
-            "MHP": 409,
-            "TBP": 4116,
+            "chp": 27215,
+            "TIP": 7623,
+            "AP": 7940,
+            "CGP": 266,
+            "DP": 504,
+            "MSP": 851,
+            "MHP": 385,
+            "TBP": 3871,
             "MP": 0,
-            "IND": 501
+            "IND": 471
           },
           "seats": {
             "chp": 2,
@@ -25065,21 +23087,21 @@
         {
           "id": "usak",
           "votes": {
-            "chp": 26239,
-            "TIP": 0,
-            "AP": 25660,
-            "CGP": 3516,
-            "DP": 12183,
-            "MSP": 3567,
-            "MHP": 2734,
+            "chp": 25062,
+            "TIP": 1553,
+            "AP": 27518,
+            "CGP": 3306,
+            "DP": 11456,
+            "MSP": 3354,
+            "MHP": 2570,
             "TBP": 0,
             "MP": 0,
             "IND": 0
           },
           "seats": {
-            "chp": 2,
+            "chp": 1,
             "TIP": 0,
-            "AP": 1,
+            "AP": 2,
             "CGP": 0,
             "DP": 0,
             "MSP": 0,
@@ -25088,27 +23110,27 @@
             "MP": 0,
             "IND": 0
           },
-          "winner": "chp"
+          "winner": "AP"
         },
         {
           "id": "van",
           "votes": {
-            "chp": 17670,
-            "TIP": 0,
-            "AP": 22560,
-            "CGP": 54621,
-            "DP": 1638,
-            "MSP": 4741,
-            "MHP": 1008,
-            "TBP": 121,
+            "chp": 17516,
+            "TIP": 5237,
+            "AP": 24192,
+            "CGP": 51362,
+            "DP": 1541,
+            "MSP": 4458,
+            "MHP": 948,
+            "TBP": 114,
             "MP": 0,
-            "IND": 487
+            "IND": 458
           },
           "seats": {
-            "chp": 0,
+            "chp": 1,
             "TIP": 0,
             "AP": 1,
-            "CGP": 3,
+            "CGP": 2,
             "DP": 0,
             "MSP": 0,
             "MHP": 0,
@@ -25121,16 +23143,16 @@
         {
           "id": "yozgat",
           "votes": {
-            "chp": 39329,
-            "TIP": 0,
-            "AP": 27127,
-            "CGP": 4703,
-            "DP": 27593,
-            "MSP": 22494,
-            "MHP": 18100,
-            "TBP": 2055,
+            "chp": 40707,
+            "TIP": 3366,
+            "AP": 29090,
+            "CGP": 4423,
+            "DP": 25947,
+            "MSP": 21152,
+            "MHP": 17020,
+            "TBP": 1932,
             "MP": 0,
-            "IND": 4057
+            "IND": 3815
           },
           "seats": {
             "chp": 2,
@@ -25149,23 +23171,2001 @@
         {
           "id": "zonguldak",
           "votes": {
-            "chp": 103720,
-            "TIP": 0,
-            "AP": 116540,
-            "CGP": 10488,
-            "DP": 24048,
-            "MSP": 16992,
-            "MHP": 6046,
-            "TBP": 460,
+            "chp": 96559,
+            "TIP": 6051,
+            "AP": 124976,
+            "CGP": 9862,
+            "DP": 22613,
+            "MSP": 15978,
+            "MHP": 5686,
+            "TBP": 432,
             "MP": 0,
-            "IND": 4644
+            "IND": 4367
           },
           "seats": {
             "chp": 4,
             "TIP": 0,
+            "AP": 5,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        }
+      ]
+    },
+    {
+      "votes": {
+        "chp": 4016195,
+        "TIP": 0,
+        "AP": 4207148,
+        "CGP": 685924,
+        "DP": 1667317,
+        "MSP": 1003244,
+        "MHP": 464870,
+        "TBP": 89158,
+        "MP": 0,
+        "IND": 225019
+      },
+      "seats": {
+        "chp": 175,
+        "TIP": 0,
+        "AP": 184,
+        "CGP": 13,
+        "DP": 50,
+        "MSP": 24,
+        "MHP": 3,
+        "TBP": 0,
+        "MP": 0,
+        "IND": 1
+      },
+      "classShares": {
+        "workers_chp": 39.29446537271711,
+        "workers_TIP": 4.811795841496005,
+        "workers_AP": 33.92200199644568,
+        "workers_CGP": 3.0423055414237843,
+        "workers_DP": 7.66419841929414,
+        "workers_MSP": 5.152597885768218,
+        "workers_MHP": 4.0154105101499225,
+        "workers_TBP": 0.012262411718068803,
+        "workers_MP": 0,
+        "workers_IND": 2.084962020987068,
+        "capitalists_chp": 17.03129179776776,
+        "capitalists_TIP": 0.29087003580435977,
+        "capitalists_AP": 50.50736349352898,
+        "capitalists_CGP": 5.205558182264677,
+        "capitalists_DP": 19.519064408341947,
+        "capitalists_MSP": 2.5082692360929233,
+        "capitalists_MHP": 2.4910385620766853,
+        "capitalists_TBP": 0.014121373284666075,
+        "capitalists_MP": 0,
+        "capitalists_IND": 2.4324229108380004,
+        "petty_bourgeoisie_chp": 27.952426431770007,
+        "petty_bourgeoisie_TIP": 1.1873152315787732,
+        "petty_bourgeoisie_AP": 35.895103196666675,
+        "petty_bourgeoisie_CGP": 4.110113335268499,
+        "petty_bourgeoisie_DP": 16.94302361579626,
+        "petty_bourgeoisie_MSP": 9.3616233395921,
+        "petty_bourgeoisie_MHP": 3.3971077827611738,
+        "petty_bourgeoisie_TBP": 0.00677140739400572,
+        "petty_bourgeoisie_MP": 0,
+        "petty_bourgeoisie_IND": 1.1465156591725176,
+        "state_employees_chp": 40.96368215947864,
+        "state_employees_TIP": 4.116477172404064,
+        "state_employees_AP": 28.010067026214696,
+        "state_employees_CGP": 11.360423332069773,
+        "state_employees_DP": 6.334517533932689,
+        "state_employees_MSP": 2.597314763949692,
+        "state_employees_MHP": 3.456889357868774,
+        "state_employees_TBP": 0.01793544532063333,
+        "state_employees_MP": 0,
+        "state_employees_IND": 3.142693208761027,
+        "rural_chp": 23.177057706180737,
+        "rural_TIP": 0.7241354071464955,
+        "rural_AP": 38.31173128312094,
+        "rural_CGP": 5.042682978137352,
+        "rural_DP": 17.036703359214073,
+        "rural_MSP": 9.748262545488972,
+        "rural_MHP": 3.884947087132192,
+        "rural_TBP": 0.011725837417188613,
+        "rural_MP": 0,
+        "rural_IND": 2.062753796162053,
+        "alevis_chp": 56.978918374753505,
+        "alevis_TIP": 9.112342903783697,
+        "alevis_AP": 10.122738083069468,
+        "alevis_CGP": 3.0054945273411438,
+        "alevis_DP": 4.7781341105790744,
+        "alevis_MSP": 1.6236850468943083,
+        "alevis_MHP": 3.22316648115704,
+        "alevis_TBP": 9.961315760908168,
+        "alevis_MP": 0,
+        "alevis_IND": 1.1942047115136043,
+        "kurds_chp": 26.789962627541875,
+        "kurds_TIP": 8.76609206181757,
+        "kurds_AP": 23.37831242097152,
+        "kurds_CGP": 13.744844219042493,
+        "kurds_DP": 12.768556727331903,
+        "kurds_MSP": 11.682006879974043,
+        "kurds_MHP": 2.7323545084829965,
+        "kurds_TBP": 0.13787055483760702,
+        "kurds_MP": 0,
+        "kurds_IND": 0
+      },
+      "transfer": 185383.12084667533,
+      "totalVotes": 12358875,
+      "provinces": [
+        {
+          "id": "adana",
+          "votes": {
+            "chp": 140189,
+            "TIP": 0,
+            "AP": 97344,
+            "CGP": 15236,
+            "DP": 54028,
+            "MSP": 20915,
+            "MHP": 33096,
+            "TBP": 2548,
+            "MP": 0,
+            "IND": 8493
+          },
+          "seats": {
+            "chp": 6,
+            "TIP": 0,
+            "AP": 4,
+            "CGP": 0,
+            "DP": 2,
+            "MSP": 0,
+            "MHP": 1,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "adiyaman",
+          "votes": {
+            "chp": 34762,
+            "TIP": 0,
+            "AP": 31984,
+            "CGP": 10415,
+            "DP": 4339,
+            "MSP": 14666,
+            "MHP": 1718,
+            "TBP": 129,
+            "MP": 0,
+            "IND": 85
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "afyon",
+          "votes": {
+            "chp": 34216,
+            "TIP": 0,
+            "AP": 65021,
+            "CGP": 11975,
+            "DP": 25283,
+            "MSP": 17592,
+            "MHP": 8908,
+            "TBP": 250,
+            "MP": 0,
+            "IND": 2121
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "agri",
+          "votes": {
+            "chp": 21996,
+            "TIP": 0,
+            "AP": 17054,
+            "CGP": 19190,
+            "DP": 9567,
+            "MSP": 9723,
+            "MHP": 6686,
+            "TBP": 302,
+            "MP": 0,
+            "IND": 1510
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 1,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "amasya",
+          "votes": {
+            "chp": 31122,
+            "TIP": 0,
+            "AP": 31230,
+            "CGP": 14246,
+            "DP": 6897,
+            "MSP": 12781,
+            "MHP": 5438,
+            "TBP": 2383,
+            "MP": 0,
+            "IND": 2332
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "ankara",
+          "votes": {
+            "chp": 293434,
+            "TIP": 0,
+            "AP": 246528,
+            "CGP": 24472,
+            "DP": 83335,
+            "MSP": 49003,
+            "MHP": 40843,
+            "TBP": 3204,
+            "MP": 0,
+            "IND": 19037
+          },
+          "seats": {
+            "chp": 11,
+            "TIP": 0,
+            "AP": 10,
+            "CGP": 0,
+            "DP": 3,
+            "MSP": 2,
+            "MHP": 1,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "antalya",
+          "votes": {
+            "chp": 54080,
+            "TIP": 0,
+            "AP": 85646,
+            "CGP": 7052,
+            "DP": 37404,
+            "MSP": 7355,
+            "MHP": 8557,
+            "TBP": 421,
+            "MP": 0,
+            "IND": 1614
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
             "AP": 4,
             "CGP": 0,
             "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "artvin",
+          "votes": {
+            "chp": 28020,
+            "TIP": 0,
+            "AP": 29341,
+            "CGP": 5200,
+            "DP": 5419,
+            "MSP": 4047,
+            "MHP": 72,
+            "TBP": 26,
+            "MP": 0,
+            "IND": 718
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "aydin",
+          "votes": {
+            "chp": 58206,
+            "TIP": 0,
+            "AP": 77506,
+            "CGP": 2252,
+            "DP": 64837,
+            "MSP": 4014,
+            "MHP": 3497,
+            "TBP": 173,
+            "MP": 0,
+            "IND": 909
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 2,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "balikesir",
+          "votes": {
+            "chp": 81808,
+            "TIP": 0,
+            "AP": 153828,
+            "CGP": 8956,
+            "DP": 19424,
+            "MSP": 16814,
+            "MHP": 5542,
+            "TBP": 846,
+            "MP": 0,
+            "IND": 2966
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 6,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "bilecik",
+          "votes": {
+            "chp": 14048,
+            "TIP": 0,
+            "AP": 25093,
+            "CGP": 1681,
+            "DP": 2176,
+            "MSP": 4915,
+            "MHP": 1112,
+            "TBP": 30,
+            "MP": 0,
+            "IND": 303
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "bingol",
+          "votes": {
+            "chp": 17375,
+            "TIP": 0,
+            "AP": 15875,
+            "CGP": 355,
+            "DP": 8147,
+            "MSP": 11867,
+            "MHP": 403,
+            "TBP": 1787,
+            "MP": 0,
+            "IND": 786
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "bitlis",
+          "votes": {
+            "chp": 12245,
+            "TIP": 0,
+            "AP": 32370,
+            "CGP": 1860,
+            "DP": 923,
+            "MSP": 5572,
+            "MHP": 238,
+            "TBP": 477,
+            "MP": 0,
+            "IND": 1777
+          },
+          "seats": {
+            "chp": 0,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "bolu",
+          "votes": {
+            "chp": 25964,
+            "TIP": 0,
+            "AP": 68022,
+            "CGP": 27855,
+            "DP": 8002,
+            "MSP": 17111,
+            "MHP": 2605,
+            "TBP": 51,
+            "MP": 0,
+            "IND": 1505
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 1,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "burdur",
+          "votes": {
+            "chp": 20785,
+            "TIP": 0,
+            "AP": 19703,
+            "CGP": 8935,
+            "DP": 11096,
+            "MSP": 4311,
+            "MHP": 5290,
+            "TBP": 5,
+            "MP": 0,
+            "IND": 51
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "bursa",
+          "votes": {
+            "chp": 86732,
+            "TIP": 0,
+            "AP": 196152,
+            "CGP": 7865,
+            "DP": 30028,
+            "MSP": 21760,
+            "MHP": 5341,
+            "TBP": 150,
+            "MP": 0,
+            "IND": 1505
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 7,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "canakkale",
+          "votes": {
+            "chp": 44570,
+            "TIP": 0,
+            "AP": 71647,
+            "CGP": 2699,
+            "DP": 15795,
+            "MSP": 5349,
+            "MHP": 2445,
+            "TBP": 169,
+            "MP": 0,
+            "IND": 1812
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "cankiri",
+          "votes": {
+            "chp": 13870,
+            "TIP": 0,
+            "AP": 33266,
+            "CGP": 2359,
+            "DP": 14867,
+            "MSP": 8366,
+            "MHP": 6175,
+            "TBP": 443,
+            "MP": 0,
+            "IND": 1480
+          },
+          "seats": {
+            "chp": 0,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "corum",
+          "votes": {
+            "chp": 56048,
+            "TIP": 0,
+            "AP": 38685,
+            "CGP": 7627,
+            "DP": 36475,
+            "MSP": 26295,
+            "MHP": 5642,
+            "TBP": 2919,
+            "MP": 0,
+            "IND": 2516
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "denizli",
+          "votes": {
+            "chp": 54828,
+            "TIP": 0,
+            "AP": 66572,
+            "CGP": 4867,
+            "DP": 45120,
+            "MSP": 6181,
+            "MHP": 2969,
+            "TBP": 38,
+            "MP": 0,
+            "IND": 276
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 2,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "diyarbakir",
+          "votes": {
+            "chp": 56110,
+            "TIP": 0,
+            "AP": 40145,
+            "CGP": 9942,
+            "DP": 23689,
+            "MSP": 21383,
+            "MHP": 5849,
+            "TBP": 479,
+            "MP": 0,
+            "IND": 869
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "edirne",
+          "votes": {
+            "chp": 44091,
+            "TIP": 0,
+            "AP": 54400,
+            "CGP": 3606,
+            "DP": 8441,
+            "MSP": 1750,
+            "MHP": 1787,
+            "TBP": 116,
+            "MP": 0,
+            "IND": 962
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "elazig",
+          "votes": {
+            "chp": 37231,
+            "TIP": 0,
+            "AP": 35495,
+            "CGP": 2921,
+            "DP": 10707,
+            "MSP": 23046,
+            "MHP": 5677,
+            "TBP": 612,
+            "MP": 0,
+            "IND": 458
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "erzincan",
+          "votes": {
+            "chp": 35956,
+            "TIP": 0,
+            "AP": 26477,
+            "CGP": 2538,
+            "DP": 2900,
+            "MSP": 9921,
+            "MHP": 4596,
+            "TBP": 1533,
+            "MP": 0,
+            "IND": 470
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "erzurum",
+          "votes": {
+            "chp": 52528,
+            "TIP": 0,
+            "AP": 59146,
+            "CGP": 8199,
+            "DP": 27641,
+            "MSP": 45556,
+            "MHP": 8569,
+            "TBP": 4074,
+            "MP": 0,
+            "IND": 10026
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 2,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "eskisehir",
+          "votes": {
+            "chp": 49404,
+            "TIP": 0,
+            "AP": 76642,
+            "CGP": 7272,
+            "DP": 15329,
+            "MSP": 10427,
+            "MHP": 7166,
+            "TBP": 397,
+            "MP": 0,
+            "IND": 2583
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 4,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "gaziantep",
+          "votes": {
+            "chp": 71447,
+            "TIP": 0,
+            "AP": 39889,
+            "CGP": 22451,
+            "DP": 34940,
+            "MSP": 15573,
+            "MHP": 10003,
+            "TBP": 795,
+            "MP": 0,
+            "IND": 2476
+          },
+          "seats": {
+            "chp": 4,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 1,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "giresun",
+          "votes": {
+            "chp": 41278,
+            "TIP": 0,
+            "AP": 41403,
+            "CGP": 4037,
+            "DP": 30809,
+            "MSP": 7912,
+            "MHP": 11494,
+            "TBP": 65,
+            "MP": 0,
+            "IND": 1365
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 2,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "gumushane",
+          "votes": {
+            "chp": 18197,
+            "TIP": 0,
+            "AP": 36767,
+            "CGP": 1587,
+            "DP": 2389,
+            "MSP": 14958,
+            "MHP": 4028,
+            "TBP": 726,
+            "MP": 0,
+            "IND": 8075
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "hakkari",
+          "votes": {
+            "chp": 11746,
+            "TIP": 0,
+            "AP": 11817,
+            "CGP": 1257,
+            "DP": 9260,
+            "MSP": 461,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "seats": {
+            "chp": 0,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "hatay",
+          "votes": {
+            "chp": 70604,
+            "TIP": 0,
+            "AP": 51451,
+            "CGP": 13097,
+            "DP": 33033,
+            "MSP": 8351,
+            "MHP": 10960,
+            "TBP": 6706,
+            "MP": 0,
+            "IND": 3361
+          },
+          "seats": {
+            "chp": 4,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "icel",
+          "votes": {
+            "chp": 77035,
+            "TIP": 0,
+            "AP": 72530,
+            "CGP": 4282,
+            "DP": 38783,
+            "MSP": 4093,
+            "MHP": 16819,
+            "TBP": 1109,
+            "MP": 0,
+            "IND": 5968
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "isparta",
+          "votes": {
+            "chp": 14174,
+            "TIP": 0,
+            "AP": 64286,
+            "CGP": 2576,
+            "DP": 12028,
+            "MSP": 4423,
+            "MHP": 1603,
+            "TBP": 159,
+            "MP": 0,
+            "IND": 317
+          },
+          "seats": {
+            "chp": 0,
+            "TIP": 0,
+            "AP": 4,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "istanbul",
+          "votes": {
+            "chp": 543178,
+            "TIP": 0,
+            "AP": 405819,
+            "CGP": 36503,
+            "DP": 101600,
+            "MSP": 71192,
+            "MHP": 25560,
+            "TBP": 2962,
+            "MP": 0,
+            "IND": 18915
+          },
+          "seats": {
+            "chp": 20,
+            "TIP": 0,
+            "AP": 14,
+            "CGP": 1,
+            "DP": 3,
+            "MSP": 2,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "izmir",
+          "votes": {
+            "chp": 226472,
+            "TIP": 0,
+            "AP": 266639,
+            "CGP": 15049,
+            "DP": 53827,
+            "MSP": 16970,
+            "MHP": 7474,
+            "TBP": 835,
+            "MP": 0,
+            "IND": 4279
+          },
+          "seats": {
+            "chp": 8,
+            "TIP": 0,
+            "AP": 9,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "kahramanmaras",
+          "votes": {
+            "chp": 62078,
+            "TIP": 0,
+            "AP": 38906,
+            "CGP": 3963,
+            "DP": 23437,
+            "MSP": 34533,
+            "MHP": 11668,
+            "TBP": 3353,
+            "MP": 0,
+            "IND": 2145
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "kars",
+          "votes": {
+            "chp": 86377,
+            "TIP": 0,
+            "AP": 33440,
+            "CGP": 10856,
+            "DP": 29617,
+            "MSP": 10173,
+            "MHP": 5809,
+            "TBP": 2549,
+            "MP": 0,
+            "IND": 7764
+          },
+          "seats": {
+            "chp": 5,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "kastamonu",
+          "votes": {
+            "chp": 31866,
+            "TIP": 0,
+            "AP": 61128,
+            "CGP": 19957,
+            "DP": 16491,
+            "MSP": 5634,
+            "MHP": 10182,
+            "TBP": 63,
+            "MP": 0,
+            "IND": 2691
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 1,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "kayseri",
+          "votes": {
+            "chp": 48885,
+            "TIP": 0,
+            "AP": 58897,
+            "CGP": 35651,
+            "DP": 11314,
+            "MSP": 21273,
+            "MHP": 15384,
+            "TBP": 821,
+            "MP": 0,
+            "IND": 2764
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 2,
+            "DP": 0,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "kirklareli",
+          "votes": {
+            "chp": 36034,
+            "TIP": 0,
+            "AP": 45050,
+            "CGP": 2478,
+            "DP": 8313,
+            "MSP": 1682,
+            "MHP": 1390,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "kirsehir",
+          "votes": {
+            "chp": 20780,
+            "TIP": 0,
+            "AP": 10432,
+            "CGP": 4253,
+            "DP": 9342,
+            "MSP": 6046,
+            "MHP": 5327,
+            "TBP": 1071,
+            "MP": 0,
+            "IND": 6247
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "kocaeli",
+          "votes": {
+            "chp": 48187,
+            "TIP": 0,
+            "AP": 56702,
+            "CGP": 5825,
+            "DP": 16741,
+            "MSP": 19009,
+            "MHP": 2191,
+            "TBP": 213,
+            "MP": 0,
+            "IND": 1829
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "konya",
+          "votes": {
+            "chp": 99754,
+            "TIP": 0,
+            "AP": 58250,
+            "CGP": 37696,
+            "DP": 146423,
+            "MSP": 42375,
+            "MHP": 16612,
+            "TBP": 407,
+            "MP": 0,
+            "IND": 3850
+          },
+          "seats": {
+            "chp": 4,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 1,
+            "DP": 7,
+            "MSP": 2,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "DP"
+        },
+        {
+          "id": "kutahya",
+          "votes": {
+            "chp": 28129,
+            "TIP": 0,
+            "AP": 71309,
+            "CGP": 7461,
+            "DP": 24330,
+            "MSP": 14192,
+            "MHP": 5559,
+            "TBP": 185,
+            "MP": 0,
+            "IND": 2715
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "malatya",
+          "votes": {
+            "chp": 73594,
+            "TIP": 0,
+            "AP": 28245,
+            "CGP": 9032,
+            "DP": 9135,
+            "MSP": 24036,
+            "MHP": 3916,
+            "TBP": 8107,
+            "MP": 0,
+            "IND": 6897
+          },
+          "seats": {
+            "chp": 4,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "manisa",
+          "votes": {
+            "chp": 85881,
+            "TIP": 0,
+            "AP": 143125,
+            "CGP": 5891,
+            "DP": 37116,
+            "MSP": 18914,
+            "MHP": 9459,
+            "TBP": 564,
+            "MP": 0,
+            "IND": 2357
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 6,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "mardin",
+          "votes": {
+            "chp": 41313,
+            "TIP": 0,
+            "AP": 38452,
+            "CGP": 20034,
+            "DP": 36094,
+            "MSP": 14845,
+            "MHP": 1539,
+            "TBP": 951,
+            "MP": 0,
+            "IND": 2332
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 1,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "mugla",
+          "votes": {
+            "chp": 45176,
+            "TIP": 0,
+            "AP": 57785,
+            "CGP": 7525,
+            "DP": 29616,
+            "MSP": 3447,
+            "MHP": 1853,
+            "TBP": 32,
+            "MP": 0,
+            "IND": 214
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "mus",
+          "votes": {
+            "chp": 24303,
+            "TIP": 0,
+            "AP": 11711,
+            "CGP": 8684,
+            "DP": 7582,
+            "MSP": 11306,
+            "MHP": 998,
+            "TBP": 3477,
+            "MP": 0,
+            "IND": 5355
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "nevsehir",
+          "votes": {
+            "chp": 18287,
+            "TIP": 0,
+            "AP": 28819,
+            "CGP": 3567,
+            "DP": 4241,
+            "MSP": 8939,
+            "MHP": 4430,
+            "TBP": 718,
+            "MP": 0,
+            "IND": 2135
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "nigde",
+          "votes": {
+            "chp": 29905,
+            "TIP": 0,
+            "AP": 33059,
+            "CGP": 9428,
+            "DP": 31709,
+            "MSP": 8911,
+            "MHP": 10889,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 2,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "ordu",
+          "votes": {
+            "chp": 56894,
+            "TIP": 0,
+            "AP": 33073,
+            "CGP": 6459,
+            "DP": 44224,
+            "MSP": 8962,
+            "MHP": 10368,
+            "TBP": 3991,
+            "MP": 0,
+            "IND": 25708
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 2,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 1
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "rize",
+          "votes": {
+            "chp": 32830,
+            "TIP": 0,
+            "AP": 37790,
+            "CGP": 2608,
+            "DP": 15765,
+            "MSP": 16726,
+            "MHP": 2793,
+            "TBP": 12,
+            "MP": 0,
+            "IND": 422
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "sakarya",
+          "votes": {
+            "chp": 40417,
+            "TIP": 0,
+            "AP": 51967,
+            "CGP": 5501,
+            "DP": 37089,
+            "MSP": 19327,
+            "MHP": 4273,
+            "TBP": 131,
+            "MP": 0,
+            "IND": 1233
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "samsun",
+          "votes": {
+            "chp": 78547,
+            "TIP": 0,
+            "AP": 120876,
+            "CGP": 7431,
+            "DP": 32706,
+            "MSP": 25347,
+            "MHP": 6143,
+            "TBP": 857,
+            "MP": 0,
+            "IND": 5421
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 5,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "urfa",
+          "votes": {
+            "chp": 47465,
+            "TIP": 0,
+            "AP": 56193,
+            "CGP": 2859,
+            "DP": 28851,
+            "MSP": 17610,
+            "MHP": 1460,
+            "TBP": 3,
+            "MP": 0,
+            "IND": 0
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "siirt",
+          "votes": {
+            "chp": 23457,
+            "TIP": 0,
+            "AP": 13230,
+            "CGP": 39517,
+            "DP": 9850,
+            "MSP": 5469,
+            "MHP": 1172,
+            "TBP": 939,
+            "MP": 0,
+            "IND": 4383
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 2,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "CGP"
+        },
+        {
+          "id": "sinop",
+          "votes": {
+            "chp": 25096,
+            "TIP": 0,
+            "AP": 22059,
+            "CGP": 3608,
+            "DP": 12024,
+            "MSP": 4092,
+            "MHP": 3988,
+            "TBP": 6054,
+            "MP": 0,
+            "IND": 3549
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "sivas",
+          "votes": {
+            "chp": 81510,
+            "TIP": 0,
+            "AP": 46853,
+            "CGP": 5025,
+            "DP": 18581,
+            "MSP": 42529,
+            "MHP": 12274,
+            "TBP": 1093,
+            "MP": 0,
+            "IND": 4076
+          },
+          "seats": {
+            "chp": 4,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 2,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "tekirdag",
+          "votes": {
+            "chp": 32709,
+            "TIP": 0,
+            "AP": 46513,
+            "CGP": 12687,
+            "DP": 9817,
+            "MSP": 2253,
+            "MHP": 1969,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "tokat",
+          "votes": {
+            "chp": 58843,
+            "TIP": 0,
+            "AP": 42553,
+            "CGP": 7877,
+            "DP": 28633,
+            "MSP": 23719,
+            "MHP": 10631,
+            "TBP": 10268,
+            "MP": 0,
+            "IND": 8664
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "trabzon",
+          "votes": {
+            "chp": 67887,
+            "TIP": 0,
+            "AP": 59282,
+            "CGP": 10419,
+            "DP": 37677,
+            "MSP": 21449,
+            "MHP": 7821,
+            "TBP": 31,
+            "MP": 0,
+            "IND": 1238
+          },
+          "seats": {
+            "chp": 3,
+            "TIP": 0,
+            "AP": 3,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "tunceli",
+          "votes": {
+            "chp": 28820,
+            "TIP": 0,
+            "AP": 9900,
+            "CGP": 266,
+            "DP": 504,
+            "MSP": 851,
+            "MHP": 385,
+            "TBP": 3871,
+            "MP": 0,
+            "IND": 470
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 0,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "usak",
+          "votes": {
+            "chp": 25788,
+            "TIP": 0,
+            "AP": 27518,
+            "CGP": 3306,
+            "DP": 11456,
+            "MSP": 3354,
+            "MHP": 2571,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 2,
+            "CGP": 0,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "AP"
+        },
+        {
+          "id": "van",
+          "votes": {
+            "chp": 19965,
+            "TIP": 0,
+            "AP": 24192,
+            "CGP": 51361,
+            "DP": 1541,
+            "MSP": 4458,
+            "MHP": 948,
+            "TBP": 114,
+            "MP": 0,
+            "IND": 458
+          },
+          "seats": {
+            "chp": 1,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 2,
+            "DP": 0,
+            "MSP": 0,
+            "MHP": 0,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "CGP"
+        },
+        {
+          "id": "yozgat",
+          "votes": {
+            "chp": 42281,
+            "TIP": 0,
+            "AP": 29090,
+            "CGP": 4423,
+            "DP": 25947,
+            "MSP": 21152,
+            "MHP": 17020,
+            "TBP": 1932,
+            "MP": 0,
+            "IND": 3815
+          },
+          "seats": {
+            "chp": 2,
+            "TIP": 0,
+            "AP": 1,
+            "CGP": 0,
+            "DP": 1,
+            "MSP": 1,
+            "MHP": 1,
+            "TBP": 0,
+            "MP": 0,
+            "IND": 0
+          },
+          "winner": "chp"
+        },
+        {
+          "id": "zonguldak",
+          "votes": {
+            "chp": 99388,
+            "TIP": 0,
+            "AP": 124976,
+            "CGP": 9862,
+            "DP": 22613,
+            "MSP": 15978,
+            "MHP": 5686,
+            "TBP": 432,
+            "MP": 0,
+            "IND": 4367
+          },
+          "seats": {
+            "chp": 4,
+            "TIP": 0,
+            "AP": 5,
+            "CGP": 0,
+            "DP": 0,
             "MSP": 0,
             "MHP": 0,
             "TBP": 0,

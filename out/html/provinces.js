@@ -48,11 +48,29 @@ function shiftClass(Q,c,party,delta){
  }
  const factor=Math.sqrt(lo*hi);
  for(const cell of cells){
-  const v=cell.v,next=share(cell,factor),rest=Object.keys(v).filter(k=>k!==party);
+  const v=cell.v,before={...v},next=share(cell,factor),rest=Object.keys(v).filter(k=>k!==party);
   const restTotal=rest.reduce((a,k)=>a+n(v[k]),0);
   v[party]=next;
   for(const k of rest)v[k]=restTotal?n(v[k])*(1-next)/restTotal:0;
+  if(party==='chp')transferCHPGain(before,v,Q);
  }
+}
+// Preserve the requested CHP endpoint; alter only its donor partition.
+const donorAffinity={CGP:1.8,TIP:1.65,TBP:1.5,MP:1.35,MSP:1.2,MHP:1.05,DP:.85,AP:.65};
+function transferCHPGain(before,values,Q){
+ const gain=n(values.chp)-n(before.chp);if(gain<=1e-12)return values;
+ const keys=Object.keys(before).filter(k=>k!=='chp'&&n(before[k])>0&&(!Q||R.partyAvailable(Q,k))),support=clamp(n(before.chp),0,1);
+ const rate=k=>(.5+.5*n(donorAffinity[k],1))*(k==='AP'?1/(1+4*support*support):1);
+ const inactiveLoss=Object.keys(before).filter(k=>k!=='chp'&&!keys.includes(k)).reduce((a,k)=>a+n(before[k])-n(values[k]),0);
+ const remaining=keys.reduce((a,k)=>a+n(before[k]),0)-gain+inactiveLoss;
+ if(remaining<=1e-12)return values;
+ let lo=0,hi=1;const rest=t=>keys.reduce((a,k)=>a+n(before[k])*Math.exp(-rate(k)*t),0);
+ while(rest(hi)>remaining)hi*=2;
+ for(let i=0;i<48;i++){const mid=(lo+hi)/2;if(rest(mid)>remaining)lo=mid;else hi=mid;}
+ for(const k of keys)values[k]=n(before[k])*Math.exp(-rate(k)*(lo+hi)/2);
+ if(keys.includes('AP')){const others=keys.filter(k=>k!=='AP'),pool=others.reduce((a,k)=>a+n(values[k]),0),bonus=Math.min(pool*.15,gain*.25*support);
+ for(const k of others)values[k]*=pool?(pool-bonus)/pool:1;values.AP+=bonus;}
+ return values;
 }
 function demographics(Q,id){return norm(Q.province_pools[id].demographics);}
 function sync(Q){if(!active(Q))return;const prior=Q.province_aggregate_mirror;
@@ -223,12 +241,12 @@ function migrateHistory(Q){
  }
  }finally{delete Q.province_history_migrating;}
 }
-function addPollingPoints(Q,points){ensure(Q);const coalition=root.AnatolianNationalCoalition,beforeCells=coalition?copy(Q.province_pools):null,coalitionState=coalition?copy(Q.national_coalition):null,beforeMirror=coalition?copy(Q.province_aggregate_mirror):null;const before=pollingTotals(Q).fractions.chp,target=clamp(before+points/100,0,1),original=copy(Q.province_pools);function set(f){for(const p of rows)for(const c of classes){const v=copy(original[p.id].preferences[c]);v.chp=n(v.chp)*f;Q.province_pools[p.id].preferences[c]=norm(v);}delete Q.province_aggregate_mirror;sync(Q);}let lo=.000001,hi=1000000;for(let i=0;i<40;i++){const mid=Math.sqrt(lo*hi);set(mid);if(pollingTotals(Q).fractions.chp<target)lo=mid;else hi=mid;}set(Math.sqrt(lo*hi));if(coalition){Q.national_coalition=coalitionState;for(const p of rows)for(const c of classes)coalition.limitCell(Q,c,n(beforeCells[p.id].preferences[c].chp),Q.province_pools[p.id].preferences[c],n(beforeMirror[c+'_chp'])/100);delete Q.province_aggregate_mirror;sync(Q);}R.refreshPolls(Q);}
+function addPollingPoints(Q,points){ensure(Q);const coalition=root.AnatolianNationalCoalition,beforeCells=coalition?copy(Q.province_pools):null,coalitionState=coalition?copy(Q.national_coalition):null,beforeMirror=coalition?copy(Q.province_aggregate_mirror):null;const before=pollingTotals(Q).fractions.chp,target=clamp(before+points/100,0,1),original=copy(Q.province_pools);function set(f){for(const p of rows)for(const c of classes){const v=copy(original[p.id].preferences[c]);v.chp=n(v.chp)*f;const next=norm(v);transferCHPGain(original[p.id].preferences[c],next,Q);Q.province_pools[p.id].preferences[c]=next;}delete Q.province_aggregate_mirror;sync(Q);}let lo=.000001,hi=1000000;for(let i=0;i<40;i++){const mid=Math.sqrt(lo*hi);set(mid);if(pollingTotals(Q).fractions.chp<target)lo=mid;else hi=mid;}set(Math.sqrt(lo*hi));if(coalition){Q.national_coalition=coalitionState;for(const p of rows)for(const c of classes)coalition.limitCell(Q,c,n(beforeCells[p.id].preferences[c].chp),Q.province_pools[p.id].preferences[c],n(beforeMirror[c+'_chp'])/100);delete Q.province_aggregate_mirror;sync(Q);}R.refreshPolls(Q);}
 const colors={other:'#808080',chp:'#E3000F',AP:'#750a6f',CGP:'#5b7387',DP:'#4a4d04',MSP:'#054521',MHP:'#954B00',TIP:'#8B0000',TKP:'#820b09',TSIP:'#abab1a',TEP:'#ad673b',SDP:'#a83a32',TBP:'#c51b32',MP:'#242018',IND:'#808080',KI:'#c2d93f'};
 const provinceOtherParties=['MP','TBP','IND','KI'];
 function reportingVotes(votes,national,socialistFormed){const keys=national?R.otherPollParties:provinceOtherParties,result={...votes};if(socialistFormed)for(const k of ['TKP','TSIP','TEP','SDP']){result.TIP=n(result.TIP)+n(result[k]);delete result[k];}result.other=0;for(const k of keys){result.other+=n(result[k]);delete result[k];}return result;}
 function label(Q,p){return ({chp:'CHP',TIP:'TİP',TSIP:'TSİP',CGP:Q.CGP_name||'MGP',MSP:Q.MSP_name||'MNP',IND:'Independents',KI:'Kurdish Independents',other:'Other'})[p]||p;}
-root.AnatolianProvinces={balanceProvincialVotes:applyProvincialVoteBalance,ensure,active,sync,shiftClass,compute,pollingTotals,addPollingPoints,projectVotes,applyElection,populations,nationalPopulation,demographics,seatQuotas,dhondt,label,colors,reportingVotes,provinceOtherParties,classPreferences,startingPreferences,data:D};
+root.AnatolianProvinces={balanceProvincialVotes:applyProvincialVoteBalance,ensure,active,sync,shiftClass,transferCHPGain,compute,pollingTotals,addPollingPoints,projectVotes,applyElection,populations,nationalPopulation,demographics,seatQuotas,dhondt,label,colors,reportingVotes,provinceOtherParties,classPreferences,startingPreferences,data:D};
 if(typeof module!=='undefined')module.exports=root.AnatolianProvinces;
 })(globalThis);
 
