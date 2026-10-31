@@ -6,6 +6,7 @@ if(typeof AnatolianDynamicDemographics!=="undefined" && Q.started) AnatolianDyna
 var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
 Q.cyprus_calendar_advance = 0;
+if(typeof AnatolianMacro !== "undefined") AnatolianMacro.ensure(Q);
 AnatolianRules.refreshEconomy(Q);
 AnatolianRules.refreshFactions(Q);
 Q.last_advisor_action = 0;
@@ -84,7 +85,8 @@ var runMonthlyEconomicSimulation = function() {
     var sanctionPenalty=Q.cyprus_economic_sanctions_active ? -.5 : 0;
     Q.growth_modifier = sanctionPenalty + applyDecay(Q.growth_modifier-sanctionPenalty, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);
     Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);
-    // Step 4/5: recompute production indices and headline figures
+    // Step 4/5: one authoritative macro step per calendar month (not per half-month).
+    if(typeof AnatolianMacro !== "undefined") AnatolianMacro.step(Q);
     recalcProductionAndHeadlineValues();
 };
 
