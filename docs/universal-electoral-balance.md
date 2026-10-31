@@ -1,43 +1,42 @@
-# Universal electoral deconcentration (standalone)
+# Universal Electoral Rebalance v5 (standalone)
 
-This change applies to the current province-class voting engine in
-`out/html/provinces.js`. It is standalone and can replace either the original
-runaway-concentration code or the previous electoral balance patches. It uses
-the 1972 class-vote preferences as the underlying starting point.
+This patch updates the province-class voting engine in `out/html/provinces.js`
+without replacing unrelated game functionality. It can install over the original
+engine or over the previous universal electoral rebalance.
 
-## Rules
+## Geography and ceilings
 
-- **Every party** receives the same neutral geographic-swing calculation.
-  Campaign gains use a common log-odds adjustment in each class; the former
-  increasing stronghold affinity exponent is retired.
-- Each computed national party margin is redistributed among the 67 provinces
-  with a single convex mixing coefficient, retaining local electorate sizes
-  and national party totals (subject to integer rounding).
-- Each party's provincial maximum is
+- Restores the existing regional-affinity response for provincial class gains.
+  Uniform log-odds growth previously caused CHP to lead 55 provinces at
+  42% national support instead of the original model's 42.
+- After every polling, general-election, or local-election ballot, constrained
+  province-to-province party-vote swaps enforce limits while preserving each
+  province's valid-vote turnout and every party's national vote total.
+  These swaps preferentially retain provincial first-place parties.
+- **No blanket national mixing:** if a ballot already satisfies all limits,
+  the provincial votes remain unchanged. Only out-of-bounds votes need repair.
+  If swaps cannot resolve a pathological set of constraints, a bounded
+  national-average mixing fallback guarantees the limits.
+- Every party has a provincial maximum of
   `min(84.9%, national_share + 15pp + 0.6 * max(0, 60% - national_share)) - 0.05pp`.
-  For 60% national support this is **74.95%**, so vote rounding cannot produce
-  a province at 75%.
-- Parties at 15% or more nationally have a provincial floor at 20% of their
-  own national support. Zero parties/unformed parties remain zero.
-- If a party already has **more than 84.8% nationwide**, it is mathematically
-  impossible to maintain national totals AND guarantee that no province reaches
-  85%. In that exceptional case the nationwide total is reduced to 84.8% and
-  the difference is redistributed to the already-supported other parties.
-- Applied after ordinary political effects and temporary bonuses, but before
-  integer vote rounding, D'Hondt allocation, municipal winners and poll maps.
-- No previous election archive is recalculated; province class preferences
-  saved in older games are not overwritten. Their new projected outcomes are
-  nonetheless bound by the same geographic limits.
+  At 60% nationwide, that is **74.95%**; provincial values stay below 75%.
+- Every party at or above 15% nationally has at least 20% of its own
+  nationwide share in each province. Parties with zero support remain at zero.
+- In the exceptional mathematically impossible case of a party exceeding
+  84.8% nationally, its share is brought down to 84.8% and excess is
+  distributed to alternative parties so no province reaches 85%.
+- All changes occur after political actions and before integer vote rounding,
+  seats, province winners, maps, and historical election snapshots.
+- Saved province preferences and archived elections are not rewritten.
 
-## Files
+## Regression tests
 
-- `out/html/provinces.js` — updated in place by installer to preserve other
-  repository work; no compiled `core.js` files are touched.
-- `scripts/test-universal-electoral-balance.js` — integrated engine tests.
-- `docs/universal-electoral-balance.md` — this documentation.
+The dedicated suite checks the universal all-party bounds, population and
+seat conservation, and that already-compliant provinces are not modified.
+The complete existing `npm test` suite also includes the original national
+coalition regional-growth checks: **42 CHP provincial wins at 42% nationwide**,
+**43 at 55% nationwide**. That test has NOT been relaxed or rewritten.
 
-No Git actions are performed. The installer backs up overwritten files next
- to the repository, executes Node syntax and model tests, and restores files
-if a test fails. Run `npm run check && npm run build && npm test` separately
-before publishing. If a build step changes your `out/html/provinces.js`, run
-`INSTALL_AND_TEST.bat` again.
+The installer backs up every changed source file, runs the dedicated tests
+followed by the entire `npm test` suite, and restores originals if a check
+fails. It does not stage, commit, or push Git changes.

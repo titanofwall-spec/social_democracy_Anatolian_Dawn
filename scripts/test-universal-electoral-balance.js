@@ -127,6 +127,18 @@ test('Polls, local elections and general elections have identical vote bounds',(
  }
  assert.equal(sum(gen.seats),450);assert.equal(sum(local.seats),450);
 });
+test('Compliant provincial patterns remain exactly unchanged, with no nationwide averaging',()=>{
+ const provinces=Array.from({length:67},(_,i)=>{
+  const row=20000+i*193,share=.40+(i%11)*.01;
+  const votes=Object.fromEntries(keys.map(k=>[k,0]));
+  votes.chp=row*share;votes.AP=row*(1-share);
+  return {id:'geography'+i,votes};
+ });
+ const before=cloneAndVotes(provinces);
+ P.balanceProvincialVotes(provinces,keys);
+ for(let i=0;i<provinces.length;i++)for(const k of keys)
+  near(provinces[i].votes[k],before[i].votes[k],1e-6);
+});
 test('All-party synthetic conservation, every province turnout unchanged',()=>{
  for(const party of ['chp','AP','MSP','MHP','CGP','DP','TIP'])syntheticValidation(party,.60);
 });

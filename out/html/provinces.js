@@ -26,24 +26,29 @@ function ensure(Q){if(!Q.started||!Array.isArray(Q.parties)||!Q.parties.includes
 // supplied starting support, further gains deepen local support before spreading into rival territory.
 // The weighted target remains unchanged; no province-win limit or starting-vote rewrite is applied.
 function shiftClass(Q,c,party,delta){
- // All parties get the same log-odds swing. No regional concentration feedback.
+ // Preserve the original model's region-specific electoral affinities.
+ // Later ballot balancing, not uncontrolled growth, enforces universal ceilings.
  if(!delta)return;
  const pop=populations(date(Q),Q),cells=rows.map(p=>({v:Q.province_pools[p.id].preferences[c],w:pop[p.id]*demographics(Q,p.id)[c]}));
  const weight=cells.reduce((a,x)=>a+x.w,0)||1;
  const base=cells.reduce((a,x)=>a+x.w*n(x.v[party]),0)/weight;
  const target=clamp(base+delta,0,1);
- const share=(v,logOdds)=>{
-  const p=clamp(n(v[party]),.000001,.999999);
-  return 1/(1+((1-p)/p)*Math.exp(-clamp(logOdds,-40,40)));
- };
- let lo=-40,hi=40;
- for(let i=0;i<52;i++){
-  const mid=(lo+hi)/2,avg=cells.reduce((a,x)=>a+x.w*share(x.v,mid),0)/weight;
-  if(avg<target)lo=mid;else hi=mid;
- }
- const oddsShift=(lo+hi)/2;
+ const initial=rows.reduce((a,p)=>a+pop[p.id]*demographics(Q,p.id)[c]*n(startingPreferences(p,c)[party]),0)/weight;
+ const expansion=Math.max(0,base-initial);
+ const concentration=clamp(1.5+8*expansion+200*Math.pow(Math.max(0,expansion-.15),2),1.5,8);
  for(const cell of cells){
-  const v=cell.v,next=share(v,oddsShift),rest=Object.keys(v).filter(k=>k!==party);
+  cell.p=clamp(n(cell.v[party]),.000001,.999999);
+  cell.affinity=delta>0?clamp(Math.pow(cell.p/Math.max(.000001,base),concentration),.02,6):clamp(Math.sqrt(Math.max(.000001,base)/cell.p),.3,3);
+ }
+ const share=(cell,k)=>{const odds=Math.pow(k,cell.affinity);return cell.p*odds/(1-cell.p+cell.p*odds);};
+ let lo=.000000001,hi=1000000000;
+ for(let i=0;i<36;i++){
+  const mid=Math.sqrt(lo*hi),average=cells.reduce((a,x)=>a+x.w*share(x,mid),0)/weight;
+  if(average<target)lo=mid;else hi=mid;
+ }
+ const factor=Math.sqrt(lo*hi);
+ for(const cell of cells){
+  const v=cell.v,next=share(cell,factor),rest=Object.keys(v).filter(k=>k!==party);
   const restTotal=rest.reduce((a,k)=>a+n(v[k]),0);
   v[party]=next;
   for(const k of rest)v[k]=restTotal?n(v[k])*(1-next)/restTotal:0;
@@ -71,62 +76,108 @@ function roundProvinceVotes(prov,totals){
  candidates.sort((a,b)=>b.fraction-a.fraction||a.p.id.localeCompare(b.p.id)||a.k.localeCompare(b.k));for(const {p,k}of candidates)if(rowRemaining[p.id]>0&&remaining[k]>0){p.votes[k]++;rowRemaining[p.id]--;remaining[k]--;}
  for(const p of prov)for(const k of keys){const amount=Math.min(rowRemaining[p.id],remaining[k]);if(amount>0){p.votes[k]+=amount;rowRemaining[p.id]-=amount;remaining[k]-=amount;}}for(const p of prov){p.totalVotes=sum(p.votes);p.shares=norm(p.votes);}
 }
-// ANATOLIAN_UNIVERSAL_BALANCE_V3
-// Applied to each poll, general election and local election (all parties).
-// Preserve every province's valid-vote turnout and all national party totals,
-// except where a party already has an impossible >84.8% national majority.
+// ANATOLIAN_UNIVERSAL_BALANCE_V5
+// Preserve provincial political geography when imposing the all-party ceilings.
+// Constrained 2x2 province/party transfers preserve every province turnout and
+// each nationwide party total. Avoid the older uniform nationwide averaging,
+// which artificially flipped provincial winners.
 const PROVINCE_ABSOLUTE_MAX=.849;
 const PROVINCE_NATIONAL_EDGE_CAP=.848;
-const PROVINCE_MIN_MIX=.08;
 function applyProvincialVoteBalance(provinces,partyKeys){
  if(!provinces.length||!partyKeys.length)return;
  const national=Object.fromEntries(partyKeys.map(k=>[k,0]));
  let total=0;
- for(const p of provinces){
-  const row=sum(p.votes);total+=row;
-  for(const k of partyKeys)national[k]+=Math.max(0,n(p.votes[k]));
- }
+ for(const p of provinces){const row=sum(p.votes);total+=row;for(const k of partyKeys)national[k]+=Math.max(0,n(p.votes[k]));}
  if(!(total>0))return;
  for(const k of partyKeys)national[k]/=total;
  const leader=partyKeys.reduce((best,k)=>national[k]>national[best]?k:best,partyKeys[0]);
  if(national[leader]>PROVINCE_NATIONAL_EDGE_CAP){
-  // An 84.85% effective provincial maximum cannot coexist with
-  // nationwide support above 84.85%; preserve a 0.05pp safety margin.
-  // Reduce only this impossible national margin, spreading its overflow
-  // proportionally among already-supported alternatives.
-  const alternatives=partyKeys.filter(k=>k!==leader&&national[k]>0);
-  const fallback=alternatives.length?alternatives:partyKeys.filter(k=>k!==leader);
-  if(!fallback.length)return;
-  const otherNation=fallback.reduce((a,k)=>a+national[k],0);
-  for(const p of provinces){
-   const row=sum(p.votes);
-   p.votes[leader]=row*PROVINCE_NATIONAL_EDGE_CAP;
-   for(const k of partyKeys)if(k!==leader){
-    p.votes[k]=row*(1-PROVINCE_NATIONAL_EDGE_CAP)*(otherNation>0?national[k]/otherNation:(k===fallback[0]?1:0));
-   }
-  }
+  // This national average cannot satisfy the maximum in every province.
+  const fallback=partyKeys.filter(k=>k!==leader&&national[k]>0);
+  const alternatives=fallback.length?fallback:partyKeys.filter(k=>k!==leader);
+  if(!alternatives.length)return;
+  const otherNation=alternatives.reduce((a,k)=>a+national[k],0);
+  for(const p of provinces){const row=sum(p.votes);p.votes[leader]=row*PROVINCE_NATIONAL_EDGE_CAP;
+   for(const k of partyKeys)if(k!==leader)p.votes[k]=row*(1-PROVINCE_NATIONAL_EDGE_CAP)*(otherNation>0?national[k]/otherNation:(k===alternatives[0]?1:0));}
   return;
  }
- let mix=PROVINCE_MIN_MIX;
- for(const p of provinces){
-  const row=sum(p.votes);if(!(row>0))continue;
-  for(const k of partyKeys){
-   const local=Math.max(0,n(p.votes[k]))/row,avg=national[k];
-   // At 60% nationally the highest allowed provincial share is 74.95%.
-   // Lower national support retains the author's 1972 local distinctions.
-   const ceiling=Math.min(PROVINCE_ABSOLUTE_MAX,avg+.15+.60*Math.max(0,.60-avg))-.0005;
-   const floor=avg>=.15?.20*avg:0;
-   if(local>ceiling&&local>avg)mix=Math.max(mix,(local-ceiling)/(local-avg));
-   if(local<floor&&local<avg)mix=Math.max(mix,(floor-local)/(avg-local));
-  }
+ const len=provinces.length;
+ const row=provinces.map(p=>sum(p.votes));
+ const cap={},floor={};
+ for(const k of partyKeys){
+  const a=national[k];
+  cap[k]=Math.min(PROVINCE_ABSOLUTE_MAX,a+.15+.60*Math.max(0,.60-a))-.0005;
+  floor[k]=a>=.15?.20*a:0;
  }
- mix=clamp(mix+1e-9,0,1);
- for(const p of provinces){
-  const row=sum(p.votes);
-  for(const k of partyKeys){
-   p.votes[k]=(1-mix)*Math.max(0,n(p.votes[k]))+mix*row*national[k];
+ const initialWinner=provinces.map(p=>partyKeys.reduce((best,k)=>n(p.votes[k])>n(p.votes[best])?k:best,partyKeys[0]));
+ // Maximum transfer x in a province that retains the current first-place
+ // party. A move raises k by direction*x and reduces j by the same amount.
+ function winnerRoom(i,k,j,direction){
+  const w=initialWinner[i],v=provinces[i].votes;
+  let limit=Infinity;
+  for(const other of partyKeys)if(other!==w){
+   const dw=(w===k?direction:w===j?-direction:0);
+   const dt=(other===k?direction:other===j?-direction:0);
+   if(dw<dt)limit=Math.min(limit,Math.max(0,(n(v[w])-n(v[other]))/(dt-dw)));
   }
+  return limit;
  }
+ function swap(i,q,k,j,direction,amount){
+  // In i, k changes by direction*x; in q it changes by -direction*x.
+  const vi=provinces[i].votes,vq=provinces[q].votes;
+  vi[k]+=direction*amount;vi[j]-=direction*amount;
+  vq[k]-=direction*amount;vq[j]+=direction*amount;
+ }
+ // Iterate real vote-bound violations. Prefer changes that do not flip a
+ // province's leader, but retain a second pass for unavoidable corrections.
+ for(let pass=0;pass<32;pass++){
+  let moved=0,largest=0;
+  const wrong=[];
+  for(let i=0;i<len;i++)if(row[i]>0)for(const k of partyKeys){
+   const v=n(provinces[i].votes[k]);
+   const lo=row[i]*floor[k],hi=row[i]*cap[k];
+   const error=v>hi?v-hi:v<lo?lo-v:0;
+   if(error>row[i]*1e-10){wrong.push({i,k,over:v>hi,need:error});largest=Math.max(largest,error/row[i]);}
+  }
+  if(!wrong.length)return;
+  wrong.sort((a,b)=>b.need/row[b.i]-a.need/row[a.i]);
+  for(const issue of wrong){
+   const {i,k,over}=issue,vi=provinces[i].votes;
+   const remaining=over?n(vi[k])-row[i]*cap[k]:row[i]*floor[k]-n(vi[k]);
+   if(remaining<=row[i]*1e-10)continue;
+   let best=null;
+   for(let q=0;q<len;q++)if(q!==i&&row[q]>0){
+    const vq=provinces[q].votes;
+    const kCapacity=over?row[q]*cap[k]-n(vq[k]):n(vq[k])-row[q]*floor[k];
+    if(kCapacity<=0)continue;
+    for(const j of partyKeys)if(j!==k){
+     const jCapacity=over?Math.min(n(vq[j])-row[q]*floor[j],row[i]*cap[j]-n(vi[j])):
+      Math.min(n(vi[j])-row[i]*floor[j],row[q]*cap[j]-n(vq[j]));
+     const available=Math.min(remaining,kCapacity,jCapacity);
+     if(available<=row[i]*1e-11)continue;
+     const direction=over?-1:1;
+     const noFlip=Math.min(available,winnerRoom(i,k,j,direction),winnerRoom(q,k,j,-direction));
+     const safe=noFlip>row[i]*1e-11;
+     const amount=safe?noFlip:available;
+     // Preserve historical winners before maximizing the amount transferred.
+     if(!best||(safe&&!best.safe)||(safe===best.safe&&amount>best.amount))best={q,j,amount,safe,direction};
+    }
+   }
+   if(best){swap(i,best.q,k,best.j,best.direction,best.amount);moved++;}
+  }
+  if(!moved)break;
+ }
+ // If the bounded swaps are insufficient, conservative global mixing
+ // guarantees the legal ceiling/floor without inventing or losing votes.
+ // This fallback is deliberately only for an otherwise unresolved case.
+ let mix=0;
+ for(let i=0;i<len;i++)if(row[i]>0)for(const k of partyKeys){
+  const local=n(provinces[i].votes[k])/row[i],avg=national[k];
+  if(local>cap[k]&&local>avg)mix=Math.max(mix,(local-cap[k])/(local-avg));
+  if(local<floor[k]&&local<avg)mix=Math.max(mix,(floor[k]-local)/(avg-local));
+ }
+ if(mix>0){mix=clamp(mix+1e-9,0,1);for(let i=0;i<len;i++)for(const k of partyKeys)
+  provinces[i].votes[k]=(1-mix)*n(provinces[i].votes[k])+mix*row[i]*national[k];}
 }
 function compute(Q,polling=true,independentFactors,kind='general',includeTemporary=true,totalsOnly=false){
  R.ensureKurdishIssue(Q);const context=preferenceContext(Q),y=date(Q),pop=populations(y,Q),t=clamp((y-1973)/4,0,1),prov=[],votes=Object.fromEntries(Q.parties.map(p=>[p,0])),classVotes=Object.fromEntries(classes.map(c=>[c,Object.fromEntries(Q.parties.map(p=>[p,0]))]));let transfer=0;
