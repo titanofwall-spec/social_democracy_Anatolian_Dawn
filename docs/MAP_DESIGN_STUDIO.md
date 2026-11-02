@@ -10,7 +10,9 @@ Start a campaign first if the election map is not available yet. The same entry 
 
 1. Click **+ Layer** and give it a name such as “Paper shading”. Choose **multiply**, reduce **Opacity**, and set **Clip artwork to → All land**.
 2. Choose **Brush**. Set a large size, soft round finish, low flow, and a warm grey or brown. Paint gently over the land. The layer mask keeps the sea clear.
-3. Create another layer for sea details. Clip it to **Water only**. Add a gradient or grain wash, or import a texture image. Select its object to change its gradient, colors, rotation and scale.
+3. To use an existing map, create/select a layer, copy the actual map image or a screenshot, click the map canvas and press **Ctrl+V** (Cmd+V on macOS). Set that layer's blend mode to **overlay** or **multiply** and adjust its opacity. Use **Fit image to map**, then drag and adjust its position, scale or dimensions to line it up. The pasted image is embedded in your project. The **Paste image** button is another option; if the browser blocks clipboard access, Ctrl+V or **Import texture / image** remains available. Pasting while a text field is focused edits that field normally.
+
+   For sea details, create another layer and clip it to **Water only**. Add a gradient or grain wash, or import a texture image. Select its object to change its gradient, colors, rotation and scale.
 4. Choose **Province anchor**, then click a province. Enable **Clip stroke to selected province** for local shading, or use the layer's **One province** clipping option.
 5. Choose **Text**, enter your label and click the map. With “Attach to clicked province” enabled, the label stores that province ID and an offset. A click directly over land chooses that province; a click in water uses the province you previously selected. A leader line can connect the label to the province's existing center. Turn the leader off if you want a plain map label.
 6. Use **Move/select** to drag artwork. The right-hand object inspector provides exact positions, rotation, scale, opacity, typography, colors and province anchoring. Changing the attached province keeps the label in its current visible position and recalculates its offset.
@@ -34,7 +36,7 @@ Objects on the selected layer are listed separately, frontmost first. Select an 
 - **Rectangle, ellipse and line:** drag to draw. Shift constrains rectangles and ellipses to squares/circles. Fill, outline color/width and dashed outlines are editable.
 - **Text:** multiline labels, five local font families, size, bold/italic, alignment, letter/line spacing, halo color/width, rotation, scale, opacity, province anchoring and optional leader lines. Custom labels use map coordinates and scale with the map. Their collision/placement is under your control; the default automatic city/sea labels retain the game's existing behavior.
 - **Color/gradient/grain wash:** add an object covering the framed map, then choose solid color, linear gradient, radial gradient or repeated grain in the inspector. Set its colors, angle, end opacity and object/layer opacity. A land or water layer mask is useful here.
-- **Import texture/image:** PNG, JPEG or WebP, up to 5 MB each. The image is embedded in the project. Resize, move, rotate, scale, blend or clip it as an ordinary object. Use Scale to retain its aspect ratio; width/height can be adjusted separately. This tool does not provide a separate pixel image editor or destructive image crop.
+- **Paste/import texture/image:** Ctrl/Cmd+V accepts copied PNG, JPEG or WebP images and screenshots, up to 5 MB each, into the selected unlocked layer. The Paste image button can read supported images when the browser permits it. Clipboard images take precedence over an older copied editor object. Image files can also be imported. Images are embedded in the project. **Fit image to map** centers and fits an image inside the original 1675 × 717 map area while preserving its proportions; use Move, Scale or width/height for manual alignment. Differently drawn/projected maps still require manual alignment. This tool does not provide a separate pixel image editor or destructive image crop.
 - **Eyedropper:** samples a province's base color or a supported artwork object's stored color into the brush; it does not sample the final composited screen pixel.
 
 Use the base-map settings to change sea color, paper grain, provincial/coastal borders and widths, ink shading, default label font/colors/halo, coastline shadow, default label visibility and terrain overlay. Party colors and election results remain controlled by the game. The neutral-land preview and screen grid are workspace aids and are not exported.
@@ -50,7 +52,7 @@ Wheel zoom follows the pointer. Hand/pan or Space + drag moves the view. The edi
 | Province anchor, hand, eyedropper | P, H, I |
 | Export/import project | Ctrl/Cmd+S, Ctrl/Cmd+O |
 | Undo/redo | Ctrl/Cmd+Z, Ctrl/Cmd+Shift+Z or Ctrl/Cmd+Y |
-| Copy/paste/duplicate selected object | Ctrl/Cmd+C, Ctrl/Cmd+V, Ctrl/Cmd+D |
+| Copy/paste/duplicate selected object; paste external image | Ctrl/Cmd+C, Ctrl/Cmd+V, Ctrl/Cmd+D |
 | Delete selected object | Delete or Backspace |
 | Move selected object | Arrow keys; Shift = 10 map units |
 | Brush size | [ and ] |
