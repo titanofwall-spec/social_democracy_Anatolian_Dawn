@@ -18,3 +18,27 @@
 /* Disabled until the player enables it in Options; applies to every existing and future map. */
 .turkey-physical-overlay{display:none}
 html.physical-map-enabled .turkey-physical-overlay{display:inline}
+
+/* Restrained printed-atlas treatment; the election palette remains authoritative. */
+.province-map-canvas{background-color:#dce6e7;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23737870' opacity='.055' filter='url(%23p)' d='M0 0h120v120H0z'/%3E%3C/svg%3E");border:1px solid #87999a;overflow:hidden;position:relative}
+.province-map-canvas svg{margin:0;touch-action:pan-y;user-select:none}
+.province-map-canvas [data-province]{stroke:#646963;stroke-width:.8;vector-effect:non-scaling-stroke;transition:filter .1s}
+.province-map-canvas [data-province]:hover,.province-map-canvas [data-province]:focus{filter:brightness(1.08);stroke:#343d39;stroke-width:1.7;outline:none}
+.province-map-canvas [data-province].atlas-selected{stroke:#88621c;stroke-width:3;filter:brightness(1.03);paint-order:stroke fill}
+.province-map-canvas .turkey-water{fill:#dce6e7!important;stroke:none}
+.atlas-silhouette,.atlas-ink,.atlas-labels,.atlas-selection{pointer-events:none}
+.province-map-canvas .atlas-selection path{fill:none;stroke:#88621c;stroke-width:2.3;vector-effect:non-scaling-stroke;transition:none}
+.province-map-canvas .atlas-selection .atlas-selection-halo{stroke:#f6f3e8;stroke-width:4}
+.province-map-canvas .atlas-silhouette path{cursor:default;vector-effect:non-scaling-stroke;stroke:#526366;stroke-width:2.1;transition:none}
+.province-map-canvas .atlas-ink path{stroke:none;cursor:default;transition:none}
+.atlas-city,.atlas-sea{font-family:Georgia,'Times New Roman',serif;font-weight:normal}
+.atlas-city{fill:#252b28;stroke:#f6f3e8;stroke-width:2.8;paint-order:stroke fill;stroke-linejoin:round}
+.atlas-sea{fill:#5f797e;font-style:italic;letter-spacing:.8px}
+.atlas-controls{display:flex;align-items:center;flex-wrap:wrap;gap:7px 12px;margin:12px 0 7px;font:inherit;font-size:13px}
+.atlas-controls button{background:var(--content-bg-color);color:var(--text-color);border:1px solid var(--border-color);border-radius:0;font:inherit;padding:5px 10px;cursor:pointer}
+.atlas-controls label{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.atlas-controls input{accent-color:#88621c}
+.atlas-scale{flex-basis:100%;font-size:12px}
+.atlas-scale[hidden]{display:none}
+.atlas-panning,.atlas-panning [data-province]{cursor:grabbing}
+@media(prefers-reduced-motion:reduce){.province-map-canvas [data-province]{transition:none}}
