@@ -26,4 +26,7 @@ test('Layer and stroke limits reject unreasonable projects before rendering',()=
 test('Province anchors resolve offsets against the existing map and leave source geography untouched',()=>{
  const raw=JSON.stringify(globalThis.AnatolianProvinceData),t=text(),p=globalThis.AnatolianProvinceData.provinces.find(p=>p.id==='istanbul');t.x=10;t.y=-20;assert.deepEqual(D.position(t),{x:p.center[0]+10,y:p.center[1]-20});t.provinceId=null;assert.deepEqual(D.position(t),{x:10,y:-20});assert.equal(JSON.stringify(globalThis.AnatolianProvinceData),raw);
 });
+test('Large images and optional crop/flip metadata round-trip without changing older projects',()=>{
+ const d=D.create(),i={...base('image'),name:'large.png',src:'data:image/png;base64,'+'A'.repeat(9000000),width:15000,height:10000,crop:{x:.1,y:.2,width:.6,height:.7},lockAspect:true,flipX:true,flipY:false};d.layers[0].items=[i];assert.deepEqual(D.validate(d),d);assert.deepEqual(D.imageFrame(i),{x:1500,y:2000,width:9000,height:7000});assert(D.limits.imageBytes>100*1024*1024);i.crop.width=.95;assert.throws(()=>D.validate(d),/inside the original/);i.crop={x:0,y:0,width:0,height:1};assert.throws(()=>D.validate(d),/Crop width/);delete i.crop;delete i.lockAspect;delete i.flipX;delete i.flipY;assert.deepEqual(D.validate(d),d);
+});
 console.log('PASS '+count+' map design format suites.');

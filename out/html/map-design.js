@@ -5,12 +5,15 @@ const P=root.AnatolianProvinces||(typeof require==='function'?require('./provinc
 if(!P)return;
 const NS='http://www.w3.org/2000/svg',FORMAT='anatolian-dawn-map-design',VERSION=1;
 const extent={x:-85,y:-75,width:1845,height:865};
+const limits={imageBytes:128*1024*1024,imageDataURL:Math.ceil(128*1024*1024/3)*4+128,embeddedData:320*1024*1024,projectBytes:384*1024*1024};
 const blends=['normal','multiply','screen','overlay','darken','lighten','color-dodge','color-burn','hard-light','soft-light','difference','exclusion','hue','saturation','color','luminosity'];
 const fonts=['Georgia','Times New Roman','Arial','Verdana','Courier New'];
 const defaults={sea:'#dce6e7',border:'#646963',borderWidth:.8,coast:'#526366',coastWidth:2.1,grain:.055,ink:1,shadow:true,labels:true,cityColor:'#252b28',seaLabelColor:'#5f797e',labelHalo:'#f6f3e8',labelFont:'Georgia',terrain:false};
 const byId=new Map(P.data.provinces.map(p=>[p.id,p]));
+const validatedImageSources=new Set();
 function hash(s){let n=2166136261;for(let i=0;i<s.length;i++){n^=s.charCodeAt(i);n=Math.imul(n,16777619);}return 'fnv1a:'+((n>>>0).toString(16).padStart(8,'0'));}
-const geometryHash=hash(P.data.svg),clone=o=>JSON.parse(JSON.stringify(o));
+const geometryHash=hash(P.data.svg);
+function clone(o){return Array.isArray(o)?o.map(clone):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,clone(v)])):o;}
 function id(){return 'm'+Date.now().toString(36)+Math.random().toString(36).slice(2,9);}
 function layer(name='New layer'){return {id:id(),name,visible:true,locked:false,opacity:1,blend:'normal',clip:'none',provinceId:null,items:[],children:[]};}
 function create(){return {format:FORMAT,version:VERSION,geometryHash,name:'My Anatolian atlas',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),extent:{...extent},settings:{...defaults},layers:[layer('Artwork 1')]};}
@@ -48,8 +51,10 @@ function validate(input){
   }else if(o.type==='wash'){
    o.color=color(i.color,'Wash color');o.color2=color(i.color2,'Wash end color');o.kind=option(i.kind,['solid','linear','radial','grain'],'wash type');o.angle=number(i.angle,0,360,'Gradient angle');o.strength=number(i.strength,0,1,'Wash end opacity');
   }else if(o.type==='image'){
-   o.width=number(i.width,1,5000,'Image width');o.height=number(i.height,1,5000,'Image height');o.name=str(i.name,120,'Image name');o.src=str(i.src,8000000,'Embedded image');
-   if(!/^data:image\/(png|jpeg|webp);base64,[a-zA-Z0-9+/]+=*$/.test(o.src))fail('Images must be embedded PNG, JPEG or WebP data.');imageBytes+=o.src.length;if(imageBytes>20000000)fail('Embedded images exceed 20 MB.');
+   o.width=number(i.width,1,50000,'Image width');o.height=number(i.height,1,50000,'Image height');o.name=str(i.name,120,'Image name');o.src=str(i.src,limits.imageDataURL,'Embedded image');
+   if(!validatedImageSources.has(o.src)){if(!/^data:image\/(png|jpeg|webp);base64,[a-zA-Z0-9+/]+=*$/.test(o.src))fail('Images must be embedded PNG, JPEG or WebP data.');validatedImageSources.add(o.src);}imageBytes+=o.src.length;if(imageBytes>limits.embeddedData)fail('Embedded image data exceeds 320 MiB.');
+   if(i.crop!==undefined){if(!i.crop||typeof i.crop!=='object')fail('Invalid image crop.');o.crop={x:number(i.crop.x,0,1,'Crop left'),y:number(i.crop.y,0,1,'Crop top'),width:number(i.crop.width,.00001,1,'Crop width'),height:number(i.crop.height,.00001,1,'Crop height')};if(o.crop.x+o.crop.width>1.000000001||o.crop.y+o.crop.height>1.000000001)fail('The crop must stay inside the original image.');}
+   for(const key of ['lockAspect','flipX','flipY'])if(i[key]!==undefined)o[key]=bool(i[key],key);
   }return o;
  }
  function layers(a,depth){
@@ -69,6 +74,15 @@ function mergeDown(doc,index){
 }
 function node(tag,attrs={}){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))if(v!==null&&v!==undefined)e.setAttribute(k,v);if(tag==='path')e.style.stroke=attrs.stroke||'none';if(attrs['stroke-width']!==undefined)e.style.strokeWidth=attrs['stroke-width'];return e;}
 function position(i){const p=byId.get(i.provinceId);return p?{x:p.center[0]+i.x,y:p.center[1]+i.y}:{x:i.x,y:i.y};}
+function imageFrame(i){const c=i.crop||{x:0,y:0,width:1,height:1};return {x:c.x*i.width,y:c.y*i.height,width:c.width*i.width,height:c.height*i.height};}
+const imageCache=new Map();
+function registerImage(src,blob){if(!imageCache.has(src))imageCache.set(src,{url:URL.createObjectURL(blob),bytes:blob.size});return imageCache.get(src).url;}
+function imageSource(src){
+ if(imageCache.has(src))return imageCache.get(src).url;
+ try{const comma=src.indexOf(','),mime=src.slice(5,src.indexOf(';')),parts=[];for(let offset=comma+1;offset<src.length;offset+=1048576){const decoded=atob(src.slice(offset,offset+1048576)),bytes=new Uint8Array(decoded.length);for(let i=0;i<decoded.length;i++)bytes[i]=decoded.charCodeAt(i);parts.push(bytes);}return registerImage(src,new Blob(parts,{type:mime}));}catch(error){return src;}
+}
+function pruneImageCache(sources){for(const [src,item] of imageCache)if(!sources.has(src)&&!document.querySelector('image[href="'+item.url+'"]')){URL.revokeObjectURL(item.url);imageCache.delete(src);validatedImageSources.delete(src);}}
+function updateImage(svg,i){const pos=position(i),g=svg.querySelector('[data-image-transform="'+i.id+'"]');if(!g)return;g.setAttribute('transform',`translate(${pos.x} ${pos.y}) rotate(${i.rotation}) scale(${i.scale})`);g.setAttribute('opacity',i.opacity);const image=g.querySelector('image');image.setAttribute('width',i.width);image.setAttribute('height',i.height);const rect=svg.querySelector('[data-image-crop="'+i.id+'"]');if(rect)for(const [k,v] of Object.entries(imageFrame(i)))rect.setAttribute(k,v);g.querySelector('[data-image-flip]').setAttribute('transform',`translate(${i.flipX?i.width:0} ${i.flipY?i.height:0}) scale(${i.flipX?-1:1} ${i.flipY?-1:1})`);}
 function strokePath(points){if(points.length===1)return `M${points[0][0]} ${points[0][1]}l.01 0`;let d=`M${points[0][0]} ${points[0][1]}`;for(let n=1;n<points.length-1;n++)d+=`Q${points[n][0]} ${points[n][1]} ${(points[n][0]+points[n+1][0])/2} ${(points[n][1]+points[n+1][1])/2}`;return d+`L${points.at(-1)[0]} ${points.at(-1)[1]}`;}
 let serial=0;
 function render(svg,doc){
@@ -94,7 +108,10 @@ function render(svg,doc){
    let fill=i.color;if(i.kind==='grain')fill=pattern(i.color,i.strength);else if(i.kind!=='solid'){
     const id=fresh(),grad=node(i.kind==='radial'?'radialGradient':'linearGradient',{id,...(i.kind==='radial'?{cx:'.5',cy:'.5',r:'.7'}:{x1:0,y1:0,x2:1,y2:0,gradientTransform:`rotate(${i.angle} .5 .5)`})});grad.append(node('stop',{offset:0,'stop-color':i.color}),node('stop',{offset:1,'stop-color':i.color2,'stop-opacity':i.strength}));defs.append(grad);fill='url(#'+id+')';
    }g.append(node('rect',{...extent,fill}));
-  }else if(i.type==='image')g.append(node('image',{href:i.src,width:i.width,height:i.height,preserveAspectRatio:'none'}));
+  }else if(i.type==='image'){
+   const f=imageFrame(i),id=fresh(),clip=node('clipPath',{id,clipPathUnits:'userSpaceOnUse'});clip.append(node('rect',{...f,'data-image-crop':i.id}));defs.append(clip);g.setAttribute('data-image-transform',i.id);
+   const cropped=node('g',{'clip-path':'url(#'+id+')'}),content=node('g',{'data-image-flip':i.id,transform:`translate(${i.flipX?i.width:0} ${i.flipY?i.height:0}) scale(${i.flipX?-1:1} ${i.flipY?-1:1})`});content.append(node('image',{href:imageSource(i.src),width:i.width,height:i.height,preserveAspectRatio:'none'}));cropped.append(content);g.append(cropped);
+  }
   if(i.clipProvince){const outer=node('g',{mask:clipping('province',i.clipProvince),'data-design-item':i.id});g.removeAttribute('data-design-item');outer.append(g);return outer;}return g;
  }
  function drawLayer(l){
@@ -118,6 +135,6 @@ function styleMap(svg,canvas,doc){
 }
 function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});if(preview)styleMap(svg,canvas,preview);}
 function setPreview(doc){preview=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,preview);}document.dispatchEvent(new CustomEvent('map-design-preview'));}
-const api={create,layer,id,validate,serialize,mergeDown,position,clone,geometryHash,extent,defaults,blends,fonts,render,styleMap,attach,setPreview,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
+const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,setPreview,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
 root.AnatolianMapDesign=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
