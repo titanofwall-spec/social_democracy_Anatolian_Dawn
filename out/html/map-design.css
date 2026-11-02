@@ -1,0 +1,14 @@
+/* Portable artwork and base-style variables also apply to normal game previews. */
+.province-map-canvas{background-color:var(--map-sea,#dce6e7)}
+.province-map-canvas .turkey-water{fill:var(--map-sea,#dce6e7)!important}
+.province-map-canvas [data-province]{stroke:var(--map-border,#646963);stroke-width:var(--map-border-width,.8)}
+.province-map-canvas .atlas-silhouette path{stroke:var(--map-coast,#526366);stroke-width:var(--map-coast-width,2.1)}
+.province-map-canvas .atlas-ink{opacity:var(--map-ink-opacity,1)}
+.province-map-canvas .atlas-city{fill:var(--map-city-color,#252b28);stroke:var(--map-label-halo,#f6f3e8);font-family:var(--map-label-font,Georgia),serif}
+.province-map-canvas .atlas-sea{fill:var(--map-sea-label-color,#5f797e);font-family:var(--map-label-font,Georgia),serif}
+.province-map-canvas.map-design-no-labels .atlas-labels{display:none}
+.province-map-canvas.map-design-no-shadow .atlas-silhouette{filter:none}
+.province-map-canvas.map-design-terrain .turkey-physical-overlay{display:inline}
+.province-map-canvas.map-design-no-terrain .turkey-physical-overlay{display:none}
+.province-map-canvas .map-design-art{pointer-events:none}
+.province-map-canvas .map-design-art path{cursor:default;transition:none;vector-effect:none;filter:none}

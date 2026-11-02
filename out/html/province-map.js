@@ -71,6 +71,7 @@ function setupAtlas(canvas,allowMargin=true){
  svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
  svg.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},true);
  const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}schedule();});resize.observe(canvas);all.onchange=layout;schedule();
+ root.AnatolianMapDesign?.attach(svg,canvas);root.AnatolianMapEditor?.mount(canvas);
 }
 function selectProvince(host,id){selectedProvince=id;for(const layer of host.querySelectorAll('.atlas-selection'))layer.replaceChildren();for(const p of host.querySelectorAll('[data-province]')){const selected=p.dataset.province===id;p.classList.toggle('atlas-selected',selected);p.setAttribute('aria-pressed',String(selected));if(selected){const layer=p.closest('svg').querySelector('.atlas-selection');if(layer)for(const cls of ['atlas-selection-halo','atlas-selection-gold'])layer.append(atlasNode('path',{d:p.getAttribute('d'),class:cls}));}}}
 
@@ -134,6 +135,6 @@ function open(){if(overlay){overlay.querySelector('button').focus();return;}owne
  overlay.querySelector('.province-close').onclick=close;const currentButton=overlay.querySelector('.province-current');currentButton.onclick=()=>{closeDetail();select(currentButton);render(P.compute(owner,true));};
  overlay.querySelectorAll('.province-election-tab').forEach(button=>{const slot=slots[Number(button.dataset.slot)],snap=owner.province_election_history.filter(s=>s.kind===slot.kind&&s.year===slot.year).slice(-1)[0];button.disabled=!snap;button.title=snap?'View '+stamp(snap):'This election has not been recorded yet.';button.onclick=()=>{closeDetail();select(button);render(snap);};});
  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});render(P.compute(owner,true));overlay.querySelector('.province-close').focus();}
-document.addEventListener('keydown',e=>{if(!overlay)return;if(e.key==='Escape'){e.preventDefault();if(detail)closeDetail();else close();}if(e.key==='Tab'){const dialog=detail||overlay,focusable=[...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"],summary')],first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
+document.addEventListener('keydown',e=>{if(!overlay||document.getElementById('map-design-editor'))return;if(e.key==='Escape'){e.preventDefault();if(detail)closeDetail();else close();}if(e.key==='Tab'){const dialog=detail||overlay,focusable=[...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"],summary')],first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
 root.openProvinceElectionMap=open;root.provinceGeneralElectionYears=generalElectionYears;
 })(globalThis);
