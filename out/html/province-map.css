@@ -49,7 +49,3 @@
 .province-map-canvas.atlas-mode-physical .atlas-physical-hover,
 .province-map-canvas.atlas-mode-combined .atlas-physical-hover{display:inline}
 .province-map-canvas .atlas-physical-hover path{fill:none;stroke:#e8cc84;stroke-width:2.2;vector-effect:non-scaling-stroke}
-/* Editor-only preview: each mode shows its own imported image, never a composite. */
-.me-canvas[data-editor-map-mode="political"] .map-design-political,
-.me-canvas[data-editor-map-mode="physical"] .map-design-physical,
-.me-canvas[data-editor-map-mode="combined"] .map-design-combined{display:inline}

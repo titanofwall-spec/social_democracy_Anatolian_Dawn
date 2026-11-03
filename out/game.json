@@ -2630,13 +2630,10 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "insert",
+              "insert": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -15668,13 +15665,10 @@
           },
           {
             "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 1
-              },
-              ""
-            ]
+            "content": {
+              "type": "insert",
+              "insert": 1
+            }
           }
         ],
         "stateDependencies": [
@@ -15727,7 +15721,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": ": The Turkish forces had moved from Mersin at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces had approached the disadvantageous Glykiotissa coast instead of the preferred Pentemili; therefore, the landing had started at 7:15 instead of 5:30 and ended by 13:00.",
+                "content": ": The Turkish forces had moved from Silifke at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces had approached the disadvantageous Glykiotissa coast instead of the preferred Pentemili; therefore, the landing had started at 7:15 instead of 5:30 and ended by 13:00.",
                 "predicate": 0
               },
               ""
@@ -15738,7 +15732,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": ": The Turkish forces had moved from Mersin at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces approached Pentemili by 5:30 and successfully carried out the landing by 11:00.",
+                "content": ": The Turkish forces had moved from Silifke at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces approached Pentemili by 5:30 and successfully carried out the landing by 11:00.",
                 "predicate": 1
               },
               ""

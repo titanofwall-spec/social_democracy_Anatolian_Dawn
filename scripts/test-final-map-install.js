@@ -1,0 +1,45 @@
+// Regression test for the shipped three-texture atlas and removal of admin authoring UI.
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const file=rel=>fs.readFileSync(path.join(root,rel));
+const text=rel=>file(rel).toString('utf8');
+require('../out/html/data/province-data.js');
+const D=require('../out/html/map-design.js');
+require('../out/html/data/map-design-default.js');
+const project=globalThis.AnatolianMapInstalledDesign;
+assert(project,'The installed atlas is missing');
+assert.deepEqual(D.validate(project),project,'The installed atlas must validate against real geometry');
+assert.equal(D.geometryHash,project.geometryHash,'A visible province rename must not change the SVG geometry fingerprint');
+const manifest=JSON.parse(text('out/html/data/map-texture-settings.json'));
+assert.equal(manifest.rendering,'independent');
+assert.deepEqual(manifest.modes,['political','physical','combined']);
+assert.equal(manifest.defaultMode,'vanilla');
+const ids=new Set();
+for(const kind of ['political','physical','combined']){
+ const id=project[kind+'LayerId'];assert(id,kind+' layer missing');assert(!ids.has(id),'Mode textures must never share layers');ids.add(id);
+ const layer=project.layers.find(l=>l.id===id);assert(layer,kind+' layer is missing');
+ const meta=manifest[kind];assert.equal(meta.layerId,id);
+ for(const field of ['name','visible','opacity','blend','clip','provinceId'])assert.deepEqual(layer[field],meta[field],kind+': '+field);
+ assert.deepEqual(layer.items,[],'Embedded editor images must not ship with the game');
+ const asset=globalThis['Anatolian'+kind[0].toUpperCase()+kind.slice(1)+'MapAsset'];
+ assert(asset&&asset.includes(kind+'-map-custom.png?v='),kind+' asset not installed');
+ const png=file('out/html/img/'+kind+'-map-custom.png');
+ assert.equal(png.subarray(0,8).toString('hex'),'89504e470d0a1a0a');
+ assert.equal(png.readUInt32BE(16),1675);assert.equal(png.readUInt32BE(20),717);
+}
+assert.equal(globalThis.AnatolianProvinceData.provinces.find(p=>p.id==='icel').name,'Silifke');
+assert(globalThis.AnatolianProvinceData.svg.includes('aria-label="Silifke"'),'SVG province aria-label must say Silifke');
+const map=text('out/html/province-map.js'),css=text('out/html/province-map.css');
+const match=map.match(/const major=(\[[^;]+\]);/);assert(match,'Priority label set missing');
+const names=JSON.parse(match[1]);
+assert.deepEqual(names,['edirne','istanbul','canakkale','bursa','kocaeli','izmir','mugla','antalya','icel','adana','hatay','afyon','konya','ankara','zonguldak','sinop','trabzon','sivas','malatya','tunceli','diyarbakir','erzurum','kars','van']);
+for(const control of ['data-atlas="labels"','data-atlas="margin"','data-atlas-mode="political"','data-atlas-mode="physical"','data-atlas-mode="combined"'])assert(map.includes(control),'Player control missing: '+control);
+for(const term of ['AnatolianMapEditor','map-design-editor','me-canvas'])assert(!map.includes(term),'Editor reference in player map: '+term);
+for(const mode of ['political','physical','combined'])assert(css.includes('.atlas-mode-'+mode+' .map-design-'+mode),'Missing exclusive mode CSS '+mode);
+assert(!css.includes('.me-canvas'),'Editor-only CSS still shipped');
+for(const rel of ['out/html/map-editor.js','out/html/map-editor.css','scripts/test-map-editor.cjs','scripts/test-map-images.cjs','docs/MAP_DESIGN_STUDIO.md'])assert(!fs.existsSync(path.join(root,rel)),'Admin editor file still present: '+rel);
+for(const rel of ['out/html/index.html','scripts/build.js'])assert(!text(rel).includes('map-editor'),'Admin editor include still present: '+rel);
+const scripts=JSON.parse(text('package.json')).scripts;
+assert(!('test:map-editor' in scripts)&&!('test:map-images' in scripts));
+console.log('PASS: 3 independently installed textures, per-mode settings, Silifke display, 24 priority names, player controls, no admin editor.');

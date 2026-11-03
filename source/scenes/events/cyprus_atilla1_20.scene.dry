@@ -6,9 +6,9 @@ on-arrival: {! Q.cyprus_campaign_report=AnatolianRules.cyprusCampaign.report(Q,2
 
 = 20 July 1974, A foothold, not a front
 
-[? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)<=3; !} : The Turkish forces had moved from Mersin at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces had approached the disadvantageous Glykiotissa coast instead of the preferred Pentemili; therefore, the landing had started at 7:15 instead of 5:30 and ended by 13:00. ?]
+[? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)<=3; !} : The Turkish forces had moved from Silifke at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces had approached the disadvantageous Glykiotissa coast instead of the preferred Pentemili; therefore, the landing had started at 7:15 instead of 5:30 and ended by 13:00. ?]
 
-[? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)>3; !} : The Turkish forces had moved from Mersin at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces approached Pentemili by 5:30 and successfully carried out the landing by 11:00. ?]
+[? if {! return AnatolianRules.cyprusAtilla1.resourceTier(Q)>3; !} : The Turkish forces had moved from Silifke at 11:30 on July 19; by 5:00 the next morning, they had arrived at the coast of Cyprus. The Turkish forces approached Pentemili by 5:30 and successfully carried out the landing by 11:00. ?]
 
 As the 6th Marine Regiment held the road immediately behind the beach, the soldiers of the 50th Infantry Regiment began moving forward and organizing themselves. Scattered machine-gun fire started from the surrounding area, but it was not difficult to silence it. Landing thirty-one ships one after another on the tiny beach was no easy task. The fleet had already begun taking up positions for shore bombardment... Turkish jets were sweeping the areas around Kyrenia and Nicosia, but dropping far fewer bombs than expected. The order “Do not fire unless fired upon” was still in their ears... Two landing ships that had run aground were left where they were... Scattered fire was answered.
 

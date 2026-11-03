@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "defaultMode": "vanilla",
+  "rendering": "independent",
+  "modes": [
+    "political",
+    "physical",
+    "combined"
+  ],
+  "political": {
+    "name": "Political texture · player toggle",
+    "visible": true,
+    "opacity": 0.75,
+    "blend": "overlay",
+    "clip": "land",
+    "provinceId": null,
+    "layerId": "mmvzzzq4zeoou4rl",
+    "asset": "political-map.png"
+  },
+  "physical": {
+    "name": "Physical map · player toggle",
+    "visible": true,
+    "opacity": 1,
+    "blend": "soft-light",
+    "clip": "land",
+    "provinceId": null,
+    "layerId": "mmvzzovqd1ypp2p4",
+    "asset": "physical-map.png"
+  },
+  "combined": {
+    "name": "Political + physical map · independent texture",
+    "visible": true,
+    "opacity": 1,
+    "blend": "overlay",
+    "clip": "land",
+    "provinceId": null,
+    "layerId": "mmw0056vdkqauzrf",
+    "asset": "combined-map.png"
+  }
+}

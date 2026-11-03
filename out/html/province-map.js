@@ -35,7 +35,7 @@ function setupAtlas(canvas,allowMargin=true){
   svg.addEventListener('pointerleave',clearPhysicalHover);
  const labels=atlasNode('g',{class:'atlas-labels','aria-hidden':'true'});viewport.append(labels);
  const candidates=[];
- const major=['istanbul','ankara','izmir','bursa','adana','diyarbakir'];
+ const major=["edirne","istanbul","canakkale","bursa","kocaeli","izmir","mugla","antalya","icel","adana","hatay","afyon","konya","ankara","zonguldak","sinop","trabzon","sivas","malatya","tunceli","diyarbakir","erzurum","kars","van"];
  for(const p of [...P.data.provinces].sort((a,b)=>(major.includes(b.id)?1:0)-(major.includes(a.id)?1:0))){const text=atlasNode('text',{class:'atlas-city',x:p.center[0],y:p.center[1],'text-anchor':'middle'});text.textContent=p.id==='istanbul'?'İstanbul':p.id==='izmir'?'İzmir':p.name;labels.append(text);candidates.push({text,major:major.includes(p.id),x:p.center[0],y:p.center[1]});}
  // Sea positions use the original map coordinates; each candidate is checked against land.
  for(const [name,sx,sy,size] of [['Black Sea',860,-30,13],['Aegean Sea',-35,375,10],['Mediterranean Sea',640,755,13],['Sea of Marmara',210,160,9]]){const text=atlasNode('text',{class:'atlas-sea',x:sx,y:sy,'text-anchor':'middle','font-size':size});if(name==='Aegean Sea')text.setAttribute('transform',`rotate(-90 ${sx} ${sy})`);text.textContent=name;labels.append(text);candidates.push({text,sea:true,x:sx,y:sy,size});}
@@ -45,16 +45,29 @@ function setupAtlas(canvas,allowMargin=true){
  function layout(){
   if(!svg.isConnected||!svg.getBoundingClientRect().width)return;
   const occupied=[],rect=svg.getBoundingClientRect(),fontScale=home.w/rect.width/scale;
-  for(const c of candidates){const t=c.text;t.style.display='';t.setAttribute('font-size',(c.sea?c.size:11)*fontScale);t.setAttribute('x',c.x);t.setAttribute('y',c.y);
+  for(const c of candidates){
+   const t=c.text;t.style.display='';
+   const baseSize=c.sea?c.size:all.checked?9.25:10.5;
+   t.setAttribute('font-size',baseSize*fontScale);t.setAttribute('x',c.x);t.setAttribute('y',c.y);
    if(!c.sea&&!c.major&&!all.checked){t.style.display='none';continue;}
    let accepted=false;
-   for(const dy of c.sea?[0]:[0,-15,15,-30,30]){t.setAttribute('y',c.y+dy*fontScale);const b=t.getBoundingClientRect(),pad=3;
+   const offsets=c.sea?[[0,0]]:[[0,0],[0,-14],[0,14],[-17,0],[17,0],[0,-28],[0,28],[-24,-14],[24,-14],[-24,14],[24,14]];
+   for(const [dx,dy] of offsets){
+    t.setAttribute('x',c.x+dx*fontScale);t.setAttribute('y',c.y+dy*fontScale);
+    const b=t.getBoundingClientRect(),pad=2;
     if(b.left<rect.left+pad||b.right>rect.right-pad||b.top<rect.top+pad||b.bottom>rect.bottom-pad)continue;
     if(occupied.some(a=>b.left<a.right+pad&&b.right>a.left-pad&&b.top<a.bottom+pad&&b.bottom>a.top-pad))continue;
     if(c.sea){const matrix=svg.getScreenCTM();if(!matrix)continue;let land=false;
      for(let sx=b.left;sx<=b.right;sx+=Math.max(2,b.width/30)){for(const sy of [b.top,b.top+b.height/2,b.bottom]){const point=new DOMPoint(sx,sy).matrixTransform(matrix.inverse());if(paths.some(p=>p.isPointInFill(point))){land=true;break;}}if(land)break;}if(land)continue;}
     occupied.push(b);accepted=true;break;
-   }if(!accepted)t.style.display='none';
+   }
+   if(!accepted){
+    if(c.major||(!c.sea&&all.checked)){
+     // Required names must never disappear solely because nearby names overlap.
+     t.setAttribute('x',c.x);t.setAttribute('y',c.y);
+     occupied.push(t.getBoundingClientRect());
+    }else t.style.display='none';
+   }
   }
  }
  function bounds(){const w=home.w/scale,h=home.h/scale;x=Math.max(home.x,Math.min(home.x+home.w-w,x));y=Math.max(home.y,Math.min(home.y+home.h-h,y));}
@@ -77,7 +90,7 @@ function setupAtlas(canvas,allowMargin=true){
    atlasMapMode=input.checked?input.dataset.atlasMode:'vanilla';root.AnatolianSyncAtlasModes?.();
   });
   root.AnatolianSyncAtlasModes?.();
- root.AnatolianMapEditor?.mount(canvas);
+ 
 }
 // Session-only map presentation. Election fills, margins, zoom and selection stay untouched.
 root.AnatolianSyncAtlasModes=function(){
@@ -85,11 +98,11 @@ root.AnatolianSyncAtlasModes=function(){
  const physical=!!design?.hasTexture?.(project,'physical'),political=!!design?.hasTexture?.(project,'political'),combined=!!design?.hasTexture?.(project,'combined');
  const enabled={political,physical,combined};
  if(atlasMapMode!=='vanilla'&&!enabled[atlasMapMode])atlasMapMode='vanilla';
- for(const c of document.querySelectorAll('.province-map-canvas:not(.me-canvas)')){
+ for(const c of document.querySelectorAll('.province-map-canvas')){
   const controls=c.previousElementSibling;if(!controls?.classList.contains('atlas-controls'))continue;
   for(const input of controls.querySelectorAll('[data-atlas-mode]')){
    const mode=input.dataset.atlasMode;input.disabled=!enabled[mode];input.checked=atlasMapMode===mode;
-   input.title=input.disabled?'Create and install this mode’s own texture layer in Map Design Studio.':'';
+   input.title=input.disabled?'This map texture is not installed.':'';
   }
   for(const mode of ['political','physical','combined'])c.classList.toggle('atlas-mode-'+mode,atlasMapMode===mode);
  }
@@ -156,6 +169,6 @@ function open(){if(overlay){overlay.querySelector('button').focus();return;}owne
  overlay.querySelector('.province-close').onclick=close;const currentButton=overlay.querySelector('.province-current');currentButton.onclick=()=>{closeDetail();select(currentButton);render(P.compute(owner,true));};
  overlay.querySelectorAll('.province-election-tab').forEach(button=>{const slot=slots[Number(button.dataset.slot)],snap=owner.province_election_history.filter(s=>s.kind===slot.kind&&s.year===slot.year).slice(-1)[0];button.disabled=!snap;button.title=snap?'View '+stamp(snap):'This election has not been recorded yet.';button.onclick=()=>{closeDetail();select(button);render(snap);};});
  overlay.addEventListener('click',e=>{if(e.target===overlay)close();});render(P.compute(owner,true));overlay.querySelector('.province-close').focus();}
-document.addEventListener('keydown',e=>{if(!overlay||document.getElementById('map-design-editor'))return;if(e.key==='Escape'){e.preventDefault();if(detail)closeDetail();else close();}if(e.key==='Tab'){const dialog=detail||overlay,focusable=[...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"],summary')],first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
+document.addEventListener('keydown',e=>{if(!overlay)return;if(e.key==='Escape'){e.preventDefault();if(detail)closeDetail();else close();}if(e.key==='Tab'){const dialog=detail||overlay,focusable=[...dialog.querySelectorAll('button:not(:disabled),input:not(:disabled),[tabindex="0"],summary')],first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}}});
 root.openProvinceElectionMap=open;root.provinceGeneralElectionYears=generalElectionYears;
 })(globalThis);

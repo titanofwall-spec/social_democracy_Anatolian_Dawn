@@ -12,7 +12,7 @@ const defaults={sea:'#dce6e7',border:'#646963',borderWidth:.8,coast:'#526366',co
 const byId=new Map(P.data.provinces.map(p=>[p.id,p]));
 const validatedImageSources=new Set();
 function hash(s){let n=2166136261;for(let i=0;i<s.length;i++){n^=s.charCodeAt(i);n=Math.imul(n,16777619);}return 'fnv1a:'+((n>>>0).toString(16).padStart(8,'0'));}
-const geometryHash=hash(P.data.svg);
+const geometryHash=hash(P.data.svg.replace('aria-label="Silifke"','aria-label="\u0130\u00e7el"'));
 function clone(o){return Array.isArray(o)?o.map(clone):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,clone(v)])):o;}
 function id(){return 'm'+Date.now().toString(36)+Math.random().toString(36).slice(2,9);}
 function layer(name='New layer'){return {id:id(),name,visible:true,locked:false,opacity:1,blend:'normal',clip:'none',provinceId:null,items:[],children:[]};}
@@ -151,7 +151,7 @@ function render(svg,doc){
   for(const kind of ['political','physical','combined']){
    const key=kind+'LayerId',layer=doc.layers.find(l=>l.id===doc[key]);
    const assets={political:root.AnatolianPoliticalMapAsset,physical:root.AnatolianPhysicalMapAsset,combined:root.AnatolianCombinedMapAsset};
-   const asset=doc===installed&&!preview?assets[kind]:null;
+   const asset=doc===installed?assets[kind]:null;
    if(!layer&&!asset)continue;
    const group=node('g',{'data-map-design':kind,class:'map-design-'+kind,'pointer-events':'none'});
    if(asset){
@@ -169,19 +169,19 @@ function render(svg,doc){
   const selection=viewport.querySelector('.atlas-selection');
   if(selection)viewport.insertBefore(art,selection);else viewport.append(art);
 }
-const mounts=new Set();let preview=null,installed=null;
+const mounts=new Set();let installed=null;
  function hasTexture(doc,kind){
   if(!doc||!['physical','political','combined'].includes(kind))return false;
   const layer=doc.layers.find(l=>l.id===doc[kind+'LayerId']);
   const containsImage=l=>l.items.some(i=>i.type==='image')||l.children.some(containsImage);
   const assets={physical:root.AnatolianPhysicalMapAsset,political:root.AnatolianPoliticalMapAsset,combined:root.AnatolianCombinedMapAsset};
-  return !!(layer&&containsImage(layer)||(doc===installed&&!preview&&assets[kind]));
+  return !!(layer&&containsImage(layer)||(doc===installed&&assets[kind]));
  }
  function hasPhysical(doc){return hasTexture(doc,'physical');}
  function hasPolitical(doc){return hasTexture(doc,'political');}
  function hasCombined(doc){return hasTexture(doc,'combined');}
  function updatePhysicalControl(canvas){root.AnatolianSyncAtlasModes?.();}
- function installedDesign(doc){installed=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,preview||installed);}root.AnatolianSyncAtlasModes?.();}
+ function installedDesign(doc){installed=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,installed);}root.AnatolianSyncAtlasModes?.();}
 function styleMap(svg,canvas,doc){
   root.AnatolianColorPalette?.apply(doc?.palette||null);
  const s=doc?.settings,vars={'--map-sea':'sea','--map-border':'border','--map-border-width':'borderWidth','--map-coast':'coast','--map-coast-width':'coastWidth','--map-city-color':'cityColor','--map-sea-label-color':'seaLabelColor','--map-label-halo':'labelHalo','--map-label-font':'labelFont','--map-ink-opacity':'ink'};
@@ -190,9 +190,8 @@ function styleMap(svg,canvas,doc){
  if(s)canvas.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23737870' opacity='${s.grain}' filter='url(%23p)' d='M0 0h120v120H0z'/%3E%3C/svg%3E")`;else canvas.style.removeProperty('background-image');
  render(svg,doc);root.AnatolianColorPalette?.refresh(canvas);
 }
-function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});styleMap(svg,canvas,preview||installed);root.AnatolianSyncAtlasModes?.();}
-function setPreview(doc){preview=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,preview||installed);}root.AnatolianSyncAtlasModes?.();document.dispatchEvent(new CustomEvent('map-design-preview'));}
-const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,setPreview,installedDesign,updatePhysicalControl,hasTexture,hasPhysical,hasPolitical,hasCombined,getActiveDesign:()=>preview||installed,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
+function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});styleMap(svg,canvas,installed);root.AnatolianSyncAtlasModes?.();}
+const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,installedDesign,updatePhysicalControl,hasTexture,hasPhysical,hasPolitical,hasCombined,getActiveDesign:()=>installed};
 root.AnatolianMapDesign=api;
 if(root.AnatolianMapInstalledDesign&&root.document){try{installedDesign(root.AnatolianMapInstalledDesign);}catch(e){console.error('Installed atlas design is invalid:',e);}}
 if(typeof module!=='undefined')module.exports=api;

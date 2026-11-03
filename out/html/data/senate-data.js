@@ -115,7 +115,7 @@ root.AnatolianSenateData={
     },
     {
       "id": "icel",
-      "name": "İçel",
+      "name": "Silifke",
       "group": "A",
       "seats": 2,
       "initial": {
