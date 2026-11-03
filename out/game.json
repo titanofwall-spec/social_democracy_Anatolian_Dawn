@@ -10759,7 +10759,8 @@
               {
                 "type": "insert",
                 "insert": 1
-              }
+              },
+              ""
             ]
           }
         ],
@@ -11070,10 +11071,13 @@
         },
         {
           "type": "paragraph",
-          "content": {
-            "type": "magic",
-            "content": "<div class=\"municipal-control-map\" aria-label=\"CHP control in the last municipal election\"></div>"
-          }
+          "content": [
+            {
+              "type": "magic",
+              "content": "<div class=\"municipal-control-map\" aria-label=\"CHP control in the last municipal election\"></div>"
+            },
+            ""
+          ]
         }
       ]
     },
@@ -15139,11 +15143,14 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable.",
-              "predicate": 1
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable. ",
+                "predicate": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -19772,10 +19779,13 @@
       "content": {
         "content": {
           "type": "paragraph",
-          "content": {
-            "type": "insert",
-            "insert": 0
-          }
+          "content": [
+            {
+              "type": "insert",
+              "insert": 0
+            },
+            ""
+          ]
         },
         "stateDependencies": [
           {
@@ -20205,9 +20215,10 @@
             " ",
             {
               "type": "conditional",
-              "content": "As a people's party, we have an easier time increasing support among the middle class than before.",
+              "content": "As a people's party, we have an easier time increasing support among the middle class than before. ",
               "predicate": 1
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -20389,17 +20400,23 @@
         }
       ],
       "content": {
-        "content": {
-          "type": "paragraph",
-          "content": [
-            "Even though we are opposed to undemocratic forms of socialism, we still took the pragmatic route of contacting our \"allies\" down South. ",
-            {
-              "type": "conditional",
-              "content": "The Baath parties no longer view us as ideological allies, our efforts go in vain as our delegates are accused of being puppets of European \"soft leftism\".",
-              "predicate": 0
-            }
-          ]
-        },
+        "content": [
+          {
+            "type": "paragraph",
+            "content": "Even though we are opposed to undemocratic forms of socialism, we still took the pragmatic route of contacting our \"allies\" down South."
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The Baath parties no longer view us as ideological allies, our efforts go in vain as our delegates are accused of being puppets of European \"soft leftism\". ",
+                "predicate": 0
+              },
+              ""
+            ]
+          }
+        ],
         "stateDependencies": [
           {
             "type": "predicate",
@@ -21857,11 +21874,14 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable.",
-              "predicate": 1
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": "The dispute over Cyprus and our operation has rendered any diplomatic breakthroughs improbable. ",
+                "predicate": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -24359,10 +24379,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 0
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -24636,9 +24659,10 @@
             " ",
             {
               "type": "conditional",
-              "content": "As a people's party, we have an easier time increasing support among the middle class than before.",
+              "content": "As a people's party, we have an easier time increasing support among the middle class than before. ",
               "predicate": 1
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -27509,9 +27533,10 @@
             },
             {
               "type": "conditional",
-              "content": "The enacted Köykent project has revolutionized our rural support.",
+              "content": "The enacted Köykent project has revolutionized our rural support. ",
               "predicate": 6
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -32101,10 +32126,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 1
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -32941,12 +32969,18 @@
                 "content": "Given the volume of militarist indoctrination in our society, it is difficult to argue so vehemently against the military. ",
                 "predicate": 0
               },
-              " ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "conditional",
-                "content": "Since we have consistently made pacifism a theme of our campaign, the workers are enthusiastic about our message.",
+                "content": "Since we have consistently made pacifism a theme of our campaign, the workers are enthusiastic about our message. ",
                 "predicate": 1
-              }
+              },
+              ""
             ]
           }
         ],
@@ -37857,18 +37891,21 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": [
-                "The <span style=\"color: #E3000F;\">",
-                {
-                  "type": "emphasis-2",
-                  "content": "CHP"
-                },
-                "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage..."
-              ],
-              "predicate": 1
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "The <span style=\"color: #E3000F;\">",
+                  {
+                    "type": "emphasis-2",
+                    "content": "CHP"
+                  },
+                  "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... "
+                ],
+                "predicate": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -47325,10 +47362,13 @@
         },
         {
           "type": "paragraph",
-          "content": {
-            "type": "magic",
-            "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
-          }
+          "content": [
+            {
+              "type": "magic",
+              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+            },
+            ""
+          ]
         }
       ]
     },
@@ -47409,10 +47449,13 @@
         },
         {
           "type": "paragraph",
-          "content": {
-            "type": "magic",
-            "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
-          }
+          "content": [
+            {
+              "type": "magic",
+              "content": "<img src=\"img/peoples-sector.png\" alt=\"People's Sector agricultural investment\" style=\"display:block;max-width:100%;max-height:320px;margin:12px auto;object-fit:contain\">"
+            },
+            ""
+          ]
         }
       ]
     },
@@ -47459,7 +47502,8 @@
               {
                 "type": "insert",
                 "insert": 0
-              }
+              },
+              ""
             ]
           }
         ],

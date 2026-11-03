@@ -8,7 +8,5 @@
 .province-map-canvas .atlas-sea{fill:var(--map-sea-label-color,#5f797e);font-family:var(--map-label-font,Georgia),serif}
 .province-map-canvas.map-design-no-labels .atlas-labels{display:none}
 .province-map-canvas.map-design-no-shadow .atlas-silhouette{filter:none}
-.province-map-canvas.map-design-terrain .turkey-physical-overlay{display:inline}
-.province-map-canvas.map-design-no-terrain .turkey-physical-overlay{display:none}
 .province-map-canvas .map-design-art{pointer-events:none}
 .province-map-canvas .map-design-art path{cursor:default;transition:none;vector-effect:none;filter:none}

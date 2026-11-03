@@ -26,9 +26,16 @@ compiler.compileGame(files,(err,game)=>{
   // Install new sidebar and demographic scripts after Dendry's make-html refresh.
   // This survives subsequent `npm run build` executions.
   let versioned=html;
+  // The former Options-only physical overlay is retired. The authored map toggle lives by Victory margins.
+  versioned=versioned.replace(/\s*<tr>\s*<td>Physical map overlay:<\/td>[\s\S]*?<\/tr>\s*<tr><td><hr><\/td><\/tr>/g,'');
+  // Core party and entity palette must load after provinces/data and before the map reader.
+  // Map design installed project is loaded BEFORE the portable reader.
+  if(!versioned.includes('src="data/map-design-default.js'))versioned=versioned.replace(/(<script src="map-design\.js[^>]*><\/script>)/,'<script src="data/map-design-default.js"></script>\n    $1');
   // Temporary map editor: the design reader is deliberately separate for later removal.
   if(!versioned.includes('src="map-design.js'))versioned=versioned.replace(/(<script src="province-map\.js[^>]*><\/script>)/,'<script src="map-design.js"></script>\n    <script src="map-editor.js"></script>\n    $1');
+  if(!versioned.includes('src="data/map-design-default.js'))versioned=versioned.replace(/(<script src="map-design\.js[^>]*><\/script>)/,'<script src="data/map-design-default.js"></script>\n    $1');
   if(!versioned.includes('href="map-design.css'))versioned=versioned.replace(/(<link rel="stylesheet" href="province-map\.css[^>]*>)/,'$1\n    <link rel="stylesheet" href="map-design.css">\n    <link rel="stylesheet" href="map-editor.css">');
+  if(!versioned.includes('src="color-palette.js'))versioned=versioned.replace(/(<script src="map-design\.js[^>]*><\/script>)/,'<script src="color-palette.js"></script>\n    $1');
   // Preserve the macro model include when Dendry regenerates index.html.
   if(!versioned.includes('src="macro-economy.js')) {
     versioned=versioned.replace(/(<script src="rules\.js(?:\?[^"]*)?"\s*><\/script>)/,
@@ -42,7 +49,7 @@ compiler.compileGame(files,(err,game)=>{
     versioned=versioned.replace(/(<button[^>]*id="social_issues_tab"[^>]*>Social Issues<\/button>)/,
       '$1\n                     <button class="tab_button" id="mission_tab" onclick="window.changeTab(\'status.mission\', \'mission_tab\');">Land Reform</button>');
   }
-  for(const name of ['cyprus-presentation.js','sandbox-menu.js','save-storage.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','map-design.js','map-editor.js','province-map.js']){
+  for(const name of ['cyprus-presentation.js','sandbox-menu.js','save-storage.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','map-editor.js','province-map.js','data/map-design-default.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;
     const version=crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex').slice(0,12);
     const escaped=name.replace(/\./g,'\\.');

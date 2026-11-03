@@ -8,7 +8,7 @@ const extent={x:-85,y:-75,width:1845,height:865};
 const limits={imageBytes:128*1024*1024,imageDataURL:Math.ceil(128*1024*1024/3)*4+128,embeddedData:320*1024*1024,projectBytes:384*1024*1024};
 const blends=['normal','multiply','screen','overlay','darken','lighten','color-dodge','color-burn','hard-light','soft-light','difference','exclusion','hue','saturation','color','luminosity'];
 const fonts=['Georgia','Times New Roman','Arial','Verdana','Courier New'];
-const defaults={sea:'#dce6e7',border:'#646963',borderWidth:.8,coast:'#526366',coastWidth:2.1,grain:.055,ink:1,shadow:true,labels:true,cityColor:'#252b28',seaLabelColor:'#5f797e',labelHalo:'#f6f3e8',labelFont:'Georgia',terrain:false};
+const defaults={sea:'#dce6e7',border:'#646963',borderWidth:.8,coast:'#526366',coastWidth:2.1,grain:.055,ink:1,shadow:true,labels:true,cityColor:'#252b28',seaLabelColor:'#5f797e',labelHalo:'#f6f3e8',labelFont:'Georgia'};
 const byId=new Map(P.data.provinces.map(p=>[p.id,p]));
 const validatedImageSources=new Set();
 function hash(s){let n=2166136261;for(let i=0;i<s.length;i++){n^=s.charCodeAt(i);n=Math.imul(n,16777619);}return 'fnv1a:'+((n>>>0).toString(16).padStart(8,'0'));}
@@ -16,7 +16,7 @@ const geometryHash=hash(P.data.svg);
 function clone(o){return Array.isArray(o)?o.map(clone):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,clone(v)])):o;}
 function id(){return 'm'+Date.now().toString(36)+Math.random().toString(36).slice(2,9);}
 function layer(name='New layer'){return {id:id(),name,visible:true,locked:false,opacity:1,blend:'normal',clip:'none',provinceId:null,items:[],children:[]};}
-function create(){return {format:FORMAT,version:VERSION,geometryHash,name:'My Anatolian atlas',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),extent:{...extent},settings:{...defaults},layers:[layer('Artwork 1')]};}
+function create(){return {format:FORMAT,version:VERSION,geometryHash,name:'My Anatolian atlas',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),extent:{...extent},settings:{...defaults},physicalLayerId:null,palette:{parties:{},entities:{}},layers:[layer('Artwork 1')]};}
 function fail(message){throw new Error('Map project: '+message);}
 function str(v,max,label){if(typeof v!=='string'||v.length>max)fail(label+' must be text of at most '+max+' characters.');return v;}
 function number(v,min,max,label){if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)fail(label+' must be between '+min+' and '+max+'.');return v;}
@@ -28,12 +28,12 @@ function validate(input){
  if(!input||typeof input!=='object'||Array.isArray(input))fail('Expected a project object.');
  if(input.format!==FORMAT||input.version!==VERSION)fail('Unsupported format or version. Use an .admap.json project exported by this editor.');
  if(input.geometryHash!==geometryHash)fail('This project belongs to a different provincial map. Its geometry must match before importing.');
- const out={format:FORMAT,version:VERSION,geometryHash,name:str(input.name,120,'Project name'),createdAt:str(input.createdAt,50,'Creation date'),updatedAt:str(input.updatedAt,50,'Update date'),extent:{...extent},settings:{},layers:[]};
+ const out={format:FORMAT,version:VERSION,geometryHash,name:str(input.name,120,'Project name'),createdAt:str(input.createdAt,50,'Creation date'),updatedAt:str(input.updatedAt,50,'Update date'),extent:{...extent},settings:{},physicalLayerId:null,palette:{parties:{},entities:{}},layers:[]};
  if(!input.extent||Object.keys(extent).some(k=>input.extent[k]!==extent[k]))fail('The map coordinate system does not match.');
  const s=input.settings;if(!s||typeof s!=='object')fail('Missing map settings.');
  for(const k of ['sea','border','coast','cityColor','seaLabelColor','labelHalo'])out.settings[k]=color(s[k],k);
  for(const [k,min,max] of [['borderWidth',0,6],['coastWidth',0,10],['grain',0,.3],['ink',0,3]])out.settings[k]=number(s[k],min,max,k);
- for(const k of ['shadow','labels','terrain'])out.settings[k]=bool(s[k],k);
+ for(const k of ['shadow','labels'])out.settings[k]=bool(s[k],k);
  out.settings.labelFont=option(s.labelFont,fonts,'label font');
  const ids=new Set();let itemCount=0,pointCount=0,layerCount=0,imageBytes=0;
  function unique(v){str(v,80,'Object ID');if(!/^[a-zA-Z0-9_-]+$/.test(v)||ids.has(v))fail('Object IDs must be unique.');ids.add(v);return v;}
@@ -64,7 +64,23 @@ function validate(input){
    return {id:unique(l.id),name:str(l.name,100,'Layer name'),visible:bool(l.visible,'Layer visibility'),locked:bool(l.locked,'Layer lock'),opacity:number(l.opacity,0,1,'Layer opacity'),blend:option(l.blend,blends,'blend mode'),clip:option(l.clip,['none','land','sea','province'],'layer clipping'),provinceId:province(l.provinceId),items:l.items.map(item),children:layers(l.children,depth+1)};
   });
  }
- out.layers=layers(input.layers,0);if(!out.layers.length)fail('Keep at least one artwork layer.');return out;
+ // Sparse, independently editable global palette; older projects omit it.
+  const sourcePalette=input.palette||{parties:{},entities:{}};
+  if(!sourcePalette||typeof sourcePalette!=='object'||Array.isArray(sourcePalette))fail('Invalid universal color palette.');
+  for(const section of ['parties','entities']){
+   const entries=sourcePalette[section]||{};
+   if(!entries||typeof entries!=='object'||Array.isArray(entries)||Object.keys(entries).length>120)fail('Invalid '+section+' palette.');
+   for(const [key,value] of Object.entries(entries)){
+    if(key.length>100||!key||['__proto__','constructor','prototype'].includes(key))fail('Invalid palette entry.');
+    if(section==='parties'&&!Object.prototype.hasOwnProperty.call(P.colors,key))fail('Unknown party color '+key);
+    if(section==='entities'&&root.AnatolianColorPalette&&!Object.prototype.hasOwnProperty.call(root.AnatolianColorPalette.defaults.entities,key))fail('Unknown entity color '+key);
+    out.palette[section][key]=color(value,'Palette color '+key);
+   }
+  }
+  out.layers=layers(input.layers,0);if(!out.layers.length)fail('Keep at least one artwork layer.');
+  out.physicalLayerId=input.physicalLayerId||null;
+  if(out.physicalLayerId&&!out.layers.some(l=>l.id===out.physicalLayerId))fail('Physical map must reference an existing top-level layer.');
+  return out;
 }
 function serialize(doc){return JSON.stringify(validate(doc),null,2);}
 function mergeDown(doc,index){
@@ -122,19 +138,40 @@ function render(svg,doc){
    }else{if(i.type==='text'&&i.provinceId&&i.leader){const p=byId.get(i.provinceId),pos=position(i);content.append(node('line',{x1:p.center[0],y1:p.center[1],x2:pos.x,y2:pos.y,stroke:i.color,'stroke-width':.8,opacity:i.opacity,'pointer-events':'none'}));}content.append(drawItem(i));}}
   g.append(content);return g;
  }
- for(const l of doc.layers)art.append(drawLayer(l));
- const viewport=svg.querySelector('.atlas-geography')||svg,selection=viewport.querySelector('.atlas-selection');if(selection)viewport.insertBefore(art,selection);else viewport.append(art);
+ for(const l of doc.layers)if(l.id!==doc.physicalLayerId)art.append(drawLayer(l));
+  const physicalLayer=doc.layers.find(l=>l.id===doc.physicalLayerId);
+  const physicalAsset=doc===installed&&!preview&&root.AnatolianPhysicalMapAsset;
+  let physical=null;
+  if(physicalLayer||physicalAsset){
+   physical=node('g',{'data-map-design':'physical',class:'map-design-physical','pointer-events':'none',mask:clipping('land')});
+   if(physicalLayer)physical.append(drawLayer(physicalLayer));
+   if(physicalAsset)physical.append(node('image',{href:physicalAsset,x:0,y:0,width:1675,height:717,preserveAspectRatio:'none'}));
+   const edges=node('g',{class:'map-physical-borders'});
+   for(const path of basePaths)edges.append(node('path',{d:path.getAttribute('d'),fill:'none',stroke:'#646963','stroke-width':'.8'}));
+   physical.append(edges);
+  }
+ const viewport=svg.querySelector('.atlas-geography')||svg,selection=viewport.querySelector('.atlas-selection');if(selection){viewport.insertBefore(art,selection);if(physical)viewport.insertBefore(physical,art);}else{if(physical)viewport.append(physical);viewport.append(art);}
 }
-const mounts=new Set();let preview=null;
+const mounts=new Set();let preview=null,installed=null;
+function hasPhysical(doc){return !!doc&&(!!(doc.physicalLayerId&&doc.layers.find(l=>l.id===doc.physicalLayerId)?.items.some(i=>i.type==='image'))||(doc===installed&&!!root.AnatolianPhysicalMapAsset));}
+function updatePhysicalControl(canvas){
+ const c=canvas.previousElementSibling?.querySelector('[data-atlas="physical"]');if(!c)return;
+ const available=hasPhysical(preview||installed);c.disabled=!available;c.title=available?'Show the author-designed physical map.':'No physical map has been installed or previewed yet.';
+ if(!available){c.checked=false;canvas.classList.remove('atlas-physical-enabled');}
+}
+function installedDesign(doc){installed=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else{styleMap(m.svg,m.canvas,preview||installed);updatePhysicalControl(m.canvas);}}}
 function styleMap(svg,canvas,doc){
+  root.AnatolianColorPalette?.apply(doc?.palette||null);
  const s=doc?.settings,vars={'--map-sea':'sea','--map-border':'border','--map-border-width':'borderWidth','--map-coast':'coast','--map-coast-width':'coastWidth','--map-city-color':'cityColor','--map-sea-label-color':'seaLabelColor','--map-label-halo':'labelHalo','--map-label-font':'labelFont','--map-ink-opacity':'ink'};
  for(const [key,name] of Object.entries(vars)){if(s)canvas.style.setProperty(key,String(s[name]));else canvas.style.removeProperty(key);}
- canvas.classList.toggle('map-design-no-labels',!!s&&!s.labels);canvas.classList.toggle('map-design-no-shadow',!!s&&!s.shadow);canvas.classList.toggle('map-design-terrain',!!s&&s.terrain);canvas.classList.toggle('map-design-no-terrain',!!s&&!s.terrain);
+ canvas.classList.toggle('map-design-no-labels',!!s&&!s.labels);canvas.classList.toggle('map-design-no-shadow',!!s&&!s.shadow);
  if(s)canvas.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23737870' opacity='${s.grain}' filter='url(%23p)' d='M0 0h120v120H0z'/%3E%3C/svg%3E")`;else canvas.style.removeProperty('background-image');
- render(svg,doc);
+ render(svg,doc);root.AnatolianColorPalette?.refresh(canvas);
 }
-function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});if(preview)styleMap(svg,canvas,preview);}
-function setPreview(doc){preview=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,preview);}document.dispatchEvent(new CustomEvent('map-design-preview'));}
-const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,setPreview,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
-root.AnatolianMapDesign=api;if(typeof module!=='undefined')module.exports=api;
+function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});styleMap(svg,canvas,preview||installed);updatePhysicalControl(canvas);}
+function setPreview(doc){preview=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else{styleMap(m.svg,m.canvas,preview||installed);updatePhysicalControl(m.canvas);}}document.dispatchEvent(new CustomEvent('map-design-preview'));}
+const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,setPreview,installedDesign,updatePhysicalControl,hasPhysical,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
+root.AnatolianMapDesign=api;
+if(root.AnatolianMapInstalledDesign&&root.document){try{installedDesign(root.AnatolianMapInstalledDesign);}catch(e){console.error('Installed atlas design is invalid:',e);}}
+if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

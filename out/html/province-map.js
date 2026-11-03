@@ -3,14 +3,10 @@
 const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num=v=>Math.round(Number(v)||0).toLocaleString('en-US'),pct=v=>(100*(Number(v)||0)).toFixed(2)+'%';
 const names={rural:'Rural',workers:'Workers',capitalists:'Capitalists',petty_bourgeoisie:'Petty bourgeoisie',state_employees:'State employees',alevis:'Alevis',kurds:'Kurdish population'};
-// Display preference is independent of campaign saves; an unset preference defaults off.
-const physicalMapSetting='anatolian-dawn-physical-map-overlay';
-root.setPhysicalMapOverlay=function(enabled,persist=true){enabled=!!enabled;document.documentElement.classList.toggle('physical-map-enabled',enabled);const yes=document.getElementById('physical_map_yes'),no=document.getElementById('physical_map_no');if(yes)yes.checked=enabled;if(no)no.checked=!enabled;if(persist)try{root.localStorage.setItem(physicalMapSetting,enabled?'on':'off');}catch(error){/* The session toggle still works if storage is unavailable. */}};
-let initialPhysicalMap=false;try{initialPhysicalMap=root.localStorage.getItem(physicalMapSetting)==='on';}catch(error){}root.setPhysicalMapOverlay(initialPhysicalMap,false);
 let overlay=null,detail=null,priorFocus=null,current=null,owner=null;
 // Cartographic presentation only: no campaign qualities or election data are written.
 const atlasNS='http://www.w3.org/2000/svg';
-let atlasSerial=0,selectedProvince=null;
+let atlasSerial=0,selectedProvince=null,atlasPhysicalEnabled=false;
 function atlasNode(tag,attrs={}){const el=document.createElementNS(atlasNS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;}
 function marginColor(color,votes){
  const values=Object.values(votes).map(Number).filter(Number.isFinite).sort((a,b)=>b-a),total=values.reduce((a,b)=>a+b,0);
@@ -31,14 +27,19 @@ function setupAtlas(canvas,allowMargin=true){
  const silhouette=atlasNode('g',{class:'atlas-silhouette',filter:`url(#${uid}-shadow)`,'aria-hidden':'true'}),shade=atlasNode('g',{class:'atlas-ink','aria-hidden':'true'});
  for(const path of paths){for(const [group,attrs] of [[silhouette,{fill:'#526366',stroke:'#526366','stroke-width':'3'}],[shade,{fill:`url(#${uid}-ink)`}]]){const copy=atlasNode('path',{d:path.getAttribute('d'),...attrs});group.append(copy);}}
  viewport.prepend(silhouette);viewport.append(shade);
- viewport.append(atlasNode('g',{class:'atlas-selection','aria-hidden':'true'}));
+ const physHover=atlasNode('g',{class:'atlas-physical-hover','aria-hidden':'true','pointer-events':'none'});viewport.append(physHover);
+  viewport.append(atlasNode('g',{class:'atlas-selection','aria-hidden':'true'}));
+  let hoverId=null;
+  function clearPhysicalHover(){hoverId=null;physHover.replaceChildren();}
+  svg.addEventListener('pointerover',e=>{if(!canvas.classList.contains('atlas-physical-enabled'))return;const p=e.target.closest?.('[data-province]');const id=p?.dataset.province||null;if(id===hoverId)return;clearPhysicalHover();if(p){hoverId=id;for(const q of paths)if(q.dataset.province===id)physHover.append(atlasNode('path',{d:q.getAttribute('d'),fill:'none'}));}});
+  svg.addEventListener('pointerleave',clearPhysicalHover);
  const labels=atlasNode('g',{class:'atlas-labels','aria-hidden':'true'});viewport.append(labels);
  const candidates=[];
  const major=['istanbul','ankara','izmir','bursa','adana','diyarbakir'];
  for(const p of [...P.data.provinces].sort((a,b)=>(major.includes(b.id)?1:0)-(major.includes(a.id)?1:0))){const text=atlasNode('text',{class:'atlas-city',x:p.center[0],y:p.center[1],'text-anchor':'middle'});text.textContent=p.id==='istanbul'?'İstanbul':p.id==='izmir'?'İzmir':p.name;labels.append(text);candidates.push({text,major:major.includes(p.id),x:p.center[0],y:p.center[1]});}
  // Sea positions use the original map coordinates; each candidate is checked against land.
  for(const [name,sx,sy,size] of [['Black Sea',860,-30,13],['Aegean Sea',-35,375,10],['Mediterranean Sea',640,755,13],['Sea of Marmara',210,160,9]]){const text=atlasNode('text',{class:'atlas-sea',x:sx,y:sy,'text-anchor':'middle','font-size':size});if(name==='Aegean Sea')text.setAttribute('transform',`rotate(-90 ${sx} ${sy})`);text.textContent=name;labels.append(text);candidates.push({text,sea:true,x:sx,y:sy,size});}
- const controls=document.createElement('div');controls.className='atlas-controls';controls.innerHTML='<button type="button" data-atlas="in" aria-label="Zoom in">+</button><button type="button" data-atlas="out" aria-label="Zoom out">−</button><button type="button" data-atlas="reset">Reset map</button><label><input type="checkbox" data-atlas="labels"> All province names</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label><span class="atlas-scale" hidden>Ink strength: tied (55%) → lead of 30 pp or more (100%)</span>':'');canvas.before(controls);
+ const controls=document.createElement('div');controls.className='atlas-controls';controls.innerHTML='<button type="button" data-atlas="in" aria-label="Zoom in">+</button><button type="button" data-atlas="out" aria-label="Zoom out">−</button><button type="button" data-atlas="reset">Reset map</button><label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas="physical" disabled> Physical map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label><span class="atlas-scale" hidden>Ink strength: tied (55%) → lead of 30 pp or more (100%)</span>':'');canvas.before(controls);
  canvas.title='Scroll to zoom toward the cursor; drag to pan while zoomed. Use Reset map to restore the full view.';
  const all=controls.querySelector('[data-atlas="labels"]');
  function layout(){
@@ -71,15 +72,19 @@ function setupAtlas(canvas,allowMargin=true){
  svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
  svg.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},true);
  const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}schedule();});resize.observe(canvas);all.onchange=layout;schedule();
- root.AnatolianMapDesign?.attach(svg,canvas);root.AnatolianMapEditor?.mount(canvas);
+ root.AnatolianMapDesign?.attach(svg,canvas);
+ const physical=controls.querySelector('[data-atlas="physical"]');
+ if(physical){physical.onchange=()=>{atlasPhysicalEnabled=physical.checked;canvas.classList.toggle('atlas-physical-enabled',physical.checked);};
+  root.AnatolianMapDesign?.updatePhysicalControl(canvas);if(!physical.disabled&&atlasPhysicalEnabled){physical.checked=true;canvas.classList.add('atlas-physical-enabled');}}
+ root.AnatolianMapEditor?.mount(canvas);
 }
 function selectProvince(host,id){selectedProvince=id;for(const layer of host.querySelectorAll('.atlas-selection'))layer.replaceChildren();for(const p of host.querySelectorAll('[data-province]')){const selected=p.dataset.province===id;p.classList.toggle('atlas-selected',selected);p.setAttribute('aria-pressed',String(selected));if(selected){const layer=p.closest('svg').querySelector('.atlas-selection');if(layer)for(const cls of ['atlas-selection-halo','atlas-selection-gold'])layer.append(atlasNode('path',{d:p.getAttribute('d'),class:cls}));}}}
 
 function closeDetail(){if(detail){detail.remove();detail=null;if(overlay)overlay.querySelector('.province-current')?.focus();}}
 function close(){closeDetail();if(overlay){overlay.remove();overlay=null;document.body.classList.remove('province-map-open');priorFocus?.focus();}}
-// Keep terrain in the SVG coordinate system so every map size stays aligned.
+// Original province coordinates remain authoritative for every map mode.
 let mapMarkup;
-function turkeyMapSvg(){if(mapMarkup)return mapMarkup;return mapMarkup=P.data.svg.replace('role="img"','role="group"').replace('<svg ','<svg style="isolation:isolate" ').replace('</svg>','<image class="turkey-physical-overlay" href="img/turkey-physical-overlay.png" x="0" y="0" width="1675" height="717" preserveAspectRatio="none" style="mix-blend-mode:multiply;pointer-events:none" aria-hidden="true"/></svg>');}
+function turkeyMapSvg(){if(mapMarkup)return mapMarkup;return mapMarkup=P.data.svg.replace('role="img"','role="group"').replace('<svg ','<svg style="isolation:isolate" ');}
 function parliament(){return '<svg class="province-parliament" viewBox="0 0 500 250" role="img" aria-label="TBMM seat distribution"></svg>';}
 function drawParliament(seats){if(!root.d3?.parliament)return;const graph=root.d3.parliament().width(500).height(500).innerRadiusCoef(.4);graph.enter.fromCenter(false).smallToBig(false);graph.update.animate(false);const data=Object.keys(seats).map(k=>({id:k,name:P.label(owner,k),legend:P.label(owner,k),seats:seats[k],color:P.colors[k]||'#808080'}));root.d3.select(overlay.querySelector('.province-parliament')).datum(data).call(graph);}
 
@@ -103,7 +108,7 @@ function render(s){current=s;const body=overlay.querySelector('.province-map-bod
 
 function paintMap(host,s,Q,onSelect){
  const provinceById=new Map(s.provinces.map(p=>[p.id,p]));
- for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);if(!p){path.style.fill='#808080';path.removeAttribute('tabindex');path.style.cursor='default';const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent='Not voting in this Senate renewal';path.append(title);continue;}const formed=s.socialistLeftFormed??(s.kind==='poll'?!!Q.socialist_left_formed:false),votes=P.reportingVotes(p.votes,false,formed),winner=s.kind==='local'?(P.provinceOtherParties.includes(p.winner)?'other':p.winner):Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0];path.atlasColor=P.colors[winner]||'#808080';path.atlasVotes=p.votes;path.style.fill=path.atlasColor;const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=p.name+': '+(formed&&winner==='TIP'?'Socialist Left':P.label(Q,winner))+' '+pct(votes[winner]/p.totalVotes);path.append(title);path.onclick=()=>{selectProvince(host,p.id);onSelect(p.id);};path.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectProvince(host,p.id);onSelect(p.id);}};}
+ for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);if(!p){path.style.fill='#808080';path.removeAttribute('tabindex');path.style.cursor='default';const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent='Not voting in this Senate renewal';path.append(title);continue;}const formed=s.socialistLeftFormed??(s.kind==='poll'?!!Q.socialist_left_formed:false),votes=P.reportingVotes(p.votes,false,formed),winner=s.kind==='local'?(P.provinceOtherParties.includes(p.winner)?'other':p.winner):Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0];path.dataset.atlasParty=winner;path.atlasColor=P.colors[winner]||'#808080';path.atlasVotes=p.votes;path.style.fill=path.atlasColor;const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=p.name+': '+(formed&&winner==='TIP'?'Socialist Left':P.label(Q,winner))+' '+pct(votes[winner]/p.totalVotes);path.append(title);path.onclick=()=>{selectProvince(host,p.id);onSelect(p.id);};path.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectProvince(host,p.id);onSelect(p.id);}};}
  for(const canvas of host.querySelectorAll('.province-map-canvas'))setupAtlas(canvas);
  if(selectedProvince)selectProvince(host,selectedProvince);
 }
@@ -121,7 +126,7 @@ root.renderMunicipalControlMap=function(){
  const provinces=snapshot?.provinces||P.data.provinces.map(p=>({id:p.id,name:p.name,winner:root.AnatolianMunicipalities.startingMunicipalWinners[p.id]}));
  host.innerHTML='<div class="province-map-canvas">'+turkeyMapSvg()+'</div><p class="municipal-map-caption">'+(historical?'1968 local elections':'Latest local election · '+snapshot.year)+' · CHP municipalities in red</p>';
  const provinceById=new Map(provinces.map(p=>[p.id,p]));
- for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);path.style.fill=p?.winner==='chp'?P.colors.chp:'#808080';const title=document.createElementNS('http://www.w3.org/2000/svg','title');const winner=p?.winner==='GP'?'GP':p?.winner==='IND'?'Independent':p?P.label(Q,p.winner):'';title.textContent=p?p.name+': '+winner+(historical?' (1968)':''):'No recorded municipal election';path.append(title);if(p&&!historical){path.onclick=()=>{selectProvince(host,p.id);openSnapshot(snapshot,p.id);};path.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();path.onclick();}};}else{path.removeAttribute('tabindex');path.setAttribute('role','img');}}
+ for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);path.dataset.atlasParty=p?.winner==='chp'?'chp':'other';path.style.fill=p?.winner==='chp'?P.colors.chp:'#808080';const title=document.createElementNS('http://www.w3.org/2000/svg','title');const winner=p?.winner==='GP'?'GP':p?.winner==='IND'?'Independent':p?P.label(Q,p.winner):'';title.textContent=p?p.name+': '+winner+(historical?' (1968)':''):'No recorded municipal election';path.append(title);if(p&&!historical){path.onclick=()=>{selectProvince(host,p.id);openSnapshot(snapshot,p.id);};path.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();path.onclick();}};}else{path.removeAttribute('tabindex');path.setAttribute('role','img');}}
  setupAtlas(host.querySelector('.province-map-canvas'),false);
 };
 

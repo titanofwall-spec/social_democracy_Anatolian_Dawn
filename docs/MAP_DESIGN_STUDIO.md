@@ -104,3 +104,48 @@ The project intentionally does not contain election snapshots or replace provinc
 `scripts/test-map-atlas.cjs` continues to cover all 67 selectable provinces and the existing map navigation/election modes. Run the repository check, build and full test suite as usual.
 
 `scripts/test-map-images.cjs` adds a real PNG over the old 5 MB limit and verifies drag resizing, aspect locking, exact sizing, centered rotation, crop pixels, crop undo/redo, flips, source-byte preservation, large-project export/reimport, deduplicated IndexedDB autosave/reload and protection against storage failure. `npm run test:map-editor` runs both editor browser suites; `npm run test:map-images` runs the image suite alone.
+
+
+## Authoring a new player-toggle physical map (November 2026)
+
+The old static physical overlay and its global Options radio settings have been removed.
+Open **Admin: edit map**, press **Create physical map layer**, and select that layer.
+Paste a physical map image with Ctrl+V or use Import texture / image. The studio
+reuses its existing transform controls: Move/select dragging, eight resize handles,
+rotation, cropping, flipping, opacity and precise X/Y/size fields. Importing a second
+physical image replaces the previous image on that special layer; other artwork
+layers remain untouched. Select a normal layer to return to ordinary electoral artwork.
+The physical layer is separate: it is NOT painted onto the electoral map by default.
+
+Press **Preview in game** and switch **Physical map** on/off in the map's own controls,
+next to Victory margins. Until a physical map is previewed or installed, that toggle
+is disabled. Selecting the physical layer inside the editor shows it temporarily for
+alignment without changing the player-facing setting.
+
+**Export design + physical map** downloads a `.admap.zip` containing the full editable
+`.admap.json` and a separately rendered, aligned, fixed 1675×717 `physical-map.png`.
+The image export uses the physical layer's actual SVG clipping, image transforms and
+mask; it cannot change any election data. Extract the JSON to import it again.
+Run **Install_Exported_Design.bat** from the standalone update package with the ZIP
+path as the argument (or drag the ZIP onto the BAT). It installs the normal artwork
+as `out/html/data/map-design-default.js` and the fixed physical PNG as
+`out/html/img/physical-map-custom.png`. Run `npm run build` and check the game,
+then push the modified assets yourself. The exported ZIP retains the editable source.
+
+
+## Universal political and entity colors
+
+Open **Universal party & entity colors** in the studio's left sidebar. Every party
+from `AnatolianProvinces.colors` is listed, along with all named entities from
+`colourList` (Kurdish organizations, Cyprus groups, far-left/right organizations,
+and other colored terms), plus Senate special groups. Each entry has a live color
+picker and a per-item reset, with a **Reset all colors** action. Party aliases
+(CHP/chp, MGP/CGP, MNP/MSP, TİP/TIP, TSİP/TSIP, and others) use the same
+underlying party color rather than duplicating inconsistent settings.
+
+Changes are saved as a sparse `palette` property in the same `.admap.json` file
+and thus also in the combined physical-map export. The runtime palette updates
+province maps, victory-margin fills, Senate seat colors, the shared party
+palette and the game's existing `colourList` label styles. Changes do not
+alter votes, party identity, election snapshots or savegame calculations.
+An old design file without `palette` is backwards compatible.

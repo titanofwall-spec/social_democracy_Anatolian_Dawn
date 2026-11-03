@@ -267,3 +267,6 @@ colourList.push({word:"KUK",style:"color:#c2d93f;font-weight:bold;"});
 
 tooltipList.push({searchString:"PDK-T",explanationText:"<img src=\"img/kurdish/t-kdp.png\" alt=\"PDK-T\">"});
 colourList.push({word:"PDK-T",style:"color:#c2d93f;font-weight:bold;"});
+
+// Expose the existing entity/party label registry to the map-design palette.
+globalThis.AnatolianGameColourEntries = colourList;
