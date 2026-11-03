@@ -49,7 +49,12 @@ function refresh(host=root.document){
   const party=path.dataset.atlasParty,color=P.colors[party];if(!color)continue;
   path.atlasColor=color;
   const canvas=path.closest('.province-map-canvas');
-  path.style.fill=canvas?.previousElementSibling?.querySelector('[data-atlas="margin"]')?.checked?marginColor(color,path.atlasVotes):color;
+  // Map Customization uses buttons in a dashboard, not a checkbox before
+  // the canvas. Use the canvas's authoritative state; retain the legacy
+  // checkbox fallback for maps outside the election window.
+  const explicit=canvas?.dataset.atlasVictoryMargins;
+  const marginOn=explicit==='true'||(explicit==null&&!!canvas?.previousElementSibling?.querySelector('[data-atlas="margin"]')?.checked);
+  path.style.fill=marginOn?marginColor(color,path.atlasVotes):color;
  }
  for(const circle of host.querySelectorAll('svg circle[data-party]')){
   const party=circle.dataset.party;
@@ -81,3 +86,5 @@ function lists(){return {
 };}
 root.AnatolianColorPalette={defaults,lists,normalize,apply,refresh,current,alias};
 })(globalThis);
+
+/* Anatolian Dawn: Options, victory margins and provincial tooltip fixes (v7). */

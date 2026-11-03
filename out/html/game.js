@@ -619,9 +619,13 @@ window.updateTitleScreenImages = function() {
 
   // populates the checkboxes in the options view
   window.populateOptions = function() {
+    // The old global physical-map radios were removed when map modes moved
+    // into the election window. Their absence must not abort showOptions().
     var physicalMap = document.documentElement.classList.contains('physical-map-enabled');
-    document.getElementById('physical_map_yes').checked = physicalMap;
-    document.getElementById('physical_map_no').checked = !physicalMap;
+    var physicalYes = document.getElementById('physical_map_yes');
+    var physicalNo = document.getElementById('physical_map_no');
+    if (physicalYes) physicalYes.checked = physicalMap;
+    if (physicalNo) physicalNo.checked = !physicalMap;
     var disable_bg = window.dendryUI.disable_bg;
     var animate = window.dendryUI.animate;
     var disable_audio = window.dendryUI.disable_audio;
@@ -1300,3 +1304,5 @@ function shortenText(text){if(text.parentElement?.closest('script,style,textarea
 function shorten(node){if(node.nodeType===3){shortenText(node);return;}var walker=document.createTreeWalker(node,NodeFilter.SHOW_TEXT);while(walker.nextNode())shortenText(walker.currentNode);}
 function installPrecision(){var observer=new MutationObserver(function(records){var roots=new Set();for(var record of records)for(var node of record.addedNodes)if(node.isConnected&&(node.nodeType===1||node.nodeType===3))roots.add(node);for(var root of roots){var ancestor=root.parentNode,covered=false;while(ancestor){if(roots.has(ancestor)){covered=true;break;}ancestor=ancestor.parentNode;}if(!covered)shorten(root);}});observer.observe(document.body,{childList:true,subtree:true});shorten(document.body);}
 if(document.body)installPrecision();else document.addEventListener('DOMContentLoaded',installPrecision,{once:true});})();
+
+/* Anatolian Dawn: Options, victory margins and provincial tooltip fixes (v7). */

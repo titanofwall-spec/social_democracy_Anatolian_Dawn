@@ -215,11 +215,16 @@ function setupAtlas(canvas,allowMargin=true,snapshot=null){
    else all.onchange=()=>{atlasShowAllNames=all.checked;layout();};
  const margin=controls.querySelector('[data-atlas="margin"]');
    if(margin){
-    const applyMargin=()=>{for(const p of paths)if(p.atlasColor)p.style.fill=atlasVictoryMargins?marginColor(p.atlasColor,p.atlasVotes):p.atlasColor;};
-    if(electionPanel)margin.onclick=()=>{atlasVictoryMargins=!atlasVictoryMargins;syncDetailButtons();applyMargin();};
-    else{margin.checked=atlasVictoryMargins;margin.onchange=()=>{atlasVictoryMargins=margin.checked;applyMargin();};}
-   applyMargin();
-  }
+    // The palette can refresh after the map is painted; publish the current
+    // state on the canvas so refresh never silently removes margin shading.
+    canvas.atlasMarginSync=()=>{
+     canvas.dataset.atlasVictoryMargins=String(atlasVictoryMargins);
+     for(const p of paths)if(p.atlasColor)p.style.fill=atlasVictoryMargins?marginColor(p.atlasColor,p.atlasVotes):p.atlasColor;
+    };
+    if(electionPanel)margin.onclick=()=>{atlasVictoryMargins=!atlasVictoryMargins;syncDetailButtons();root.AnatolianSyncVictoryMargins?.();};
+    else{margin.checked=atlasVictoryMargins;margin.onchange=()=>{atlasVictoryMargins=margin.checked;root.AnatolianSyncVictoryMargins?.();};}
+    canvas.atlasMarginSync();
+   }
    // The viewBox is fixed. The browser scales the entire map to its full-width container.
   // Keep only responsive label collision recalculation; no wheel zoom or drag/pan.
   const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}root.requestAnimationFrame(layout);});
@@ -254,6 +259,8 @@ function setupAtlas(canvas,allowMargin=true,snapshot=null){
     root.AnatolianSyncAtlasModes?.();
    });
   root.AnatolianSyncAtlasModes?.();
+ // Reassert the final fill after map-design and palette initialization.
+ canvas.atlasMarginSync?.();
  
 }
 // Session-only map presentation. Election fills, margins and province selection stay untouched.
@@ -272,14 +279,18 @@ root.AnatolianSyncAtlasModes=function(){
    input.title=input.disabled?'This map texture is not installed.':'';
   }
   for(const mode of ['political','physical','combined'])c.classList.toggle('atlas-mode-'+mode,atlasMapMode===mode);
+   c.atlasMarginSync?.();
  }
 };
-root.AnatolianSyncSeatModes=function(){
+ root.AnatolianSyncVictoryMargins=function(){
+  for(const canvas of document.querySelectorAll('.province-map-canvas'))canvas.atlasMarginSync?.();
+ };
+ root.AnatolianSyncSeatModes=function(){
   for(const canvas of document.querySelectorAll('.province-map-canvas'))canvas.atlasSeatSync?.();
  };
  function selectProvince(host,id){selectedProvince=id;for(const layer of host.querySelectorAll('.atlas-selection'))layer.replaceChildren();for(const p of host.querySelectorAll('[data-province]')){const selected=p.dataset.province===id;p.classList.toggle('atlas-selected',selected);p.setAttribute('aria-pressed',String(selected));if(selected){const layer=p.closest('svg').querySelector('.atlas-selection');if(layer)for(const cls of ['atlas-selection-halo','atlas-selection-gold'])layer.append(atlasNode('path',{d:p.getAttribute('d'),class:cls}));}}}
 
-function closeDetail(){if(detail){detail.remove();detail=null;if(overlay)overlay.querySelector('.province-current')?.focus();}}
+function closeDetail(){if(detail){detail.atlasTooltipCleanup?.();detail.remove();detail=null;if(overlay)overlay.querySelector('.province-current')?.focus();}}
 function close(){closeDetail();if(overlay){overlay.remove();overlay=null;document.body.classList.remove('province-map-open');priorFocus?.focus();}}
 // Original province coordinates remain authoritative for every map mode.
 let mapMarkup;
@@ -300,7 +311,52 @@ function partyRows(s,p){
  const breakdown=()=>{const keys=national?AnatolianRules.otherPollParties:P.provinceOtherParties;return keys.filter(k=>((rawVotes[k]||0)>0||(rawSeats[k]||0)>0)).map(k=>'<span style="display:block;white-space:nowrap"><b style="color:'+(P.colors[k]||'#808080')+'">'+esc((s.partyNames?.[k]==='GP'?'MGP':s.partyNames?.[k])||P.label(owner,k))+'</b>: '+num(rawVotes[k])+' ('+pct(rawVotes[k]/total)+')</span>').join('');};
  return Object.keys(votes).filter(k=>votes[k]>0||seats[k]>0).sort((a,b)=>a==='other'?1:b==='other'?-1:votes[b]-votes[a]).map(k=>{let amount=seats[k]||0;if(s.kind==='local'){if(p)amount=k==='other'?(P.provinceOtherParties.includes(p.winner)?1:0):(p.winner===k?1:0);else amount=P.reportingVotes(s.municipalities,true,formed)[k]||0;}const name=k==='other'?'<img class="province-party-flag" src="img/independent-placeholder.svg" alt=""><span class="province-party-name province-vote-fixed" style="color:#808080;font-weight:bold" tabindex="0">'+(p?'Other':'Others')+'<span class="province-group-tip">'+breakdown()+'</span></span>':styledParty(s,k,votes);return '<tr><th scope="row">'+name+'</th><td>'+num(votes[k])+'</td><td>'+pct(votes[k]/total)+'</td><td>'+num(amount)+'</td></tr>';}).join('');
 }
-function showProvince(id){if(!overlay)return;const p=current.provinces.find(p=>p.id===id);if(!p)return;closeDetail();detail=document.createElement('div');detail.className='province-detail-backdrop';detail.innerHTML='<section class="province-detail" role="dialog" aria-modal="true" aria-labelledby="province-detail-title"><button class="province-close" aria-label="Close province details">×</button><p class="province-kicker">'+esc(current.kind==='poll'?'Current projection':stamp(current))+'</p><h2 id="province-detail-title">'+esc(p.name)+'</h2><div class="province-detail-summary"><strong>'+num(p.population)+'</strong> residents · '+num(p.totalVotes)+' '+(current.kind==='poll'?'projected valid votes':'valid votes')+'</div><h3>Population and demographics</h3><table><thead><tr><th>Demographic</th><th>Share</th><th>People</th></tr></thead><tbody>'+Object.entries(p.demographics).map(([k,v])=>'<tr><th>'+esc(names[k])+'</th><td>'+pct(v)+'</td><td>'+num(p.demographicCounts?.[k]??v*p.population)+'</td></tr>').join('')+'</tbody></table><h3>Province election results</h3><table><thead><tr><th>Party</th><th>Votes</th><th>Share</th><th>'+ (current.kind==='local'?'Municipality':'Seats')+'</th></tr></thead><tbody>'+partyRows(current,p)+'</tbody></table><details><summary>Voting preferences by demographic</summary><p>Each demographic has its own provincial voting preferences.</p><table><tbody>'+Object.entries(p.classPreferences||{}).map(([c,v])=>'<tr><th>'+esc(names[c])+'</th><td>'+Object.entries(v).filter(([k,n])=>n>0).map(([k,n])=>esc(P.label(owner,k))+': '+pct(n)).join(', ')+'</td></tr>').join('')+'</tbody></table></details></section>';document.body.append(detail);detail.querySelector('button').onclick=closeDetail;detail.addEventListener('click',e=>{if(e.target===detail)closeDetail();});detail.querySelector('button').focus();}
+ function attachProvinceOtherTooltip(backdrop){
+  const panel=backdrop.querySelector('.province-detail');
+  const trigger=panel?.querySelector('.province-vote-fixed');
+  const original=trigger?.querySelector('.province-group-tip');
+  if(!trigger||!original)return;
+  const floating=original.cloneNode(true);
+  floating.classList.add('province-group-tip-portal');
+  floating.setAttribute('role','tooltip');
+  floating.style.display='none';
+  document.body.append(floating);
+  let visible=false;
+  function place(){
+   if(!visible||!trigger.isConnected)return;
+   const anchor=trigger.getBoundingClientRect();
+   floating.style.display='block';
+   floating.style.visibility='hidden';
+   const box=floating.getBoundingClientRect(),pad=12;
+   const left=Math.max(pad,Math.min(anchor.left,window.innerWidth-box.width-pad));
+   let top=anchor.top-box.height-8;
+   if(top<pad)top=anchor.bottom+8;
+   top=Math.max(pad,Math.min(top,window.innerHeight-box.height-pad));
+   floating.style.left=left+'px';floating.style.top=top+'px';
+   floating.style.visibility='visible';
+  }
+  function show(){visible=true;place();}
+  function hide(){visible=false;floating.style.display='none';}
+  function keydown(event){if(event.key==='Escape')hide();}
+  trigger.addEventListener('pointerenter',show);
+  trigger.addEventListener('pointerleave',hide);
+  trigger.addEventListener('focusin',show);
+  trigger.addEventListener('focusout',hide);
+  trigger.addEventListener('keydown',keydown);
+  panel.addEventListener('scroll',place,true);
+  window.addEventListener('resize',place);
+  backdrop.atlasTooltipCleanup=()=>{
+   trigger.removeEventListener('pointerenter',show);
+   trigger.removeEventListener('pointerleave',hide);
+   trigger.removeEventListener('focusin',show);
+   trigger.removeEventListener('focusout',hide);
+   trigger.removeEventListener('keydown',keydown);
+   panel.removeEventListener('scroll',place,true);
+   window.removeEventListener('resize',place);
+   floating.remove();
+  };
+ }
+function showProvince(id){if(!overlay)return;const p=current.provinces.find(p=>p.id===id);if(!p)return;closeDetail();detail=document.createElement('div');detail.className='province-detail-backdrop';detail.innerHTML='<section class="province-detail" role="dialog" aria-modal="true" aria-labelledby="province-detail-title"><button class="province-close" aria-label="Close province details">×</button><p class="province-kicker">'+esc(current.kind==='poll'?'Current projection':stamp(current))+'</p><h2 id="province-detail-title">'+esc(p.name)+'</h2><div class="province-detail-summary"><strong>'+num(p.population)+'</strong> residents · '+num(p.totalVotes)+' '+(current.kind==='poll'?'projected valid votes':'valid votes')+'</div><h3>Population and demographics</h3><table><thead><tr><th>Demographic</th><th>Share</th><th>People</th></tr></thead><tbody>'+Object.entries(p.demographics).map(([k,v])=>'<tr><th>'+esc(names[k])+'</th><td>'+pct(v)+'</td><td>'+num(p.demographicCounts?.[k]??v*p.population)+'</td></tr>').join('')+'</tbody></table><h3>Province election results</h3><table><thead><tr><th>Party</th><th>Votes</th><th>Share</th><th>'+ (current.kind==='local'?'Municipality':'Seats')+'</th></tr></thead><tbody>'+partyRows(current,p)+'</tbody></table><details><summary>Voting preferences by demographic</summary><p>Each demographic has its own provincial voting preferences.</p><table><tbody>'+Object.entries(p.classPreferences||{}).map(([c,v])=>'<tr><th>'+esc(names[c])+'</th><td>'+Object.entries(v).filter(([k,n])=>n>0).map(([k,n])=>esc(P.label(owner,k))+': '+pct(n)).join(', ')+'</td></tr>').join('')+'</tbody></table></details></section>';document.body.append(detail);attachProvinceOtherTooltip(detail);detail.querySelector('button').onclick=closeDetail;detail.addEventListener('click',e=>{if(e.target===detail)closeDetail();});detail.querySelector('button').focus();}
 function render(s){
  current=s;
  const body=overlay.querySelector('.province-map-body'),ledger=overlay.querySelector('.province-map-ledger');
@@ -367,3 +423,5 @@ root.openProvinceElectionMap=open;root.provinceGeneralElectionYears=generalElect
 /* Anatolian Dawn provincial seat visualizations (v5): 25% smaller than v3 (75% original). */
 
 /* Anatolian Dawn election dashboard: Map Customization buttons (v6). */
+
+/* Anatolian Dawn: Options, victory margins and provincial tooltip fixes (v7). */

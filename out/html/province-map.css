@@ -145,3 +145,8 @@
  .province-map-settings .atlas-controls.atlas-customization{padding:8px}
  .province-map-window .atlas-customization-options button{font-size:12px;padding:5px 3px}
 }
+
+/* Anatolian Dawn: Options, victory margins and provincial tooltip fixes (v7). */
+/* The provincial breakdown is portalled outside the scroll-clipped dialog. */
+.province-detail .province-vote-fixed>.province-group-tip{display:none!important}
+.province-group-tip.province-group-tip-portal{position:fixed!important;left:0;top:0;right:auto!important;bottom:auto!important;z-index:2147483650!important;display:none;pointer-events:none;max-width:min(290px,calc(100vw - 24px));max-height:min(300px,calc(100vh - 24px));overflow:hidden;box-sizing:border-box}
