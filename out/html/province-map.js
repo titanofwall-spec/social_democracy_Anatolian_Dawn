@@ -82,14 +82,14 @@ function setupAtlas(canvas,allowMargin=true){
 // Session-only map presentation. Election fills, margins, zoom and selection stay untouched.
 root.AnatolianSyncAtlasModes=function(){
  const design=root.AnatolianMapDesign,project=design?.getActiveDesign?.();
- const physical=!!design?.hasTexture?.(project,'physical'),political=!!design?.hasTexture?.(project,'political');
- const enabled={political,physical,combined:political&&physical};
+ const physical=!!design?.hasTexture?.(project,'physical'),political=!!design?.hasTexture?.(project,'political'),combined=!!design?.hasTexture?.(project,'combined');
+ const enabled={political,physical,combined};
  if(atlasMapMode!=='vanilla'&&!enabled[atlasMapMode])atlasMapMode='vanilla';
  for(const c of document.querySelectorAll('.province-map-canvas:not(.me-canvas)')){
   const controls=c.previousElementSibling;if(!controls?.classList.contains('atlas-controls'))continue;
   for(const input of controls.querySelectorAll('[data-atlas-mode]')){
    const mode=input.dataset.atlasMode;input.disabled=!enabled[mode];input.checked=atlasMapMode===mode;
-   input.title=input.disabled?'Create and install the required map texture(s) in Map Design Studio.':'';
+   input.title=input.disabled?'Create and install this mode’s own texture layer in Map Design Studio.':'';
   }
   for(const mode of ['political','physical','combined'])c.classList.toggle('atlas-mode-'+mode,atlasMapMode===mode);
  }

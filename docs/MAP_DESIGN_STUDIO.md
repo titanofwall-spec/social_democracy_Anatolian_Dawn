@@ -151,7 +151,7 @@ alter votes, party identity, election snapshots or savegame calculations.
 An old design file without `palette` is backwards compatible.
 
 
-## Political / Physical / Combined map textures (v5)
+## Political / Physical / Combined map textures (v5; superseded by v6 below)
 
 The default game map is **Vanilla**: no texture checkbox is selected. The map
 controls offer three mutually exclusive checkboxes, and clicking the selected
@@ -178,3 +178,24 @@ metadata and order in `out/html/data/map-design-default.js`, and writes the
 PNG assets to `out/html/img/`. The player begins in Vanilla mode. Re-edit from
 the original `.admap.json` inside your export ZIP, which retains full image
 sources and layer objects.
+
+
+## v6 — A third, independent Political and Physical map texture
+
+**Important change from v5:** "Political and Physical Map" is **NOT** a
+combination of the two other images. It is a third, completely independent
+map mode with its own image, layer, blend, opacity, clipping and transforms.
+
+Create **Political + physical map layer** in the studio and paste/import your
+unique combined image. Select that layer to adjust crop, rotation, position,
+opacity and blend. The studio preview selector shows only the texture for the
+chosen mode; vanilla shows no texture. Political Map and Physical Map remain
+independent, with their own original image layers. There is no stacking
+between modes, and no layer-order setting between the three is necessary.
+
+Export a `.admap.zip` to get the complete editable design, plus up to THREE
+independent PNGs (`political-map.png`, `physical-map.png`, `combined-map.png`)
+and `texture-settings.json` (version 2, `rendering: independent`). The v6
+`Install_Exported_Design.bat` installs these into the final game, where the
+player chooses one mode or none. If no combined texture has been created,
+that mode stays disabled even when both other textures exist.

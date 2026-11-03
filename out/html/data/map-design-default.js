@@ -3,3 +3,6 @@ globalThis.AnatolianMapInstalledDesign = null;
 globalThis.AnatolianPhysicalMapAsset = null;
 
 globalThis.AnatolianPoliticalMapAsset = null;
+
+// Dedicated third texture for the combined player map mode.
+globalThis.AnatolianCombinedMapAsset = null;

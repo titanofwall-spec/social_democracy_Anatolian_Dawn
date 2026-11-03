@@ -41,17 +41,15 @@
 
 /* Map textures are never shown by default: no selected mode = vanilla election map. */
 .atlas-controls input[data-atlas-mode]:disabled{opacity:.5;cursor:not-allowed}
-.province-map-canvas .map-design-political,.province-map-canvas .map-design-physical{pointer-events:none;display:none}
+.province-map-canvas .map-design-political,.province-map-canvas .map-design-physical,.province-map-canvas .map-design-combined{pointer-events:none;display:none}
 .province-map-canvas.atlas-mode-political .map-design-political,
 .province-map-canvas.atlas-mode-physical .map-design-physical,
-.province-map-canvas.atlas-mode-combined .map-design-political,
-.province-map-canvas.atlas-mode-combined .map-design-physical{display:inline}
+.province-map-canvas.atlas-mode-combined .map-design-combined{display:inline}
 .province-map-canvas .atlas-physical-hover{pointer-events:none;display:none}
 .province-map-canvas.atlas-mode-physical .atlas-physical-hover,
 .province-map-canvas.atlas-mode-combined .atlas-physical-hover{display:inline}
 .province-map-canvas .atlas-physical-hover path{fill:none;stroke:#e8cc84;stroke-width:2.2;vector-effect:non-scaling-stroke}
-/* Editor-only mode switch: show each authored texture independently or both. */
+/* Editor-only preview: each mode shows its own imported image, never a composite. */
 .me-canvas[data-editor-map-mode="political"] .map-design-political,
 .me-canvas[data-editor-map-mode="physical"] .map-design-physical,
-.me-canvas[data-editor-map-mode="combined"] .map-design-political,
-.me-canvas[data-editor-map-mode="combined"] .map-design-physical{display:inline}
+.me-canvas[data-editor-map-mode="combined"] .map-design-combined{display:inline}
