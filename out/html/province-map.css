@@ -96,3 +96,10 @@
  color:var(--text-color);white-space:nowrap;
 }
 @media(max-width:720px){.province-map-body .province-map-heading span{font-size:13px;line-height:1.05}}
+
+/* Anatolian Dawn provincial seat visualizations (v3): circular and ball. */
+/* Markers are purely visual: province paths retain all mouse/keyboard input. */
+.province-map-canvas .atlas-seat-markers,
+.province-map-canvas .atlas-seat-markers *{pointer-events:none!important;cursor:default;transition:none}
+.province-map-canvas .atlas-seat-marker{isolation:isolate}
+.province-map-settings .atlas-controls input[data-atlas-seat]:disabled{opacity:.5;cursor:not-allowed}

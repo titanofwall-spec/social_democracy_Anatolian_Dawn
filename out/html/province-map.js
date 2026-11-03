@@ -6,7 +6,7 @@ const names={rural:'Rural',workers:'Workers',capitalists:'Capitalists',petty_bou
 let overlay=null,detail=null,priorFocus=null,current=null,owner=null;
 // Cartographic presentation only: no campaign qualities or election data are written.
 const atlasNS='http://www.w3.org/2000/svg';
-let atlasSerial=0,selectedProvince=null,atlasMapMode='vanilla',atlasShowAllNames=false,atlasVictoryMargins=false;
+let atlasSerial=0,selectedProvince=null,atlasMapMode='vanilla',atlasShowAllNames=false,atlasVictoryMargins=false,atlasSeatMode='none';
 /* Anatolian Dawn election dashboard: full-width fixed map, no zoom (v1). */
 function atlasNode(tag,attrs={}){const el=document.createElementNS(atlasNS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;}
 function marginColor(color,votes){
@@ -17,7 +17,113 @@ function marginColor(color,votes){
  if(!rgb)return color;
  return '#'+[0,2,4].map((offset,i)=>Math.round(parseInt(rgb[1].slice(offset,offset+2),16)*ink+[246,243,232][i]*(1-ink)).toString(16).padStart(2,'0')).join('');
 }
-function setupAtlas(canvas,allowMargin=true){
+ // Provincial seat visualizations (map presentation only; never reallocates seats).
+ const seatVisuals=(()=>{
+  const RING_OUTER=35.5,RING_INNER=20,BALL_RADIUS=10.2,BALL_STEP=23;
+  const provinceCenters=new Map(P.data.provinces.map(p=>[p.id,p.center]));
+  // Keep party order stable across districts and elections, irrespective of vote rank.
+  const baseOrder=Object.keys(P.colors);
+  const partyRank=k=>{const i=baseOrder.indexOf(k);return i<0?baseOrder.length:i;};
+  function seatsFor(p){
+   if(!p||!p.seats||typeof p.seats!=='object'||Array.isArray(p.seats))return null;
+   const entries=[];let total=0;
+   for(const [key,count] of Object.entries(p.seats)){
+    if(!Number.isSafeInteger(count)||count<0)return null;
+    if(count>0){total+=count;entries.push({key,count});}
+   }
+   if(total<1||total>500)return null;
+   entries.sort((a,b)=>partyRank(a.key)-partyRank(b.key)||a.key.localeCompare(b.key));
+   return {entries,total};
+  }
+  function available(snapshot){
+   if(!snapshot||!['general','poll','senate'].includes(snapshot.kind)||snapshot.kind==='poll'&&snapshot.electionKind==='local')return false;
+   return Array.isArray(snapshot.provinces)&&snapshot.provinces.some(p=>seatsFor(p)&&provinceCenters.has(p.id));
+  }
+  function arcPoint(angle,r){return [Math.cos(angle)*r,Math.sin(angle)*r];}
+  // A pie wedge under a white center gives a clean, contiguous donut (no angular gaps).
+  function wedge(start,end){
+   const a=arcPoint(start,RING_OUTER),b=arcPoint(end,RING_OUTER),large=end-start>Math.PI?1:0;
+   return `M0 0 L${a[0].toFixed(4)} ${a[1].toFixed(4)} A${RING_OUTER} ${RING_OUTER} 0 ${large} 1 ${b[0].toFixed(4)} ${b[1].toFixed(4)} Z`;
+  }
+  function segments(entries,total){
+   let used=0;
+   return entries.map(e=>{const start=360*used/total;used+=e.count;return {...e,start,end:360*used/total};});
+  }
+  function markers(snapshot,mode){
+   if(!available(snapshot)||!['circular','ball'].includes(mode))return [];
+   const out=[];
+   for(const p of snapshot.provinces){
+    const data=seatsFor(p),center=provinceCenters.get(p.id);
+    if(!data||!Array.isArray(center)||!center.every(Number.isFinite))continue;
+    const cols=mode==='ball'?Math.ceil(Math.sqrt(data.total)):1,rows=mode==='ball'?Math.ceil(data.total/cols):1;
+    const width=mode==='circular'?2*RING_OUTER:(cols-1)*BALL_STEP+2*BALL_RADIUS;
+    const height=mode==='circular'?2*RING_OUTER:(rows-1)*BALL_STEP+2*BALL_RADIUS;
+    out.push({id:p.id,cx:center[0],cy:center[1],...data,cols,rows,width,height});
+   }
+   // Large delegations are placed first; stable tie-breaking avoids flicker.
+   out.sort((a,b)=>b.total-a.total||a.id.localeCompare(b.id));
+   const placed=[];
+   const offsets=[[0,0]];
+   for(const radius of [18,36,54,72,90,108])for(let i=0;i<16;i++){
+    const angle=Math.PI*2*i/16;
+    offsets.push([Math.round(radius*Math.cos(angle)),Math.round(radius*Math.sin(angle))]);
+   }
+   for(const item of out){
+    let best=null,bestCost=Infinity;
+    for(const [dx,dy] of offsets){
+     const x=item.cx+dx,y=item.cy+dy;
+     const box={left:x-item.width/2,right:x+item.width/2,top:y-item.height/2,bottom:y+item.height/2};
+     let overlap=0;
+     for(const other of placed){
+      const w=Math.max(0,Math.min(box.right+3,other.right+3)-Math.max(box.left-3,other.left-3));
+      const h=Math.max(0,Math.min(box.bottom+3,other.bottom+3)-Math.max(box.top-3,other.top-3));
+      overlap+=w*h;
+     }
+     const outside=Math.max(0,-45-box.left)**2+Math.max(0,box.right-1720)**2+Math.max(0,-48-box.top)**2+Math.max(0,box.bottom-765)**2;
+     const cost=overlap*4+(dx*dx+dy*dy)*.19+outside*2;
+     if(cost<bestCost){bestCost=cost;best={...box,x,y};if(cost===0)break;}
+    }
+    Object.assign(item,{x:best.x,y:best.y});placed.push(best);
+   }
+   // Keep source province order for consistent DOM order and accessibility.
+   const order=new Map(snapshot.provinces.map((p,i)=>[p.id,i]));
+   return out.sort((a,b)=>order.get(a.id)-order.get(b.id));
+  }
+  function render(layer,snapshot,mode){
+   layer.replaceChildren();
+   const items=markers(snapshot,mode);
+   for(const p of items){
+    const g=atlasNode('g',{class:'atlas-seat-marker atlas-seat-'+mode,'data-seat-province':p.id,'data-seat-total':p.total,transform:`translate(${p.x} ${p.y})`,'pointer-events':'none'});
+    if(mode==='circular'){
+     const segs=segments(p.entries,p.total);
+     for(const e of segs){
+      const color=P.colors[e.key]||P.colors.other||'#808080';
+      if(e.count===p.total)g.append(atlasNode('circle',{r:RING_OUTER,fill:color}));
+      else g.append(atlasNode('path',{d:wedge((e.start-90)*Math.PI/180,(e.end-90)*Math.PI/180),fill:color}));
+     }
+     g.append(atlasNode('circle',{r:RING_OUTER,fill:'none',stroke:'#f0eee8','stroke-width':.85}));
+     g.append(atlasNode('circle',{r:RING_INNER,fill:'#fff'}));
+     const label=atlasNode('text',{x:0,y:0,'text-anchor':'middle','dominant-baseline':'central','font-size':19,'font-family':'Arial, sans-serif','font-weight':'700',fill:'#111'});
+     label.textContent=String(p.total);g.append(label);
+    }else{
+     // Row-major compact square packing, grouped by party (largest delegation first).
+     const ordered=p.entries.slice().sort((a,b)=>b.count-a.count||partyRank(a.key)-partyRank(b.key)||a.key.localeCompare(b.key));
+     let n=0;
+     for(const e of ordered)for(let i=0;i<e.count;i++){
+      const row=Math.floor(n/p.cols),col=n%p.cols;
+      const x=(col-(p.cols-1)/2)*BALL_STEP,y=(row-(p.rows-1)/2)*BALL_STEP;
+      g.append(atlasNode('circle',{cx:x,cy:y,r:BALL_RADIUS,fill:P.colors[e.key]||P.colors.other||'#808080',stroke:'#202020','stroke-width':1.2}));n++;
+     }
+    }
+    layer.append(g);
+   }
+   return items;
+  }
+  return {available,seatsFor,segments,markers,render};
+ })();
+ root.AnatolianSeatVisuals=seatVisuals;
+
+function setupAtlas(canvas,allowMargin=true,snapshot=null){
  const svg=canvas.querySelector('svg');if(!svg||svg.dataset.atlas)return;svg.dataset.atlas='true';
  const uid='atlas-'+(++atlasSerial),paths=[...svg.querySelectorAll('[data-province]')];
  // Additional sea space leaves room for geographic labels without changing any path.
@@ -41,21 +147,21 @@ function setupAtlas(canvas,allowMargin=true){
  // Sea positions use the original map coordinates; each candidate is checked against land.
  for(const [name,sx,sy,size] of [['Black Sea',860,-30,13],['Aegean Sea',-35,375,10],['Mediterranean Sea',640,755,13],['Sea of Marmara',210,160,9]]){const text=atlasNode('text',{class:'atlas-sea',x:sx,y:sy,'text-anchor':'middle','font-size':size});if(name==='Aegean Sea')text.setAttribute('transform',`rotate(-90 ${sx} ${sy})`);text.textContent=name;labels.append(text);candidates.push({text,sea:true,x:sx,y:sy,size});}
    const controls=document.createElement('div');controls.className='atlas-controls';
-  controls.innerHTML='<label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas-mode="political" disabled> Political Map</label><label><input type="checkbox" data-atlas-mode="physical" disabled> Physical Map</label><label><input type="checkbox" data-atlas-mode="combined" disabled> Political and Physical Map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label>':'');
+  controls.innerHTML='<label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas-mode="political" disabled> Political Map</label><label><input type="checkbox" data-atlas-mode="physical" disabled> Physical Map</label><label><input type="checkbox" data-atlas-mode="combined" disabled> Political and Physical Map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label><label><input type="checkbox" data-atlas-seat="circular"> Circular Representation</label><label><input type="checkbox" data-atlas-seat="ball"> Ball Representation</label>':'');
   const settingsSlot=canvas.closest('.province-map-window')?.querySelector('.province-map-settings');
   if(settingsSlot)settingsSlot.replaceChildren(controls);else canvas.before(controls);
   canvas.removeAttribute('title');
   const all=controls.querySelector('[data-atlas="labels"]');all.checked=atlasShowAllNames;
  function layout(){
   if(!svg.isConnected||!svg.getBoundingClientRect().width)return;
-  const occupied=[],rect=svg.getBoundingClientRect(),fontScale=home.w/rect.width;
+  const occupied=[...svg.querySelectorAll('.atlas-seat-markers .atlas-seat-marker')].map(g=>g.getBoundingClientRect()).filter(b=>b.width&&b.height),rect=svg.getBoundingClientRect(),fontScale=home.w/rect.width;
   for(const c of candidates){
    const t=c.text;t.style.display='';
    const baseSize=c.sea?c.size:all.checked?9.25:10.5;
    t.setAttribute('font-size',baseSize*fontScale);t.setAttribute('x',c.x);t.setAttribute('y',c.y);
    if(!c.sea&&!c.major&&!all.checked){t.style.display='none';continue;}
    let accepted=false;
-   const offsets=c.sea?[[0,0]]:[[0,0],[0,-14],[0,14],[-17,0],[17,0],[0,-28],[0,28],[-24,-14],[24,-14],[-24,14],[24,14]];
+   const offsets=c.sea?[[0,0]]:[[0,0],[0,-14],[0,14],[-17,0],[17,0],[0,-28],[0,28],[-24,-14],[24,-14],[-24,14],[24,14],...(occupied.length?[[0,-44],[0,44],[-44,0],[44,0],[-34,-34],[34,-34],[-34,34],[34,34],[0,-64],[0,64],[-64,0],[64,0]]:[])];
    for(const [dx,dy] of offsets){
     t.setAttribute('x',c.x+dx*fontScale);t.setAttribute('y',c.y+dy*fontScale);
     const b=t.getBoundingClientRect(),pad=2;
@@ -67,10 +173,20 @@ function setupAtlas(canvas,allowMargin=true){
    }
    if(!accepted){
     if(c.major||(!c.sea&&all.checked)){
-     // Required names must never disappear solely because nearby names overlap.
-     t.setAttribute('x',c.x);t.setAttribute('y',c.y);
-     occupied.push(t.getBoundingClientRect());
-    }else t.style.display='none';
+      // If dense seat markers leave no collision-free position, choose the least
+      // obstructed valid candidate instead of dropping required province names.
+      let best=null,bestScore=Infinity;
+      for(const [dx,dy] of offsets){
+       t.setAttribute('x',c.x+dx*fontScale);t.setAttribute('y',c.y+dy*fontScale);
+       const b=t.getBoundingClientRect();
+       if(b.left<rect.left||b.right>rect.right||b.top<rect.top||b.bottom>rect.bottom)continue;
+       let score=(dx*dx+dy*dy)*.02;
+       for(const a of occupied)score+=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top))*5;
+       if(score<bestScore){bestScore=score;best=[c.x+dx*fontScale,c.y+dy*fontScale];}
+      }
+      t.setAttribute('x',best?best[0]:c.x);t.setAttribute('y',best?best[1]:c.y);
+      occupied.push(t.getBoundingClientRect());
+     }else t.style.display='none';
    }
   }
  }
@@ -87,6 +203,23 @@ function setupAtlas(canvas,allowMargin=true){
   const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}root.requestAnimationFrame(layout);});
   resize.observe(canvas);root.requestAnimationFrame(layout);
  root.AnatolianMapDesign?.attach(svg,canvas);
+  // Keep markers above the map textures and below the province labels.
+  if(allowMargin){
+   const seatLayer=atlasNode('g',{class:'atlas-seat-markers','aria-hidden':'true','pointer-events':'none'});
+   viewport.insertBefore(seatLayer,labels);
+   const seatAvailable=seatVisuals.available(snapshot);
+   const seatInputs=[...controls.querySelectorAll('[data-atlas-seat]')];
+   canvas.atlasSeatSync=()=>{
+    for(const input of seatInputs){input.disabled=!seatAvailable;input.checked=seatAvailable&&atlasSeatMode===input.dataset.atlasSeat;input.title=seatAvailable?'':'No province-level parliamentary seat allocation is available for this election.';}
+    seatVisuals.render(seatLayer,snapshot,seatAvailable?atlasSeatMode:'none');
+    root.requestAnimationFrame(layout);
+   };
+   for(const input of seatInputs)input.addEventListener('change',()=>{
+    atlasSeatMode=input.checked?input.dataset.atlasSeat:'none';
+    root.AnatolianSyncSeatModes?.();
+   });
+   canvas.atlasSeatSync();
+  }
   for(const input of controls.querySelectorAll('[data-atlas-mode]'))input.addEventListener('change',()=>{
    atlasMapMode=input.checked?input.dataset.atlasMode:'vanilla';root.AnatolianSyncAtlasModes?.();
   });
@@ -108,7 +241,10 @@ root.AnatolianSyncAtlasModes=function(){
   for(const mode of ['political','physical','combined'])c.classList.toggle('atlas-mode-'+mode,atlasMapMode===mode);
  }
 };
-function selectProvince(host,id){selectedProvince=id;for(const layer of host.querySelectorAll('.atlas-selection'))layer.replaceChildren();for(const p of host.querySelectorAll('[data-province]')){const selected=p.dataset.province===id;p.classList.toggle('atlas-selected',selected);p.setAttribute('aria-pressed',String(selected));if(selected){const layer=p.closest('svg').querySelector('.atlas-selection');if(layer)for(const cls of ['atlas-selection-halo','atlas-selection-gold'])layer.append(atlasNode('path',{d:p.getAttribute('d'),class:cls}));}}}
+root.AnatolianSyncSeatModes=function(){
+  for(const canvas of document.querySelectorAll('.province-map-canvas'))canvas.atlasSeatSync?.();
+ };
+ function selectProvince(host,id){selectedProvince=id;for(const layer of host.querySelectorAll('.atlas-selection'))layer.replaceChildren();for(const p of host.querySelectorAll('[data-province]')){const selected=p.dataset.province===id;p.classList.toggle('atlas-selected',selected);p.setAttribute('aria-pressed',String(selected));if(selected){const layer=p.closest('svg').querySelector('.atlas-selection');if(layer)for(const cls of ['atlas-selection-halo','atlas-selection-gold'])layer.append(atlasNode('path',{d:p.getAttribute('d'),class:cls}));}}}
 
 function closeDetail(){if(detail){detail.remove();detail=null;if(overlay)overlay.querySelector('.province-current')?.focus();}}
 function close(){closeDetail();if(overlay){overlay.remove();overlay=null;document.body.classList.remove('province-map-open');priorFocus?.focus();}}
@@ -144,7 +280,7 @@ function render(s){
 function paintMap(host,s,Q,onSelect){
  const provinceById=new Map(s.provinces.map(p=>[p.id,p]));
  for(const path of host.querySelectorAll('[data-province]')){const p=provinceById.get(path.dataset.province);if(!p){path.style.fill='#808080';path.removeAttribute('tabindex');path.style.cursor='default';const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent='Not voting in this Senate renewal';path.append(title);continue;}const formed=s.socialistLeftFormed??(s.kind==='poll'?!!Q.socialist_left_formed:false),votes=P.reportingVotes(p.votes,false,formed),winner=s.kind==='local'?(P.provinceOtherParties.includes(p.winner)?'other':p.winner):Object.keys(votes).sort((a,b)=>votes[b]-votes[a])[0];path.dataset.atlasParty=winner;path.atlasColor=P.colors[winner]||'#808080';path.atlasVotes=p.votes;path.style.fill=path.atlasColor;const title=document.createElementNS('http://www.w3.org/2000/svg','title');title.textContent=p.name+': '+(formed&&winner==='TIP'?'Socialist Left':P.label(Q,winner))+' '+pct(votes[winner]/p.totalVotes);path.append(title);path.onclick=()=>{selectProvince(host,p.id);onSelect(p.id);};path.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectProvince(host,p.id);onSelect(p.id);}};}
- for(const canvas of host.querySelectorAll('.province-map-canvas'))setupAtlas(canvas);
+ for(const canvas of host.querySelectorAll('.province-map-canvas'))setupAtlas(canvas,true,s);
  if(selectedProvince)selectProvince(host,selectedProvince);
 }
 function openSnapshot(s,id){open();if(!overlay)return;render(s);overlay.querySelectorAll('[role="tab"]').forEach(button=>{const selected=button.textContent.trim()===s.year+' '+(s.kind==='senate'?'Senate '+s.group:s.kind==='local'?'Local':'General');button.classList.toggle('active',selected);button.setAttribute('aria-selected',String(selected));});if(id){selectProvince(overlay,id);showProvince(id); }}
@@ -192,3 +328,5 @@ root.openProvinceElectionMap=open;root.provinceGeneralElectionYears=generalElect
 })(globalThis);
 
 /* Anatolian Dawn election dashboard: ordered tabs and fixed Others tooltip (v2). */
+
+/* Anatolian Dawn provincial seat visualizations (v3): circular and ball. */
