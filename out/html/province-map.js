@@ -19,7 +19,7 @@ function marginColor(color,votes){
 }
  // Provincial seat visualizations (map presentation only; never reallocates seats).
  const seatVisuals=(()=>{
-  const RING_OUTER=35.5,RING_INNER=20,BALL_RADIUS=10.2,BALL_STEP=23;
+  const RING_OUTER=35.5,RING_INNER=20,BALL_RADIUS=10.2,BALL_STEP=23,SEAT_VISUAL_SCALE=.25;
   const provinceCenters=new Map(P.data.provinces.map(p=>[p.id,p.center]));
   // Keep party order stable across districts and elections, irrespective of vote rank.
   const baseOrder=Object.keys(P.colors);
@@ -56,8 +56,8 @@ function marginColor(color,votes){
     const data=seatsFor(p),center=provinceCenters.get(p.id);
     if(!data||!Array.isArray(center)||!center.every(Number.isFinite))continue;
     const cols=mode==='ball'?Math.ceil(Math.sqrt(data.total)):1,rows=mode==='ball'?Math.ceil(data.total/cols):1;
-    const width=mode==='circular'?2*RING_OUTER:(cols-1)*BALL_STEP+2*BALL_RADIUS;
-    const height=mode==='circular'?2*RING_OUTER:(rows-1)*BALL_STEP+2*BALL_RADIUS;
+    const width=(mode==='circular'?2*RING_OUTER:(cols-1)*BALL_STEP+2*BALL_RADIUS)*SEAT_VISUAL_SCALE;
+    const height=(mode==='circular'?2*RING_OUTER:(rows-1)*BALL_STEP+2*BALL_RADIUS)*SEAT_VISUAL_SCALE;
     out.push({id:p.id,cx:center[0],cy:center[1],...data,cols,rows,width,height});
    }
    // Large delegations are placed first; stable tie-breaking avoids flicker.
@@ -93,7 +93,7 @@ function marginColor(color,votes){
    layer.replaceChildren();
    const items=markers(snapshot,mode);
    for(const p of items){
-    const g=atlasNode('g',{class:'atlas-seat-marker atlas-seat-'+mode,'data-seat-province':p.id,'data-seat-total':p.total,transform:`translate(${p.x} ${p.y})`,'pointer-events':'none'});
+    const g=atlasNode('g',{class:'atlas-seat-marker atlas-seat-'+mode,'data-seat-province':p.id,'data-seat-total':p.total,transform:`translate(${p.x} ${p.y}) scale(${SEAT_VISUAL_SCALE})`,'pointer-events':'none'});
     if(mode==='circular'){
      const segs=segments(p.entries,p.total);
      for(const e of segs){
@@ -330,3 +330,5 @@ root.openProvinceElectionMap=open;root.provinceGeneralElectionYears=generalElect
 /* Anatolian Dawn election dashboard: ordered tabs and fixed Others tooltip (v2). */
 
 /* Anatolian Dawn provincial seat visualizations (v3): circular and ball. */
+
+/* Anatolian Dawn provincial seat visualizations (v4): 75% smaller. */
