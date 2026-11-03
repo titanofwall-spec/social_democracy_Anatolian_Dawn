@@ -6,7 +6,8 @@ const names={rural:'Rural',workers:'Workers',capitalists:'Capitalists',petty_bou
 let overlay=null,detail=null,priorFocus=null,current=null,owner=null;
 // Cartographic presentation only: no campaign qualities or election data are written.
 const atlasNS='http://www.w3.org/2000/svg';
-let atlasSerial=0,selectedProvince=null,atlasMapMode='vanilla';
+let atlasSerial=0,selectedProvince=null,atlasMapMode='vanilla',atlasShowAllNames=false,atlasVictoryMargins=false;
+/* Anatolian Dawn election dashboard: full-width fixed map, no zoom (v1). */
 function atlasNode(tag,attrs={}){const el=document.createElementNS(atlasNS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;}
 function marginColor(color,votes){
  const values=Object.values(votes).map(Number).filter(Number.isFinite).sort((a,b)=>b-a),total=values.reduce((a,b)=>a+b,0);
@@ -20,8 +21,8 @@ function setupAtlas(canvas,allowMargin=true){
  const svg=canvas.querySelector('svg');if(!svg||svg.dataset.atlas)return;svg.dataset.atlas='true';
  const uid='atlas-'+(++atlasSerial),paths=[...svg.querySelectorAll('[data-province]')];
  // Additional sea space leaves room for geographic labels without changing any path.
- const home={x:-85,y:-75,w:1845,h:865};let scale=1,x=home.x,y=home.y,frame=0,drag=null,suppressClick=false;
- svg.setAttribute('viewBox',`${x} ${y} ${home.w} ${home.h}`);
+ const home={x:-85,y:-75,w:1845,h:865};
+  svg.setAttribute('viewBox',`${home.x} ${home.y} ${home.w} ${home.h}`);
  const defs=atlasNode('defs');defs.innerHTML=`<filter id="${uid}-shadow" x="-5%" y="-5%" width="110%" height="110%"><feDropShadow dx="0" dy="1.4" stdDeviation="1.8" flood-color="#283c41" flood-opacity=".22"/></filter><linearGradient id="${uid}-ink" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".055"/><stop offset="1" stop-color="#30291d" stop-opacity=".035"/></linearGradient>`;svg.prepend(defs);
  const viewport=atlasNode('g',{class:'atlas-geography'});while(defs.nextSibling)viewport.append(defs.nextSibling);svg.append(viewport);
  const silhouette=atlasNode('g',{class:'atlas-silhouette',filter:`url(#${uid}-shadow)`,'aria-hidden':'true'}),shade=atlasNode('g',{class:'atlas-ink','aria-hidden':'true'});
@@ -39,12 +40,15 @@ function setupAtlas(canvas,allowMargin=true){
  for(const p of [...P.data.provinces].sort((a,b)=>(major.includes(b.id)?1:0)-(major.includes(a.id)?1:0))){const text=atlasNode('text',{class:'atlas-city',x:p.center[0],y:p.center[1],'text-anchor':'middle'});text.textContent=p.id==='istanbul'?'İstanbul':p.id==='izmir'?'İzmir':p.name;labels.append(text);candidates.push({text,major:major.includes(p.id),x:p.center[0],y:p.center[1]});}
  // Sea positions use the original map coordinates; each candidate is checked against land.
  for(const [name,sx,sy,size] of [['Black Sea',860,-30,13],['Aegean Sea',-35,375,10],['Mediterranean Sea',640,755,13],['Sea of Marmara',210,160,9]]){const text=atlasNode('text',{class:'atlas-sea',x:sx,y:sy,'text-anchor':'middle','font-size':size});if(name==='Aegean Sea')text.setAttribute('transform',`rotate(-90 ${sx} ${sy})`);text.textContent=name;labels.append(text);candidates.push({text,sea:true,x:sx,y:sy,size});}
- const controls=document.createElement('div');controls.className='atlas-controls';controls.innerHTML='<button type="button" data-atlas="in" aria-label="Zoom in">+</button><button type="button" data-atlas="out" aria-label="Zoom out">−</button><button type="button" data-atlas="reset">Reset map</button><label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas-mode="political" disabled> Political Map</label><label><input type="checkbox" data-atlas-mode="physical" disabled> Physical Map</label><label><input type="checkbox" data-atlas-mode="combined" disabled> Political and Physical Map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label><span class="atlas-scale" hidden>Ink strength: tied (55%) → lead of 30 pp or more (100%)</span>':'');canvas.before(controls);
- canvas.title='Scroll to zoom toward the cursor; drag to pan while zoomed. Use Reset map to restore the full view.';
- const all=controls.querySelector('[data-atlas="labels"]');
+   const controls=document.createElement('div');controls.className='atlas-controls';
+  controls.innerHTML='<label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas-mode="political" disabled> Political Map</label><label><input type="checkbox" data-atlas-mode="physical" disabled> Physical Map</label><label><input type="checkbox" data-atlas-mode="combined" disabled> Political and Physical Map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label>':'');
+  const settingsSlot=canvas.closest('.province-map-window')?.querySelector('.province-map-settings');
+  if(settingsSlot)settingsSlot.replaceChildren(controls);else canvas.before(controls);
+  canvas.removeAttribute('title');
+  const all=controls.querySelector('[data-atlas="labels"]');all.checked=atlasShowAllNames;
  function layout(){
   if(!svg.isConnected||!svg.getBoundingClientRect().width)return;
-  const occupied=[],rect=svg.getBoundingClientRect(),fontScale=home.w/rect.width/scale;
+  const occupied=[],rect=svg.getBoundingClientRect(),fontScale=home.w/rect.width;
   for(const c of candidates){
    const t=c.text;t.style.display='';
    const baseSize=c.sea?c.size:all.checked?9.25:10.5;
@@ -70,21 +74,18 @@ function setupAtlas(canvas,allowMargin=true){
    }
   }
  }
- function bounds(){const w=home.w/scale,h=home.h/scale;x=Math.max(home.x,Math.min(home.x+home.w-w,x));y=Math.max(home.y,Math.min(home.y+home.h-h,y));}
- function draw(){frame=0;if(!svg.isConnected)return;bounds();const target=[x,y,home.w/scale,home.h/scale],prior=svg.getAttribute('viewBox').split(' ').map(Number),reduced=root.matchMedia('(prefers-reduced-motion: reduce)').matches;const next=target.map((v,i)=>reduced||drag||Math.abs(v-prior[i])<.08?v:prior[i]+(v-prior[i])*.45);svg.setAttribute('viewBox',next.join(' '));svg.style.touchAction=scale>1?'none':'pan-y';layout();if(next.some((v,i)=>v!==target[i]))schedule();}
- function schedule(){if(!frame)frame=root.requestAnimationFrame(draw);}
- function zoom(factor,point){const next=Math.max(1,Math.min(6,scale*factor)),ratio=scale/next;x=point.x-(point.x-x)*ratio;y=point.y-(point.y-y)*ratio;scale=next;schedule();}
- function point(e){return new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());}
- controls.onclick=e=>{const action=e.target.dataset.atlas;if(action==='reset'){scale=1;x=home.x;y=home.y;schedule();}else if(action==='in'||action==='out')zoom(action==='in'?1.3:1/1.3,{x:x+home.w/scale/2,y:y+home.h/scale/2});};
- all.onchange=layout;
- const margin=controls.querySelector('[data-atlas="margin"]');if(margin)margin.onchange=()=>{for(const path of paths)if(path.atlasColor)path.style.fill=margin.checked?marginColor(path.atlasColor,path.atlasVotes):path.atlasColor;controls.querySelector('.atlas-scale').hidden=!margin.checked;};
- svg.addEventListener('wheel',e=>{e.preventDefault();zoom(Math.exp(-Math.max(-100,Math.min(100,e.deltaY))*.002),point(e));},{passive:false});
- svg.addEventListener('pointerdown',e=>{if(e.button!==0||scale===1)return;drag={id:e.pointerId,start:point(e),clientX:e.clientX,clientY:e.clientY,x,y,moved:false};suppressClick=false;});
- svg.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;if(!drag.moved&&Math.hypot(e.clientX-drag.clientX,e.clientY-drag.clientY)<5)return;if(!drag.moved){drag.moved=true;svg.setPointerCapture(e.pointerId);canvas.classList.add('atlas-panning');}const now=point(e);x+=drag.start.x-now.x;y+=drag.start.y-now.y;bounds();svg.setAttribute('viewBox',`${x} ${y} ${home.w/scale} ${home.h/scale}`);schedule();});
- function end(e){if(!drag||e.pointerId!==drag.id)return;suppressClick=drag.moved;drag=null;canvas.classList.remove('atlas-panning');if(svg.hasPointerCapture(e.pointerId))svg.releasePointerCapture(e.pointerId);}
- svg.addEventListener('pointerup',end);svg.addEventListener('pointercancel',end);
- svg.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},true);
- const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}schedule();});resize.observe(canvas);all.onchange=layout;schedule();
+   all.onchange=()=>{atlasShowAllNames=all.checked;layout();};
+ const margin=controls.querySelector('[data-atlas="margin"]');
+  if(margin){
+   margin.checked=atlasVictoryMargins;
+   const applyMargin=()=>{for(const p of paths)if(p.atlasColor)p.style.fill=margin.checked?marginColor(p.atlasColor,p.atlasVotes):p.atlasColor;};
+   margin.onchange=()=>{atlasVictoryMargins=margin.checked;applyMargin();};
+   applyMargin();
+  }
+   // The viewBox is fixed. The browser scales the entire map to its full-width container.
+  // Keep only responsive label collision recalculation; no wheel zoom or drag/pan.
+  const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}root.requestAnimationFrame(layout);});
+  resize.observe(canvas);root.requestAnimationFrame(layout);
  root.AnatolianMapDesign?.attach(svg,canvas);
   for(const input of controls.querySelectorAll('[data-atlas-mode]'))input.addEventListener('change',()=>{
    atlasMapMode=input.checked?input.dataset.atlasMode:'vanilla';root.AnatolianSyncAtlasModes?.();
@@ -92,14 +93,14 @@ function setupAtlas(canvas,allowMargin=true){
   root.AnatolianSyncAtlasModes?.();
  
 }
-// Session-only map presentation. Election fills, margins, zoom and selection stay untouched.
+// Session-only map presentation. Election fills, margins and province selection stay untouched.
 root.AnatolianSyncAtlasModes=function(){
  const design=root.AnatolianMapDesign,project=design?.getActiveDesign?.();
  const physical=!!design?.hasTexture?.(project,'physical'),political=!!design?.hasTexture?.(project,'political'),combined=!!design?.hasTexture?.(project,'combined');
  const enabled={political,physical,combined};
  if(atlasMapMode!=='vanilla'&&!enabled[atlasMapMode])atlasMapMode='vanilla';
  for(const c of document.querySelectorAll('.province-map-canvas')){
-  const controls=c.previousElementSibling;if(!controls?.classList.contains('atlas-controls'))continue;
+  const controls=c.closest('.province-map-window')?.querySelector('.province-map-settings .atlas-controls')||c.previousElementSibling;if(!controls?.classList.contains('atlas-controls'))continue;
   for(const input of controls.querySelectorAll('[data-atlas-mode]')){
    const mode=input.dataset.atlasMode;input.disabled=!enabled[mode];input.checked=atlasMapMode===mode;
    input.title=input.disabled?'This map texture is not installed.':'';
@@ -131,9 +132,14 @@ function partyRows(s,p){
  return Object.keys(votes).filter(k=>votes[k]>0||seats[k]>0).sort((a,b)=>a==='other'?1:b==='other'?-1:votes[b]-votes[a]).map(k=>{let amount=seats[k]||0;if(s.kind==='local'){if(p)amount=k==='other'?(P.provinceOtherParties.includes(p.winner)?1:0):(p.winner===k?1:0);else amount=P.reportingVotes(s.municipalities,true,formed)[k]||0;}const name=k==='other'?'<img class="province-party-flag" src="img/independent-placeholder.svg" alt=""><span class="province-party-name province-vote-group" style="color:#808080;font-weight:bold" tabindex="0">'+(p?'Other':'Others')+'<span class="province-group-tip">'+breakdown()+'</span></span>':styledParty(s,k,votes);return '<tr><th scope="row">'+name+'</th><td>'+num(votes[k])+'</td><td>'+pct(votes[k]/total)+'</td><td>'+num(amount)+'</td></tr>';}).join('');
 }
 function showProvince(id){if(!overlay)return;const p=current.provinces.find(p=>p.id===id);if(!p)return;closeDetail();detail=document.createElement('div');detail.className='province-detail-backdrop';detail.innerHTML='<section class="province-detail" role="dialog" aria-modal="true" aria-labelledby="province-detail-title"><button class="province-close" aria-label="Close province details">×</button><p class="province-kicker">'+esc(current.kind==='poll'?'Current projection':stamp(current))+'</p><h2 id="province-detail-title">'+esc(p.name)+'</h2><div class="province-detail-summary"><strong>'+num(p.population)+'</strong> residents · '+num(p.totalVotes)+' '+(current.kind==='poll'?'projected valid votes':'valid votes')+'</div><h3>Population and demographics</h3><table><thead><tr><th>Demographic</th><th>Share</th><th>People</th></tr></thead><tbody>'+Object.entries(p.demographics).map(([k,v])=>'<tr><th>'+esc(names[k])+'</th><td>'+pct(v)+'</td><td>'+num(p.demographicCounts?.[k]??v*p.population)+'</td></tr>').join('')+'</tbody></table><h3>Province election results</h3><table><thead><tr><th>Party</th><th>Votes</th><th>Share</th><th>'+ (current.kind==='local'?'Municipality':'Seats')+'</th></tr></thead><tbody>'+partyRows(current,p)+'</tbody></table><details><summary>Voting preferences by demographic</summary><p>Each demographic has its own provincial voting preferences.</p><table><tbody>'+Object.entries(p.classPreferences||{}).map(([c,v])=>'<tr><th>'+esc(names[c])+'</th><td>'+Object.entries(v).filter(([k,n])=>n>0).map(([k,n])=>esc(P.label(owner,k))+': '+pct(n)).join(', ')+'</td></tr>').join('')+'</tbody></table></details></section>';document.body.append(detail);detail.querySelector('button').onclick=closeDetail;detail.addEventListener('click',e=>{if(e.target===detail)closeDetail();});detail.querySelector('button').focus();}
-function render(s){current=s;const body=overlay.querySelector('.province-map-body');body.innerHTML='<div class="province-map-main"><div class="province-map-heading"><h2>'+esc(s.kind==='poll'?'Current polling projection':stamp(s))+'</h2><span>'+num(s.totalPopulation)+' residents · '+num(s.totalVotes)+' valid votes</span></div><div class="province-map-canvas">'+turkeyMapSvg()+'</div><p class="province-map-hint">Select a province for its population, demographics and detailed results.</p><div class="province-map-parliament"><h3>'+(s.kind==='senate'?'Republican Senate':'TBMM')+' · '+(s.kind==='poll'?'Projected distribution':s.kind==='local'?'Parliament at this election':'Election result')+'</h3>'+parliament(s.senateComposition||s.parliamentSeats||s.seats)+'<p>'+(s.kind==='senate'?'150 elected senators · 15 appointed members · Permanent members shown separately · 50 elected seats renewed':'450 MPs · Majority: 226')+'</p></div></div><aside class="province-map-ledger"><h3>'+(s.kind==='local'?'Local election results':'National results')+'</h3><table><thead><tr><th>Party</th><th>Votes</th><th>Share</th><th>'+(s.kind==='local'?'Municipalities':'Seats')+'</th></tr></thead><tbody>'+partyRows(s)+'</tbody></table><p class="province-map-note">'+(s.legacyReconstruction?'Imported from an older save. National vote shares are preserved. Provincial figures and absolute vote counts are reconstructed estimates.'+(s.legacyNationalSeatsPreserved?' The saved national seat totals are preserved.':' National seat totals are estimated.')+'':'')+'</p></aside>';
+function render(s){
+ current=s;
+ const body=overlay.querySelector('.province-map-body'),ledger=overlay.querySelector('.province-map-ledger');
+ ledger.innerHTML='<h3>'+(s.kind==='local'?'Local election results':'National results')+'</h3><table><thead><tr><th>Party</th><th>Votes</th><th>Share</th><th>'+(s.kind==='local'?'Municipalities':'Seats')+'</th></tr></thead><tbody>'+partyRows(s)+'</tbody></table><p class="province-map-note">'+(s.legacyReconstruction?'Imported from an older save. National vote shares are preserved. Provincial figures and absolute vote counts are reconstructed estimates.'+(s.legacyNationalSeatsPreserved?' The saved national seat totals are preserved.':' National seat totals are estimated.')+'':'')+'</p>';
+ body.innerHTML='<div class="province-map-heading"><h2>'+esc(s.kind==='poll'?'Current polling projection':stamp(s))+'</h2><span>'+num(s.totalPopulation)+' residents · '+num(s.totalVotes)+' valid votes</span></div><div class="province-map-canvas">'+turkeyMapSvg()+'</div><div class="province-map-parliament"><h3>'+(s.kind==='senate'?'Republican Senate':'TBMM')+' · '+(s.kind==='poll'?'Projected distribution':s.kind==='local'?'Parliament at this election':'Election result')+'</h3>'+parliament(s.senateComposition||s.parliamentSeats||s.seats)+'<p>'+(s.kind==='senate'?'150 elected senators · 15 appointed members · Permanent members shown separately · 50 elected seats renewed':'450 MPs · Majority: 226')+'</p></div>';
  if(s.kind==='local')body.querySelector('.province-map-parliament').remove();else if(s.kind==='senate')root.AnatolianSenate.renderChamber(overlay.querySelector('.province-parliament'),owner,s);else drawParliament(s.parliamentSeats||s.seats);
- paintMap(body,s,owner,id=>showProvince(id));}
+ paintMap(body,s,owner,id=>showProvince(id));
+}
 
 function paintMap(host,s,Q,onSelect){
  const provinceById=new Map(s.provinces.map(p=>[p.id,p]));
@@ -163,7 +169,7 @@ function generalElectionYears(Q){const early=Q.next_election_year===1975||Q.prov
 function open(){if(overlay){overlay.querySelector('button').focus();return;}owner=root.dendryUI?.dendryEngine?.state?.qualities;if(!owner)return;P.ensure(owner);root.AnatolianSenate?.ensure(owner);if(!P.active(owner))return;priorFocus=document.activeElement;overlay=document.createElement('div');overlay.className='province-map-backdrop';overlay.id='province-election-overlay';
  const slots=generalElectionYears(owner).map(year=>({year,kind:'general'})).concat([1973,1977,1981].map(year=>({year,kind:'local'}))).concat((root.AnatolianSenate?.schedule||[]).map(e=>({...e,kind:'senate'})));
  for(const snapshot of owner.province_election_history){if(!slots.some(v=>v.kind===snapshot.kind&&v.year===snapshot.year))slots.push({year:snapshot.year,kind:snapshot.kind});}
- overlay.innerHTML='<section class="province-map-window" role="dialog" aria-modal="true" aria-label="Turkey election map"><button class="province-close" aria-label="Close election map">×</button><header class="province-map-toolbar province-map-tabs" role="tablist" aria-label="Election results"><button class="province-current active" role="tab" aria-selected="true">Current polls</button>'+slots.map((v,i)=>'<button class="province-election-tab" role="tab" aria-selected="false" data-slot="'+i+'">'+v.year+' '+(v.kind==='senate'?'Senate '+v.group:v.kind==='general'?'General':'Local')+'</button>').join('')+'</header><div class="province-map-body"></div></section>';
+ overlay.innerHTML='<section class="province-map-window" role="dialog" aria-modal="true" aria-label="Turkey election map"><button class="province-close" aria-label="Close election map">×</button><div class="province-map-dashboard"><header class="province-map-toolbar province-map-tabs" role="tablist" aria-label="Election results"><button class="province-current active" role="tab" aria-selected="true">Current polls</button>'+slots.map((v,i)=>'<button class="province-election-tab" role="tab" aria-selected="false" data-slot="'+i+'">'+v.year+' '+(v.kind==='senate'?'Senate '+v.group:v.kind==='general'?'General':'Local')+'</button>').join('')+'</header><div class="province-map-settings" role="group" aria-label="Map display settings"></div><aside class="province-map-ledger"></aside></div><div class="province-map-body"></div></section>';
  document.body.append(overlay);document.body.classList.add('province-map-open');const text=document.querySelector('#stats_sidebar .mytooltip'),style=text?getComputedStyle(text):getComputedStyle(document.body);overlay.style.setProperty('--province-party-font-size',style.fontSize);overlay.style.setProperty('--province-party-font-family',style.fontFamily);
  const select=button=>{overlay.querySelectorAll('[role="tab"]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-selected',String(b===button));});};
  overlay.querySelector('.province-close').onclick=close;const currentButton=overlay.querySelector('.province-current');currentButton.onclick=()=>{closeDetail();select(currentButton);render(P.compute(owner,true));};
