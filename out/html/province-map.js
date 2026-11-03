@@ -19,7 +19,7 @@ function marginColor(color,votes){
 }
  // Provincial seat visualizations (map presentation only; never reallocates seats).
  const seatVisuals=(()=>{
-  const RING_OUTER=35.5,RING_INNER=20,BALL_RADIUS=10.2,BALL_STEP=23,SEAT_VISUAL_SCALE=.25;
+  const RING_OUTER=35.5,RING_INNER=20,BALL_RADIUS=10.2,BALL_STEP=23,SEAT_VISUAL_SCALE=.75;
   const provinceCenters=new Map(P.data.provinces.map(p=>[p.id,p.center]));
   // Keep party order stable across districts and elections, irrespective of vote rank.
   const baseOrder=Object.keys(P.colors);
@@ -331,4 +331,4 @@ root.openProvinceElectionMap=open;root.provinceGeneralElectionYears=generalElect
 
 /* Anatolian Dawn provincial seat visualizations (v3): circular and ball. */
 
-/* Anatolian Dawn provincial seat visualizations (v4): 75% smaller. */
+/* Anatolian Dawn provincial seat visualizations (v5): 25% smaller than v3 (75% original). */
