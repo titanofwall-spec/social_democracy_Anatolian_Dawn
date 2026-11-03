@@ -103,3 +103,45 @@
 .province-map-canvas .atlas-seat-markers *{pointer-events:none!important;cursor:default;transition:none}
 .province-map-canvas .atlas-seat-marker{isolation:isolate}
 .province-map-settings .atlas-controls input[data-atlas-seat]:disabled{opacity:.5;cursor:not-allowed}
+
+/* Anatolian Dawn election dashboard: Map Customization buttons (v6). */
+/* Two-column election dashboard: settings sit directly below the election tabs. */
+.province-map-dashboard{grid-template-columns:minmax(0,1.43fr) minmax(400px,1fr);gap:clamp(18px,2vw,30px)}
+.province-map-dashboard-left{display:flex;flex-direction:column;gap:12px;min-width:0}
+/* Keep the map at its previous vertical position even if a saved election has
+   fewer party rows than usual. Only the settings panel scrolls in that case. */
+@media(min-width:821px){
+ .province-map-dashboard-left{height:0;min-height:100%;overflow:hidden}
+ .province-map-dashboard-left>.province-map-settings{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin}
+}
+.province-map-dashboard .province-map-settings{grid-column:auto;grid-row:auto;padding:0;min-width:0}
+.province-map-dashboard .province-map-toolbar.province-map-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* A restrained paper-and-ink panel using the same tab palette as the game. */
+.province-map-settings .atlas-controls.atlas-customization{display:block;margin:0;padding:9px 12px 10px;border:1px solid var(--border-color);background:var(--content-bg-color);font:inherit;min-width:0}
+.atlas-customization-title{font-size:15px;font-weight:bold;line-height:1.25;padding:0 0 6px;border-bottom:1px solid var(--border-color);margin-bottom:7px}
+.atlas-customization-group+.atlas-customization-group{margin-top:7px}
+.atlas-customization-label{font-size:11px;line-height:1.3;font-weight:bold;letter-spacing:.035em;text-transform:uppercase;color:var(--text-color);opacity:.76;margin-bottom:4px}
+.atlas-customization-options{display:grid;gap:4px;min-width:0}
+.atlas-customization-appearance{grid-template-columns:repeat(4,minmax(0,1fr))}
+.atlas-customization-details{grid-template-columns:repeat(2,minmax(0,1fr))}
+.atlas-customization-seats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.province-map-window .atlas-customization-options button{min-width:0;min-height:30px;padding:5px 6px;border:1px solid var(--border-color);border-radius:0;background:var(--content-bg-color);color:var(--text-color);font:inherit;font-size:13px;line-height:1.15;text-align:center;cursor:pointer;white-space:normal;overflow-wrap:break-word}
+.province-map-window .atlas-customization-options button:hover:not(:disabled):not(.is-active){background:var(--tab-hover-color)}
+.province-map-window .atlas-customization-options button.is-active{background:var(--tab-bg-color);font-weight:bold;box-shadow:inset 0 0 0 1px var(--border-color)}
+.province-map-window .atlas-customization-options button:focus-visible{outline:2px solid var(--link-color);outline-offset:1px;position:relative;z-index:1}
+.province-map-window .atlas-customization-options button:disabled{background:var(--unavailable-bg-color);color:var(--unavailable-color);cursor:default;opacity:.72}
+@media(max-width:1150px){
+ .province-map-dashboard{grid-template-columns:minmax(0,1.22fr) minmax(360px,1fr);gap:16px}
+ .province-map-dashboard .province-map-ledger{grid-column:auto;grid-row:auto}
+ .province-map-settings .atlas-controls.atlas-customization{display:block}
+}
+@media(max-width:820px){
+ .province-map-dashboard{display:flex;flex-direction:column;gap:14px}
+ .province-map-dashboard-left,.province-map-dashboard .province-map-ledger{width:100%;min-width:0}
+ .province-map-dashboard .province-map-toolbar.province-map-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:420px){
+ .province-map-dashboard .province-map-toolbar.province-map-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .province-map-settings .atlas-controls.atlas-customization{padding:8px}
+ .province-map-window .atlas-customization-options button{font-size:12px;padding:5px 3px}
+}
