@@ -90,3 +90,14 @@
 .me-palette-row input[type=color]{width:33px;min-width:33px;height:25px}
 .me-palette-row input.me-palette-hex{width:100%;font-size:10px!important;letter-spacing:0;padding:3px!important}
 .me-palette-row button{min-height:25px!important;padding:2px 3px!important;font-size:10px!important}
+
+/* Map texture layer appearance: the same fields as the layer inspector, exposed per mode. */
+.me-texture-settings{display:grid;gap:7px;margin:8px 0}
+.me-texture-card{display:grid;gap:6px;padding:9px;border:1px solid #70766e;background:#292f30}
+.me-texture-card>strong{color:#e5d5a7;font-size:12px}
+.me-texture-card label{display:flex;align-items:center;justify-content:space-between;gap:7px}
+.me-texture-card label select,.me-texture-card label input{max-width:140px;min-width:70px}
+.me-texture-card label input[type=range]{width:125px}
+.me-texture-mode{margin-top:9px}
+.me-texture-mode label{display:grid;gap:4px}
+.me-texture-mode select{width:100%}

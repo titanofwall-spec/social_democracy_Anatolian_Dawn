@@ -16,7 +16,7 @@ const geometryHash=hash(P.data.svg);
 function clone(o){return Array.isArray(o)?o.map(clone):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,clone(v)])):o;}
 function id(){return 'm'+Date.now().toString(36)+Math.random().toString(36).slice(2,9);}
 function layer(name='New layer'){return {id:id(),name,visible:true,locked:false,opacity:1,blend:'normal',clip:'none',provinceId:null,items:[],children:[]};}
-function create(){return {format:FORMAT,version:VERSION,geometryHash,name:'My Anatolian atlas',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),extent:{...extent},settings:{...defaults},physicalLayerId:null,palette:{parties:{},entities:{}},layers:[layer('Artwork 1')]};}
+function create(){return {format:FORMAT,version:VERSION,geometryHash,name:'My Anatolian atlas',createdAt:new Date().toISOString(),updatedAt:new Date().toISOString(),extent:{...extent},settings:{...defaults},physicalLayerId:null,politicalLayerId:null,palette:{parties:{},entities:{}},layers:[layer('Artwork 1')]};}
 function fail(message){throw new Error('Map project: '+message);}
 function str(v,max,label){if(typeof v!=='string'||v.length>max)fail(label+' must be text of at most '+max+' characters.');return v;}
 function number(v,min,max,label){if(typeof v!=='number'||!Number.isFinite(v)||v<min||v>max)fail(label+' must be between '+min+' and '+max+'.');return v;}
@@ -28,7 +28,7 @@ function validate(input){
  if(!input||typeof input!=='object'||Array.isArray(input))fail('Expected a project object.');
  if(input.format!==FORMAT||input.version!==VERSION)fail('Unsupported format or version. Use an .admap.json project exported by this editor.');
  if(input.geometryHash!==geometryHash)fail('This project belongs to a different provincial map. Its geometry must match before importing.');
- const out={format:FORMAT,version:VERSION,geometryHash,name:str(input.name,120,'Project name'),createdAt:str(input.createdAt,50,'Creation date'),updatedAt:str(input.updatedAt,50,'Update date'),extent:{...extent},settings:{},physicalLayerId:null,palette:{parties:{},entities:{}},layers:[]};
+ const out={format:FORMAT,version:VERSION,geometryHash,name:str(input.name,120,'Project name'),createdAt:str(input.createdAt,50,'Creation date'),updatedAt:str(input.updatedAt,50,'Update date'),extent:{...extent},settings:{},physicalLayerId:null,politicalLayerId:null,palette:{parties:{},entities:{}},layers:[]};
  if(!input.extent||Object.keys(extent).some(k=>input.extent[k]!==extent[k]))fail('The map coordinate system does not match.');
  const s=input.settings;if(!s||typeof s!=='object')fail('Missing map settings.');
  for(const k of ['sea','border','coast','cityColor','seaLabelColor','labelHalo'])out.settings[k]=color(s[k],k);
@@ -79,7 +79,11 @@ function validate(input){
   }
   out.layers=layers(input.layers,0);if(!out.layers.length)fail('Keep at least one artwork layer.');
   out.physicalLayerId=input.physicalLayerId||null;
-  if(out.physicalLayerId&&!out.layers.some(l=>l.id===out.physicalLayerId))fail('Physical map must reference an existing top-level layer.');
+   out.politicalLayerId=input.politicalLayerId||null;
+   for(const [kind,key] of [['Physical','physicalLayerId'],['Political','politicalLayerId']]){
+    if(out[key]&&!out.layers.some(l=>l.id===out[key]))fail(kind+' map must reference an existing top-level layer.');
+   }
+   if(out.physicalLayerId&&out.politicalLayerId&&out.physicalLayerId===out.politicalLayerId)fail('Political and physical textures require separate layers.');
   return out;
 }
 function serialize(doc){return JSON.stringify(validate(doc),null,2);}
@@ -138,28 +142,40 @@ function render(svg,doc){
    }else{if(i.type==='text'&&i.provinceId&&i.leader){const p=byId.get(i.provinceId),pos=position(i);content.append(node('line',{x1:p.center[0],y1:p.center[1],x2:pos.x,y2:pos.y,stroke:i.color,'stroke-width':.8,opacity:i.opacity,'pointer-events':'none'}));}content.append(drawItem(i));}}
   g.append(content);return g;
  }
- for(const l of doc.layers)if(l.id!==doc.physicalLayerId)art.append(drawLayer(l));
-  const physicalLayer=doc.layers.find(l=>l.id===doc.physicalLayerId);
-  const physicalAsset=doc===installed&&!preview&&root.AnatolianPhysicalMapAsset;
-  let physical=null;
-  if(physicalLayer||physicalAsset){
-   physical=node('g',{'data-map-design':'physical',class:'map-design-physical','pointer-events':'none',mask:clipping('land')});
-   if(physicalLayer)physical.append(drawLayer(physicalLayer));
-   if(physicalAsset)physical.append(node('image',{href:physicalAsset,x:0,y:0,width:1675,height:717,preserveAspectRatio:'none'}));
-   const edges=node('g',{class:'map-physical-borders'});
-   for(const path of basePaths)edges.append(node('path',{d:path.getAttribute('d'),fill:'none',stroke:'#646963','stroke-width':'.8'}));
-   physical.append(edges);
+  const textureIds=new Set([doc.physicalLayerId,doc.politicalLayerId].filter(Boolean));
+  for(const l of doc.layers)if(!textureIds.has(l.id))art.append(drawLayer(l));
+  const special=[];
+  for(const kind of ['political','physical']){
+   const key=kind+'LayerId',layer=doc.layers.find(l=>l.id===doc[key]);
+   const asset=doc===installed&&!preview?(kind==='political'?root.AnatolianPoliticalMapAsset:root.AnatolianPhysicalMapAsset):null;
+   if(!layer&&!asset)continue;
+   const group=node('g',{'data-map-design':kind,class:'map-design-'+kind,'pointer-events':'none'});
+   if(asset){
+    const wrapped=node('g',{'data-design-layer':layer?.id||'installed-'+kind,opacity:layer?.opacity??1,display:layer?.visible===false?'none':null,style:'mix-blend-mode:'+(layer?.blend||'normal')});
+    wrapped.append(node('image',{href:asset,x:0,y:0,width:1675,height:717,preserveAspectRatio:'none'}));group.append(wrapped);
+   }else if(layer)group.append(drawLayer(layer));
+   special.push({index:layer?doc.layers.indexOf(layer):kind==='political'?0:1,group});
   }
- const viewport=svg.querySelector('.atlas-geography')||svg,selection=viewport.querySelector('.atlas-selection');if(selection){viewport.insertBefore(art,selection);if(physical)viewport.insertBefore(physical,art);}else{if(physical)viewport.append(physical);viewport.append(art);}
+  const viewport=svg.querySelector('.atlas-geography')||svg;
+  const labels=viewport.querySelector('.atlas-physical-hover')||viewport.querySelector('.atlas-labels')||viewport.querySelector('.atlas-selection');
+  // Layer order in the editor determines political-versus-physical stacking in combined mode.
+  for(const entry of special.sort((a,b)=>a.index-b.index)){
+   if(labels)viewport.insertBefore(entry.group,labels);else viewport.append(entry.group);
+  }
+  const selection=viewport.querySelector('.atlas-selection');
+  if(selection)viewport.insertBefore(art,selection);else viewport.append(art);
 }
 const mounts=new Set();let preview=null,installed=null;
-function hasPhysical(doc){return !!doc&&(!!(doc.physicalLayerId&&doc.layers.find(l=>l.id===doc.physicalLayerId)?.items.some(i=>i.type==='image'))||(doc===installed&&!!root.AnatolianPhysicalMapAsset));}
-function updatePhysicalControl(canvas){
- const c=canvas.previousElementSibling?.querySelector('[data-atlas="physical"]');if(!c)return;
- const available=hasPhysical(preview||installed);c.disabled=!available;c.title=available?'Show the author-designed physical map.':'No physical map has been installed or previewed yet.';
- if(!available){c.checked=false;canvas.classList.remove('atlas-physical-enabled');}
-}
-function installedDesign(doc){installed=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else{styleMap(m.svg,m.canvas,preview||installed);updatePhysicalControl(m.canvas);}}}
+ function hasTexture(doc,kind){
+  if(!doc||!['physical','political'].includes(kind))return false;
+  const layer=doc.layers.find(l=>l.id===doc[kind+'LayerId']);
+  const containsImage=l=>l.items.some(i=>i.type==='image')||l.children.some(containsImage);
+  return !!(layer&&containsImage(layer)||(doc===installed&&!preview&&(kind==='physical'?root.AnatolianPhysicalMapAsset:root.AnatolianPoliticalMapAsset)));
+ }
+ function hasPhysical(doc){return hasTexture(doc,'physical');}
+ function hasPolitical(doc){return hasTexture(doc,'political');}
+ function updatePhysicalControl(canvas){root.AnatolianSyncAtlasModes?.();}
+ function installedDesign(doc){installed=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,preview||installed);}root.AnatolianSyncAtlasModes?.();}
 function styleMap(svg,canvas,doc){
   root.AnatolianColorPalette?.apply(doc?.palette||null);
  const s=doc?.settings,vars={'--map-sea':'sea','--map-border':'border','--map-border-width':'borderWidth','--map-coast':'coast','--map-coast-width':'coastWidth','--map-city-color':'cityColor','--map-sea-label-color':'seaLabelColor','--map-label-halo':'labelHalo','--map-label-font':'labelFont','--map-ink-opacity':'ink'};
@@ -168,9 +184,9 @@ function styleMap(svg,canvas,doc){
  if(s)canvas.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23737870' opacity='${s.grain}' filter='url(%23p)' d='M0 0h120v120H0z'/%3E%3C/svg%3E")`;else canvas.style.removeProperty('background-image');
  render(svg,doc);root.AnatolianColorPalette?.refresh(canvas);
 }
-function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});styleMap(svg,canvas,preview||installed);updatePhysicalControl(canvas);}
-function setPreview(doc){preview=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else{styleMap(m.svg,m.canvas,preview||installed);updatePhysicalControl(m.canvas);}}document.dispatchEvent(new CustomEvent('map-design-preview'));}
-const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,setPreview,installedDesign,updatePhysicalControl,hasPhysical,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
+function attach(svg,canvas){for(const m of mounts)if(!m.svg.isConnected)mounts.delete(m);mounts.add({svg,canvas});styleMap(svg,canvas,preview||installed);root.AnatolianSyncAtlasModes?.();}
+function setPreview(doc){preview=doc?validate(doc):null;for(const m of mounts){if(!m.svg.isConnected)mounts.delete(m);else styleMap(m.svg,m.canvas,preview||installed);}root.AnatolianSyncAtlasModes?.();document.dispatchEvent(new CustomEvent('map-design-preview'));}
+const api={create,layer,id,validate,serialize,mergeDown,position,imageFrame,imageSource,registerImage,updateImage,pruneImageCache,clone,geometryHash,extent,limits,defaults,blends,fonts,render,styleMap,attach,setPreview,installedDesign,updatePhysicalControl,hasTexture,hasPhysical,hasPolitical,getActiveDesign:()=>preview||installed,hasPreview:()=>!!preview,getPreview:()=>preview?clone(preview):null};
 root.AnatolianMapDesign=api;
 if(root.AnatolianMapInstalledDesign&&root.document){try{installedDesign(root.AnatolianMapInstalledDesign);}catch(e){console.error('Installed atlas design is invalid:',e);}}
 if(typeof module!=='undefined')module.exports=api;

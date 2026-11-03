@@ -149,3 +149,32 @@ province maps, victory-margin fills, Senate seat colors, the shared party
 palette and the game's existing `colourList` label styles. Changes do not
 alter votes, party identity, election snapshots or savegame calculations.
 An old design file without `palette` is backwards compatible.
+
+
+## Political / Physical / Combined map textures (v5)
+
+The default game map is **Vanilla**: no texture checkbox is selected. The map
+controls offer three mutually exclusive checkboxes, and clicking the selected
+one again restores Vanilla: **Political Map**, **Physical Map**, and **Political
+and Physical Map**. Victory margins, province selection, zoom, dynamic election
+colors and other normal map controls remain available in every mode.
+
+In Map Design Studio, create a separate **Political texture** layer and/or
+**Physical map** layer. Paste or import each image, align it using crop, rotate,
+resize and exact coordinates. The **Map texture layers** section exposes each
+layer's visibility, opacity, blend mode, clipping and stacking position. The
+right-hand layer inspector remains usable. The studio has a four-way preview
+selector; its default is combined to aid alignment.
+
+Exported `.admap.zip` files contain the complete editable `.admap.json`, a
+human-readable `texture-settings.json` showing blend, opacity, clipping and
+layer order, and up to two baked transparent 1675x717 PNGs:
+`political-map.png` and `physical-map.png`. The PNGs bake transforms and masks,
+not the outer layer opacity or blend, which the installed runtime applies live.
+
+Use the **v5 Install_Exported_Design.bat** (not the older v4 export installer)
+to install the finished project. It retains each texture layer's appearance
+metadata and order in `out/html/data/map-design-default.js`, and writes the
+PNG assets to `out/html/img/`. The player begins in Vanilla mode. Re-edit from
+the original `.admap.json` inside your export ZIP, which retains full image
+sources and layer objects.

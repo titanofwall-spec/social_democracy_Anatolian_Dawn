@@ -1,0 +1,23 @@
+// Map-mode project validation: two independent textures, preserved appearance, no election changes.
+const assert=require('assert');
+require('../out/html/data/province-data.js');
+const D=require('../out/html/map-design.js');
+const doc=D.create(),political=D.layer('Political texture'),physical=D.layer('Physical texture');
+doc.layers.push(political,physical);doc.politicalLayerId=political.id;doc.physicalLayerId=physical.id;
+const img=()=>({id:D.id(),type:'image',x:0,y:0,rotation:0,scale:1,opacity:1,provinceId:null,clipProvince:null,width:1675,height:717,name:'map.png',src:'data:image/png;base64,iVBORw0KGgo=',crop:{x:0,y:0,width:1,height:1},lockAspect:true,flipX:false,flipY:false});
+political.items.push(img());physical.items.push(img());
+political.blend='multiply';political.opacity=.37;physical.blend='overlay';physical.opacity=.65;
+physical.clip='sea';political.clip='land';
+let v=D.validate(doc);
+assert.equal(v.politicalLayerId,political.id);assert.equal(v.physicalLayerId,physical.id);
+assert.equal(D.hasTexture(v,'political'),true);assert.equal(D.hasTexture(v,'physical'),true);
+assert.equal(D.hasTexture(v,'combined'),false);
+assert.equal(v.layers[1].blend,'multiply');assert.equal(v.layers[1].opacity,.37);
+assert.equal(v.layers[2].clip,'sea');
+assert.deepEqual(JSON.parse(D.serialize(doc)),v);
+const old=D.create();delete old.politicalLayerId;assert.equal(D.validate(old).politicalLayerId,null);
+const duplicate=D.clone(doc);duplicate.politicalLayerId=duplicate.physicalLayerId;
+assert.throws(()=>D.validate(duplicate),/separate layers/);
+const missing=D.clone(doc);missing.politicalLayerId='does-not-exist';
+assert.throws(()=>D.validate(missing),/Political map/);
+console.log('PASS: political, physical and combined texture project settings, backward compatibility, validation');

@@ -39,11 +39,19 @@
 .atlas-panning,.atlas-panning [data-province]{cursor:grabbing}
 @media(prefers-reduced-motion:reduce){.province-map-canvas [data-province]{transition:none}}
 
-/* New, editor-authored physical map is an opt-in per-map rendering mode. */
-.atlas-controls input[data-atlas="physical"]:disabled{opacity:.5;cursor:not-allowed}
-.province-map-canvas .map-design-physical{pointer-events:none;display:none}
-.province-map-canvas.atlas-physical-enabled .map-design-physical,.province-map-canvas.me-physical-edit .map-design-physical{display:inline}
+/* Map textures are never shown by default: no selected mode = vanilla election map. */
+.atlas-controls input[data-atlas-mode]:disabled{opacity:.5;cursor:not-allowed}
+.province-map-canvas .map-design-political,.province-map-canvas .map-design-physical{pointer-events:none;display:none}
+.province-map-canvas.atlas-mode-political .map-design-political,
+.province-map-canvas.atlas-mode-physical .map-design-physical,
+.province-map-canvas.atlas-mode-combined .map-design-political,
+.province-map-canvas.atlas-mode-combined .map-design-physical{display:inline}
 .province-map-canvas .atlas-physical-hover{pointer-events:none;display:none}
-.province-map-canvas.atlas-physical-enabled .atlas-physical-hover{display:inline}
+.province-map-canvas.atlas-mode-physical .atlas-physical-hover,
+.province-map-canvas.atlas-mode-combined .atlas-physical-hover{display:inline}
 .province-map-canvas .atlas-physical-hover path{fill:none;stroke:#e8cc84;stroke-width:2.2;vector-effect:non-scaling-stroke}
-.province-map-canvas .map-physical-borders{fill:none;stroke:var(--map-border,#646963);stroke-width:var(--map-border-width,.8);vector-effect:non-scaling-stroke;pointer-events:none}
+/* Editor-only mode switch: show each authored texture independently or both. */
+.me-canvas[data-editor-map-mode="political"] .map-design-political,
+.me-canvas[data-editor-map-mode="physical"] .map-design-physical,
+.me-canvas[data-editor-map-mode="combined"] .map-design-political,
+.me-canvas[data-editor-map-mode="combined"] .map-design-physical{display:inline}

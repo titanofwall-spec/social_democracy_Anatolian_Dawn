@@ -6,7 +6,7 @@ const names={rural:'Rural',workers:'Workers',capitalists:'Capitalists',petty_bou
 let overlay=null,detail=null,priorFocus=null,current=null,owner=null;
 // Cartographic presentation only: no campaign qualities or election data are written.
 const atlasNS='http://www.w3.org/2000/svg';
-let atlasSerial=0,selectedProvince=null,atlasPhysicalEnabled=false;
+let atlasSerial=0,selectedProvince=null,atlasMapMode='vanilla';
 function atlasNode(tag,attrs={}){const el=document.createElementNS(atlasNS,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;}
 function marginColor(color,votes){
  const values=Object.values(votes).map(Number).filter(Number.isFinite).sort((a,b)=>b-a),total=values.reduce((a,b)=>a+b,0);
@@ -31,7 +31,7 @@ function setupAtlas(canvas,allowMargin=true){
   viewport.append(atlasNode('g',{class:'atlas-selection','aria-hidden':'true'}));
   let hoverId=null;
   function clearPhysicalHover(){hoverId=null;physHover.replaceChildren();}
-  svg.addEventListener('pointerover',e=>{if(!canvas.classList.contains('atlas-physical-enabled'))return;const p=e.target.closest?.('[data-province]');const id=p?.dataset.province||null;if(id===hoverId)return;clearPhysicalHover();if(p){hoverId=id;for(const q of paths)if(q.dataset.province===id)physHover.append(atlasNode('path',{d:q.getAttribute('d'),fill:'none'}));}});
+  svg.addEventListener('pointerover',e=>{if(!(canvas.classList.contains('atlas-mode-physical')||canvas.classList.contains('atlas-mode-combined')))return;const p=e.target.closest?.('[data-province]');const id=p?.dataset.province||null;if(id===hoverId)return;clearPhysicalHover();if(p){hoverId=id;for(const q of paths)if(q.dataset.province===id)physHover.append(atlasNode('path',{d:q.getAttribute('d'),fill:'none'}));}});
   svg.addEventListener('pointerleave',clearPhysicalHover);
  const labels=atlasNode('g',{class:'atlas-labels','aria-hidden':'true'});viewport.append(labels);
  const candidates=[];
@@ -39,7 +39,7 @@ function setupAtlas(canvas,allowMargin=true){
  for(const p of [...P.data.provinces].sort((a,b)=>(major.includes(b.id)?1:0)-(major.includes(a.id)?1:0))){const text=atlasNode('text',{class:'atlas-city',x:p.center[0],y:p.center[1],'text-anchor':'middle'});text.textContent=p.id==='istanbul'?'İstanbul':p.id==='izmir'?'İzmir':p.name;labels.append(text);candidates.push({text,major:major.includes(p.id),x:p.center[0],y:p.center[1]});}
  // Sea positions use the original map coordinates; each candidate is checked against land.
  for(const [name,sx,sy,size] of [['Black Sea',860,-30,13],['Aegean Sea',-35,375,10],['Mediterranean Sea',640,755,13],['Sea of Marmara',210,160,9]]){const text=atlasNode('text',{class:'atlas-sea',x:sx,y:sy,'text-anchor':'middle','font-size':size});if(name==='Aegean Sea')text.setAttribute('transform',`rotate(-90 ${sx} ${sy})`);text.textContent=name;labels.append(text);candidates.push({text,sea:true,x:sx,y:sy,size});}
- const controls=document.createElement('div');controls.className='atlas-controls';controls.innerHTML='<button type="button" data-atlas="in" aria-label="Zoom in">+</button><button type="button" data-atlas="out" aria-label="Zoom out">−</button><button type="button" data-atlas="reset">Reset map</button><label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas="physical" disabled> Physical map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label><span class="atlas-scale" hidden>Ink strength: tied (55%) → lead of 30 pp or more (100%)</span>':'');canvas.before(controls);
+ const controls=document.createElement('div');controls.className='atlas-controls';controls.innerHTML='<button type="button" data-atlas="in" aria-label="Zoom in">+</button><button type="button" data-atlas="out" aria-label="Zoom out">−</button><button type="button" data-atlas="reset">Reset map</button><label><input type="checkbox" data-atlas="labels"> All province names</label><label><input type="checkbox" data-atlas-mode="political" disabled> Political Map</label><label><input type="checkbox" data-atlas-mode="physical" disabled> Physical Map</label><label><input type="checkbox" data-atlas-mode="combined" disabled> Political and Physical Map</label>'+(allowMargin?'<label><input type="checkbox" data-atlas="margin"> Victory margins</label><span class="atlas-scale" hidden>Ink strength: tied (55%) → lead of 30 pp or more (100%)</span>':'');canvas.before(controls);
  canvas.title='Scroll to zoom toward the cursor; drag to pan while zoomed. Use Reset map to restore the full view.';
  const all=controls.querySelector('[data-atlas="labels"]');
  function layout(){
@@ -73,11 +73,27 @@ function setupAtlas(canvas,allowMargin=true){
  svg.addEventListener('click',e=>{if(suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},true);
  const resize=new ResizeObserver(()=>{if(!svg.isConnected){resize.disconnect();return;}schedule();});resize.observe(canvas);all.onchange=layout;schedule();
  root.AnatolianMapDesign?.attach(svg,canvas);
- const physical=controls.querySelector('[data-atlas="physical"]');
- if(physical){physical.onchange=()=>{atlasPhysicalEnabled=physical.checked;canvas.classList.toggle('atlas-physical-enabled',physical.checked);};
-  root.AnatolianMapDesign?.updatePhysicalControl(canvas);if(!physical.disabled&&atlasPhysicalEnabled){physical.checked=true;canvas.classList.add('atlas-physical-enabled');}}
+  for(const input of controls.querySelectorAll('[data-atlas-mode]'))input.addEventListener('change',()=>{
+   atlasMapMode=input.checked?input.dataset.atlasMode:'vanilla';root.AnatolianSyncAtlasModes?.();
+  });
+  root.AnatolianSyncAtlasModes?.();
  root.AnatolianMapEditor?.mount(canvas);
 }
+// Session-only map presentation. Election fills, margins, zoom and selection stay untouched.
+root.AnatolianSyncAtlasModes=function(){
+ const design=root.AnatolianMapDesign,project=design?.getActiveDesign?.();
+ const physical=!!design?.hasTexture?.(project,'physical'),political=!!design?.hasTexture?.(project,'political');
+ const enabled={political,physical,combined:political&&physical};
+ if(atlasMapMode!=='vanilla'&&!enabled[atlasMapMode])atlasMapMode='vanilla';
+ for(const c of document.querySelectorAll('.province-map-canvas:not(.me-canvas)')){
+  const controls=c.previousElementSibling;if(!controls?.classList.contains('atlas-controls'))continue;
+  for(const input of controls.querySelectorAll('[data-atlas-mode]')){
+   const mode=input.dataset.atlasMode;input.disabled=!enabled[mode];input.checked=atlasMapMode===mode;
+   input.title=input.disabled?'Create and install the required map texture(s) in Map Design Studio.':'';
+  }
+  for(const mode of ['political','physical','combined'])c.classList.toggle('atlas-mode-'+mode,atlasMapMode===mode);
+ }
+};
 function selectProvince(host,id){selectedProvince=id;for(const layer of host.querySelectorAll('.atlas-selection'))layer.replaceChildren();for(const p of host.querySelectorAll('[data-province]')){const selected=p.dataset.province===id;p.classList.toggle('atlas-selected',selected);p.setAttribute('aria-pressed',String(selected));if(selected){const layer=p.closest('svg').querySelector('.atlas-selection');if(layer)for(const cls of ['atlas-selection-halo','atlas-selection-gold'])layer.append(atlasNode('path',{d:p.getAttribute('d'),class:cls}));}}}
 
 function closeDetail(){if(detail){detail.remove();detail=null;if(overlay)overlay.querySelector('.province-current')?.focus();}}
