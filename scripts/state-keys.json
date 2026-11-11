@@ -515,6 +515,7 @@
   "economy_goal",
   "economy_goal_completed",
   "economy_health",
+  "economy_health_political_effect",
   "economy_health_raw",
   "economy_health_timer",
   "education_curriculum_level",
