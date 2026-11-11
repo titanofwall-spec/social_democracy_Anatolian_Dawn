@@ -165,3 +165,37 @@ and the complete `npm test` suite passed. The final calendar update into January
 
 The remaining crises reflect the existing FX drift and health multiplier.
 Controls lower observed inflation without erasing that separate constraint.
+
+## Continuous economic-health severity (November 11, 2026)
+
+The four visible labels remain **Booming**, **Stable**, **Unhealthy**, and
+**In Crisis**. The overall inflation, unemployment and GDP scoring is now
+linearly interpolated between severity anchors instead of jumping across
+score brackets. Foreign-exchange pressure applies a bounded, smooth penalty,
+not division by a sharply stepped multiplier.
+
+**Inflation above 40% always displays `In Crisis`**, independently of
+offsetting GDP or employment performance. Severe weakness in other indicators
+can also trigger that label. A displayed label is descriptive: changing it
+does **not** itself apply a new political penalty. At 39.9% and 40.1% inflation,
+the continuously calculated gameplay consequences remain nearly equal.
+
+The saved `economy_health_political_effect` is the government's support change
+in percentage points per half-month turn, with a maximum loss of 0.80 and
+maximum normal-group gain of about 0.83. Inflation, deflation, unemployment,
+growth and foreign-exchange pressure all change its magnitude smoothly.
+Capitalists still receive double the positive prosperity bonus. CHP's direct
+class adjustments remain suppressed when the national coalition model is
+active, as before.
+
+The same continuously calculated effect also scales democracy-status drain
+and the economic contribution to paramilitary growth. Discrete safety or
+crisis triggers for industrial card restrictions and systemic-crisis mode
+remain distinct mechanics; these were not removed. Existing saves initialize
+the new field at zero and recalculate it on their next economic-health pass.
+
+This is a health/UI-and-consequences adjustment only. Monthly macroeconomic
+equations, production, money supply, inflation transmission and policy-card
+economics are unchanged. Coefficients are gameplay balancing values, not
+historical econometric estimates. Extra tests were intentionally not run
+during this change, at the user's request.

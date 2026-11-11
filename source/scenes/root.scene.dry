@@ -556,6 +556,7 @@ Q.agricultural_price_timer = 0; // Timer for applying political effects
 
 // Economic Health System
 Q.economy_health = 0;
+Q.economy_health_political_effect = 0;
 Q.economy_health_raw = 0;
 Q.economy_health_timer = 0;
 Q.inflation_score = 0;
