@@ -818,7 +818,7 @@ Leader: [+ MSP_party_leader +]
 [? if MSP_party_leader == "Erbakan" : Necmettin Erbakan, the founding father of political Islam in Turkey, leads this conservative religious movement. ?]
 
 **MHP (Nationalist Movement Party)**
-Leader: [+ MHP_leader +]
+Leader: [+ MHP_party_leader +]
 The ultra-nationalist party continues under Alparslan Türkeş, promoting Turkish nationalism and conservative values.
 
 *Leadership changes can occur through party congresses, internal coups, or major political events that reshape party dynamics.*

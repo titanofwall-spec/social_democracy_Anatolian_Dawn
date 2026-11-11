@@ -41,7 +41,11 @@
             delete Q[oldKey];
         });
         // These were redundant snapshots of the real production modifiers.
-        for (var key of ['industrial_player_modifier','agricultural_player_modifier']) delete Q[key];
+        for (var key of ['industrial_player_modifier','agricultural_player_modifier',
+            'land_reform_level','natural_resources_level','workplace_democracy_level',
+            'peoples_sector_level','workplace_safety_level','judicial_reform_level',
+            'education_funding_level','education_curriculum_level','university_freedom_level',
+            'womens_legal_level','womens_workplace_level']) delete Q[key];
         Q.state_aliases_version = 1;
     }
     /** @param {number} ratio */
@@ -53,7 +57,7 @@
         return 'Very Low';
     }
     /** Derive headline values; policy actions change the modifiers, never these results.
-     * @param {EconomyState} Q */
+     * @param {GameState} Q */
     function refreshEconomy(Q) {
         migrateStateAliases(Q);
         var tigerActive = (Q.year === 1978 && Q.tiger_1978_effect_applied) ||
@@ -70,6 +74,39 @@
         Q.forex_pressure = clamp(number(Q.forex_pressure), 0, 100);
         Q.agricultural_product_prices = number(Q.agricultural_consumption) / Math.max(1, Q.agricultural_production_index);
         Q.agricultural_price_status = agriculturalPriceStatus(Q.agricultural_product_prices);
+    }
+    // Status labels are projections of completed policies, not independent mutable levels.
+    // Keeping these calculations here prevents dashboard values from drifting from actions.
+    /** @param {GameState} Q */
+    function interiorPolicyStatuses(Q) {
+        var level = function(value) { return Math.max(0, number(value)); };
+        var land = level(Q.landreform_done);
+        var nationalized = (Q.ps_mines_nationalized ? 1 : 0) + (Q.ps_petrol_nationalized ? 1 : 0);
+        var democracy = (Q.kitt ? 1 : 0) + (Q.ps_iyak_reformed ? 1 : 0);
+        var safety = (Q.healthinspectionss ? 1 : 0) + (Q.ps_security ? 1 : 0);
+        var justice = (Q.Amnesty ? 1 : 0) + (Q.moderationn ? 1 : 0) +
+            (Q.resistt ? 1 : 0) + (Q.kmd_prosecutions ? 1 : 0);
+        var schooling = (Q.halkegitimm ? 1 : 0) + (Q.koykentegitimm ? 1 : 0);
+        var femaleWork = (Q.social_equal_pay ? 1 : 0) +
+            (Q.maternityy || Q.guvenlikk ? 1 : 0);
+        var people = Q.peoples_sector_integrated ? 2 :
+            (Q.iyak_established || Q.ps_meyak_reformed ||
+             Q.cooperative_umbrella_established || Q.cooperative_bank_founded ? 1 : 0);
+        return {
+            land_reform_status: land >= 6 ? 'Land Reform' : land > 0 ? 'Partial' : 'None',
+            natural_resources_policy: ['Private', 'Mixed', 'Public'][nationalized],
+            workplace_democracy_status: ['Absent', 'Limited', 'Strong'][democracy],
+            peoples_sector_status: ['Non-existant', 'Growing', 'Robust'][people],
+            workplace_safety_status: ['Dangerous', 'Improving', 'Safe'][safety],
+            judicial_reform_status: justice >= 3 ? 'Progressive' : justice > 0 ? 'Reforming' : 'Reactionary',
+            education_funding_status: ['Decrepit', 'Adequate', 'Generous'][schooling],
+            education_curriculum_status: Q.curriculumm ? 'Progressive' : 'Rote',
+            university_freedom_status: Q.studentt ? 'Semi-autonomous' : 'YÖK controlled',
+            womens_legal_status: level(Q.legalizee) >= 2 ? 'Expanded Rights' :
+                Q.legalizee ? 'Partial equality' : 'Restricted',
+            womens_workplace_status: femaleWork >= 2 ? 'Broad Protection' :
+                femaleWork > 0 ? 'Improving' : 'Discriminated'
+        };
     }
     var weights = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];
     var factions = ['km', 'lk', 'ok', 'rk', 'tw'];
@@ -386,7 +423,7 @@
         else if(!Q.MSP_party_leader||Q.MSP_party_leader==='Banned')Q.MSP_party_leader='Süleyman Arif';
         Q.MSP_full_name=Q.MSP_formed?'Milli Selamet Partisi (National Salvation Party)':'Milli Nizam Partisi (National Order Party)';
     }
-    root.AnatolianRules = {number: number, clamp: clamp, migrateStateAliases: migrateStateAliases, agriculturalPriceStatus: agriculturalPriceStatus, refreshEconomy: refreshEconomy, factionModel: factionModel,
+    root.AnatolianRules = {number: number, clamp: clamp, migrateStateAliases: migrateStateAliases, agriculturalPriceStatus: agriculturalPriceStatus, interiorPolicyStatuses: interiorPolicyStatuses, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
         mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) { module.exports = root.AnatolianRules; require('./' + 'data/province-data.js'); require('./' + 'provinces.js'); require('./' + 'national-coalition.js'); require('./' + 'senate.js'); require('./' + 'peoples-sector.js'); require('./' + 'social-issues.js'); require('./' + 'municipalities.js'); require('./' + 'card-actions.js'); }
