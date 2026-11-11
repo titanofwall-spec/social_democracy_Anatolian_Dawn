@@ -9,7 +9,71 @@ function fresh(){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);
 const M=require('../out/html/macro-economy.js');const A=require('../out/html/card-actions.js');const originalFresh=fresh;const Qof=()=>fresh().state.qualities;const near=(a,b)=>assert(Math.abs(a-b)<1e-8,a+' != '+b);
 
 
+
+const ministryActionLogs={};
+function chooseScene(e,id) {
+  const choices=e.getCurrentChoices();
+  const index=choices.findIndex(c=>c.id===id);
+  assert(index>=0,'Missing cabinet choice '+id+' at '+e.state.sceneId);
+  assert(!choices[index].unavailable,'Cabinet choice unavailable: '+id);
+  e.choose(index);
+}
+function cabinetChoice(e,q,root,submenu,id) {
+  if((q[root+'_timer']||0)>0 || q.CHP_in_government!==1)return false;
+  const menu=game.scenes[submenu.length?submenu[submenu.length-1]:root];
+  const options=e._compileChoices(menu);
+  if(!options.some(c=>c.id===id&&!c.unavailable))return false;
+  e.goToScene(root); // Actual cabinet card: applies cooldown and consumes action.
+  for(const hop of submenu)chooseScene(e,hop);
+  chooseScene(e,id); // Real player choice, not a direct variable edit or onArrival call.
+  return true;
+}
+function planMinistry(name,q,t,e,plan) {
+  if(t===0){q.budget=1;q.flavour_events=0;ministryActionLogs[name]=[];}
+  if(t%2)return;
+  for(const [root,submenu,id,limit] of plan){
+    if(ministryActionLogs[name].filter(x=>x.id===id).length>=limit)continue;
+    if(cabinetChoice(e,q,root,submenu,id)){
+      ministryActionLogs[name].push({year:q.year,month:q.month,id,budget:q.budget});
+      return;
+    }
+  }
+}
+
 const scenarios = {
+
+  ministryIndustrial(q,t,e) {
+    planMinistry('ministryIndustrial',q,t,e,[
+      ['industrial_policy',[],'industrial_policy.industry1',1],
+      ['industrial_policy',[],'industrial_policy.elektronik',1],
+      ['industrial_policy',[],'industrial_policy.demiryolu',1],
+      ['industrial_policy',[],'industrial_policy.kredi',20],
+      ['economic_policy',['economic_policy.mid'],'economic_policy.export',15],
+      ['economic_policy',['economic_policy.short'],'economic_policy.debt',4]
+    ]);
+  },
+  ministryAgriculture(q,t,e) {
+    planMinistry('ministryAgriculture',q,t,e,[
+      ['agricultural_policy',['agricultural_policy.regular'],'agricultural_policy.cooperative',3],
+      ['agricultural_policy',['agricultural_policy.regular'],'agricultural_policy.east',3],
+      ['industrial_policy',[],'industrial_policy.kobi',20],
+      ['economic_policy',['economic_policy.short'],'economic_policy.pricecontrols',5],
+      ['fiscal_policy',['fiscal_policy.yearly'],'fiscal_policy.avans',5]
+    ]);
+  },
+  ministryMixed(q,t,e) {
+    planMinistry('ministryMixed',q,t,e,[
+      ['industrial_policy',[],'industrial_policy.industry1',1],
+      ['agricultural_policy',['agricultural_policy.regular'],'agricultural_policy.cooperative',3],
+      ['industrial_policy',[],'industrial_policy.elektronik',1],
+      ['agricultural_policy',['agricultural_policy.regular'],'agricultural_policy.east',3],
+      ['industrial_policy',[],'industrial_policy.demiryolu',1],
+      ['industrial_policy',[],'industrial_policy.kredi',20],
+      ['economic_policy',['economic_policy.mid'],'economic_policy.export',15],
+      ['economic_policy',['economic_policy.short'],'economic_policy.debt',4]
+    ]);
+  },
+
   baseline() {},
   repeatedControls(q,t,e) {if(t%6===0)e._runActions(game.scenes['economic_policy.pricecontrols'].onArrival);},
   supplyAndFX(q,t) {
@@ -50,6 +114,15 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
     }
   }
   assert.equal(q.year,1982);assert.equal(q.month,1);assert.equal(snapshots,9);
+  if(name.startsWith('ministry')) {
+    const actual=ministryActionLogs[name]||[];
+    assert(actual.length>=5,name+' did not exercise real ministry actions: '+JSON.stringify(actual));
+    assert(actual.some(x=>x.id.startsWith('industrial_policy')||x.id.startsWith('agricultural_policy')),
+      'No real production-focused ministry action: '+name);
+    output(JSON.stringify({actualCabinetPlaythrough:name,actions:actual.length,
+      firstActions:actual.slice(0,8),lastActions:actual.slice(-6),
+      potential:q.macro_model.potential,health:q.health_economy_status}));
+  }
   if(name==='repeatedControls'){assert(q.inflation>0);assert(q.black_market_risk>1);}
   output(JSON.stringify({scenario:name,year:q.year,inflation:q.inflation,growth:q.economic_growth,
     unemployment:q.unemployed,health:q.health_economy_status}));
