@@ -80,7 +80,7 @@
     // Keeping these calculations here prevents dashboard values from drifting from actions.
     /** @param {GameState} Q */
     function interiorPolicyStatuses(Q) {
-        var level = function(value) { return Math.max(0, number(value)); };
+        var level = function(/** @type {unknown} */ value) { return Math.max(0, number(value)); };
         var land = level(Q.landreform_done);
         var nationalized = (Q.ps_mines_nationalized ? 1 : 0) + (Q.ps_petrol_nationalized ? 1 : 0);
         var democracy = (Q.kitt ? 1 : 0) + (Q.ps_iyak_reformed ? 1 : 0);
