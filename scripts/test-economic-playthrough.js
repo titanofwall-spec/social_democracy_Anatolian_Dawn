@@ -16,7 +16,7 @@ function chooseScene(e,id) {
   const index=choices.findIndex(c=>c.id===id);
   assert(index>=0,'Missing cabinet choice '+id+' at '+e.state.sceneId);
   assert(!choices[index].unavailable,'Cabinet choice unavailable: '+id);
-  e.choose(index);
+  try {e.choose(index);} catch(err) {throw new Error('Cabinet click failure '+id+' at '+e.state.sceneId+' '+JSON.stringify(choices[index])+' Q '+JSON.stringify({budget:e.state.qualities.budget,month_actions:e.state.qualities.month_actions,industrial_policy_timer:e.state.qualities.industrial_policy_timer,economic_policy_timer:e.state.qualities.economic_policy_timer})+': '+err.message);}
 }
 function cabinetChoice(e,q,root,submenu,id) {
   if((q[root+'_timer']||0)>0 || q.CHP_in_government!==1)return false;
