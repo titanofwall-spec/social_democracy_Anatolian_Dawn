@@ -9,9 +9,9 @@ card-image: img/cumhuriyet4.jpg
 
 = Media
 
-[? if I_government: The media is heavily restricted under the military-appointed governments. ?]
+[? if I_in_government: The media is heavily restricted under the military-appointed governments. ?]
 
-[? if I_government == 0: The <span style="color: #E3000F;">**CHP**</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... ?]
+[? if I_in_government == 0: The <span style="color: #E3000F;">**CHP**</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... ?]
 
 - @critique
 - @silence
@@ -45,7 +45,7 @@ title: Make our newspapers more commercialized by broadening their appeal beyond
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis!
 subtitle: This might upset the hardliners, but it may bring in more funds.
-view-if: I_government == 0
+view-if: I_in_government == 0
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources += 1; commercialized_media += 1; petty_bourgeoisie_chp += 3*(1 - dissent)
 
 Our commercialized newspapers are able to bring in more funds. However, this will limit our ability to influence the media.
@@ -55,7 +55,7 @@ title: The purpose of our media is to increase our election chances.
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis!
 subtitle: Our newspapers will focus on the electoral campaign.
-view-if: I_government == 0
+view-if: I_in_government == 0
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} campaign_media += 1; workers_chp += 2*(1 - dissent); petty_bourgeoisie_chp += 2*(1 - dissent); state_employees_chp += 2*(1 - dissent)
 
 The outlets print out news about the problems the nation faces and how a left-wing government could be the solution our people have been waiting for so long.
@@ -65,7 +65,7 @@ title: We will motivate our theorists and politicians to write about their new p
 subtitle: A party without a vision is not a party but a gathering
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the spread of unorthodox ideas.
-view-if: I_government == 0
+view-if: I_in_government == 0
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianRules.adjustFactionStrength(Q, 'km', 5); !}  workers_chp += 1; newideas += 1
 
 We are happy to hear new voices raising their visions for a new Turkey.
@@ -75,7 +75,7 @@ title: We will have vibrant ideological debate within our newspapers.
 subtitle: There will be space for all factions to air their views.
 choose-if: CHP_party_leader == "Ecevit"
 unavailable-subtitle: Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the different interpretations of Atatürk's path.
-view-if: I_government == 0
+view-if: I_in_government == 0
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} kemalist_marxists_dissent -= 6; left_kemalists_dissent -= 6; orthodox_kemalists_dissent -= 6; right_kemalists_dissent -= 6;
 
 This has been our media course historically, and it has successfully paved over the many tensions in our party.
