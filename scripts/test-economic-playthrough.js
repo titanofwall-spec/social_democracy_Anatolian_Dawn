@@ -15,14 +15,14 @@ function chooseScene(e,id) {
   const choices=e.getCurrentChoices();
   const index=choices.findIndex(c=>c.id===id);
   assert(index>=0,'Missing cabinet choice '+id+' at '+e.state.sceneId);
-  assert(!choices[index].unavailable,'Cabinet choice unavailable: '+id);
+  assert(choices[index].canChoose,'Cabinet choice unavailable: '+id);
   try {e.choose(index);} catch(err) {throw new Error('Cabinet click failure '+id+' at '+e.state.sceneId+' '+JSON.stringify(choices[index])+' Q '+JSON.stringify({budget:e.state.qualities.budget,month_actions:e.state.qualities.month_actions,industrial_policy_timer:e.state.qualities.industrial_policy_timer,economic_policy_timer:e.state.qualities.economic_policy_timer})+': '+err.message);}
 }
 function cabinetChoice(e,q,root,submenu,id) {
   if((q[root+'_timer']||0)>0 || q.CHP_in_government!==1)return false;
   const menu=game.scenes[submenu.length?submenu[submenu.length-1]:root];
   const options=e._compileChoices(menu);
-  if(!options.some(c=>c.id===id&&!c.unavailable))return false;
+  if(!options.some(c=>c.id===id&&c.canChoose))return false;
   e.goToScene(root); // Actual cabinet card: applies cooldown and consumes action.
   for(const hop of submenu)chooseScene(e,hop);
   chooseScene(e,id); // Real player choice, not a direct variable edit or onArrival call.
