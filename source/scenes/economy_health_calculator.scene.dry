@@ -9,101 +9,77 @@ var FOREX_DISABLE_THRESHOLD = 70;
 
 AnatolianRules.refreshEconomy(Q);
 
-// Calculate Economic Health based on Inflation, Unemployment, and GDP Growth
-
-// Calculate Inflation Score
-if (!Number.isFinite(Q.inflation) || Q.inflation <= -100) {
-    Q.inflation_score = -10;
-} else if (Q.inflation < -20) {
-    Q.inflation_score = -8;
-} else if (Q.inflation < -10) {
-    Q.inflation_score = -6;
-} else if (Q.inflation < -5) {
-    Q.inflation_score = -4;
-} else if (Q.inflation < -2) {
-    Q.inflation_score = -2;
-} else if (Q.inflation < 0) {
-    Q.inflation_score = -1; // Deflation is assessed freshly, never a stale inflation score.
-} else if (Q.inflation <= 10) {
-    Q.inflation_score = 1;
-} else if (Q.inflation > 10 && Q.inflation <= 20) {
-    Q.inflation_score = 0;
-} else if (Q.inflation > 20 && Q.inflation <= 30) {
-    Q.inflation_score = -1;
-} else if (Q.inflation > 30 && Q.inflation <= 40) {
-    Q.inflation_score = -2;
-} else if (Q.inflation > 40 && Q.inflation <= 60) {
-    Q.inflation_score = -4;
-} else if (Q.inflation > 60) {
-    Q.inflation_score = -6;
-}
-
-// Calculate Unemployment Score
-if (Q.unemployed >= 0 && Q.unemployed <= 3) {
-    Q.unemployment_score = 1;
-} else if (Q.unemployed > 3 && Q.unemployed <= 6) {
-    Q.unemployment_score = 0;
-} else if (Q.unemployed > 6 && Q.unemployed <= 10) {
-    Q.unemployment_score = -1;
-} else if (Q.unemployed > 10 && Q.unemployed <= 15) {
-    Q.unemployment_score = -2;
-} else if (Q.unemployed > 15 && Q.unemployed <= 20) {
-    Q.unemployment_score = -3;
-} else if (Q.unemployed > 20) {
-    Q.unemployment_score = -5;
-}
-
-// Calculate GDP Growth Score
-if (!Number.isFinite(Q.economic_growth) || Q.economic_growth > 30) {
-    Q.growth_score = -5;
-} else if (Q.economic_growth > 15) {
-    Q.growth_score = 0; // Exceptional recovery is not an unlimited health bonus.
-} else if (Q.economic_growth < 0) {
-    Q.growth_score = -5;
-} else if (Q.economic_growth >= 0 && Q.economic_growth <= 2) {
-    Q.growth_score = -2;
-} else if (Q.economic_growth > 2 && Q.economic_growth <= 4) {
-    Q.growth_score = -1;
-} else if (Q.economic_growth > 4 && Q.economic_growth <= 6) {
-    Q.growth_score = 0;
-} else if (Q.economic_growth > 6 && Q.economic_growth <= 8) {
-    Q.growth_score = 1;
-} else if (Q.economic_growth > 8) {
-    Q.growth_score = 2;
-}
-
-// Calculate raw Economic Health (before forex pressure adjustment)
+// Preserve the existing four rank names, while using continuously varying scores.
+// Piecewise linear anchors prevent a small change in inflation, growth or
+// unemployment from suddenly doubling economic damage.
+var healthClamp = function(value, lo, hi) { return Math.max(lo, Math.min(hi, value)); };
+var healthInterpolate = function(value, anchors) {
+    if (!Number.isFinite(value)) return anchors[0][1];
+    if (value <= anchors[0][0]) return anchors[0][1];
+    for (var i = 1; i < anchors.length; i++) {
+        if (value <= anchors[i][0]) {
+            var lo = anchors[i - 1], hi = anchors[i];
+            return lo[1] + (hi[1] - lo[1]) * (value - lo[0]) / (hi[0] - lo[0]);
+        }
+    }
+    return anchors[anchors.length - 1][1];
+};
+Q.inflation_score = (!Number.isFinite(Q.inflation) || Q.inflation <= -100)
+    ? -10 : healthInterpolate(Q.inflation, [
+        [-30, -10], [-20, -8], [-10, -6], [-5, -4], [-2, -2], [0, 0],
+        [10, 1], [20, 0], [30, -1], [40, -2], [60, -4], [80, -6], [120, -9]
+    ]);
+Q.unemployment_score = healthInterpolate(Q.unemployed, [
+    [0, 1], [3, 1], [6, 0], [10, -1], [15, -2], [20, -3], [30, -5], [50, -9]
+]);
+Q.growth_score = !Number.isFinite(Q.economic_growth)
+    ? -5 : healthInterpolate(Q.economic_growth, [
+        [-10, -6], [-5, -5], [0, -2], [2, -2], [4, -1],
+        [6, 0], [8, 1], [10, 2], [15, 0], [30, -5]
+    ]);
 Q.economy_health_raw = Q.inflation_score + Q.unemployment_score + Q.growth_score;
 
-// Calculate Forex Multiplier based on forex pressure
-if (Q.forex_pressure < FOREX_THRESHOLD_LOW) {
-    Q.forex_multiplier = 1.0;
-} else if (Q.forex_pressure >= FOREX_THRESHOLD_LOW && Q.forex_pressure < FOREX_THRESHOLD_MID) {
-    Q.forex_multiplier = 0.6;
-} else if (Q.forex_pressure >= FOREX_THRESHOLD_MID && Q.forex_pressure < FOREX_THRESHOLD_HIGH) {
-    Q.forex_multiplier = 0.35;
-} else if (Q.forex_pressure >= FOREX_THRESHOLD_HIGH) {
-    Q.forex_multiplier = 0.1;
-    Q.crisis_forex_flag = 1;
-}
+// Foreign exchange is a smooth, bounded additional strain, not a discrete
+// division by 0.6, 0.35 or 0.1 that explosively amplifies negative scores.
+var fxStrain = healthClamp((AnatolianRules.number(Q.forex_pressure) - 40) / 60, 0, 1);
+Q.forex_multiplier = 1 - 0.65 * fxStrain;
+Q.economy_health = Q.economy_health_raw - 3 * fxStrain;
+if (Q.forex_pressure >= FOREX_THRESHOLD_HIGH) Q.crisis_forex_flag = 1;
 
-// Apply forex multiplier asymmetrically
-if (Q.economy_health_raw >= 0) {
-    Q.economy_health = Math.round(Q.economy_health_raw * Q.forex_multiplier);
-} else {
-    Q.economy_health = Math.round(Q.economy_health_raw / Q.forex_multiplier);
-}
-
-// Set health status text for display
-if (Q.economy_health > 3) {
-    Q.health_economy_status = "Booming";
-} else if (Q.economy_health >= 0 && Q.economy_health <= 3) {
-    Q.health_economy_status = "Stable";
-} else if (Q.economy_health >= -5 && Q.economy_health < 0) {
-    Q.health_economy_status = "Unhealthy";
-} else if (Q.economy_health < -5) {
+// Rank names remain Booming, Stable, Unhealthy, In Crisis.
+// Above 40% CPI inflation is an independent crisis-label trigger, even if
+// strong GDP growth and low unemployment mitigate the practical penalties.
+if (!Number.isFinite(Q.inflation) || Q.inflation > 40 || Q.economy_health < -5) {
     Q.health_economy_status = "In Crisis";
+} else if (Q.economy_health > 3) {
+    Q.health_economy_status = "Booming";
+} else if (Q.economy_health >= 0) {
+    Q.health_economy_status = "Stable";
+} else {
+    Q.health_economy_status = "Unhealthy";
 }
+
+// Gameplay severity does NOT switch formulas when the displayed label changes.
+// Near 40% inflation, political penalties change smoothly through that boundary.
+// Employment, growth and FX independently adjust the same continuous scale.
+var inflationStress = !Number.isFinite(Q.inflation) ? 1.5
+    : Q.inflation < 0
+        ? 0.75 * healthClamp(-Q.inflation / 20, 0, 1.6)
+        : 0.95 * healthClamp((Q.inflation - 15) / 65, 0, 1.6);
+var unemploymentStress = 0.35 * healthClamp((AnatolianRules.number(Q.unemployed) - 6) / 14, 0, 2);
+var recessionStress = 0.45 * healthClamp((4 - AnatolianRules.number(Q.economic_growth)) / 12, 0, 2);
+var growthRelief = 0.12 * healthClamp((AnatolianRules.number(Q.economic_growth) - 4) / 8, 0, 1);
+var employmentRelief = 0.09 * healthClamp((6 - AnatolianRules.number(Q.unemployed)) / 6, 0, 1);
+var prosperityRelief = 0.20
+    * healthClamp((15 - AnatolianRules.number(Q.inflation)) / 15, 0, 1)
+    * healthClamp((AnatolianRules.number(Q.economic_growth) - 5) / 5, 0, 1);
+var economicStress = inflationStress + unemploymentStress + recessionStress
+    + 0.18 * fxStrain - growthRelief - employmentRelief - prosperityRelief;
+// Percentage points of government support per half-month turn.
+// Capped around the previous maximum crisis/boom effects, without hard steps.
+Q.economy_health_political_effect = economicStress >= 0
+    ? -0.80 * healthClamp(economicStress, 0, 1)
+    : 0.833333 * healthClamp(-economicStress, 0, 1);
 
 // Hard threshold effects
 Q.industrial_cards_disabled = (Q.forex_pressure > FOREX_DISABLE_THRESHOLD) ? 1 : 0;
@@ -118,94 +94,21 @@ if (Q.economy_health < -10 && Q.year >= SYSTEMIC_CRISIS_YEAR_THRESHOLD) {
     Q.systemic_crisis_mode = 0;
 }
 
-// Apply economic effects each turn when flag is set
-// Effects are scaled per turn to gradually accumulate over time
+// Apply the continuous per-turn political effect to the governing party.
+// Direct CHP updates remain disabled when the national coalition model handles votes.
 if (Q.apply_economy_effects == 1) {
-
-    if (Q.economy_health > 3) {
-        // Booming Economy: +0.83% per turn all demographics, +1.67% capitalists (percentages rounded)
-        // (equivalent to +5% and +10% over 6 turns / 3 months)
-        if (Q.CHP_in_government) {
-            Q.rural_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
-            Q.workers_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
-            Q.petty_bourgeoisie_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
-            Q.state_employees_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
-            Q.capitalists_chp += 1.666667 * (Q.national_coalition ? 0 : 1);
-            Q.alevis_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
-            Q.kurds_chp += 0.833333 * (Q.national_coalition ? 0 : 1);
-        } else if (Q.AP_in_government) {
-            Q.rural_AP += 0.833333;
-            Q.workers_AP += 0.833333;
-            Q.petty_bourgeoisie_AP += 0.833333;
-            Q.state_employees_AP += 0.833333;
-            Q.capitalists_AP += 1.666667;
-            Q.alevis_AP += 0.833333;
-            Q.kurds_AP += 0.833333;
-        } else if (Q.DP_in_government) {
-            Q.rural_DP += 0.833333;
-            Q.workers_DP += 0.833333;
-            Q.petty_bourgeoisie_DP += 0.833333;
-            Q.state_employees_DP += 0.833333;
-            Q.capitalists_DP += 1.666667;
-            Q.alevis_DP += 0.833333;
-            Q.kurds_DP += 0.833333;
-        }
-    } else if (Q.economy_health >= -5 && Q.economy_health < 0) {
-        // Unhealthy Economy: -0.33% per turn all demographics (percentage rounded)
-        // (equivalent to -2% over 6 turns / 3 months)
-        if (Q.CHP_in_government) {
-            Q.rural_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-            Q.workers_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-            Q.petty_bourgeoisie_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-            Q.state_employees_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-            Q.capitalists_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-            Q.alevis_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-            Q.kurds_chp -= 0.333333 * (Q.national_coalition ? 0 : 1);
-        } else if (Q.AP_in_government) {
-            Q.rural_AP -= 0.333333;
-            Q.workers_AP -= 0.333333;
-            Q.petty_bourgeoisie_AP -= 0.333333;
-            Q.state_employees_AP -= 0.333333;
-            Q.capitalists_AP -= 0.333333;
-            Q.alevis_AP -= 0.333333;
-            Q.kurds_AP -= 0.333333;
-        } else if (Q.DP_in_government) {
-            Q.rural_DP -= 0.333333;
-            Q.workers_DP -= 0.333333;
-            Q.petty_bourgeoisie_DP -= 0.333333;
-            Q.state_employees_DP -= 0.333333;
-            Q.capitalists_DP -= 0.333333;
-            Q.alevis_DP -= 0.333333;
-            Q.kurds_DP -= 0.333333;
-        }
-    } else if (Q.economy_health < -5) {
-        // Crisis Economy: -0.67% per turn all demographics (percentage rounded)
-        // (equivalent to -4% over 6 turns / 3 months)
-        if (Q.CHP_in_government) {
-            Q.rural_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-            Q.workers_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-            Q.petty_bourgeoisie_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-            Q.state_employees_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-            Q.capitalists_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-            Q.alevis_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-            Q.kurds_chp -= 0.666667 * (Q.national_coalition ? 0 : 1);
-        } else if (Q.AP_in_government) {
-            Q.rural_AP -= 0.666667;
-            Q.workers_AP -= 0.666667;
-            Q.petty_bourgeoisie_AP -= 0.666667;
-            Q.state_employees_AP -= 0.666667;
-            Q.capitalists_AP -= 0.666667;
-            Q.alevis_AP -= 0.666667;
-            Q.kurds_AP -= 0.666667;
-        } else if (Q.DP_in_government) {
-            Q.rural_DP -= 0.666667;
-            Q.workers_DP -= 0.666667;
-            Q.petty_bourgeoisie_DP -= 0.666667;
-            Q.state_employees_DP -= 0.666667;
-            Q.capitalists_DP -= 0.666667;
-            Q.alevis_DP -= 0.666667;
-            Q.kurds_DP -= 0.666667;
-        }
+    var governmentParty = Q.CHP_in_government ? "chp"
+        : Q.AP_in_government ? "AP" : Q.DP_in_government ? "DP" : null;
+    if (governmentParty) {
+        var directEffect = governmentParty === "chp" && Q.national_coalition ? 0
+            : Q.economy_health_political_effect;
+        ["rural", "workers", "petty_bourgeoisie", "state_employees",
+         "capitalists", "alevis", "kurds"].forEach(function(group) {
+            var key = group + "_" + governmentParty;
+            // Retain the historical double capitalist bonus during prosperity.
+            var groupEffect = directEffect * (group === "capitalists" && directEffect > 0 ? 2 : 1);
+            Q[key] = AnatolianRules.number(Q[key]) + groupEffect;
+        });
     }
 }
 Q.apply_economy_effects = 0;
