@@ -2257,3 +2257,15 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
     --ad-ribbon-diagonal: 36px;
   }
 }
+
+/* Keep ribbon layers inside the menu header, below all native overlays. */
+#mid_panel > header.ad-command-header {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+/* Measured from the menu itself so font and ribbon size changes stay aligned.
+   Mobile retains the original stacked sidebar flow. */
+@media screen and (min-width: 561px) {
+  #tools_wrapper { top: var(--ad-menu-top, auto); }
+}
