@@ -3,16 +3,59 @@
 (function (/** @type {any} */ root) {
     'use strict';
     /** @typedef {Record<string, any>} GameState */
-    /** @typedef {{year?:number,oil_inflation_effect?:number,tiger_1978_effect_applied?:boolean,tiger_1979_effect_applied?:boolean,tiger_1980_effect_applied?:boolean,base_inflation?:number,inflation_modifier?:number,inflation?:number,base_growth?:number,growth_modifier?:number,economic_growth?:number,base_unemployment?:number,unemployment_modifier?:number,unemployed?:number,base_industry_index?:number,industry_modifier?:number,industrial_production_index?:number,base_agriculture_index?:number,agriculture_modifier?:number,agricultural_production_index?:number,forex_pressure?:number,agricultural_consumption?:number,agricultural_product_prices?:number,industrial_player_modifier?:number,agricultural_player_modifier?:number}} EconomyState */
+    /** @typedef {{year?:number,oil_inflation_effect?:number,tiger_1978_effect_applied?:boolean,tiger_1979_effect_applied?:boolean,tiger_1980_effect_applied?:boolean,base_inflation?:number,inflation_modifier?:number,inflation?:number,base_growth?:number,growth_modifier?:number,economic_growth?:number,base_unemployment?:number,unemployment_modifier?:number,unemployed?:number,base_industry_index?:number,industry_modifier?:number,industrial_production_index?:number,base_agriculture_index?:number,agriculture_modifier?:number,agricultural_production_index?:number,forex_pressure?:number,agricultural_consumption?:number,agricultural_product_prices?:number}} EconomyState */
     /** @param {unknown} value @param {number} [fallback] */
     function number(value, fallback) {
         return typeof value === 'number' && Number.isFinite(value) ? value : (fallback === undefined ? 0 : fallback);
     }
     /** @param {number} value @param {number} min @param {number} max */
     function clamp(value, min, max) { return Math.max(min, Math.min(max, value)); }
+    // Save migration: canonical properties own gameplay state. Old misspellings and
+    // parallel names are imported only when the canonical value is absent, then removed.
+    // Never overwrite a live canonical value with a stale legacy snapshot.
+    var legacyStateAliases = {
+        cgp_relation:'CGP_relation', cgp_seats:'CGP_seats', dp_seats:'DP_seats',
+        mhp_seats:'MHP_seats', msp_seats:'MSP_seats', tip_seats:'TIP_seats',
+        worker_chp:'workers_chp', chp_workers:'workers_chp', CHP_workers:'workers_chp',
+        CHP_rural:'rural_chp', CHP_state_employees:'state_employees_chp',
+        CHP_petty_bourgeoisie:'petty_bourgeoisie_chp',
+        AP_rural:'rural_AP', AP_workers:'workers_AP',
+        AP_state_employees:'state_employees_AP', AP_petty_bourgeoisie:'petty_bourgeoisie_AP',
+        petty_bourgeoisie_mhp:'petty_bourgeoisie_MHP',
+        petty_bourgeoisie_msp:'petty_bourgeoisie_MSP',
+        democracy_status:'democracystatus',
+        marxist_kemalists_dissent:'kemalist_marxists_dissent',
+        I_government:'I_in_government',
+        CHP_leader:'CHP_party_leader', AP_leader:'AP_party_leader',
+        TIP_leader:'TIP_party_leader', CGP_leader:'CGP_party_leader',
+        DP_leader:'DP_party_leader', MSP_leader:'MSP_party_leader',
+        MHP_leader:'MHP_party_leader'
+    };
+    /** @param {GameState} Q */
+    function migrateStateAliases(Q) {
+        if (Q.state_aliases_version === 1) return;
+        Object.keys(legacyStateAliases).forEach(function(oldKey) {
+            if (!Object.prototype.hasOwnProperty.call(Q, oldKey)) return;
+            var canonical = legacyStateAliases[oldKey];
+            if (Q[canonical] === undefined || Q[canonical] === null) Q[canonical] = Q[oldKey];
+            delete Q[oldKey];
+        });
+        // These were redundant snapshots of the real production modifiers.
+        for (var key of ['industrial_player_modifier','agricultural_player_modifier']) delete Q[key];
+        Q.state_aliases_version = 1;
+    }
+    /** @param {number} ratio */
+    function agriculturalPriceStatus(ratio) {
+        if (ratio > 1.20) return 'Very High';
+        if (ratio >= 1.10) return 'High';
+        if (ratio >= 0.90) return 'Sufficient';
+        if (ratio >= 0.80) return 'Low';
+        return 'Very Low';
+    }
     /** Derive headline values; policy actions change the modifiers, never these results.
      * @param {EconomyState} Q */
     function refreshEconomy(Q) {
+        migrateStateAliases(Q);
         var tigerActive = (Q.year === 1978 && Q.tiger_1978_effect_applied) ||
             (Q.year === 1979 && Q.tiger_1979_effect_applied) || (Q.year === 1980 && Q.tiger_1980_effect_applied);
         // Monthly macro output takes precedence after initialization; legacy policy modifiers
@@ -26,8 +69,7 @@
         Q.agricultural_production_index = Math.max(0, number(Q.base_agriculture_index, 100) + number(Q.agriculture_modifier));
         Q.forex_pressure = clamp(number(Q.forex_pressure), 0, 100);
         Q.agricultural_product_prices = number(Q.agricultural_consumption) / Math.max(1, Q.agricultural_production_index);
-        Q.industrial_player_modifier = number(Q.industry_modifier);
-        Q.agricultural_player_modifier = number(Q.agriculture_modifier);
+        Q.agricultural_price_status = agriculturalPriceStatus(Q.agricultural_product_prices);
     }
     var weights = [0.20, 0.15, 0.25, 0.20, 0.10, 0.10];
     var factions = ['km', 'lk', 'ok', 'rk', 'tw'];
@@ -333,6 +375,7 @@
     /** Restore party labels in old saves using formation-event visits, not the calendar.
      * @param {GameState} Q @param {Record<string, number>} [visits] */
     function refreshPartyNames(Q,visits) {
+        migrateStateAliases(Q);
         visits=visits||{};
         if(typeof Q.CGP_formed==='undefined')Q.CGP_formed=visits.cgpformation?1:0;
         if(typeof Q.MSP_formed==='undefined')Q.MSP_formed=visits.msp_formation?1:0;
@@ -343,7 +386,7 @@
         else if(!Q.MSP_party_leader||Q.MSP_party_leader==='Banned')Q.MSP_party_leader='Süleyman Arif';
         Q.MSP_full_name=Q.MSP_formed?'Milli Selamet Partisi (National Salvation Party)':'Milli Nizam Partisi (National Order Party)';
     }
-    root.AnatolianRules = {number: number, clamp: clamp, refreshEconomy: refreshEconomy, factionModel: factionModel,
+    root.AnatolianRules = {number: number, clamp: clamp, migrateStateAliases: migrateStateAliases, agriculturalPriceStatus: agriculturalPriceStatus, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
         mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) { module.exports = root.AnatolianRules; require('./' + 'data/province-data.js'); require('./' + 'provinces.js'); require('./' + 'national-coalition.js'); require('./' + 'senate.js'); require('./' + 'peoples-sector.js'); require('./' + 'social-issues.js'); require('./' + 'municipalities.js'); require('./' + 'card-actions.js'); }
