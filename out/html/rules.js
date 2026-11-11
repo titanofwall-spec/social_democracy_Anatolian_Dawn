@@ -13,6 +13,7 @@
     // Save migration: canonical properties own gameplay state. Old misspellings and
     // parallel names are imported only when the canonical value is absent, then removed.
     // Never overwrite a live canonical value with a stale legacy snapshot.
+    /** @type {Record<string, string>} */
     var legacyStateAliases = {
         cgp_relation:'CGP_relation', cgp_seats:'CGP_seats', dp_seats:'DP_seats',
         mhp_seats:'MHP_seats', msp_seats:'MSP_seats', tip_seats:'TIP_seats',

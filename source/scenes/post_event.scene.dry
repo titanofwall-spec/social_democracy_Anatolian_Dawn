@@ -31,6 +31,7 @@ if (Q.pro_republic >= 100) {
     Q.pro_republic = 99;
 }
 // Utility helpers for economic model
+AnatolianRules.migrateStateAliases(Q);
 var clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };
 var FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);
 var MONTHS_PER_YEAR = 12;
@@ -247,21 +248,8 @@ if (turnAdvanced) {
         Q.kurds_AP += kurds_transfer;
     }
 
-    // Calculate Agricultural Product Prices (Consumption/Production ratio)
-    Q.agricultural_product_prices = Q.agricultural_consumption / Math.max(1, Q.agricultural_production_index);
-
-    // Set agricultural price status text
-    if (Q.agricultural_product_prices > 1.20) {
-        Q.agricultural_price_status = "Very High";
-    } else if (Q.agricultural_product_prices >= 1.10) {
-        Q.agricultural_price_status = "High";
-    } else if (Q.agricultural_product_prices >= 0.90) {
-        Q.agricultural_price_status = "Sufficient";
-    } else if (Q.agricultural_product_prices >= 0.80) {
-        Q.agricultural_price_status = "Low";
-    } else {
-        Q.agricultural_price_status = "Very Low";
-    }
+    // Prices and their status are derived once by AnatolianRules.refreshEconomy.
+    // All ministry actions and monthly simulation use the same shared formula.
 
 if(Q.week===1){
     // Increment agricultural price timer
