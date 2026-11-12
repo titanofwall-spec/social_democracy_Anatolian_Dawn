@@ -1,7 +1,7 @@
 title: Education Ministry
 new-page: true
 is-card: true
-view-if: {! return Q.CHP_in_government === 1 && (Q.education_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"education"))) && Q.education_science_timer == 0; !}
+view-if: {! return Q.CHP_in_government === 1 && (Q.education_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"education"))) && (Number(Q.education_science_timer)||0) <= 0; !}
 on-arrival: education_science_timer += 6; month_actions += 1
 card-image: img/portraits/MustafaUstundag.png
 go-to: ed_menu

@@ -9,5 +9,23 @@ const Qof=()=>fresh().state.qualities;const near=(a,b)=>assert(Math.abs(a-b)<1e-
 
 test('All three cards match standard frequency and six-month cooldown in deck and Cabinet',()=>{for(const id of ['economic_democracy','religious_affairs_directorate','kurdish_issue']){const e=fresh(),Q=e.state.qualities;Object.assign(Q,{difficulty:-1,tsk_pacified:1});const available=scene=>e._compileChoices(game.scenes[scene]).some(c=>c.id===id);assert.equal(game.scenes[id].frequency,100);assert(available('main.govt'));assert(available('cabinet'));const baseline=Q.month_actions;e.goToScene(id);assert.equal(Q[id+'_timer'],6);assert.equal(Q.month_actions,baseline+1);assert(!available('main.govt'));assert(!available('cabinet'));const before=Q.month_actions;const S=require('../out/html/social-issues.js');if(id==='economic_democracy')P.apply(Q,'reform_meyak');else if(id==='religious_affairs_directorate')S.apply(Q,'sectarian_office');else{Q.interior_minister_party='CHP';S.apply(Q,'associations');}assert.equal(Q.month_actions,before);const serialized=JSON.parse(JSON.stringify(Q));assert.equal(serialized[id+'_timer'],6);for(let i=0;i<11;i++){Q.month_actions=1;e.goToScene('post_event');assert(!available('main.govt'));assert(!available('cabinet'));}Q.month_actions=1;e.goToScene('post_event');assert.equal(Q[id+'_timer'],0);assert(available('main.govt'));assert(available('cabinet'));}});
 test('Pre-update saves acquire missing timer registration when opening a new card',()=>{for(const id of ['economic_democracy','religious_affairs_directorate','kurdish_issue']){const e=fresh(),Q=e.state.qualities;delete Q[id+'_timer'];Q.timers=Q.timers.filter(t=>t!==id);assert(e._compileChoices(game.scenes.cabinet).some(c=>c.id===id));e.goToScene(id);assert(Q.timers.includes(id));assert.equal(Q[id+'_timer'],6);}});
+test('Education Ministry appears with ready actions in new games and older saves',()=>{
+ const e=fresh(),Q=e.state.qualities;Q.education_minister_party='CHP';
+ assert.equal(Q.education_science_timer,0);
+ const available=scene=>e._compileChoices(game.scenes[scene]).some(c=>c.id==='education_science');
+ for(const timer of [0,undefined,-6]){
+  if(timer===undefined)delete Q.education_science_timer;else Q.education_science_timer=timer;
+  assert(available('main.govt'),'deck timer '+timer);assert(available('cabinet'),'cabinet timer '+timer);
+ }
+ Q.education_science_timer=2;assert(!available('main.govt'));assert(!available('cabinet'));
+ Q.education_science_timer=0;Q.education_minister_party='AP';assert(!available('main.govt'));
+ Q.education_minister_party='CHP';Q.CHP_in_government=0;assert(!available('main.govt'));
+ Q.CHP_in_government=1;delete Q.education_science_timer;e.goToScene('education_science');
+ assert.equal(Q.education_science_timer,6);
+ assert(e.getCurrentChoices().some(c=>c.id==='education_science.onetime'));
+ for(let i=0;i<12;i++){Q.month_actions=1;e.goToScene('post_event');}
+ assert.equal(Q.education_science_timer,0);assert(available('main.govt'));assert(available('cabinet'));
+});
+
 test('Free Kurdish actions contain no budget subtitle',()=>{const text=fs.readFileSync(path.join(__dirname,'../source/scenes/government_affairs/kurdish_issue.scene.dry'),'utf8');assert(!text.includes('No budget cost'));for(const id of ['associations','public_discussion','meetings'])assert.equal(game.scenes['kurdish_issue.'+id].subtitle,undefined);assert(game.scenes['kurdish_issue.publishing'].subtitle);});
 output('PASS '+count+' government-card cadence suites.');});

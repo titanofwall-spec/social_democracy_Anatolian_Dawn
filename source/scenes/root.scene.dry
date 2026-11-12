@@ -947,6 +947,7 @@ Q.religious_affairs_directorate_timer = 0;
 Q.kurdish_issue_timer = 0;
 Q.coalition_affairs_timer = 0;
 Q.industrial_policy_timer = 0;
+Q.education_science_timer = 0;
 // Economic policy state
 Q.Tiger = 0;
 Q.imf_agreement = 0;
