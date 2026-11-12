@@ -15,4 +15,65 @@ test('Price controls expand coverage without changing underlying policy pressure
 test('After 1976, historical rates cannot increase baseline inflation; modifiers still work',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{year:1977,month:12,week:2,base_inflation:22.5,oil_crisis_effect_applied:1,month_actions:1,cyprus_mode:0});Q.historical_inflation[1978]=999;e.goToScene('post_event');near(Q.base_inflation,16.4);assert(Q.inflation<30);Q.year=1979;Q.month_actions=1;e.goToScene('post_event');near(Q.base_inflation,16.4);});
 test('Arab oil embargo shock is date-driven, once only and independent of flavour events',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{year:1973,month:10,week:2,flavour_events:0,oil_crisis_effect_applied:0,inflation_modifier:0,month_actions:1});e.goToScene('post_event');assert.equal(Q.oil_crisis_effect_applied,1);assert(Q.inflation_modifier>7);const first=Q.inflation_modifier;Q.month_actions=0;e.goToScene('post_event');near(Q.inflation_modifier,first);});
 test('Economic sanctions retain their growth penalty for the rest of play',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{year:1978,month:1,week:1,oil_crisis_effect_applied:1,cyprus_economic_sanctions_active:1,growth_modifier:-.5,tsk_pacified:1,cyprus_mode:0});for(let i=0;i<24;i++){Q.month_actions=1;e.goToScene('post_event');}near(Q.growth_modifier,-.5);});
+
+test('IMF agreement locks out exporting, lowers monetary pressure and resolves a severe FX crisis',()=>{
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{forex_pressure:90,forex_pressure_drift:2,imf_agreement:0,
+    Tiger:0,economicaction:3,macro_m2_growth:24,west_relation:80,us_relation:80,
+    oil_crisis_effect_applied:1,flavour_events:0});
+  assert(e._runPredicate(game.scenes['economic_policy.standby'].chooseIf,true));
+  e.goToScene('economic_policy.standby');
+  near(Q.forex_pressure,65);
+  near(Q.forex_pressure_drift,-13);
+  assert.equal(Q.imf_agreement,1);assert.equal(Q.macro_m2_growth,14);
+  assert(!e._runPredicate(game.scenes['economic_policy.tiger'].chooseIf,true));
+  assert(!e._runPredicate(game.scenes['economic_policy.standby'].chooseIf,true),
+    'IMF rescue cannot be repeatedly farmed');
+  for(let i=0;i<72;i++){Q.month_actions=1;e.goToScene('post_event');}
+  assert(Q.forex_pressure<=35,'IMF must sustain FX recovery over three years');
+});
+test('Export transition requires both stages, excludes IMF and resolves high FX pressure',()=>{
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{forex_pressure:90,forex_pressure_drift:2,imf_agreement:0,
+    Tiger:0,economicaction:3,macro_m2_growth:25,
+    oil_crisis_effect_applied:1,flavour_events:0});
+  assert(e._runPredicate(game.scenes['economic_policy.tiger'].chooseIf,true));
+  e.goToScene('economic_policy.tiger');
+  assert.equal(Q.Tiger,1);near(Q.forex_pressure,78);near(Q.forex_pressure_drift,-5);
+  assert(e._runPredicate(game.scenes['economic_policy.tiger2'].chooseIf,true));
+  e.goToScene('economic_policy.tiger2');
+  assert.equal(Q.Tiger,2);near(Q.forex_pressure,60);near(Q.forex_pressure_drift,-14);
+  assert.equal(Q.macro_m2_growth,18);
+  assert(!e._runPredicate(game.scenes['economic_policy.standby'].chooseIf,true));
+  for(let i=0;i<72;i++){Q.month_actions=1;e.goToScene('post_event');}
+  assert(Q.forex_pressure<=30,'export economy must sustain FX recovery over three years');
+});
+test('Completed land redistribution, not initiation, improves production, inflation and forex',()=>{
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{year:1974,month:3,week:1,oil_crisis_effect_applied:1,
+    land_reform:2,landreform_done:0,land_distribution_pending_stage:1,
+    land_distribution_due_tick:1974*24+5,month_actions:1,forex_pressure:60,
+    forex_pressure_drift:2,inflation_modifier:0,agriculture_modifier:0});
+  e.goToScene('post_event');
+  assert.equal(Q.landreform_done,1);assert.equal(Q.land_distribution_pending_stage,0);
+  assert(Q.agriculture_modifier>=1.5);
+  assert(Q.inflation_modifier<0);assert(Q.forex_pressure<=58);
+  assert(Q.forex_pressure_drift<=1.4);
+});
+test('People sector and industry reforms lower FX pressure and inflation as construction matures',()=>{
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{forex_pressure:65,forex_pressure_drift:2,
+    inflation_modifier:0,agriculture_minister_party:'CHP',
+    industrial_minister_party:'CHP',budget:100});
+  const beforeIndustry=Q.industry_modifier;
+  e.goToScene('industrial_policy.industry1');
+  assert(Q.industry_modifier>beforeIndustry);
+  assert(Q.forex_pressure<65&&Q.inflation_modifier<0);
+  const before=Q.forex_pressure;
+  assert(P.apply(Q,'establish_umbrella'));
+  Q.year=1976;P.update(Q);
+  assert(Q.forex_pressure<before);
+  assert(Q.forex_pressure_drift<2);
+});
+
 output('PASS '+count+' playable-card and inflation suites.');});
