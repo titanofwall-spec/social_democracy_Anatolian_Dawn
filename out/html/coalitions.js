@@ -16,18 +16,43 @@ function secretaryName(Q){const name=String(Q.party_secretary||''),scenes=root.d
 function rendered(Q,key){const prose=authored[key];if(!prose)return 'Placeholder';const html=prose.replace(/\{\{secretary\}\}/g,secretaryName(Q)).split(/\n\s*\n/).map(p=>'<p>'+escapeText(p)+'</p>').join('');return typeof root.formatPartyLabel==='function'?root.formatPartyLabel(html):html;}
 function forcedRefusal(Q){const f=Q.coalition_formation;return f?.year===1973&&f.largest==='CHP'&&f.leader==='AP'&&f.round==='second'&&current(Q)==='CHP';}
 function nonpartisanProposal(Q){const f=Q.coalition_formation;return f?.year===1973&&f.largest==='CHP'&&f.leader==='CHP'&&current(Q)==='AP';}
-function contextKey(Q,phase,context){const f=context||Q.coalition_formation;if(!f||f.year!==1973)return null;const p=context?.partner||current(Q),hasCHP=f.leader==='CHP'||p==='CHP';if(!hasCHP){const type=p==='CGP'?'cgp':p==='MSP'?'msp':'right';if(phase==='formed'&&f.externalSupport)return 'right_external_formed';return 'ap_'+type+'_'+phase;}
+/* AD-LATER-COALITION-LOCALIZATION-V1 */
+function laterContextKey(Q,phase,f){
+ const p=f.partner||current(Q);
+ if(f.leader==='CHP'){
+  if(!['CGP','AP','DP','MSP'].includes(p))return null;
+  if(p==='CGP'&&phase==='arithmetic')return 'later_chp_cgp_arithmetic';
+  if(p==='CGP'&&phase==='failed')return 'later_chp_cgp_failed';
+  if(p==='CGP'&&phase==='talks')return 'later_chp_cgp_intro';
+  if(['intro','cabinet','powers','failed'].includes(phase))return 'later_chp_'+p.toLowerCase()+'_'+phase;
+  return null;
+ }
+ if(f.leader==='AP'){
+  if(p==='MSP'&&(phase==='intro'||phase==='talks'))return 'later_ap_msp_talks';
+  if(p==='RIGHT'&&(phase==='intro'||phase==='talks'))return f.round==='final'&&!f.previousRight?'later_ap_dp_msp_cgp_talks':f.previousRight?'later_ap_dp_msp_talks':'later_ap_msp_cgp_talks';
+ }
+ return null;
+}
+function laterFormedKey(Q,parties,external){
+ const f=Q.coalition_formation;
+ if(f?.previousRight&&f.round==='final'&&parties.includes('DP')&&parties.includes('MSP'))return 'later_senturk_formed';
+ if(parties.includes('AP')&&parties.includes('DP')&&parties.includes('MSP')&&parties.includes('CGP'))return 'later_ap_dp_msp_cgp_formed';
+ if(parties.includes('AP')&&parties.includes('MSP')&&parties.includes('CGP'))return 'later_ap_msp_cgp_formed';
+ if(parties.includes('AP')&&parties.includes('MSP')&&!parties.includes('CHP'))return 'later_ap_msp_formed';
+ return null;
+}
+function contextKey(Q,phase,context){const f=context||Q.coalition_formation;if(!f)return null;if(f.year!==1973)return laterContextKey(Q,phase,f);const p=context?.partner||current(Q),hasCHP=f.leader==='CHP'||p==='CHP';if(!hasCHP){const type=p==='CGP'?'cgp':p==='MSP'?'msp':'right';if(phase==='formed'&&f.externalSupport)return 'right_external_formed';return 'ap_'+type+'_'+phase;}
  if(f.round==='renewed')return 'renewed_msp_'+phase;
  if(f.largest==='CHP'&&f.leader==='AP'){if(phase==='intro')return 'ap_invitation';if(phase==='talks')return 'ap_second_talks';if(phase==='failed')return f.talked?'ap_second_failed':'ap_invitation_refused';}
  if(f.leader==='AP')return 'ap_chp_'+phase;
  return 'chp_'+String(p).toLowerCase()+'_'+phase;}
 function mandateText(Q){const p=Q.coalition_formation?.largest||String(Q.largest_party_key||'CHP').toUpperCase(),leader=Q[p+'_party_leader']||Q[p+'_leader']||'the party leader';return 'As the largest party, '+partyLabel(Q,p)+', the mandate to form the government is given to '+escapeText(leader)+' by President '+escapeText(Q.president)+', and now begins the long ordeal of coalition talks, concessions and so on.';}
 function agreementText(Q){const parties=Q.coalition_formation?.pending?.parties||['CHP','AP','MSP','CGP','DP'].filter(p=>Q[p+'_in_government']===1);return 'A coalition between '+parties.map(p=>partyLabel(Q,p)).join(' and ')+' has been established! The new cabinet is sent to President '+escapeText(Q.president)+' who approves it! Let us hope this new government brings stability and progress for our republic.';}
-function eventText(Q,phase){const f=Q.coalition_formation;if(!f)return 'Placeholder';let key;if(phase==='mandate')return mandateText(Q);
+function eventText(Q,phase){const f=Q.coalition_formation;if(!f)return 'Placeholder';let key;if(phase==='mandate')return f.year!==1973&&f.largest==='CHP'?rendered(Q,'later_chp_first'):mandateText(Q);
  else if(phase==='failure'){const fail=f.lastFailure;if(fail){key=contextKey(Q,fail.possible?'failed':'arithmetic',fail);}}
- else if(['return_first','return_final','talu_proposal','talu_failed','msp_transition','msp_postponement','ap_majority'].includes(phase))key=f.year===1973?phase:null;
+ else if(['return_first','return_final','talu_proposal','talu_failed','msp_transition','msp_postponement','ap_majority'].includes(phase))key=f.year===1973?phase:(phase==='return_first'?'later_chp_return':null);
  else if(phase==='renewed'){if(f.year===1973&&Q.local_largest_party_key==='chp'&&n(Q.chp_local_votes_dec,n(Q.chp_local_votes))>=n(Q.chp_r))key='renewed';}
- else if(phase==='formed'){const parties=f.pending?.parties||['AP','MSP','CGP','CHP'].filter(p=>Q[p+'_in_government']),external=f.pending?.external||(Q.DP_external_support?['DP']:[]);key=f.year===1973?(external.includes('DP')&&!enough(Q,parties)?'right_external_formed':parties.includes('CGP')&&parties.includes('MSP')?'ap_right_formed':parties.includes('CGP')?'ap_cgp_formed':'ap_msp_formed'):null;}
+ else if(phase==='formed'){const parties=f.pending?.parties||['AP','MSP','CGP','CHP'].filter(p=>Q[p+'_in_government']),external=f.pending?.external||(Q.DP_external_support?['DP']:[]);key=f.year===1973?(external.includes('DP')&&!enough(Q,parties)?'right_external_formed':parties.includes('CGP')&&parties.includes('MSP')?'ap_right_formed':parties.includes('CGP')?'ap_cgp_formed':'ap_msp_formed'):laterFormedKey(Q,parties,external);}
  else key=contextKey(Q,phase==='intro'&&f.leader==='CHP'&&!possible(Q)?'arithmetic':phase);return rendered(Q,key);}
 function autoMinistries(Q,parties){const quota=Object.fromEntries(parties.map(p=>[p,1]));for(let i=parties.length;i<ministries.length;i++){const winner=parties.slice().sort((a,b)=>votes(Q,b)/(quota[b]+1)-votes(Q,a)/(quota[a]+1)||parties.indexOf(a)-parties.indexOf(b))[0];quota[winner]++;}const slots=parties.flatMap(p=>Array(quota[p]).fill(p));return Object.fromEntries(ministries.map((m,i)=>[m,slots[i]]));}
 function cabinetHtml(Q){const rows=ministries.map(m=>'<li>'+names[m]+': '+partyLabel(Q,Q[m+'_minister_party'])+'</li>').join('');const deputies=Q.coalition_government?.deputies;return '<section class="coalition-cabinet"><p><b>Prime Minister:</b> '+escapeText(Q.prime_minister)+' ('+partyLabel(Q,Q.prime_minister_party)+')</p>'+(deputies?.length?'<p><b>Deputy Prime Ministers:</b> '+deputies.map(escapeText).join(', ')+'</p>':'')+'<ul>'+rows+'</ul>'+(Q.DP_external_support?'<p><b>External parliamentary support:</b> '+partyLabel(Q,'DP')+'</p>':'')+'</section>';}
