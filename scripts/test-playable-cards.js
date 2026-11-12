@@ -53,10 +53,10 @@ test('Completed land redistribution, not initiation, improves production, inflat
   Object.assign(Q,{year:1974,month:3,week:1,oil_crisis_effect_applied:1,
     land_reform:2,landreform_done:0,land_distribution_pending_stage:1,
     land_distribution_due_tick:1974*24+5,month_actions:1,forex_pressure:60,
-    forex_pressure_drift:2,inflation_modifier:0,agriculture_modifier:0});
+    forex_pressure_drift:2,inflation_modifier:0,agriculture_modifier:0,growth_modifier:0});
   e.goToScene('post_event');
   assert.equal(Q.landreform_done,1);assert.equal(Q.land_distribution_pending_stage,0);
-  assert(Q.agriculture_modifier>=1.5);
+  assert(Q.agriculture_modifier>=6);assert(Q.growth_modifier>=1.5);
   assert(Q.inflation_modifier<0);assert(Q.forex_pressure<=58);
   assert(Q.forex_pressure_drift<=1.4);
 });
@@ -74,6 +74,20 @@ test('People sector and industry reforms lower FX pressure and inflation as cons
   Q.year=1976;P.update(Q);
   assert(Q.forex_pressure<before);
   assert(Q.forex_pressure_drift<2);
+});
+
+
+
+test('Koykent investments create substantial growth and lasting productive capacity',()=>{
+ const e=fresh(),Q=e.state.qualities;
+ Object.assign(Q,{budget:100,land_reform:3,landreform_done:3,land_distribution_pending_stage:0,koykent_progress:1,spreadd:0,yatirimm:0,koykenttt:0,koykentegitimm:0});
+ const growth=Q.growth_modifier,agriculture=Q.agriculture_modifier,industry=Q.industry_modifier;
+ e.goToScene('agricultural_policy.spread');
+ near(Q.growth_modifier-growth,2.5);near(Q.agriculture_modifier-agriculture,6);near(Q.industry_modifier-industry,4);
+ e.goToScene('agricultural_policy.yatirim');
+ near(Q.growth_modifier-growth,4);near(Q.agriculture_modifier-agriculture,9);near(Q.industry_modifier-industry,6);
+ e.goToScene('industrial_policy.koykentindustry');
+ near(Q.growth_modifier-growth,6);near(Q.industry_modifier-industry,14);
 });
 
 output('PASS '+count+' playable-card and inflation suites.');});

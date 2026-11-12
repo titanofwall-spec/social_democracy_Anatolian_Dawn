@@ -63,7 +63,7 @@ Teachers have been subjected to political pressure, arbitrary punishment and the
 
 @koykent
 subtitle: -1 budget.
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} democracystatus += 2; budget -= 1; growth_modifier += 0.5; unemployment_modifier -= 1; rural_chp += 4; AP_relation -= 5; DP_relation -= 5; CGP_relation -= 5; MSP_relation -= 5; koykent_progress += 1; koykentegitimm += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} democracystatus += 2; budget -= 1; growth_modifier += 1.5; agriculture_modifier += 3; industry_modifier += 2; unemployment_modifier -= 1; rural_chp += 4; AP_relation -= 5; DP_relation -= 5; CGP_relation -= 5; MSP_relation -= 5; koykent_progress += 1; koykentegitimm += 1; {! AnatolianRules.refreshEconomy(Q); !}
 choose-if: budget >= 1 and curriculumm > 0 and koykent_progress >= 2 and koykentegitimm == 0
 unavailable-subtitle: [? if budget < 1 : We don't have enough budget! ?] [? if curriculumm == 0 : We haven't reformed our curriculum yet! ?] [? if koykent_progress < 2 : We have to move on with Köykent formation first! ?] [? if koykentegitimm == 1 : We have already improved educational opportunities in the Köykents. ?]
 

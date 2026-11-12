@@ -78,6 +78,6 @@ Politics expresses itself in many forms, including even in the basic railroads a
 subtitle: -1 budget.
 choose-if: koykenttt == 0 and koykent_progress >= 2 and budget >= 1
 unavailable-subtitle: [? if koykenttt > 0 : We have already done this action! ?] [? if koykent_progress < 2 : We have to move on with Köykent formation with the agricultural ministry first! ?] [? if budget < 1 : We don't have enough budget! ?]
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget -= 1; koykent_progress += 1; koykenttt += 1; petty_bourgeoisie_chp += 3; rural_chp += 3; growth_modifier += 0.8; unemployment_modifier -= 1; inflation_modifier -= 1; forex_pressure -= 2; forex_pressure_drift -= 0.7; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget -= 1; koykent_progress += 1; koykenttt += 1; petty_bourgeoisie_chp += 3; rural_chp += 3; growth_modifier += 2; industry_modifier += 8; agriculture_modifier += 2; unemployment_modifier -= 1; inflation_modifier -= 1; forex_pressure -= 2; forex_pressure_drift -= 0.7; {! AnatolianRules.refreshEconomy(Q); !}
 
 We promote artisans and small shareholder workshops and factories in the Köykent settlements, promoting growth and lowering unemployment.
