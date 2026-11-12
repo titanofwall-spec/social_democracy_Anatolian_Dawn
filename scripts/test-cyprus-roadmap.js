@@ -56,14 +56,30 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
  test('Empty leverage offers continued consultation without triggering the operation',()=>{const [e,Q]=rejected();Q.leverage_points=0;pick(e,'cyprus_roadmap_event.constitutional');next(e);pick(e,'cyprus_roadmap_event.greek');next(e);assert.equal(Q.cyprus_campaign_phase,'constitutional');assert.equal(Q.cyprus_day,15);assert(!Q.cyprus_atilla2_started);assert.equal(cp.pending(Q),'cyprus_roadmap_event');pick(e,'cyprus_roadmap_event.consult');next(e);assert.equal(Q.cyprus_constitution_step,1);assert.equal(Q.leverage_points,1.5);assert(!Q.cyprus_atilla2_started);pick(e,'cyprus_roadmap_event.compromise');next(e);assert.equal(Q.cyprus_constitution_step,2);});
  test('Delayed ceasefire requires confirmation, takes airport and applies costs once',()=>{const [e,Q]=rejected();pick(e,'cyprus_roadmap_event.war');for(let i=0;i<2;i++){pick(e,'cyprus_roadmap_event.ii_response');}const polls=rules.projectVotes(Q,true).fractions.chp*100,fx=Q.forex_pressure;Q.us_relation=80;Q.west_relation=80;Q.uk_attitude=0;Q.us_attitude=1;pick(e,'cyprus_roadmap_event.delay');assert.equal(Q.cyprus_day,16);assert(!Q.cyprus_delayed_ceasefire);pick(e,'cyprus_roadmap_event.confirm_delay');next(e);assert.equal(Q.cyprus_day,17);assert(c.mapImage(Q).endsWith('atilla2-day4.png'));pick(e,'cyprus_roadmap_event.ii_response');assert.equal(Q.cyprus_day,18);assert.equal(Q.uk_attitude,-1);assert.equal(Q.us_attitude,0);assert(Q.us_relation<75&&Q.us_relation>=65);assert.equal(Q.forex_pressure,fx+12);pick(e,'cyprus_roadmap_event.division');assert(rm.endingMap(Q).endsWith('division-enlarged.png'));assert(Math.abs(rules.projectVotes(Q,true).fractions.chp*100-polls-5)<pollTolerance(Q));next(e);Object.assign(Q,{foreign_minister_party:'CHP',us_relation:80,west_relation:80,cyprus_later_negotiations:6,cyprus_selected_plan:'denktas'});const beforeLater=rules.projectVotes(Q,true).fractions.chp*100;assert(rm.implementLater(Q));assert(Math.abs(rules.projectVotes(Q,true).fractions.chp*100-beforeLater-1)<pollTolerance(Q));assert(!rm.implementLater(Q));});
- test('Both embargo events are delayed until February 1975 and applied once',()=>{for(const economic of [false,true]){const Q=fresh().state.qualities;Object.assign(Q,{cyprus_mode:0,cyprus_atilla1_junction:1,cyprus_atilla2_started:1,cyprus_poppy_penalty:economic?1:0,year:1975,month:1,forex_pressure:10});assert(!rm.embargoReady(Q,economic));Q.month=2;assert(rm.embargoReady(Q,economic));assert(rm.applyEmbargo(Q,economic));assert(Math.abs(Q.army_land_strength-.65)<1e-6);assert.equal(Q.forex_pressure,economic?35:10);assert(!rm.applyEmbargo(Q,economic));}});
+ test('US embargo variants require Atilla II and start only in February 1975',()=>{
+  for(const delayed of [0,1])for(const poppy of [0,1]){
+    const Q=fresh().state.qualities;
+    Object.assign(Q,{cyprus_mode:0,cyprus_atilla1_junction:1,cyprus_atilla2_started:1,
+      cyprus_poppy_penalty:poppy,hashas_done:poppy,cyprus_delayed_ceasefire:delayed,
+      year:1975,month:1,forex_pressure:10,cyprus_final_result:'Historical Division'});
+    assert(!rm.embargoReady(Q,!!delayed));Q.month=2;
+    assert.equal(rm.embargoReady(Q,true),!!delayed);
+    assert.equal(rm.embargoReady(Q,false),!delayed);
+    assert(rm.applyEmbargo(Q,!!delayed));
+    assert(Math.abs(Q.army_land_strength-.65)<1e-6);
+    assert.equal(Q.forex_pressure,(delayed||poppy)?35:10);
+    assert.equal(!!Q.cyprus_economic_sanctions_active,!!(delayed||poppy));
+    assert(!rm.applyEmbargo(Q,!!delayed));
+    assert(!rm.embargoReady(Q,!delayed));
+  }
+ });
 
 
  test('Treaty refusal and voluntary withdrawal are the only constitutional war choices',()=>{
   for(const end of [false,true]){const [e,Q]=rejected();Q.leverage_points=20;pick(e,'cyprus_roadmap_event.constitutional');next(e);if(end){for(let i=0;i<8;i++){pick(e,'cyprus_roadmap_event.compromise');next(e);}assert.equal(Q.cyprus_campaign_phase,'constitutional_treaty');assert(!cp.beginII(Q));pick(e,'cyprus_roadmap_event.refuse_treaty');}else{assert(!cp.beginII(Q));pick(e,'cyprus_roadmap_event.war');}assert.equal(Q.cyprus_campaign_phase,'atilla2');assert(Q.cyprus_atilla2_started);}
  });
  test('Embargo eligibility covers every operation, poppy and delayed-ceasefire combination',()=>{
-  for(const second of [0,1])for(const poppy of [0,1])for(const delayed of [0,1]){const Q=fresh().state.qualities;Object.assign(Q,{cyprus_mode:0,cyprus_atilla2_started:second,cyprus_atilla2_complete:second,cyprus_poppy_penalty:poppy,hashas_done:poppy,cyprus_delayed_ceasefire:delayed,year:1975,month:2,cyprus_final_result:second?'Historical Division':'',cyprus_embargo_applied:0});assert.equal(rm.embargoReady(Q,true),!!(second&&(poppy||delayed)));assert.equal(rm.embargoReady(Q,false),!!(second&&!poppy&&!delayed));Q.month=1;assert(!rm.embargoReady(Q,true)&&!rm.embargoReady(Q,false));}
+  for(const second of [0,1])for(const poppy of [0,1])for(const delayed of [0,1]){const Q=fresh().state.qualities;Object.assign(Q,{cyprus_mode:0,cyprus_atilla2_started:second,cyprus_atilla2_complete:second,cyprus_poppy_penalty:poppy,hashas_done:poppy,cyprus_delayed_ceasefire:delayed,year:1975,month:2,cyprus_final_result:second?'Historical Division':'',cyprus_embargo_applied:0});assert.equal(rm.embargoReady(Q,true),!!(second&&delayed));assert.equal(rm.embargoReady(Q,false),!!(second&&!delayed));Q.month=1;assert(!rm.embargoReady(Q,true)&&!rm.embargoReady(Q,false));}
   for(const peace of ['Return to the 1960 Constitutional Order','Güneş Plan','Denktaş Plan']){const Q=fresh().state.qualities;Object.assign(Q,{cyprus_mode:0,cyprus_atilla2_started:1,cyprus_atilla2_complete:1,cyprus_poppy_penalty:1,cyprus_delayed_ceasefire:1,cyprus_final_result:peace,year:1975,month:2});assert(!rm.embargoReady(Q,true)&&!rm.embargoReady(Q,false));}
  });
 
