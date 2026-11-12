@@ -48,6 +48,20 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  const Q=fresh().state.qualities;Q.CHP_in_government=0;Q.disk_endorsement=0;for(const c of Q.classes)Q.national_coalition.groups[c].reach=.99;
  for(const target of [.42,.55]){let snap=provinces.compute(Q,true);while(snap.fractions.chp<target-.00005){const step=Math.min(.1,(target-snap.fractions.chp)*100/2);for(const c of Q.classes)Q[c+'_chp']+=step;provinces.sync(Q);snap=provinces.compute(Q,true);}const wins=snap.provinces.filter(p=>p.winner==='chp').length;assert(wins<=(target===.42?42:43),'prior deconcentration upper bound');assert(wins>=35,'growth remains regionally meaningful');near(Object.values(snap.fractions).reduce((a,b)=>a+b,0),1,'vote conservation');assert.equal(Object.values(snap.seats).reduce((a,b)=>a+b,0),450);output('At '+(snap.fractions.chp*100).toFixed(1)+'% CHP leads '+wins+' provinces.');}
  });
+ test('Koykent rally never raises AP or changes non-rural voters, including repeated rallies',()=>{
+ const Q=fresh().state.qualities;Q.land_reform=3;provinces.sync(Q);
+ for(let i=0;i<5;i++){
+  Q.koykent_rally_timer=0;const before=provinces.pollingTotals(Q).fractions;
+  const cells=JSON.parse(JSON.stringify(Q.province_pools));
+  assert(N.koykentRally(Q));const after=provinces.pollingTotals(Q).fractions;
+  assert(after.AP<=before.AP+1e-7,'AP jumped by '+100*(after.AP-before.AP));
+  assert(after.chp>before.chp);
+  for(const [id,cell]of Object.entries(cells)){
+   for(const c of Q.classes)if(c!=='rural')assert.deepEqual(Q.province_pools[id].preferences[c],cell.preferences[c]);
+   assert(Q.province_pools[id].preferences.rural.AP<=cell.preferences.rural.AP+1e-10);
+  }
+ }
+ });
  test('Koykent rallies give 0.5 to 1.5 national points based on rural potential and wait six months',()=>{for(const [gap,expected]of [[.12,.015],[.05,.01],[0,.005]]){const e=fresh(),Q=e.state.qualities;Q.land_reform=3;Q.koykent_rally_timer=0;provinces.sync(Q);Q.national_coalition.groups.rural.reach=Q.rural_chp/100+gap;const before=provinces.compute(Q,true).fractions.chp;e.goToScene('rally.koykent_rally');near(provinces.compute(Q,true).fractions.chp-before,expected,'national rally gain',.000001);assert.equal(Q.koykent_rally_timer,6);assert(Q.national_coalition.groups.rural.reach>=Math.min(.75,Q.rural_chp/100+.02)-1e-8);const rallyReach=Q.national_coalition.groups.rural.reach;const after=JSON.stringify(Q.province_pools);assert(!N.koykentRally(Q));assert.equal(Q.national_coalition.groups.rural.reach,rallyReach);assert.equal(JSON.stringify(Q.province_pools),after);assert(Q.timers.includes('koykent_rally'));e.goToScene('rally.main_rally');assert.equal(e.getCurrentChoices().find(x=>x.id==='rally.koykent_rally').canChoose,false);Q.koykent_rally_timer=0;e.goToScene('rally.main_rally');assert.equal(e.getCurrentChoices().find(x=>x.id==='rally.koykent_rally').canChoose,true);}});
  output('PASS '+count+' National Coalition scenarios.');
 });

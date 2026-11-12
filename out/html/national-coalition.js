@@ -22,10 +22,31 @@ function note(Q,text){const s=ensure(Q);s.log.unshift({tick:now(Q),text});s.log=
 function ruralRally(Q,level){const s=ensure(Q),target=config.ruralRally[level];if(!target)return false;s.groups.rural.reach=Math.max(s.groups.rural.reach,target);if(s.credibility===0)s.credibility=1;note(Q,'Rural commitment opens voter potential to '+pct(s.groups.rural.reach)+'.');return true;}
 // A headline rural campaign delivers national points, already scaled for voter potential.
 // Apply that accepted gain through provincial odds once, without a second diminishing-return pass.
-function koykentRally(Q){if(n(Q.koykent_rally_timer)>0||Q.land_reform!==3)return false;const s=ensure(Q),p=P();p.sync(Q);const support=n(Q.rural_chp)/100,points=.005+.01*clamp((reach(Q,'rural')-support)/.1),before=p.pollingTotals(Q).fractions.chp,target=Math.min(.999,before+points),original=Object.fromEntries(Object.entries(Q.province_pools).map(([id,cell])=>[id,{...cell.preferences.rural}]));
-function apply(delta){for(const [id,values]of Object.entries(original))Q.province_pools[id].preferences.rural={...values};p.shiftClass(Q,'rural','chp',delta);delete Q.province_aggregate_mirror;p.sync(Q);return p.pollingTotals(Q).fractions.chp;}
-let lo=0,hi=1-support;for(let i=0;i<24;i++){const mid=(lo+hi)/2;if(apply(mid)<target)lo=mid;else hi=mid;}apply((lo+hi)/2);// Open fresh rural potential above the support won by this rally. Never lower an existing higher reach.
-s.groups.rural.reach=Math.max(s.groups.rural.reach,Math.min(.75,Math.max(s.groups.rural.reach,n(Q.rural_chp)/100)+.02));Q.koykent_rally_timer=6;return true;}
+function koykentRally(Q){
+ if(n(Q.koykent_rally_timer)>0||Q.land_reform!==3)return false;
+ const p=P();p.sync(Q);const s=ensure(Q),support=n(Q.rural_chp)/100;
+ const points=.005+.01*clamp((reach(Q,'rural')-support)/.1);
+ const target=Math.min(.999,p.pollingTotals(Q).fractions.chp+points);
+ // Trial calculations must never mutate live votes, attachment or mirrors.
+ const trial=JSON.parse(JSON.stringify(Q));
+ const original=Object.fromEntries(Object.entries(Q.province_pools).map(([id,cell])=>[id,{...cell.preferences.rural}]));
+ function apply(fraction){
+  for(const [id,values]of Object.entries(original)){
+   const next={...values};setShare(next,n(values.chp)+(1-n(values.chp))*fraction);
+   trial.province_pools[id].preferences.rural=next;
+  }
+  delete trial.province_aggregate_mirror;p.sync(trial);
+  return p.pollingTotals(trial).fractions.chp;
+ }
+ let lo=0,hi=1;for(let i=0;i<28;i++){const mid=(lo+hi)/2;if(apply(mid)<target)lo=mid;else hi=mid;}
+ apply((lo+hi)/2);
+ // Commit only rural preferences once. Every donor loses proportionally;
+ // no shared donor redistribution can award a secondary AP bonus.
+ for(const id of Object.keys(original))Q.province_pools[id].preferences.rural={...trial.province_pools[id].preferences.rural};
+ delete Q.province_aggregate_mirror;p.sync(Q);
+ s.groups.rural.reach=Math.max(s.groups.rural.reach,Math.min(.75,Math.max(s.groups.rural.reach,n(Q.rural_chp)/100)+.02));
+ Q.koykent_rally_timer=6;return true;
+}
 function queueReach(Q,id,c,amount,months=18){const s=ensure(Q);if(s.hooks[id])return false;s.hooks[id]=true;s.projects.push({id,c,amount,start:now(Q),duration:months*2,applied:0});note(Q,'Implementation started: '+id.replace(/-/g,' ')+'. Reach develops over '+months+' months.');return true;}
 function reform(Q,type,stage){if(type==='land')return queueReach(Q,'land-reform-'+stage,'rural',[0,.006,.014,.025][stage]||.008,18);return queueReach(Q,'koykent-'+stage,'rural',stage===1?.005:stage===2?.018:.012,18);}
 function policy(Q,id,demographics,amount=.004){for(const c of demographics)queueReach(Q,'policy-'+id+'-'+c,c,amount,18);}
