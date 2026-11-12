@@ -33,9 +33,11 @@
   }
   function applyPriceControls(Q) {
     ensure(Q);
-    Q.price_control_coverage = 0.55 - (0.55 - clip(num(Q.price_control_coverage), 0, 0.55)) * 0.5;
-    Q.price_control_enforcement = clip(num(Q.price_control_enforcement, 0.8), 0, 1);
-    Q.price_control_allowed_growth = num(Q.price_control_allowed_growth, 6);
+    // A funded intervention immediately covers most essential goods. Further rounds
+    // approach an 85% maximum; no direct inflation_modifier is created.
+    Q.price_control_coverage = 0.85 - (0.85 - clip(num(Q.price_control_coverage), 0, 0.85)) * 0.25;
+    Q.price_control_enforcement = clip(Math.max(0.92, num(Q.price_control_enforcement, 0.92)), 0, 1);
+    Q.price_control_allowed_growth = Math.min(3, Math.max(0, num(Q.price_control_allowed_growth, 3)));
   }
   function ensure(Q) {
     if (Q.macro_model && [1, 2].includes(Q.macro_model.version)) return upgrade(Q, Q.macro_model);
@@ -145,9 +147,9 @@
       const fxPriceShock = 0.20 * Math.max(0, Math.pow(q, 3) - Math.pow(qPrevious, 3));
       const underlyingMonthlyLog = s.underlyingTrend / 1200 + fxPriceShock + num(Q.macro_price_shock) / 100;
       const marketGrowth = Math.expm1(underlyingMonthlyLog);
-      const coverage = clip(num(Q.price_control_coverage), 0, 0.55);
-      const enforcement = clip(num(Q.price_control_enforcement, 0.8), 0, 1);
-      const capGrowth = Math.expm1(toLog(Math.max(0, num(Q.price_control_allowed_growth, 6))) / 1200);
+      const coverage = clip(num(Q.price_control_coverage), 0, 0.85);
+      const enforcement = clip(num(Q.price_control_enforcement, 0.92), 0, 1);
+      const capGrowth = Math.expm1(toLog(Math.max(0, num(Q.price_control_allowed_growth, 3))) / 1200);
       const observedGrowth = marketGrowth - coverage * enforcement * Math.max(0, marketGrowth - capGrowth);
       const price = s.price * (1 + observedGrowth);
       const inflation12 = 100 * (price / positive(s.priceHistory[0]) - 1);
@@ -158,8 +160,9 @@
       s.velocityPressure = velocityPressure; s.monetaryVelocityIndex = price * y / moneyNow;
       s.monetaryAnchor = monetaryAnchor; s.industry = industry; s.agriculture = agriculture;
       historyPush(s.yHistory, y, 12);
-      // Coverage expires with the old negative-modifier half-life. No release mechanism.
-      Q.price_control_coverage = coverage * Math.pow(0.5, 1/12);
+      // Enforcement infrastructure gradually expires over two years, with no
+      // artificial accumulated price gap or shock upon lifting the controls.
+      Q.price_control_coverage = coverage * Math.pow(0.5, 1/24);
       historyPush(s.savingsHistory, savings, 24);
       historyPush(s.unemploymentHistory, unemployment, 24);
       historyPush(s.efficiencyHistory, E, 12);

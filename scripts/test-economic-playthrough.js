@@ -101,7 +101,7 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
     const s=q.macro_model;
     for(const k of ['y','price','m2','potential','inflation','growth','expectation'])assert(Number.isFinite(s[k]),name+' '+k);
     assert(s.y>0 && s.price>0 && s.m2>0);assert(s.inflation>-100);
-    assert(Math.abs(s.demandGap)<=25);assert((q.price_control_coverage||0)<=.55);
+    assert(Math.abs(s.demandGap)<=25);assert((q.price_control_coverage||0)<=.85);
     if(t%2===1){
       ys.push(s.y);ps.push(s.price);const i=ys.length-1;
       if(i>=12){near(q.economic_growth,100*(s.y/ys[i-12]-1));near(q.inflation,100*(s.price/ps[i-12]-1));}

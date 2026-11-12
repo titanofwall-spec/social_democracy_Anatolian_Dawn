@@ -13,18 +13,27 @@ function run(q,n,policy=()=>{}) { M.ensure(q);for(let i=0;i<n;i++){policy(q,i);t
 let count=0;
 function test(name,f){f();count++;console.log('PASS '+name);}
 test('Coverage saturates; monthly basket arithmetic; no ceiling-induced deflation',()=>{
-  const q=sample();M.ensure(q);M.applyPriceControls(q);near(q.price_control_coverage,.275);
-  M.applyPriceControls(q);near(q.price_control_coverage,.4125);
+  const q=sample();M.ensure(q);M.applyPriceControls(q);near(q.price_control_coverage,.6375);
+  M.applyPriceControls(q);near(q.price_control_coverage,.796875);
   for(let i=0;i<100;i++)M.applyPriceControls(q);
-  assert(q.price_control_coverage<=.55);assert.equal(q.inflation_modifier,undefined);
+  assert(q.price_control_coverage<=.85);assert.equal(q.inflation_modifier,undefined);
   const b=copy(q);b.price_control_coverage=0;const p=q.macro_model.price;tick(q);tick(b);
-  const market=b.macro_model.price/p-1, cap=Math.pow(1.06,1/12)-1;
-  near(q.macro_model.price/p-1,market-.55*.8*Math.max(0,market-cap));
+  const market=b.macro_model.price/p-1, cap=Math.pow(1.03,1/12)-1;
+  near(q.macro_model.price/p-1,market-.85*.92*Math.max(0,market-cap));
   for(const rate of [0,-10]){
     const a=sample({inflation:rate,macro_m2_growth:rate,macro_interest_rate:rate+3});
     M.ensure(a);const b=copy(a);M.applyPriceControls(a);tick(a);tick(b);
     assert(b.macro_model.price<100);near(a.macro_model.price,b.macro_model.price);
   }
+});
+test('An initial enforcement round makes a substantial observable difference',()=>{
+  const controlled=sample(), market=sample();
+  M.ensure(controlled);M.ensure(market);
+  M.applyPriceControls(controlled);
+  for(let i=0;i<12;i++){tick(controlled);tick(market);}
+  assert(controlled.inflation<market.inflation-4,
+    'A single price-control intervention must reduce annual inflation by at least four points during its first year.');
+  assert(controlled.price_control_coverage>0&&controlled.price_control_coverage<.85);
 });
 test('Repeated controls remain bounded across nine years; expiry has no release shock',()=>{
   const q=sample();run(q,108,q=>M.applyPriceControls(q));

@@ -152,7 +152,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         try {
             const before=Q.inflation_modifier; pick(e,'economic_policy.short'); pick(e,'economic_policy.pricecontrols');
             near(Q.inflation_modifier,before,'controls preserve underlying modifier');
-            assert(Q.price_control_coverage>0 && Q.price_control_coverage<=.275);
+            assert(Q.price_control_coverage>0 && Q.price_control_coverage<=.6375);
             assert.equal(Q.economic_minister,'Avc\u0131o\u011flu');
         } finally {global.AnatolianMacro=previousMacro;}
     });

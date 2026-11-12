@@ -550,8 +550,8 @@ Q.forex_pressure = 45;
 // Onat monthly macro model inputs. Unspecified variables use explicit neutral defaults.
 Q.macro_model = null;
 Q.price_control_coverage = 0;
-Q.price_control_enforcement = 0.8;
-Q.price_control_allowed_growth = 6;
+Q.price_control_enforcement = 0.92;
+Q.price_control_allowed_growth = 3;
 Q.macro_savings_rate = 20;
 Q.macro_interest_rate = Q.base_inflation + 3;
 Q.macro_m2_growth = Q.base_inflation + Q.base_growth;
