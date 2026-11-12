@@ -34,12 +34,12 @@ subtitle: Short term solutions meant to lessen the current impact of the crisis.
 - @economy_menu: Return to economic planning.
 
 @pricecontrols
-subtitle: Strong consumer-price intervention: up to 85% basket coverage, 92% enforcement, and a 3% annual controlled-price ceiling. Each round renews enforcement.
+subtitle: Strong consumer-price intervention: up to 85% basket coverage, 92% enforcement, and a 3% annual controlled-price ceiling. Each round renews enforcement. Active controls gradually target 1% annual inflation and hold that floor.
 choose-if: imf_agreement == 0
 unavailable-subtitle: We have agreed with the IMF to not pursue state interventions!
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianMacro.applyPriceControls(Q); !} black_market_risk += 1; capitalists_chp -= 3; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
-Enforced ceilings sharply restrain price increases across essential goods. The first intervention covers most of the consumer basket, while repeated interventions extend and renew coverage with diminishing returns. Controls gradually expire if the government stops enforcing them, and market price increases are not retroactively charged when they expire. While the working families and the like are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'
+Enforced ceilings sharply restrain price increases across essential goods. The first intervention covers most of the consumer basket, while repeated interventions extend and renew coverage with diminishing returns. While enforcement remains active, inflation gradually approaches a 1% annual target. At that target, policy shifts to stabilization instead of further disinflation. New price shocks can temporarily raise inflation, which the remaining controls again restrain. Controls gradually expire if the government stops enforcing them. While the working families and the like are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'
 
 @debt
 choose-if: west_relation >= 40 and us_relation >= 40

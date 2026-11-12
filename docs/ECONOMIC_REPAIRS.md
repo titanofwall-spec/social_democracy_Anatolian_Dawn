@@ -202,3 +202,7 @@ and the complete `npm test` suite passed. The final calendar update into January
 
 The remaining crises reflect the existing FX drift and health multiplier.
 Controls lower observed inflation without erasing that separate constraint.
+
+## Price-control stabilization target
+
+Active enforcement now uses the rolling twelve-month price base to target 1% annual inflation. Coverage and enforcement determine convergence after an inflation shock. The controlled price level never falls below the level consistent with 1% annual inflation, and small residual overshoots settle at the target. The floor ends when coverage expires (below the model numerical threshold) or enforcement is zero. No restriction is imposed on inflation without active controls. Save/load preserves the existing coverage and price history.

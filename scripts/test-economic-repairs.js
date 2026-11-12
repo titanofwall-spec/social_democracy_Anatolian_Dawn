@@ -19,13 +19,28 @@ test('Coverage saturates; monthly basket arithmetic; no ceiling-induced deflatio
   assert(q.price_control_coverage<=.85);assert.equal(q.inflation_modifier,undefined);
   const b=copy(q);b.price_control_coverage=0;const p=q.macro_model.price;tick(q);tick(b);
   const market=b.macro_model.price/p-1, cap=Math.pow(1.03,1/12)-1;
-  near(q.macro_model.price/p-1,market-.85*.92*Math.max(0,market-cap));
+  assert(q.inflation>=1-1e-8);assert(q.macro_model.price<=b.macro_model.price);
   for(const rate of [0,-10]){
     const a=sample({inflation:rate,macro_m2_growth:rate,macro_interest_rate:rate+3});
     M.ensure(a);const b=copy(a);M.applyPriceControls(a);tick(a);tick(b);
-    assert(b.macro_model.price<100);near(a.macro_model.price,b.macro_model.price);
+    assert(b.macro_model.price<100);near(a.inflation,1);assert(a.macro_model.price>b.macro_model.price);
   }
 });
+test('Active controls stop at 1%, restrain renewed shocks and stop protecting after expiry',()=>{
+ const q=sample({inflation:1,macro_m2_growth:0,inflation_modifier:-35});
+ M.ensure(q);M.applyPriceControls(q);
+ for(let i=0;i<24;i++){tick(q);near(q.inflation,1,1e-7);}
+ q.inflation_modifier=0;q.macro_price_shock=10;
+ tick(q);assert(q.inflation>1.01,'a new shock can raise inflation');
+ const shocked=q.inflation;q.macro_price_shock=0;q.inflation_modifier=-35;
+ for(let i=0;i<24;i++){tick(q);assert(q.inflation>=1-1e-7);}
+ assert(q.inflation<shocked);near(q.inflation,1,1e-7);
+ const saved=copy(q);tick(q);tick(saved);assert.deepEqual(q,saved);
+ q.price_control_coverage=0;
+ for(let i=0;i<12;i++)tick(q);
+ assert(q.inflation<1,'uncontrolled deflation remains possible');
+});
+
 test('An initial enforcement round makes a substantial observable difference',()=>{
   const controlled=sample(), market=sample();
   M.ensure(controlled);M.ensure(market);

@@ -24090,7 +24090,7 @@
     },
     "economic_policy.pricecontrols": {
       "id": "economic_policy.pricecontrols",
-      "subtitle": "Strong consumer-price intervention: up to 85% basket coverage, 92% enforcement, and a 3% annual controlled-price ceiling. Each round renews enforcement.",
+      "subtitle": "Strong consumer-price intervention: up to 85% basket coverage, 92% enforcement, and a 3% annual controlled-price ceiling. Each round renews enforcement. Active controls gradually target 1% annual inflation and hold that floor.",
       "chooseIf": {
         "$code": "return ((Q['imf_agreement'] || 0) == 0);"
       },
@@ -24110,7 +24110,7 @@
         }
       ],
       "content": {
-        "content": "Enforced ceilings sharply restrain price increases across essential goods. The first intervention covers most of the consumer basket, while repeated interventions extend and renew coverage with diminishing returns. Controls gradually expire if the government stops enforcing them, and market price increases are not retroactively charged when they expire. While the working families and the like are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'",
+        "content": "Enforced ceilings sharply restrain price increases across essential goods. The first intervention covers most of the consumer basket, while repeated interventions extend and renew coverage with diminishing returns. While enforcement remains active, inflation gradually approaches a 1% annual target. At that target, policy shifts to stabilization instead of further disinflation. New price shocks can temporarily raise inflation, which the remaining controls again restrain. Controls gradually expire if the government stops enforcing them. While the working families and the like are happy we are intervening on their behalf, the bourgeoisie express their discomfort due to 'needless government interventions'",
         "type": "paragraph"
       }
     },

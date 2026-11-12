@@ -150,8 +150,18 @@
       const coverage = clip(num(Q.price_control_coverage), 0, 0.85);
       const enforcement = clip(num(Q.price_control_enforcement, 0.92), 0, 1);
       const capGrowth = Math.expm1(toLog(Math.max(0, num(Q.price_control_allowed_growth, 3))) / 1200);
-      const observedGrowth = marketGrowth - coverage * enforcement * Math.max(0, marketGrowth - capGrowth);
-      const price = s.price * (1 + observedGrowth);
+      // Active controls converge toward a rolling annual 1% target. Use the
+      // actual twelve-month price base: a monthly floor alone still allows deflation.
+      const targetPrice = positive(s.priceHistory[0]) * 1.01;
+      const marketPrice = s.price * (1 + marketGrowth);
+      let price = marketPrice;
+      if (coverage > 0.000001 && enforcement > 0) {
+        const strength = coverage * enforcement;
+        const basketPrice = s.price * (1 + marketGrowth - strength * Math.max(0, marketGrowth - capGrowth));
+        price = Math.max(targetPrice, Math.min(basketPrice, marketPrice - strength * Math.max(0, marketPrice - targetPrice)));
+        // Settle at the target rather than retaining a tiny permanent overshoot.
+        if (price / targetPrice - 1 < 0.0005) price = targetPrice;
+      }
       const inflation12 = 100 * (price / positive(s.priceHistory[0]) - 1);
       historyPush(s.underlyingMonthlyHistory, 100 * underlyingMonthlyLog, 12);
       const underlyingLog12 = s.underlyingMonthlyHistory.reduce((sum, rate) => sum + rate, 0);
