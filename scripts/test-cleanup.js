@@ -1,6 +1,7 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const root=path.resolve(__dirname,'..');
 require(path.join(root,'out/html/rules.js'));
+require(path.join(root,'out/html/coalitions.js'));
 require(path.join(root,'out/html/cyprus-atilla1.js'));
 require(path.join(root,'out/html/cyprus-campaign.js'));
 require(path.join(root,'out/html/cyprus-roadmap.js'));
@@ -49,7 +50,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  finite(Q,['chp_votes','AP_votes','chp_seats','AP_seats','progressive_coalition']);
  assert.equal(Q.parties.reduce((sum,p)=>sum+Q[p+'_seats'],0),450);
  Q.chp_seats=260;Q.in_CHP_majority=0; engine.goToScene('national_elections.CHP_majority');engine.goToScene('national_elections.ecevit_prime_minister');
- assert.equal(Q.prime_minister,'Bülent Ecevit');assert.equal(Q.defense_minister_party,'CHP');
+ assert.equal(Q.prime_minister,AnatolianCoalitions.leaderName(Q,'CHP',true));assert.equal(Q.defense_minister_party,'CHP');
  engine.goToScene('national_elections.drop_finance');assert.notEqual(Q.finance_minister_party,'CHP');assert.equal(Q.economic_minister_party,'CHP');
  Q.TIP_in_government=1; Q.TIP_coalition_dissent=4; engine.goToScene('TIP_vote_of_no_confidence.fall');
  assert.equal(Q.CHP_in_government,0);assert.equal(Q.next_election_time-Q.time,6);
@@ -65,3 +66,5 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  console.log=originalLog;
  console.log('PASS: new game, 24 half-month turns, national election (450 seats), majority cabinet, finance portfolio drop, TIP collapse, local elections, Cyprus entry, dashboards and ending.');
 });
+
+
