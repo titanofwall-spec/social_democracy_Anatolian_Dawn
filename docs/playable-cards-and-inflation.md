@@ -10,7 +10,7 @@ People's Sector, Religious Affairs and Kurdish Issue have Back to main menu and 
 
 ## Inflation and sanctions
 
-Short-term price controls now subtract 6 from inflation_modifier instead of 3; other policy side effects are unchanged.
+Historical October 20 change: short-term price controls subtracted 6 from inflation_modifier instead of 3. Version 2 supersedes that arithmetic with coverage and enforcement; see [ECONOMIC_REPAIRS.md](ECONOMIC_REPAIRS.md). Other policy side effects remain unchanged.
 
 Annual historical inflation is consulted only through 1976. From 1977 onward the baseline is anchored at the 1976 value (16.4), including migration from saves carrying a later historical baseline. Policy modifiers, their existing decay, oil-supply benefits and player-selected economic reforms remain active. Historical GDP, unemployment and production series were not changed because they do not assign inflation. The later historical inflation values can remain as reference data but are not applied.
 

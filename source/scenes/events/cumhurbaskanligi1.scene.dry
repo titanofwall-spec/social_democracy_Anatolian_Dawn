@@ -29,7 +29,7 @@ Our party has up until now refused to participate in the elections. However, tim
 subtitle: Korutürk is also a former soldier, however he is seen as much of a neutral and unifying candidate.
 choose-if: AP_relation >= 40
 unavailable-subtitle: No, that didn't happen. AP doesn't trust us enough and we never get the expected cooperation message.
-on-arrival: AP_relation += 3; cgp_relation += 3; {!
+on-arrival: AP_relation += 3; CGP_relation += 3; {!
 Q.president = "Fahri Korutürk";
 if(typeof AnatolianSenate!=="undefined")AnatolianSenate.recordPresident(Q);
 !}

@@ -53,6 +53,7 @@ Q.flavour_events = 1;
 Q.resources = 2;
 // party dues
 Q.dues = 2;
+Q.state_aliases_version = 1; // Only canonical state keys are initialized in new games.
 // Sandbox achievements follow save branches, not global playtime.
 Q.sandbox_cheats_used = 0;
 Q.sandbox_branch_id = "";
@@ -172,25 +173,18 @@ Q.MHP_relation = 10;
 // DP collapse variable - if true, DP loses 80% of its support to AP between 1974 and 1977
 Q.DP_collapse = 0;
 
-Q.TIP_leader = "Unorganized";
 // alternative TIP leaders: Mehmet Ali Aybar, Behice Boran
 Q.TIP_party_leader = "Unorganized";
-Q.AP_leader = "Demirel";
 Q.AP_party_leader = "Demirel";
-Q.DP_leader = "Bozbeyli";
 Q.DP_party_leader = "Bozbeyli";
-Q.CGP_leader = "Feyzioğlu";
 Q.CGP_party_leader = "Feyzioğlu";
-Q.MSP_leader = "Süleyman Arif";
 // alternative MSP leader: Erbakan
 Q.MSP_party_leader = "Banned";
-Q.CHP_leader = "İnönü";
 // alternative <span style="color: #E3000F;">**CHP**</span> leader: Ecevit
 Q.CHP_party_leader = "İnönü";
 Q.party_leader_id = "inonu";
 Q.party_secretary = "Kırıkoğlu";
 Q.party_secretary_id = "kirikoglu";
-Q.MHP_leader = "Alparslan Türkeş"
 Q.MHP_party_leader = "Alparslan Türkeş"
 
 // Municipality control system
@@ -201,21 +195,10 @@ Q.local_total_seats = 67;
 Q.local_election_threshold = 8;
 
 // Interior affairs policy baselines (numeric: 0 = worst/bad start)
-Q.land_reform_level = 0;
-Q.natural_resources_level = 0;
-Q.workplace_democracy_level = 0;
-Q.peoples_sector_level = 0;
-Q.workplace_safety_level = 0;
 Q.minimum_wage_level = 0;
-Q.judicial_reform_level = 0;
 Q.counter_guerilla_discovered = 0;
 Q.counter_guerilla_level = 0;
-Q.education_funding_level = 0;
-Q.education_curriculum_level = 0;
-Q.university_freedom_level = 0;
 Q.university_prestige_level = 0;
-Q.womens_legal_level = 2;
-Q.womens_workplace_level = 0;
 Q.household_violence_level = 0;
 
 // The array of forces - Turkish paramilitary groups
@@ -540,8 +523,6 @@ Q.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;
 Q.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;
 
 // Player modifications to production indices (cumulative effects from player actions)
-Q.industrial_player_modifier = 0;
-Q.agricultural_player_modifier = 0;
 
 // Variables for making production changes (used by government actions)
 Q.industrial_change = 0;
@@ -568,6 +549,9 @@ Q.apply_economy_effects = 0;
 Q.forex_pressure = 45;
 // Onat monthly macro model inputs. Unspecified variables use explicit neutral defaults.
 Q.macro_model = null;
+Q.price_control_coverage = 0;
+Q.price_control_enforcement = 0.8;
+Q.price_control_allowed_growth = 6;
 Q.macro_savings_rate = 20;
 Q.macro_interest_rate = Q.base_inflation + 3;
 Q.macro_m2_growth = Q.base_inflation + Q.base_growth;

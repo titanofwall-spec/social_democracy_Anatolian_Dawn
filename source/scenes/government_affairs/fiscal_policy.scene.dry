@@ -35,7 +35,7 @@ Lower-income tax rates: [+ lower_tax_rates : taxation +]
 
 @vergidilimi
 subtitle: This will benefit groups with low income and hurt the higher income bracket.
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} worker_chp += 4*(dissent - 1); rural_chp += 1*(dissent - 1); state_employees_chp += 2*(dissent - 1); AP_relation -= 5; DP_relation -= 5; vergidilimii += 1
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 4*(1 - dissent); rural_chp += 1*(1 - dissent); state_employees_chp += 2*(1 - dissent); AP_relation -= 5; DP_relation -= 5; vergidilimii += 1
 choose-if: vergidilimii == 0
 unavailable-subtitle: [? if vergidilimii == 1 : We have already reformed the tax brackets! ?]
 
