@@ -12,4 +12,6 @@ Congress has suspended arms deliveries to Turkey. The embargo that took effect o
 
 Army, naval and aerial strength each fall by 0.15.
 
+[? if cyprus_poppy_penalty == 1 or hashas_done == 1 : **Additional economic sanctions:** Washington has also restricted economic assistance in response to the lifting of the poppy cultivation ban. Foreign-exchange pressure rises by 25 and the growth modifier falls by 0.5. This remains the historical arms-embargo path, not the alternative delayed-ceasefire event. ?]
+
 - @post_event: Continue.
