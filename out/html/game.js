@@ -871,17 +871,6 @@ function getPartyIdeology(party, Q) {
             var ideology = getPartyIdeology(searchString, Q);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology;
         }
-        const organizations = {'THKP-C':'thkpc','TKP/ML':'tkpml','Grey Wolves':'grey_wolves','Raiders':'raiders','DEV-YOL':'devyol','TİT':'tit','Police Forces':'police'};
-        const organization = organizations[searchString];
-        if (organization) {
-            const rawStrength = Number(Q[organization + '_strength']);
-            const strength = Number.isFinite(rawStrength) ? rawStrength.toFixed(1) : '0.0';
-            const status = organization === 'police' ? 'State institution' : Q[organization + '_banned'] ? 'Banned' : 'Legal';
-            const militarization = getMilitancyText(Number(Q[organization + '_militancy']) || 0);
-            return baseTooltip.explanationText + '<br>Organization Status: ' + status +
-                '<br>Organization Strength: ' + strength + ' thousand' +
-                '<br>Organization Militarization: ' + militarization;
-        }
         return baseTooltip.explanationText;
     }
 

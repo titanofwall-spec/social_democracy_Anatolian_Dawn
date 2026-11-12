@@ -22,6 +22,7 @@ function leaderName(Q,party,full=false){
 }
 function rightPremier(Q){const f=Q.coalition_formation;return f?.round==='final'&&f.year!==1973?(f.year===1975?'Baykara':'Şentürk'):leaderName(Q,'AP',true);}
 function dynamicProse(Q,prose){
+ if(/\{\{(?:CHP|AP|DP|CGP|MSP)_leader|\{\{right_premier/.test(prose))return prose.replace(/\{\{(CHP|AP|DP|CGP|MSP)_leader(_full)?\}\}/g,(_,party,full)=>leaderName(Q,party,!!full)).replace(/\{\{right_premier\}\}/g,rightPremier(Q)).replace(/\{\{secretary\}\}/g,secretaryName(Q));
  const replacements={'Bülent Ecevit':leaderName(Q,'CHP',true),'Ecevit':leaderName(Q,'CHP'),'Süleyman Demirel':leaderName(Q,'AP',true),'Demirel':leaderName(Q,'AP'),'Ferruh Bozbeyli':leaderName(Q,'DP',true),'Bozbeyli':leaderName(Q,'DP'),'Turhan Feyzioğlu':leaderName(Q,'CGP',true),'Feyzioğlu':leaderName(Q,'CGP'),'Necmettin Erbakan':leaderName(Q,'MSP',true),'Erbakan':leaderName(Q,'MSP'),'Şentürk':rightPremier(Q),'{{secretary}}':secretaryName(Q)};
  return prose.replace(/Bülent Ecevit|Süleyman Demirel|Ferruh Bozbeyli|Turhan Feyzioğlu|Necmettin Erbakan|Ecevit|Demirel|Bozbeyli|Feyzioğlu|Erbakan|Şentürk|\{\{secretary\}\}/g,name=>replacements[name]);
 }
