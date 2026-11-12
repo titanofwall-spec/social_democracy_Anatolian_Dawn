@@ -110,7 +110,7 @@ We are forced to accept austerity measures and abandon state interventions to be
 
 @tiger
 view-if: Tiger == 0
-choose-if: Standby == 0
+choose-if: imf_agreement == 0
 unavailable-subtitle: This course of action cannot be taken at the same time as committing to the privatization demands of the IMF.
 subtitle: First export transition: +11 inflation pressure initially, -12 exchange pressure immediately, -7 annual exchange drift, industrial capacity and growth ↑.
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} Tiger += 1; forex_pressure -= 12; inflation_modifier += 11; disk_relation -= 15; forex_pressure_drift -= 7; growth_modifier += 2; industry_modifier += 4; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! AnatolianRules.refreshEconomy(Q); !}
@@ -119,7 +119,7 @@ The situation is dire for the average Turk; we had promised them economic stabil
 
 @tiger2
 view-if: Tiger == 1
-choose-if: Standby == 0
+choose-if: imf_agreement == 0
 unavailable-subtitle: This course of action cannot be taken at the same time as committing to the privatization demands of the IMF.
 subtitle: Complete the export transition: +8 inflation pressure initially, -18 exchange pressure immediately, -9 annual exchange drift; lasting export capacity and growth ↑.
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} Tiger += 1; forex_pressure -= 18; inflation_modifier += 8; disk_relation -= 15; forex_pressure_drift -= 9; growth_modifier += 2; industry_modifier += 6; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! Q.macro_m2_growth=Math.min(18,AnatolianRules.number(Q.macro_m2_growth,20)); AnatolianRules.refreshEconomy(Q); !}
