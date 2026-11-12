@@ -410,14 +410,14 @@ view-if: chp_seats >= 226
 on-arrival: {! AnatolianRules.resetCabinet(Q); !} prime_minister = "Empty"; prime_minister_party = "CHP"; CHP_in_government = 1; in_CHP_majority = 1; pro_republic += 5; foreign_minister_party = "CHP"; foreign_minister = "Işık"; interior_minister_party = "CHP"; interior_minister = "Uğur"; justice_minister_party = "CHP"; justice_minister = "Aksoy"; labor_minister_party = "CHP"; labor_minister = "Sav"; defense_minister_party = "CHP"; defense_minister = "Işık"; economic_minister_party = "CHP"; economic_minister = "Müezzinoğlu"; finance_minister_party = "CHP"; finance_minister = "Müezzinoğlu"; agriculture_minister_party = "CHP"; agriculture_minister = "Topuz"; industrial_minister_party = "CHP"; industrial_minister = "Erdem"; education_minister_party = "CHP"; education_minister = "Üstündağ"; armed_forces_loyalty -= 0.05;
 achievement: majority_party
 
-Finally, the CHP can govern alone! Our long campaign of electioneering has paid off. We do not need to worry about coalition government; anything is possible.
+[+ {! return AnatolianCoalitions.rendered(Q,"chp_majority_1973"); !} +]
 
 Who should be the prime minister?
 
-- @ecevit_prime_minister: It is Ecevit's time to shine. Türk halkına layık ol Karaoğlan!
+- @ecevit_prime_minister: Confirm the government under [+ CHP_party_leader +].
 
 @ecevit_prime_minister
-on-arrival: prime_minister = "Bülent Ecevit"
+on-arrival: {! Q.prime_minister=AnatolianCoalitions.leaderName(Q,"CHP",true); !}
 
 The progressives, for the first time since the beginning of the free elections, have been able to form a majority government of its own.
 

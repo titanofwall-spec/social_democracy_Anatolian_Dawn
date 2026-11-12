@@ -46041,19 +46041,52 @@
       "options": [
         {
           "id": "@national_elections.ecevit_prime_minister",
-          "title": "It is Ecevit's time to shine. Türk halkına layık ol Karaoğlan!"
+          "title": {
+            "content": [
+              "Confirm the government under ",
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              "."
+            ],
+            "stateDependencies": [
+              {
+                "type": "insert",
+                "fn": {
+                  "$code": "return (Q['CHP_party_leader'] || 0);"
+                }
+              }
+            ]
+          }
         }
       ],
-      "content": [
-        {
-          "type": "paragraph",
-          "content": "Finally, the CHP can govern alone! Our long campaign of electioneering has paid off. We do not need to worry about coalition government; anything is possible."
-        },
-        {
-          "type": "paragraph",
-          "content": "Who should be the prime minister?"
-        }
-      ]
+      "content": {
+        "content": [
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": "Who should be the prime minister?"
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.rendered(Q,\"chp_majority_1973\");"
+            }
+          }
+        ]
+      }
     },
     "economic_democracy.decline": {
       "id": "economic_democracy.decline",
@@ -46743,7 +46776,7 @@
       "id": "national_elections.ecevit_prime_minister",
       "onArrival": [
         {
-          "$code": "Q['prime_minister'] = \"Bülent Ecevit\";"
+          "$code": "Q.prime_minister=AnatolianCoalitions.leaderName(Q,\"CHP\",true);"
         }
       ],
       "content": {
@@ -47024,21 +47057,38 @@
           "$code": "AnatolianCoalitions.returnMandate(Q);"
         }
       ],
-      "goTo": [
+      "options": [
         {
-          "id": "coalition_negotiations.attempt"
+          "id": "@coalition_negotiations.attempt",
+          "title": "Begin negotiations."
         }
       ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "A New Government-Formation Mandate"
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "A New Government-Formation Mandate"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.eventText(Q,\"new_mandate\");"
+            }
+          }
+        ]
+      }
     },
     "cyprus_roadmap_event.confirm_delay": {
       "id": "cyprus_roadmap_event.confirm_delay",
@@ -48893,19 +48943,35 @@
       "options": [
         {
           "id": "@coalition_negotiations.attempt",
-          "title": "Review the AP–MSP–CGP proposal with external DP support."
+          "title": "Review the proposed right-wing coalition."
         }
       ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "The Right-Wing Coalition Proposal"
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "The Right-Wing Coalition Proposal"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.eventText(Q,\"new_mandate\");"
+            }
+          }
+        ]
+      }
     },
     "national_elections.no_govt": {
       "id": "national_elections.no_govt",
@@ -49773,16 +49839,48 @@
           "title": "Return to other affairs."
         }
       ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "CHP Forms a Majority Government"
-        },
-        {
-          "type": "paragraph",
-          "content": "Placeholder"
-        }
-      ]
+      "content": {
+        "content": [
+          {
+            "type": "heading",
+            "content": "CHP Forms a Majority Government"
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 0
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.eventText(Q,\"chp_majority\");"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return AnatolianCoalitions.cabinetHtml(Q);"
+            }
+          }
+        ]
+      }
     },
     "national_elections.right_coalition_post_chp": {
       "id": "national_elections.right_coalition_post_chp",

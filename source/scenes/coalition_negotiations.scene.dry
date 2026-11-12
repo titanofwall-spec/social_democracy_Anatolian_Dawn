@@ -205,11 +205,12 @@ new-page: true
 title: A New Government-Formation Mandate
 new-page: true
 on-arrival: {! AnatolianCoalitions.returnMandate(Q); !}
-go-to: attempt
 
 = A New Government-Formation Mandate
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"new_mandate"); !} +]
+
+- @attempt: Begin negotiations.
 
 @talu
 title: The Talu Proposal
@@ -269,9 +270,9 @@ on-arrival: {! AnatolianCoalitions.finalRight(Q); !}
 
 = The Right-Wing Coalition Proposal
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"new_mandate"); !} +]
 
-- @attempt: Review the AP–MSP–CGP proposal with external DP support.
+- @attempt: Review the proposed right-wing coalition.
 
 @right_offer
 title: A New Coalition Government
@@ -342,7 +343,9 @@ on-arrival: {! AnatolianCoalitions.majority(Q,"CHP"); !}
 
 = CHP Forms a Majority Government
 
-Placeholder
+[+ {! return AnatolianCoalitions.eventText(Q,"chp_majority"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
 
 - @root: Return to other affairs.
 

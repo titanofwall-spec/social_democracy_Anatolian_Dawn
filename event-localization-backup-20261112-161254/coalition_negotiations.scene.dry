@@ -1,0 +1,4177 @@
+title: Coalition Negotiations
+new-page: true
+on-arrival: {! if(!Q.coalition_formation)AnatolianCoalitions.start(Q); !}
+go-to: route
+
+= Coalition Negotiations
+
+Placeholder
+
+@route
+title: Government Formation
+new-page: true
+go-to: mandate if {! return Q.coalition_formation.stage==="mandate"; !}; mandate_return if {! return Q.coalition_formation.stage==="return"; !}; mandate_return_final if {! return Q.coalition_formation.stage==="return_final"; !}; talu if {! return Q.coalition_formation.stage==="talu"; !}; waiting if {! return Q.coalition_formation.stage==="waiting_local"; !}; renewed if {! return Q.coalition_formation.stage==="renewed"; !}; right_final if {! return Q.coalition_formation.stage==="right_final"; !}; caretaker if {! return Q.coalition_formation.stage==="caretaker"; !}; formed if {! return Q.coalition_formation.stage==="formed"; !}; msp_transition if {! var f=Q.coalition_formation;return f.stage==="attempt"&&f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"&&!f.mspTransitionSeen; !}; attempt if {! var f=Q.coalition_formation;return f.stage==="attempt"&&!(f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"&&!f.mspTransitionSeen); !}
+
+= Government Formation
+
+Placeholder
+
+@mandate
+title: The Mandate to Form a Government
+new-page: true
+
+= The Mandate to Form a Government
+
+[+ {! return AnatolianCoalitions.eventText(Q,"mandate"); !} +]
+
+- @first_attempt: Begin government-formation talks.
+- @chp_majority: Form the majority government.
+- @ap_majority: Review the new government.
+
+@first_attempt
+view-if: {! return Q.chp_seats<226&&Q.AP_seats<226; !}
+title: Opening Negotiations
+new-page: true
+on-arrival: {! Q.coalition_formation.stage="attempt"; !}
+go-to: attempt
+
+= Opening Negotiations
+
+Placeholder
+
+@msp_transition
+title: An Unlikely Proposal
+new-page: true
+on-arrival: {! Q.coalition_formation.mspTransitionSeen=true; !}
+
+= An Unlikely Proposal
+
+[+ {! return AnatolianCoalitions.eventText(Q,"msp_transition"); !} +]
+
+- @attempt: Consider the proposed coalition.
+
+@attempt
+title: Coalition Talks: [+ {! var c=AnatolianCoalitions.candidate(Q);return c.parties.map(p=>AnatolianCoalitions.partyLabel(Q,p)).join(" + "); !} +]
+new-page: true
+
+= Coalition Talks: [+ {! var c=AnatolianCoalitions.candidate(Q);return c.parties.map(p=>AnatolianCoalitions.partyLabel(Q,p)).join(" + "); !} +]
+
+[+ {! return AnatolianCoalitions.eventText(Q,"intro"); !} +]
+
+- @open_talks: Begin the discussions.
+- @reject_invitation: Decline the invitation.
+- @skip_unviable: Continue to the next possibility.
+
+@open_talks
+title: Opening Coalition Discussions
+new-page: true
+view-if: {! return AnatolianCoalitions.possible(Q); !}
+choose-if: {! return AnatolianCoalitions.relationsAllowTalks(Q); !}
+unavailable-subtitle: Hostile relations prevent coalition talks.
+on-arrival: {! Q.coalition_formation.talked=true; !}
+go-to: talks
+
+= Opening Coalition Discussions
+
+Placeholder
+
+@skip_unviable
+title: Coalition Talks Cannot Proceed
+new-page: true
+view-if: {! return !AnatolianCoalitions.possible(Q)||!AnatolianCoalitions.relationsAllowTalks(Q); !}
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+go-to: route
+
+= Coalition Talks Cannot Proceed
+
+Placeholder
+
+@reject_invitation
+title: An Invitation Declined
+new-page: true
+view-if: {! return AnatolianCoalitions.forcedRefusal(Q); !}
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+
+= An Invitation Declined
+
+[+ {! return AnatolianCoalitions.eventText(Q,"failure"); !} +]
+
+- @route: Continue.
+
+@talks
+title: Coalition Negotiations
+new-page: true
+
+= Coalition Negotiations
+
+[+ {! return AnatolianCoalitions.eventText(Q,"talks"); !} +]
+
+- @negotiate: Proceed to cabinet negotiations.
+- @accept_nonpartisan: Accept Sadi Irmak as Prime Minister, with Ecevit and Demirel as Deputy Prime Ministers.
+- @msp_postponement: Discuss MSP's request concerning the local elections.
+- @reject: End these talks without agreement.
+- @npc_negotiate: Follow the outcome of the discussions.
+
+@accept_nonpartisan
+title: A Non-Partisan Prime Minister
+new-page: true
+view-if: {! return AnatolianCoalitions.nonpartisanProposal(Q); !}
+choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
+go-to: negotiate
+
+= A Non-Partisan Prime Minister
+
+Placeholder
+
+@msp_postponement
+title: The Date of the Local Elections
+new-page: true
+view-if: {! var f=Q.coalition_formation;return f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"; !}
+
+= The Date of the Local Elections
+
+[+ {! return AnatolianCoalitions.eventText(Q,"msp_postponement"); !} +]
+
+- @negotiate_after_msp: Continue to the cabinet discussions.
+- @reject: End these talks without agreement.
+
+@negotiate_after_msp
+title: Continuing the Coalition Discussions
+new-page: true
+choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
+go-to: negotiate
+
+= Continuing the Coalition Discussions
+
+Placeholder
+
+@npc_negotiate
+title: The Outcome of the Coalition Talks
+new-page: true
+view-if: {! return !AnatolianCoalitions.candidate(Q).parties.includes("CHP"); !}
+on-arrival: {! if(AnatolianCoalitions.acceptable(Q))AnatolianCoalitions.negotiate(Q); !}
+go-to: right_offer if {! return Q.coalition_formation.stage==="right"; !}; npc_failed if {! return Q.coalition_formation.stage!=="right"; !}
+
+= The Outcome of the Coalition Talks
+
+Placeholder
+
+@npc_failed
+title: Coalition Talks End Without Agreement
+new-page: true
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+go-to: route
+
+= Coalition Talks End Without Agreement
+
+Placeholder
+
+@negotiate
+view-if: {! var f=Q.coalition_formation;return AnatolianCoalitions.candidate(Q).parties.includes("CHP")&&!AnatolianCoalitions.forcedRefusal(Q)&&!AnatolianCoalitions.nonpartisanProposal(Q)&&!(f.year===1973&&f.leader==="CHP"&&f.round==="first"&&AnatolianCoalitions.current(Q)==="MSP"); !}
+title: Negotiating the Coalition Agreement
+new-page: true
+choose-if: {! return AnatolianCoalitions.acceptable(Q); !}
+unavailable-subtitle: Insufficient parliamentary seats or Hostile relations.
+on-arrival: {! AnatolianCoalitions.negotiate(Q); !}
+go-to: right_offer if {! return Q.coalition_formation.stage==="right"; !}; ministries if {! return Q.coalition_formation.stage==="ministries"; !}
+
+= Negotiating the Coalition Agreement
+
+Placeholder
+
+@reject
+view-if: {! return AnatolianCoalitions.candidate(Q).parties.includes("CHP"); !}
+title: Coalition Talks End Without Agreement
+new-page: true
+on-arrival: {! AnatolianCoalitions.next(Q); !}
+
+= Coalition Talks End Without Agreement
+
+[+ {! return AnatolianCoalitions.eventText(Q,"failure"); !} +]
+
+- @route: Continue.
+
+@mandate_return
+title: The First Mandate Is Returned
+new-page: true
+
+= The First Mandate Is Returned
+
+[+ {! return AnatolianCoalitions.eventText(Q,"return_first"); !} +]
+
+- @new_mandate: Proceed to the next government-formation attempt.
+
+@new_mandate
+title: A New Government-Formation Mandate
+new-page: true
+on-arrival: {! AnatolianCoalitions.returnMandate(Q); !}
+go-to: attempt
+
+= A New Government-Formation Mandate
+
+Placeholder
+
+@talu
+title: The Talu Proposal
+new-page: true
+
+= The Talu Proposal
+
+[+ {! return AnatolianCoalitions.eventText(Q,"talu_proposal"); !} +]
+
+- @refuse_talu: CHP refuses to support the Talu proposal.
+
+@refuse_talu
+title: CHP Rejects the Talu Government
+new-page: true
+on-arrival: {! AnatolianCoalitions.afterTalu(Q); !}
+
+= CHP Rejects the Talu Government
+
+[+ {! return AnatolianCoalitions.eventText(Q,"talu_failed"); !} +]
+
+- @root: Continue under the caretaker until the local elections.
+
+@waiting
+title: Awaiting the Local Elections
+new-page: true
+
+= Awaiting the Local Elections
+
+Placeholder
+
+- @root: Return to other affairs.
+
+@renewed
+title: A Renewed Mandate for Ecevit
+new-page: true
+
+= A Renewed Mandate for Ecevit
+
+[+ {! return AnatolianCoalitions.eventText(Q,"renewed"); !} +]
+
+- @first_attempt: Reopen talks with MSP.
+
+@mandate_return_final
+title: Ecevit Returns the Renewed Mandate
+new-page: true
+
+= Ecevit Returns the Renewed Mandate
+
+[+ {! return AnatolianCoalitions.eventText(Q,"return_final"); !} +]
+
+- @right_final: Proceed to the right-wing government-formation attempt.
+
+@right_final
+title: The Right-Wing Coalition Proposal
+new-page: true
+on-arrival: {! AnatolianCoalitions.finalRight(Q); !}
+
+= The Right-Wing Coalition Proposal
+
+Placeholder
+
+- @attempt: Review the AP–MSP–CGP proposal with external DP support.
+
+@right_offer
+title: A New Coalition Government
+new-page: true
+on-arrival: {! AnatolianCoalitions.rightGovernment(Q); !}
+
+= A New Coalition Government
+
+[+ {! return AnatolianCoalitions.eventText(Q,"formed"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
+
+- @root: Return to other affairs.
+
+@right_nominee
+title: The Mandate for [+ {! return Q.coalition_formation.year===1975?"Baykara":"Şentürk"; !} +]
+new-page: true
+view-if: {! return Q.coalition_formation.year!==1973&&Q.coalition_formation.round==="final"; !}
+
+= The Next Government-Formation Mandate
+
+Placeholder
+
+- @right_form_final: Recognize the coalition, supported externally by DP.
+
+@right_form_final
+title: The Right-Wing Coalition Is Formed
+new-page: true
+on-arrival: {! AnatolianCoalitions.rightGovernment(Q); !}
+
+= The Right-Wing Coalition Is Formed
+
+[+ {! return AnatolianCoalitions.eventText(Q,"formed"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
+
+- @root: Return to other affairs.
+
+@right_form
+view-if: {! return Q.coalition_formation.year===1973||Q.coalition_formation.round!=="final"; !}
+title: The AP–MSP–CGP Government
+new-page: true
+on-arrival: {! AnatolianCoalitions.rightGovernment(Q); !}
+
+= The AP–MSP–CGP Government
+
+[+ {! return AnatolianCoalitions.eventText(Q,"formed"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
+
+- @root: Return to other affairs.
+
+@caretaker
+title: The Government-Formation Attempts Fail
+new-page: true
+
+= The Government-Formation Attempts Fail
+
+Placeholder
+
+- @root: Continue under a caretaker government.
+
+@chp_majority
+view-if: chp_seats >= 226
+title: CHP Forms a Majority Government
+new-page: true
+on-arrival: {! AnatolianCoalitions.majority(Q,"CHP"); !}
+
+= CHP Forms a Majority Government
+
+Placeholder
+
+- @root: Return to other affairs.
+
+@ap_majority
+view-if: AP_seats >= 226
+title: AP Forms a Majority Government
+new-page: true
+on-arrival: {! AnatolianCoalitions.majority(Q,"AP"); !}
+
+= AP Forms a Majority Government
+
+[+ {! return AnatolianCoalitions.eventText(Q,"ap_majority"); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
+
+- @root: Return to other affairs.
+
+@ministries
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
+subtitle: Select [+ {! return Q.coalition_formation.pending.quota; !} +] ministries for CHP.
+title: Distribution of Ministries
+new-page: true
+
+= Distribution of Ministries
+
+[+ {! return AnatolianCoalitions.eventText(Q,"cabinet"); !} +]
+
+- @min_foreign: Foreign Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["foreign"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_interior: Interior Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["interior"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_justice: Justice Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["justice"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_labor: Labor Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["labor"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_defense: Defense Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["defense"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_economic: Economic Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["economic"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_finance: Finance Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["finance"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_agriculture: Agriculture Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["agriculture"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_education: Education Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["education"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @min_industrial: Industrial Ministry: [+ {! return AnatolianCoalitions.partyLabel(Q,Q.coalition_formation.pending.ministries["industrial"]||Q.coalition_formation.pending.partners[0]); !} +]
+- @powers: Confirm ministries and negotiate contested powers.
+- @reject: Abandon this negotiation.
+
+@min_foreign
+title: Negotiate the Foreign Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["foreign"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"foreign"); !}
+go-to: ministries
+
+= Negotiate the Foreign Ministry
+
+Placeholder
+
+@min_interior
+title: Negotiate the Interior Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["interior"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"interior"); !}
+go-to: ministries
+
+= Negotiate the Interior Ministry
+
+Placeholder
+
+@min_justice
+title: Negotiate the Justice Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["justice"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"justice"); !}
+go-to: ministries
+
+= Negotiate the Justice Ministry
+
+Placeholder
+
+@min_labor
+title: Negotiate the Labor Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["labor"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"labor"); !}
+go-to: ministries
+
+= Negotiate the Labor Ministry
+
+Placeholder
+
+@min_defense
+title: Negotiate the Defense Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["defense"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"defense"); !}
+go-to: ministries
+
+= Negotiate the Defense Ministry
+
+Placeholder
+
+@min_economic
+title: Negotiate the Economic Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["economic"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"economic"); !}
+go-to: ministries
+
+= Negotiate the Economic Ministry
+
+Placeholder
+
+@min_finance
+title: Negotiate the Finance Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["finance"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"finance"); !}
+go-to: ministries
+
+= Negotiate the Finance Ministry
+
+Placeholder
+
+@min_agriculture
+title: Negotiate the Agriculture Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["agriculture"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"agriculture"); !}
+go-to: ministries
+
+= Negotiate the Agriculture Ministry
+
+Placeholder
+
+@min_education
+title: Negotiate the Education Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["education"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"education"); !}
+go-to: ministries
+
+= Negotiate the Education Ministry
+
+Placeholder
+
+@min_industrial
+title: Negotiate the Industrial Ministry
+new-page: true
+choose-if: {! var p=Q.coalition_formation.pending;return p.ministries["industrial"]==="CHP"||Object.values(p.ministries).filter(x=>x==="CHP").length<p.quota; !}
+unavailable-subtitle: [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] requires its proportional share of ministries. Release a ministry before requesting another.
+on-arrival: {! AnatolianCoalitions.toggleMinistry(Q,"industrial"); !}
+go-to: ministries
+
+= Negotiate the Industrial Ministry
+
+Placeholder
+
+@powers
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
+on-arrival: {! AnatolianCoalitions.prunePending(Q); !}
+subtitle: CHP powers: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player; !} +]; [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +] powers: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner; !} +]. Equal numbers are required; unselected powers remain unresolved.
+title: Contested Policy Powers
+new-page: true
+choose-if: {! return AnatolianCoalitions.ministryReady(Q); !}
+unavailable-subtitle: Choose the negotiated CHP share of ministries first.
+
+= Contested Policy Powers
+
+[+ {! return AnatolianCoalitions.eventText(Q,"powers"); !} +]
+
+- @claims: 1. Demand Concessions
+- @concessions: 2. Offer Concessions
+- @sign: Sign the agreement, remaining contested affairs remain unresolved.
+- @ministries: Reconsider the ministry distribution.
+- @reject: End the negotiations.
+
+@claims
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
+on-arrival: {! AnatolianCoalitions.prunePending(Q); !}
+title: Demand Concessions
+subtitle: CHP: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player; !} +] contested affairs; [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +]: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner; !} +]. Equal totals are required.
+new-page: true
+
+= Demand Concessions
+
+There are certain affairs that we simply cannot do without, and will demand it for this coalition's effectiveness.
+
+- @player_koykent: Köykent Project
+- @player_ministry_agriculture: Agriculture Ministry
+- @player_ministry_economic: Economics and Trade Ministry
+- @player_ministry_education: Education Ministry
+- @player_ministry_finance: Finance Ministry
+- @player_ministry_foreign: Foreign Affairs Ministry
+- @player_ministry_industrial: Industry Ministry
+- @player_ministry_justice: Justice Ministry
+- @player_ministry_labor: Labour Ministry
+- @player_ministry_defense: Defense Ministry
+- @player_ministry_interior: Interior Ministry
+- @player_ministry_womens_rights: Women's Rights
+- @player_ministry_economic_democracy: People's Sector
+- @player_ministry_kurdish_issue: Kurdish Affairs
+- @player_ministry_religious_affairs_directorate: Directorate of Religious Affairs
+- @powers: Return to the agreement.
+
+@player_ministry_agriculture
+title: Demand Contested Affairs: Agriculture Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"agriculture"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="agriculture"); !}
+
+= Demand Contested Affairs: Agriculture Ministry
+
+Placeholder
+
+- @player_list_7: Purchase and redistribute land.
+- @player_list_8: Support cooperative formation.
+- @player_list_9: Re-legalize Poppy cultivation.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_4
+title: Köykent Project
+new-page: true
+go-to: claims
+
+= Köykent Project
+
+Placeholder
+
+@player_list_5
+title: Köykent Project
+new-page: true
+go-to: claims
+
+= Köykent Project
+
+Placeholder
+
+@player_list_6
+title: Köykent Project
+new-page: true
+go-to: claims
+
+= Köykent Project
+
+Placeholder
+
+@player_list_7
+title: Demand: Purchase and redistribute land.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-7"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-7"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-7","player"); !}
+go-to: player_ministry_agriculture
+
+= Demand: Purchase and redistribute land.
+
+Placeholder
+
+@player_list_8
+title: Demand: Support cooperative formation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-8"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-8"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-8","player"); !}
+go-to: player_ministry_agriculture
+
+= Demand: Support cooperative formation.
+
+Placeholder
+
+@player_list_9
+title: Demand: Re-legalize Poppy cultivation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-9"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-9"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-9","player"); !}
+go-to: player_ministry_agriculture
+
+= Demand: Re-legalize Poppy cultivation.
+
+Placeholder
+
+@player_ministry_economic
+title: Demand Contested Affairs: Economics and Trade Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"economic"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="economic"); !}
+
+= Demand Contested Affairs: Economics and Trade Ministry
+
+Placeholder
+
+- @player_list_10: Implement price controls to control the inflation.
+- @player_list_11: Reach out to the global market for debt.
+- @player_list_12: Initiate public works programs.
+- @player_list_13: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.
+- @player_list_14: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.
+- @player_list_15: Reform the inefficient state corporations.
+- @player_list_16: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+- @player_list_17: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+- @player_list_18: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_10
+title: Demand: Implement price controls to control the inflation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-10"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-10"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-10","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Implement price controls to control the inflation.
+
+Placeholder
+
+@player_list_11
+title: Demand: Reach out to the global market for debt.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-11"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-11"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-11","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Reach out to the global market for debt.
+
+Placeholder
+
+@player_list_12
+title: Demand: Initiate public works programs.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-12"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-12"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-12","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Initiate public works programs.
+
+Placeholder
+
+@player_list_13
+title: Demand: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-13"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-13"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-13","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.
+
+Placeholder
+
+@player_list_14
+title: Demand: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-14"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-14"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-14","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.
+
+Placeholder
+
+@player_list_15
+title: Demand: Reform the inefficient state corporations.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-15"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-15"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-15","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Reform the inefficient state corporations.
+
+Placeholder
+
+@player_list_16
+title: Demand: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-16"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-16"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-16","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+
+Placeholder
+
+@player_list_17
+title: Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-17"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-17"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-17","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+
+Placeholder
+
+@player_list_18
+title: Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-18"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-18"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-18","player"); !}
+go-to: player_ministry_economic
+
+= Demand: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+
+Placeholder
+
+@player_ministry_education
+title: Demand Contested Affairs: Education Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"education"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="education"); !}
+
+= Demand Contested Affairs: Education Ministry
+
+Placeholder
+
+- @player_list_19: Reform the curriculum.
+- @player_list_20: Create adult education centers: Halk Eğitim.
+- @player_list_21: Form student councils in universities and enable student representation.
+- @player_list_22: Loosen restrictions on the teachers' freedom of expression in classrooms.
+- @player_list_24: Increase scholarship and boarding school opportunities.
+- @player_list_25: Cut funding to religious İmam Hatip schools.
+- @player_list_26: Increase educational broadcasts from the state radio, TRT.
+- @player_list_27: Finance greater accessibility to arts and sports opportunities.
+- @player_list_28: Open more schools, especially in our isolated rural provinces.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_19
+title: Demand: Reform the curriculum.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-19"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-19"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-19","player"); !}
+go-to: player_ministry_education
+
+= Demand: Reform the curriculum.
+
+Placeholder
+
+@player_list_20
+title: Demand: Create adult education centers: Halk Eğitim.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-20"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-20"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-20","player"); !}
+go-to: player_ministry_education
+
+= Demand: Create adult education centers: Halk Eğitim.
+
+Placeholder
+
+@player_list_21
+title: Demand: Form student councils in universities and enable student representation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-21"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-21"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-21","player"); !}
+go-to: player_ministry_education
+
+= Demand: Form student councils in universities and enable student representation.
+
+Placeholder
+
+@player_list_22
+title: Demand: Loosen restrictions on the teachers' freedom of expression in classrooms.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-22"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-22"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-22","player"); !}
+go-to: player_ministry_education
+
+= Demand: Loosen restrictions on the teachers' freedom of expression in classrooms.
+
+Placeholder
+
+@player_list_23
+title: Köykent Project
+new-page: true
+go-to: claims
+
+= Köykent Project
+
+Placeholder
+
+@player_list_24
+title: Demand: Increase scholarship and boarding school opportunities.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-24"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-24"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-24","player"); !}
+go-to: player_ministry_education
+
+= Demand: Increase scholarship and boarding school opportunities.
+
+Placeholder
+
+@player_list_25
+title: Demand: Cut funding to religious İmam Hatip schools.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-25"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-25"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-25","player"); !}
+go-to: player_ministry_education
+
+= Demand: Cut funding to religious İmam Hatip schools.
+
+Placeholder
+
+@player_list_26
+title: Demand: Increase educational broadcasts from the state radio, TRT.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-26"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-26"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-26","player"); !}
+go-to: player_ministry_education
+
+= Demand: Increase educational broadcasts from the state radio, TRT.
+
+Placeholder
+
+@player_list_27
+title: Demand: Finance greater accessibility to arts and sports opportunities.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-27"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-27"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-27","player"); !}
+go-to: player_ministry_education
+
+= Demand: Finance greater accessibility to arts and sports opportunities.
+
+Placeholder
+
+@player_list_28
+title: Demand: Open more schools, especially in our isolated rural provinces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-28"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-28"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-28","player"); !}
+go-to: player_ministry_education
+
+= Demand: Open more schools, especially in our isolated rural provinces.
+
+Placeholder
+
+@player_ministry_finance
+title: Demand Contested Affairs: Finance Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"finance"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="finance"); !}
+
+= Demand Contested Affairs: Finance Ministry
+
+Placeholder
+
+- @player_list_29: Reform the tax brackets for different income levels.
+- @player_list_30: Restrict speculative loans.
+- @player_list_32: Temporarily freeze the funds of government agencies.
+- @player_list_33: Borrow loans from the treasury.
+- @player_list_34: Borrow domestic loans.
+- @player_list_35: Increase inspections of tax payments.
+- @player_list_36: Increase taxes on the rich.
+- @player_list_37: Increase overall taxes.
+- @player_list_38: Cut overall taxes.
+- @player_list_39: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
+- @player_list_40: Shift taxes from wealthy households to poorer households
+- @player_list_41: Raise tariffs on luxury products.
+- @player_list_42: Raise general tariffs
+- @player_list_43: Lower general tariffs
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_29
+title: Demand: Reform the tax brackets for different income levels.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-29"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-29"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-29","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Reform the tax brackets for different income levels.
+
+Placeholder
+
+@player_list_30
+title: Demand: Restrict speculative loans.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-30"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-30"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-30","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Restrict speculative loans.
+
+Placeholder
+
+@player_list_32
+title: Demand: Temporarily freeze the funds of government agencies.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-32"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-32"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-32","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Temporarily freeze the funds of government agencies.
+
+Placeholder
+
+@player_list_33
+title: Demand: Borrow loans from the treasury.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-33"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-33"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-33","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Borrow loans from the treasury.
+
+Placeholder
+
+@player_list_34
+title: Demand: Borrow domestic loans.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-34"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-34"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-34","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Borrow domestic loans.
+
+Placeholder
+
+@player_list_35
+title: Demand: Increase inspections of tax payments.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-35"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-35"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-35","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Increase inspections of tax payments.
+
+Placeholder
+
+@player_list_36
+title: Demand: Increase taxes on the rich.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-36"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-36"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-36","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Increase taxes on the rich.
+
+Placeholder
+
+@player_list_37
+title: Demand: Increase overall taxes.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-37"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-37"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-37","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Increase overall taxes.
+
+Placeholder
+
+@player_list_38
+title: Demand: Cut overall taxes.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-38"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-38"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-38","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Cut overall taxes.
+
+Placeholder
+
+@player_list_39
+title: Demand: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-39"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-39"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-39","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
+
+Placeholder
+
+@player_list_40
+title: Demand: Shift taxes from wealthy households to poorer households
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-40"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-40"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-40","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Shift taxes from wealthy households to poorer households
+
+Placeholder
+
+@player_list_41
+title: Demand: Raise tariffs on luxury products.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-41"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-41"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-41","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Raise tariffs on luxury products.
+
+Placeholder
+
+@player_list_42
+title: Demand: Raise general tariffs
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-42"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-42"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-42","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Raise general tariffs
+
+Placeholder
+
+@player_list_43
+title: Demand: Lower general tariffs
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-43"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-43"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-43","player"); !}
+go-to: player_ministry_finance
+
+= Demand: Lower general tariffs
+
+Placeholder
+
+@player_ministry_foreign
+title: Demand Contested Affairs: Foreign Affairs Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"foreign"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="foreign"); !}
+
+= Demand Contested Affairs: Foreign Affairs Ministry
+
+Placeholder
+
+- @player_list_44: Improve relations with the United States.
+- @player_list_45: Improve relations with Western Europe.
+- @player_list_46: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
+- @player_list_47: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
+- @player_list_48: Apply to join the European Economic Community, EEC!
+- @player_list_49: As a reaction to the arms embargo, close the American bases on our soil!
+- @player_list_50: Improve relations with the Soviet Union.
+- @player_list_51: Sign a treaty of Turkish-Soviet Friendship.
+- @player_list_52: Borrow loans from the Soviet Union.
+- @player_list_53: Sign a treaty of economic cooperation.
+- @player_list_54: Export agricultural products to the Eastern Bloc.
+- @player_list_55: Purchase oil from Romania.
+- @player_list_56: Improve relations with the Arabian States.
+- @player_list_57: Foster trade with the Arabian States.
+- @player_list_58: Increase economic ties with the Pan-Arabists.
+- @player_list_59: Arrange sanctions-bypassing trade with Pan-Arab states
+- @player_list_60: Increase economic ties with the Gulf Monarchies.
+- @player_list_61: Negotiate labour migration agreements with Gulf states
+- @player_list_62: Form official relations with the Palestine Liberation Organization, PLO.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_44
+title: Demand: Improve relations with the United States.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-44"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-44"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-44","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Improve relations with the United States.
+
+Placeholder
+
+@player_list_45
+title: Demand: Improve relations with Western Europe.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-45"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-45"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-45","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Improve relations with Western Europe.
+
+Placeholder
+
+@player_list_46
+title: Demand: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-46"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-46"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-46","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
+
+Placeholder
+
+@player_list_47
+title: Demand: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-47"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-47"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-47","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
+
+Placeholder
+
+@player_list_48
+title: Demand: Apply to join the European Economic Community, EEC!
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-48"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-48"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-48","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Apply to join the European Economic Community, EEC!
+
+Placeholder
+
+@player_list_49
+title: Demand: As a reaction to the arms embargo, close the American bases on our soil!
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-49"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-49"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-49","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: As a reaction to the arms embargo, close the American bases on our soil!
+
+Placeholder
+
+@player_list_50
+title: Demand: Improve relations with the Soviet Union.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-50"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-50"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-50","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Improve relations with the Soviet Union.
+
+Placeholder
+
+@player_list_51
+title: Demand: Sign a treaty of Turkish-Soviet Friendship.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-51"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-51"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-51","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Sign a treaty of Turkish-Soviet Friendship.
+
+Placeholder
+
+@player_list_52
+title: Demand: Borrow loans from the Soviet Union.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-52"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-52"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-52","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Borrow loans from the Soviet Union.
+
+Placeholder
+
+@player_list_53
+title: Demand: Sign a treaty of economic cooperation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-53"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-53"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-53","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Sign a treaty of economic cooperation.
+
+Placeholder
+
+@player_list_54
+title: Demand: Export agricultural products to the Eastern Bloc.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-54"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-54"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-54","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Export agricultural products to the Eastern Bloc.
+
+Placeholder
+
+@player_list_55
+title: Demand: Purchase oil from Romania.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-55"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-55"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-55","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Purchase oil from Romania.
+
+Placeholder
+
+@player_list_56
+title: Demand: Improve relations with the Arabian States.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-56"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-56"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-56","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Improve relations with the Arabian States.
+
+Placeholder
+
+@player_list_57
+title: Demand: Foster trade with the Arabian States.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-57"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-57"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-57","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Foster trade with the Arabian States.
+
+Placeholder
+
+@player_list_58
+title: Demand: Increase economic ties with the Pan-Arabists.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-58"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-58"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-58","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Increase economic ties with the Pan-Arabists.
+
+Placeholder
+
+@player_list_59
+title: Demand: Arrange sanctions-bypassing trade with Pan-Arab states
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-59"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-59"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-59","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Arrange sanctions-bypassing trade with Pan-Arab states
+
+Placeholder
+
+@player_list_60
+title: Demand: Increase economic ties with the Gulf Monarchies.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-60"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-60"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-60","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Increase economic ties with the Gulf Monarchies.
+
+Placeholder
+
+@player_list_61
+title: Demand: Negotiate labour migration agreements with Gulf states
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-61"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-61"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-61","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Negotiate labour migration agreements with Gulf states
+
+Placeholder
+
+@player_list_62
+title: Demand: Form official relations with the Palestine Liberation Organization, PLO.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-62"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-62"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-62","player"); !}
+go-to: player_ministry_foreign
+
+= Demand: Form official relations with the Palestine Liberation Organization, PLO.
+
+Placeholder
+
+@player_ministry_industrial
+title: Demand Contested Affairs: Industry Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"industrial"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="industrial"); !}
+
+= Demand Contested Affairs: Industry Ministry
+
+Placeholder
+
+- @player_list_63: Basic industrialization push.
+- @player_list_64: Divert industrial production away from consumer goods and towards capital and assembly products.
+- @player_list_65: Move towards high-tech products with great margins of profit such as electronics.
+- @player_list_66: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+- @player_list_67: Concentrate small and medium-sized enterprises into cooperatives.
+- @player_list_68: Shift beneficial loans towards exporting big industry.
+- @player_list_69: Restart investment for railway construction.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_63
+title: Demand: Basic industrialization push.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-63"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-63"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-63","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Basic industrialization push.
+
+Placeholder
+
+@player_list_64
+title: Demand: Divert industrial production away from consumer goods and towards capital and assembly products.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-64"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-64"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-64","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Divert industrial production away from consumer goods and towards capital and assembly products.
+
+Placeholder
+
+@player_list_65
+title: Demand: Move towards high-tech products with great margins of profit such as electronics.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-65"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-65"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-65","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Move towards high-tech products with great margins of profit such as electronics.
+
+Placeholder
+
+@player_list_66
+title: Demand: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-66"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-66"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-66","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+
+Placeholder
+
+@player_list_67
+title: Demand: Concentrate small and medium-sized enterprises into cooperatives.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-67"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-67"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-67","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Concentrate small and medium-sized enterprises into cooperatives.
+
+Placeholder
+
+@player_list_68
+title: Demand: Shift beneficial loans towards exporting big industry.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-68"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-68"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-68","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Shift beneficial loans towards exporting big industry.
+
+Placeholder
+
+@player_list_69
+title: Demand: Restart investment for railway construction.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-69"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-69"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-69","player"); !}
+go-to: player_ministry_industrial
+
+= Demand: Restart investment for railway construction.
+
+Placeholder
+
+@player_list_70
+title: Köykent Project
+new-page: true
+go-to: claims
+
+= Köykent Project
+
+Placeholder
+
+@player_ministry_justice
+title: Demand Contested Affairs: Justice Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"justice"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="justice"); !}
+
+= Demand Contested Affairs: Justice Ministry
+
+Placeholder
+
+- @player_list_71: Launch a general amnesty.
+- @player_list_72: Release a circular note of moderation in political cases.
+- @player_list_73: Prioritize the investigation of right winger political violence.
+- @player_list_74: Work on improving the treatment of political prisoners in prisons.
+- @player_list_75: Investigate accusations of police violence and torture.
+- @player_list_76: Resist against DGM, the state security courts.
+- @player_list_77: Bring the DGMs to the constitutional court!
+- @player_list_78: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_71
+title: Demand: Launch a general amnesty.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-71"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-71"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-71","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Launch a general amnesty.
+
+Placeholder
+
+@player_list_72
+title: Demand: Release a circular note of moderation in political cases.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-72"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-72"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-72","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Release a circular note of moderation in political cases.
+
+Placeholder
+
+@player_list_73
+title: Demand: Prioritize the investigation of right winger political violence.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-73"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-73"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-73","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Prioritize the investigation of right winger political violence.
+
+Placeholder
+
+@player_list_74
+title: Demand: Work on improving the treatment of political prisoners in prisons.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-74"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-74"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-74","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Work on improving the treatment of political prisoners in prisons.
+
+Placeholder
+
+@player_list_75
+title: Demand: Investigate accusations of police violence and torture.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-75"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-75"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-75","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Investigate accusations of police violence and torture.
+
+Placeholder
+
+@player_list_76
+title: Demand: Resist against DGM, the state security courts.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-76"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-76"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-76","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Resist against DGM, the state security courts.
+
+Placeholder
+
+@player_list_77
+title: Demand: Bring the DGMs to the constitutional court!
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-77"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-77"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-77","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Bring the DGMs to the constitutional court!
+
+Placeholder
+
+@player_list_78
+title: Demand: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-78"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-78"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-78","player"); !}
+go-to: player_ministry_justice
+
+= Demand: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
+
+Placeholder
+
+@player_ministry_labor
+title: Demand Contested Affairs: Labour Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"labor"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="labor"); !}
+
+= Demand Contested Affairs: Labour Ministry
+
+Placeholder
+
+- @player_list_81: Implement a system of collective bargaining in major industries.
+- @player_list_82: Implement Workplace Democracy in state companies, KİTs, through worker advisory representatives.
+- @player_list_83: Partially legalize secondary strikes.
+- @player_list_84: Make health inspections in large factories mandatory.
+- @player_list_86: Increase legal protections for syndicate representatives.
+- @player_list_87: Ramp up workplace inspections.
+- @player_list_88: Ease the conditions for the recognition of syndicates for negotiations
+- @player_list_89: Expand the Social Security Institution, SSK.
+- @player_list_90: Launch a programme of state employment.
+- @player_list_92: Remove the right to lock out workers.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_81
+title: Demand: Implement a system of collective bargaining in major industries.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-81"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-81"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-81","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Implement a system of collective bargaining in major industries.
+
+Placeholder
+
+@player_list_82
+title: Demand: Implement Workplace Democracy in state companies, KİTs, through worker advisory representatives.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-82"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-82"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-82","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Implement Workplace Democracy in state companies, KİTs, through worker advisory representatives.
+
+Placeholder
+
+@player_list_83
+title: Demand: Partially legalize secondary strikes.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-83"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-83"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-83","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Partially legalize secondary strikes.
+
+Placeholder
+
+@player_list_84
+title: Demand: Make health inspections in large factories mandatory.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-84"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-84"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-84","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Make health inspections in large factories mandatory.
+
+Placeholder
+
+@player_list_86
+title: Demand: Increase legal protections for syndicate representatives.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-86"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-86"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-86","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Increase legal protections for syndicate representatives.
+
+Placeholder
+
+@player_list_87
+title: Demand: Ramp up workplace inspections.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-87"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-87"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-87","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Ramp up workplace inspections.
+
+Placeholder
+
+@player_list_88
+title: Demand: Ease the conditions for the recognition of syndicates for negotiations
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-88"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-88"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-88","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Ease the conditions for the recognition of syndicates for negotiations
+
+Placeholder
+
+@player_list_89
+title: Demand: Expand the Social Security Institution, SSK.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-89"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-89"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-89","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Expand the Social Security Institution, SSK.
+
+Placeholder
+
+@player_list_90
+title: Demand: Launch a programme of state employment.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-90"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-90"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-90","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Launch a programme of state employment.
+
+Placeholder
+
+@player_list_92
+title: Demand: Remove the right to lock out workers.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-92"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-92"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-92","player"); !}
+go-to: player_ministry_labor
+
+= Demand: Remove the right to lock out workers.
+
+Placeholder
+
+@player_ministry_defense
+title: Demand Contested Affairs: Defense Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"defense"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="defense"); !}
+
+= Demand Contested Affairs: Defense Ministry
+
+Placeholder
+
+- @player_list_95: Increase state support for the officers' investment fund, OYAK.
+- @player_list_96: Open investigations on the spending of the OYAK funds.
+- @player_list_98: Launch a campaign of inspections into the financial spending of the military.
+- @player_list_99: Modernize army factories.
+- @player_list_100: Form ASELSAN.
+- @player_list_101: Switch MKE deliveries towards internal production.
+- @player_list_102: Continue switching MKE deliveries towards internal production.
+- @player_list_103: Import military equipment directly from the West.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_95
+title: Demand: Increase state support for the officers' investment fund, OYAK.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-95"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-95"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-95","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Increase state support for the officers' investment fund, OYAK.
+
+Placeholder
+
+@player_list_96
+title: Demand: Open investigations on the spending of the OYAK funds.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-96"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-96"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-96","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Open investigations on the spending of the OYAK funds.
+
+Placeholder
+
+@player_list_98
+title: Demand: Launch a campaign of inspections into the financial spending of the military.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-98"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-98"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-98","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Launch a campaign of inspections into the financial spending of the military.
+
+Placeholder
+
+@player_list_99
+title: Demand: Modernize army factories.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-99"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-99"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-99","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Modernize army factories.
+
+Placeholder
+
+@player_list_100
+title: Demand: Form ASELSAN.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-100"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-100"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-100","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Form ASELSAN.
+
+Placeholder
+
+@player_list_101
+title: Demand: Switch MKE deliveries towards internal production.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-101"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-101"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-101","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Switch MKE deliveries towards internal production.
+
+Placeholder
+
+@player_list_102
+title: Demand: Continue switching MKE deliveries towards internal production.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-102"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-102"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-102","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Continue switching MKE deliveries towards internal production.
+
+Placeholder
+
+@player_list_103
+title: Demand: Import military equipment directly from the West.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-103"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-103"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-103","player"); !}
+go-to: player_ministry_defense
+
+= Demand: Import military equipment directly from the West.
+
+Placeholder
+
+@player_ministry_interior
+title: Demand Contested Affairs: Interior Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"interior"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="interior"); !}
+
+= Demand Contested Affairs: Interior Ministry
+
+Placeholder
+
+- @player_list_104: Improve the loyalty of the Interior Ministry forces.
+- @player_list_105: Recruit more police forces.
+- @player_list_106: Supplement the weaponry and the strength of the police forces.
+- @player_list_107: Investigate illegal activity among the far right.
+- @player_list_110: Clamp down on organized crime in the East.
+- @player_list_111: Declare OHAL(state of emergency) to put an end to the street fighting.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_104
+title: Demand: Improve the loyalty of the Interior Ministry forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-104"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-104"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-104","player"); !}
+go-to: player_ministry_interior
+
+= Demand: Improve the loyalty of the Interior Ministry forces.
+
+Placeholder
+
+@player_list_105
+title: Demand: Recruit more police forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-105"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-105"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-105","player"); !}
+go-to: player_ministry_interior
+
+= Demand: Recruit more police forces.
+
+Placeholder
+
+@player_list_106
+title: Demand: Supplement the weaponry and the strength of the police forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-106"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-106"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-106","player"); !}
+go-to: player_ministry_interior
+
+= Demand: Supplement the weaponry and the strength of the police forces.
+
+Placeholder
+
+@player_list_107
+title: Demand: Investigate illegal activity among the far right.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-107"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-107"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-107","player"); !}
+go-to: player_ministry_interior
+
+= Demand: Investigate illegal activity among the far right.
+
+Placeholder
+
+@player_list_110
+title: Demand: Clamp down on organized crime in the East.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-110"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-110"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-110","player"); !}
+go-to: player_ministry_interior
+
+= Demand: Clamp down on organized crime in the East.
+
+Placeholder
+
+@player_list_111
+title: Demand: Declare OHAL(state of emergency) to put an end to the street fighting.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-111"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-111"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-111","player"); !}
+go-to: player_ministry_interior
+
+= Demand: Declare OHAL(state of emergency) to put an end to the street fighting.
+
+Placeholder
+
+@player_ministry_womens_rights
+title: Demand Contested Affairs: Women's Rights
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"womens_rights"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="womens_rights"); !}
+
+= Demand Contested Affairs: Women's Rights
+
+Placeholder
+
+- @player_list_113: Legalize abortions on request, which used to be outlawed, until the 10th week of pregnancy.
+- @player_list_114: Extend the availability of abortions on request by offering them in all state-owned hospitals.
+- @player_list_116: Announce directives for establishing equal pay for equal work, regardless of gender.
+- @player_list_117: Standardize paid maternity leaves.
+- @player_list_118: Work on extending the standardized maternity leaves from 16 weeks to 24 weeks.
+- @player_list_119: Extend the maternity leaves to 24 weeks.
+- @player_list_120: Move to include housewives, housemaids and servants in the social security network.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_113
+title: Demand: Legalize abortions on request, which used to be outlawed, until the 10th week of pregnancy.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-113"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-113"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-113","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Legalize abortions on request, which used to be outlawed, until the 10th week of pregnancy.
+
+Placeholder
+
+@player_list_114
+title: Demand: Extend the availability of abortions on request by offering them in all state-owned hospitals.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-114"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-114"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-114","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Extend the availability of abortions on request by offering them in all state-owned hospitals.
+
+Placeholder
+
+@player_list_116
+title: Demand: Announce directives for establishing equal pay for equal work, regardless of gender.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-116"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-116"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-116","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Announce directives for establishing equal pay for equal work, regardless of gender.
+
+Placeholder
+
+@player_list_117
+title: Demand: Standardize paid maternity leaves.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-117"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-117"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-117","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Standardize paid maternity leaves.
+
+Placeholder
+
+@player_list_118
+title: Demand: Work on extending the standardized maternity leaves from 16 weeks to 24 weeks.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-118"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-118"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-118","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Work on extending the standardized maternity leaves from 16 weeks to 24 weeks.
+
+Placeholder
+
+@player_list_119
+title: Demand: Extend the maternity leaves to 24 weeks.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-119"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-119"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-119","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Extend the maternity leaves to 24 weeks.
+
+Placeholder
+
+@player_list_120
+title: Demand: Move to include housewives, housemaids and servants in the social security network.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-120"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-120"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-120","player"); !}
+go-to: player_ministry_womens_rights
+
+= Demand: Move to include housewives, housemaids and servants in the social security network.
+
+Placeholder
+
+@player_ministry_economic_democracy
+title: Demand Contested Affairs: People's Sector
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"economic_democracy"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="economic_democracy"); !}
+
+= Demand Contested Affairs: People's Sector
+
+Placeholder
+
+- @player_list_122: Reform MEYAK
+- @player_list_123: Found İYAK
+- @player_list_124: Reform İYAK
+- @player_list_125: Establish Cooperative Umbrella Organizations
+- @player_list_126: Integrate the People's Sector
+- @player_list_127: Found the Cooperative Bank
+- @player_list_128: Nationalize Mines
+- @player_list_129: Nationalize Petroleum
+- @player_list_130: Found HAYAT
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_122
+title: Demand: Reform MEYAK
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-122"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-122"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-122","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Reform MEYAK
+
+Placeholder
+
+@player_list_123
+title: Demand: Found İYAK
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-123"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-123"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-123","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Found İYAK
+
+Placeholder
+
+@player_list_124
+title: Demand: Reform İYAK
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-124"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-124"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-124","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Reform İYAK
+
+Placeholder
+
+@player_list_125
+title: Demand: Establish Cooperative Umbrella Organizations
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-125"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-125"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-125","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Establish Cooperative Umbrella Organizations
+
+Placeholder
+
+@player_list_126
+title: Demand: Integrate the People's Sector
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-126"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-126"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-126","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Integrate the People's Sector
+
+Placeholder
+
+@player_list_127
+title: Demand: Found the Cooperative Bank
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-127"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-127"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-127","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Found the Cooperative Bank
+
+Placeholder
+
+@player_list_128
+title: Demand: Nationalize Mines
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-128"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-128"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-128","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Nationalize Mines
+
+Placeholder
+
+@player_list_129
+title: Demand: Nationalize Petroleum
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-129"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-129"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-129","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Nationalize Petroleum
+
+Placeholder
+
+@player_list_130
+title: Demand: Found HAYAT
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-130"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-130"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-130","player"); !}
+go-to: player_ministry_economic_democracy
+
+= Demand: Found HAYAT
+
+Placeholder
+
+@player_ministry_kurdish_issue
+title: Demand Contested Affairs: Kurdish Affairs
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"kurdish_issue"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="kurdish_issue"); !}
+
+= Demand Contested Affairs: Kurdish Affairs
+
+Placeholder
+
+- @player_list_131: Agricultural efforts
+- @player_list_132: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
+- @player_list_133: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+- @player_list_134: Grant legal permission for regulated Kurdish printing and publishing activities.
+- @player_list_135: Ease restrictions on the right to hold meetings and demonstrations.
+- @player_list_136: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_131
+title: Demand: Agricultural efforts
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-131"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-131"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-131","player"); !}
+go-to: player_ministry_kurdish_issue
+
+= Demand: Agricultural efforts
+
+Placeholder
+
+@player_list_132
+title: Demand: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-132"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-132"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-132","player"); !}
+go-to: player_ministry_kurdish_issue
+
+= Demand: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
+
+Placeholder
+
+@player_list_133
+title: Demand: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-133"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-133"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-133","player"); !}
+go-to: player_ministry_kurdish_issue
+
+= Demand: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+
+Placeholder
+
+@player_list_134
+title: Demand: Grant legal permission for regulated Kurdish printing and publishing activities.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-134"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-134"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-134","player"); !}
+go-to: player_ministry_kurdish_issue
+
+= Demand: Grant legal permission for regulated Kurdish printing and publishing activities.
+
+Placeholder
+
+@player_list_135
+title: Demand: Ease restrictions on the right to hold meetings and demonstrations.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-135"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-135"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-135","player"); !}
+go-to: player_ministry_kurdish_issue
+
+= Demand: Ease restrictions on the right to hold meetings and demonstrations.
+
+Placeholder
+
+@player_list_136
+title: Demand: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-136"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-136"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-136","player"); !}
+go-to: player_ministry_kurdish_issue
+
+= Demand: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+
+Placeholder
+
+@player_ministry_religious_affairs_directorate
+title: Demand Contested Affairs: Directorate of Religious Affairs
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"religious_affairs_directorate"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="religious_affairs_directorate"); !}
+
+= Demand Contested Affairs: Directorate of Religious Affairs
+
+Placeholder
+
+- @player_list_137: Found the Office of Sectarian Affairs
+- @player_list_139: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+- @player_list_140: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+- @player_list_141: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
+- @claims: Return to ministries.
+- @powers: Return to the agreement.
+
+@player_list_137
+title: Demand: Found the Office of Sectarian Affairs
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-137"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-137"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-137","player"); !}
+go-to: player_ministry_religious_affairs_directorate
+
+= Demand: Found the Office of Sectarian Affairs
+
+Placeholder
+
+@player_list_139
+title: Demand: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-139"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-139"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-139","player"); !}
+go-to: player_ministry_religious_affairs_directorate
+
+= Demand: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+
+Placeholder
+
+@player_list_140
+title: Demand: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-140"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-140"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-140","player"); !}
+go-to: player_ministry_religious_affairs_directorate
+
+= Demand: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+
+Placeholder
+
+@player_list_141
+title: Demand: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-141"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-141"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-141","player"); !}
+go-to: player_ministry_religious_affairs_directorate
+
+= Demand: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
+
+Placeholder
+
+@concessions
+go-to: right_offer if {! var p=Q.coalition_formation.pending;return !!p&&!p.parties.includes("CHP"); !}; talks if {! var p=Q.coalition_formation.pending;return !!p&&(AnatolianCoalitions.forcedRefusal(Q)||(AnatolianCoalitions.nonpartisanProposal(Q)&&p.primeMinister!=="Sadi Irmak")); !}
+on-arrival: {! AnatolianCoalitions.prunePending(Q); !}
+title: Offer Concessions
+subtitle: CHP: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).player; !} +] contested affairs; [+ {! return AnatolianCoalitions.partnerLabel(Q); !} +]: [+ {! return AnatolianCoalitions.counts(Q.coalition_formation.pending.rights).partner; !} +]. Equal totals are required.
+new-page: true
+
+= Offer Concessions
+
+There are certain affairs that we can do without, and will concede them for this coalition's longevity.
+
+- @partner_koykent: Köykent Project
+- @partner_ministry_agriculture: Agriculture Ministry
+- @partner_ministry_economic: Economics and Trade Ministry
+- @partner_ministry_education: Education Ministry
+- @partner_ministry_finance: Finance Ministry
+- @partner_ministry_foreign: Foreign Affairs Ministry
+- @partner_ministry_industrial: Industry Ministry
+- @partner_ministry_justice: Justice Ministry
+- @partner_ministry_labor: Labour Ministry
+- @partner_ministry_defense: Defense Ministry
+- @partner_ministry_interior: Interior Ministry
+- @partner_ministry_womens_rights: Women's Rights
+- @partner_ministry_economic_democracy: People's Sector
+- @partner_ministry_kurdish_issue: Kurdish Affairs
+- @partner_ministry_religious_affairs_directorate: Directorate of Religious Affairs
+- @powers: Return to the agreement.
+
+@partner_ministry_agriculture
+title: Concede Contested Affairs: Agriculture Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"agriculture"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="agriculture"); !}
+
+= Concede Contested Affairs: Agriculture Ministry
+
+Placeholder
+
+- @partner_list_7: Purchase and redistribute land.
+- @partner_list_8: Support cooperative formation.
+- @partner_list_9: Re-legalize Poppy cultivation.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_4
+title: Köykent Project
+new-page: true
+go-to: concessions
+
+= Köykent Project
+
+Placeholder
+
+@partner_list_5
+title: Köykent Project
+new-page: true
+go-to: concessions
+
+= Köykent Project
+
+Placeholder
+
+@partner_list_6
+title: Köykent Project
+new-page: true
+go-to: concessions
+
+= Köykent Project
+
+Placeholder
+
+@partner_list_7
+title: Concede: Purchase and redistribute land.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-7"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-7"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-7","partner"); !}
+go-to: partner_ministry_agriculture
+
+= Concede: Purchase and redistribute land.
+
+Placeholder
+
+@partner_list_8
+title: Concede: Support cooperative formation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-8"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-8"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-8","partner"); !}
+go-to: partner_ministry_agriculture
+
+= Concede: Support cooperative formation.
+
+Placeholder
+
+@partner_list_9
+title: Concede: Re-legalize Poppy cultivation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-9"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-9"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-9","partner"); !}
+go-to: partner_ministry_agriculture
+
+= Concede: Re-legalize Poppy cultivation.
+
+Placeholder
+
+@partner_ministry_economic
+title: Concede Contested Affairs: Economics and Trade Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"economic"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="economic"); !}
+
+= Concede Contested Affairs: Economics and Trade Ministry
+
+Placeholder
+
+- @partner_list_10: Implement price controls to control the inflation.
+- @partner_list_11: Reach out to the global market for debt.
+- @partner_list_12: Initiate public works programs.
+- @partner_list_13: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.
+- @partner_list_14: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.
+- @partner_list_15: Reform the inefficient state corporations.
+- @partner_list_16: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+- @partner_list_17: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+- @partner_list_18: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_10
+title: Concede: Implement price controls to control the inflation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-10"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-10"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-10","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Implement price controls to control the inflation.
+
+Placeholder
+
+@partner_list_11
+title: Concede: Reach out to the global market for debt.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-11"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-11"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-11","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Reach out to the global market for debt.
+
+Placeholder
+
+@partner_list_12
+title: Concede: Initiate public works programs.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-12"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-12"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-12","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Initiate public works programs.
+
+Placeholder
+
+@partner_list_13
+title: Concede: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-13"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-13"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-13","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Implement restrictions on the import of commercial goods to decrease the flow of foreign currency outwards.
+
+Placeholder
+
+@partner_list_14
+title: Concede: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-14"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-14"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-14","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Incentivize Turkish companies through subsidies to sell their goods abroad and bring in fresh cash.
+
+Placeholder
+
+@partner_list_15
+title: Concede: Reform the inefficient state corporations.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-15"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-15"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-15","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Reform the inefficient state corporations.
+
+Placeholder
+
+@partner_list_16
+title: Concede: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-16"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-16"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-16","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Go on a standby with the IMF. Though we absolutely despise getting into dialogue with the international capitalists, the rampant inflation has left us no choice.
+
+Placeholder
+
+@partner_list_17
+title: Concede: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-17"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-17"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-17","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+
+Placeholder
+
+@partner_list_18
+title: Concede: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-18"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-18"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-18","partner"); !}
+go-to: partner_ministry_economic
+
+= Concede: Devalue the Turkish Lira to finally complete the transformation from an import substitute economy to an export economy. Our base and the unions are firmly against such a course of action.
+
+Placeholder
+
+@partner_ministry_education
+title: Concede Contested Affairs: Education Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"education"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="education"); !}
+
+= Concede Contested Affairs: Education Ministry
+
+Placeholder
+
+- @partner_list_19: Reform the curriculum.
+- @partner_list_20: Create adult education centers: Halk Eğitim.
+- @partner_list_21: Form student councils in universities and enable student representation.
+- @partner_list_22: Loosen restrictions on the teachers' freedom of expression in classrooms.
+- @partner_list_24: Increase scholarship and boarding school opportunities.
+- @partner_list_25: Cut funding to religious İmam Hatip schools.
+- @partner_list_26: Increase educational broadcasts from the state radio, TRT.
+- @partner_list_27: Finance greater accessibility to arts and sports opportunities.
+- @partner_list_28: Open more schools, especially in our isolated rural provinces.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_19
+title: Concede: Reform the curriculum.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-19"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-19"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-19","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Reform the curriculum.
+
+Placeholder
+
+@partner_list_20
+title: Concede: Create adult education centers: Halk Eğitim.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-20"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-20"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-20","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Create adult education centers: Halk Eğitim.
+
+Placeholder
+
+@partner_list_21
+title: Concede: Form student councils in universities and enable student representation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-21"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-21"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-21","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Form student councils in universities and enable student representation.
+
+Placeholder
+
+@partner_list_22
+title: Concede: Loosen restrictions on the teachers' freedom of expression in classrooms.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-22"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-22"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-22","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Loosen restrictions on the teachers' freedom of expression in classrooms.
+
+Placeholder
+
+@partner_list_23
+title: Köykent Project
+new-page: true
+go-to: concessions
+
+= Köykent Project
+
+Placeholder
+
+@partner_list_24
+title: Concede: Increase scholarship and boarding school opportunities.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-24"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-24"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-24","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Increase scholarship and boarding school opportunities.
+
+Placeholder
+
+@partner_list_25
+title: Concede: Cut funding to religious İmam Hatip schools.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-25"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-25"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-25","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Cut funding to religious İmam Hatip schools.
+
+Placeholder
+
+@partner_list_26
+title: Concede: Increase educational broadcasts from the state radio, TRT.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-26"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-26"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-26","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Increase educational broadcasts from the state radio, TRT.
+
+Placeholder
+
+@partner_list_27
+title: Concede: Finance greater accessibility to arts and sports opportunities.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-27"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-27"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-27","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Finance greater accessibility to arts and sports opportunities.
+
+Placeholder
+
+@partner_list_28
+title: Concede: Open more schools, especially in our isolated rural provinces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-28"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-28"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-28","partner"); !}
+go-to: partner_ministry_education
+
+= Concede: Open more schools, especially in our isolated rural provinces.
+
+Placeholder
+
+@partner_ministry_finance
+title: Concede Contested Affairs: Finance Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"finance"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="finance"); !}
+
+= Concede Contested Affairs: Finance Ministry
+
+Placeholder
+
+- @partner_list_29: Reform the tax brackets for different income levels.
+- @partner_list_30: Restrict speculative loans.
+- @partner_list_32: Temporarily freeze the funds of government agencies.
+- @partner_list_33: Borrow loans from the treasury.
+- @partner_list_34: Borrow domestic loans.
+- @partner_list_35: Increase inspections of tax payments.
+- @partner_list_36: Increase taxes on the rich.
+- @partner_list_37: Increase overall taxes.
+- @partner_list_38: Cut overall taxes.
+- @partner_list_39: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
+- @partner_list_40: Shift taxes from wealthy households to poorer households
+- @partner_list_41: Raise tariffs on luxury products.
+- @partner_list_42: Raise general tariffs
+- @partner_list_43: Lower general tariffs
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_29
+title: Concede: Reform the tax brackets for different income levels.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-29"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-29"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-29","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Reform the tax brackets for different income levels.
+
+Placeholder
+
+@partner_list_30
+title: Concede: Restrict speculative loans.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-30"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-30"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-30","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Restrict speculative loans.
+
+Placeholder
+
+@partner_list_32
+title: Concede: Temporarily freeze the funds of government agencies.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-32"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-32"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-32","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Temporarily freeze the funds of government agencies.
+
+Placeholder
+
+@partner_list_33
+title: Concede: Borrow loans from the treasury.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-33"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-33"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-33","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Borrow loans from the treasury.
+
+Placeholder
+
+@partner_list_34
+title: Concede: Borrow domestic loans.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-34"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-34"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-34","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Borrow domestic loans.
+
+Placeholder
+
+@partner_list_35
+title: Concede: Increase inspections of tax payments.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-35"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-35"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-35","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Increase inspections of tax payments.
+
+Placeholder
+
+@partner_list_36
+title: Concede: Increase taxes on the rich.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-36"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-36"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-36","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Increase taxes on the rich.
+
+Placeholder
+
+@partner_list_37
+title: Concede: Increase overall taxes.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-37"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-37"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-37","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Increase overall taxes.
+
+Placeholder
+
+@partner_list_38
+title: Concede: Cut overall taxes.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-38"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-38"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-38","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Cut overall taxes.
+
+Placeholder
+
+@partner_list_39
+title: Concede: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-39"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-39"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-39","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Make the tax system more progressive by raising taxes on the rich and cutting them for the poor.
+
+Placeholder
+
+@partner_list_40
+title: Concede: Shift taxes from wealthy households to poorer households
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-40"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-40"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-40","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Shift taxes from wealthy households to poorer households
+
+Placeholder
+
+@partner_list_41
+title: Concede: Raise tariffs on luxury products.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-41"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-41"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-41","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Raise tariffs on luxury products.
+
+Placeholder
+
+@partner_list_42
+title: Concede: Raise general tariffs
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-42"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-42"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-42","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Raise general tariffs
+
+Placeholder
+
+@partner_list_43
+title: Concede: Lower general tariffs
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-43"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-43"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-43","partner"); !}
+go-to: partner_ministry_finance
+
+= Concede: Lower general tariffs
+
+Placeholder
+
+@partner_ministry_foreign
+title: Concede Contested Affairs: Foreign Affairs Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"foreign"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="foreign"); !}
+
+= Concede Contested Affairs: Foreign Affairs Ministry
+
+Placeholder
+
+- @partner_list_44: Improve relations with the United States.
+- @partner_list_45: Improve relations with Western Europe.
+- @partner_list_46: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
+- @partner_list_47: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
+- @partner_list_48: Apply to join the European Economic Community, EEC!
+- @partner_list_49: As a reaction to the arms embargo, close the American bases on our soil!
+- @partner_list_50: Improve relations with the Soviet Union.
+- @partner_list_51: Sign a treaty of Turkish-Soviet Friendship.
+- @partner_list_52: Borrow loans from the Soviet Union.
+- @partner_list_53: Sign a treaty of economic cooperation.
+- @partner_list_54: Export agricultural products to the Eastern Bloc.
+- @partner_list_55: Purchase oil from Romania.
+- @partner_list_56: Improve relations with the Arabian States.
+- @partner_list_57: Foster trade with the Arabian States.
+- @partner_list_58: Increase economic ties with the Pan-Arabists.
+- @partner_list_59: Arrange sanctions-bypassing trade with Pan-Arab states
+- @partner_list_60: Increase economic ties with the Gulf Monarchies.
+- @partner_list_61: Negotiate labour migration agreements with Gulf states
+- @partner_list_62: Form official relations with the Palestine Liberation Organization, PLO.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_44
+title: Concede: Improve relations with the United States.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-44"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-44"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-44","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Improve relations with the United States.
+
+Placeholder
+
+@partner_list_45
+title: Concede: Improve relations with Western Europe.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-45"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-45"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-45","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Improve relations with Western Europe.
+
+Placeholder
+
+@partner_list_46
+title: Concede: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-46"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-46"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-46","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Negotiate the Güneş Plan for the creation of a confederation in Cyprus with the US.
+
+Placeholder
+
+@partner_list_47
+title: Concede: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-47"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-47"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-47","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Negotiate the Denktaş Plan for the creation of a confederation in Cyprus with the US.
+
+Placeholder
+
+@partner_list_48
+title: Concede: Apply to join the European Economic Community, EEC!
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-48"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-48"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-48","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Apply to join the European Economic Community, EEC!
+
+Placeholder
+
+@partner_list_49
+title: Concede: As a reaction to the arms embargo, close the American bases on our soil!
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-49"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-49"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-49","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: As a reaction to the arms embargo, close the American bases on our soil!
+
+Placeholder
+
+@partner_list_50
+title: Concede: Improve relations with the Soviet Union.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-50"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-50"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-50","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Improve relations with the Soviet Union.
+
+Placeholder
+
+@partner_list_51
+title: Concede: Sign a treaty of Turkish-Soviet Friendship.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-51"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-51"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-51","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Sign a treaty of Turkish-Soviet Friendship.
+
+Placeholder
+
+@partner_list_52
+title: Concede: Borrow loans from the Soviet Union.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-52"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-52"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-52","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Borrow loans from the Soviet Union.
+
+Placeholder
+
+@partner_list_53
+title: Concede: Sign a treaty of economic cooperation.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-53"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-53"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-53","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Sign a treaty of economic cooperation.
+
+Placeholder
+
+@partner_list_54
+title: Concede: Export agricultural products to the Eastern Bloc.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-54"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-54"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-54","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Export agricultural products to the Eastern Bloc.
+
+Placeholder
+
+@partner_list_55
+title: Concede: Purchase oil from Romania.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-55"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-55"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-55","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Purchase oil from Romania.
+
+Placeholder
+
+@partner_list_56
+title: Concede: Improve relations with the Arabian States.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-56"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-56"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-56","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Improve relations with the Arabian States.
+
+Placeholder
+
+@partner_list_57
+title: Concede: Foster trade with the Arabian States.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-57"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-57"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-57","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Foster trade with the Arabian States.
+
+Placeholder
+
+@partner_list_58
+title: Concede: Increase economic ties with the Pan-Arabists.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-58"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-58"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-58","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Increase economic ties with the Pan-Arabists.
+
+Placeholder
+
+@partner_list_59
+title: Concede: Arrange sanctions-bypassing trade with Pan-Arab states
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-59"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-59"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-59","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Arrange sanctions-bypassing trade with Pan-Arab states
+
+Placeholder
+
+@partner_list_60
+title: Concede: Increase economic ties with the Gulf Monarchies.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-60"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-60"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-60","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Increase economic ties with the Gulf Monarchies.
+
+Placeholder
+
+@partner_list_61
+title: Concede: Negotiate labour migration agreements with Gulf states
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-61"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-61"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-61","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Negotiate labour migration agreements with Gulf states
+
+Placeholder
+
+@partner_list_62
+title: Concede: Form official relations with the Palestine Liberation Organization, PLO.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-62"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-62"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-62","partner"); !}
+go-to: partner_ministry_foreign
+
+= Concede: Form official relations with the Palestine Liberation Organization, PLO.
+
+Placeholder
+
+@partner_ministry_industrial
+title: Concede Contested Affairs: Industry Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"industrial"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="industrial"); !}
+
+= Concede Contested Affairs: Industry Ministry
+
+Placeholder
+
+- @partner_list_63: Basic industrialization push.
+- @partner_list_64: Divert industrial production away from consumer goods and towards capital and assembly products.
+- @partner_list_65: Move towards high-tech products with great margins of profit such as electronics.
+- @partner_list_66: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+- @partner_list_67: Concentrate small and medium-sized enterprises into cooperatives.
+- @partner_list_68: Shift beneficial loans towards exporting big industry.
+- @partner_list_69: Restart investment for railway construction.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_63
+title: Concede: Basic industrialization push.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-63"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-63"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-63","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Basic industrialization push.
+
+Placeholder
+
+@partner_list_64
+title: Concede: Divert industrial production away from consumer goods and towards capital and assembly products.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-64"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-64"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-64","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Divert industrial production away from consumer goods and towards capital and assembly products.
+
+Placeholder
+
+@partner_list_65
+title: Concede: Move towards high-tech products with great margins of profit such as electronics.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-65"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-65"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-65","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Move towards high-tech products with great margins of profit such as electronics.
+
+Placeholder
+
+@partner_list_66
+title: Concede: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-66"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-66"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-66","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Employ workers at the maximum level in the state-owned enterprises, KİTs.
+
+Placeholder
+
+@partner_list_67
+title: Concede: Concentrate small and medium-sized enterprises into cooperatives.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-67"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-67"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-67","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Concentrate small and medium-sized enterprises into cooperatives.
+
+Placeholder
+
+@partner_list_68
+title: Concede: Shift beneficial loans towards exporting big industry.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-68"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-68"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-68","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Shift beneficial loans towards exporting big industry.
+
+Placeholder
+
+@partner_list_69
+title: Concede: Restart investment for railway construction.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-69"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-69"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-69","partner"); !}
+go-to: partner_ministry_industrial
+
+= Concede: Restart investment for railway construction.
+
+Placeholder
+
+@partner_list_70
+title: Köykent Project
+new-page: true
+go-to: concessions
+
+= Köykent Project
+
+Placeholder
+
+@partner_ministry_justice
+title: Concede Contested Affairs: Justice Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"justice"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="justice"); !}
+
+= Concede Contested Affairs: Justice Ministry
+
+Placeholder
+
+- @partner_list_71: Launch a general amnesty.
+- @partner_list_72: Release a circular note of moderation in political cases.
+- @partner_list_73: Prioritize the investigation of right winger political violence.
+- @partner_list_74: Work on improving the treatment of political prisoners in prisons.
+- @partner_list_75: Investigate accusations of police violence and torture.
+- @partner_list_76: Resist against DGM, the state security courts.
+- @partner_list_77: Bring the DGMs to the constitutional court!
+- @partner_list_78: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_71
+title: Concede: Launch a general amnesty.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-71"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-71"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-71","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Launch a general amnesty.
+
+Placeholder
+
+@partner_list_72
+title: Concede: Release a circular note of moderation in political cases.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-72"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-72"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-72","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Release a circular note of moderation in political cases.
+
+Placeholder
+
+@partner_list_73
+title: Concede: Prioritize the investigation of right winger political violence.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-73"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-73"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-73","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Prioritize the investigation of right winger political violence.
+
+Placeholder
+
+@partner_list_74
+title: Concede: Work on improving the treatment of political prisoners in prisons.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-74"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-74"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-74","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Work on improving the treatment of political prisoners in prisons.
+
+Placeholder
+
+@partner_list_75
+title: Concede: Investigate accusations of police violence and torture.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-75"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-75"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-75","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Investigate accusations of police violence and torture.
+
+Placeholder
+
+@partner_list_76
+title: Concede: Resist against DGM, the state security courts.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-76"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-76"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-76","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Resist against DGM, the state security courts.
+
+Placeholder
+
+@partner_list_77
+title: Concede: Bring the DGMs to the constitutional court!
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-77"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-77"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-77","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Bring the DGMs to the constitutional court!
+
+Placeholder
+
+@partner_list_78
+title: Concede: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-78"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-78"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-78","partner"); !}
+go-to: partner_ministry_justice
+
+= Concede: Persecute the anti communist KMD which has been used as a tool of fearmongering against moderate leftists for a long time.
+
+Placeholder
+
+@partner_ministry_labor
+title: Concede Contested Affairs: Labour Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"labor"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="labor"); !}
+
+= Concede Contested Affairs: Labour Ministry
+
+Placeholder
+
+- @partner_list_81: Implement a system of collective bargaining in major industries.
+- @partner_list_82: Implement Workplace Democracy in state companies, KİTs, through worker advisory representatives.
+- @partner_list_83: Partially legalize secondary strikes.
+- @partner_list_84: Make health inspections in large factories mandatory.
+- @partner_list_86: Increase legal protections for syndicate representatives.
+- @partner_list_87: Ramp up workplace inspections.
+- @partner_list_88: Ease the conditions for the recognition of syndicates for negotiations
+- @partner_list_89: Expand the Social Security Institution, SSK.
+- @partner_list_90: Launch a programme of state employment.
+- @partner_list_92: Remove the right to lock out workers.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_81
+title: Concede: Implement a system of collective bargaining in major industries.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-81"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-81"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-81","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Implement a system of collective bargaining in major industries.
+
+Placeholder
+
+@partner_list_82
+title: Concede: Implement Workplace Democracy in state companies, KİTs, through worker advisory representatives.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-82"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-82"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-82","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Implement Workplace Democracy in state companies, KİTs, through worker advisory representatives.
+
+Placeholder
+
+@partner_list_83
+title: Concede: Partially legalize secondary strikes.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-83"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-83"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-83","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Partially legalize secondary strikes.
+
+Placeholder
+
+@partner_list_84
+title: Concede: Make health inspections in large factories mandatory.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-84"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-84"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-84","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Make health inspections in large factories mandatory.
+
+Placeholder
+
+@partner_list_86
+title: Concede: Increase legal protections for syndicate representatives.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-86"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-86"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-86","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Increase legal protections for syndicate representatives.
+
+Placeholder
+
+@partner_list_87
+title: Concede: Ramp up workplace inspections.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-87"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-87"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-87","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Ramp up workplace inspections.
+
+Placeholder
+
+@partner_list_88
+title: Concede: Ease the conditions for the recognition of syndicates for negotiations
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-88"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-88"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-88","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Ease the conditions for the recognition of syndicates for negotiations
+
+Placeholder
+
+@partner_list_89
+title: Concede: Expand the Social Security Institution, SSK.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-89"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-89"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-89","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Expand the Social Security Institution, SSK.
+
+Placeholder
+
+@partner_list_90
+title: Concede: Launch a programme of state employment.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-90"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-90"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-90","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Launch a programme of state employment.
+
+Placeholder
+
+@partner_list_92
+title: Concede: Remove the right to lock out workers.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-92"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-92"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-92","partner"); !}
+go-to: partner_ministry_labor
+
+= Concede: Remove the right to lock out workers.
+
+Placeholder
+
+@partner_ministry_defense
+title: Concede Contested Affairs: Defense Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"defense"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="defense"); !}
+
+= Concede Contested Affairs: Defense Ministry
+
+Placeholder
+
+- @partner_list_95: Increase state support for the officers' investment fund, OYAK.
+- @partner_list_96: Open investigations on the spending of the OYAK funds.
+- @partner_list_98: Launch a campaign of inspections into the financial spending of the military.
+- @partner_list_99: Modernize army factories.
+- @partner_list_100: Form ASELSAN.
+- @partner_list_101: Switch MKE deliveries towards internal production.
+- @partner_list_102: Continue switching MKE deliveries towards internal production.
+- @partner_list_103: Import military equipment directly from the West.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_95
+title: Concede: Increase state support for the officers' investment fund, OYAK.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-95"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-95"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-95","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Increase state support for the officers' investment fund, OYAK.
+
+Placeholder
+
+@partner_list_96
+title: Concede: Open investigations on the spending of the OYAK funds.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-96"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-96"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-96","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Open investigations on the spending of the OYAK funds.
+
+Placeholder
+
+@partner_list_98
+title: Concede: Launch a campaign of inspections into the financial spending of the military.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-98"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-98"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-98","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Launch a campaign of inspections into the financial spending of the military.
+
+Placeholder
+
+@partner_list_99
+title: Concede: Modernize army factories.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-99"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-99"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-99","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Modernize army factories.
+
+Placeholder
+
+@partner_list_100
+title: Concede: Form ASELSAN.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-100"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-100"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-100","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Form ASELSAN.
+
+Placeholder
+
+@partner_list_101
+title: Concede: Switch MKE deliveries towards internal production.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-101"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-101"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-101","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Switch MKE deliveries towards internal production.
+
+Placeholder
+
+@partner_list_102
+title: Concede: Continue switching MKE deliveries towards internal production.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-102"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-102"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-102","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Continue switching MKE deliveries towards internal production.
+
+Placeholder
+
+@partner_list_103
+title: Concede: Import military equipment directly from the West.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-103"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-103"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-103","partner"); !}
+go-to: partner_ministry_defense
+
+= Concede: Import military equipment directly from the West.
+
+Placeholder
+
+@partner_ministry_interior
+title: Concede Contested Affairs: Interior Ministry
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"interior"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="interior"); !}
+
+= Concede Contested Affairs: Interior Ministry
+
+Placeholder
+
+- @partner_list_104: Improve the loyalty of the Interior Ministry forces.
+- @partner_list_105: Recruit more police forces.
+- @partner_list_106: Supplement the weaponry and the strength of the police forces.
+- @partner_list_107: Investigate illegal activity among the far right.
+- @partner_list_110: Clamp down on organized crime in the East.
+- @partner_list_111: Declare OHAL(state of emergency) to put an end to the street fighting.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_104
+title: Concede: Improve the loyalty of the Interior Ministry forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-104"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-104"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-104","partner"); !}
+go-to: partner_ministry_interior
+
+= Concede: Improve the loyalty of the Interior Ministry forces.
+
+Placeholder
+
+@partner_list_105
+title: Concede: Recruit more police forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-105"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-105"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-105","partner"); !}
+go-to: partner_ministry_interior
+
+= Concede: Recruit more police forces.
+
+Placeholder
+
+@partner_list_106
+title: Concede: Supplement the weaponry and the strength of the police forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-106"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-106"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-106","partner"); !}
+go-to: partner_ministry_interior
+
+= Concede: Supplement the weaponry and the strength of the police forces.
+
+Placeholder
+
+@partner_list_107
+title: Concede: Investigate illegal activity among the far right.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-107"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-107"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-107","partner"); !}
+go-to: partner_ministry_interior
+
+= Concede: Investigate illegal activity among the far right.
+
+Placeholder
+
+@partner_list_110
+title: Concede: Clamp down on organized crime in the East.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-110"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-110"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-110","partner"); !}
+go-to: partner_ministry_interior
+
+= Concede: Clamp down on organized crime in the East.
+
+Placeholder
+
+@partner_list_111
+title: Concede: Declare OHAL(state of emergency) to put an end to the street fighting.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-111"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-111"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-111","partner"); !}
+go-to: partner_ministry_interior
+
+= Concede: Declare OHAL(state of emergency) to put an end to the street fighting.
+
+Placeholder
+
+@partner_ministry_womens_rights
+title: Concede Contested Affairs: Women's Rights
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"womens_rights"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="womens_rights"); !}
+
+= Concede Contested Affairs: Women's Rights
+
+Placeholder
+
+- @partner_list_113: Legalize abortions on request, which used to be outlawed, until the 10th week of pregnancy.
+- @partner_list_114: Extend the availability of abortions on request by offering them in all state-owned hospitals.
+- @partner_list_116: Announce directives for establishing equal pay for equal work, regardless of gender.
+- @partner_list_117: Standardize paid maternity leaves.
+- @partner_list_118: Work on extending the standardized maternity leaves from 16 weeks to 24 weeks.
+- @partner_list_119: Extend the maternity leaves to 24 weeks.
+- @partner_list_120: Move to include housewives, housemaids and servants in the social security network.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_113
+title: Concede: Legalize abortions on request, which used to be outlawed, until the 10th week of pregnancy.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-113"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-113"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-113","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Legalize abortions on request, which used to be outlawed, until the 10th week of pregnancy.
+
+Placeholder
+
+@partner_list_114
+title: Concede: Extend the availability of abortions on request by offering them in all state-owned hospitals.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-114"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-114"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-114","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Extend the availability of abortions on request by offering them in all state-owned hospitals.
+
+Placeholder
+
+@partner_list_116
+title: Concede: Announce directives for establishing equal pay for equal work, regardless of gender.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-116"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-116"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-116","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Announce directives for establishing equal pay for equal work, regardless of gender.
+
+Placeholder
+
+@partner_list_117
+title: Concede: Standardize paid maternity leaves.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-117"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-117"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-117","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Standardize paid maternity leaves.
+
+Placeholder
+
+@partner_list_118
+title: Concede: Work on extending the standardized maternity leaves from 16 weeks to 24 weeks.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-118"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-118"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-118","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Work on extending the standardized maternity leaves from 16 weeks to 24 weeks.
+
+Placeholder
+
+@partner_list_119
+title: Concede: Extend the maternity leaves to 24 weeks.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-119"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-119"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-119","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Extend the maternity leaves to 24 weeks.
+
+Placeholder
+
+@partner_list_120
+title: Concede: Move to include housewives, housemaids and servants in the social security network.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-120"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-120"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-120","partner"); !}
+go-to: partner_ministry_womens_rights
+
+= Concede: Move to include housewives, housemaids and servants in the social security network.
+
+Placeholder
+
+@partner_ministry_economic_democracy
+title: Concede Contested Affairs: People's Sector
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"economic_democracy"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="economic_democracy"); !}
+
+= Concede Contested Affairs: People's Sector
+
+Placeholder
+
+- @partner_list_122: Reform MEYAK
+- @partner_list_123: Found İYAK
+- @partner_list_124: Reform İYAK
+- @partner_list_125: Establish Cooperative Umbrella Organizations
+- @partner_list_126: Integrate the People's Sector
+- @partner_list_127: Found the Cooperative Bank
+- @partner_list_128: Nationalize Mines
+- @partner_list_129: Nationalize Petroleum
+- @partner_list_130: Found HAYAT
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_122
+title: Concede: Reform MEYAK
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-122"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-122"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-122","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Reform MEYAK
+
+Placeholder
+
+@partner_list_123
+title: Concede: Found İYAK
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-123"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-123"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-123","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Found İYAK
+
+Placeholder
+
+@partner_list_124
+title: Concede: Reform İYAK
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-124"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-124"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-124","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Reform İYAK
+
+Placeholder
+
+@partner_list_125
+title: Concede: Establish Cooperative Umbrella Organizations
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-125"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-125"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-125","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Establish Cooperative Umbrella Organizations
+
+Placeholder
+
+@partner_list_126
+title: Concede: Integrate the People's Sector
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-126"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-126"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-126","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Integrate the People's Sector
+
+Placeholder
+
+@partner_list_127
+title: Concede: Found the Cooperative Bank
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-127"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-127"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-127","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Found the Cooperative Bank
+
+Placeholder
+
+@partner_list_128
+title: Concede: Nationalize Mines
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-128"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-128"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-128","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Nationalize Mines
+
+Placeholder
+
+@partner_list_129
+title: Concede: Nationalize Petroleum
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-129"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-129"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-129","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Nationalize Petroleum
+
+Placeholder
+
+@partner_list_130
+title: Concede: Found HAYAT
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-130"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-130"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-130","partner"); !}
+go-to: partner_ministry_economic_democracy
+
+= Concede: Found HAYAT
+
+Placeholder
+
+@partner_ministry_kurdish_issue
+title: Concede Contested Affairs: Kurdish Affairs
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"kurdish_issue"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="kurdish_issue"); !}
+
+= Concede Contested Affairs: Kurdish Affairs
+
+Placeholder
+
+- @partner_list_131: Agricultural efforts
+- @partner_list_132: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
+- @partner_list_133: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+- @partner_list_134: Grant legal permission for regulated Kurdish printing and publishing activities.
+- @partner_list_135: Ease restrictions on the right to hold meetings and demonstrations.
+- @partner_list_136: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_131
+title: Concede: Agricultural efforts
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-131"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-131"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-131","partner"); !}
+go-to: partner_ministry_kurdish_issue
+
+= Concede: Agricultural efforts
+
+Placeholder
+
+@partner_list_132
+title: Concede: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-132"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-132"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-132","partner"); !}
+go-to: partner_ministry_kurdish_issue
+
+= Concede: Remove administrative and legal obstacles to Kurdish citizens forming and organizing Kurdish associations.
+
+Placeholder
+
+@partner_list_133
+title: Concede: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-133"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-133"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-133","partner"); !}
+go-to: partner_ministry_kurdish_issue
+
+= Concede: Lift restrictions on discussing the Kurdish Issue in the public sphere.
+
+Placeholder
+
+@partner_list_134
+title: Concede: Grant legal permission for regulated Kurdish printing and publishing activities.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-134"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-134"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-134","partner"); !}
+go-to: partner_ministry_kurdish_issue
+
+= Concede: Grant legal permission for regulated Kurdish printing and publishing activities.
+
+Placeholder
+
+@partner_list_135
+title: Concede: Ease restrictions on the right to hold meetings and demonstrations.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-135"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-135"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-135","partner"); !}
+go-to: partner_ministry_kurdish_issue
+
+= Concede: Ease restrictions on the right to hold meetings and demonstrations.
+
+Placeholder
+
+@partner_list_136
+title: Concede: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-136"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-136"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-136","partner"); !}
+go-to: partner_ministry_kurdish_issue
+
+= Concede: Strengthen protection and oversight against unlawful violence by public officials and security forces.
+
+Placeholder
+
+@partner_ministry_religious_affairs_directorate
+title: Concede Contested Affairs: Directorate of Religious Affairs
+subtitle: [+ {! return AnatolianCoalitions.groupSubtitle(Q,"religious_affairs_directorate"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.powerGroups(Q).some(g=>g.id==="religious_affairs_directorate"); !}
+
+= Concede Contested Affairs: Directorate of Religious Affairs
+
+Placeholder
+
+- @partner_list_137: Found the Office of Sectarian Affairs
+- @partner_list_139: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+- @partner_list_140: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+- @partner_list_141: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
+- @concessions: Return to ministries.
+- @powers: Return to the agreement.
+
+@partner_list_137
+title: Concede: Found the Office of Sectarian Affairs
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-137"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-137"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-137","partner"); !}
+go-to: partner_ministry_religious_affairs_directorate
+
+= Concede: Found the Office of Sectarian Affairs
+
+Placeholder
+
+@partner_list_139
+title: Concede: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-139"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-139"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-139","partner"); !}
+go-to: partner_ministry_religious_affairs_directorate
+
+= Concede: Start admitting women to positions as preachers and professors of Islamic jurisprudence.
+
+Placeholder
+
+@partner_list_140
+title: Concede: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-140"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-140"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-140","partner"); !}
+go-to: partner_ministry_religious_affairs_directorate
+
+= Concede: Increase the recruitment of women for positions as preachers and instructors of Islamic jurisprudence.
+
+Placeholder
+
+@partner_list_141
+title: Concede: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
+subtitle: [+ {! return AnatolianCoalitions.ownerText(Q,"list-141"); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.yellow(Q).some(a=>a.id==="list-141"); !}
+on-arrival: {! AnatolianCoalitions.allocate(Q,"list-141","partner"); !}
+go-to: partner_ministry_religious_affairs_directorate
+
+= Concede: Bring Religious Affairs Publications into Compliance with the Laws of the Republic
+
+Placeholder
+
+@player_koykent
+title: Köykent Project
+subtitle: [+ {! return AnatolianCoalitions.projectSubtitle(Q); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.projectAvailable(Q); !}
+on-arrival: {! AnatolianCoalitions.allocateProject(Q,"player"); !}
+go-to: claims
+
+= Köykent Project
+
+Placeholder
+
+@partner_koykent
+title: Köykent Project
+subtitle: [+ {! return AnatolianCoalitions.projectSubtitle(Q); !} +]
+new-page: true
+view-if: {! return AnatolianCoalitions.projectAvailable(Q); !}
+on-arrival: {! AnatolianCoalitions.allocateProject(Q,"partner"); !}
+go-to: concessions
+
+= Köykent Project
+
+Placeholder
+
+@sign
+title: The Coalition Agreement Is Signed
+new-page: true
+choose-if: {! return AnatolianCoalitions.agreementReady(Q); !}
+unavailable-subtitle: Every affair demanded requires one affair conceded. Zero for zero is allowed.
+on-arrival: {! AnatolianCoalitions.form(Q); !}
+
+= The Coalition Agreement Is Signed
+
+[+ {! return AnatolianCoalitions.agreementText(Q); !} +]
+
+[+ {! return AnatolianCoalitions.cabinetHtml(Q); !} +]
+
+- @root: Begin governing.
+
+@formed
+title: Government Formation Is Complete
+new-page: true
+
+= Government Formation Is Complete
+
+Placeholder
+
+- @root: Return to other affairs.
+
