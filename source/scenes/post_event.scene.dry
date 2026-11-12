@@ -639,6 +639,12 @@ if (turnAdvanced && Q.land_distribution_pending_stage > 0 &&
         Q.land_reform_progress = Math.max(Number(Q.land_reform_progress)||0, finishedLandStage);
         Q.unemployment_modifier -= 0.5;
         Q.growth_modifier += 0.4;
+        // Each completed stage enlarges productive supply and lowers import dependence.
+        // Pay these effects at completion, never at the beginning of construction.
+        Q.agriculture_modifier = AnatolianRules.number(Q.agriculture_modifier) + 1.5;
+        Q.inflation_modifier = AnatolianRules.number(Q.inflation_modifier) - 0.8;
+        Q.forex_pressure = Math.max(0,AnatolianRules.number(Q.forex_pressure)-2);
+        Q.forex_pressure_drift = AnatolianRules.number(Q.forex_pressure_drift)-0.6;
         Q.rural_chp += 4;
         Q.AP_relation -= 5;
         Q.DP_relation -= 5;
