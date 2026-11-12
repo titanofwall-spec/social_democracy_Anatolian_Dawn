@@ -2658,10 +2658,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 1
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -15729,10 +15732,13 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "insert",
-              "insert": 1
-            }
+            "content": [
+              {
+                "type": "insert",
+                "insert": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -20788,17 +20794,18 @@
               {
                 "type": "conditional",
                 "content": [
-                  "",
+                  "THKP-C Organization Status: ",
                   {
-                    "type": "magic",
-                    "content": "<span class=\"tooltip-text\" title=\"THKP-C (People's Liberation Party-Front of Turkey) is a far-left revolutionary organization.\">THKP-C</span>"
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 1
                   },
-                  " Strength: ",
                   {
-                    "type": "insert",
-                    "insert": 1
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 2
                   },
-                  " thousand "
+                  " "
                 ],
                 "predicate": 0
               },
@@ -20811,20 +20818,14 @@
               {
                 "type": "conditional",
                 "content": [
-                  "THKP-C Legal Status: ",
+                  "THKP-C Strength: ",
                   {
-                    "type": "conditional",
-                    "content": "Banned ",
-                    "predicate": 3
+                    "type": "insert",
+                    "insert": 4
                   },
-                  {
-                    "type": "conditional",
-                    "content": "Legal ",
-                    "predicate": 4
-                  },
-                  " "
+                  " thousand "
                 ],
-                "predicate": 2
+                "predicate": 3
               },
               ""
             ]
@@ -20853,17 +20854,18 @@
               {
                 "type": "conditional",
                 "content": [
-                  "",
+                  "DEV-YOL Organization Status: ",
                   {
-                    "type": "magic",
-                    "content": "<span class=\"tooltip-text\" title=\"DEV-YOL (Revolutionary Path) is a left-wing militant organization.\">DEV-YOL</span>"
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 8
                   },
-                  " Strength: ",
                   {
-                    "type": "insert",
-                    "insert": 8
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 9
                   },
-                  " thousand "
+                  " "
                 ],
                 "predicate": 7
               },
@@ -20876,20 +20878,14 @@
               {
                 "type": "conditional",
                 "content": [
-                  "DEV-YOL Legal Status: ",
+                  "DEV-YOL Strength: ",
                   {
-                    "type": "conditional",
-                    "content": "Banned ",
-                    "predicate": 10
+                    "type": "insert",
+                    "insert": 11
                   },
-                  {
-                    "type": "conditional",
-                    "content": "Legal ",
-                    "predicate": 11
-                  },
-                  " "
+                  " thousand "
                 ],
-                "predicate": 9
+                "predicate": 10
               },
               ""
             ]
@@ -20918,17 +20914,18 @@
               {
                 "type": "conditional",
                 "content": [
-                  "",
+                  "TKP/ML Organization Status: ",
                   {
-                    "type": "magic",
-                    "content": "<span class=\"tooltip-text\" title=\"TKP/ML TKP'ML is a Maoist terrorist group formed by İbrahim Kaypakkaya.\">TKP/ML</span>"
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 15
                   },
-                  " Strength: ",
                   {
-                    "type": "insert",
-                    "insert": 15
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 16
                   },
-                  " thousand "
+                  " "
                 ],
                 "predicate": 14
               },
@@ -20941,20 +20938,14 @@
               {
                 "type": "conditional",
                 "content": [
-                  "TKP/ML Legal Status: ",
+                  "TKP/ML Strength: ",
                   {
-                    "type": "conditional",
-                    "content": "Banned ",
-                    "predicate": 17
+                    "type": "insert",
+                    "insert": 18
                   },
-                  {
-                    "type": "conditional",
-                    "content": "Legal ",
-                    "predicate": 18
-                  },
-                  " "
+                  " thousand "
                 ],
-                "predicate": 16
+                "predicate": 17
               },
               ""
             ]
@@ -20989,12 +20980,12 @@
           },
           {
             "type": "paragraph",
+            "content": "Police Forces Organization Status: State institution"
+          },
+          {
+            "type": "paragraph",
             "content": [
-              {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"Police forces maintain order and state security.\">Police Forces</span>"
-              },
-              " Strength: ",
+              "Police Forces Strength: ",
               {
                 "type": "insert",
                 "insert": 21
@@ -21037,14 +21028,27 @@
           {
             "type": "paragraph",
             "content": [
+              "Grey Wolves Organization Status: ",
               {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.\">Grey Wolves</span>"
+                "type": "conditional",
+                "content": "Banned ",
+                "predicate": 24
               },
-              " Strength: ",
+              {
+                "type": "conditional",
+                "content": "Legal ",
+                "predicate": 25
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "Grey Wolves Strength: ",
               {
                 "type": "insert",
-                "insert": 24
+                "insert": 26
               },
               " thousand"
             ]
@@ -21055,7 +21059,7 @@
               "Grey Wolves Militarization: ",
               {
                 "type": "insert",
-                "insert": 25
+                "insert": 27
               },
               ""
             ]
@@ -21066,19 +21070,38 @@
               {
                 "type": "conditional",
                 "content": [
-                  "",
+                  "Raiders Organization Status: ",
                   {
-                    "type": "magic",
-                    "content": "<span class=\"tooltip-text\" title=\"Raiders are a far-right paramilitary organization.\">Raiders</span>"
+                    "type": "conditional",
+                    "content": "Banned ",
+                    "predicate": 29
                   },
-                  " Strength: ",
+                  {
+                    "type": "conditional",
+                    "content": "Legal ",
+                    "predicate": 30
+                  },
+                  " "
+                ],
+                "predicate": 28
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "Raiders Strength: ",
                   {
                     "type": "insert",
-                    "insert": 27
+                    "insert": 32
                   },
                   " thousand "
                 ],
-                "predicate": 26
+                "predicate": 31
               },
               ""
             ]
@@ -21092,11 +21115,11 @@
                   "Raiders Militarization: ",
                   {
                     "type": "insert",
-                    "insert": 29
+                    "insert": 34
                   },
                   " "
                 ],
-                "predicate": 28
+                "predicate": 33
               },
               ""
             ]
@@ -21104,14 +21127,27 @@
           {
             "type": "paragraph",
             "content": [
+              "TİT Organization Status: ",
               {
-                "type": "magic",
-                "content": "<span class=\"tooltip-text\" title=\"Turkish Revenge Brigade (TİT) is a highly militant far-right organization.\">Turkish Revenge Brigade (TİT)</span>"
+                "type": "conditional",
+                "content": "Banned ",
+                "predicate": 35
               },
-              " Strength: ",
+              {
+                "type": "conditional",
+                "content": "Legal ",
+                "predicate": 36
+              },
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
+              "TİT Strength: ",
               {
                 "type": "insert",
-                "insert": 30
+                "insert": 37
               },
               " thousand"
             ]
@@ -21122,7 +21158,7 @@
               "TİT Militarization: ",
               {
                 "type": "insert",
-                "insert": 31
+                "insert": 38
               },
               ""
             ]
@@ -21132,12 +21168,12 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 32
+                "insert": 39
               },
               ": ",
               {
                 "type": "insert",
-                "insert": 33
+                "insert": 40
               },
               "%"
             ]
@@ -21157,7 +21193,7 @@
             "content": [
               {
                 "type": "insert",
-                "insert": 34
+                "insert": 41
               },
               ""
             ]
@@ -21168,7 +21204,7 @@
               {
                 "type": "conditional",
                 "content": "<h1>Distribution of Power</h1> ",
-                "predicate": 35
+                "predicate": 42
               },
               ""
             ]
@@ -21182,11 +21218,11 @@
                   "<h4>Democratic strength: ",
                   {
                     "type": "insert",
-                    "insert": 37
+                    "insert": 44
                   },
                   "%</h4>"
                 ],
-                "predicate": 36
+                "predicate": 43
               },
               ""
             ]
@@ -21205,11 +21241,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 39
+                    "insert": 46
                   },
                   "%"
                 ],
-                "predicate": 38
+                "predicate": 45
               },
               ""
             ]
@@ -21223,11 +21259,11 @@
                   "<h4><span style=\"color: #8B0000;\">Far</span>-<span style=\"color: #FF0000;\">left</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 41
+                    "insert": 48
                   },
                   "%</h4>"
                 ],
-                "predicate": 40
+                "predicate": 47
               },
               ""
             ]
@@ -21246,11 +21282,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 43
+                    "insert": 50
                   },
                   "%"
                 ],
-                "predicate": 42
+                "predicate": 49
               },
               ""
             ]
@@ -21269,11 +21305,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 45
+                    "insert": 52
                   },
                   "%"
                 ],
-                "predicate": 44
+                "predicate": 51
               },
               ""
             ]
@@ -21287,11 +21323,11 @@
                   "<h4><span style=\"color: #7A3C00;\">Far</span>-<span style=\"color: #CC6600;\">right</span> strength: ",
                   {
                     "type": "insert",
-                    "insert": 47
+                    "insert": 54
                   },
                   "%</h4>"
                 ],
-                "predicate": 46
+                "predicate": 53
               },
               ""
             ]
@@ -21310,11 +21346,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 49
+                    "insert": 56
                   },
                   "%"
                 ],
-                "predicate": 48
+                "predicate": 55
               },
               ""
             ]
@@ -21333,11 +21369,11 @@
                   ": ",
                   {
                     "type": "insert",
-                    "insert": 51
+                    "insert": 58
                   },
                   "%"
                 ],
-                "predicate": 50
+                "predicate": 57
               },
               ""
             ]
@@ -21356,11 +21392,11 @@
                   "</span>: ",
                   {
                     "type": "insert",
-                    "insert": 53
+                    "insert": 60
                   },
                   "%"
                 ],
-                "predicate": 52
+                "predicate": 59
               },
               ""
             ]
@@ -21375,51 +21411,51 @@
                   {
                     "type": "conditional",
                     "content": "street fighting is scarce",
-                    "predicate": 55
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting is under control",
-                    "predicate": 56
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting is increasing",
-                    "predicate": 57
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting is slipping out of the state's control",
-                    "predicate": 58
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting have split neighborhoods into two",
-                    "predicate": 59
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "street fighting have reached critical levels",
-                    "predicate": 60
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
-                    "predicate": 61
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "and the streets are under Far Left control",
                     "predicate": 62
                   },
                   {
                     "type": "conditional",
-                    "content": "and the streets are under Far Right control",
+                    "content": "street fighting is under control",
                     "predicate": 63
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "street fighting is increasing",
+                    "predicate": 64
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "street fighting is slipping out of the state's control",
+                    "predicate": 65
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "street fighting have split neighborhoods into two",
+                    "predicate": 66
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "street fighting have reached critical levels",
+                    "predicate": 67
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "<span style=\"color: #8B0000;\">street fighting is Anarchic</span>",
+                    "predicate": 68
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "and the streets are under Far Left control",
+                    "predicate": 69
+                  },
+                  {
+                    "type": "conditional",
+                    "content": "and the streets are under Far Right control",
+                    "predicate": 70
                   },
                   "."
                 ],
-                "predicate": 54
+                "predicate": 61
               },
               ""
             ]
@@ -21434,7 +21470,7 @@
               "Land Strength: ",
               {
                 "type": "insert",
-                "insert": 64
+                "insert": 71
               },
               ""
             ]
@@ -21445,7 +21481,7 @@
               "Naval Strength: ",
               {
                 "type": "insert",
-                "insert": 65
+                "insert": 72
               },
               ""
             ]
@@ -21456,25 +21492,13 @@
               "Aerial Strength: ",
               {
                 "type": "insert",
-                "insert": 66
+                "insert": 73
               },
               ""
             ]
           }
         ],
         "stateDependencies": [
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return (!(((Q['thkpc_destroyed'] || 0)) !== 0));"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['thkpc_strength_2'] || 0);"
-            }
-          },
           {
             "type": "predicate",
             "fn": {
@@ -21502,21 +21526,21 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['thkpc_militancy'] || 0);"
-            },
-            "qdisplay": "militancy"
+              "$code": "return (Q['thkpc_strength_2'] || 0);"
+            }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return (((Q['devyol_formed'] || 0)) !== 0);"
+              "$code": "return (!(((Q['thkpc_destroyed'] || 0)) !== 0));"
             }
           },
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['devyol_strength_2'] || 0);"
-            }
+              "$code": "return (Q['thkpc_militancy'] || 0);"
+            },
+            "qdisplay": "militancy"
           },
           {
             "type": "predicate",
@@ -21545,21 +21569,21 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['devyol_militancy'] || 0);"
-            },
-            "qdisplay": "militancy"
+              "$code": "return (Q['devyol_strength_2'] || 0);"
+            }
           },
           {
             "type": "predicate",
             "fn": {
-              "$code": "return (((Q['tkpml_formed'] || 0)) !== 0);"
+              "$code": "return (((Q['devyol_formed'] || 0)) !== 0);"
             }
           },
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['tkpml_strength_2'] || 0);"
-            }
+              "$code": "return (Q['devyol_militancy'] || 0);"
+            },
+            "qdisplay": "militancy"
           },
           {
             "type": "predicate",
@@ -21577,6 +21601,18 @@
             "type": "predicate",
             "fn": {
               "$code": "return (!(((Q['tkpml_banned'] || 0)) !== 0));"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['tkpml_formed'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['tkpml_strength_2'] || 0);"
             }
           },
           {
@@ -21613,6 +21649,18 @@
             "qdisplay": "loyalty"
           },
           {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['grey_wolves_banned'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['grey_wolves_banned'] || 0)) !== 0));"
+            }
+          },
+          {
             "type": "insert",
             "fn": {
               "$code": "return (Q['grey_wolves_strength_2'] || 0);"
@@ -21624,6 +21672,24 @@
               "$code": "return (Q['grey_wolves_militancy'] || 0);"
             },
             "qdisplay": "militancy"
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['raiders_formed'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['raiders_banned'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['raiders_banned'] || 0)) !== 0));"
+            }
           },
           {
             "type": "predicate",
@@ -21649,6 +21715,18 @@
               "$code": "return (Q['raiders_militancy'] || 0);"
             },
             "qdisplay": "militancy"
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (((Q['tit_banned'] || 0)) !== 0);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (!(((Q['tit_banned'] || 0)) !== 0));"
+            }
           },
           {
             "type": "insert",

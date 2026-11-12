@@ -317,27 +317,29 @@ Q.army_aerial_desc = getStrengthDescription(Q.army_aerial_strength);
 
 **Far Left**
 
-[? if not thkpc_destroyed: {!<span class="tooltip-text" title="THKP-C (People's Liberation Party-Front of Turkey) is a far-left revolutionary organization.">THKP-C</span>!} Strength: [+ thkpc_strength_2 +] thousand ?]
+[? if not thkpc_destroyed: THKP-C Organization Status: [? if thkpc_banned: Banned ?][? if not thkpc_banned: Legal ?] ?]
 
-[? if not thkpc_destroyed: THKP-C Legal Status: [? if thkpc_banned: Banned ?][? if not thkpc_banned: Legal ?] ?]
+[? if not thkpc_destroyed: THKP-C Strength: [+ thkpc_strength_2 +] thousand ?]
 
 [? if not thkpc_destroyed: THKP-C Militarization: [+ thkpc_militancy : militancy +] ?]
 
-[? if devyol_formed: {!<span class="tooltip-text" title="DEV-YOL (Revolutionary Path) is a left-wing militant organization.">DEV-YOL</span>!} Strength: [+ devyol_strength_2 +] thousand ?]
+[? if devyol_formed: DEV-YOL Organization Status: [? if devyol_banned: Banned ?][? if not devyol_banned: Legal ?] ?]
 
-[? if devyol_formed: DEV-YOL Legal Status: [? if devyol_banned: Banned ?][? if not devyol_banned: Legal ?] ?]
+[? if devyol_formed: DEV-YOL Strength: [+ devyol_strength_2 +] thousand ?]
 
 [? if devyol_formed: DEV-YOL Militarization: [+ devyol_militancy : militancy +] ?]
 
-[? if tkpml_formed: {!<span class="tooltip-text" title="TKP/ML TKP'ML is a Maoist terrorist group formed by İbrahim Kaypakkaya.">TKP/ML</span>!} Strength: [+ tkpml_strength_2 +] thousand ?]
+[? if tkpml_formed: TKP/ML Organization Status: [? if tkpml_banned: Banned ?][? if not tkpml_banned: Legal ?] ?]
 
-[? if tkpml_formed: TKP/ML Legal Status: [? if tkpml_banned: Banned ?][? if not tkpml_banned: Legal ?] ?]
+[? if tkpml_formed: TKP/ML Strength: [+ tkpml_strength_2 +] thousand ?]
 
 [? if tkpml_formed: TKP/ML Militarization: [+ tkpml_militancy : militancy +] ?]
 
 **State**
 
-{!<span class="tooltip-text" title="Police forces maintain order and state security.">Police Forces</span>!} Strength: [+ police_strength_2 +] thousand
+Police Forces Organization Status: State institution
+
+Police Forces Strength: [+ police_strength_2 +] thousand
 
 Police Militarization: [+ police_militancy : militancy +]
 
@@ -348,15 +350,21 @@ Police Loyalty: [+ police_loyalty : loyalty +]
 
 **Far Right**
 
-{!<span class="tooltip-text" title="Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.">Grey Wolves</span>!} Strength: [+ grey_wolves_strength_2 +] thousand
+Grey Wolves Organization Status: [? if grey_wolves_banned: Banned ?][? if not grey_wolves_banned: Legal ?]
+
+Grey Wolves Strength: [+ grey_wolves_strength_2 +] thousand
 
 Grey Wolves Militarization: [+ grey_wolves_militancy : militancy +]
 
-[? if raiders_formed: {!<span class="tooltip-text" title="Raiders are a far-right paramilitary organization.">Raiders</span>!} Strength: [+ raiders_strength_2 +] thousand ?]
+[? if raiders_formed: Raiders Organization Status: [? if raiders_banned: Banned ?][? if not raiders_banned: Legal ?] ?]
+
+[? if raiders_formed: Raiders Strength: [+ raiders_strength_2 +] thousand ?]
 
 [? if raiders_formed: Raiders Militarization: [+ raiders_militancy : militancy +] ?]
 
-{!<span class="tooltip-text" title="Turkish Revenge Brigade (TİT) is a highly militant far-right organization.">Turkish Revenge Brigade (TİT)</span>!} Strength: [+ tit_strength_2 +] thousand
+TİT Organization Status: [? if tit_banned: Banned ?][? if not tit_banned: Legal ?]
+
+TİT Strength: [+ tit_strength_2 +] thousand
 
 TİT Militarization: [+ tit_militancy : militancy +]
 

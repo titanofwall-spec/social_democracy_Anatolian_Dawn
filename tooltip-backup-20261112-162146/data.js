@@ -1,0 +1,272 @@
+const tooltipList = [{searchString: "MGP", explanationText: "<img src=img/cgplogo.png> Milli Güven Partisi (National Trust Party)"}, {
+    searchString: "CHP",
+    explanationText: "<img src=img/chp5_20251125_200815_0000.svg> Republican People's Party, our party."
+},
+{
+    searchString: "AP",
+    explanationText: "<img src=img/AP.jpg> Justice Party, our primary adversary."
+},
+{
+    searchString: "TIP",
+    explanationText: "<img src=img/TİP_1970'ler.png> Workers' Party of Turkey"
+},
+{
+    searchString: "TİP",
+    explanationText: "<img src=img/TİP_1970'ler.png> Workers' Party of Turkey"
+},                    
+{
+    searchString: "TKP",
+    explanationText: "<img src=img/tkp.png>Communist Party of Turkey"
+},
+{
+    searchString: "TSİP",
+    explanationText: "<img src=img/tsip.gif>Socialist Workers' Party of Turkey"
+},
+{
+    searchString: "TEP",
+    explanationText: "<img src=img/tep.jpeg>Labourers' Party of Turkey"
+},
+{
+    searchString: "SDP",
+    explanationText: "<img src=img/sdp.jpg>Socialist Revolution Party"
+},
+{
+    searchString: "DP",
+    explanationText: "<img src=img/DP.png> Democratic Party"
+},
+{
+    searchString: "THKO",
+    explanationText: "<img src=img/thko.jpeg> A Marxist-Leninist terrorist group inspired by the Cuban revolution and Guevarism"
+},                     
+{
+    searchString: "THKP-C",
+    explanationText: "<img src=img/THKP-C.png> A Marxist-Leninist terrorist group"
+},
+{
+    searchString: "TKP/ML",
+    explanationText: "<img src=img/TKPML.svg.png> A Marxist-Leninist-Maoist terrorist group"
+},
+{
+    searchString: "TİT",
+    explanationText: "An Ultranationalist terrorist organization that the public knows almost nothing about."
+},                     
+{
+    searchString: "CGP",
+    explanationText: "<img src=img/cgp-party-logo.png> Cumhuriyetçi Güven Partisi (Republican Trust Party)"
+},
+{
+    searchString: "MSP",
+    explanationText: "<img src=img/MSP.png> National Salvation Party"
+},
+{
+    searchString: "MNP",
+    explanationText: "<img src=img/mnp.png> Milli Nizam Partisi (National Order Party)."
+},                     
+{
+    searchString: "MHP",
+    explanationText: "<img src=img/MHP.png> Nationalist Movement Party"
+},
+{
+    searchString: "CKMP",
+    explanationText: "<img src=img/CKMP.png> Republican Peasant Nation Party. The Nationalist predecessor to MHP."
+},                    
+{
+    searchString: "Blue Mosque",
+    explanationText: "<img src=img/blue_mosque.jpeg> The Blue Mosque (Sultanahmet Camii) is one of the most iconic monuments of Ottoman architecture, built between 1606-1617. It's famous for being the first Turkish Mosque with 6 minarets."
+},                     
+];
+
+
+const colourList = [{word: "MGP", style: "color: #5b7387; font-weight: bold;"}, {word: "MNP", style: "color: #054521; font-weight: bold;"}, {
+        word: "CHP",
+        style: "color: #E3000F; font-weight: bold;"
+},
+{
+        word: "AP",
+        style: "color: #750a6f; font-weight: bold;"
+},
+{
+        word: "CGP",
+        style: "color: #5b7387; font-weight: bold;"
+},
+{
+        word: "TIP",
+        style: "color: #8B0000; font-weight: bold;"
+},
+{
+        word: "TİP",
+        style: "color: #8B0000; font-weight: bold;"
+},                    
+{
+        word: "Socialist Left",
+        style: "color: #8B0000; font-weight: bold;"
+},
+{
+        word: "TKP",
+        style: "color: #820b09; font-weight: bold;"
+},
+{
+        word: "TSİP",
+        style: "color: #abab1a; font-weight: bold;"
+},
+{
+        word: "TEP",
+        style: "color: #ad673b; font-weight: bold;"
+},
+{
+        word: "SDP",
+        style: "color: #a83a32; font-weight: bold;"
+},
+{
+        word: "Raiders",
+        style: "color: #367824; font-weight: bold;"
+},                                       
+{
+        word: "THKP-C",
+        style: "color: #f6D248; font-weight: bold;"
+},
+{
+        word: "TKP/ML",
+        style: "color: #990000; font-weight: bold;"
+},
+{
+        word: "THKO",
+        style: "color: #c4772e; font-weight: bold;"
+},                  
+{
+        word: "DP",
+        style: "color: #4a4d04; font-weight: bold;"
+},
+{
+        word: "MSP",
+        style: "color: #045421; font-weight: bold;"
+},
+{
+        word: "MNP",
+        style: "color: #045421; font-weight: bold;"
+},                    
+{
+        word: "MHP",
+        style: "color: #954B00; font-weight: bold;"
+},       
+{
+        word: "CKMP",
+        style: "color: #b55d04; font-weight: bold;"
+},                    
+{
+        word: "SBP",
+        style: "color: #9E5747; font-weight: bold;"
+},
+{
+        word: "DEV-YOL",
+        style: "color: #d94104; font-weight: bold;"
+},
+{
+        word: "Grey Wolves",
+        style: "color: #190c91; font-weight: bold;"
+},
+{
+        word: "TİT",
+        style: "color: #181B18; font-weight: bold;"
+},                    
+{
+        word: "Blue Mosque",
+        style: "color: #42b6f5; font-weight: bold;"
+},
+{
+        word: "EOKA",
+        style: "color: #3a6cbd; font-weight: bold;"
+},
+{
+        word: "EOKA-B",
+        style: "color: #26549e; font-weight: bold;"
+},
+{
+        word: "TMT",
+        style: "color: #E30A17; font-weight: bold;"
+},
+{
+        word: "Makarios",
+        style: "color: #1269C7; font-weight: bold;"
+},
+{
+        word: "Sampson",
+        style: "color: #1057a3; font-weight: bold;"
+},                    
+];
+
+// Kurdish group localization intentionally remains empty.
+tooltipList.push({searchString:"T-KDP",explanationText:"<img src=\"img/kurdish/t-kdp.png\" alt=\"T-KDP\">"});
+colourList.push({word:"T-KDP",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"DHKD/TKSP",explanationText:"<img src=\"img/kurdish/dhkd.png\" alt=\"DHKD/TKSP\">"});
+colourList.push({word:"DHKD/TKSP",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"DDKD/PPKK/KİP",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"DDKD/PPKK/KİP\"><img src=\"img/kurdish/ddkd.png\" alt=\"DDKD/PPKK/KİP\">"});
+colourList.push({word:"DDKD/PPKK/KİP",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"ASDKD/Rızgari",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"ASDKD/Rızgari\">"});
+colourList.push({word:"ASDKD/Rızgari",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Ala Rızgari",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"Ala Rızgari\">"});
+colourList.push({word:"Ala Rızgari",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Kawa",explanationText:"<img src=\"img/kurdish/kawa.png\" alt=\"Kawa\">"});
+colourList.push({word:"Kawa",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Denge Kawa",explanationText:"<img src=\"img/kurdish/kawa.png\" alt=\"Denge Kawa\">"});
+colourList.push({word:"Denge Kawa",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Red Kawa",explanationText:"<img src=\"img/kurdish/kawa.png\" alt=\"Red Kawa\">"});
+colourList.push({word:"Red Kawa",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"T-KDP/KUK",explanationText:"<img src=\"img/kurdish/kuk.png\" alt=\"T-KDP/KUK\">"});
+colourList.push({word:"T-KDP/KUK",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"KD/UKO/PKK",explanationText:"<img src=\"img/kurdish/pkk.png\" alt=\"KD/UKO/PKK\">"});
+colourList.push({word:"KD/UKO/PKK",style:"color: #c2d93f; font-weight: bold;"});
+tooltipList.push({searchString:"Tekoşin",explanationText:"<img src=\"img/kurdish/tekosin.png\" alt=\"Tekoşin\">"});
+colourList.push({word:"Tekoşin",style:"color: #c2d93f; font-weight: bold;"});
+colourList.push({word:"Kurdish Independents",style:"color: #c2d93f; font-weight: bold;"});
+
+colourList.push({word:'Independents',style:'color:#808080;'});
+
+tooltipList.push({searchString:'TBP',explanationText:'<img src="img/tbp-logo.jpg">Türkiye Birlik Partisi (Turkey Unity Party).'});
+tooltipList.push({searchString:'MP',explanationText:'<img src="img/mp-logo.png">Millet Partisi (National Party).'});
+colourList.push({word:'TBP',style:'color:#c51b32;'});
+colourList.push({word:'MP',style:'color:#242018;'});
+
+// One source of truth for the weight of every party label.
+const boldPartyNames=new Set(['CHP','AP','CGP','MGP','DP','MSP','MNP','MHP','TIP','TİP','TKP','TSİP','TSIP','TEP','SDP','TBP','MP','Independents','Kurdish Independents','Socialist Left','Others']);
+colourList.forEach(entry=>{if(boldPartyNames.has(entry.word))entry.style=entry.style.replace(/font-weight\s*:[^;]+;?/g,'')+';font-weight:bold;';});
+['Independents','Kurdish Independents'].forEach(name=>{if(!tooltipList.some(t=>t.searchString===name))tooltipList.push({searchString:name,explanationText:name});});
+
+tooltipList.push({searchString:"PKK",explanationText:"<img src=\"img/kurdish/pkk.png\" alt=\"PKK\">"});
+colourList.push({word:"PKK",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"TKSP",explanationText:"<img src=\"img/kurdish/dhkd.png\" alt=\"TKSP\">"});
+colourList.push({word:"TKSP",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"DHKD",explanationText:"<img src=\"img/kurdish/dhkd.png\" alt=\"DHKD\">"});
+colourList.push({word:"DHKD",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"KİP",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"KİP\">"});
+colourList.push({word:"KİP",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"DDKD",explanationText:"<img src=\"img/kurdish/ddkd.png\" alt=\"DDKD\">"});
+colourList.push({word:"DDKD",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"KÖİP",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"KÖİP\">"});
+colourList.push({word:"KÖİP",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"PPKK",explanationText:"<img src=\"img/kurdish/kip.png\" alt=\"PPKK\">"});
+colourList.push({word:"PPKK",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"Rizgarî",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"Rizgarî\">"});
+colourList.push({word:"Rizgarî",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"Rızgarî",explanationText:"<img src=\"img/kurdish/rizgari.png\" alt=\"Rızgarî\">"});
+colourList.push({word:"Rızgarî",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"Têkoşîn",explanationText:"<img src=\"img/kurdish/tekosin.png\" alt=\"Têkoşîn\">"});
+colourList.push({word:"Têkoşîn",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"KUK",explanationText:"<img src=\"img/kurdish/kuk.png\" alt=\"KUK\">"});
+colourList.push({word:"KUK",style:"color:#c2d93f;font-weight:bold;"});
+
+tooltipList.push({searchString:"PDK-T",explanationText:"<img src=\"img/kurdish/t-kdp.png\" alt=\"PDK-T\">"});
+colourList.push({word:"PDK-T",style:"color:#c2d93f;font-weight:bold;"});
+
+// Expose the existing entity/party label registry to the map-design palette.
+globalThis.AnatolianGameColourEntries = colourList;

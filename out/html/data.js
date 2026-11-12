@@ -77,6 +77,10 @@ const tooltipList = [{searchString: "MGP", explanationText: "<img src=img/cgplog
 ];
 
 
+tooltipList.push({"searchString": "Grey Wolves", "explanationText": "Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party."});
+tooltipList.push({"searchString": "Raiders", "explanationText": "Raiders are a far-right paramilitary organization."});
+tooltipList.push({"searchString": "DEV-YOL", "explanationText": "DEV-YOL (Revolutionary Path) is a left-wing militant organization."});
+tooltipList.push({"searchString": "Police Forces", "explanationText": "Police forces maintain order and state security."});
 const colourList = [{word: "MGP", style: "color: #5b7387; font-weight: bold;"}, {word: "MNP", style: "color: #054521; font-weight: bold;"}, {
         word: "CHP",
         style: "color: #E3000F; font-weight: bold;"

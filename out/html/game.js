@@ -871,42 +871,16 @@ function getPartyIdeology(party, Q) {
             var ideology = getPartyIdeology(searchString, Q);
             return baseTooltip.explanationText + '<br>Politics: ' + ideology;
         }
-        if (searchString === 'paramilitary-name' && Q['paramilitary-name_strength'] !== undefined) {
-            var strength = Q['paramilitary-name_strength'] ? Q['paramilitary-name_strength'].toFixed(1) : '0';
-            var militancy = getMilitancyText(Q['paramilitary-name_militancy']);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization: ' + militancy;
-        }
-
-        if (searchString === 'THKP-C' && Q.thkpc_strength !== undefined) {
-            var strength = Q.thkpc_strength ? Q.thkpc_strength : '0';
-            var morale = getMilitancyText(Q.thkpc_militancy);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
-        }
-
-        if (searchString === 'TKP/ML' && Q.tkpml_strength !== undefined) {
-            var strength = Q.tkpml_strength ? Q.tkpml_strength : '0';
-            var morale = getMilitancyText(Q.tkpml_militancy);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
-        }
-         if (searchString === 'Grey Wolves' && Q.grey_wolves_strength !== undefined) {
-            var strength = Q.grey_wolves_strength ? Q.grey_wolves_strength : '0';
-            var morale = getMilitancyText(Q.grey_wolves_militancy);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
-        }
-        if (searchString === 'Raiders' && Q.raiders_strength !== undefined) {
-            var strength = Q.raiders_strength ? Q.raiders_strength : '0';
-            var morale = getMilitancyText(Q.raiders_militancy);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
-        }
-        if (searchString === 'DEV-YOL' && Q.devyol_strength !== undefined) {
-            var strength = Q.devyol_strength ? Q.devyol_strength : '0';
-            var morale = getMilitancyText(Q.devyol_militancy);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
-        }
-        if (searchString === 'TİT' && Q.tit_strength !== undefined) {
-            var strength = Q.tit_strength ? Q.tit_strength : '0';
-            var morale = getMilitancyText(Q.tit_militancy);
-            return baseTooltip.explanationText + '<br>Strength: ' + strength + 'k<br>Militarization' + militancy;
+        const organizations = {'THKP-C':'thkpc','TKP/ML':'tkpml','Grey Wolves':'grey_wolves','Raiders':'raiders','DEV-YOL':'devyol','TİT':'tit','Police Forces':'police'};
+        const organization = organizations[searchString];
+        if (organization) {
+            const rawStrength = Number(Q[organization + '_strength']);
+            const strength = Number.isFinite(rawStrength) ? rawStrength.toFixed(1) : '0.0';
+            const status = organization === 'police' ? 'State institution' : Q[organization + '_banned'] ? 'Banned' : 'Legal';
+            const militarization = getMilitancyText(Number(Q[organization + '_militancy']) || 0);
+            return baseTooltip.explanationText + '<br>Organization Status: ' + status +
+                '<br>Organization Strength: ' + strength + ' thousand' +
+                '<br>Organization Militarization: ' + militarization;
         }
         return baseTooltip.explanationText;
     }
