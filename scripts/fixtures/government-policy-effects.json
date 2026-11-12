@@ -8,10 +8,11 @@
       "industry_modifier": 10,
       "growth_modifier": 1.5,
       "unemployment_modifier": -0.5,
-      "inflation_modifier": 3.5,
+      "inflation_modifier": -1.5,
       "industryy": 1,
       "economicaction": 1,
-      "forex_pressure": 4
+      "forex_pressure": -4,
+      "forex_pressure_drift": -1.2
     },
     "support": {
       "capitalists": 5,
@@ -26,9 +27,9 @@
     "effects": {
       "budget": -2,
       "growth_modifier": 1.5,
-      "inflation_modifier": 3,
-      "forex_pressure": 4,
-      "forex_pressure_drift": -1,
+      "inflation_modifier": -1,
+      "forex_pressure": -3,
+      "forex_pressure_drift": -0.8,
       "unemployment_modifier": -0.5,
       "electronicc": 1,
       "industry_modifier": 5
@@ -45,7 +46,9 @@
       "growth_modifier": 1,
       "inflation_modifier": -2,
       "demiryoluu": 1,
-      "industry_modifier": 5
+      "industry_modifier": 5,
+      "forex_pressure": -2,
+      "forex_pressure_drift": -0.4
     },
     "support": {},
     "sets": {}
@@ -123,11 +126,12 @@
     "flag": null,
     "label": "Export subsidies",
     "effects": {
-      "forex_pressure": -4,
+      "forex_pressure": -6,
       "budget": -2,
-      "inflation_modifier": 1.5,
+      "inflation_modifier": 0.5,
       "growth_modifier": 1.5,
-      "economicaction": 1
+      "economicaction": 1,
+      "forex_pressure_drift": -0.5
     },
     "support": {
       "capitalists": 2

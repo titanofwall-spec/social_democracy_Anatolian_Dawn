@@ -20,11 +20,13 @@ missing sector-capacity link and flat deflation health score were also present.
 
 ## Price controls
 
-The action now changes coverage: `coverage += (0.55 - coverage) * 0.5`.
-Successive actions without elapsed time reach 27.5%, 41.25%, 48.125%, etc.
-Coverage decays monthly with the previous one-year half-life. Defaults are
-80% enforcement and 6% annual permitted controlled-price growth, converted to
-monthly growth. With market monthly growth `g`, the observed basket grows by:
+The November 12 rebalancing strengthens coverage to:
+`coverage += (0.85 - coverage) * 0.75`.
+Successive actions without elapsed time reach 63.75%, 79.6875%, 83.671875%,
+approaching a hard 85% ceiling. Coverage decays with a two-year half-life.
+Enforcement is at least 92%, and controlled prices are permitted to rise by at
+most 3% annually, converted to monthly growth. With market monthly growth `g`,
+the observed basket grows by:
 
 `g - coverage * enforcement * max(0, g - monthlyCap)`.
 
@@ -35,6 +37,41 @@ no cumulative price-gap variable, deferred-price state or release mechanic.
 Ending controls simply stops their suppression of subsequent increases.
 The twelve underlying monthly rates are ordinary rolling inflation history;
 they are never subtracted from observed prices or used to trigger a release.
+
+## November 12 structural recovery policy rebalance
+
+This patch keeps the original monthly macro model and its inflation-expectations,
+capacity, FX-memory and calendar equations. The following changes are to
+**policy inputs**, not the underlying economic model.
+
+- **IMF standby**: once per playthrough, immediately -25 FX pressure and
+  -15 annual FX drift, with -6 inflation modifier, a monetary-growth ceiling
+  of 14, austerity and political/union costs. It excludes export devaluation.
+- **Export transition**: the first stage removes 12 FX pressure and 7 annual
+  FX drift, but raises short-run inflation pressure by 11. The second stage
+  removes 18 more FX pressure and 9 more annual drift while adding lasting
+  productive capacity, with another +8 short-run inflation pressure. It excludes
+  IMF standby. Neither path can be used to farm the one-time relief repeatedly.
+- **Land redistribution**: each of six stages grants its production,
+  inflation and FX improvements when its implementation period ends.
+- **Köykent, cooperatives and industry**: implementation, later funding,
+  industrial development and railway investments create both immediate
+  FX relief and lasting reductions in annual drift. Spending remains a
+  constraint, and IMF-incompatible actions remain restricted.
+- **People's Sector**: nationalizations, cooperatives, financial institutions
+  and HAYAT mature over 18 months. Their inflation and FX improvements
+  accumulate gradually. An incomplete older saved project receives the new
+  yields only for its remaining unearned installments.
+
+All FX pressure is still clamped to 0–100. Long-run drift reductions are
+measured per *year* and applied per month, so a strategy can reverse the FX
+crisis over several years rather than only buying temporary breathing room.
+No reform grants an unlimited per-turn bonus.
+
+The historical US arms embargo is selected whenever Atilla II ends without
+the deliberate ceasefire postponement. If the poppy ban was lifted, additional
+economic sanctions apply to that **historical** event. Only a deliberately
+postponed ceasefire enables the alternative US arms/economic embargo scene.
 
 ## Inflation and demand
 
