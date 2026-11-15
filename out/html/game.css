@@ -1746,3 +1746,6 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   #tools_wrapper { top: var(--ad-menu-top, auto); }
 }
 
+
+.cold-war-map-panel header h1 { margin-right:auto; }
+#cold-war-view-toggle { cursor:pointer;padding:7px 12px; }
