@@ -1813,3 +1813,10 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 .cold-war-art { opacity:1; }
 #cold-war-map-tooltip { pointer-events:auto; }
 
+
+/* Preserve native wheel scrolling without a visible sidebar scrollbar. */
+.cold-war-sidebar { overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none; }
+.cold-war-sidebar::-webkit-scrollbar { display:none;width:0;height:0; }
+.cold-war-government-party { font-weight:600; }
+#cold-war-map-tooltip { overflow-wrap:anywhere; }
+#cold-war-map-overlay[data-map-mode="political"] .cold-war-art { visibility:hidden; }

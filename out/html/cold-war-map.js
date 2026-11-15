@@ -3,6 +3,7 @@
   let ready, canvas, ctx, original, displayed, pixels, width, height, hoverCanvas, hoverCtx, active = 0;
   let selectedMode='political';
   function updateModeControls(){
+    overlay().dataset.mapMode=selectedMode;
     document.querySelectorAll('[data-cold-war-mode]').forEach(button=>{
       const selected=button.dataset.coldWarMode===selectedMode;
       button.setAttribute('aria-checked',String(selected));button.tabIndex=selected?0:-1;
@@ -72,11 +73,7 @@
     hoverCtx.save();hoverCtx.globalCompositeOperation='source-over';hoverCtx.shadowColor='rgba(84,152,216,.85)';hoverCtx.shadowBlur=14;hoverCtx.drawImage(halo,0,0);hoverCtx.restore();
     active=id;
     const tip=tooltip();
-    tip.replaceChildren();
-    const title=document.createElement('strong');title.textContent=names[id];tip.append(title);
-    ['Head of State: Placeholder','Head of Government: Placeholder','Government: Placeholder'].forEach(text=>{
-      const line=document.createElement('div');line.textContent=text;tip.append(line);
-    });
+    window.ColdWarGovernments.render(names[id],tip);
     tip.hidden=false;
     window.ColdWarDecorations.hide();
   }
@@ -88,6 +85,7 @@
     paint(x>=0&&y>=0&&x<width&&y<height ? pixels[y*width+x] : 0);
     if (!active) return;
     const tip=tooltip();
+    window.ColdWarGovernments.render(names[active],tip);
     tip.style.left=Math.max(8,Math.min(event.clientX+16,innerWidth-tip.offsetWidth-8))+'px';
     tip.style.top=Math.max(8,Math.min(event.clientY+16,innerHeight-tip.offsetHeight-8))+'px';
   }
@@ -203,4 +201,5 @@
     });
   });
 }());
+
 

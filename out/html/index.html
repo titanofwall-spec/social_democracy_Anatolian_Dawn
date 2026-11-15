@@ -7,7 +7,7 @@
         property="ifiction:ifid" content="7FCDF039-2B77-4179-B795-CBAFA65253AA">
     <title>Anatolian Dawn - Egehan</title>
     <link rel="icon" type="image/jpeg" href="img/chp5_20251125_200815_0000.svg">
-    <link rel="stylesheet" type="text/css" href="game.css?v=cold-war-directional-fades-4">
+    <link rel="stylesheet" type="text/css" href="game.css?v=cold-war-political-no-art-2">
     <script src="jquery-1.11.1.min.js"></script>
     <script src="d3.v7.min.js"></script>
     <script src="d3-parliament.js?v=seat-outlines-20261006-1"></script>
@@ -54,7 +54,9 @@
     <script src="cold-war-decorations.js?v=directional-fades-3"></script>
     <script src="cold-war-renderer.js?v=modes-1"></script>
     <script src="cold-war-presentation.js?v=lighting-125-1"></script>
-    <script src="cold-war-map.js?v=art-hover-1"></script>
+    <script src="cold-war-government-data.js?v=1"></script>
+    <script src="cold-war-governments.js?v=1"></script>
+    <script src="cold-war-map.js?v=government-tooltips-mode-art-2"></script>
   </head>
   <body>
     <button id="music-previous-btn" class="music-track-button" onclick="window.switchMusicTrack(-1)" title="Previous song" aria-label="Previous song">&lt;</button>
@@ -207,7 +209,7 @@
         </div>
     </div>
 
-    <div id="cold-war-map-overlay" role="dialog" aria-modal="true" aria-labelledby="cold-war-map-title" hidden>
+    <div id="cold-war-map-overlay" data-map-mode="political" role="dialog" aria-modal="true" aria-labelledby="cold-war-map-title" hidden>
       <section class="cold-war-map-panel">
         <header class="game-window"><h1 id="cold-war-map-title">The Cold War</h1><button id="cold-war-map-close" class="b" type="button" aria-label="Close Cold War map">&times;</button></header>
 <p id="cold-war-map-message" role="status">Loading map…</p>
@@ -451,8 +453,8 @@
             </footer>
         </div>
     </div>
-  <script data-anatolian-coldwar-governments="v1" src="_cold_war_governments/government_tooltips.js" defer></script>
-</body>
+  </body>
 </html>
+
 
 
