@@ -569,7 +569,7 @@ go-to: menu
 
 [? if devyol_formed: DEV-YOL Militarization: [+ devyol_militancy : militancy +] ?]
 
-!<span class="tooltip-text" title="Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.">Grey Wolves</span>!} Strength: [+ grey_wolves_strength_2 +] thousand
+{!<span class="tooltip-text" title="Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.">Grey Wolves</span>!} Strength: [+ grey_wolves_strength_2 +] thousand
 
 Grey Wolves Militarization: [+ grey_wolves_militancy : militancy +]
 

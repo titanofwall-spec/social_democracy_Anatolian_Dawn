@@ -27194,8 +27194,8 @@
           },
           " ",
           {
-            "type": "magic",
-            "content": " return typeof AnatolianCoalitions === \"undefined\" ? \"\" : AnatolianCoalitions.reason(Q,\"fiscal_policy.speculative\");"
+            "type": "insert",
+            "insert": 1
           }
         ],
         "stateDependencies": [
@@ -27203,6 +27203,12 @@
             "type": "predicate",
             "fn": {
               "$code": "return ((Q['speculativee'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return typeof AnatolianCoalitions === \"undefined\" ? \"\" : AnatolianCoalitions.reason(Q,\"fiscal_policy.speculative\");"
             }
           }
         ]
@@ -44105,7 +44111,11 @@
           {
             "type": "paragraph",
             "content": [
-              "!<span class=\"tooltip-text\" title=\"Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.\">Grey Wolves</span>!} Strength: ",
+              {
+                "type": "magic",
+                "content": "<span class=\"tooltip-text\" title=\"Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.\">Grey Wolves</span>"
+              },
+              " Strength: ",
               {
                 "type": "insert",
                 "insert": 8

@@ -20,5 +20,41 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  function available(e){e.goToScene('fiscal_policy.onetime');const choice=e.getCurrentChoices().find(x=>x.id==='fiscal_policy.speculative');assert(choice,'Loan reform is listed');return choice.canChoose;}
  test('New games and older saves with an absent completion flag can restrict speculative loans',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{in_CHP_majority:1,AP_in_government:0,finance_minister_party:'CHP'});delete Q.speculativee;assert(available(e));Q.speculativee=0;assert(available(e));const before={industry:Q.industry_modifier,growth:Q.growth_modifier,unemployment:Q.unemployment_modifier};pick(e,'fiscal_policy.speculative');assert.equal(Q.speculativee,1);near(Q.industry_modifier,before.industry+5,'industry');near(Q.growth_modifier,before.growth+.5,'growth');near(Q.unemployment_modifier,before.unemployment-.5,'unemployment');assert(!available(e));});
  test('Coalition rights, ownership and per-use resources still govern the reform',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{in_CHP_majority:0,chp_seats:150,AP_in_government:1,MSP_in_government:0,CGP_in_government:0,DP_in_government:0,finance_minister_party:'CHP',resources:2,speculativee:0});const s=C.ensure(Q),id=C.byScene['fiscal_policy.speculative'].id;assert(available(e));s.rights[id]='partner';assert(!available(e));s.rights[id]='player';Q.resources=0;assert(available(e));delete s.rights[id];assert(!available(e));Q.resources=2;assert(available(e));Q.finance_minister_party='AP';assert(!available(e));Q.finance_minister_party='CHP';const before=Q.resources;assert(C.use(Q,'fiscal_policy.speculative'));assert.equal(Q.resources,before-1);assert.equal(s.yellowUses,1);});
+
+ function loanChoice(e){e.goToScene('fiscal_policy.onetime');return e.getCurrentChoices().find(x=>x.id==='fiscal_policy.speculative');}
+ function subtitle(choice){return JSON.stringify(choice.subtitle);}
+ test('Completed reform renders cleanly and reopening does not repeat any action effects',()=>{
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{in_CHP_majority:1,AP_in_government:0,finance_minister_party:'CHP',speculativee:0});
+  const deltas={industry_modifier:5,growth_modifier:.5,unemployment_modifier:-.5,west_relation:-5,us_relation:-5,capitalists_chp:-10};
+  const before=Object.fromEntries(Object.keys(deltas).map(k=>[k,Q[k]]));
+  assert(loanChoice(e).canChoose);pick(e,'fiscal_policy.speculative');
+  for(const [key,delta] of Object.entries(deltas))near(Q[key],before[key]+delta,key);
+  assert.equal(Q.speculativee,1);
+  const after=JSON.stringify(Q);
+  for(let i=0;i<3;i++){
+   const choice=loanChoice(e);assert.equal(choice.canChoose,false);
+   assert(subtitle(choice).includes('We have already implemented restrictions on speculative loans!'));
+   assert(!/return|typeof|AnatolianCoalitions|[{}]/.test(subtitle(choice)),'No JavaScript in rendered subtitle');
+   assert.equal(JSON.stringify(Q),after,'Menu rendering must not mutate state');
+  }
+  delete global.AnatolianCoalitions;
+  try{assert(!subtitle(loanChoice(e)).includes('return'));}finally{global.AnatolianCoalitions=C;}
+ });
+ test('Blocked coalition reform renders the actual restriction reason',()=>{
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{in_CHP_majority:0,chp_seats:150,AP_in_government:1,MSP_in_government:0,CGP_in_government:0,DP_in_government:0,finance_minister_party:'CHP',resources:2,speculativee:0});
+  const s=C.ensure(Q),id=C.byScene['fiscal_policy.speculative'].id;s.rights[id]='partner';
+  const expected=C.reason(Q,'fiscal_policy.speculative');assert(expected);
+  const choice=loanChoice(e);assert.equal(choice.canChoose,false);
+  assert(subtitle(choice).includes(expected));assert(!subtitle(choice).includes('return'));
+ });
+ test('Compiled display text throughout the game contains no leaked JavaScript blocks',()=>{
+  function inspect(value,location){
+   if(typeof value==='string')assert(!/\{!|!\}|\breturn\s+(?:typeof|Anatolian)/.test(value),'Leaked JavaScript at '+location);
+   else if(value&&typeof value==='object')for(const [key,child] of Object.entries(value))inspect(child,location+'.'+key);
+  }
+  inspect(game.scenes,'scenes');
+ });
  output('PASS: '+count+' speculative loan reform scenarios.');
 });
