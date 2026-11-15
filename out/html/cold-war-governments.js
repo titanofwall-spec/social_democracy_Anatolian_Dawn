@@ -18,6 +18,7 @@
     if(/islam/.test(s))return 145;
     if(/christian democ|christian.*conserv/.test(s))return 225;
     if(/conserv|center right|gaull|right wing|right-wing/.test(s))return 215;
+    if(/social liberal/.test(s))return 175;
     if(/liberal/.test(s))return 48;
     if(/agrarian/.test(s))return 95;
     if(/military|authoritarian|dictatorship/.test(s))return 277;
@@ -74,7 +75,7 @@
     for(const [label,value] of [['Head of State',data.head_of_state],['Head of Government',data.head_of_government]]){
       const row=document.createElement('div'),heading=document.createElement('b');heading.textContent=label+': ';row.append(heading,document.createTextNode(value));tip.append(row);
     }
-    const row=document.createElement('div'),heading=document.createElement('b');heading.textContent='Government: ';row.append(heading);
+    const row=document.createElement('div'),heading=document.createElement('b');row.className='cold-war-government-info';heading.className='cold-war-government-label';heading.textContent='Government: ';row.append(heading);
     data.parties.forEach((party,i)=>{
       if(i)row.append(document.createTextNode(' / '));
       const span=document.createElement('span');span.className='cold-war-government-party';span.textContent=party.name;

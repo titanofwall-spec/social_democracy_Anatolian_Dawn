@@ -1820,3 +1820,5 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 .cold-war-government-party { font-weight:600; }
 #cold-war-map-tooltip { overflow-wrap:anywhere; }
 #cold-war-map-overlay[data-map-mode="political"] .cold-war-art { visibility:hidden; }
+
+#cold-war-map-tooltip .cold-war-government-info, #cold-war-map-tooltip .cold-war-government-label { color:#fff; }
