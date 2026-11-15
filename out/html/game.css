@@ -975,7 +975,7 @@ body.cold-war-map-open { overflow:hidden; }
 .cold-war-map-panel header { display:flex;align-items:center;justify-content:space-between;gap:20px; }
 .cold-war-map-panel h1 { margin:0;font-size:1.5rem; }
 #cold-war-map-close { font-size:1.7rem;cursor:pointer;padding:0 12px; }
-.cold-war-map-stage { margin:12px auto 0;max-width:1400px;background:white; }
+.cold-war-map-stage { margin:12px auto 0;max-width:1400px;background:transparent; }
 #cold-war-map { display:block;width:100%;height:auto;touch-action:pan-y; }
 #cold-war-map-tooltip { position:fixed;z-index:100001;pointer-events:none;padding:10px 13px;background:rgba(20,24,32,.96);color:white;border:1px solid #ffd200;border-radius:4px;font-size:14px;line-height:1.5;max-width:calc(100vw - 40px);box-sizing:border-box; }
 #cold-war-map-tooltip strong { display:block;color:#ffd200; }
@@ -1746,14 +1746,3 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
   #tools_wrapper { top: var(--ad-menu-top, auto); }
 }
 
-/* Temporary Cold War display palette editor. */
-#cold-war-palette-editor[hidden] { display:none; }
-#cold-war-palette-editor { position:sticky;top:0;z-index:2;background:#222a35;border:1px solid #596573;padding:12px;margin-top:12px;border-radius:4px; }
-#cold-war-palette-editor p { margin:4px 0 10px; }
-.cold-war-palette-controls { display:flex;align-items:center;gap:16px;flex-wrap:wrap; }
-.cold-war-palette-controls label { display:flex;align-items:center;gap:8px; }
-#cold-war-palette-country { max-width:100%;width:320px;color:#111;background:white; }
-#cold-war-palette-color { width:64px;height:36px;padding:2px;cursor:pointer; }
-#cold-war-palette-status { font-size:.85rem; }
-.cold-war-map-panel header h1 { margin-right:auto; }
-@media(max-width:600px){.cold-war-map-panel header{gap:8px}.cold-war-palette-controls label{flex-wrap:wrap}#cold-war-palette-country{width:240px}}
