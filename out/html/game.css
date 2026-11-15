@@ -1809,8 +1809,7 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 #cold-war-hover { position:absolute;inset:0;z-index:5;width:100%;height:100%;pointer-events:none; }
 @media(max-width:700px){.cold-war-sidebar{gap:6px}.cold-war-map-controls [role=radiogroup]{flex-direction:row;gap:5px}#cold-war-map-overlay .cold-war-map-controls{padding:7px 8px}.cold-war-map-controls h3{margin:0 0 6px;font-size:1em}#cold-war-map-overlay .cold-war-map-controls button{flex:1;text-align:center;font-size:.8em;padding:5px}#cold-war-map-overlay .cold-war-map-controls button[aria-checked=true]{padding:4px}}
 
-/* Decorative art rests at full opacity and yields to country inspection. */
-.cold-war-art { opacity:1;transition:opacity .45s ease-in-out; }
-.cold-war-art-hidden .cold-war-art { opacity:0; }
+/* Independent SVG gradient masks provide directional art fades. */
+.cold-war-art { opacity:1; }
 #cold-war-map-tooltip { pointer-events:auto; }
 
