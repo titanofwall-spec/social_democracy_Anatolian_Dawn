@@ -969,14 +969,19 @@ table {
 }
 
 body.cold-war-map-open { overflow:hidden; }
-#cold-war-map-overlay { position:fixed;inset:0;z-index:100000;background:#171b22;overflow:auto;color:#eee; }
+#cold-war-map-overlay { position:fixed;inset:0;z-index:100000;overflow:hidden;color:#e2edf8;isolation:isolate;background:#050b18 url('img/cold-war-milky-way.png') center center/cover no-repeat; }
+#cold-war-map-overlay::before { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 24% 22%,rgba(122,176,225,.095),transparent 62%),radial-gradient(ellipse at 50% 65%,rgba(54,102,154,.07),transparent 62%),linear-gradient(135deg,rgba(5,13,30,.12),rgba(5,13,30,.28)); }
+#cold-war-map-overlay::after { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 48% 45%,transparent 37%,rgba(5,13,30,.13) 78%,rgba(5,13,30,.24) 100%); }
 #cold-war-map-overlay[hidden], #cold-war-map-tooltip[hidden] { display:none; }
-.cold-war-map-panel { width:100%;min-height:100%;box-sizing:border-box;padding:14px; }
-.cold-war-map-panel header { display:flex;align-items:center;justify-content:space-between;gap:20px; }
+.cold-war-map-panel { position:relative;z-index:1;width:100%;height:100%;min-height:0;box-sizing:border-box;padding:clamp(8px,1.3vw,20px);display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px; }
+.cold-war-map-panel header { display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:36px;padding:8px 14px;background:linear-gradient(100deg,rgba(16,32,54,.72),rgba(9,18,33,.42));border:1px solid rgba(115,164,207,.18);border-radius:5px;box-shadow:0 8px 24px rgba(4,12,28,.14);backdrop-filter:blur(7px); }
 .cold-war-map-panel h1 { margin:0;font-size:1.5rem; }
 #cold-war-map-close { font-size:1.7rem;cursor:pointer;padding:0 12px; }
-.cold-war-map-stage { margin:12px auto 0;max-width:1400px;background:transparent; }
-#cold-war-map { display:block;width:100%;height:auto;touch-action:pan-y; }
+.cold-war-map-stage { position:relative;display:flex;align-items:center;justify-content:center;min-height:0;min-width:0;width:100%;height:100%;margin:0;background:transparent; }
+.cold-war-globe { position:relative;flex:none;max-width:100%;max-height:100%;isolation:isolate; }
+.cold-war-globe::before { content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:50%;box-shadow:0 0 1px 1px rgba(127,194,242,.49),0 0 7px 2px rgba(78,151,218,.16),-5px -5px 19px 3px rgba(125,187,236,.09),5px 7px 23px 2px rgba(28,66,115,.10); }
+.cold-war-map-panel #cold-war-map-message { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;max-width:80%;padding:12px 18px;background:rgba(9,20,39,.85);border:1px solid rgba(115,164,207,.3);border-radius:4px; }
+#cold-war-map { display:block;width:100%;height:100%;touch-action:manipulation; }
 #cold-war-map-tooltip { position:fixed;z-index:100001;pointer-events:none;padding:10px 13px;background:rgba(20,24,32,.96);color:white;border:1px solid #ffd200;border-radius:4px;font-size:14px;line-height:1.5;max-width:calc(100vw - 40px);box-sizing:border-box; }
 #cold-war-map-tooltip strong { display:block;color:#ffd200; }
 /* Cyprus support stays alongside operation decisions, within the main panel. */
@@ -1750,3 +1755,9 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 .cold-war-map-panel header h1 { margin-right:auto; }
 #cold-war-view-toggle { cursor:pointer;padding:7px 12px; }
 
+
+#cold-war-map-overlay #cold-war-map-message[hidden] { display:none; }
+#cold-war-map-overlay header button { color:#dceafa;background:rgba(29,51,77,.64);border:1px solid rgba(125,174,218,.3);border-radius:3px; }
+#cold-war-map-overlay header button:hover { background:rgba(53,83,117,.76); }
+#cold-war-map-overlay header button:focus-visible { outline:2px solid #a0ccee;outline-offset:3px; }
+@media(max-width:600px){.cold-war-map-panel{gap:8px}.cold-war-map-panel header{gap:8px;padding:6px 9px}.cold-war-map-panel h1{font-size:1.1rem}#cold-war-view-toggle{font-size:.8rem;padding:6px 8px}}

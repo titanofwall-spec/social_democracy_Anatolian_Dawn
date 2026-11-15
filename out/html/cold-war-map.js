@@ -24,6 +24,9 @@
       displayed=ctx.getImageData(0,0,width,height);
     }
     ctx.putImageData(displayed,0,0);
+    window.ColdWarPresentation.apply(ctx,width,height);
+    // Hover paints from this finished frame, keeping gold effects above the scene.
+    displayed=ctx.getImageData(0,0,width,height);
   }
   const fills = [], borders = [], names = [''];
   const byColor = new Map();
@@ -134,6 +137,7 @@
           document.getElementById('cold-war-map-message').textContent='Layer assets could not be loaded. Showing the political map. '+error.message;
         }
         renderDisplay();
+        fitGlobe();
         document.getElementById('cold-war-map-message').hidden=!!mapRenderer;
         resolve();
       }catch(error){reject(error);}};
@@ -141,8 +145,17 @@
     });
     return ready;
   }
+  function fitGlobe(){
+    const stage=document.querySelector('.cold-war-map-stage');
+    const globe=document.querySelector('.cold-war-globe');
+    if(!stage||!globe||overlay().hidden)return;
+    const ratio=(width||2828)/(height||2825);
+    const fitWidth=Math.max(1,Math.min(stage.clientWidth,stage.clientHeight*ratio));
+    globe.style.width=fitWidth+'px';globe.style.height=(fitWidth/ratio)+'px';
+  }
   window.showColdWarMap=function(){
     overlay().hidden=false;document.body.classList.add('cold-war-map-open');
+    fitGlobe();
     document.getElementById('cold-war-map-close').focus();
     setup().catch(error=>{const msg=document.getElementById('cold-war-map-message');msg.hidden=false;msg.textContent=error.message;});
   };
@@ -151,6 +164,9 @@
     const button=document.getElementById('cold-war-map-button');if(button)button.focus();
   };
   document.addEventListener('DOMContentLoaded',()=>{
+    const stage=document.querySelector('.cold-war-map-stage');
+    if(window.ResizeObserver)new ResizeObserver(fitGlobe).observe(stage);
+    window.addEventListener('resize',fitGlobe);
     document.getElementById('cold-war-view-toggle').addEventListener('click',()=>{
       if(!original || !terrainImage)return;
       clear();terrainView=!terrainView;renderDisplay();
