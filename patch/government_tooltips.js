@@ -1,9 +1,9 @@
-/* Anatolian Dawn - Cold War government tooltip enhancement, compatibility layer v1.
+/* Anatolian Dawn - Cold War government tooltip inline replacement, compatibility layer v2.
    Self-contained and intentionally leaves Turkey to the game's own state renderer. */
 (function(){
   'use strict';
-  if(window.__AD_COLD_WAR_GOV_V1__) return;
-  window.__AD_COLD_WAR_GOV_V1__=true;
+  if(window.__AD_COLD_WAR_GOV_V2__) return;
+  window.__AD_COLD_WAR_GOV_V2__=true;
   const DATA=/*__DATABASE__*/;
   const countries=DATA.countries||[];
   const byName=new Map();
@@ -110,12 +110,88 @@
     const q='[class*=\"tooltip\" i],[id*=\"tooltip\" i],[class*=\"country-info\" i],[id*=\"country-info\" i],[class*=\"country-detail\" i],[id*=\"country-detail\" i]';
     return Array.from(document.querySelectorAll(q)).filter(n=>!n.closest('.ad-cw-gov-data')&&n.getClientRects().length&&n.getBoundingClientRect().width>90&&n.getBoundingClientRect().height>20);
   }
-  function addRow(parent,label,value,party){
-    const row=document.createElement('div');row.className='ad-cw-row';
-    const l=document.createElement('span');l.className='ad-cw-label';l.textContent=label;
-    const v=document.createElement('span');v.className='ad-cw-value'+(party?' ad-cw-party':'');v.textContent=value;
-    if(party)v.style.color=ideologyColor(value);
-    row.append(l,v);parent.append(row);
+  // Replace content inside the game's original three fields, never append a second panel.
+  const FIELDS=[
+    {label:/head\s+of\s+state/i,value:'head_of_state'},
+    {label:/head\s+of\s+(?:government|govt\.?)/i,value:'head_of_government'},
+    {label:/government/i,value:'government'}
+  ];
+  const EXACT_LABEL=/^\s*(head\s+of\s+state|head\s+of\s+(?:government|govt\.?)|government)\s*:?\s*$/i;
+  const PREFIX=/^([\s\u00a0]*(?:head\s+of\s+state|head\s+of\s+(?:government|govt\.?)|government)\s*:\s*)([\s\S]*)$/i;
+  function fieldFor(label){const v=normalize(label).replace(/\s+/g,' ');
+    if(/^head of state$/.test(v))return 'head_of_state';
+    if(/^head of (government|govt)$/.test(v))return 'head_of_government';
+    if(/^government$/.test(v))return 'government';return null;
+  }
+  function colored(node,value,isGovernment){
+    if(node.textContent!==value)node.textContent=value;
+    if(isGovernment&&node.nodeType===1)node.style.color=ideologyColor(value);
+  }
+  function replaceField(tooltip,field,value){
+    // Prefer updating a text node that contains the label and value together:
+    // <div>Head of State: Placeholder</div>.
+    const walker=document.createTreeWalker(tooltip,NodeFilter.SHOW_TEXT);
+    const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+    for(const node of nodes){
+      if(node.parentElement&&node.parentElement.closest('.ad-cw-gov-data'))continue;
+      const match=node.nodeValue.match(PREFIX);
+      if(!match||fieldFor(match[1])!==field)continue;
+      // Only update if this text node actually has a value after the colon. If label
+      // and value have separate nodes, handle the second case below.
+      if(match[2].trim()){
+        const next=match[1]+value;
+        if(node.nodeValue!==next)node.nodeValue=next;
+        if(field==='government'){const color=ideologyColor(value);if(node.parentElement.dataset.adGovColor!==color){node.parentElement.style.color=color;node.parentElement.dataset.adGovColor=color;}}
+        return true;
+      }
+    }
+    // Typical structured tooltip: <div><b>Head of State:</b> <span>Placeholder</span></div>.
+    // Use the smallest DOM element containing an exact label, then replace its sibling value.
+    for(const node of nodes){
+      if(node.parentElement&&node.parentElement.closest('.ad-cw-gov-data'))continue;
+      if(!EXACT_LABEL.test(node.nodeValue)||fieldFor(node.nodeValue)!==field)continue;
+      let label=node.parentElement;
+      if(!label)continue;
+      for(let depth=0;label&&depth<3;label=label.parentElement,depth++){
+        if(label===tooltip)break;
+        let row=label.parentElement;
+        if(!row||row===document.body)continue;
+        // Avoid grabbing the entire tooltip: the smallest row must only have one of
+        // the three field labels, and not be a wrapper containing other fields.
+        const all=normalize(row.textContent);
+        const otherFields=FIELDS.filter(f=>f.value!==field&&f.label.test(all)).length;
+        if(otherFields)continue;
+        const tw=document.createTreeWalker(row,NodeFilter.SHOW_TEXT);
+        let candidate=null;
+        while(tw.nextNode()){
+          const t=tw.currentNode;
+          if(t===node||t.parentElement&&t.parentElement.closest('.ad-cw-gov-data'))continue;
+          if(!t.nodeValue.trim())continue;
+          if(PREFIX.test(t.nodeValue)||EXACT_LABEL.test(t.nodeValue))continue;
+          candidate=t;break;
+        }
+        if(candidate){
+          if(candidate.nodeValue!==value)candidate.nodeValue=value;
+          if(field==='government'){const color=ideologyColor(value);if(candidate.parentElement.dataset.adGovColor!==color){candidate.parentElement.style.color=color;candidate.parentElement.dataset.adGovColor=color;}}
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+  function tooltipCountry(tooltip){
+    let country=null;
+    for(const attr of ['data-country','data-country-name','data-name']){
+      country=countryFromString(tooltip.getAttribute(attr));if(country)return country;
+    }
+    const candidates=tooltip.querySelectorAll('h1,h2,h3,h4,[class*="title" i],[class*="country-name" i],strong');
+    for(const node of Array.from(candidates).slice(0,10)){
+      country=countryFromString(safeText(node));if(country)return country;
+    }
+    // A few game tooltips are plain text rather than wrapped headers.
+    const first=(tooltip.innerText||'').split('\n').map(x=>x.trim()).filter(Boolean);
+    for(const line of first.slice(0,3)){country=countryFromString(line);if(country)return country;}
+    return hovered;
   }
   function render(){
     if(currentlyRendering)return;
@@ -123,28 +199,15 @@
     currentlyRendering=true;
     try{
       for(const tooltip of tooltips){
-        // Many game UI tooltips display the country in their own header. Prefer that label over hover.
-        let country=null;
-        for(const attr of ['data-country','data-country-name','data-name']){country=countryFromString(tooltip.getAttribute(attr));if(country)break;}
-        if(!country){const candidates=tooltip.querySelectorAll('h1,h2,h3,h4,[class*=\"title\" i],[class*=\"country-name\" i],strong');
-          for(const node of Array.from(candidates).slice(0,10)){country=countryFromString(safeText(node));if(country)break;}}
-        if(!country)country=hovered;
-        if(!country)continue;
-        let previous=tooltip.querySelector(':scope > .ad-cw-gov-data');
-        if(country.turkey){if(previous)previous.remove();continue;}
+        // Remove the block injected by v1 on every update. It must not remain visible.
+        tooltip.querySelectorAll('.ad-cw-gov-data').forEach(n=>n.remove());
+        const country=tooltipCountry(tooltip);
+        if(!country||country.turkey)continue; // Turkey stays connected to live game state.
         const date=gameDate();
-        const record=country.periods.find(p=>date&&p.start<=date&&date<=p.end)||(date?null:country.periods[0]);
+        const record=country.periods.find(p=>date&&p.start<=date&&date<=p.end)
+                   ||(!date?country.periods[0]:null);
         if(!record)continue;
-        const key=country.name+'|'+record.start+'|'+record.end;
-        if(previous&&previous.dataset.record===key)continue;
-        if(previous)previous.remove();
-        const panel=document.createElement('div');panel.className='ad-cw-gov-data';panel.dataset.record=key;
-        const header=document.createElement('div');header.className='ad-cw-title';
-        header.textContent=country.name+(date?' · '+date:' · 1972 baseline (date not detected)');panel.append(header);
-        addRow(panel,'Head of State',record.head_of_state,false);
-        addRow(panel,'Head of Govt.',record.head_of_government,false);
-        addRow(panel,'Government',record.government,true);
-        tooltip.append(panel);
+        for(const field of FIELDS)replaceField(tooltip,field.value,record[field.value]);
       }
     }finally{currentlyRendering=false;}
   }
@@ -156,5 +219,5 @@
   });
   function start(){if(document.body)observer.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class','style','title','data-country']});requestUpdate();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
-  window.ADColdWarGovernmentLookup={get:function(name,date){const c=countryFromString(name);return c&&!c.turkey?c.periods.find(p=>p.start<=date&&date<=p.end)||null:null;},version:'1.0',countries:countries.length};
+  window.ADColdWarGovernmentLookup={get:function(name,date){const c=countryFromString(name);return c&&!c.turkey?c.periods.find(p=>p.start<=date&&date<=p.end)||null:null;},version:'2.0',countries:countries.length};
 })();
