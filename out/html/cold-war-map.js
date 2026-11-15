@@ -44,10 +44,12 @@
     return keys.get(name);
   }
   function clear() {
+    const wasActive=!!active;
     if (active && displayed) ctx.putImageData(displayed,0,0);
     if(hoverCtx)hoverCtx.clearRect(0,0,width,height);
     active = 0;
     tooltip().hidden = true;
+    if(wasActive)window.ColdWarDecorations.release();
   }
   function paint(id) {
     if (id === active) return;
@@ -76,6 +78,7 @@
       const line=document.createElement('div');line.textContent=text;tip.append(line);
     });
     tip.hidden=false;
+    window.ColdWarDecorations.hide();
   }
   function move(event) {
     if (!pixels) return;
@@ -122,7 +125,10 @@
           }
         }
         canvas.addEventListener('pointermove',move);
-        canvas.addEventListener('pointerleave',clear);
+        canvas.addEventListener('pointerleave',event=>{
+          if(event.relatedTarget && tooltip().contains(event.relatedTarget))return;
+          clear();
+        });
         canvas.addEventListener('pointerdown',move);
         try {
           const loadImage=src=>new Promise((resolve,reject)=>{
@@ -158,16 +164,19 @@
   }
   window.showColdWarMap=function(){
     selectMode('political');
+    window.ColdWarDecorations.reset();
     overlay().hidden=false;document.body.classList.add('cold-war-map-open');
     fitGlobe();
     document.getElementById('cold-war-map-close').focus();
     setup().catch(error=>{const msg=document.getElementById('cold-war-map-message');msg.hidden=false;msg.textContent=error.message;});
   };
   window.hideColdWarMap=function(){
-    clear();overlay().hidden=true;document.body.classList.remove('cold-war-map-open');
+    clear();window.ColdWarDecorations.reset();overlay().hidden=true;document.body.classList.remove('cold-war-map-open');
     const button=document.getElementById('cold-war-map-button');if(button)button.focus();
   };
   document.addEventListener('DOMContentLoaded',()=>{
+    tooltip().addEventListener('pointerenter',()=>{if(active)window.ColdWarDecorations.hide();});
+    tooltip().addEventListener('pointerleave',clear);
     const modeButtons=Array.from(document.querySelectorAll('[data-cold-war-mode]'));
     modeButtons.forEach((button,index)=>{
       button.addEventListener('click',()=>selectMode(button.dataset.coldWarMode));

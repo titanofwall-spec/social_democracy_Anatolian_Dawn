@@ -26,10 +26,10 @@
     light.save();globePath(light,w,h);light.clip();
     // Wide key light rather than a spotlight; dark side remains cool navy.
     const key=light.createRadialGradient(w*.23,h*.18,0,w*.29,h*.25,w*.96);
-    key.addColorStop(0,'rgba(225,239,255,0.20)');key.addColorStop(.45,'rgba(168,207,243,0.085)');key.addColorStop(1,'rgba(168,207,243,0)');
+    key.addColorStop(0,'rgba(225,239,255,0.25)');key.addColorStop(.45,'rgba(168,207,243,0.10625)');key.addColorStop(1,'rgba(168,207,243,0)');
     light.fillStyle=key;light.fillRect(0,0,w,h);
     const shade=light.createLinearGradient(w*.17,h*.1,w*.93,h*.96);
-    shade.addColorStop(0,'rgba(9,21,48,0)');shade.addColorStop(.40,'rgba(9,21,48,0.015)');shade.addColorStop(.72,'rgba(9,21,48,0.15)');shade.addColorStop(1,'rgba(9,21,48,0.34)');
+    shade.addColorStop(0,'rgba(9,21,48,0)');shade.addColorStop(.40,'rgba(9,21,48,0.01875)');shade.addColorStop(.72,'rgba(9,21,48,0.1875)');shade.addColorStop(1,'rgba(9,21,48,0.425)');
     light.fillStyle=shade;light.fillRect(0,0,w,h);
     const limb=light.createRadialGradient(w*.45,h*.42,w*.24,w*.5,h*.5,w*.72);
     limb.addColorStop(0,'rgba(7,20,46,0)');limb.addColorStop(.65,'rgba(7,20,46,.025)');limb.addColorStop(1,'rgba(7,20,46,.20)');
