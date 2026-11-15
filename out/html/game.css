@@ -1745,3 +1745,15 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 @media screen and (min-width: 561px) {
   #tools_wrapper { top: var(--ad-menu-top, auto); }
 }
+
+/* Temporary Cold War display palette editor. */
+#cold-war-palette-editor[hidden] { display:none; }
+#cold-war-palette-editor { position:sticky;top:0;z-index:2;background:#222a35;border:1px solid #596573;padding:12px;margin-top:12px;border-radius:4px; }
+#cold-war-palette-editor p { margin:4px 0 10px; }
+.cold-war-palette-controls { display:flex;align-items:center;gap:16px;flex-wrap:wrap; }
+.cold-war-palette-controls label { display:flex;align-items:center;gap:8px; }
+#cold-war-palette-country { max-width:100%;width:320px;color:#111;background:white; }
+#cold-war-palette-color { width:64px;height:36px;padding:2px;cursor:pointer; }
+#cold-war-palette-status { font-size:.85rem; }
+.cold-war-map-panel header h1 { margin-right:auto; }
+@media(max-width:600px){.cold-war-map-panel header{gap:8px}.cold-war-palette-controls label{flex-wrap:wrap}#cold-war-palette-country{width:240px}}

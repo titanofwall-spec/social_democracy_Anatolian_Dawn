@@ -1,6 +1,91 @@
 (function () {
   'use strict';
-  let ready, canvas, ctx, original, pixels, width, height, active = 0;
+  let ready, canvas, ctx, original, displayed, pixels, width, height, active = 0;
+  const storageKey = 'anatolian-cold-war-palette-v1';
+  const palette = Object.create(null);
+  let editing = false, renderPending = false;
+  function hex(value) { return '#' + value.toString(16).padStart(6,'0').toUpperCase(); }
+  function initializePalette() {
+    palette['#FFFFFF']='#FFFFFF';
+    window.ColdWarCountries.forEach(e=>{palette['#'+e.hex.toUpperCase()]='#'+e.hex.toUpperCase();});
+    try {
+      const saved=JSON.parse(localStorage.getItem(storageKey)||'null');
+      if(saved && saved.assignments) Object.keys(palette).forEach(id=>{
+        if(/^#[0-9a-f]{6}$/i.test(saved.assignments[id]||''))palette[id]=saved.assignments[id].toUpperCase();
+      });
+    } catch (_) { /* The editor remains usable without browser storage. */ }
+  }
+  function documentPalette() {
+    return {schema:'anatolian-dawn-cold-war-palette',version:1,
+      assignments:{...palette},
+      countries:window.ColdWarCountries.map(e=>({name:e.name,id:'#'+e.hex.toUpperCase(),color:palette['#'+e.hex.toUpperCase()]})),
+      sea:{id:'#FFFFFF',color:palette['#FFFFFF']}};
+  }
+  function redraw() {
+    if(!original)return;
+    const selected=active;clear();
+    displayed=new ImageData(new Uint8ClampedArray(original.data),width,height);
+    const source=original.data, target=displayed.data;
+    const colors=new Map(Object.entries(palette).map(([id,color])=>[parseInt(id.slice(1),16),parseInt(color.slice(1),16)]));
+    for(let i=0;i<source.length;i+=4){
+      const color=colors.get(number(source[i],source[i+1],source[i+2]));
+      if(color===undefined || source[i+3]!==255)continue;
+      target[i]=color>>16;target[i+1]=(color>>8)&255;target[i+2]=color&255;
+    }
+    ctx.putImageData(displayed,0,0);
+    if(selected)paint(selected);
+  }
+  function syncPicker() {
+    const id=document.getElementById('cold-war-palette-country').value;
+    document.getElementById('cold-war-palette-color').value=palette[id];
+    document.getElementById('cold-war-palette-hex').textContent=palette[id];
+  }
+  function choose(event) {
+    if(!editing || !pixels)return;
+    const rect=canvas.getBoundingClientRect();
+    const x=Math.floor((event.clientX-rect.left)*width/rect.width),y=Math.floor((event.clientY-rect.top)*height/rect.height);
+    if(x<0||y<0||x>=width||y>=height)return;
+    const p=y*width+x,i=p*4;
+    const color=number(original.data[i],original.data[i+1],original.data[i+2]);
+    const id=hex(color);
+    if(Object.hasOwn(palette,id)){
+      document.getElementById('cold-war-palette-country').value=id;syncPicker();
+    }
+  }
+  function setupEditor() {
+    initializePalette();
+    const select=document.getElementById('cold-war-palette-country');
+    const options=[{name:'Sea / ocean',hex:'FFFFFF'},...window.ColdWarCountries];
+    const seen=new Set();
+    options.forEach(entry=>{
+      const id='#'+entry.hex.toUpperCase();if(seen.has(id))return;seen.add(id);
+      const option=document.createElement('option');option.value=id;
+      option.textContent=id==='#FFFFFF' ? 'Sea / ocean' : window.ColdWarCountries.filter(e=>e.hex===entry.hex).map(e=>e.name).join(' / ');
+      select.append(option);
+    });
+    select.addEventListener('change',syncPicker);syncPicker();
+    document.getElementById('cold-war-palette-toggle').addEventListener('click',()=>{
+      editing=!editing;clear();
+      document.getElementById('cold-war-palette-editor').hidden=!editing;
+      const button=document.getElementById('cold-war-palette-toggle');
+      button.setAttribute('aria-expanded',String(editing));button.textContent=editing?'Close editor':'Edit colors';
+    });
+    document.getElementById('cold-war-palette-color').addEventListener('input',event=>{
+      palette[select.value]=event.target.value.toUpperCase();
+      document.getElementById('cold-war-palette-hex').textContent=palette[select.value];
+      const status=document.getElementById('cold-war-palette-status');
+      try{localStorage.setItem(storageKey,JSON.stringify(documentPalette()));status.textContent='Saved in this browser. Export to keep a portable copy.';}
+      catch(_){status.textContent='Browser saving unavailable. Export before leaving.';}
+      if(!renderPending){renderPending=true;requestAnimationFrame(()=>{renderPending=false;redraw();});}
+    });
+    document.getElementById('cold-war-palette-export').addEventListener('click',()=>{
+      const blob=new Blob([JSON.stringify(documentPalette(),null,2)+'\n'],{type:'application/json'});
+      const url=URL.createObjectURL(blob),a=document.createElement('a');
+      a.href=url;a.download='cold-war-map-palette.json';document.body.append(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),10000);
+      document.getElementById('cold-war-palette-status').textContent='Palette exported. Send the JSON when you’re finished.';
+    });
+  }
   const fills = [], borders = [], names = [''];
   const byColor = new Map();
   const keys = new Map();
@@ -21,7 +106,7 @@
     return keys.get(name);
   }
   function clear() {
-    if (active && original) ctx.putImageData(original,0,0);
+    if (active && displayed) ctx.putImageData(displayed,0,0);
     active = 0;
     tooltip().hidden = true;
   }
@@ -29,7 +114,7 @@
     if (id === active) return;
     clear();
     if (!id) return;
-    const frame = new ImageData(new Uint8ClampedArray(original.data),width,height);
+    const frame = new ImageData(new Uint8ClampedArray(displayed.data),width,height);
     const a = frame.data;
     fills[id].forEach(p => {
       const i=p*4;
@@ -93,7 +178,8 @@
         }
         canvas.addEventListener('pointermove',move);
         canvas.addEventListener('pointerleave',clear);
-        canvas.addEventListener('pointerdown',move);
+        canvas.addEventListener('pointerdown',event=>{move(event);choose(event);});
+        redraw();
         document.getElementById('cold-war-map-message').hidden=true;
         resolve();
       }catch(error){reject(error);}};
@@ -111,11 +197,17 @@
     const button=document.getElementById('cold-war-map-button');if(button)button.focus();
   };
   document.addEventListener('DOMContentLoaded',()=>{
+    setupEditor();
     document.getElementById('cold-war-map-close').addEventListener('click',window.hideColdWarMap);
     document.addEventListener('keydown',event=>{
       if(overlay().hidden)return;
       if(event.key==='Escape'){event.preventDefault();window.hideColdWarMap();}
-      if(event.key==='Tab'){event.preventDefault();document.getElementById('cold-war-map-close').focus();}
+      if(event.key==='Tab'){
+        const controls=Array.from(overlay().querySelectorAll('button,select,input')).filter(el=>!el.disabled && el.getClientRects().length);
+        const first=controls[0],last=controls[controls.length-1];
+        if(event.shiftKey && (document.activeElement===first || !overlay().contains(document.activeElement))){event.preventDefault();last.focus();}
+        else if(!event.shiftKey && (document.activeElement===last || !overlay().contains(document.activeElement))){event.preventDefault();first.focus();}
+      }
     });
   });
 }());
