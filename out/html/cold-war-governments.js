@@ -29,6 +29,8 @@
     return 200;
   }
   function color(name,ideology){
+    if(name==='Independents' && ideology==='Independent')return color('Republican Reliance Party (CGP)','Center Right');
+    if(normal(ideology)==='national catholicism')return '#DF3D24';
     const key=normal(name)+'|'+normal(ideology);if(colorCache.has(key))return colorCache.get(key);
     const n=hash(key);let h=(hue(ideology)+(n%23)-11+360)%360,s=58+((n>>>5)%19),l=65+((n>>>12)%9);
     let value=`hsl(${h} ${s}% ${l}%)`;
@@ -93,3 +95,4 @@
   Object.values(turkish).forEach(([name,ideology])=>color(name,ideology));
   window.ColdWarGovernments={render};
 }());
+
