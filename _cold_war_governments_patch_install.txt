@@ -1,0 +1,6 @@
+Installed 20261116_010139
+Backups: C:\Program Files (x86)\social_democracy_Anatolian_Dawn\_cold_war_patch_backups\20261116_010139
+Entry points:
+out\html\index.html
+
+This is a DOM compatibility enhancement. Verify tooltip UI in-game; runtime layouts cannot be proven without game sources.

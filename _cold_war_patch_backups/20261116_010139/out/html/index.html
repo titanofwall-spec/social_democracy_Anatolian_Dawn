@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta prefix="ifiction: http://babel.ifarchive.org/protocol/iFiction/"
+        property="ifiction:ifid" content="7FCDF039-2B77-4179-B795-CBAFA65253AA">
+    <title>Anatolian Dawn - Egehan</title>
+    <link rel="icon" type="image/jpeg" href="img/chp5_20251125_200815_0000.svg">
+    <link rel="stylesheet" type="text/css" href="game.css?v=cold-war-directional-fades-4">
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="d3.v7.min.js"></script>
+    <script src="d3-parliament.js?v=seat-outlines-20261006-1"></script>
+    <script src="d3-linegraph.js?v=aa7e4eaf8f26"></script>
+    <script src="data.js?v=cb64419ff28f"></script>
+    <script src="macro-economy.js?v=ba399023955d"></script>
+    <script src="rules.js?v=84c95b3aee07"></script>
+    <script src="data/province-data.js?v=782022de7438"></script>
+    <script src="data/coalition-actions.js?v=380a17c01cfc"></script>
+    <script src="data/coalition-texts.js?v=d8d26e1735d6"></script>
+    <script src="coalitions.js?v=37199eedaee4"></script>
+    <script src="card-actions.js?v=5c14f30ec3b6"></script>
+    <script src="municipalities.js?v=1ccb7a54f20b"></script>
+    <script src="social-issues.js?v=44564f3a193d"></script>
+    <script src="peoples-sector.js?v=2cfeeb0d5258"></script>
+    <script src="kurdish-event-media.js?v=3de9e5d549b3"></script>
+    <script src="kurdish-organizations.js?v=f0928245a35f"></script>
+    <script src="provinces.js?v=03211bd85abe"></script>
+     <script src="dynamic-demographics.js?v=48a76ea3c827"></script>
+     <script src="mission.js?v=be9a395a367a"></script>
+    <script src="national-coalition.js?v=47add4bc8184"></script>
+    <script src="data/senate-data.js?v=5b83865c7d43"></script>
+    <script src="senate.js?v=716179ef62a2"></script>
+    <script src="color-palette.js?v=3226ff9239f2"></script>
+    <script src="data/map-design-default.js?v=1500afc3512a"></script>
+    <script src="map-design.js?v=cf9a7fdd1127"></script>
+    <script src="province-map.js?v=a19f2eb2cba8"></script>
+    <link rel="stylesheet" href="province-map.css?v=e5cdb65d6de2">
+    <link rel="stylesheet" href="map-design.css?v=85221a13164f">
+    <script src="cyprus-atilla1.js?v=ba4d3430af99"></script>
+    <script src="cyprus-campaign.js?v=0c6e08f34f2f"></script>
+    <script src="cyprus-roadmap.js?v=166a7d3ce399"></script>
+    <script src="core.js?v=c2b999f3c5f0"></script>
+    <script src="save-storage.js?v=67f0ac2267a8"></script>
+    <script src="cyprus-presentation.js?v=62e28a8808e5"></script>
+    <script src="game.js?v=cold-war-pixels-1"></script>
+    <script src="cyprus-day-controls.js?v=20261031-1"></script>
+    <script src="header-achievements.js?v=1"></script>
+    <script src="header-layout.js?v=ef8d19f12b90"></script>
+    <script src="sandbox-menu.js?v=8633aedddace"></script>
+      <script src="cold-war-registry.js?v=1"></script>
+    <script src="cold-war-globe-mask.js?v=1"></script>
+    <script src="cold-war-modes.js?v=1"></script>
+    <script src="cold-war-decorations.js?v=directional-fades-3"></script>
+    <script src="cold-war-renderer.js?v=modes-1"></script>
+    <script src="cold-war-presentation.js?v=lighting-125-1"></script>
+    <script src="cold-war-map.js?v=art-hover-1"></script>
+  </head>
+  <body>
+    <button id="music-previous-btn" class="music-track-button" onclick="window.switchMusicTrack(-1)" title="Previous song" aria-label="Previous song">&lt;</button>
+    <button id="music-next-btn" class="music-track-button" onclick="window.switchMusicTrack(1)" title="Next song" aria-label="Next song">&gt;</button>
+    <button id="music-toggle-btn" onclick="window.toggleMusicButton()" title="Toggle Music" aria-label="Toggle Music">
+      <img id="music-on-icon" src="img/music_on.png" width="48" height="40" alt="Music On"/>
+      <img id="music-off-icon" src="img/music_off.png" width="48" height="40" alt="Music Off" style="display:none"/>
+    </button>
+
+    <div class="background" id="bg2">
+    </div>
+
+    <div class="background" id="bg1">
+    </div>
+
+    <div id="options" class="overlay" style="display: none;">
+        <div class="overlay_top">
+            <table>
+                <tr>
+                    <td>
+                        Backgrounds:
+                    </td>
+                    <td>
+                        <label for="backgrounds_yes">On</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="backgrounds_yes" name="backgrounds" value="1" onclick="window.enableBg();">
+                    </td>
+                    <td>
+                        <label for="backgrounds_no">Off</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="backgrounds_no" name="backgrounds" value="0" onclick="window.disableBg();">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <hr> </td>
+                </tr>
+                <tr>
+                    <td>
+                        Event images:
+                    <td>
+                        <label for="images_yes">On</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="images_yes" name="images" value="1" onclick="window.enableImages();">
+                    </td>
+                    <td>
+                        <label for="images_no">Off</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="images_no" name="images" value="0" onclick="window.disableImages();">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <hr> </td>
+                </tr>
+                <tr>
+                    <td>
+                        Flavour events:
+                    </td>
+                    <td>
+                        <label for="flavour_yes">On</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="flavour_yes" name="flavour" value="1" onclick="window.enableFlavour();">
+                    </td>
+                    <td>
+                        <label for="flavour_no">Off</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="flavour_no" name="flavour" value="0" onclick="window.disableFlavour();">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <hr> </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Animations:
+                    </td>
+                    <td>
+                        <label for="animate_yes">On</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="animate_yes" name="animate" value="1" onclick="window.enableAnimate();">
+                    </td>
+                    <td>
+                        <label for="animate_no">Off</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="animate_no" name="animate" value="0" onclick="window.disableAnimate();">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <hr> </td>
+                </tr>
+                <tr>
+                    <td>
+                        Music:
+                    </td>
+                    <td>
+                        <label for="audio_yes">On</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="audio_yes" name="audio" value="1" onclick="window.enableAudio();">
+                    </td>
+                    <td>
+                        <label for="audio_no">Off</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="audio_no" name="audio" value="0" onclick="window.disableAudio();">
+                    </td>
+                </tr>
+                <tr>
+                    <td> <hr> </td>
+                </tr>
+                <tr>
+                    <td>
+                        Color scheme:
+                    </td>
+                    <td>
+                        <label for="light_mode">Light mode</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="light_mode" name="ld_mode" value="1" onclick="window.enableLightMode();">
+                    </td>
+                    <td>
+                        <label for="dark_mode">Dark mode</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="dark_mode" name="ld_mode" value="0" onclick="window.enableDarkMode();">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button onclick="window.hideOptions();">Close</button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                   <td>
+                        <button onclick="window.showMods();">Mods</button>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="cold-war-map-overlay" role="dialog" aria-modal="true" aria-labelledby="cold-war-map-title" hidden>
+      <section class="cold-war-map-panel">
+        <header class="game-window"><h1 id="cold-war-map-title">The Cold War</h1><button id="cold-war-map-close" class="b" type="button" aria-label="Close Cold War map">&times;</button></header>
+<p id="cold-war-map-message" role="status">Loading map…</p>
+        <div class="cold-war-scene-body">
+          <div class="cold-war-sidebar">
+          <aside class="game-window cold-war-status" aria-label="Cold War status">
+            <h2>Cold War Phase: <span>Detente</span></h2>
+            <section><h3>Risk of MAD: <span>Greatly Reduced</span></h3></section>
+            <section><h3>European Stability: <span>Increased</span></h3></section>
+            <section><h3>Great Power Communications: <span>Established</span></h3></section>
+          </aside>
+          <section class="game-window cold-war-map-controls" aria-labelledby="cold-war-modes-title">
+            <h3 id="cold-war-modes-title">Map Mode</h3>
+            <div role="radiogroup" aria-label="Map visualization">
+              <button class="b" type="button" role="radio" data-cold-war-mode="political" aria-checked="true" tabindex="0">Political Mode</button>
+              <button class="b" type="button" role="radio" data-cold-war-mode="allegiance" aria-checked="false" tabindex="-1">Allegiance Mode</button>
+              <button class="b" type="button" role="radio" data-cold-war-mode="divided" aria-checked="false" tabindex="-1">Divided World Mode</button>
+            </div>
+          </section>
+          </div>
+          <div class="cold-war-map-stage"><div class="cold-war-globe"><canvas id="cold-war-map" aria-label="Cold War country map"></canvas><canvas id="cold-war-hover" aria-hidden="true"></canvas></div></div>
+        </div>
+        <div id="cold-war-map-tooltip" class="choice-tooltip" role="tooltip" hidden></div>
+      </section>
+    </div>
+
+    <div id="save" class="overlay" style="display: none;">
+        <table id="saves_table" class="overlay_top">
+            <tr>
+                <td>Auto-0</td>
+                <td>
+                    <button class="b save_button" id="save_button_a0">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_a0">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_a0"></td>
+                <td>
+                    <button class="b export_button" id="export_button_a0">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Auto-1</td>
+                <td>
+                    <button class="b save_button" id="save_button_a1">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_a1">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_a1"></td>
+                <td>
+                    <button class="b export_button" id="export_button_a1">Export</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>0</td>
+                <td>
+                    <button class="b save_button" id="save_button_0">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_0">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_0"></td>
+                <td>
+                    <button class="b export_button" id="export_button_0">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>
+                    <button class="b save_button" id="save_button_1">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_1">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_1"></td>
+                <td>
+                    <button class="b export_button" id="export_button_1">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>
+                    <button class="b save_button" id="save_button_2">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_2">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_2"></td>
+                <td>
+                    <button class="b export_button" id="export_button_2">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>
+                    <button class="b save_button" id="save_button_3">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_3">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_3"></td>
+                <td>
+                    <button class="b export_button" id="export_button_3">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>
+                    <button class="b save_button" id="save_button_4">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_4">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_4"></td>
+                <td>
+                    <button class="b export_button" id="export_button_4">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>
+                    <button class="b save_button" id="save_button_5">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_5">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_5"></td>
+                <td>
+                    <button class="b export_button" id="export_button_5">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>
+                    <button class="b save_button" id="save_button_6">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_6">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_6"></td>
+                <td>
+                    <button class="b export_button" id="export_button_6">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>
+                    <button class="b save_button" id="save_button_7">Save</button>
+                </td>
+                <td>
+                    <button class="b delete_button" id="delete_button_7">Delete</button>
+                </td>
+                <td class="save_info" id="save_info_7"></td>
+                <td>
+                    <button class="b export_button" id="export_button_7">Export</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <label for="import_save">Import save file:</label> <input type="file" id="import_save" onchange="dendryUI.importSave('import_save');"></input>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="dendryUI.hideSaveSlots();">Close</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Sprite stuff - feel free to comment out/remove if not using -->
+    <div id="contentSpriteContainer">
+        <div class="sprite" id="topLeftSprite"></div>
+        <div class="sprite" id="topRightSprite"></div>
+
+        <div class="sprite" id="bottomLeftSprite"></div>
+        <div class="sprite" id="bottomRightSprite"></div>
+    </div>
+
+    <div id='page'>
+        <div id="mid_panel">
+            <header class="ad-command-header">
+                <div class="ad-title-stack">
+                    <div class="ad-title-ribbon ad-credit-ribbon"><svg class="ad-ribbon-vector" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M2 2 H945 L998 98 H2 Z"></path></svg><h2 id="game-author">By Egehan</h2></div>
+                    <div class="ad-title-ribbon ad-game-ribbon"><svg class="ad-ribbon-vector" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M2 2 H945 L998 98 H2 Z"></path></svg><h1 id="game-title">Anatolian Dawn</h1></div>
+</div>
+                <nav id="header-links" class="ad-command-links" aria-label="Game menu">
+                    <a onclick="dendryUI.showSaveSlots();" href="#">Save/Load</a>
+                    <a onclick="window.showOptions();" href="#">Options</a>
+                    <a id="stats-link" onclick="window.showStats();" href="#">Library</a>
+                    <a href="#" onclick="window.showAchievementsPanel(event);return false;">Achievements</a>
+                    <a onclick="window.showSandboxMenu(event);" href="#">Sandbox</a>
+                </nav>
+            </header>
+    <div id="tools_wrapper">
+           <div id='stats_sidebar' class='tools left'>
+                <div class="tab_container" id="stats_tab_container">
+                     <button class="tab_button active" id="main_tab" onclick="window.changeTab('status', 'main_tab');">Main</button>
+                     <button class="tab_button" id="politics_tab" onclick="window.changeTab('status.politics', 'politics_tab');">Politics</button>
+                     <button class="tab_button" id="poll_tab" onclick="window.changeTab('status.polls', 'poll_tab');">Polls</button>
+                     <button class="tab_button" id="paramilitary_tab" onclick="window.changeTab('status.paramilitaries', 'paramilitary_tab');">Defense</button>
+                     <button class="tab_button" id="exterior_affairs_tab" onclick="window.changeTab('status.exterior_affairs', 'exterior_affairs_tab');">Exterior Affairs</button>
+                     <button class="tab_button" id="economy_tab" onclick="window.changeTab('status.economy', 'economy_tab');">Economy</button>
+                     <button class="tab_button" id="social_issues_tab" onclick="window.changeTab('status.social_issues', 'social_issues_tab');">Social Issues</button>
+                     <button class="tab_button" id="mission_tab" onclick="window.changeTab('status.mission', 'mission_tab');">Land Reform</button>
+<button class="tab_button" id="municipalities_tab" onclick="window.changeTab('status.municipalities', 'municipalities_tab');">Municipalities</button>
+               </div>
+    <div id="qualities">
+    </div>
+    <img id="cyprus-title-left-img" class="cyprus-title-img" src="img/baris.jpg" style="display:none;">
+</div>
+<div id='party_sidebar' class='tools right'>
+    <div class="tab_container" id="party_tab_container">
+        <button class="tab_button active" id="the_party_tab" onclick="window.changeRightTab('status.the_party', 'the_party_tab');">The Party</button>
+        <button class="tab_button" id="cyprus_tab" onclick="window.changeRightTab('status.cyprus', 'cyprus_tab');">Cyprus</button>
+        <button class="tab_button" id="national-coalition-open" onclick="AnatolianNationalCoalition.openOverlay();" aria-haspopup="dialog">National Coalition</button>
+    </div>
+    <div id="party_qualities">
+    </div>
+   <img id="cyprus-title-right-img" class="cyprus-title-img" src="img/evet.jpg" style="display:none;">
+  </div>
+</div>
+
+            <div id="content" class="normal-mode">
+
+            </div>
+
+            <footer>
+      <!--
+      <p>
+        <a onclick="window.showSaveSlots();" href="#">Save/Load</a>
+        <a onclick="window.quickSave();" href="#">Quick Save</a>
+        <a onclick="window.quickLoad();" href="#">Quick Load</a>
+      </p>
+
+      &copy; 2021 Autumn Chen.
+      Made with <a href="https://github.com/aucchen/dendry">Dendry</a>.
+      -->
+            </footer>
+        </div>
+    </div>
+  </body>
+</html>
+
+
