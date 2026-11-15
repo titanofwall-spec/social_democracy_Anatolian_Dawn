@@ -982,8 +982,8 @@ body.cold-war-map-open { overflow:hidden; }
 .cold-war-globe::before { content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:50%;box-shadow:0 0 1px 1px rgba(127,194,242,.49),0 0 7px 2px rgba(78,151,218,.16),-5px -5px 19px 3px rgba(125,187,236,.09),5px 7px 23px 2px rgba(28,66,115,.10); }
 .cold-war-map-panel #cold-war-map-message { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;max-width:80%;padding:12px 18px;background:rgba(9,20,39,.85);border:1px solid rgba(115,164,207,.3);border-radius:4px; }
 #cold-war-map { display:block;width:100%;height:100%;touch-action:manipulation; }
-#cold-war-map-tooltip { position:fixed;z-index:100001;pointer-events:none;padding:10px 13px;background:rgba(20,24,32,.96);color:white;border:1px solid #ffd200;border-radius:4px;font-size:14px;line-height:1.5;max-width:calc(100vw - 40px);box-sizing:border-box; }
-#cold-war-map-tooltip strong { display:block;color:#ffd200; }
+#cold-war-map-tooltip { position:fixed;z-index:100001;pointer-events:none;width:max-content;max-width:min(420px,calc(100vw - 32px));bottom:auto;left:auto;transform:none;visibility:visible;opacity:1;transition:none;border-radius:0;box-sizing:border-box; }
+#cold-war-map-tooltip strong { display:block;color:var(--text-color);font-size:1.08em; }
 /* Cyprus support stays alongside operation decisions, within the main panel. */
 .cyprus-command-panel { border-top: 1px solid #a39c8e; margin-top: 22px; padding-top: 12px; }
 #cyprus-map-wrap svg { display: block; width: 100%; height: auto; }
@@ -1753,11 +1753,30 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 
 
 .cold-war-map-panel header h1 { margin-right:auto; }
-#cold-war-view-toggle { cursor:pointer;padding:7px 12px; }
+
 
 
 #cold-war-map-overlay #cold-war-map-message[hidden] { display:none; }
-#cold-war-map-overlay header button { color:#dceafa;background:rgba(29,51,77,.64);border:1px solid rgba(125,174,218,.3);border-radius:3px; }
-#cold-war-map-overlay header button:hover { background:rgba(53,83,117,.76); }
+
+
 #cold-war-map-overlay header button:focus-visible { outline:2px solid #a0ccee;outline-offset:3px; }
 @media(max-width:600px){.cold-war-map-panel{gap:8px}.cold-war-map-panel header{gap:8px;padding:6px 9px}.cold-war-map-panel h1{font-size:1.1rem}#cold-war-view-toggle{font-size:.8rem;padding:6px 8px}}
+
+/* Native game panels and choice-tooltip assets share the game's theme tokens. */
+#cold-war-map-overlay .cold-war-map-panel > header.game-window { width:100%;margin:0;min-height:40px;padding:7px 14px;background:var(--content-bg-color);color:var(--text-color);border:4px double #888;border-radius:0;backdrop-filter:none;box-shadow:2px 2px 12px rgba(0,0,0,.2);box-sizing:border-box;overflow:visible; }
+#cold-war-map-overlay .cold-war-map-panel > header h1 { color:var(--text-color);margin:0;font-size:1.4em; }
+#cold-war-map-close { color:var(--text-color);background:var(--tab-bg-color);border:1px solid var(--tooltip-border-color);border-radius:0;font-family:inherit; }
+#cold-war-map-close:hover { background:var(--tab-hover-color); }
+.cold-war-scene-body { display:grid;grid-template-columns:clamp(230px,22vw,310px) minmax(0,1fr);gap:20px;min-height:0; }
+#cold-war-map-overlay .cold-war-status { align-self:start;width:100%;max-height:100%;box-sizing:border-box;margin:0;padding:18px 16px;overflow:auto;color:var(--text-color);background:var(--content-bg-color);border:4px double #888;border-radius:0; }
+.cold-war-status h2 { font-size:1.65em;line-height:1.25;margin:0 0 22px;font-weight:bold; }
+.cold-war-status h2 span { display:block;margin-top:6px; }
+.cold-war-status section { padding:12px 0;border-top:1px solid var(--card-border-color); }
+.cold-war-status h3 { font-size:1.08em;line-height:1.35;margin:0 0 6px;font-weight:bold; }
+.cold-war-status section strong { font-size:1em;font-weight:normal;color:var(--effect-increase-color); }
+#cold-war-map-tooltip.choice-tooltip { border:2px solid var(--tooltip-border-color);background:var(--tooltip-bg-color);color:var(--text-color);box-shadow:2px 4px 12px var(--tooltip-shadow-color);padding:.6em .75em;line-height:1.35; }
+#cold-war-map-overlay::before { background:radial-gradient(ellipse at 23% 17%,rgba(131,183,235,.16),transparent 58%),radial-gradient(ellipse at 65% 63%,rgba(56,105,168,.11),transparent 65%),linear-gradient(135deg,rgba(5,13,30,.08),rgba(5,13,30,.38)); }
+#cold-war-map-overlay::after { background:radial-gradient(ellipse at 55% 45%,transparent 30%,rgba(5,13,30,.22) 78%,rgba(5,13,30,.38) 100%); }
+.cold-war-globe::before { box-shadow:0 0 1px 1px rgba(127,194,242,.58),0 0 9px 2px rgba(78,151,218,.22),-6px -7px 25px 4px rgba(125,187,236,.14),6px 8px 30px 3px rgba(28,66,115,.14); }
+@media(max-width:700px){.cold-war-scene-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:8px}#cold-war-map-overlay .cold-war-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;font-size:.8em}.cold-war-status h2{grid-column:1/-1;font-size:1.35em;margin:0}.cold-war-status h2 span{display:inline;margin:0}.cold-war-status section{padding:5px 0}.cold-war-status h3{font-size:1em}.cold-war-status section strong{font-size:.95em}}
+.cold-war-status h3 span { display:block;margin-top:6px;color:var(--effect-increase-color);font-weight:inherit; }
