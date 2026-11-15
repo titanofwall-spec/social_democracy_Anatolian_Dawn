@@ -2,14 +2,19 @@
   'use strict';
   const ns='http://www.w3.org/2000/svg',D=2828,H=2825;
   function element(name,attrs){const e=document.createElementNS(ns,name);Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));return e;}
-  function image(file,x,y,width,ratio,rotation,trimEnd=false){
+  function image(file,x,y,width,ratio,rotation,fadeId=null){
     const group=element('g',{transform:`translate(${x*D} ${y*D}) rotate(${rotation})`});
-    if(trimEnd){
-      const defs=element('defs'),clip=element('clipPath',{id:'cold-war-soviet-leading-part',clipPathUnits:'userSpaceOnUse'});
-      clip.append(element('rect',{x:0,y:0,width:width*D*.70,height:width*D*ratio}));defs.append(clip);group.append(defs);
+    const imageWidth=width*D,imageHeight=imageWidth*ratio;
+    if(fadeId){
+      const defs=element('defs');
+      const gradient=element('linearGradient',{id:fadeId+'-gradient',gradientUnits:'userSpaceOnUse',x1:imageWidth*.70,y1:0,x2:imageWidth,y2:0});
+      gradient.append(element('stop',{offset:0,'stop-color':'white','stop-opacity':1}),element('stop',{offset:1,'stop-color':'white','stop-opacity':0}));
+      const mask=element('mask',{id:fadeId,maskUnits:'userSpaceOnUse',maskContentUnits:'userSpaceOnUse',x:0,y:0,width:imageWidth,height:imageHeight,style:'mask-type:alpha'});
+      mask.append(element('rect',{x:0,y:0,width:imageWidth,height:imageHeight,fill:'url(#'+fadeId+'-gradient)'}));
+      defs.append(gradient,mask);group.append(defs);
     }
-    const picture=element('image',{href:'img/'+file,x:0,y:0,width:width*D,height:width*D*ratio,preserveAspectRatio:'xMinYMin meet'});
-    if(trimEnd)picture.setAttribute('clip-path','url(#cold-war-soviet-leading-part)');
+    const picture=element('image',{href:'img/'+file,x:0,y:0,width:imageWidth,height:imageHeight,preserveAspectRatio:'xMinYMin meet'});
+    if(fadeId)picture.setAttribute('mask','url(#'+fadeId+')');
     group.append(picture);return group;
   }
   function globePath(){
@@ -28,7 +33,7 @@
       defs.append(clip);svg.append(defs);
       if(!outside)svg.append(image('cold-war-american-eagle.png',-.12,-.02,.43,1200/910,-8));
       const clipped=element('g',{'clip-path':`url(#${outside?'cold-war-art-inverse':'cold-war-art-globe'})`});
-      clipped.append(image('cold-war-soviet-future.png',.47,.03,.54,563/797,7,outside));svg.append(clipped);host.append(svg);
+      clipped.append(image('cold-war-soviet-future.png',.37,.03,.54,563/797,7,outside?'cold-war-soviet-fade-outside':'cold-war-soviet-fade-inside'));svg.append(clipped);host.append(svg);
     }
   }
   let returnTimer=null;
