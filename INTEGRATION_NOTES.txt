@@ -1,0 +1,35 @@
+COLD WAR GUI: HISTORICAL GOVERNMENT TOOLTIP INTEGRATION
+=======================================================
+STATUS: Data and helper files staged ONLY. Existing game source is NOT modified.
+
+User requirements for full implementation:
+1. On country hover, obtain country name and original country ID from the existing
+   map hit-testing system. Use ColdWarGovernmentData.load() and
+   ColdWarGovernmentData.lookup(data, countryName, countryId, gameDateISO).
+   Display Head of State, Head of Government, and Government.
+2. Country identity must use original IDs, NOT recolored display RGB values.
+   Some territory IDs are shared and cannot identify Greenland, Puerto Rico,
+   and French Guiana separately without additional spatial country identity.
+3. Turkey: NEVER use static historical data. Read the CURRENT game head of state,
+   head of government, and governing party/coalition from live gameplay state.
+   Recompute on gameplay action, coalition formation and date updates.
+4. Render party-name/government text with ColdWarGovernmentData.ideologyColor().
+   For coalition parties with differing ideologies, split labels and use separate
+   ideologically appropriate colors for each constituent party (requires game parser).
+   Do NOT recolor countries based on tooltip-party colors.
+5. Apply .cold-war-left-scroll to the existing left-menu scroll container:
+   hides visible scrollbar, preserves mouse wheel, touch and keyboard scrolling.
+6. Don't display unresearched/null values as if historical facts exist. Show
+   "Historical data unavailable" and mark provisional dates appropriately.
+7. Country tooltip logic must not be blocked by decorative overlays.
+8. Confirm YYYY-MM-DD game date format, country name aliases, and file load path.
+
+DATA QUALITY WARNING:
+The JSON is a RESEARCH DRAFT, 27 countries/territories unresearched.
+Other records include provisional or date-inaccurate transitions. Source audit
+is necessary before shipping as historically verified content.
+
+THE EXISTING REPOSITORY WAS NOT PROVIDED; WE CANNOT SAFELY PATCH UNKNOWN UI
+HANDLERS OR TURKEY'S LIVE GAME STATE WITHOUT SEEING SOURCE FILES.
+
+Run git status after staging and review changes before committing/pushing.
