@@ -65,19 +65,27 @@
       if(source.data[i]===255&&source.data[i+1]===255&&source.data[i+2]===255)seaPixels.data[i+3]=255;
     }
     maskCtx.putImageData(maskPixels,0,0);borderCtx.putImageData(borderPixels,0,0);seaCtx.putImageData(seaPixels,0,0);
+    const cache=new Map();let cachedDate;
+    function build(mode,when){
+    const politicalSource=mode==='political'?political:window.ColdWarModes.overlay(source,mode,when,insideGlobe);
     const composite=makeCanvas(w,h),ctx=composite.getContext('2d');
     for(const layer of layers) {
       const surface=makeCanvas(w,h),cx=surface.getContext('2d');
       cx.filter='saturate('+layer.saturation+'%) contrast('+layer.contrast+'%)';
       if(layer.kind==='fill'||layer.kind==='sea'){
         cx.fillStyle=layer.color;cx.fillRect(0,0,w,h);
-      }else cx.drawImage({texture,political,borders,heightmap}[layer.kind],0,0,w,h);
+      }else cx.drawImage({texture,political:politicalSource,borders,heightmap}[layer.kind],0,0,w,h);
       cx.filter='none';cx.globalCompositeOperation='destination-in';cx.drawImage(layer.kind==='sea'?sea:mask,0,0);
       ctx.globalAlpha=layer.opacity/100;ctx.globalCompositeOperation=layer.blend;
       if(ctx.globalCompositeOperation!==layer.blend)throw Error('Unsupported map blend mode: '+layer.blend);
       ctx.drawImage(surface,0,0);
     }
-    return {render(target){target.save();target.setTransform(1,0,0,1,0,0);target.globalAlpha=1;target.filter='none';target.globalCompositeOperation='source-over';target.clearRect(0,0,w,h);target.drawImage(composite,0,0);target.restore();}};
+    return composite;
+    }
+    return {render(target,mode='political',when=window.ColdWarModes.date()){
+      if(cachedDate!==when.key){cache.clear();cachedDate=when.key;}
+      if(!cache.has(mode))cache.set(mode,build(mode,when));
+      const composite=cache.get(mode);target.save();target.setTransform(1,0,0,1,0,0);target.globalAlpha=1;target.filter='none';target.globalCompositeOperation='source-over';target.clearRect(0,0,w,h);target.drawImage(composite,0,0);target.restore();}};
   }
   window.ColdWarRenderer={create};
 }());

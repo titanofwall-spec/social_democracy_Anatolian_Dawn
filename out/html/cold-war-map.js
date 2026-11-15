@@ -1,6 +1,17 @@
 (function () {
   'use strict';
-  let ready, canvas, ctx, original, displayed, pixels, width, height, active = 0;
+  let ready, canvas, ctx, original, displayed, pixels, width, height, hoverCanvas, hoverCtx, active = 0;
+  let selectedMode='political';
+  function updateModeControls(){
+    document.querySelectorAll('[data-cold-war-mode]').forEach(button=>{
+      const selected=button.dataset.coldWarMode===selectedMode;
+      button.setAttribute('aria-checked',String(selected));button.tabIndex=selected?0:-1;
+    });
+  }
+  function selectMode(mode){
+    if(!['political','allegiance','divided'].includes(mode))return;
+    clear();selectedMode=mode;updateModeControls();if(mapRenderer)renderDisplay();
+  }
   let terrainImage, politicalOverlay, mapRenderer;
   function insideGlobe(x,y) {
     const mask=window.ColdWarGlobeMask;
@@ -9,7 +20,7 @@
     return x>=row[0]*scale && x<(row[1]+1)*scale;
   }
   function renderDisplay() {
-    mapRenderer.render(ctx);
+    mapRenderer.render(ctx,selectedMode,window.ColdWarModes.date());
     window.ColdWarPresentation.apply(ctx,width,height,original);
     displayed=ctx.getImageData(0,0,width,height);
   }
@@ -34,6 +45,7 @@
   }
   function clear() {
     if (active && displayed) ctx.putImageData(displayed,0,0);
+    if(hoverCtx)hoverCtx.clearRect(0,0,width,height);
     active = 0;
     tooltip().hidden = true;
   }
@@ -41,21 +53,21 @@
     if (id === active) return;
     clear();
     if (!id) return;
-    const frame = new ImageData(new Uint8ClampedArray(displayed.data),width,height);
+    const frame = hoverCtx.createImageData(width,height);
     const a = frame.data;
     fills[id].forEach(p => {
       const i=p*4;
-      a[i]=Math.round(a[i]*.80+84*.20);
-      a[i+1]=Math.round(a[i+1]*.80+152*.20);
-      a[i+2]=Math.round(a[i+2]*.80+216*.20);
+      a[i]=84;
+      a[i+1]=152;
+      a[i+2]=216;a[i+3]=51;
     });
-    borders[id].forEach(p => {const i=p*4;a[i]=84;a[i+1]=152;a[i+2]=216;});
-    ctx.putImageData(frame,0,0);
+    borders[id].forEach(p => {const i=p*4;a[i]=84;a[i+1]=152;a[i+2]=216;a[i+3]=255;});
+    hoverCtx.putImageData(frame,0,0);
     const halo=document.createElement('canvas');halo.width=width;halo.height=height;
     const haloCtx=halo.getContext('2d'),haloPixels=haloCtx.createImageData(width,height);
     borders[id].forEach(p=>{const i=p*4;haloPixels.data[i]=84;haloPixels.data[i+1]=152;haloPixels.data[i+2]=216;haloPixels.data[i+3]=255;});
     haloCtx.putImageData(haloPixels,0,0);
-    ctx.save();ctx.globalCompositeOperation='source-atop';ctx.shadowColor='rgba(84,152,216,.85)';ctx.shadowBlur=14;ctx.drawImage(halo,0,0);ctx.restore();
+    hoverCtx.save();hoverCtx.globalCompositeOperation='source-over';hoverCtx.shadowColor='rgba(84,152,216,.85)';hoverCtx.shadowBlur=14;hoverCtx.drawImage(halo,0,0);hoverCtx.restore();
     active=id;
     const tip=tooltip();
     tip.replaceChildren();
@@ -90,6 +102,7 @@
       img.onerror=()=>reject(new Error('The country map could not be loaded.'));
       img.onload=async ()=>{try {
         width=canvas.width=img.naturalWidth;height=canvas.height=img.naturalHeight;
+        hoverCanvas=document.getElementById('cold-war-hover');hoverCanvas.width=width;hoverCanvas.height=height;hoverCtx=hoverCanvas.getContext('2d');
         ctx.drawImage(img,0,0);original=ctx.getImageData(0,0,width,height);
         pixels=new Uint16Array(width*height);
         const a=original.data;
@@ -140,10 +153,11 @@
     const globe=document.querySelector('.cold-war-globe');
     if(!stage||!globe||overlay().hidden)return;
     const ratio=(width||2828)/(height||2825);
-    const fitWidth=Math.max(1,Math.min(stage.clientWidth,stage.clientHeight*ratio));
+    const fitWidth=Math.max(1,Math.min(stage.clientWidth/1.44,stage.clientHeight*ratio/1.18));
     globe.style.width=fitWidth+'px';globe.style.height=(fitWidth/ratio)+'px';
   }
   window.showColdWarMap=function(){
+    selectMode('political');
     overlay().hidden=false;document.body.classList.add('cold-war-map-open');
     fitGlobe();
     document.getElementById('cold-war-map-close').focus();
@@ -154,6 +168,16 @@
     const button=document.getElementById('cold-war-map-button');if(button)button.focus();
   };
   document.addEventListener('DOMContentLoaded',()=>{
+    const modeButtons=Array.from(document.querySelectorAll('[data-cold-war-mode]'));
+    modeButtons.forEach((button,index)=>{
+      button.addEventListener('click',()=>selectMode(button.dataset.coldWarMode));
+      button.addEventListener('keydown',event=>{
+        const offset=event.key==='ArrowRight'||event.key==='ArrowDown'?1:event.key==='ArrowLeft'||event.key==='ArrowUp'?-1:0;
+        if(!offset&&event.key!=='Home'&&event.key!=='End')return;
+        event.preventDefault();const target=event.key==='Home'?0:event.key==='End'?modeButtons.length-1:(index+offset+modeButtons.length)%modeButtons.length;
+        modeButtons[target].focus();selectMode(modeButtons[target].dataset.coldWarMode);
+      });
+    });
     const stage=document.querySelector('.cold-war-map-stage');
     if(window.ResizeObserver)new ResizeObserver(fitGlobe).observe(stage);
     window.addEventListener('resize',fitGlobe);
@@ -162,7 +186,7 @@
       if(overlay().hidden)return;
       if(event.key==='Escape'){event.preventDefault();window.hideColdWarMap();}
       if(event.key==='Tab'){
-        const controls=Array.from(overlay().querySelectorAll('button,select,input')).filter(el=>!el.disabled && el.getClientRects().length);
+        const controls=Array.from(overlay().querySelectorAll('button,select,input')).filter(el=>!el.disabled && el.tabIndex>=0 && el.getClientRects().length);
         const first=controls[0],last=controls[controls.length-1];
         if(event.shiftKey && (document.activeElement===first || !overlay().contains(document.activeElement))){event.preventDefault();last.focus();}
         else if(!event.shiftKey && (document.activeElement===last || !overlay().contains(document.activeElement))){event.preventDefault();first.focus();}
@@ -170,3 +194,4 @@
     });
   });
 }());
+

@@ -1780,3 +1780,31 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 .cold-war-globe::before { box-shadow:0 0 1px 1px rgba(127,194,242,.58),0 0 9px 2px rgba(78,151,218,.22),-6px -7px 25px 4px rgba(125,187,236,.14),6px 8px 30px 3px rgba(28,66,115,.14); }
 @media(max-width:700px){.cold-war-scene-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:8px}#cold-war-map-overlay .cold-war-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;font-size:.8em}.cold-war-status h2{grid-column:1/-1;font-size:1.35em;margin:0}.cold-war-status h2 span{display:inline;margin:0}.cold-war-status section{padding:5px 0}.cold-war-status h3{font-size:1em}.cold-war-status section strong{font-size:.95em}}
 .cold-war-status h3 span { display:block;margin-top:6px;color:var(--effect-increase-color);font-weight:inherit; }
+
+/* Cold War is a deliberately dark, translucent game panel in either global theme. */
+#cold-war-map-overlay {
+  --bg-color:#000;--content-bg-color:rgba(36,36,36,.75);--text-color:#efefef;
+  --border-color:#fff;--link-color:#ff8080;--link-hover-color:rgba(255,255,255,.06);
+  --tab-bg-color:rgba(85,85,85,.75);--tab-color:#505050;--tab-hover-color:rgba(63,63,63,.75);
+  --card-border-color:#4c4c4c;--card-bg-color:rgba(63,63,63,.75);
+  --tooltip-bg-color:rgba(48,48,48,.75);--tooltip-border-color:#aaa;
+  --tooltip-shadow-color:rgba(0,0,0,.8);--effect-increase-color:#78c878;--effect-decrease-color:#ff7777;
+}
+.cold-war-sidebar { display:flex;flex-direction:column;min-height:0;overflow:auto;gap:12px; }
+#cold-war-map-overlay .cold-war-status { flex:none;max-height:none;overflow:visible; }
+#cold-war-map-overlay .cold-war-map-controls { flex:none;margin:0;padding:14px 16px;box-sizing:border-box;width:100%;background:var(--content-bg-color);color:var(--text-color);border:4px double #888; }
+.cold-war-map-controls h3 { margin:0 0 12px;font-size:1.1em; }
+.cold-war-map-controls [role=radiogroup] { display:flex;flex-direction:column;gap:8px; }
+#cold-war-map-overlay .cold-war-map-controls button { font-family:inherit;font-size:1em;text-align:left;padding:8px 10px;color:var(--text-color);background:var(--tab-bg-color);border:1px solid var(--tooltip-border-color);cursor:pointer; }
+#cold-war-map-overlay .cold-war-map-controls button:hover { background:var(--tab-hover-color); }
+#cold-war-map-overlay .cold-war-map-controls button[aria-checked=true] { border:2px solid #5498d8;padding:7px 9px;background:rgba(42,58,77,.75); }
+#cold-war-map-overlay .cold-war-map-controls button:focus-visible { outline:2px solid #a0ccee;outline-offset:2px; }
+.cold-war-globe { overflow:visible; }
+#cold-war-map { position:relative;z-index:1; }
+.cold-war-art { position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none!important;user-select:none; }
+.cold-war-art * { pointer-events:none!important; }
+.cold-war-art-inside { z-index:2; }
+.cold-war-globe::before { z-index:3; }
+.cold-war-art-outside { z-index:4; }
+#cold-war-hover { position:absolute;inset:0;z-index:5;width:100%;height:100%;pointer-events:none; }
+@media(max-width:700px){.cold-war-sidebar{gap:6px}.cold-war-map-controls [role=radiogroup]{flex-direction:row;gap:5px}#cold-war-map-overlay .cold-war-map-controls{padding:7px 8px}.cold-war-map-controls h3{margin:0 0 6px;font-size:1em}#cold-war-map-overlay .cold-war-map-controls button{flex:1;text-align:center;font-size:.8em;padding:5px}#cold-war-map-overlay .cold-war-map-controls button[aria-checked=true]{padding:4px}}
