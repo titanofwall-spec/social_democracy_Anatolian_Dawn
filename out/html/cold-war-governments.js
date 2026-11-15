@@ -66,7 +66,9 @@
     if(normal(name)==='turkey')return turkey();
     const entry=database.get(normal(name)),today=date();
     const period=entry?.periods.find(p=>p.start<=today && p.end>=today);
-    return {head_of_state:text(period?.head_of_state),head_of_government:text(period?.head_of_government),parties:describeGovernment(period?.government)};
+    const government=normal(name)==='canada' && period?.head_of_government==='Pierre Trudeau'
+      ? 'Liberal Party (Social Liberalism)' : period?.government;
+    return {head_of_state:text(period?.head_of_state),head_of_government:text(period?.head_of_government),parties:describeGovernment(government)};
   }
   function render(name,tip){
     const data=record(name),key=JSON.stringify([name,data]);if(tip.dataset.governmentKey===key)return;
