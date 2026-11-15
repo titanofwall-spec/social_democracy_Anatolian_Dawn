@@ -38,7 +38,7 @@
     if (!choices) return 0;
     let name = choices[0];
     if (choices.length > 1) {
-      if (color === 0xab6fd8) name = x < width * .55 ? 'Greenland' : 'Denmark';
+      if (color === 0xab6fd8) name = 'Denmark';
       if (color === 0xce612c) name = x < width * .5 ? 'French Guiana' : 'France';
       if (color === 0xcda456) name = y > height * .62 ? 'Puerto Rico' : 'United States';
     }
