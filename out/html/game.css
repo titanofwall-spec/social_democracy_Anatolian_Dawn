@@ -1822,3 +1822,7 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 #cold-war-map-overlay[data-map-mode="political"] .cold-war-art { visibility:hidden; }
 
 #cold-war-map-tooltip .cold-war-government-info, #cold-war-map-tooltip .cold-war-government-label { color:#fff; }
+
+/* July 16 opposition meeting: full-width event photograph below the heading. */
+#content .cyprus-opposition-figure { float:none;width:fit-content;max-width:100%;box-sizing:border-box;margin:1em auto; }
+#content .cyprus-opposition-figure .face-img { display:block;width:auto;max-width:100%;height:auto;object-fit:contain; }

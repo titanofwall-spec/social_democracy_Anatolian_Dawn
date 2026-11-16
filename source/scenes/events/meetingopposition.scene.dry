@@ -6,13 +6,19 @@ tags: event
 new-page: true
 on-display: {!
 var cardEl = document.createElement('div');
-cardEl.className = "face-figure2";
+cardEl.className = "face-figure2 cyprus-opposition-figure";
 var image = new Image();
 image.className = "face-img";
 image.src = "img/ecevitanswer.jpeg";
+image.alt = "Bülent Ecevit meeting with the opposition";
 cardEl.appendChild(image);
 var contentDiv = document.querySelector("#page #mid_panel #content");
-contentDiv.appendChild(cardEl);
+if (contentDiv) {
+    contentDiv.querySelectorAll('.cyprus-opposition-figure').forEach(function(existing) { existing.remove(); });
+    var heading = contentDiv.querySelector('h1, h2, h3');
+    if (heading) heading.insertAdjacentElement('afterend', cardEl);
+    else contentDiv.insertBefore(cardEl, contentDiv.firstChild);
+}
 !}
 
 

@@ -7492,7 +7492,7 @@
       "newPage": true,
       "onDisplay": [
         {
-          "$code": "var cardEl = document.createElement('div');\ncardEl.className = \"face-figure2\";\nvar image = new Image();\nimage.className = \"face-img\";\nimage.src = \"img/ecevitanswer.jpeg\";\ncardEl.appendChild(image);\nvar contentDiv = document.querySelector(\"#page #mid_panel #content\");\ncontentDiv.appendChild(cardEl);"
+          "$code": "var cardEl = document.createElement('div');\ncardEl.className = \"face-figure2 cyprus-opposition-figure\";\nvar image = new Image();\nimage.className = \"face-img\";\nimage.src = \"img/ecevitanswer.jpeg\";\nimage.alt = \"Bülent Ecevit meeting with the opposition\";\ncardEl.appendChild(image);\nvar contentDiv = document.querySelector(\"#page #mid_panel #content\");\nif (contentDiv) {\n    contentDiv.querySelectorAll('.cyprus-opposition-figure').forEach(function(existing) { existing.remove(); });\n    var heading = contentDiv.querySelector('h1, h2, h3');\n    if (heading) heading.insertAdjacentElement('afterend', cardEl);\n    else contentDiv.insertBefore(cardEl, contentDiv.firstChild);\n}"
         }
       ],
       "options": [
