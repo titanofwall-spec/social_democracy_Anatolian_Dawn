@@ -1,0 +1,1965 @@
+{
+  "repo": "titanofwall-spec/social_democracy_Anatolian_Dawn",
+  "source_commit": "a69744f0cbb6b515af821ebb72b73cfec76885a9",
+  "branch": "turkish-localization-source-20261117",
+  "export_folder": "Anatolian_Dawn_Turkish_Translation_Source",
+  "date": "2026-11-17",
+  "counts": {
+    "reference_or_authoring": 20,
+    "archived_backup": 11,
+    "active_game": 267,
+    "visual_localization_review": 27
+  },
+  "entries": [
+    {
+      "path": "CYPRUS_AUTHORED_TEXTS.json",
+      "sha": "4dcb71aeab48146fc84d7112daffa42646cf7b95",
+      "size_bytes": 45093,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "CYPRUS_INTRO_ENDING_TEXTS.json",
+      "sha": "7934cb7bd2188674fbbf30b78afde435603f0f43",
+      "size_bytes": 7019,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "CYPRUS_LATE_JULY_EVENTS.md",
+      "sha": "c6598caa65b05620793685d12dbfb8af740025b6",
+      "size_bytes": 8697,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "CYPRUS_MILITARY_SOURCE_PASSAGES.json",
+      "sha": "47700447bec2b4d61dce886f0559a4e6494fc1d5",
+      "size_bytes": 18447,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "CYPRUS_ROADMAP_WRITING.json",
+      "sha": "71593136d8c673a9c238f703cb6382341c69c47b",
+      "size_bytes": 13104,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "CYPRUS_SOURCE_PASSAGES.md",
+      "sha": "ca6ea794d2638ffe4a9cbcbe9c08df7579928178",
+      "size_bytes": 29487,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "_cold_war_patch_backups/20261116_010139/out/html/index.html",
+      "sha": "9649546b84ec903f306e683eca016bd71bfe5ad8",
+      "size_bytes": 21466,
+      "category": "archived_backup"
+    },
+    {
+      "path": "_cold_war_patch_backups/tooltip_fix_20261116_011643/out/html/_cold_war_governments/government_tooltips.js",
+      "sha": "9fdfc27ee1accbd487ad4ee156648eefb952397b",
+      "size_bytes": 131726,
+      "category": "archived_backup"
+    },
+    {
+      "path": "anatolian_coalition_localization_backup_2026-11-12T12-56-58-708Z/out/html/coalitions.js",
+      "sha": "09c847ec2fee9a4c3a48092c4111b41d329a5480",
+      "size_bytes": 24781,
+      "category": "archived_backup"
+    },
+    {
+      "path": "anatolian_coalition_localization_backup_2026-11-12T12-56-58-708Z/out/html/data/coalition-texts.js",
+      "sha": "7ce1a199043c8a8ceab75949d0a7333d8eaaea99",
+      "size_bytes": 57703,
+      "category": "archived_backup"
+    },
+    {
+      "path": "credits_images.txt",
+      "sha": "3d04af04767c028ae2d0bceee094fc1a652d84c7",
+      "size_bytes": 27737,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "credits_music.txt",
+      "sha": "6eb87d4ee6185a4a738c3a67dd0aef36c83e803b",
+      "size_bytes": 2677,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "data/cold_war_governments_1972_1981.json",
+      "sha": "f3fcd86753838ecd3e0f0ac6ee6168c3b945426b",
+      "size_bytes": 114043,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "event-localization-backup-20261112-161254/coalition-texts.js",
+      "sha": "115463fad126bd4d3894f8f2a5acba38ff898ca8",
+      "size_bytes": 81268,
+      "category": "archived_backup"
+    },
+    {
+      "path": "event-localization-backup-20261112-161254/coalition_negotiations.scene.dry",
+      "sha": "17d812d4b026fd02461d7276f3ad8962286f0b2f",
+      "size_bytes": 159597,
+      "category": "archived_backup"
+    },
+    {
+      "path": "event-localization-backup-20261112-161254/coalitions.js",
+      "sha": "22d7f3c36c96a7227a0fc41ef1e1827cc6e1a75e",
+      "size_bytes": 26345,
+      "category": "archived_backup"
+    },
+    {
+      "path": "event-localization-backup-20261112-161254/national_elections.scene.dry",
+      "sha": "67e209d70f8d897a130a9241516175c317c6fa90",
+      "size_bytes": 34697,
+      "category": "archived_backup"
+    },
+    {
+      "path": "out/game.json",
+      "sha": "406935b73c4f2113339cd723040ef0216407d866",
+      "size_bytes": 2318644,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/_cold_war_governments/government_tooltips.js",
+      "sha": "007fa2a388ca84b45ec91e68c75806d08b4154de",
+      "size_bytes": 134819,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/card-actions.js",
+      "sha": "85df3aac6c84888cdebc6e8127f4df7946556192",
+      "size_bytes": 3973,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/coalitions.js",
+      "sha": "03e985551e7fbff4221213ce2ca8761761653a70",
+      "size_bytes": 28700,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-decorations.js",
+      "sha": "370cfcfcb443bc6cfe71f5da74765b3ad6c23418",
+      "size_bytes": 5438,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-globe-mask.js",
+      "sha": "6917a7c5334536bcc6f33420d33c070722e97350",
+      "size_bytes": 29952,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-government-data.js",
+      "sha": "17efcf41ba8dce2bca58f18e324ed1842880eb65",
+      "size_bytes": 79380,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-governments.js",
+      "sha": "076d87a665db3dea746aa1a49be91cd28b61fd9f",
+      "size_bytes": 7030,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-map.js",
+      "sha": "dc1f057a712e73e7f3a6800140857fda1d16586d",
+      "size_bytes": 10306,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-modes.js",
+      "sha": "3ec494dc8976cfbcdc78cfd10f809f0f474693c6",
+      "size_bytes": 3869,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-presentation.js",
+      "sha": "76787ec6866c1a64722559d52b29478576191625",
+      "size_bytes": 4117,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-registry.js",
+      "sha": "bf78f2ce2f12440e118228f7806ae07315a937f2",
+      "size_bytes": 5911,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cold-war-renderer.js",
+      "sha": "9a979e7ac9de51d6aa9ff2da2d51eae5df9188e8",
+      "size_bytes": 3611,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/color-palette.js",
+      "sha": "6096ed8c19823ab1263c245985c9b428779460b4",
+      "size_bytes": 4910,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/core.js",
+      "sha": "1c3f5093babd15fd025f3933e7e61721ac364668",
+      "size_bytes": 2606894,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprus-atilla1.js",
+      "sha": "da7d14cebe9e157318832d6850ff03f9850830dc",
+      "size_bytes": 85968,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprus-campaign.js",
+      "sha": "b11ccc6433004b7c04f1d0ebd125d31f998a81e0",
+      "size_bytes": 26630,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprus-day-controls.js",
+      "sha": "f9292025934bc295082ff0921ffef53e640e84c7",
+      "size_bytes": 3087,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprus-presentation.js",
+      "sha": "e66444c9ee59eee90a9c9b7e49dad8a555af273f",
+      "size_bytes": 7365,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprus-roadmap.js",
+      "sha": "309ccb94097a0c4bee41f34484d9bfc2111e23d0",
+      "size_bytes": 200632,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprusgame/cyprus_districts_clickable.svg",
+      "sha": "201fa5327bd48701f82cd5d7272f24b4493d4a1e",
+      "size_bytes": 8335,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/cyprusgame/cyprus_map.png",
+      "sha": "d98204819ceb3ca447923582252fd76e7a8c71d6",
+      "size_bytes": 892311,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/endings/denktas.png",
+      "sha": "17390ae167f90995e8bdf94b188c0f13e5010e80",
+      "size_bytes": 7002259,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/endings/gunes.png",
+      "sha": "111e4ac3bf6110ceaf53f87ccef708979a183130",
+      "size_bytes": 7034117,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/endings/historical.png",
+      "sha": "955e0daf167e86028cf3588fe7d553b61149175a",
+      "size_bytes": 6989557,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/endings/unitary.png",
+      "sha": "5834545f181b590809ff89c5353b83827fc49f90",
+      "size_bytes": 7016503,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/atilla2-day1.png",
+      "sha": "adaf3f6beef7651c7ab4b467b63a7c8bf13be74f",
+      "size_bytes": 2151758,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/atilla2-day2.png",
+      "sha": "dc3bee59a4bec7e40ea95f553ef9d8694a36c178",
+      "size_bytes": 2160132,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/atilla2-day3.png",
+      "sha": "c2a539048d7c84b9a521ef1d2662ebefd8fbdf7b",
+      "size_bytes": 2154004,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/atilla2-day4.png",
+      "sha": "418aaf250270881e088b5377bdba5632d036db4d",
+      "size_bytes": 2154846,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/august-1.png",
+      "sha": "c931e1921c806f4cc035341272ac8c2d1f284619",
+      "size_bytes": 2144287,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/division-enlarged.png",
+      "sha": "092398a6e4bef57f4e1141a64676d99b52b726f3",
+      "size_bytes": 6987449,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-20.png",
+      "sha": "fbc881f104203fea69aefda3b1e6ab13f48ee0d2",
+      "size_bytes": 2139358,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-21.png",
+      "sha": "7a88c2cb765673e44a8ef421f6bdd5008d70c3c8",
+      "size_bytes": 2139903,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-22.png",
+      "sha": "f5734b301edcc57ac05988835504d9d251851cd3",
+      "size_bytes": 2138141,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-23.png",
+      "sha": "7bfafc3be85c3b61b81e6eb261e1ca21839de902",
+      "size_bytes": 2139831,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-24.png",
+      "sha": "51b9eaf883e5a8ca0760f9e352cc983afcfd65f5",
+      "size_bytes": 2142191,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-25.png",
+      "sha": "5481c6335fa4f9ecde77948281288578fbe2e5a6",
+      "size_bytes": 2144533,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-26.png",
+      "sha": "ef0747e9bd30bb834d8a71c4e9ac987d9ae37738",
+      "size_bytes": 2144480,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-27-28.png",
+      "sha": "c126ce22ef100e00ee6b24e774041e70ca7649a5",
+      "size_bytes": 2144281,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/july-30-31.png",
+      "sha": "81912640213139c82191cb423ed6d486addb3af4",
+      "size_bytes": 2144249,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/cyprusgame/frontlines/pre-operation.png",
+      "sha": "caeef97137f52e433980da558bdb4fc5cd06f2bc",
+      "size_bytes": 2191364,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/d3-linegraph.js",
+      "sha": "9430c2982e14083b7b1c99d1cc80abb08d18bfc6",
+      "size_bytes": 8524,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/d3-parliament.js",
+      "sha": "80bc31d8523f0a95f0457614f026e0cfb60645e3",
+      "size_bytes": 10478,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data.js",
+      "sha": "a7cc31b26ec487afc7c8910c4e8ae81d6b4abf54",
+      "size_bytes": 11558,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/coalition-actions.js",
+      "sha": "cd94e435a4a5a75c1b57716a8d9ed299b3fb1ab1",
+      "size_bytes": 46420,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/coalition-texts.js",
+      "sha": "ce9095cf591003b02169486a9aadb3471a0ddb9c",
+      "size_bytes": 84968,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/map-design-default.js",
+      "sha": "dff224d7a91e5a0a6d020ee55297259c81bf7f8f",
+      "size_bytes": 1639,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/map-texture-settings.json",
+      "sha": "b1541e7142115672ff4ef0b05d24d51dfa7ddbcd",
+      "size_bytes": 894,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/province-data.js",
+      "sha": "f41306d5479dc1077e4f214009ec4f8d77f8595e",
+      "size_bytes": 306681,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/senate-data.js",
+      "sha": "a58d9b6aa02c7df0deaaa15bc3986366936f743a",
+      "size_bytes": 15703,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/data/turkey-provinces.svg",
+      "sha": "25ffa502d4706c3ead3e59b01a17137a95c57b3c",
+      "size_bytes": 186990,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/dynamic-demographics.js",
+      "sha": "7e606d2aa4b53a69945bebf99c90fb4081f2ac29",
+      "size_bytes": 18802,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/game.css",
+      "sha": "01ddf9f8c77c549e1ca5a44ee4d6583b84a09b4f",
+      "size_bytes": 59708,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/game.js",
+      "sha": "4c222f91cb2c82e3b26daf72c3f1272e6361f4d3",
+      "size_bytes": 73219,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/game.json",
+      "sha": "406935b73c4f2113339cd723040ef0216407d866",
+      "size_bytes": 2318644,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/header-achievements.js",
+      "sha": "73bf018a3dfc7ccb2a7794526d9ee3623434caa9",
+      "size_bytes": 3009,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/header-layout.js",
+      "sha": "863eaf0858af689a22294353008a891556dfd986",
+      "size_bytes": 873,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/img/chp5_20251125_200815_0000.svg",
+      "sha": "35ba955288319543132dc5d3951ef00e46c24d07",
+      "size_bytes": 293876,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/img/combined-map-custom.png",
+      "sha": "17a718ea069db00742393214e1db6c67886ac4dc",
+      "size_bytes": 1061048,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/img/cyprus.svg",
+      "sha": "6e4d0f954dffb46cddd7d43dbc9adcb89c4ac57a",
+      "size_bytes": 7096,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/img/eoka.svg",
+      "sha": "a5259578ffc74bbf138d28fe16bdf286b1aa5758",
+      "size_bytes": 11729,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/img/independent-placeholder.svg",
+      "sha": "a109c50f758eb387a122180c7fd82779c4d876fc",
+      "size_bytes": 238,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/img/map_2.jpg",
+      "sha": "11e1c38a73233d1a749f7d55cc129a6923afd9a2",
+      "size_bytes": 363263,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/img/map_3.jpg",
+      "sha": "f83558f239e468dbfdc15518201fb1f7db3fa9c0",
+      "size_bytes": 627549,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/img/map_4.jpg",
+      "sha": "ef9f7d6b10cf108b1c6eea7adca8c9660533729c",
+      "size_bytes": 231806,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/img/physical-map-custom.png",
+      "sha": "a301a386313bcddc68b43287dfcbe325979cb904",
+      "size_bytes": 1196715,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/img/political-map-custom.png",
+      "sha": "14a5929f553199cedc42f3f6b387a899fe137dad",
+      "size_bytes": 551179,
+      "category": "visual_localization_review"
+    },
+    {
+      "path": "out/html/index.html",
+      "sha": "93f04b2cc4a44c3c60d1f2c9be884262425fcc36",
+      "size_bytes": 21651,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/kurdish-event-media.js",
+      "sha": "e2a7693c797ca4f86de082a41f42f68e5494d318",
+      "size_bytes": 3163,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/kurdish-organizations.js",
+      "sha": "9da41cacfbcf2d6aa0d56fc978816c3c01efdfbb",
+      "size_bytes": 14377,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/macro-economy.js",
+      "sha": "af1ec2b256ef4878ba09d69e0aa678a28eb7f446",
+      "size_bytes": 14149,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/map-design.css",
+      "sha": "f8f96b84a4266f4eb952b01eeb2a88690953aefa",
+      "size_bytes": 1095,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/map-design.js",
+      "sha": "a3ed5aed7da1325e166d530c60bf9620742a2304",
+      "size_bytes": 23980,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/mission.js",
+      "sha": "b81246fa1c169acfc0a22173785aeea87079b7ea",
+      "size_bytes": 3440,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/municipalities.js",
+      "sha": "574a6e63c28ef25c0c0c562731961be6066de220",
+      "size_bytes": 6711,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/national-coalition.js",
+      "sha": "7415cc24dfe0907d4fce6394ce16ac8ff2811e4c",
+      "size_bytes": 29740,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/peoples-sector.js",
+      "sha": "07fac2c8c038863b8d04ad34e34b42ff0645e3ae",
+      "size_bytes": 8450,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/province-map.css",
+      "sha": "0711b76b37b30ffe6b32adce79157f1d67573a6b",
+      "size_bytes": 18518,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/province-map.js",
+      "sha": "d06717feb3b6de7345d95bdea021fe503aae9d14",
+      "size_bytes": 40729,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/provinces.js",
+      "sha": "868b61415bca5ab0f06e583d707ea84d2c1c331b",
+      "size_bytes": 28076,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/rules.js",
+      "sha": "525b04849d6722107208d600c1d872690ac21439",
+      "size_bytes": 39829,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/sandbox-menu.js",
+      "sha": "a0b046db57381482a37a66e8a13d431128d8b2f2",
+      "size_bytes": 14431,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/save-storage.js",
+      "sha": "ee4780a3422254f38a79c5dbe003ee9f7da9c94a",
+      "size_bytes": 11514,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/senate.js",
+      "sha": "66397bd262242caa08b215074191194dabeb2177",
+      "size_bytes": 11817,
+      "category": "active_game"
+    },
+    {
+      "path": "out/html/social-issues.js",
+      "sha": "2aab96810d5693eccf504490a52d2cd5b45a0957",
+      "size_bytes": 4948,
+      "category": "active_game"
+    },
+    {
+      "path": "patch/government_tooltips.js",
+      "sha": "b33662d759a06f31b8038c72d14528448c744664",
+      "size_bytes": 13866,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "resources/governments.json",
+      "sha": "86cfb9c98edb8d0c9df10bbec9e0db6bd255e29d",
+      "size_bytes": 167836,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/advisor-menu-audit.json",
+      "sha": "65818c87ad0984828af7ecda2553981ec2a83a0e",
+      "size_bytes": 7230,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/card-return-audit.json",
+      "sha": "4f42ffe60e29a6fa717e6bb59dc6535187e4788c",
+      "size_bytes": 1345,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/cold-war-government-data.js",
+      "sha": "517a8c3d7609e4310d9c93f26e1ffa96e8229b09",
+      "size_bytes": 3284,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/cyprus-image-sizes.json",
+      "sha": "d854a4f8c9e6249db628c7008a4e9f43d647216d",
+      "size_bytes": 4470,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/fixtures/government-policy-effects.json",
+      "sha": "535131c90697cfb7df3836e6760e079bd96aa9b0",
+      "size_bytes": 3025,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/fixtures/performance-votes.json",
+      "sha": "3255bde71c3c77c2f5b5fb87c0852d7d28fc5daf",
+      "size_bytes": 560170,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/fixtures/user-cyprus-rewrites.json",
+      "sha": "995c5ecdfeba75d0189a1903a4377eb0e384d546",
+      "size_bytes": 139215,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/retired-kurdish-state.json",
+      "sha": "e55910fda2755ba7a9b731e721bb5a2c63d0f397",
+      "size_bytes": 479,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "scripts/state-keys.json",
+      "sha": "68c0f1a3e304935f3bf7f9cb51de466a5f8ce829",
+      "size_bytes": 28792,
+      "category": "reference_or_authoring"
+    },
+    {
+      "path": "source/info.dry",
+      "sha": "131b77148ae5e005138b8549ae75251f2ba014b6",
+      "size_bytes": 146,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/attitude.qdisplay.dry",
+      "sha": "8e742428eb806ddc28b3b447883da9395e0f9879",
+      "size_bytes": 689,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/coalition_dissent.qdisplay.dry",
+      "sha": "f75a5a8dbb82fcfbcb530f12f39fdee2c9f1e28b",
+      "size_bytes": 69,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/cyprus_attitude.qdisplay.dry",
+      "sha": "63714115d07f319da62b24e3b85cd6098e321a87",
+      "size_bytes": 373,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/democracystatus.qdisplay.dry",
+      "sha": "6c30881a84ff77947670c45ea58a168ecc5c231e",
+      "size_bytes": 633,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/dissent.qdisplay.dry",
+      "sha": "8815d4acfd6fc35fb9a81a39ad88902f05257869",
+      "size_bytes": 132,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/loyalty.qdisplay.dry",
+      "sha": "75ca606131d04451a2b9fc3125a9c61fcedff867",
+      "size_bytes": 252,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/militancy.qdisplay.dry",
+      "sha": "6b1a7eeedc54ebcc793afe035c1c83b9fed95988",
+      "size_bytes": 173,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/month.qdisplay.dry",
+      "sha": "c30c1eda9904f3adf9a291699c14fd251f787097",
+      "size_bytes": 177,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/party_relationships.qdisplay.dry",
+      "sha": "2e4b34fe763419c6776f8306021a03ac1d206773",
+      "size_bytes": 152,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/relationships.qdisplay.dry",
+      "sha": "6abcee46e054da2ca4af94c6748dad690a914706",
+      "size_bytes": 152,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/strength.qdisplay.dry",
+      "sha": "c8d1bb80cf5b4f43082bf671f388657097066bd9",
+      "size_bytes": 152,
+      "category": "active_game"
+    },
+    {
+      "path": "source/qdisplays/taxation.qdisplay.dry",
+      "sha": "be519eda8c598454773509ea6b28292f4139c492",
+      "size_bytes": 165,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/akan.scene.dry",
+      "sha": "434684075f1411dc1bcca8ce8bc40640c54b52a9",
+      "size_bytes": 363,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/aksoy.scene.dry",
+      "sha": "358b77df8f0122cabc311ce37200f2e2466d62ef",
+      "size_bytes": 2650,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/avcioglu.scene.dry",
+      "sha": "428c8a57f12a78cd50ab98200dc2fe9fe0bbf501",
+      "size_bytes": 2238,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/baykal.scene.dry",
+      "sha": "edb50b9b67322fc09b106df012844faf5f8fea9e",
+      "size_bytes": 2056,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/belli.scene.dry",
+      "sha": "84932cf51be58196581ff543f2d98bc3fded0374",
+      "size_bytes": 2895,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/cabinet.scene.dry",
+      "sha": "30cbcefedf2296b3d9ecb0cacc48e018a8ae4462",
+      "size_bytes": 446,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/celikbas.scene.dry",
+      "sha": "3377c8a9bfcef20d1337f3b46b4077f3c910a15b",
+      "size_bytes": 320,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/ecevit.scene.dry",
+      "sha": "7a9e2c0eb4472901468fcbe0b244859f128aa4b5",
+      "size_bytes": 2796,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/erdem.scene.dry",
+      "sha": "cb677d5524277f1f4167e2a8f0ad86d287b37de4",
+      "size_bytes": 1014,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/eyuboglu.scene.dry",
+      "sha": "839c8e38abb184f2802e429d1ef712b3406d8478",
+      "size_bytes": 1837,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/gogus.scene.dry",
+      "sha": "1ef7d3f7b05c7f4951d29114f4b17da55bd79b0d",
+      "size_bytes": 359,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/gunes.scene.dry",
+      "sha": "322d46adc068f7e73273bb9f9fb9fd5b886018eb",
+      "size_bytes": 1875,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/inonu.scene.dry",
+      "sha": "60d6538e24a1af7cef09b3524ca439837ece4fc3",
+      "size_bytes": 2034,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/isik.scene.dry",
+      "sha": "67108e2ac844ec916919fec9ec608665f86ea09f",
+      "size_bytes": 1015,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/kirikoglu.scene.dry",
+      "sha": "1cfb35171ae6f9f947e64f6db4c5838d0334765d",
+      "size_bytes": 1181,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/muezzinoglu.scene.dry",
+      "sha": "f06693e98523e28c5624bce6b419c81ddb389538",
+      "size_bytes": 1704,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/paksut.scene.dry",
+      "sha": "48c773ae7b14a05343b7f1c8c86e688d6dc22a5a",
+      "size_bytes": 333,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/rahsan.scene.dry",
+      "sha": "ddc8f82032c74b00019243093d9f52cb1d923b4b",
+      "size_bytes": 949,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/satir.scene.dry",
+      "sha": "b93a58052d440c41f8ca8bf9034b10db7d3855b8",
+      "size_bytes": 1573,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/sav.scene.dry",
+      "sha": "e69aaffaec8d40d4f79c44c9567314e87ca1f8a9",
+      "size_bytes": 2887,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/selcuk.scene.dry",
+      "sha": "5a63611ca19977d3c5e1c73995059d7d8b59aa9c",
+      "size_bytes": 2526,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/shuffle_leadership_pinned.scene.dry",
+      "sha": "7ee999fe0b35ce592600fefc9753ca5865903b5d",
+      "size_bytes": 210,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/topuz.scene.dry",
+      "sha": "ddd1f7d4e75e95f1392cdb911f3070f26f536732",
+      "size_bytes": 1017,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/ugur.scene.dry",
+      "sha": "b441688added05c0a901728165d74e4f371f5a04",
+      "size_bytes": 894,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/advisors/ustundag.scene.dry",
+      "sha": "a958d9f814aebad329dc90a944d86b2b829548a9",
+      "size_bytes": 1084,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/cancel_advisor_action.scene.dry",
+      "sha": "d4638b8e6f44795d8f18776c365e8c2bddacc5b1",
+      "size_bytes": 642,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/coalition_negotiations.scene.dry",
+      "sha": "3c3c3182f97303bee66e137985c2dea5fc9e8542",
+      "size_bytes": 159818,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/credits.scene.dry",
+      "sha": "141a56a79b3ff3836807d5c245a5b401e3623340",
+      "size_bytes": 3690,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/dovevsbayonet/ecevitandworker.scene.dry",
+      "sha": "3bdb86717c7ebacce762ba8710507fa2b8a3349a",
+      "size_bytes": 1033,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/easy_discard.scene.dry",
+      "sha": "376fc82fbc3c5b25cd3dd44da0e0d78190ffdd11",
+      "size_bytes": 640,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/economy_health_calculator.scene.dry",
+      "sha": "5ac16a681370a112bb4f84521c5281187f416545",
+      "size_bytes": 8750,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/election_algorithm.scene.dry",
+      "sha": "b359aeb29104dae8b71c28e9b505376bb26a1861",
+      "size_bytes": 83,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/election_simulation.scene.dry",
+      "sha": "518f1b0c4bc8d82142b7c3ceca678e60d33465bf",
+      "size_bytes": 9847,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/erbakan.scene.dry",
+      "sha": "695a70d838ab59e29b256bb95101049b1de27ad4",
+      "size_bytes": 3815,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/74_congress.scene.dry",
+      "sha": "803ac735ae48737928d8796d962b239214bf5509",
+      "size_bytes": 244,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/AP_introduction.scene.dry",
+      "sha": "66da43b488977904b8be32570befd110980cc805",
+      "size_bytes": 3984,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/DP_decay.scene.dry",
+      "sha": "a71dd8d45c155c375b74f181708d16f06d2f31c5",
+      "size_bytes": 1066,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/DP_introduction.scene.dry",
+      "sha": "4db32f0d95e42ade3629cc18f80df5698d183fb3",
+      "size_bytes": 2763,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/MHP_introduction.scene.dry",
+      "sha": "6e87b41b379667a5c56b2e83794c6466344bb56f",
+      "size_bytes": 4211,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/TIP_goals.scene.dry",
+      "sha": "b1e21cc676c44d10453b9be9b400b360abd1c259",
+      "size_bytes": 1539,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/TIP_goals_followup.scene.dry",
+      "sha": "c33b0752e7455cc1cdac5ba65a99c5f0e0fedc01",
+      "size_bytes": 1265,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/TIP_introduction.scene.dry",
+      "sha": "13fc7bb9f112b7a24477aedb8df1e28896fc294a",
+      "size_bytes": 4494,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/TIP_vote_of_no_confidence.scene.dry",
+      "sha": "cdba6c6fdfa48ec513facd45f56ada96201e64b3",
+      "size_bytes": 924,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/achievement_of_koykent.scene.dry",
+      "sha": "9dd858ca3c769d1884512bce04e08d768228b00a",
+      "size_bytes": 488,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/anatoliandawn.scene.dry",
+      "sha": "98bb41d7a6a2b3a030e5afa9ceb84131a2e2c701",
+      "size_bytes": 2613,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/ayse.scene.dry",
+      "sha": "30ea3bcda183b652d0845ea3b725800a567294ab",
+      "size_bytes": 3801,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cgpformation.scene.dry",
+      "sha": "050418e3fdbc651e82f1f3da9870ce7d75208379",
+      "size_bytes": 1366,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/chp_fifth_congress.scene.dry",
+      "sha": "b2b0c5b1c01715f2800f87718609d5d9932f2fb8",
+      "size_bytes": 6525,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/coup.scene.dry",
+      "sha": "9514069959ecf2a5f91af663b38b02698e7eb15b",
+      "size_bytes": 2054,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cumhurbaskanligi1.scene.dry",
+      "sha": "60d7004a560a4c5643ed26647ca8fa780416f8f1",
+      "size_bytes": 10730,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_air_strike.scene.dry",
+      "sha": "ab850eb5631d767b712d72f4ccc9f0ddf6782971",
+      "size_bytes": 1214,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_arms_embargo.scene.dry",
+      "sha": "74145ba752e5297e918ff7eaa28647174fd48507",
+      "size_bytes": 1019,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_20.scene.dry",
+      "sha": "90627aea8cba83a9a01b03119af9e0ff119a528e",
+      "size_bytes": 4133,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_21.scene.dry",
+      "sha": "329f5a19b41aa8f57f0b8228d039c2db4c325aad",
+      "size_bytes": 2145,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_22.scene.dry",
+      "sha": "15dd90a4c1c7b7f9183d0b510fb953822ca888ac",
+      "size_bytes": 3631,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_23.scene.dry",
+      "sha": "7712881d6ee8c11618b2214fe0094d766bae29a0",
+      "size_bytes": 3875,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_24.scene.dry",
+      "sha": "31e42ae0b214b70606e60a3f7405d16adcf015dd",
+      "size_bytes": 4394,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_continue.scene.dry",
+      "sha": "3a9e2856e0f29864278ba1d5022219b171cc7064",
+      "size_bytes": 2566,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla1_ending.scene.dry",
+      "sha": "2dbf5b050476275b7704efdaedd6347093006f22",
+      "size_bytes": 7459,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla2_14.scene.dry",
+      "sha": "5653e806d7e2cbcd3e6bcc29eb8bf1c0aceec234",
+      "size_bytes": 1545,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla2_15.scene.dry",
+      "sha": "cf4a69249953ed2a55c2822a5e7fa197b4c7278a",
+      "size_bytes": 1547,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla2_16.scene.dry",
+      "sha": "140c7349b615d8acdb701afd205810e3fda97295",
+      "size_bytes": 1559,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_atilla2_ending.scene.dry",
+      "sha": "e8c1584c1614020a7f4ad985c129df4e16693e1e",
+      "size_bytes": 689,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_15.scene.dry",
+      "sha": "1774943b798456aa362d36bab23a1d15ca7a1358",
+      "size_bytes": 1963,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_16.scene.dry",
+      "sha": "fb5eb34740daeaefc70035df4bae4201dd1500ad",
+      "size_bytes": 1382,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_17.scene.dry",
+      "sha": "b29d09de3348e1f815b03d960155c3eef7a674fb",
+      "size_bytes": 3542,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_18.scene.dry",
+      "sha": "b75e8d86e28dbb51948e4cc5240c4947394a0841",
+      "size_bytes": 4174,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_19.scene.dry",
+      "sha": "e8fa06e92347c794a01495d13c04c1572897a260",
+      "size_bytes": 3025,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_20.scene.dry",
+      "sha": "e4ac544ac2e6b2c2a226e6e6dc19f062a24e66f8",
+      "size_bytes": 3578,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_briefing_continue.scene.dry",
+      "sha": "d8f00ed33cbcfa87cacf0c48c996ca3ce4929daa",
+      "size_bytes": 512,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_campaign_continue.scene.dry",
+      "sha": "28bad6f51f011faebbd4493398c5c38a05a782a4",
+      "size_bytes": 2302,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_campaign_final.scene.dry",
+      "sha": "5e6108269d7a4879b8b3e8b37f688b6b166449bd",
+      "size_bytes": 3808,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_constitution_departure.scene.dry",
+      "sha": "6fcc5466399d1277cdf219e8085e308f4ed1927d",
+      "size_bytes": 2925,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_diplomacy_greece.scene.dry",
+      "sha": "0a8e779461446c1782c1c5b745303b2a05b9ec20",
+      "size_bytes": 3295,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_diplomacy_uk.scene.dry",
+      "sha": "67c196e1c3928dea0c4ce05c3fde88585689803e",
+      "size_bytes": 3245,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_diplomacy_us.scene.dry",
+      "sha": "fb517da8f96276a6ed81caaf2163ca76f25167ce",
+      "size_bytes": 3251,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_diplomatic_meeting.scene.dry",
+      "sha": "3947767315fa7f137659a46051a9e799a803d9ff",
+      "size_bytes": 1621,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_diplomatic_opportunity.scene.dry",
+      "sha": "e855cca04578b80726438ddfb43dbf43205e2bff",
+      "size_bytes": 854,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_economic_embargo.scene.dry",
+      "sha": "0d1d7f426e23be1f5190eed5af08e20f679c6825",
+      "size_bytes": 876,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_geneva_deadline.scene.dry",
+      "sha": "2ee31dac8f8310c7b427d7c413393ee56efa46a6",
+      "size_bytes": 1950,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_gunes_implemented.scene.dry",
+      "sha": "03a71d19e9160db2decb6ba150fff6c06f634122",
+      "size_bytes": 727,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_august1.scene.dry",
+      "sha": "e7081c361c80314aed9cd19c14b1daf3485dcb2c",
+      "size_bytes": 1942,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_august213.scene.dry",
+      "sha": "240b07d2b4511c4b3279e8cd5d45d9c98be9b664",
+      "size_bytes": 2286,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_continue.scene.dry",
+      "sha": "1ce7889a0ea546bcd62007904f7c821ca624bd8b",
+      "size_bytes": 986,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_july25.scene.dry",
+      "sha": "0a19dc3549f5419acd47a259a57566ef575f3c3e",
+      "size_bytes": 3859,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_july26.scene.dry",
+      "sha": "ff0e92762e5ae23486a56521347d2a3bbabb9155",
+      "size_bytes": 4338,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_july2728.scene.dry",
+      "sha": "a759d9a7c6fa99e2cf424c539ec79db312641c6a",
+      "size_bytes": 4214,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_july2930.scene.dry",
+      "sha": "ab3efff0bf78cada908799e31e3a5bf1dd384a7b",
+      "size_bytes": 5983,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_history_july31.scene.dry",
+      "sha": "5da47acd3e5bdaba7614fce18004919b2421910b",
+      "size_bytes": 1956,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_naval_bombard.scene.dry",
+      "sha": "bc818454295dbb58e911e798603e40f178ccdd6a",
+      "size_bytes": 1213,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_preop_continue.scene.dry",
+      "sha": "0108e61c4db4bb6b14c36c4d95dbed6d563fca24",
+      "size_bytes": 113,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_roadmap_event.scene.dry",
+      "sha": "c3fabcce5afefbc340f3ea6764ad42173277ae65",
+      "size_bytes": 8489,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_roadmap_military.scene.dry",
+      "sha": "59485b94c7789a73b6cf72cc830fd75b3823c977",
+      "size_bytes": 1100,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_sarachane_rally.scene.dry",
+      "sha": "65bea480d96d77364faa3f0b6309dc2c6a986db3",
+      "size_bytes": 6782,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_smuggle_arms.scene.dry",
+      "sha": "fdb6c038d513c8219dd5ef1c5ca42545ceb48376",
+      "size_bytes": 1208,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprus_support_return.scene.dry",
+      "sha": "4bbe32b19d6aa4188a7071f21d3d7b2b73accd2e",
+      "size_bytes": 69,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/cyprusintro.scene.dry",
+      "sha": "cdff29911d234475415e30b3fa07b715f150d8d1",
+      "size_bytes": 6232,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/devletguvenlikmahkmesei.scene.dry",
+      "sha": "5275adafc6db54bf678e8b532daea44c13597f78",
+      "size_bytes": 287,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/devyol_formation.scene.dry",
+      "sha": "5d49dca0ef7d6d30a76511422b5a804070d23f47",
+      "size_bytes": 257,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/disk_endorsement1.scene.dry",
+      "sha": "e84bc246a2ccad123a71a836693f99926c2fdee1",
+      "size_bytes": 3256,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/eceviterbakan1.png",
+      "sha": "3abab6a058b6b88e885e5aac679e1bb94d09ac0f",
+      "size_bytes": 805356,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/farukgurlerr.scene.dry",
+      "sha": "f59872d8c27cac64eeda81fb97372f5f40d395e8",
+      "size_bytes": 1229,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/ferit_melen_pm.scene.dry",
+      "sha": "b3478cb23f794f6f6c63c17c88e43d6c9a0649c2",
+      "size_bytes": 2351,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/gezmis.scene.dry",
+      "sha": "ea227788e68eb22130ec20581267f2da4eb28889",
+      "size_bytes": 8017,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/guzelistanbul.scene.dry",
+      "sha": "d74fcb9c78320b5e83f88492beb7f9c5eaca15b9",
+      "size_bytes": 3640,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/guzelistanbulrightko.scene.dry",
+      "sha": "40346729c0f4a6d181a26245d127a91b9c997a2f",
+      "size_bytes": 2550,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/inonulast.scene.dry",
+      "sha": "d4de8f4fae6933f61b63463f9ef50ce8afbc417b",
+      "size_bytes": 3217,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/inonuresignation.scene.dry",
+      "sha": "8e0b85bfd5e82d5c3888f7ca4d20baaa736ef342",
+      "size_bytes": 1211,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/inonuvictory.scene.dry",
+      "sha": "aedabfd9a433d7b7e6657f27e8f67a70c7734808",
+      "size_bytes": 1680,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/karaoglan.scene.dry",
+      "sha": "41d05dbda09e938c55809900f3da485c0abd457c",
+      "size_bytes": 2157,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kibrisdarbe.scene.dry",
+      "sha": "8f8a517b47fc0a7f5b70ebd40443ccdce3a8b48e",
+      "size_bytes": 3379,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kibrisson.scene.dry",
+      "sha": "d056c7c422cf420cf4f1fea4d42e5a97c41f322c",
+      "size_bytes": 550,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kirikogluchoice.scene.dry",
+      "sha": "8410aafbd48fee7c2d60360d2abcd6f981a84a22",
+      "size_bytes": 3625,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kizildere.scene.dry",
+      "sha": "d17eb1f3bf9519d41a9b09fb97819d45f0e5a2f6",
+      "size_bytes": 1876,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_independents_unlock.scene.dry",
+      "sha": "ef41bc05811ff7ba6d8afe19ce3c8354000c5f7d",
+      "size_bytes": 470,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_org_founding_1965.scene.dry",
+      "sha": "331bd73a6af532ecf5a940caa31e18759ad54d37",
+      "size_bytes": 560,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_org_founding_1974.scene.dry",
+      "sha": "234f8405091e05e73f66d43d10822a0b96324df5",
+      "size_bytes": 3826,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_org_founding_1975.scene.dry",
+      "sha": "5c49559563e75a7c6e4caaaf9743f57819c4df27",
+      "size_bytes": 2232,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_org_founding_1976.scene.dry",
+      "sha": "5a9e65998be32ce3f8b5c9afae175c54a112caf2",
+      "size_bytes": 3866,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_org_founding_1978.scene.dry",
+      "sha": "ccf23482e064e90011350733288b974d6918cd60",
+      "size_bytes": 4697,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/kurdish_org_founding_1979.scene.dry",
+      "sha": "91b47e0f1e8f3995dd2776614db7718ff94a8eae",
+      "size_bytes": 1884,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/lokavt.scene.dry",
+      "sha": "6fa6870c8842876166496f6c08187b849a477cf5",
+      "size_bytes": 2995,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/meetingopposition.scene.dry",
+      "sha": "8acbacfa08ce0ae5edd63b51db5a967eae095c73",
+      "size_bytes": 9130,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/mp_died.scene.dry",
+      "sha": "3bc30c696247f1121084e12f6cdebd65d0218981",
+      "size_bytes": 170,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/msp_formation.scene.dry",
+      "sha": "18089030949b9eb659ecd3be0860c3a7ef946b4e",
+      "size_bytes": 2159,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/mspcoalition.scene.dry",
+      "sha": "fa15cb233fd59b326e1f6296c900fb6cb548a678",
+      "size_bytes": 2339,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/naimtalu.scene.dry",
+      "sha": "d3bddc50675c9ff08228af367e0d1b3a1fcffe6d",
+      "size_bytes": 1067,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/national_elections.scene.dry",
+      "sha": "869db967bca1c059305694a95e15bac805fd7ac5",
+      "size_bytes": 34631,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/nuribayar.scene.dry",
+      "sha": "33d57853066381cf1a0fac472365907a1998d22e",
+      "size_bytes": 1065,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/ohp_funding.scene.dry",
+      "sha": "eb04e4a0483a73c3e6fe4fac5171fef4f2e7bb99",
+      "size_bytes": 2153,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/oilcrisis1.scene.dry",
+      "sha": "a26f7143ba1c19770ceda9f926c046496c706c35",
+      "size_bytes": 2180,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/plane.scene.dry",
+      "sha": "147556c342522f1750fe588dbc0f707399f9f8c2",
+      "size_bytes": 2675,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/poppy_campaign.scene.dry",
+      "sha": "d374f1d81ed2f5b565a86cec01b76b07fe81e33d",
+      "size_bytes": 3817,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/raiders.scene.dry",
+      "sha": "a823442e3b4ae26d995a0c04ae4897c257dfdddf",
+      "size_bytes": 1781,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/rightkemalistsplit.scene.dry",
+      "sha": "84068be7635b8d038375fe223c6fa2ddb48db7b7",
+      "size_bytes": 1423,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/satirannouncement.scene.dry",
+      "sha": "4495214d889f340750a793dade333077f888a43c",
+      "size_bytes": 705,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/semihsencer.scene.dry",
+      "sha": "e39b3076efea77b5f69f9ede4aefd13d52c8a4be",
+      "size_bytes": 1017,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/senate_election.scene.dry",
+      "sha": "55c06d6674188679e61ead7d39f13722937e3729",
+      "size_bytes": 981,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/senate_president_death.scene.dry",
+      "sha": "189badc01fe334e43ca042c5533024a2eaea9001",
+      "size_bytes": 263,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/tip_1975.scene.dry",
+      "sha": "0b4572ced4bb748560fc53300ec34b107eadefbf",
+      "size_bytes": 3786,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/tkpmll.scene.dry",
+      "sha": "b7ae0d563dc3777d20fc895d1c133729cc6680c0",
+      "size_bytes": 1586,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/vote_of_no_confidence.scene.dry",
+      "sha": "c6e4c770854c87d3589028ccdfa592782a5d4e99",
+      "size_bytes": 2703,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/yomkippur1.scene.dry",
+      "sha": "813ea5452957dfe1cb0eec7df5513d4a18154367",
+      "size_bytes": 983,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/events/ziverbey_torture.scene.dry",
+      "sha": "70ef008845bcfa7c7333b60697d6c12e28012a4c",
+      "size_bytes": 3729,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/example_food_subsidy.scene.dry",
+      "sha": "613760aec76cdbe6468e919a8bd611d526be5f19",
+      "size_bytes": 945,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/example_industrial_policy.scene.dry",
+      "sha": "397f69ab0888b35a9157a00580a0de5d017a271c",
+      "size_bytes": 806,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/game_over.scene.dry",
+      "sha": "dc68f55a7ef9bcdc423d3e135320ab4f24165b69",
+      "size_bytes": 3341,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/agricultural_policy.scene.dry",
+      "sha": "ae3d703d521e599f67fc6274e8606bbba6ed94c2",
+      "size_bytes": 9552,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/coalition_affairs.scene.dry",
+      "sha": "ce7be2af9c2598076e4485b576980ac06c2d05fc",
+      "size_bytes": 2532,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/dealing_with_toleration.scene.dry",
+      "sha": "697c9d18f5c3edc736a44a92879831974b2cd6dd",
+      "size_bytes": 4939,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/economic_democracy.scene.dry",
+      "sha": "f57b5e17d111c4d01a2280cba93681fb05174bfb",
+      "size_bytes": 10705,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/economic_policy.scene.dry",
+      "sha": "0d453a46fc40d45d981e3e768f0a786ba05007ea",
+      "size_bytes": 11582,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/education_science.scene.dry",
+      "sha": "04a5e1234beb89d7cc198bf67d876e46390a5f29",
+      "size_bytes": 9389,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/fiscal_policy.scene.dry",
+      "sha": "604886ac3dfbaeb5b82c8254d1af1d95cd655979",
+      "size_bytes": 15215,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/foreign_policy.scene.dry",
+      "sha": "0714d60ffb906cc4c0257dfa896bd349e31a2a8f",
+      "size_bytes": 17269,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/industrial_policy.scene.dry",
+      "sha": "6ce678e982b6269ecbfe681f33a803614887fd9c",
+      "size_bytes": 7280,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/judiciary.scene.dry",
+      "sha": "8f2338cd32464f8da5501ab274d581b890d298a7",
+      "size_bytes": 5898,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/kurdish_issue.scene.dry",
+      "sha": "de7283d979d9b712a51bfdad720a6fb7db6e2703",
+      "size_bytes": 6293,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/labor_affairs.scene.dry",
+      "sha": "f072074e1cfb5982297375fad8777f108c454e57",
+      "size_bytes": 8793,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/land_reform.scene.dry",
+      "sha": "d12e71d098a34b8d92e3f3300c24bb2859a16d15",
+      "size_bytes": 3593,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/military_policy.scene.dry",
+      "sha": "100c4136bd1e44d68110b99ea7eaecf0b67e960b",
+      "size_bytes": 6415,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/municipalities.scene.dry",
+      "sha": "d1ebf32aa7134f39c04d6fd1f0036453806aa1ed",
+      "size_bytes": 9906,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/parliamentary_resolution.scene.dry",
+      "sha": "e5249979d32d8be1b8fb0d21b1c891e0a79854e0",
+      "size_bytes": 17480,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/police.scene.dry",
+      "sha": "f3b6e4e7e4442c46e7e86aebe8b7802db6f6a713",
+      "size_bytes": 15805,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/religious_affairs_directorate.scene.dry",
+      "sha": "a7d2c72b58bf937736c238646b399b105173fe7b",
+      "size_bytes": 5300,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/shuffle_cabinet.scene.dry",
+      "sha": "ad829c327f55d636b6f543a2cc2eaa3c3d3322ce",
+      "size_bytes": 1064,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/government_affairs/womens_rights.scene.dry",
+      "sha": "9a4af6c5698206fb5c241749670b329d032a0029",
+      "size_bytes": 7408,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/library.scene.dry",
+      "sha": "1cc5123c24ace4523b3551fce6e3466ebf71f06a",
+      "size_bytes": 65581,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/local_election_algorithm.scene.dry",
+      "sha": "d40b214f9ab75415d9635a4a8511e3f6a38cc3af",
+      "size_bytes": 6327,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/local_elections.scene.dry",
+      "sha": "e90a4a291608d606097d258b13eb2c526b91b5c2",
+      "size_bytes": 3919,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/main.scene.dry",
+      "sha": "b099a562a66df2b599f2baa5f0c9e3578da3ae55",
+      "size_bytes": 2164,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/mod_loader.scene.dry",
+      "sha": "fb6830dc50c30c1dd0708a6ddc34d1d3f268450a",
+      "size_bytes": 2092,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/modify_production_indices.scene.dry",
+      "sha": "fc9e917a21f53e1073bb668c5aee84749e97304d",
+      "size_bytes": 1247,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/campaigning.scene.dry",
+      "sha": "e71e44a65d9239ad49565b7a3ad15bd7d34d57da",
+      "size_bytes": 4340,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/campaigning_ecevit.scene.dry",
+      "sha": "a753271a243af5934c8dec0342fa682fd1bec6fa",
+      "size_bytes": 5074,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/culture.scene.dry",
+      "sha": "ded06808daeb35ca1ec20d27810811521025b183",
+      "size_bytes": 4190,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/enemies.scene.dry",
+      "sha": "f617a750e716d41942183729a47a5d382a3a4cd7",
+      "size_bytes": 4700,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/fundraising.scene.dry",
+      "sha": "df764f04df8f86e7a0d282f18a4e629d225f0485",
+      "size_bytes": 2751,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/inter_party_relationships.scene.dry",
+      "sha": "b7b76dbfeae9e58a363b22a9d4f1227cc3edf1cf",
+      "size_bytes": 4157,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/international_relations.scene.dry",
+      "sha": "32469383dd182d73e51067827cbbaa39922fbd58",
+      "size_bytes": 4353,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/intrapartyinfluence.scene.dry",
+      "sha": "a13c221a60e3d5d7bac09163a84c17e42cd0f941",
+      "size_bytes": 1595,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/komunizmlemucadeledernegi.scene.dry",
+      "sha": "993bd29dc0f3502bbec38e589d4fd0d051dc4cfc",
+      "size_bytes": 1558,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/media.scene.dry",
+      "sha": "529b649caff5701c5f91c0c6d7211f177a775360",
+      "size_bytes": 4844,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/party_disunity.scene.dry",
+      "sha": "60b7ed29ca16138462d6c39fc2993085e3275aec",
+      "size_bytes": 3890,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/party_organizations.scene.dry",
+      "sha": "6b8ec91f74444ead46704c2f6cc4a0f73513eb7b",
+      "size_bytes": 3129,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/rally.scene.dry",
+      "sha": "77df95715e7ccea85eecb1a0710fe1006a00c8df",
+      "size_bytes": 6955,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/remnantsofinonu.scene.dry",
+      "sha": "bfbbb1a7b930e03232e99b27287270de86031fd9",
+      "size_bytes": 3457,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/shuffle_leadership.scene.dry",
+      "sha": "6318c2e4b5e5b7a8b4fa9d50b196420efbd0392e",
+      "size_bytes": 22624,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/strategy.scene.dry",
+      "sha": "77609a5cec2c65715adf2d26e2b203a2cb7acd62",
+      "size_bytes": 3750,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/party_affairs/union_relations.scene.dry",
+      "sha": "b5f29f33e33f219147a32366cd30b74942bb7790",
+      "size_bytes": 2685,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/post_event.scene.dry",
+      "sha": "75ab980f2ebb81233414052807baad2c0eb573fd",
+      "size_bytes": 34569,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/return.scene.dry",
+      "sha": "c3a4d09d93b058c91b6ce82b0cc3f21d1fd38126",
+      "size_bytes": 81,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/root.scene.dry",
+      "sha": "e1b6357dd4030496f1bfb089efd49df411cb840d",
+      "size_bytes": 43802,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/set_next_election_time.scene.dry",
+      "sha": "65ce0a7ee5d18a505f0e230c387aa2602986fe49",
+      "size_bytes": 392,
+      "category": "active_game"
+    },
+    {
+      "path": "source/scenes/status.scene.dry",
+      "sha": "65d51f82272eebb95a1f2f7dcb48c9d0fd69f190",
+      "size_bytes": 51759,
+      "category": "active_game"
+    },
+    {
+      "path": "tooltip-backup-20261112-162146/data.js",
+      "sha": "da71af8237f59335fd712177b4945adcb4fb58ff",
+      "size_bytes": 11023,
+      "category": "archived_backup"
+    },
+    {
+      "path": "tooltip-backup-20261112-162146/game.js",
+      "sha": "95c6d2123c35f59921dbaff63ffe9c458973c9d9",
+      "size_bytes": 77188,
+      "category": "archived_backup"
+    },
+    {
+      "path": "tooltip-backup-20261112-162146/status.scene.dry",
+      "sha": "a67792f921b40e93e352fb1718bd45b08635452f",
+      "size_bytes": 52209,
+      "category": "archived_backup"
+    }
+  ]
+}
