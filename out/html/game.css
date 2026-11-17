@@ -187,7 +187,7 @@ ul.choices, .game-choice-panel {
   border-radius: 4px;
   clear: left;
 }
-ul.choices li {
+ul.choices li, .game-choice-panel > summary, .game-record-items > li {
   border-bottom: 1px solid #876;
   padding: 0.5em;
 }
@@ -208,11 +208,11 @@ ul.choices li.unavailable {
   background-color: var(--unavailable-bg-color) !important;
   cursor: default !important;
 }
-ul.choices li:hover {
+ul.choices li:hover, .game-choice-panel > summary:hover {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
-ul.choices li:last-child {
+ul.choices li:last-child, .game-record-items > li:last-child {
   border-bottom: none;
 }
 ul.choices a {

@@ -49,13 +49,13 @@ compiler.compileGame(files,(err,game)=>{
     versioned=versioned.replace(/(<button[^>]*id="social_issues_tab"[^>]*>Social Issues<\/button>)/,
       '$1\n                     <button class="tab_button" id="mission_tab" onclick="window.changeTab(\'status.mission\', \'mission_tab\');">Land Reform</button>');
   }
-  for(const name of ['header-layout.js','cyprus-presentation.js','sandbox-menu.js','save-storage.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','province-map.js','data/map-design-default.js']){
+  for(const name of ['header-layout.js','cyprus-presentation.js','sandbox-menu.js','save-storage.js','endgame.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprus-atilla1.js','cyprus-campaign.js','cyprus-roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','province-map.js','data/map-design-default.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;
     const version=crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex').slice(0,12);
     const escaped=name.replace(/\./g,'\\.');
     versioned=versioned.replace(new RegExp('src="'+escaped+'(?:\\?[^"]*)?"','g'),'src="'+name+'?v='+version+'"');
   }
-  for(const name of ['province-map.css','map-design.css','game.css']){const version=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html',name))).digest('hex').slice(0,12);versioned=versioned.replace(new RegExp('href="'+name.replace(/\./g,'\\.')+'(?:\\?[^"]*)?"','g'),'href="'+name+'?v='+version+'"');}
+  for(const name of ['province-map.css','map-design.css','endgame.css','game.css']){const version=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html',name))).digest('hex').slice(0,12);versioned=versioned.replace(new RegExp('href="'+name.replace(/\./g,'\\.')+'(?:\\?[^"]*)?"','g'),'href="'+name+'?v='+version+'"');}
   fs.writeFileSync(indexPath,versioned);
 
  });

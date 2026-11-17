@@ -29,7 +29,7 @@ test('Endgame manifest reads real save counters and never mutates the state',()=
 });
 test('Endgame HTML has accessible expandable categories and no vanilla ending text',()=>{
  const html=END.render({year:1982,landreform_done:5,eastern_crime:1});
- assert(html.includes('<details class="endgame-section">'));
+ assert(html.includes('<details class="endgame-section game-choice-panel">'));
  assert(html.includes('<summary>'));
  assert(html.includes('Köykent (Land Reform)'));
  assert(html.includes('Interior Affairs'));

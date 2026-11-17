@@ -130,9 +130,9 @@ function render(Q){
  return '<section class="anatolian-endgame" aria-label="Endgame progress report">'+
   '<h1>'+escape(heading)+'</h1>'+
   '<p class="endgame-date">'+escape(Q&&Q.year||'1982')+' · Final policy record</p>'+
-  '<div class="endgame-sections">'+data.map(s=>'<details class="endgame-section"><summary>'+
+  '<div class="endgame-sections">'+data.map(s=>'<details class="endgame-section game-choice-panel"><summary>'+
    '<span>'+escape(s.title)+'</span><span class="endgame-section-count">'+s.items.filter(i=>i.done).length+'/'+s.items.length+' completed</span></summary>'+
-   '<ul class="endgame-items">'+s.items.map(i=>'<li><span class="endgame-action">'+escape(i.label)+'</span>'+
+   '<ul class="endgame-items game-record-items">'+s.items.map(i=>'<li><span class="endgame-action">'+escape(i.label)+'</span>'+
    '<span class="endgame-steps">'+i.completed+'/'+i.max+'</span>'+
    '<span class="endgame-status '+(i.done?'is-done':'is-incomplete')+'">'+(i.done?'Completed':'Not completed')+'</span></li>').join('')+'</ul></details>').join('')+'</div></section>';
 }
