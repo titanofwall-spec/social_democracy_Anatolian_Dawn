@@ -1,0 +1,162 @@
+title: The Other Side of Geneva
+go-to: event1 if {! return AnatolianRules.cyprusRoadmap.genevaSideEvent(Q) === 1; !}; event2 if {! return AnatolianRules.cyprusRoadmap.genevaSideEvent(Q) === 2; !}; event3 if {! return AnatolianRules.cyprusRoadmap.genevaSideEvent(Q) === 3; !}; event4 if {! return AnatolianRules.cyprusRoadmap.genevaSideEvent(Q) === 4; !}; event5 if {! return AnatolianRules.cyprusRoadmap.genevaSideEvent(Q) === 5; !}; event6 if {! return AnatolianRules.cyprusRoadmap.genevaSideEvent(Q) === 6; !}; cyprus_campaign_continue
+
+@event1
+title: The Other Side of Geneva: A Matter of Protocol
+new-page: true
+
+= The Other Side of Geneva: A Matter of Protocol
+
+After days of combat in Cyprus, the First Geneva Conference has commenced to primarily establish a proper ceasefire and begin the move towards a lasting peace. With the end of the first day of the conference, all sides have already made certain notes, and whether these agreements will result in lasting peace is still unclear, but our delegation certainly witnessed some bizarre moments!
+
+In fact, problems began before the conference had even started. On July 25, Reşat Arım, secretary to the Turkish delegation, spotted an issue with the conference hall. The tables had been arranged so that Britain appeared to be presiding over the proceedings, with the Turkish and Greek delegations seated beneath its authority. He immediately went to confront D'Outremont, the United Nations protocol chief.
+
+"We have merely rented this hall from the United Nations! We are paying for everything, the hall, the interpreters, the communications. You cannot tell us how to sit! Anyone looking at this arrangement would think Britain was presiding over the Turkish and Greek delegations!"
+
+D'Outremont was utterly confused, for how were they going to move the tables? The conference was about to start, and they would need carpenters to rearrange the furniture and technicians to adjust the equipment. Arım, however, was determined that the seating arrangement would not remain as it was.
+
+"Who elected Britain president of this conference? This hall will be changed!"
+
+Carpenters entered the conference hall and moved the tables into a diagonal arrangement with equal spacing between the three delegations all the while the members of the said delegations stood still and watched. Unfortunately, the arrangement still wasn't quite right, resulting in carpenters having to move the tables twice more. The conference started half an hour late because of its very first issue, with the carpenters leaving through the doors just as the foreign ministers entered.
+
+The opening session also had a few interesting moments. Coşkun Kırca glanced up toward the balcony and saw several United Nations personnel recording the proceedings with tape recorders. He was furious and immediately summoned Arım, demanding, "Who gave these men permission to record anything? Have them stop recording at once!" The United Nations had intended to prepare a complete transcript of the proceedings, but nobody had thought to ask our delegation for permission.
+
+With the Watergate scandal still dominating the news, nobody wanted confidential diplomatic discussions to be recorded without their knowledge. If we said anything foolish, it could be taken out of context and used to accuse us of selling out our country. The technicians were therefore ordered to stop, and with the recording equipment silenced, the conference could finally proceed.
+
+- @continue1: Just how İnönü did in Lausanne...
+
+@continue1
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,1); !}
+go-to: cyprus_campaign_continue
+
+@event2
+title: The Other Side of Geneva: Sleepless Nights
+new-page: true
+
+= The Other Side of Geneva: Sleepless Nights
+
+Through the following days of the conference, it was unfortunately proving difficult to get any work done, for arguments broke out over where our troops would remain stationed, what the ceasefire meant, who had authority over the Cypriot government, and even the differences between certain diplomatic expressions. Everyone was becoming increasingly exhausted as the negotiations continued through the night, with delegates removing their jackets, loosening their ties, and gradually losing their formerly immaculate appearances.
+
+During one of the most tiring sessions, British diplomat Wiggin suddenly produced a large bottle of whiskey and placed it on the table. The mood changed almost instantly as the delegates began pouring themselves drinks, conversations moved away from Cyprus, and people started talking about their personal experiences. Greek diplomat Dimitrios Bitsios described how he had been arrested on a beach during the recent political upheaval in Greece. Our diplomats realized that the negotiations might continue until sunrise, so eventually they also began drinking in an effort to keep themselves awake.
+
+It felt more like a tense reunion of old acquaintances than a diplomatic meeting. However, nobody was entirely comfortable with the possibility that they might become intoxicated and weaken their negotiating positions, especially when every clause of the agreement could affect the positions of thousands of soldiers. By the time the sun rose, all 3 delegations were arguing again, with reddened eyes, disheveled clothes, and barely enough energy to keep talking.
+
+Meanwhile, the journalists covering the conference were experiencing their own peculiar difficulties. Hundreds of reporters waited for news on the lawns surrounding the United Nations Palace, where British television and radio crews organized improvised soccer matches while their northern European colleagues consumed astonishing quantities of beer. As the hours passed, increasingly ridiculous jokes, arguments, and occasional drunken pursuits provided entertainment for the exhausted journalists, even as reports of renewed fighting threatened to turn the conference into the prelude to another war.
+
+At the modest hotel accommodating many of the Turkish journalists, a Greek night attendant named Dimitri had developed a particularly unconventional understanding of international relations. Speaking in his limited Turkish, he asked the journalists to inform him if war between Turkey and Greece was about to resume, explaining that his mother-in-law lived in Thessaloniki and that he would happily provide her address to any Turkish pilots willing to drop a bomb upon it. He even offered to pay for the bomb himself. Dimitri's peculiar humor proved a welcome distraction from the uncertainty surrounding the negotiations, although his generosity was perhaps more useful when he supplied the hungry journalists with bread intended for the following morning's breakfast after the hotel kitchen had closed.
+
+- @continue2: Sleep deprivation, the excuse! Whiskey, the delight!
+
+@continue2
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,2); !}
+go-to: cyprus_campaign_continue
+
+@event3
+title: The Other Side of Geneva: An Agreement Nobody Expected
+new-page: true
+
+= The Other Side of Geneva: An Agreement Nobody Expected
+
+By July 28, things had become considerably more serious. We had made good progress toward reaching an agreement when Güneş received a telephone call from Ankara. Prime Minister Ecevit had discovered that the proposed declaration contained language concerning the eventual withdrawal of our troops from Cyprus, and he was deeply dissatisfied with this provision.
+
+"I will not have the flag I personally ordered raised over Kyrenia Castle lowered with my own hands. I will not promise to withdraw the soldiers I sent there!"
+
+Güneş tried to explain that numerous conditions were attached to the provision and that no definite timetable had been established, but Ecevit remained firm, he stated that once an agreement was signed, his government would honor every part of it, making any premature commitment to withdraw our troops politically and militarily unacceptable. The Prime Minister made it clear that the wording had to be removed or the Turkish delegation would withdraw from the conference, this would be the beginning of many other instances of stubborn outbursts of Ecevit back at Ankara as Güneş would now not only have to deal with British, Americans and Greeks, but also his own government...
+
+However, our diplomats were reluctant to take responsibility for ruining the negotiations, especially after several days of difficult discussions. A plan was therefore devised to present demands that the Greeks would almost certainly refuse. This would allow Turkey to withdraw without appearing responsible for the conference's collapse.
+
+Coşkun Kırca immediately got to work. First, he introduced demands concerning Rauf Denktaş's constitutional authority, which Mavros accepted after considerable argument. Next came a demand that the existence of two de facto autonomous administrations on the island be recognized. The Greek Foreign Minister was initially furious, but Callaghan intervened, the wording was adjusted, and another compromise was reached. Finally, Güneş demanded that the provisions concerning the return of refugees and freedom of movement be removed, only for Mavros to accept yet again.
+
+Our delegation was beginning to realize that its demands were being accepted one after another. The Turkish diplomats had entered the negotiations intending to make an agreement impossible, only to discover that the Greeks were just as determined not to let the conference fail. After further proposals and compromises, Güneş finally turned toward his colleagues in exasperation.
+
+"We cannot get out of here, gentlemen. They have accepted everything. There is nothing else we can do!"
+
+Even the most determined members of the delegation were running out of ideas. It was decided that Ankara should be informed of the unexpected situation, perhaps in the hope that the Prime Minister would reconsider his position. The telephone calls continued, and the exhausted diplomats gradually collapsed into the nearest chairs and sofas as they awaited further instructions.
+
+- @continue3: Gentlemen, there is nothing we can do but win...
+
+@continue3
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,3); !}
+go-to: cyprus_campaign_continue
+
+@event4
+title: The Other Side of Geneva: A Minister's Resignation
+new-page: true
+
+= The Other Side of Geneva: A Minister's Resignation
+
+As the days advance, the conference negotiations were slowly producing considerable progress and results. However, the greatest crisis was still to come. The following afternoon, Güneş entered James Callaghan's office for what would become one of the most unpleasant meetings of his political career. The British Foreign Secretary was becoming increasingly angry with Ankara's refusal to accept the proposed withdrawal provisions, and he made little effort to conceal his frustration. He accused Güneş of having no real authority and functioning as little more than a messenger, openly questioning his role in the negotiations.
+
+"You have no role here beyond that of a messenger! If a minister has neither authority nor initiative, he resigns! You are nothing but a telephone receiver!"
+
+Güneş was struggling to remain calm. He pulled at his mustache and bit his lips, trying desperately to restrain his anger. Had almost anyone else spoken to him in such a manner, the ashtray on the table might well have gone flying toward the offending man's head, but two foreign ministers coming to blows would hardly help the negotiations. He replied coldly that there was nothing unusual about governments making decisions on matters of such importance.
+
+However, Callaghan wasn't finished. He stated that he had other business to attend to and would not remain in Geneva indefinitely, giving Turkey until 9:30 the following morning to accept the proposed terms or present an acceptable alternative. Otherwise, Britain would abandon the conference, mobilize NATO and the United Nations, and publicly hold Turkey responsible for its failure.
+
+Güneş left without even shaking his hand. Back at the Turkish mission, his hands were trembling with anger as he gathered the delegation and explained what had happened. Turkey would reject the ultimatum, he declared, and if Callaghan was in such a hurry to leave, he was welcome to do so immediately. He then withdrew into another room with Haluk Ülman and announced that he could no longer continue under these circumstances.
+
+"UNDER THESE CIRCUMSTANCES, I AM RESIGNING!"
+
+Coşkun Kırca was horrified. Withdrawing from the conference now would be disastrous, and he warned Güneş that the entire world would accuse Turkey of barbarism and demand an explanation. The Foreign Minister was utterly exhausted and frustrated, and tears welled up in his eyes as his colleagues pleaded with him to reconsider.
+
+Nevertheless, Güneş remained determined. He wrote out his resignation letter and summoned the telex operator, preparing to relinquish his position in the middle of an international crisis. His colleagues continued trying to dissuade him, with Kırca insisting that abandoning the negotiations after everything they had achieved would be an enormous mistake. Meanwhile, Ülman desperately telephoned Deniz Baykal in Ankara, urging him to intervene before Güneş did something irreversible.
+
+The disagreements between Ankara and Geneva had already strained the delegation considerably, with Güneş repeatedly finding himself caught between the Prime Minister's uncompromising instructions and the delicate diplomatic arrangements negotiated by his advisers. The personal humiliation inflicted by Callaghan had only made matters worse, leaving the Foreign Minister unwilling to endure further insults while simultaneously being held responsible for decisions taken by his own government. Finally, having reached his limit, Güneş announced that he was going to bed and did not wish to speak to anyone, neither the Prime Minister nor Callaghan.
+
+The diplomatic crisis was threatening to become a government crisis as well. Fortunately, while our delegation was trying to prevent its own Foreign Minister from resigning, the British were beginning to realize that their Foreign Secretary might have gone too far. Wiggin approached Kırca and attempted to explain that there had been a misunderstanding.
+
+"There must be some misunderstanding, Mr. Kırca. We have not issued an ultimatum! Callaghan merely mentioned his plane's departure time. He has to attend preparations for the Labour Party conference!"
+
+Having transformed a threat to mobilize NATO and the United Nations against Turkey into an innocent discussion of travel arrangements, the British were now attempting to repair the damage. Kırca was invited to the bar for a drink, where Wiggin continued trying to find a solution. After another round of telephone diplomacy involving Ankara, Athens, London, and Washington, a revised formula was eventually agreed upon. Any potential reduction in armed forces would now depend upon the establishment of suitable political and security conditions, postponing the question of withdrawal considerably. Güneş's resignation was retrieved from the telex operator before it could be transmitted, and he was persuaded to continue the negotiations.
+
+- @continue4: CURSE YOU, CALLAGHAN!!!!!!
+
+@continue4
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,4); !}
+go-to: cyprus_campaign_continue
+
+@event5
+title: The Other Side of Geneva: One Last Argument
+new-page: true
+
+= The Other Side of Geneva: One Last Argument
+
+The Geneva was approaching its end, however, the absurdities were not quite over. On July 30, just when it seemed that an agreement had finally been reached, a Turkish military representative unexpectedly mentioned the possibility of establishing a ten-kilometer security zone around our positions in Cyprus. The diplomats had specifically instructed the military delegation not to mention any distances, knowing how sensitive the issue was. The Greeks immediately became suspicious, believing that such a zone would allow Turkish troops to exercise effective control over a much larger area of the island.
+
+Mavros was so furious that the conference nearly collapsed once again. "If you have no authority on this matter either, Mr. Güneş, perhaps Ankara should send a general to participate in the next negotiations!" Güneş tried to explain the difficulties of controlling individual soldiers along an uncertain ceasefire line, but the argument grew increasingly heated until Callaghan felt obliged to intervene.
+
+"Gentlemen, please!"
+
+Mavros turned toward him, apparently surprised by the interruption. "Mr. Callaghan, do not worry. We are Mediterranean people. We quarrel now, and a little later we leave arm in arm!"
+
+The atmosphere softened, and after further negotiations and another telephone call to Ankara, it was decided that the question of the security zone would be left for subsequent discussions. Güneş and Mavros finally reached an understanding, with the Greek Foreign Minister extending his hand and declaring, "Agreed, Mr. Güneş."
+
+- @continue5: A true Mediterranean classic!
+
+@continue5
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,5); !}
+go-to: cyprus_campaign_continue
+
+@event6
+title: The Other Side of Geneva: A Glass of Rakı
+new-page: true
+
+= The Other Side of Geneva: A Glass of Rakı
+
+And so, after five days of arguments, threats, near-resignations, conflicting instructions, endless telephone calls, and considerable quantities of alcohol, the First Geneva Conference finally came to an end. The declaration was signed on July 30 and provided the basis for further negotiations, giving the participants at least a temporary reprieve from the crisis.
+
+Güneş wanted to celebrate. He had survived a conference that had nearly cost him his position, his patience, and perhaps several years of his life, and he enjoyed a drink of rakı afterward with a bread full of tomato and cheese. But of course, just like everything else, this produced another controversy, as conservative critics were appalled that a minister representing a country whose soldiers had recently been fighting in Cyprus would celebrate the agreement by drinking alcohol.
+
+Some argued that he should have prayed and expressed gratitude to the fallen soldiers instead. However, as everyone knew, Güneş loved music, jokes, friendly gatherings, and rakı, making the controversy another example of the peculiar standards by which politicians were judged. Apparently, a statesman could negotiate through the night, endure insults from a foreign minister, nearly resign, and help secure an international agreement, only for his seriousness to be questioned because he had enjoyed a drink of rakı afterward.
+
+Five days earlier, three delegations had entered the United Nations Palace to decide the future of Cyprus. They emerged with a declaration, a fragile diplomatic understanding, and a collection of personal arguments that would have seemed unbelievable anywhere outside the world of international diplomacy.
+
+The future of Cyprus remains uncertain. The declaration has not resolved the fundamental disagreements between the parties, and another conference is already being prepared. Nevertheless, after everything that has happened in Geneva, perhaps our delegation can be forgiven for wanting a little rest before returning to the negotiating table.
+
+And perhaps another drink of rakı.
+
+- @continue6: Hmmm... yes, tomato, hmm, yesss... Cheese... And of course; Rakı!
+
+@continue6
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,6); !}
+go-to: cyprus_campaign_continue

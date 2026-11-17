@@ -84,10 +84,29 @@
   if(Q.cyprus_month===8){if(Q.cyprus_campaign_phase==='implementation'){return Q.cyprus_day===15?'notification':Q.cyprus_day===21?'canton':Q.cyprus_day===30?'announcement':'';}if(Q.cyprus_day===8||Q.cyprus_day===9)return 'geneva2-opening';if(Q.cyprus_day>=10&&Q.cyprus_day<=14)return 'geneva2-'+Q.cyprus_day;}
   return '';
  }
+ // Narrative interludes follow resolved Geneva I events, before the next campaign screen.
+ // Reuse the saved event ledger; reading an interlude never advances time or pays rewards.
+ function genevaSideEvent(Q){
+  if(!active(Q)||!Q.cyprus_mode||Q.cyprus_campaign_resolved||Q.cyprus_month!==7||Q.cyprus_atilla1_ending_seen)return 0;
+  var seen=Q.cyprus_roadmap_seen||[],results=Q.cyprus_atilla1_results||[];
+  function done(day){return results.some(function(x){return x.day===day;})||seen.indexOf('ceasefire-'+day)>=0;}
+  var candidates=Q.cyprus_day===26&&done(25)?[1]:Q.cyprus_day===27&&done(26)?[2]:Q.cyprus_day===29&&(done(28)||seen.indexOf('ceasefire-27')>=0)?[3]:Q.cyprus_day===30&&seen.indexOf('geneva1')>=0?[4,5,6]:[];
+  return candidates.find(function(n){return seen.indexOf('geneva-side-'+n)<0;})||0;
+ }
+ function finishGenevaSideEvent(Q,id){if(genevaSideEvent(Q)!==id)return false;Q.cyprus_roadmap_seen.push('geneva-side-'+id);return true;}
+ // Future scene text can insert this name directly; roadmap prose also substitutes literal references.
+ function delegationRepresentative(Q){
+  if(!Q.CHP_in_government||Q.MSP_in_government)return 'İsmail Müftüoğlu';
+  if(Q.AP_in_government)return 'Kamran İnan';
+  if(Q.CGP_in_government)return 'Ferit Melen';
+  return 'Fikret Gündoğan';
+ }
+ function delegationText(Q,text){return String(text).replace(/İsmail Müftüoğlu|Müftüoğlu/g,function(name){var replacement=delegationRepresentative(Q);return name==='Müftüoğlu'?replacement.split(' ').slice(-1)[0]:replacement;});}
  function pending(Q){
   migrate(Q);if(!active(Q))return legacy.pending(Q);if(!Q.cyprus_mode)return null;if(number(Q.cyprus_constitution_step)>=8&&Q.cyprus_campaign_phase==='constitutional')Q.cyprus_campaign_phase='constitutional_treaty';tick(Q);
   if(Q.cyprus_constitution_departure_pending)return 'cyprus_constitution_departure';
   if(Q.cyprus_campaign_resolved)return Q.cyprus_final_seen?null:'cyprus_campaign_final';
+  if(genevaSideEvent(Q))return 'cyprus_geneva_side';
   if(endingReady(Q))return 'cyprus_atilla1_ending';
   var id=eventKey(Q);if(id&&Q.cyprus_roadmap_seen.indexOf(id)<0)return 'cyprus_roadmap_event';
   if(availableMilitary(Q,Q.cyprus_day)&&Q.cyprus_day>=27)return 'cyprus_roadmap_military';
@@ -120,7 +139,7 @@
   if(id==='geneva2-13')text=Q.cyprus_selected_plan==='denktas'?'The Greek Cypriot representatives categorically reject the Denktaş Plan. The argument becomes more hostile than at any earlier stage of Geneva II. The session ends early, with neither side willing to move from its position.':text+(gunesEligible(Q)?'\n\nLater that day, Güneş meets with Kissinger. The multi-zone proposal grew partly from Kissinger’s own suggestion, and the American secretary agrees to support it.':'\n\nThere is no meeting with Kissinger. Turkey has not secured the political conditions needed for American backing of the plan.');
   if(id==='geneva2-14')text=Q.cyprus_selected_plan==='denktas'?'The Denktaş proposal remains rejected. The conference has failed to produce the geographical settlement demanded by Turkey. Turkey must choose: renew the operation, or reopen talks on a revised 1960 constitutional order.':text+(Q.cyprus_gunes_backing?'\n\nKissinger presses Britain to support the proposal. Callaghan accepts the American pressure, and the Greek representatives begin negotiating the three points. Around noon, they accept the Güneş Plan.':'\n\nClerides asks for another forty-eight hours. Güneş refuses and declares that, from Turkey’s perspective, the conference is over. Ankara prepares to resume the operation.');
   var rewrite=rewritten(Q,id);if(rewrite){Q.cyprus_roadmap_event_title=rewrite.title;text=rewrite.body;}
-  Q.cyprus_roadmap_event_text=text.replace(/\n\n/g,'<br><br>');return true;
+  Q.cyprus_roadmap_event_text=delegationText(Q,text).replace(/\n\n/g,'<br><br>');return true;
  }
  function eventIs(Q,type){return active(Q)&&eventKey(Q)===type;}
  function ceasefireAvailable(Q){return active(Q)&&eventKey(Q).indexOf('ceasefire-')===0;}
@@ -335,7 +354,7 @@
  c.choiceTooltip=function(id){if(id==='cyprus_roadmap_military.historical'||id==='cyprus_roadmap_event.offensive')return 'This is the historical choice. This operation would require our forces to be in an outdated state.';if(id==='cyprus_roadmap_military.alternative'||id==='cyprus_roadmap_event.supply')return 'This is an alternative choice. This operation would require our forces to be in an adequate state.';return previous.choiceTooltip(id);};
  var api=Object.assign({},legacy,{active:function(Q){return active(Q)||legacy.active(Q);},initialize:initialize,pending:pending,finishI:function(Q){return active(Q)?finishI(Q):legacy.finishI(Q);},federalEligible:function(Q){return active(Q)?gunesEligible(Q):legacy.federalEligible(Q);},canSettle:function(Q,p){return active(Q)?false:legacy.canSettle(Q,p);},diplomacyUnavailable:diplomacyUnavailable,diplomaticAction:diplomaticAction,beginII:beginII,resolveII:resolveII,settle:settle,opportunity:function(Q){return active(Q)?false:legacy.opportunity(Q);},countryName:function(k){return names[k];},attitudeName:function(Q,k){return stances[Math.floor(r.clamp(number(Q[k+'_attitude']),-2,k==='uk'?0:2))+2];}});
  r.cyprusCampaign=api;
- r.cyprusRoadmap={rallyEligible:rallyEligible,beginRally:beginRally,awardRally:awardRally,finishRally:finishRally,startEndingMusic:startEndingMusic,continuationLabel:continuationLabel,authoredEvents:authoredEvents,genevaResponse:genevaResponse,responseLabel:responseLabel,beginConstitution:beginConstitution,resolveConstitution:resolveConstitution,constitutionChoiceAvailable:constitutionChoiceAvailable,iiStep:iiStep,endingPraise:endingPraise,embargoReady:embargoReady,applyEmbargo:applyEmbargo,endingMap:endingMap,active:active,pending:pending,availableMilitary:availableMilitary,prepareEvent:prepareEvent,eventIs:eventIs,ceasefireAvailable:ceasefireAvailable,ordinaryEvent:ordinaryEvent,resolveEvent:resolveEvent,resolveMilitary:resolveMilitary,gunesEligible:gunesEligible,skip:skip,skipLabel:skipLabel,laterUnavailable:laterUnavailable,laterNegotiate:laterNegotiate,laterCanImplement:laterCanImplement,implementLater:implementLater,implementationReady:implementationReady,
+ r.cyprusRoadmap={genevaSideEvent:genevaSideEvent,finishGenevaSideEvent:finishGenevaSideEvent,delegationRepresentative:delegationRepresentative,delegationText:delegationText,rallyEligible:rallyEligible,beginRally:beginRally,awardRally:awardRally,finishRally:finishRally,startEndingMusic:startEndingMusic,continuationLabel:continuationLabel,authoredEvents:authoredEvents,genevaResponse:genevaResponse,responseLabel:responseLabel,beginConstitution:beginConstitution,resolveConstitution:resolveConstitution,constitutionChoiceAvailable:constitutionChoiceAvailable,iiStep:iiStep,endingPraise:endingPraise,embargoReady:embargoReady,applyEmbargo:applyEmbargo,endingMap:endingMap,active:active,pending:pending,availableMilitary:availableMilitary,prepareEvent:prepareEvent,eventIs:eventIs,ceasefireAvailable:ceasefireAvailable,ordinaryEvent:ordinaryEvent,resolveEvent:resolveEvent,resolveMilitary:resolveMilitary,gunesEligible:gunesEligible,skip:skip,skipLabel:skipLabel,laterUnavailable:laterUnavailable,laterNegotiate:laterNegotiate,laterCanImplement:laterCanImplement,implementLater:implementLater,implementationReady:implementationReady,
   militaryBrief:function(Q){Q.cyprus_roadmap_event_title=authoredEvents[3].title;Q.cyprus_roadmap_event_text=authoredEvents[3].body.replace(/\n\n/g,'<br><br>');},
   exit:function(Q){legacy.exit(Q);},
   roadmapEvents:events};

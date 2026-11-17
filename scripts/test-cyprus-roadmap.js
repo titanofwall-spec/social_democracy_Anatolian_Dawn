@@ -8,8 +8,24 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  if(err)throw err;let count=0;
  function test(label,run){errors.length=0;run();assert.deepEqual(errors,[],label);count++;output('PASS '+label);}
  function fresh(options={}){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:7,week:2,flavour_events:0,CHP_in_government:1,prime_minister_party:'CHP',army_land_strength:.8,army_naval_strength:.8,army_aerial_strength:.8,us_relation:80,west_relation:80,hashas_done:0},options);e.goToScene('kibrisdarbe');e.random.random=()=>1;return e;}
- function pick(e,id){const a=e.getCurrentChoices(),n=a.findIndex(x=>x.id===id);assert(n>=0,'Missing '+id+' at '+e.state.sceneId);assert(!a[n].unavailable,id+' unavailable');e.choose(n);}
- function next(e){const choices=e.getCurrentChoices();assert(choices.some(x=>!x.unavailable),'Dead end '+e.state.sceneId);e.choose(choices.findIndex(x=>!x.unavailable));}
+ // Existing campaign scenarios continue through the new narrative-only screens.
+ function readGenevaInterludes(e){
+  for(let i=0;e.state.sceneId.startsWith('cyprus_geneva_side.event');i++){
+   assert(i<6,'Geneva interlude loop');
+   const Q=e.state.qualities,id=rm.genevaSideEvent(Q),before=JSON.parse(JSON.stringify(Q));
+   const choices=e.getCurrentChoices();assert.equal(choices.length,1);
+   assert.equal(choices[0].id,'cyprus_geneva_side.continue'+id);
+   // Dismissing an interlude may only mark it read; the following scene handles its own arrival.
+   assert(rm.finishGenevaSideEvent(Q,id));
+   const expected=JSON.parse(JSON.stringify(before));expected.cyprus_roadmap_seen.push('geneva-side-'+id);
+   assert.deepEqual(JSON.parse(JSON.stringify(Q)),expected);
+   assert(!rm.finishGenevaSideEvent(Q,id),'Interlude cannot be acknowledged twice');
+   Q.cyprus_roadmap_seen.pop();
+   e.choose(0);
+  }
+ }
+ function pick(e,id){const a=e.getCurrentChoices(),n=a.findIndex(x=>x.id===id);assert(n>=0,'Missing '+id+' at '+e.state.sceneId);assert(!a[n].unavailable,id+' unavailable');e.choose(n);readGenevaInterludes(e);}
+ function next(e){const choices=e.getCurrentChoices();assert(choices.some(x=>!x.unavailable),'Dead end '+e.state.sceneId);e.choose(choices.findIndex(x=>!x.unavailable));readGenevaInterludes(e);}
  function pollTolerance(Q){return 200/AnatolianProvinces.compute(Q,true).totalVotes;}
  function prepare(e){for(let i=0;i<40&&e.state.sceneId!=='cyprus_atilla1_20';i++)next(e);assert.equal(e.state.sceneId,'cyprus_atilla1_20');}
  function july(e,halt=0){prepare(e);const Q=e.state.qualities;for(let day=20;day<=28;){if(Q.cyprus_frontline_frozen){assert.equal(e.state.sceneId,'cyprus_roadmap_event');pick(e,'cyprus_roadmap_event.geneva_response');day=Q.cyprus_day;continue;}let prefix=day<=24?'cyprus_atilla1_'+day:day<=26?'cyprus_history_july'+day:'cyprus_roadmap_military';pick(e,prefix+'.'+(day===halt?'alternative':'historical'));next(e);day=Q.cyprus_day;}assert.equal(Q.cyprus_day,29);assert.equal(e.state.sceneId,'cyprus_roadmap_event');pick(e,'cyprus_roadmap_event.geneva_response');assert.equal(Q.cyprus_day,30);assert.equal(e.state.sceneId,'cyprus_atilla1_ending');return Q;}
