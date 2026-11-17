@@ -22,6 +22,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  test('Every strength threshold uses the existing five military tiers and the specified 10–50% bases',()=>{
   for(const [strength,base] of [[0,10],[.199999,10],[.2,20],[.399999,20],[.4,30],[.599999,30],[.6,40],[.799999,40],[.8,50],[1,50]]){const Q=q(strength);assert.equal(rm.kocatepeChance(Q).baseChance,base);assert.equal(rm.kocatepeChance(Q).chance,base);}
  });
+ test('Kocatepe tooltip explicitly lists all five success tiers and one-point bonuses',()=>{
+  const tooltip=c.choiceTooltip('cyprus_phantom_convoy.continue');
+  for(const part of ['1 (Critical) 10%','2: 20%','3: 30%','4: 40%','5 (Excellent) 50%','+1 percentage point','60% success, 40% failure'])
+   assert(tooltip.includes(part),part);
+  const Q=q(0.8,10);assert.equal(rm.kocatepeChance(Q).chance,60);
+ });
  test('All +0 through +10 bonuses use exact percentage boundaries, one draw and no extra resource charge',()=>{
   for(const strength of [.1,.3,.5,.7,.9])for(let bonus=0;bonus<=10;bonus++)for(const success of [true,false]){
    const Q=q(strength,bonus),chance=rm.kocatepeChance(Q).chance,base=rm.kocatepeChance(Q).baseChance,resources=Q.military_strength,spent=Q.cyprus_support_spent;
