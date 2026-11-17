@@ -129,7 +129,11 @@
   if(Q.cyprus_month===8&&Q.cyprus_day>=16&&Q.cyprus_atilla2_started&&!Q.cyprus_gunes_agreed&&!incidentSeen(Q,'taskent')&&(Q.cyprus_atilla2_results||[]).some(function(x){return x.day>=15;}))return 'cyprus_taskent';
   return null;
  }
- function kocatepeChance(Q){var base=10*(c.militaryTier(Q)+1);return {baseChance:base,supportBonus:r.clamp(number(Q.cyprus_support_bonus),0,10),chance:base+r.clamp(number(Q.cyprus_support_bonus),0,10)};}
+ function kocatepeChance(Q){
+  // The engine stores military tiers as 0–4; the player sees 1–5 (Critical to Excellent).
+  var displayedTier=c.militaryTier(Q)+1,base=10*displayedTier,bonus=r.clamp(number(Q.cyprus_support_bonus),0,10);
+  return {baseChance:base,supportBonus:bonus,chance:base+bonus};
+ }
  function resolveKocatepe(Q,random){
   if(Q.cyprus_kocatepe_result||incidentScene(Q)!=='cyprus_phantom_convoy')return false;
   var result=c.rollProbability(Q,kocatepeChance(Q).baseChance,random);
@@ -283,6 +287,13 @@
   var delayed=!!Q.cyprus_delayed_ceasefire;
   return Q.cyprus_campaign_version===2&&second&&!Q.cyprus_mode&&!Q.cyprus_embargo_applied&&!Q.cyprus_campaign_failed&&(Q.year>1975||(Q.year===1975&&Q.month>=2))&&(economic?delayed:!delayed);
  }
+ // Poppy legalization before Cyprus is a separate decision from the automatic Saraçhane lifting.
+ // The late lifting only invites additional sanctions if both Atilla operations were carried out.
+ function poppySanctionsApply(Q){
+  if(Q.cyprus_poppy_penalty===1)return true;
+  if(Q.cyprus_rally_poppy_lifted_late===1)return !!(Q.cyprus_atilla1_complete&&Q.cyprus_atilla2_complete);
+  return Q.hashas_done===1;
+ }
  function applyEmbargo(Q,economic){
   if(!embargoReady(Q,economic))return false;
   Q.cyprus_embargo_applied=1;
@@ -292,7 +303,7 @@
   });
   // Poppy legalization adds economic sanctions to the historical arms embargo.
   // The harsher alternative event remains exclusive to a delayed ceasefire.
-  var sanctions=economic||!!(Q.cyprus_poppy_penalty||Q.hashas_done===1);
+  var sanctions=economic||poppySanctionsApply(Q);
   if(sanctions){
     Q.cyprus_economic_sanctions_active=1;
     Q.forex_pressure=r.clamp(number(Q.forex_pressure)+25,0,100);
@@ -382,10 +393,10 @@
  c.mapImage=function(Q){var finalMap=endingMap(Q);if(finalMap)return finalMap;if(Q.cyprus_mode&&Q.cyprus_month===7&&(Q.cyprus_day<20||Q.cyprus_day===20&&!Q.cyprus_operation_started))return 'cyprusgame/frontlines/pre-operation.png';if(Q.cyprus_atilla2_started&&Q.cyprus_mode){var day=Q.cyprus_atilla2_complete?(Q.cyprus_delayed_ceasefire?4:3):Math.min(4,iiStep(Q)+1);return 'cyprusgame/frontlines/atilla2-day'+day+'.png';}return active(Q)&&Q.cyprus_frontline_frozen?previous.mapImage(Object.assign({},Q,{cyprus_campaign_version:0,cyprus_month:7,cyprus_day:Q.cyprus_frontline_map_day})):previous.mapImage(Q);};
  c.supportUnavailable=function(Q,id,side){if(!active(Q))return previous.supportUnavailable(Q,id,side);if(Q.cyprus_month===7&&Q.cyprus_day>28)return 'Atilla has no further offensive rolls.';if(Q.cyprus_frontline_frozen||Q.cyprus_atilla1_complete&&Q.cyprus_campaign_phase!=='atilla2')return 'Offensive operations have ended; the frozen line cannot be expanded.';if(Q.cyprus_campaign_phase==='atilla2'){var a=c.supportActions[id];if(!a||a.side!==side)return 'Choose the matching side.';if(c.cooldown(Q,id))return 'This action is cooling down.';if(number(Q.cyprus_support_bonus)+a.bonus>10)return 'The next-roll bonus is capped at +10.';return number(Q.military_strength)<a.cost?'Not enough Military Resources.':'';}return previous.supportUnavailable(Q,id,side);};
  c.useSupport=function(Q,id,side){if(!active(Q))return previous.useSupport(Q,id,side);c.ensureSupport(Q);if(c.supportUnavailable(Q,id,side))return false;var a=c.supportActions[id];Q.military_strength-=a.cost;Q.cyprus_support_bonus+=a.bonus;Q.cyprus_support_spent+=a.cost;Q.cyprus_support_used[id]=Math.floor(Date.UTC(Q.cyprus_year,Q.cyprus_month-1,Q.cyprus_day)/86400000);if(Q.cyprus_month===7&&Q.cyprus_day<=25)Q.cyprus_support_early_counts[id]=number(Q.cyprus_support_early_counts[id])+1;return true;};
- c.choiceTooltip=function(id){if(id==='cyprus_phantom_convoy.continue')return 'Military action: a 10–50% base chance to save Kocatepe, plus the existing next-roll investment bonus (maximum +10 percentage points).';if(id==='cyprus_roadmap_military.historical'||id==='cyprus_roadmap_event.offensive')return 'This is the historical choice. This operation would require our forces to be in an outdated state.';if(id==='cyprus_roadmap_military.alternative'||id==='cyprus_roadmap_event.supply')return 'This is an alternative choice. This operation would require our forces to be in an adequate state.';return previous.choiceTooltip(id);};
+ c.choiceTooltip=function(id){if(id==='cyprus_phantom_convoy.continue')return 'Military action: chance to save Kocatepe by military tier: 1 (Critical) 10%, 2: 20%, 3: 30%, 4: 40%, 5 (Excellent) 50%. Each next-roll bonus point adds +1 percentage point (maximum +10). Example: Excellent +10 = 60% success, 40% failure.';if(id==='cyprus_roadmap_military.historical'||id==='cyprus_roadmap_event.offensive')return 'This is the historical choice. This operation would require our forces to be in an outdated state.';if(id==='cyprus_roadmap_military.alternative'||id==='cyprus_roadmap_event.supply')return 'This is an alternative choice. This operation would require our forces to be in an adequate state.';return previous.choiceTooltip(id);};
  var api=Object.assign({},legacy,{active:function(Q){return active(Q)||legacy.active(Q);},initialize:initialize,pending:pending,finishI:function(Q){return active(Q)?finishI(Q):legacy.finishI(Q);},federalEligible:function(Q){return active(Q)?gunesEligible(Q):legacy.federalEligible(Q);},canSettle:function(Q,p){return active(Q)?false:legacy.canSettle(Q,p);},diplomacyUnavailable:diplomacyUnavailable,diplomaticAction:diplomaticAction,beginII:beginII,resolveII:resolveII,settle:settle,opportunity:function(Q){return active(Q)?false:legacy.opportunity(Q);},countryName:function(k){return names[k];},attitudeName:function(Q,k){return k==='greece'?'Hostile':stances[Math.floor(r.clamp(number(Q[k+'_attitude']),-2,k==='uk'?0:2))+2];}});
  r.cyprusCampaign=api;
- r.cyprusRoadmap={incidentScene:incidentScene,incidentSeen:incidentSeen,kocatepeChance:kocatepeChance,resolveKocatepe:resolveKocatepe,gratitudePending:gratitudePending,finishIncident:finishIncident,genevaSideEvent:genevaSideEvent,finishGenevaSideEvent:finishGenevaSideEvent,delegationRepresentative:delegationRepresentative,delegationText:delegationText,rallyEligible:rallyEligible,beginRally:beginRally,awardRally:awardRally,finishRally:finishRally,startEndingMusic:startEndingMusic,continuationLabel:continuationLabel,authoredEvents:authoredEvents,genevaResponse:genevaResponse,responseLabel:responseLabel,beginConstitution:beginConstitution,resolveConstitution:resolveConstitution,constitutionChoiceAvailable:constitutionChoiceAvailable,iiStep:iiStep,endingPraise:endingPraise,embargoReady:embargoReady,applyEmbargo:applyEmbargo,endingMap:endingMap,active:active,pending:pending,availableMilitary:availableMilitary,prepareEvent:prepareEvent,eventIs:eventIs,ceasefireAvailable:ceasefireAvailable,ordinaryEvent:ordinaryEvent,resolveEvent:resolveEvent,resolveMilitary:resolveMilitary,gunesEligible:gunesEligible,skip:skip,skipLabel:skipLabel,laterUnavailable:laterUnavailable,laterNegotiate:laterNegotiate,laterCanImplement:laterCanImplement,implementLater:implementLater,implementationReady:implementationReady,
+ r.cyprusRoadmap={poppySanctionsApply:poppySanctionsApply,incidentScene:incidentScene,incidentSeen:incidentSeen,kocatepeChance:kocatepeChance,resolveKocatepe:resolveKocatepe,gratitudePending:gratitudePending,finishIncident:finishIncident,genevaSideEvent:genevaSideEvent,finishGenevaSideEvent:finishGenevaSideEvent,delegationRepresentative:delegationRepresentative,delegationText:delegationText,rallyEligible:rallyEligible,beginRally:beginRally,awardRally:awardRally,finishRally:finishRally,startEndingMusic:startEndingMusic,continuationLabel:continuationLabel,authoredEvents:authoredEvents,genevaResponse:genevaResponse,responseLabel:responseLabel,beginConstitution:beginConstitution,resolveConstitution:resolveConstitution,constitutionChoiceAvailable:constitutionChoiceAvailable,iiStep:iiStep,endingPraise:endingPraise,embargoReady:embargoReady,applyEmbargo:applyEmbargo,endingMap:endingMap,active:active,pending:pending,availableMilitary:availableMilitary,prepareEvent:prepareEvent,eventIs:eventIs,ceasefireAvailable:ceasefireAvailable,ordinaryEvent:ordinaryEvent,resolveEvent:resolveEvent,resolveMilitary:resolveMilitary,gunesEligible:gunesEligible,skip:skip,skipLabel:skipLabel,laterUnavailable:laterUnavailable,laterNegotiate:laterNegotiate,laterCanImplement:laterCanImplement,implementLater:implementLater,implementationReady:implementationReady,
   militaryBrief:function(Q){Q.cyprus_roadmap_event_title=authoredEvents[3].title;Q.cyprus_roadmap_event_text=authoredEvents[3].body.replace(/\n\n/g,'<br><br>');},
   exit:function(Q){legacy.exit(Q);},
   roadmapEvents:events};
