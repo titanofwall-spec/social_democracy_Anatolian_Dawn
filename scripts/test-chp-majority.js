@@ -23,6 +23,8 @@ lib.convertJSONToGame(compiled,(err,game)=>{
    e.goToScene('coalition_negotiations');
    assert.equal(e.state.sceneId,'coalition_negotiations.chp_majority');
    assert.equal(Q.coalition_formation.stage,'formed');
+   assert.equal(Q.coalition_formation.chpMajorityAnnouncementSeen,true);
+   assert(!e._runPredicate(game.scenes.chp_majority_announcement.viewIf,true),'Do not repeat the majority narrative');
    assert.equal(Q.in_CHP_majority,1);assert.equal(Q.CHP_in_government,1);assert.equal(Q.prime_minister_party,'CHP');
    assert.equal(Q.prime_minister,'Bülent Ecevit');
    assert(C.ministries.every(m=>Q[m+'_minister_party']==='CHP'));
@@ -36,6 +38,19 @@ lib.convertJSONToGame(compiled,(err,game)=>{
    if(year!==1973)assert(!prose.includes('has not been the largest party since 1961'));
   });
  }
+ test('A previously formed majority receives the missed announcement once without replacing its cabinet',()=>{
+  const e=engine({year:1977}),Q=e.state.qualities;
+  C.majority(Q,'CHP');
+  const before=Q.prime_minister,ministries=C.ministries.map(m=>Q[m+'_minister_party']);
+  assert(e._runPredicate(game.scenes.chp_majority_announcement.viewIf,true));
+  e.goToScene('chp_majority_announcement');
+  assert.equal(e.state.sceneId,'chp_majority_announcement');
+  assert(displayed(e.state.currentContent).includes('Well... We have done it.'));
+  assert.equal(Q.coalition_formation.chpMajorityAnnouncementSeen,true);
+  assert(!e._runPredicate(game.scenes.chp_majority_announcement.viewIf,true));
+  assert.equal(Q.prime_minister,before);
+  assert.deepEqual(C.ministries.map(m=>Q[m+'_minister_party']),ministries);
+ });
  test('225 seats do not bypass negotiations',()=>{
   const e=engine({year:1977,chp_seats:225,AP_seats:155}),Q=e.state.qualities;
   e.goToScene('coalition_negotiations');
