@@ -1,4 +1,4 @@
-title: CHP Forms a Majority Government
+title: [+ {! return Q.coalition_formation && Q.coalition_formation.year===1977 ? "We\'ve done it!" : "CHP Forms a Majority Government"; !} +]
 tags: event
 priority: 110
 max-visits: 1
@@ -6,7 +6,7 @@ new-page: true
 view-if: {! return Q.CHP_in_government===1 && Q.in_CHP_majority===1 && Q.chp_seats>=226 && !!Q.coalition_formation && Q.coalition_formation.stage==="formed" && !Q.coalition_formation.chpMajorityAnnouncementSeen; !}
 on-arrival: {! Q.coalition_formation.chpMajorityAnnouncementSeen=true; !}
 
-= CHP Forms a Majority Government
+= [+ {! return Q.coalition_formation && Q.coalition_formation.year===1977 ? "We\'ve done it!" : "CHP Forms a Majority Government"; !} +]
 
 [+ {! return AnatolianCoalitions.eventText(Q,"chp_majority"); !} +]
 
