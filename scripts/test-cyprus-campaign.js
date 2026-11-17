@@ -4,7 +4,7 @@ require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js
 // This suite deliberately exercises the retained version-1 save format.
 rules.cyprusRoadmap={active:()=>false,embargoReady:()=>false,implementationReady:()=>false,endingMap:()=>''};
 const c=rules.cyprusAtilla1, campaign=rules.cyprusCampaign,root=path.resolve(__dirname,'..'),noop=()=>{};
-const node={remove:noop,style:{setProperty:noop},appendChild:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
+const node={remove:noop,style:{setProperty:noop},appendChild:noop, insertAdjacentElement:noop, insertBefore:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
 global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};
 global.Image=function(){return {...node}};global.window={};global.d3=null;global.updateCyprusWidth=noop;global.localStorage={getItem:()=>null,setItem:noop};
 const log=console.log,errors=[];console.log=(...args)=>{if(String(args[0]).startsWith('Error'))errors.push(args.join(' '));};

@@ -10,7 +10,7 @@ rules.cyprusCampaign.initialize = () => {};
 const check = require('./check.js');
 const root = path.resolve(__dirname, '..');
 const noop = () => {};
-const node = {remove:noop, replaceChildren:noop, style:{setProperty:noop}, appendChild:noop, setAttribute:noop, addEventListener:noop,
+const node = {remove:noop, replaceChildren:noop, style:{setProperty:noop}, appendChild:noop, insertAdjacentElement:noop, insertBefore:noop, setAttribute:noop, addEventListener:noop,
     offsetWidth:600, classList:{add:noop, remove:noop, toggle:noop}, querySelector:()=>node,
     querySelectorAll:()=>[], getAttribute:()=>'', getElementsByClassName:()=>[], innerHTML:'', textContent:''};
 global.document = {createElement:()=>({...node}), getElementById:()=>node, querySelector:()=>node,

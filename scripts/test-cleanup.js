@@ -7,7 +7,7 @@ require(path.join(root,'out/html/cyprus-campaign.js'));
 require(path.join(root,'out/html/cyprus-roadmap.js'));
 const lib=require('dendrynexus/lib/engine.js');
 const silent=()=>{};
-const node={style:{},appendChild:silent,setAttribute:silent,addEventListener:silent,offsetWidth:600,classList:{add:silent,remove:silent,toggle:silent},querySelector:()=>node,querySelectorAll:()=>[],innerHTML:'',textContent:''};
+const node={style:{},appendChild:silent, insertAdjacentElement:silent, insertBefore:silent,setAttribute:silent,addEventListener:silent,offsetWidth:600,classList:{add:silent,remove:silent,toggle:silent},querySelector:()=>node,querySelectorAll:()=>[],innerHTML:'',textContent:''};
 global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:silent};
 global.Image=function(){return {...node}};
 global.window={}; global.d3=null; global.updateCyprusWidth=silent;
