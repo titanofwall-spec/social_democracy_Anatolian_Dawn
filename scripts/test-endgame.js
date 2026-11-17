@@ -80,11 +80,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
   assert.equal(Q.year,1982);assert.equal(Q.month,1);assert.equal(Q.week,1);
   const snapshot=JSON.parse(JSON.stringify(e.getExportableState()));
   e.setState(snapshot);
+  const restored=e.state.qualities;
   for(const [year,month,week] of [[1982,1,1],[1982,12,2],[1983,2,1]]){
-   Object.assign(Q,{year,month,week,month_actions:1});
+   Object.assign(restored,{year,month,week,month_actions:1});
    e.goToScene('post_event');
    assert.notEqual(e.state.sceneId,'endgame_1982');
-   assert.equal(Q.endgame_1982_ignored,1);
+   assert.equal(restored.endgame_1982_ignored,1);
   }
  });
  test('Game over finishes the engine, awards achievements, and cannot resume gameplay',()=>{
