@@ -65,7 +65,7 @@ lib.convertJSONToGame(compiled,(err,game)=>{
   const text=require('../out/html/data/coalition-texts.js').chp_majority_1977;
   assert(text.startsWith('The Turkish people have delivered their verdict after years of struggle, crises, and extraordinary events in our republic.'));
   assert(text.endsWith('The CHP belongs to the people, and the people have brought the CHP home! Türk halkına layık ol, Karaoğlan!'));
-  assert.equal(text.split('\\n\\n').length,6);
+  assert.equal(text.split('\n\n').length,6);
   assert(text.includes('We have taken the revolutionary spirit of Kemalism and combined it with the values of social democracy!'));
  });
  test('225 seats do not bypass negotiations',()=>{
