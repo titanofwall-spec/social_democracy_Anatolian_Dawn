@@ -38,6 +38,9 @@ Q.month = 1;
 Q.week = 1; // 1 = first half of month (week 1), 2 = second half of month (week 3)
 // how many actions have been taken this period?
 Q.month_actions = 0;
+// End-of-1981 decision is offered once; opting out permits unlimited future turns.
+Q.endgame_1982_ignored = 0;
+Q.endgame_1982_chosen = 0;
 
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
 Q.difficulty = 0;
