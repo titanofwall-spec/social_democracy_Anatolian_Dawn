@@ -87,16 +87,31 @@
  // Narrative interludes follow resolved Geneva I events, before the next campaign screen.
  // Reuse the saved event ledger; reading an interlude never advances time or pays rewards.
  function genevaSideEvent(Q){
-  if(!active(Q)||!Q.cyprus_mode||Q.cyprus_campaign_resolved||Q.cyprus_month!==7||Q.cyprus_atilla1_ending_seen)return 0;
-  var seen=Q.cyprus_roadmap_seen||[],results=Q.cyprus_atilla1_results||[];
-  function done(day){return results.some(function(x){return x.day===day;})||seen.indexOf('ceasefire-'+day)>=0;}
-  var candidates=Q.cyprus_day===26&&done(25)?[1]:Q.cyprus_day===27&&done(26)?[2]:Q.cyprus_day===29&&(done(28)||seen.indexOf('ceasefire-27')>=0)?[3]:Q.cyprus_day===30&&seen.indexOf('geneva1')>=0?[4,5,6]:[];
-  return candidates.find(function(n){return seen.indexOf('geneva-side-'+n)<0;})||0;
+  if(!active(Q)||!Q.cyprus_mode||Q.cyprus_campaign_resolved)return 0;
+  var seen=Q.cyprus_roadmap_seen||[],results=Q.cyprus_atilla1_results||[],candidates=[];
+  function has(id){return seen.indexOf(id)>=0;}
+  function done(day){return results.some(function(x){return x.day===day;})||has('ceasefire-'+day);}
+  if(Q.cyprus_month===7){
+   candidates=Q.cyprus_day===26&&done(25)?[1]:Q.cyprus_day===27&&done(26)?[2]:Q.cyprus_day===29&&(done(28)||has('ceasefire-27'))?[3]:Q.cyprus_day===30&&has('geneva1')?[4]:Q.cyprus_day===31&&has('geneva1')?[5]:[];
+  }else if(Q.cyprus_month===8){
+   if(Q.cyprus_day===1&&has('declaration'))candidates=[6];
+   if(Q.cyprus_campaign_phase==='geneva2'){
+    if(Q.cyprus_day===11&&has('geneva2-10'))candidates=[7];
+    if(Q.cyprus_day===12&&has('geneva2-11'))candidates=[8];
+    if(Q.cyprus_day===13&&has('geneva2-12')&&Q.cyprus_selected_plan==='gunes')candidates=[9];
+    if(Q.cyprus_day===14&&has('geneva2-13')&&!Q.cyprus_gunes_agreed){
+     candidates=[10];
+     if(Q.cyprus_selected_plan==='denktas'||(Q.cyprus_selected_plan==='gunes'&&!Q.cyprus_gunes_backing))candidates.push(11);
+    }
+   }
+   if(Q.cyprus_day>=15&&Q.MSP_in_government&&Q.cyprus_campaign_phase==='atilla2'&&has('geneva-side-11')&&!Q.cyprus_gunes_agreed)candidates=[12];
+  }
+  return candidates.find(function(n){return !has('geneva-side-'+n);})||0;
  }
  function finishGenevaSideEvent(Q,id){if(genevaSideEvent(Q)!==id)return false;Q.cyprus_roadmap_seen.push('geneva-side-'+id);return true;}
  // Future scene text can insert this name directly; roadmap prose also substitutes literal references.
  function delegationRepresentative(Q){
-  if(!Q.CHP_in_government||Q.MSP_in_government)return 'İsmail Müftüoğlu';
+  if(Q.MSP_in_government)return 'İsmail Müftüoğlu';
   if(Q.AP_in_government)return 'Kamran İnan';
   if(Q.CGP_in_government)return 'Ferit Melen';
   return 'Fikret Gündoğan';
@@ -139,6 +154,7 @@
   if(id==='geneva2-13')text=Q.cyprus_selected_plan==='denktas'?'The Greek Cypriot representatives categorically reject the Denktaş Plan. The argument becomes more hostile than at any earlier stage of Geneva II. The session ends early, with neither side willing to move from its position.':text+(gunesEligible(Q)?'\n\nLater that day, Güneş meets with Kissinger. The multi-zone proposal grew partly from Kissinger’s own suggestion, and the American secretary agrees to support it.':'\n\nThere is no meeting with Kissinger. Turkey has not secured the political conditions needed for American backing of the plan.');
   if(id==='geneva2-14')text=Q.cyprus_selected_plan==='denktas'?'The Denktaş proposal remains rejected. The conference has failed to produce the geographical settlement demanded by Turkey. Turkey must choose: renew the operation, or reopen talks on a revised 1960 constitutional order.':text+(Q.cyprus_gunes_backing?'\n\nKissinger presses Britain to support the proposal. Callaghan accepts the American pressure, and the Greek representatives begin negotiating the three points. Around noon, they accept the Güneş Plan.':'\n\nClerides asks for another forty-eight hours. Güneş refuses and declares that, from Turkey’s perspective, the conference is over. Ankara prepares to resume the operation.');
   var rewrite=rewritten(Q,id);if(rewrite){Q.cyprus_roadmap_event_title=rewrite.title;text=rewrite.body;}
+  if(id==='geneva2-opening')text+='\n\n'+"The Second Geneva Conference has barely begun, yet the delegates are already arguing over which problem should be discussed first. The Greeks insist that the ceasefire lines must be properly established before anything else, while our delegation demands the immediate evacuation of Turkish villages still under Greek Cypriot control. James Callaghan, increasingly frustrated with the endless arguments over priorities, finally suggests that both matters be discussed simultaneously, or perhaps that they should simply draw lots to decide which one comes first! The suggestion produces some laughter, but does little to resolve the disagreements.\n\nThe following morning, Ecmel Barutçu finds himself presiding over a committee tasked with establishing procedures for evacuating the occupied Turkish villages. Unfortunately, he cannot quite understand why such a committee is necessary in the first place, arguing that Mavros could simply telephone Cyprus and order the villages evacuated. The British insist on consulting United Nations representatives, while the Greeks propose exchanging lists of villages through Athens and Nicosia before determining which should be evacuated.\n\n\"Why are we wasting time with all these lists? If you want the villages evacuated, then evacuate them!\"\n\nWhen the British insist that Callaghan expects a report from the committee, Barutçu threatens to walk out rather than participate in what he increasingly suspects is an elaborate delaying tactic. The British diplomats hurriedly attempt to calm him, explaining that Callaghan has ordered them to produce a report, even if discussions take all night. By the time the meeting ends, everyone has spent hours discussing the evacuation of Turkish villages without actually evacuating a single one.";
   Q.cyprus_roadmap_event_text=delegationText(Q,text).replace(/\n\n/g,'<br><br>');return true;
  }
  function eventIs(Q,type){return active(Q)&&eventKey(Q)===type;}
