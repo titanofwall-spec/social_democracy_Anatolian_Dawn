@@ -111,7 +111,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
 
  test('Late constitutional signing preserves the current year and month before the rally',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{year:1975,month:2,week:1,cyprus_campaign_phase:'constitutional_treaty',cyprus_constitution_step:8,cyprus_constitution_score:8});assert(rm.resolveEvent(Q,'sign'));assert.deepEqual([Q.year,Q.month,Q.week],[1975,2,1]);assert(rm.beginRally(Q));assert.deepEqual([Q.year,Q.month,Q.week],[1975,2,2]);assert(!rm.embargoReady(Q,true));assert(!rm.embargoReady(Q,false));});
 
- test('Compiled narrative has no em dashes and the rally title and quotes are updated',()=>{assert(!fs.readFileSync(path.join(root,'out/game.json'),'utf8').includes('—'));const rally=fs.readFileSync(path.join(root,'source/scenes/events/cyprus_sarachane_rally.scene.dry'),'utf8');assert(rally.includes("= Kıbrıs'ın Dağlarına Yazdık!"));assert(rally.includes('We will not take lessons in nationalism from Demirel or Türkeş!'));assert(rally.includes('We have written our nationalism not on street walls'));assert(!rally.includes('Biz, Demirellerden'));for(const event of rm.authoredEvents){assert(!event.body.includes('—'));assert(!/^\s*:/m.test(event.body));}});
+ test('Compiled narrative preserves approved punctuation and the rally title and quotes',()=>{// Approved descriptions may contain em dashes; exact prose is checked against the fixture above.
+ const rally=fs.readFileSync(path.join(root,'source/scenes/events/cyprus_sarachane_rally.scene.dry'),'utf8');assert(rally.includes("= Kıbrıs'ın Dağlarına Yazdık!"));assert(rally.includes('We will not take lessons in nationalism from Demirel or Türkeş!'));assert(rally.includes('We have written our nationalism not on street walls'));assert(!rally.includes('Biz, Demirellerden'));for(const event of rm.authoredEvents){assert(!/^\s*:/m.test(event.body));}});
  output('PASS: '+count+' full-roadmap scenarios.');
 });
 
