@@ -1,6 +1,6 @@
 title: Game Over
 new-page: true
-go-to: eg_menu
+game-over: true
 on-arrival: {!
 Q.game_over = 1;
 if (!Q.sandbox_cheats_used && !(typeof AnatolianSandbox !== 'undefined' && AnatolianSandbox.cheated(Q))) {
@@ -18,50 +18,11 @@ if (Q.economic_democracy >= 3) this.achieve('economic_democracy');
 }
 !}
 
-= End
-
-@eg_menu
-
 = The End of This Playthrough
-
-- #endings
-- @achievements: View achievements.
-- @end_game: End game.
-
-@coup
-title: An army coup ends our democratic programme.
-view-if: coup_timer >= 15
-tags: endings
-go-to: eg_menu
-
-The armed forces intervene under [+ generalstaff +]. Parliamentary government is interrupted, and the future of the reforms we pursued is uncertain.
-
-@CHP_victorious
-title: CHP remains in government.
-view-if: CHP_in_government = 1 and coup_timer < 15
-tags: endings
-go-to: eg_menu
-
-CHP remains in government under Prime Minister [+ prime_minister +]. Our programme will continue to face political, economic and institutional challenges.
-
-@opposition
-title: CHP continues in opposition.
-view-if: CHP_in_government = 0 and coup_timer < 15
-tags: endings
-go-to: eg_menu
-
-CHP remains outside government. Our organization and the support we built will shape the next stage of the struggle for social democratic reform.
-
-@economy
-title: The economic record.
-tags: endings
-go-to: eg_menu
-
-Inflation: [+ inflation +]%. Unemployment: [+ unemployed +]%. Growth: [+ economic_growth +]%. Economic health: [+ health_economy_status +].
 
 @achievements
 title: Achievements
-go-to: eg_menu if started = 1 and game_over = 1; root if started = 1 and game_over = 0; root.start_menu_2 if started = 0
+go-to: root if started = 1; root.start_menu_2 if started = 0
 
 = Completed Achievements
 
@@ -87,5 +48,3 @@ go-to: eg_menu if started = 1 and game_over = 1; root if started = 1 and game_ov
 
 [? if achievement_economic_democracy : **Economic Democracy**, Reach at least three stages of economic democracy. ?]
 
-@end_game
-game-over: true
