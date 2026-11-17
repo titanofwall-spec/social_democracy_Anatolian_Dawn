@@ -339,7 +339,7 @@ Placeholder
 view-if: chp_seats >= 226
 title: CHP Forms a Majority Government
 new-page: true
-on-arrival: {! AnatolianCoalitions.majority(Q,"CHP"); !}
+on-arrival: {! AnatolianCoalitions.majority(Q,"CHP"); Q.coalition_formation.chpMajorityAnnouncementSeen=true; !}
 
 = CHP Forms a Majority Government
 
