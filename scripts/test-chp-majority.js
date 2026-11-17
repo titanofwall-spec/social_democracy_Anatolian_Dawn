@@ -1,5 +1,6 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const R=require('../out/html/rules.js'),C=require('../out/html/coalitions.js'),lib=require('dendrynexus/lib/engine.js');
+require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');require('../out/html/cyprus-roadmap.js');
 const noop=()=>{},node={remove:noop,appendChild:noop,insertAdjacentElement:noop,insertBefore:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},style:{setProperty:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
 global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};
 global.window={};global.d3=null;global.Image=function(){return {...node};};global.localStorage={getItem:()=>null,setItem:noop};global.updateCyprusWidth=noop;
@@ -29,11 +30,20 @@ lib.convertJSONToGame(compiled,(err,game)=>{
    assert.equal(Q.prime_minister,'Bülent Ecevit');
    assert(C.ministries.every(m=>Q[m+'_minister_party']==='CHP'));
    const prose=C.eventText(Q,'chp_majority');
-   assert(prose.includes('Well... We have done it.'),'Missing canonical opening');
-   assert(prose.includes('without having to make a single coalition agreement'),'Missing canonical ending');
-   assert(prose.length>2000,'Full narrative shortened into a generic government announcement');
    const shown=displayed(e.state.currentContent);
-   assert(shown.includes('Well... We have done it.'),'Announcement not rendered in scene');
+   if(year===1977){
+    assert(prose.includes('The Turkish people have delivered their verdict after years of struggle'),'1977 narrative missing');
+    assert(prose.includes('The CHP belongs to the people, and the people have brought the CHP home! Türk halkına layık ol, Karaoğlan!'),'1977 closing missing');
+    assert(prose.includes('the 1977 general elections'),'Wrong election year in 1977 event');
+    assert(!prose.includes('Well... We have done it.'),'1977 must not reuse 1973 prose');
+    assert(shown.includes('The Turkish people have delivered their verdict'),'1977 event text did not render');
+    assert(shown.includes('The CHP belongs to the people'),'1977 ending did not render');
+   }else{
+    assert(prose.includes('Well... We have done it.'),'Other majority narrative missing');
+    assert(prose.includes('without having to make a single coalition agreement'),'Other majority ending missing');
+    assert(shown.includes('Well... We have done it.'),'Other majority text did not render');
+   }
+   assert(prose.length>2000,'Full narrative shortened into a generic government announcement');
    assert(e.getCurrentChoices().length>0,'The majority announcement must be dismissible');
    if(year!==1973)assert(!prose.includes('has not been the largest party since 1961'));
   });
@@ -45,11 +55,18 @@ lib.convertJSONToGame(compiled,(err,game)=>{
   assert(e._runPredicate(game.scenes.chp_majority_announcement.viewIf,true));
   e.goToScene('chp_majority_announcement');
   assert.equal(e.state.sceneId,'chp_majority_announcement');
-  assert(displayed(e.state.currentContent).includes('Well... We have done it.'));
+  assert(displayed(e.state.currentContent).includes('The Turkish people have delivered their verdict'));
   assert.equal(Q.coalition_formation.chpMajorityAnnouncementSeen,true);
   assert(!e._runPredicate(game.scenes.chp_majority_announcement.viewIf,true));
   assert.equal(Q.prime_minister,before);
   assert.deepEqual(C.ministries.map(m=>Q[m+'_minister_party']),ministries);
+ });
+ test('1977 narrative preserves the authored title and full closing paragraph',()=>{
+  const text=require('../out/html/data/coalition-texts.js').chp_majority_1977;
+  assert(text.startsWith('The Turkish people have delivered their verdict after years of struggle, crises, and extraordinary events in our republic.'));
+  assert(text.endsWith('The CHP belongs to the people, and the people have brought the CHP home! Türk halkına layık ol, Karaoğlan!'));
+  assert.equal(text.split('\\n\\n').length,6);
+  assert(text.includes('We have taken the revolutionary spirit of Kemalism and combined it with the values of social democracy!'));
  });
  test('225 seats do not bypass negotiations',()=>{
   const e=engine({year:1977,chp_seats:225,AP_seats:155}),Q=e.state.qualities;
