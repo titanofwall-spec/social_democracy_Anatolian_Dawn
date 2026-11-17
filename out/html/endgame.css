@@ -1,0 +1,77 @@
+/* Final Anatolian Dawn campaign record. Native details work after the engine is terminal. */
+#content:has(.anatolian-endgame) {
+  max-width: 1040px;
+  width: min(100%, 1040px);
+}
+.anatolian-endgame {
+  margin: 1.5rem auto 3rem;
+  color: #382e25;
+  max-width: 1020px;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.anatolian-endgame h1 {
+  margin: 0 0 .35rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  text-align: center;
+}
+.anatolian-endgame .endgame-date {
+  font-size: 1rem;
+  text-align: center;
+  opacity: .82;
+  margin-bottom: 1.7rem;
+}
+.endgame-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 390px), 1fr));
+  gap: .8rem;
+  align-items: start;
+}
+.endgame-section {
+  background: #f9f6ee;
+  border: 1px solid #b9ae9d;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(40,28,15,.07);
+  overflow: hidden;
+}
+.endgame-section > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .7rem;
+  padding: .9rem 1rem;
+  font-size: 1.01rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: #eee7db;
+}
+.endgame-section > summary:hover,
+.endgame-section > summary:focus-visible { background: #e2d8c9; }
+.endgame-section[open] > summary { border-bottom: 1px solid #b9ae9d; }
+.endgame-section-count {
+  font-size: .82rem;
+  font-weight: 400;
+  opacity: .83;
+  text-align: right;
+  white-space: nowrap;
+}
+.endgame-items { list-style: none; padding: 0; margin: 0; }
+.endgame-items li {
+  padding: .58rem .85rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: .65rem;
+  align-items: center;
+  border-top: 1px solid #e8e1d6;
+  font-size: .89rem;
+}
+.endgame-items li:first-child { border-top: 0; }
+.endgame-action { min-width: 0; }
+.endgame-steps { font-variant-numeric: tabular-nums; font-weight: 700; white-space: nowrap; }
+.endgame-status { font-size: .77rem; white-space: nowrap; }
+.endgame-status.is-done { color: #266045; }
+.endgame-status.is-incomplete { color: #915c3d; }
+@media (max-width: 500px) {
+  .endgame-sections { grid-template-columns: 1fr; }
+  .endgame-items li { grid-template-columns: minmax(0, 1fr) auto; }
+  .endgame-status { grid-column: 1 / -1; margin-top: -.3rem; }
+}
