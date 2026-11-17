@@ -10,6 +10,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  function fresh(options={}){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:7,week:2,flavour_events:0,CHP_in_government:1,prime_minister_party:'CHP',army_land_strength:.8,army_naval_strength:.8,army_aerial_strength:.8,us_relation:80,west_relation:80,hashas_done:0},options);e.goToScene('kibrisdarbe');e.random.random=()=>1;return e;}
  // Existing campaign scenarios continue through the new narrative-only screens.
  function readGenevaInterludes(e){
+  for(let i=0;/^cyprus_(phantom_convoy|kocatepe_saved|kocatepe_sunk|operation_failure|taskent|gratitude)$/.test(e.state.sceneId);i++){assert(i<6,'Incident loop');const choices=e.getCurrentChoices();assert.equal(choices.length,1);e.choose(0);}
   for(let i=0;e.state.sceneId.startsWith('cyprus_geneva_side.event');i++){
    assert(i<6,'Geneva interlude loop');
    const Q=e.state.qualities,id=rm.genevaSideEvent(Q),before=JSON.parse(JSON.stringify(Q));

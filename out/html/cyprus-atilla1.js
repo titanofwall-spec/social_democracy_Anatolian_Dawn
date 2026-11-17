@@ -299,6 +299,23 @@
         }
         Q.cyprus_support_bonus = rules.clamp(rules.number(Q.cyprus_support_bonus),0,10);
     }
+    /** Consume the same pending investment used by every Cyprus military action.
+     * @param {State} Q */
+    function consumeSupportBonus(Q) {
+        ensureSupport(Q);
+        var bonus = Q.cyprus_support_bonus;
+        Q.cyprus_support_bonus = 0;
+        return bonus;
+    }
+    /** @param {()=>number} random */
+    function randomDraw(random) { return rules.clamp(random(), 0, 1 - Number.EPSILON); }
+    /** Binary military actions use percentage points rather than the campaign's outcome score.
+     * @param {State} Q @param {number} baseChance @param {()=>number} random */
+    function rollProbability(Q, baseChance, random) {
+        var supportBonus = consumeSupportBonus(Q), chance = rules.clamp(baseChance + supportBonus, 0, 100);
+        var draw = randomDraw(random);
+        return {baseChance:baseChance, supportBonus:supportBonus, chance:chance, draw:draw, success:draw < chance / 100};
+    }
     /** @param {State} Q */
     function replenishResources(Q) {
         ensureSupport(Q);
@@ -366,7 +383,7 @@
     function roll(tier, requirement, random) {
         var minimum = tier >= requirement ? 50 : 0;
         var maximum = tier >= requirement ? 80 : 60;
-        var draw = rules.clamp(random(), 0, 1 - Number.EPSILON);
+        var draw = randomDraw(random);
         return Math.min(80, minimum + Math.floor(draw * (maximum - minimum + 1)) + Math.max(0, tier - requirement) * 5);
     }
     /** @param {number} score */
@@ -772,7 +789,7 @@
         return true;
     }
     rules.cyprusAtilla1 = {resourceTiers:resourceTiers,resourceTier:resourceTier,supportActions:supportActions,districts:districts,startingResources:startingResources,
-        dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,
+        dailyResources:dailyResources,initializeSupport:initializeSupport,ensureSupport:ensureSupport,consumeSupportBonus:consumeSupportBonus,rollProbability:rollProbability,
         replenishResources:replenishResources,cooldown:cooldown,supportUnavailable:supportUnavailable,useSupport:useSupport,
         operationStarted:operationStarted,finishBriefingDay:finishBriefingDay,mapImage:mapImage,choiceTooltip:choiceTooltip,historyEvents:historyEvents,historyScene:historyScene,resolveHistory:resolveHistory,endingReady:endingReady,awardEnding:awardEnding,continueEnding:continueEnding,
         days:days,levels:levels,outcomes:outcomes,militaryTier:militaryTier,roll:roll,

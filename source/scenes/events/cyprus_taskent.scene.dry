@@ -1,0 +1,32 @@
+title: The Massacre at Taşkent
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_taskent'; !}
+
+= The Massacre at Taşkent
+
+Horrifying reports have started to emerge from the village of Taşkent (Tochni) in South Cyprus. Whilst our soldiers were fighting across the Island, the Turkish Cypriot population of a village much further away have been subjected to an unbelievable massacre.
+
+On the 14th August armed Greek Cypriot paramilitaries belonging to the fascist EOKA-B organisation, along with Greek military, stormed into the village to round up all the men and boys of the village. Men and boys as well as many elderly people and children as young as 12 were dragged away from their families with guns. They were held overnight in a Cypriot primary school whilst being unsure of their fate. Many more captives were brought in from surrounding villages.
+
+Next day the prisoners were loaded onto two buses. They were told by their captors they were going to be sent to a prisoner of war camp just outside Limassol. The buses travelled to the countryside and ordered the men and boys to get off. Some were even allowed to sit down and smoke whilst waiting to be transported to the camp.
+
+Gunfire erupted.
+
+The prisoners were shot with automatic weapons. Those still alive after the first volley were then shot. One young man aged just nineteen managed to survive by lying down and playing dead. He listened to the killers talk about getting a bulldozer to help bury the bodies. His father and younger brother were amongst the murdered.
+
+84 men and boys were murdered. All they had done was be Turkish.
+
+They left behind a whole community of distraught mothers, wives and children. The men of Taşkent did not die fighting in our soldiers war. They had been dragged from their homes, lied to, disarmed and then cold bloodedly murdered.
+
+What can we say? For years we have been told by foreign governments how important it is to remain calm. That we can protect the Turkish Cypriots with diplomacy. However whilst they were dragged away they were not protected. How does telling a child their fathers have been buried in an unmarked grave help?
+
+This is exactly why we have intervened. We did not come to Cyprus to put our flag in the ground. We came because if we left defenceless communities to these types of people they would have been exterminated.
+
+The world can argue about whether we should have intervened but they should first tell the widows and orphans of Taşkent what other option they had.
+
+- @continue: Never again shall our people be left defenseless.
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_taskent'; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishIncident(Q,'taskent'); !}
+go-to: cyprus_campaign_continue

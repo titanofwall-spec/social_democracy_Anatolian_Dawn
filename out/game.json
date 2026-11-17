@@ -4416,6 +4416,36 @@
       ],
       "goTo": [
         {
+          "id": "cyprus_phantom_convoy",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_phantom_convoy';"
+          }
+        },
+        {
+          "id": "cyprus_kocatepe_sunk",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_kocatepe_sunk';"
+          }
+        },
+        {
+          "id": "cyprus_kocatepe_saved",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_kocatepe_saved';"
+          }
+        },
+        {
+          "id": "cyprus_operation_failure",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_operation_failure';"
+          }
+        },
+        {
+          "id": "cyprus_taskent",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_taskent';"
+          }
+        },
+        {
           "id": "cyprus_geneva_side",
           "predicate": {
             "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_geneva_side';"
@@ -4521,10 +4551,16 @@
       "id": "cyprus_campaign_final.root",
       "onArrival": [
         {
-          "$code": "if(!AnatolianRules.cyprusRoadmap.beginRally || !AnatolianRules.cyprusRoadmap.beginRally(Q))AnatolianRules.cyprusCampaign.exit(Q);"
+          "$code": "if(!(AnatolianRules.cyprusRoadmap.gratitudePending && AnatolianRules.cyprusRoadmap.gratitudePending(Q)) && (!AnatolianRules.cyprusRoadmap.beginRally || !AnatolianRules.cyprusRoadmap.beginRally(Q)))AnatolianRules.cyprusCampaign.exit(Q);"
         }
       ],
       "goTo": [
+        {
+          "id": "cyprus_gratitude",
+          "predicate": {
+            "$code": "return !!(AnatolianRules.cyprusRoadmap.gratitudePending && AnatolianRules.cyprusRoadmap.gratitudePending(Q));"
+          }
+        },
         {
           "id": "cyprus_sarachane_rally",
           "predicate": {
@@ -4534,7 +4570,7 @@
         {
           "id": "post_event",
           "predicate": {
-            "$code": "return ((Q['cyprus_rally_pending'] || 0) != 1);"
+            "$code": "return !Q.cyprus_rally_pending && !(AnatolianRules.cyprusRoadmap.gratitudePending && AnatolianRules.cyprusRoadmap.gratitudePending(Q));"
           }
         }
       ],
@@ -5369,6 +5405,128 @@
         }
       ]
     },
+    "cyprus_gratitude.continue": {
+      "id": "cyprus_gratitude.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.gratitudePending(Q);"
+      },
+      "onArrival": [
+        {
+          "$code": "if(AnatolianRules.cyprusRoadmap.finishIncident(Q,'gratitude')) { if(!AnatolianRules.cyprusRoadmap.beginRally(Q)) AnatolianRules.cyprusCampaign.exit(Q); }"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_sarachane_rally",
+          "predicate": {
+            "$code": "return ((Q['cyprus_rally_pending'] || 0) == 1);"
+          }
+        },
+        {
+          "id": "post_event",
+          "predicate": {
+            "$code": "return ((Q['cyprus_rally_pending'] || 0) != 1);"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_gratitude": {
+      "id": "cyprus_gratitude",
+      "type": "scene",
+      "title": "The Weight of Gratitude",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.gratitudePending(Q);"
+      },
+      "options": [
+        {
+          "id": "@cyprus_gratitude.continue",
+          "title": "May their sons never be forgotten."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Weight of Gratitude"
+        },
+        {
+          "type": "paragraph",
+          "content": "It has been some time now since we ended our military intervention in Cyprus. The guns have fallen silent and our soldiers are firmly in place. We are now celebrating what is seen by many as one of the greatest achievements in the country's history. However, for some families, there will always be a shadow."
+        },
+        {
+          "type": "paragraph",
+          "content": "While travelling from Mersin to Cyprus on a ferries, our Foreign Minister Turan Güneş approached by one of the ferry attendants. A number of fathers of soldiers who had given their lives during the operation wanted to speak to him."
+        },
+        {
+          "type": "paragraph",
+          "content": "Güneş readily agreed. He presumed that they had issues to discuss. Perhaps with how things had gone with their sons passing away or maybe the government had not done something for their families. He would listen to what they had to say."
+        },
+        {
+          "type": "paragraph",
+          "content": "They entered shortly after. They were from Siirt and were Kurdish speaking members of the republic. They struggled with Turkish. Güneş asked them what they needed."
+        },
+        {
+          "type": "paragraph",
+          "content": "They wanted to kiss his hand."
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Allah razı olsun beyim.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "May God bless you sir."
+        },
+        {
+          "type": "paragraph",
+          "content": "That was all they said and they left."
+        },
+        {
+          "type": "paragraph",
+          "content": "Güneş was confused."
+        },
+        {
+          "type": "paragraph",
+          "content": "What had he done to make them grateful? He was part of the government who had made the decision to send their sons to fight. The boys had left their homes, possibly with assurances that they would be returning soon. However they were brought back under the red flag of the country. Their fathers would never hear their voice again, hug them or see them become the men they could have become."
+        },
+        {
+          "type": "paragraph",
+          "content": "And yet they thanked him."
+        },
+        {
+          "type": "paragraph",
+          "content": "Perhaps they had faith. Maybe they believed that their sons had died as martyrs and gone to heaven. But was that really all there was to it? Could they just be thanking him due to their faith?"
+        },
+        {
+          "type": "paragraph",
+          "content": "They were Kurdish from Siirt. They struggled with Turkish. However their sons had fought and died under the Turkish flag. The fathers saw it as their duty to lay down their lives for their country."
+        },
+        {
+          "type": "paragraph",
+          "content": "This was what the country was supposed to be about. Not about your blood, your heritage or if your ancestors rode into Anatolia from the central asian steps. It was about the people who had created lives for themselves in the country. People who shared the struggles and cared about the future. To tell these fathers that they could not be part of the country unless they denied where they came from would be wrong."
+        },
+        {
+          "type": "paragraph",
+          "content": "They did not ask for much. They had nothing to ask for. However soon the ferry would arrive in Cyprus and soldiers, politicians and diplomats would be talking about their victories, lands and the future of the island."
+        },
+        {
+          "type": "paragraph",
+          "content": "However Güneş would always remember those fathers from Siirt."
+        },
+        {
+          "type": "paragraph",
+          "content": "It was strange how a government could tell men to go to war, lose them forever and then be thanked by those who loved them the most."
+        },
+        {
+          "type": "paragraph",
+          "content": "Perhaps the biggest responsibility of those in charge is to be worthy of the sacrifices made by those who have passed."
+        }
+      ]
+    },
     "cyprus_gunes_implemented": {
       "id": "cyprus_gunes_implemented",
       "type": "scene",
@@ -5954,6 +6112,180 @@
         ]
       }
     },
+    "cyprus_kocatepe_saved.continue": {
+      "id": "cyprus_kocatepe_saved.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_saved';"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.finishIncident(Q,'kocatepe-outcome');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_kocatepe_saved": {
+      "id": "cyprus_kocatepe_saved",
+      "type": "scene",
+      "title": "A Last Minute Save",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_saved';"
+      },
+      "options": [
+        {
+          "id": "@cyprus_kocatepe_saved.continue",
+          "title": "Perhaps we should start proper communication between departments..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "A Last Minute Save"
+        },
+        {
+          "type": "paragraph",
+          "content": "After flying their aircraft into their target zone near Paphos, the pilots can see three destroyers far below them, travelling in the Mediterranean, seemingly oblivious."
+        },
+        {
+          "type": "paragraph",
+          "content": "They begin their descent to attack."
+        },
+        {
+          "type": "paragraph",
+          "content": "However something isn’t right."
+        },
+        {
+          "type": "paragraph",
+          "content": "Whilst glancing at the ships, one of the pilots spots a familiar flag on the ship’s mast. Another recognises the shape of the ships. There is confusion over the radio."
+        },
+        {
+          "type": "paragraph",
+          "content": "They realise..."
+        },
+        {
+          "type": "paragraph",
+          "content": "These were Turkish ships!"
+        },
+        {
+          "type": "paragraph",
+          "content": "They abort the attack. The aircraft veer away from the group of ships. The confused sailors below look up and wonder why they have suddenly become of interest to our Air Force."
+        },
+        {
+          "type": "paragraph",
+          "content": "The whole situation caused quite a lot of embarrassment once the news got back to Ankara. We had attacked three ships - the Adatepe, Mareşal Fevzi Çakmak and Kocatepe who had been sent to intercept a Greek convoy earlier (which in reality didn’t exist). There had been confusing recon reports and poor coordination within our navy and Air Force."
+        },
+        {
+          "type": "paragraph",
+          "content": "This situation could have turned into a disaster if it hadn’t been for the commanders."
+        },
+        {
+          "type": "paragraph",
+          "content": "Luckily there was no loss of life, ships or any awkward situations."
+        },
+        {
+          "type": "paragraph",
+          "content": "The Greeks have avoided a pretty impressive attack."
+        },
+        {
+          "type": "paragraph",
+          "content": "Although not being there was a great strategy."
+        }
+      ]
+    },
+    "cyprus_kocatepe_sunk.continue": {
+      "id": "cyprus_kocatepe_sunk.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_sunk';"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.finishIncident(Q,'kocatepe-outcome');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_kocatepe_sunk": {
+      "id": "cyprus_kocatepe_sunk",
+      "type": "scene",
+      "title": "The Sinking of Kocatepe",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_sunk';"
+      },
+      "options": [
+        {
+          "id": "@cyprus_kocatepe_sunk.continue",
+          "title": "What have we done!?"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Sinking of Kocatepe"
+        },
+        {
+          "type": "paragraph",
+          "content": "Around 3pm, our planes made it to the target area near Paphos. There were three destroyers below us, and they were ordered to attack. The first few planes swooped down and fired their rockets."
+        },
+        {
+          "type": "paragraph",
+          "content": "There was just one small issue."
+        },
+        {
+          "type": "paragraph",
+          "content": "They were our ships!"
+        },
+        {
+          "type": "paragraph",
+          "content": "The three destroyers were Adatepe, Mareşal Fevzi Çakmak and Kocatepe. These ships were on the search for the non-existent Greek convoy. As the sailors thought they were being attacked by Greek planes, they fired back. However, the pilots saw the Turkish flags and thought the enemy were trying to trick them."
+        },
+        {
+          "type": "paragraph",
+          "content": "One pilot was saved by Mareşal Fevzi Çakmak before, so he was able to call his fellow pilots. He desperately told them that they were attacking their own ships. However, he couldn’t tell them what the current password was. The destroyers had an old password."
+        },
+        {
+          "type": "paragraph",
+          "content": "They began bombing."
+        },
+        {
+          "type": "paragraph",
+          "content": "Kocatepe was hit the hardest. Rockets hit her vital systems such as her engines, radio and fire fighting system. This left her on fire and helpless. Adatepe and Mareşal Fevzi Çakmak were able to retreat, but eventually Captain Güven Erkaya had to tell his crew to abandon ship. They were attacked again and were split up. Hours later, Kocatepe sank into the depths of the Mediterranean."
+        },
+        {
+          "type": "paragraph",
+          "content": "Back in Ankara there was lots of celebration. They had heard that they had successfully attacked the Greek convoy and were congratulating each other on their amazing naval victory."
+        },
+        {
+          "type": "paragraph",
+          "content": "However..."
+        },
+        {
+          "type": "paragraph",
+          "content": "There was no Greek convoy, no enemy destroyers sunk and no victory. Instead, we had lost dozens of our own sailors. One of our warships was now at the bottom of the sea. And the men who caused this destruction were our pilots."
+        },
+        {
+          "type": "paragraph",
+          "content": "We went to attack the Greek Navy... and somehow sank our own."
+        }
+      ]
+    },
     "cyprus_naval_bombard.bombard": {
       "id": "cyprus_naval_bombard.bombard",
       "chooseIf": {
@@ -5974,6 +6306,169 @@
         "content": "",
         "type": "paragraph"
       }
+    },
+    "cyprus_operation_failure.continue": {
+      "id": "cyprus_operation_failure.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_operation_failure';"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.finishIncident(Q,'niki');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_operation_failure": {
+      "id": "cyprus_operation_failure",
+      "type": "scene",
+      "title": "Operation Failure",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_operation_failure';"
+      },
+      "options": [
+        {
+          "id": "@cyprus_operation_failure.continue",
+          "title": "With enemies like these, who needs allies?"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Operation Failure"
+        },
+        {
+          "type": "paragraph",
+          "content": "After waiting for two days whilst we put our troops in place, the Greek military finally decided to do something about this. They came up with a bold plan to reinforce the Greek Cypriot forces defending Nicosia."
+        },
+        {
+          "type": "paragraph",
+          "content": "Operation Niki (meaning Victory in Greek) consisted of fifteen old Noratlas transport planes flying at night with Greek commandos from Crete to Cyprus. Due to poor navigational equipment and Turkish planes in the air, the pilots had to take a long route around the south of the island."
+        },
+        {
+          "type": "paragraph",
+          "content": "Despite being a risky mission, the Greeks wanted to prove they could still carry out a good military mission."
+        },
+        {
+          "type": "paragraph",
+          "content": "Unfortunately it seems someone forgot to tell the Greek Cypriots."
+        },
+        {
+          "type": "paragraph",
+          "content": "When the first plane arrived at the darkened runway, the Greek Cypriot National Guard opened fire thinking it was a Turkish plane. All over the sky anti-aircraft fire could be heard as the poor Greek pilots tried to land."
+        },
+        {
+          "type": "paragraph",
+          "content": "A few planes were shot down or destroyed. Many commandos were killed. The pilots who survived couldn't get back to Crete due to not having enough fuel so they continued to descend and hoped they would be recognised."
+        },
+        {
+          "type": "paragraph",
+          "content": "On top of this the British were angry that the Greek planes had flown through their military air corridors. They gave Greece a strong talking to."
+        },
+        {
+          "type": "paragraph",
+          "content": "This was the end of Operation Niki. An appropriate name for an operation run by a military who thought the best way to shoot down an enemy plane was to paint a Greek flag on it and fly it over their anti-aircraft guns."
+        },
+        {
+          "type": "paragraph",
+          "content": "Well done to the Greek commanders, they may actually win this war without us! Based on this rate of performance."
+        }
+      ]
+    },
+    "cyprus_phantom_convoy.continue": {
+      "id": "cyprus_phantom_convoy.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_phantom_convoy';"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.resolveKocatepe(Q,this.random.random.bind(this.random));"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_kocatepe_saved",
+          "predicate": {
+            "$code": "return Q.cyprus_kocatepe_result && Q.cyprus_kocatepe_result.success;"
+          }
+        },
+        {
+          "id": "cyprus_kocatepe_sunk",
+          "predicate": {
+            "$code": "return Q.cyprus_kocatepe_result && !Q.cyprus_kocatepe_result.success;"
+          }
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_phantom_convoy": {
+      "id": "cyprus_phantom_convoy",
+      "type": "scene",
+      "title": "The Phantom Convoy",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_phantom_convoy';"
+      },
+      "options": [
+        {
+          "id": "@cyprus_phantom_convoy.continue",
+          "title": "Time to get smoked, Greeks!"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Phantom Convoy"
+        },
+        {
+          "type": "paragraph",
+          "content": "Things have started off badly. We’ve successfully established a foothold on the Island but we’ve suffered heavy losses due to strong resistance from Greek Cypriots. We’re in the process of getting more reinforcements from Mersin so the last thing we need is more Greek troops arriving out of the blue."
+        },
+        {
+          "type": "paragraph",
+          "content": "Unfortunately..."
+        },
+        {
+          "type": "paragraph",
+          "content": "A large force of Greek ships (eleven transports escorted by a few destroyers) are currently headed towards Paphos according to reports from our recon aircraft. If these ships can unload their troops and supplies the situation could become worse."
+        },
+        {
+          "type": "paragraph",
+          "content": "We’ve already had Adatepe, Mareşal Fevzi Çakmak and Kocatepe head off to intercept the enemy convoy. However, the crews aboard these destroyers have run into a bit of a problem. They can’t find any sign of the Greeks!"
+        },
+        {
+          "type": "paragraph",
+          "content": "Another recon flight was sent up and only found a few merchant ships. For some reason this information hasn’t reached us. It was between Cyprus and Ankara."
+        },
+        {
+          "type": "paragraph",
+          "content": "As we’re unaware of this information our commanders have decided that there is a serious threat. The Air Force has been told to work together with the Navy to destroy the convoy."
+        },
+        {
+          "type": "paragraph",
+          "content": "It’s currently just after 2pm and forty-eight aircraft have been assigned to take part in the operation. Pilots are being given their final instructions to sink the destroyers protecting the Greek transports and cause the transports to sink to the bottom of the Mediterranean."
+        },
+        {
+          "type": "paragraph",
+          "content": "Orders have been given, bombs packed and our pilots can’t wait to give the Greeks a lesson."
+        },
+        {
+          "type": "paragraph",
+          "content": "What could possibly go wrong?"
+        }
+      ]
     },
     "cyprus_preop_continue": {
       "id": "cyprus_preop_continue",
@@ -6289,6 +6784,87 @@
         "content": "",
         "type": "paragraph"
       }
+    },
+    "cyprus_taskent.continue": {
+      "id": "cyprus_taskent.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_taskent';"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.finishIncident(Q,'taskent');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_taskent": {
+      "id": "cyprus_taskent",
+      "type": "scene",
+      "title": "The Massacre at Taşkent",
+      "newPage": true,
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_taskent';"
+      },
+      "options": [
+        {
+          "id": "@cyprus_taskent.continue",
+          "title": "Never again shall our people be left defenseless."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Massacre at Taşkent"
+        },
+        {
+          "type": "paragraph",
+          "content": "Horrifying reports have started to emerge from the village of Taşkent (Tochni) in South Cyprus. Whilst our soldiers were fighting across the Island, the Turkish Cypriot population of a village much further away have been subjected to an unbelievable massacre."
+        },
+        {
+          "type": "paragraph",
+          "content": "On the 14th August armed Greek Cypriot paramilitaries belonging to the fascist EOKA-B organisation, along with Greek military, stormed into the village to round up all the men and boys of the village. Men and boys as well as many elderly people and children as young as 12 were dragged away from their families with guns. They were held overnight in a Cypriot primary school whilst being unsure of their fate. Many more captives were brought in from surrounding villages."
+        },
+        {
+          "type": "paragraph",
+          "content": "Next day the prisoners were loaded onto two buses. They were told by their captors they were going to be sent to a prisoner of war camp just outside Limassol. The buses travelled to the countryside and ordered the men and boys to get off. Some were even allowed to sit down and smoke whilst waiting to be transported to the camp."
+        },
+        {
+          "type": "paragraph",
+          "content": "Gunfire erupted."
+        },
+        {
+          "type": "paragraph",
+          "content": "The prisoners were shot with automatic weapons. Those still alive after the first volley were then shot. One young man aged just nineteen managed to survive by lying down and playing dead. He listened to the killers talk about getting a bulldozer to help bury the bodies. His father and younger brother were amongst the murdered."
+        },
+        {
+          "type": "paragraph",
+          "content": "84 men and boys were murdered. All they had done was be Turkish."
+        },
+        {
+          "type": "paragraph",
+          "content": "They left behind a whole community of distraught mothers, wives and children. The men of Taşkent did not die fighting in our soldiers war. They had been dragged from their homes, lied to, disarmed and then cold bloodedly murdered."
+        },
+        {
+          "type": "paragraph",
+          "content": "What can we say? For years we have been told by foreign governments how important it is to remain calm. That we can protect the Turkish Cypriots with diplomacy. However whilst they were dragged away they were not protected. How does telling a child their fathers have been buried in an unmarked grave help?"
+        },
+        {
+          "type": "paragraph",
+          "content": "This is exactly why we have intervened. We did not come to Cyprus to put our flag in the ground. We came because if we left defenceless communities to these types of people they would have been exterminated."
+        },
+        {
+          "type": "paragraph",
+          "content": "The world can argue about whether we should have intervened but they should first tell the widows and orphans of Taşkent what other option they had."
+        }
+      ]
     },
     "devletguvenlikmahkmesei.worry": {
       "id": "devletguvenlikmahkmesei.worry",

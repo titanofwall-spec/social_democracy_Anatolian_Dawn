@@ -1,0 +1,36 @@
+title: A Last Minute Save
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_saved'; !}
+
+= A Last Minute Save
+
+After flying their aircraft into their target zone near Paphos, the pilots can see three destroyers far below them, travelling in the Mediterranean, seemingly oblivious.
+
+They begin their descent to attack.
+
+However something isn’t right.
+
+Whilst glancing at the ships, one of the pilots spots a familiar flag on the ship’s mast. Another recognises the shape of the ships. There is confusion over the radio.
+
+They realise...
+
+These were Turkish ships!
+
+They abort the attack. The aircraft veer away from the group of ships. The confused sailors below look up and wonder why they have suddenly become of interest to our Air Force.
+
+The whole situation caused quite a lot of embarrassment once the news got back to Ankara. We had attacked three ships - the Adatepe, Mareşal Fevzi Çakmak and Kocatepe who had been sent to intercept a Greek convoy earlier (which in reality didn’t exist). There had been confusing recon reports and poor coordination within our navy and Air Force.
+
+This situation could have turned into a disaster if it hadn’t been for the commanders.
+
+Luckily there was no loss of life, ships or any awkward situations.
+
+The Greeks have avoided a pretty impressive attack.
+
+Although not being there was a great strategy.
+
+- @continue: Perhaps we should start proper communication between departments...
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_saved'; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishIncident(Q,'kocatepe-outcome'); !}
+go-to: cyprus_campaign_continue

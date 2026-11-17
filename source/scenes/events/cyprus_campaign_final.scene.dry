@@ -33,6 +33,6 @@ on-arrival: {! if(AnatolianRules.cyprusRoadmap.startEndingMusic)AnatolianRules.c
 - @root: [+ {! return Q.cyprus_final_result==='Güneş Plan'?"We have done it!":"Let us return to our people."; !} +]
 
 @root
-on-arrival: {! if(!AnatolianRules.cyprusRoadmap.beginRally || !AnatolianRules.cyprusRoadmap.beginRally(Q))AnatolianRules.cyprusCampaign.exit(Q); !}
-go-to: cyprus_sarachane_rally if cyprus_rally_pending == 1; post_event if cyprus_rally_pending != 1
+on-arrival: {! if(!(AnatolianRules.cyprusRoadmap.gratitudePending && AnatolianRules.cyprusRoadmap.gratitudePending(Q)) && (!AnatolianRules.cyprusRoadmap.beginRally || !AnatolianRules.cyprusRoadmap.beginRally(Q)))AnatolianRules.cyprusCampaign.exit(Q); !}
+go-to: cyprus_gratitude if {! return !!(AnatolianRules.cyprusRoadmap.gratitudePending && AnatolianRules.cyprusRoadmap.gratitudePending(Q)); !}; cyprus_sarachane_rally if cyprus_rally_pending == 1; post_event if {! return !Q.cyprus_rally_pending && !(AnatolianRules.cyprusRoadmap.gratitudePending && AnatolianRules.cyprusRoadmap.gratitudePending(Q)); !}
 

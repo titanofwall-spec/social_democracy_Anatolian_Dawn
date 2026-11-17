@@ -1,0 +1,34 @@
+title: The Sinking of Kocatepe
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_sunk'; !}
+
+= The Sinking of Kocatepe
+
+Around 3pm, our planes made it to the target area near Paphos. There were three destroyers below us, and they were ordered to attack. The first few planes swooped down and fired their rockets.
+
+There was just one small issue.
+
+They were our ships!
+
+The three destroyers were Adatepe, Mareşal Fevzi Çakmak and Kocatepe. These ships were on the search for the non-existent Greek convoy. As the sailors thought they were being attacked by Greek planes, they fired back. However, the pilots saw the Turkish flags and thought the enemy were trying to trick them.
+
+One pilot was saved by Mareşal Fevzi Çakmak before, so he was able to call his fellow pilots. He desperately told them that they were attacking their own ships. However, he couldn’t tell them what the current password was. The destroyers had an old password.
+
+They began bombing.
+
+Kocatepe was hit the hardest. Rockets hit her vital systems such as her engines, radio and fire fighting system. This left her on fire and helpless. Adatepe and Mareşal Fevzi Çakmak were able to retreat, but eventually Captain Güven Erkaya had to tell his crew to abandon ship. They were attacked again and were split up. Hours later, Kocatepe sank into the depths of the Mediterranean.
+
+Back in Ankara there was lots of celebration. They had heard that they had successfully attacked the Greek convoy and were congratulating each other on their amazing naval victory.
+
+However...
+
+There was no Greek convoy, no enemy destroyers sunk and no victory. Instead, we had lost dozens of our own sailors. One of our warships was now at the bottom of the sea. And the men who caused this destruction were our pilots.
+
+We went to attack the Greek Navy... and somehow sank our own.
+
+- @continue: What have we done!?
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_kocatepe_sunk'; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishIncident(Q,'kocatepe-outcome'); !}
+go-to: cyprus_campaign_continue

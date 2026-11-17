@@ -1,0 +1,30 @@
+title: The Phantom Convoy
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_phantom_convoy'; !}
+
+= The Phantom Convoy
+
+Things have started off badly. We’ve successfully established a foothold on the Island but we’ve suffered heavy losses due to strong resistance from Greek Cypriots. We’re in the process of getting more reinforcements from Mersin so the last thing we need is more Greek troops arriving out of the blue.
+
+Unfortunately...
+
+A large force of Greek ships (eleven transports escorted by a few destroyers) are currently headed towards Paphos according to reports from our recon aircraft. If these ships can unload their troops and supplies the situation could become worse.
+
+We’ve already had Adatepe, Mareşal Fevzi Çakmak and Kocatepe head off to intercept the enemy convoy. However, the crews aboard these destroyers have run into a bit of a problem. They can’t find any sign of the Greeks!
+
+Another recon flight was sent up and only found a few merchant ships. For some reason this information hasn’t reached us. It was between Cyprus and Ankara.
+
+As we’re unaware of this information our commanders have decided that there is a serious threat. The Air Force has been told to work together with the Navy to destroy the convoy.
+
+It’s currently just after 2pm and forty-eight aircraft have been assigned to take part in the operation. Pilots are being given their final instructions to sink the destroyers protecting the Greek transports and cause the transports to sink to the bottom of the Mediterranean.
+
+Orders have been given, bombs packed and our pilots can’t wait to give the Greeks a lesson.
+
+What could possibly go wrong?
+
+- @continue: Time to get smoked, Greeks!
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_phantom_convoy'; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.resolveKocatepe(Q,this.random.random.bind(this.random)); !}
+go-to: cyprus_kocatepe_saved if {! return Q.cyprus_kocatepe_result && Q.cyprus_kocatepe_result.success; !}; cyprus_kocatepe_sunk if {! return Q.cyprus_kocatepe_result && !Q.cyprus_kocatepe_result.success; !}

@@ -1,0 +1,48 @@
+title: The Weight of Gratitude
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.gratitudePending(Q); !}
+
+= The Weight of Gratitude
+
+It has been some time now since we ended our military intervention in Cyprus. The guns have fallen silent and our soldiers are firmly in place. We are now celebrating what is seen by many as one of the greatest achievements in the country's history. However, for some families, there will always be a shadow.
+
+While travelling from Mersin to Cyprus on a ferries, our Foreign Minister Turan Güneş approached by one of the ferry attendants. A number of fathers of soldiers who had given their lives during the operation wanted to speak to him.
+
+Güneş readily agreed. He presumed that they had issues to discuss. Perhaps with how things had gone with their sons passing away or maybe the government had not done something for their families. He would listen to what they had to say.
+
+They entered shortly after. They were from Siirt and were Kurdish speaking members of the republic. They struggled with Turkish. Güneş asked them what they needed.
+
+They wanted to kiss his hand.
+
+"Allah razı olsun beyim."
+
+May God bless you sir.
+
+That was all they said and they left.
+
+Güneş was confused.
+
+What had he done to make them grateful? He was part of the government who had made the decision to send their sons to fight. The boys had left their homes, possibly with assurances that they would be returning soon. However they were brought back under the red flag of the country. Their fathers would never hear their voice again, hug them or see them become the men they could have become.
+
+And yet they thanked him.
+
+Perhaps they had faith. Maybe they believed that their sons had died as martyrs and gone to heaven. But was that really all there was to it? Could they just be thanking him due to their faith?
+
+They were Kurdish from Siirt. They struggled with Turkish. However their sons had fought and died under the Turkish flag. The fathers saw it as their duty to lay down their lives for their country.
+
+This was what the country was supposed to be about. Not about your blood, your heritage or if your ancestors rode into Anatolia from the central asian steps. It was about the people who had created lives for themselves in the country. People who shared the struggles and cared about the future. To tell these fathers that they could not be part of the country unless they denied where they came from would be wrong.
+
+They did not ask for much. They had nothing to ask for. However soon the ferry would arrive in Cyprus and soldiers, politicians and diplomats would be talking about their victories, lands and the future of the island.
+
+However Güneş would always remember those fathers from Siirt.
+
+It was strange how a government could tell men to go to war, lose them forever and then be thanked by those who loved them the most.
+
+Perhaps the biggest responsibility of those in charge is to be worthy of the sacrifices made by those who have passed.
+
+- @continue: May their sons never be forgotten.
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.gratitudePending(Q); !}
+on-arrival: {! if(AnatolianRules.cyprusRoadmap.finishIncident(Q,'gratitude')) { if(!AnatolianRules.cyprusRoadmap.beginRally(Q)) AnatolianRules.cyprusCampaign.exit(Q); } !}
+go-to: cyprus_sarachane_rally if cyprus_rally_pending == 1; post_event if cyprus_rally_pending != 1

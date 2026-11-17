@@ -1,0 +1,30 @@
+title: Operation Failure
+new-page: true
+view-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_operation_failure'; !}
+
+= Operation Failure
+
+After waiting for two days whilst we put our troops in place, the Greek military finally decided to do something about this. They came up with a bold plan to reinforce the Greek Cypriot forces defending Nicosia.
+
+Operation Niki (meaning Victory in Greek) consisted of fifteen old Noratlas transport planes flying at night with Greek commandos from Crete to Cyprus. Due to poor navigational equipment and Turkish planes in the air, the pilots had to take a long route around the south of the island.
+
+Despite being a risky mission, the Greeks wanted to prove they could still carry out a good military mission.
+
+Unfortunately it seems someone forgot to tell the Greek Cypriots.
+
+When the first plane arrived at the darkened runway, the Greek Cypriot National Guard opened fire thinking it was a Turkish plane. All over the sky anti-aircraft fire could be heard as the poor Greek pilots tried to land.
+
+A few planes were shot down or destroyed. Many commandos were killed. The pilots who survived couldn't get back to Crete due to not having enough fuel so they continued to descend and hoped they would be recognised.
+
+On top of this the British were angry that the Greek planes had flown through their military air corridors. They gave Greece a strong talking to.
+
+This was the end of Operation Niki. An appropriate name for an operation run by a military who thought the best way to shoot down an enemy plane was to paint a Greek flag on it and fly it over their anti-aircraft guns.
+
+Well done to the Greek commanders, they may actually win this war without us! Based on this rate of performance.
+
+- @continue: With enemies like these, who needs allies?
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_operation_failure'; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishIncident(Q,'niki'); !}
+go-to: cyprus_campaign_continue

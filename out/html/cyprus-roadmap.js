@@ -10,7 +10,7 @@
  function shift(Q,country,delta){var value=number(Q[country+'_attitude'])+delta;if(Math.abs(value-Math.round(value))<1e-7)value=Math.round(value);Q[country+'_attitude']=r.clamp(value,-2,country==='uk'?0:2);}
  function stamp(Q){return Q.cyprus_month+'-'+Q.cyprus_day;}
  function initFields(Q){
-  Object.assign(Q,{cyprus_roadmap_seen:[],cyprus_geneva_advance_days:[],cyprus_ceasefire_days:[],cyprus_geneva_leverage:0,cyprus_diplomatic_turns:0,cyprus_selected_plan:'',cyprus_poppy_penalty:Q.hashas_done===1?1:0,cyprus_gunes_backing:0,cyprus_gunes_agreed:0,cyprus_northern_canton:0,cyprus_gunes_announced:0,cyprus_implementation_pending:0,cyprus_implementation_complete:0,cyprus_later_negotiations:0,cyprus_later_last_turn:'',cyprus_roadmap_event_title:'',cyprus_roadmap_event_text:'',cyprus_roadmap_report:'',cyprus_roadmap_outcome:''});
+  Object.assign(Q,{cyprus_roadmap_seen:[],cyprus_kocatepe_result:null,cyprus_geneva_advance_days:[],cyprus_ceasefire_days:[],cyprus_geneva_leverage:0,cyprus_diplomatic_turns:0,cyprus_selected_plan:'',cyprus_poppy_penalty:Q.hashas_done===1?1:0,cyprus_gunes_backing:0,cyprus_gunes_agreed:0,cyprus_northern_canton:0,cyprus_gunes_announced:0,cyprus_implementation_pending:0,cyprus_implementation_complete:0,cyprus_later_negotiations:0,cyprus_later_last_turn:'',cyprus_roadmap_event_title:'',cyprus_roadmap_event_text:'',cyprus_roadmap_report:'',cyprus_roadmap_outcome:''});
  }
  function initialize(Q){legacy.initialize(Q);Q.uk_attitude=-2;var us=number(Q.us_relation);Q.us_attitude=r.clamp((us>74.9?2:us>64.9?1:us>39.9?0:us>14.9?-1:-2)-(Q.hashas_done===1?2:0),-2,2);initFields(Q);Q.cyprus_campaign_version=2;Q.cyprus_atilla1_end_day=30;}
  function migrate(Q){
@@ -50,7 +50,7 @@
  function militaryOption(day,action){return day<=24?c.days[day].actions[action]:c.historyEvents[day===25?'july25':day===26?'july26':'july2728'].actions[action];}
  function resolveMilitary(Q,day,action,random){
   if(!availableMilitary(Q,day)||!militaryOption(day,action))return false;
-  c.ensureSupport(Q);tick(Q);var option=militaryOption(day,action),bonus=number(Q.cyprus_support_bonus),base=c.roll(c.militaryTier(Q),option.requirement,random),score=Math.min(80,base+bonus);
+  c.ensureSupport(Q);tick(Q);var option=militaryOption(day,action),bonus=c.consumeSupportBonus(Q),base=c.roll(c.militaryTier(Q),option.requirement,random),score=Math.min(80,base+bonus);
   if(day===21&&c.militaryTier(Q)>=2)score=Math.max(20,score);
   var index=legacy.resultIndex(score),text=option.text[index];Q.cyprus_support_bonus=0;
   if(day===21){Q.cyprus_atilla1_junction=index?1:0;Q.cyprus_frontline_quality=index;Q.cyprus_atilla1_frontline=index>=3?'Superior Defensive Position':index>=2?'A secure connected corridor':index?'An exposed connected corridor':'Separate positions; junction failed';}
@@ -117,10 +117,38 @@
   return 'Fikret Gündoğan';
  }
  function delegationText(Q,text){return String(text).replace(/İsmail Müftüoğlu|Müftüoğlu/g,function(name){var replacement=delegationRepresentative(Q);return name==='Müftüoğlu'?replacement.split(' ').slice(-1)[0]:replacement;});}
+ // Incident completion shares the campaign's persistent event ledger.
+ function incidentSeen(Q,id){return (Q.cyprus_roadmap_seen||[]).indexOf('incident-'+id)>=0;}
+ function incidentScene(Q){
+  if(!active(Q)||!Q.cyprus_mode||Q.cyprus_year!==1974||Q.cyprus_campaign_resolved)return null;
+  if(Q.cyprus_kocatepe_result&&!incidentSeen(Q,'kocatepe-outcome'))return Q.cyprus_kocatepe_result.success?'cyprus_kocatepe_saved':'cyprus_kocatepe_sunk';
+  if(Q.cyprus_month===7&&Q.cyprus_day===21&&!Q.cyprus_kocatepe_result&&!(Q.cyprus_atilla1_results||[]).some(function(x){return x.day===21;}))return 'cyprus_phantom_convoy';
+  if(Q.cyprus_month===7&&Q.cyprus_day===22&&!incidentSeen(Q,'niki'))return 'cyprus_operation_failure';
+  // Reports follow the August 15 fighting, never the peaceful Güneş implementation route.
+  if(Q.cyprus_month===8&&Q.cyprus_day>=16&&Q.cyprus_atilla2_started&&!Q.cyprus_gunes_agreed&&!incidentSeen(Q,'taskent')&&(Q.cyprus_atilla2_results||[]).some(function(x){return x.day>=15;}))return 'cyprus_taskent';
+  return null;
+ }
+ function kocatepeChance(Q){var base=10*(c.militaryTier(Q)+1);return {baseChance:base,supportBonus:r.clamp(number(Q.cyprus_support_bonus),0,10),chance:base+r.clamp(number(Q.cyprus_support_bonus),0,10)};}
+ function resolveKocatepe(Q,random){
+  if(Q.cyprus_kocatepe_result||incidentScene(Q)!=='cyprus_phantom_convoy')return false;
+  var result=c.rollProbability(Q,kocatepeChance(Q).baseChance,random);
+  Q.cyprus_kocatepe_result=Object.assign({month:7,day:21,hour:15,shipLost:!result.success},result);
+  Q.cyprus_roadmap_seen.push('incident-phantom');
+  return true;
+ }
+ function gratitudePending(Q){return active(Q)&&!!Q.cyprus_campaign_resolved&&rallyEligible(Q)&&!Q.cyprus_rally_seen&&!Q.cyprus_rally_pending&&!incidentSeen(Q,'gratitude');}
+ function finishIncident(Q,id){
+  if(incidentSeen(Q,id))return false;
+  var expected={'kocatepe-outcome':['cyprus_kocatepe_saved','cyprus_kocatepe_sunk'],niki:['cyprus_operation_failure'],taskent:['cyprus_taskent']};
+  if(id==='gratitude'){if(!gratitudePending(Q))return false;}
+  else if(!expected[id]||expected[id].indexOf(incidentScene(Q))<0)return false;
+  Q.cyprus_roadmap_seen.push('incident-'+id);return true;
+ }
  function pending(Q){
   migrate(Q);if(!active(Q))return legacy.pending(Q);if(!Q.cyprus_mode)return null;if(number(Q.cyprus_constitution_step)>=8&&Q.cyprus_campaign_phase==='constitutional')Q.cyprus_campaign_phase='constitutional_treaty';tick(Q);
   if(Q.cyprus_constitution_departure_pending)return 'cyprus_constitution_departure';
   if(Q.cyprus_campaign_resolved)return Q.cyprus_final_seen?null:'cyprus_campaign_final';
+  var incident=incidentScene(Q);if(incident)return incident;
   if(genevaSideEvent(Q))return 'cyprus_geneva_side';
   if(endingReady(Q))return 'cyprus_atilla1_ending';
   var id=eventKey(Q);if(id&&Q.cyprus_roadmap_seen.indexOf(id)<0)return 'cyprus_roadmap_event';
@@ -319,7 +347,7 @@
   if(step===2&&!['ceasefire','confirm-delay'].includes(action))return false;
   if(step!==2&&!['historical','alternative'].includes(action))return false;
   if(step===3&&!Q.cyprus_delayed_ceasefire){advance(Q);return true;}
-  var raw=c.roll(c.militaryTier(Q),action==='alternative'?2:1,random),base=Math.max(45,raw),bonus=number(Q.cyprus_support_bonus),score=Math.min(80,base+bonus),index=legacy.resultIndex(score);
+  var raw=c.roll(c.militaryTier(Q),action==='alternative'?2:1,random),base=Math.max(45,raw),bonus=c.consumeSupportBonus(Q),score=Math.min(80,base+bonus),index=legacy.resultIndex(score);
   Q.cyprus_atilla2_results.push({day:day,action:action,rawRoll:raw,baseScore:base,supportBonus:bonus,score:score,outcome:c.outcomes[index]});Q.cyprus_atilla2_score+=score;Q.cyprus_support_bonus=0;Q.cyprus_roadmap_seen.push(id);Q.cyprus_roadmap_outcome=c.outcomes[index];Q.cyprus_roadmap_report='Our formations secure their objectives and organize the new positions. The northern military position is now stronger.';
   Q.cyprus_frontline_quality=Math.max(2,number(Q.cyprus_frontline_quality));Q.cyprus_atilla1_frontline='A broad northern military position';
   if(step===2){Q.cyprus_delay_confirmation=0;if(action==='confirm-delay'){Q.cyprus_delayed_ceasefire=1;Q.cyprus_roadmap_report=authoredEvents[29].body;}else{Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_roadmap_report=authoredEvents[28].body;advance(Q,2);return true;}}
@@ -367,10 +395,10 @@
  c.mapImage=function(Q){var finalMap=endingMap(Q);if(finalMap)return finalMap;if(Q.cyprus_mode&&Q.cyprus_month===7&&(Q.cyprus_day<20||Q.cyprus_day===20&&!Q.cyprus_operation_started))return 'cyprusgame/frontlines/pre-operation.png';if(Q.cyprus_atilla2_started&&Q.cyprus_mode){var day=Q.cyprus_atilla2_complete?(Q.cyprus_delayed_ceasefire?4:3):Math.min(4,iiStep(Q)+1);return 'cyprusgame/frontlines/atilla2-day'+day+'.png';}return active(Q)&&Q.cyprus_frontline_frozen?previous.mapImage(Object.assign({},Q,{cyprus_campaign_version:0,cyprus_month:7,cyprus_day:Q.cyprus_frontline_map_day})):previous.mapImage(Q);};
  c.supportUnavailable=function(Q,id,side){if(!active(Q))return previous.supportUnavailable(Q,id,side);if(Q.cyprus_month===7&&Q.cyprus_day>28)return 'Atilla has no further offensive rolls.';if(Q.cyprus_frontline_frozen||Q.cyprus_atilla1_complete&&Q.cyprus_campaign_phase!=='atilla2')return 'Offensive operations have ended; the frozen line cannot be expanded.';if(Q.cyprus_campaign_phase==='atilla2'){var a=c.supportActions[id];if(!a||a.side!==side)return 'Choose the matching side.';if(c.cooldown(Q,id))return 'This action is cooling down.';if(number(Q.cyprus_support_bonus)+a.bonus>10)return 'The next-roll bonus is capped at +10.';return number(Q.military_strength)<a.cost?'Not enough Military Resources.':'';}return previous.supportUnavailable(Q,id,side);};
  c.useSupport=function(Q,id,side){if(!active(Q))return previous.useSupport(Q,id,side);c.ensureSupport(Q);if(c.supportUnavailable(Q,id,side))return false;var a=c.supportActions[id];Q.military_strength-=a.cost;Q.cyprus_support_bonus+=a.bonus;Q.cyprus_support_spent+=a.cost;Q.cyprus_support_used[id]=Math.floor(Date.UTC(Q.cyprus_year,Q.cyprus_month-1,Q.cyprus_day)/86400000);if(Q.cyprus_month===7&&Q.cyprus_day<=25)Q.cyprus_support_early_counts[id]=number(Q.cyprus_support_early_counts[id])+1;return true;};
- c.choiceTooltip=function(id){if(id==='cyprus_roadmap_military.historical'||id==='cyprus_roadmap_event.offensive')return 'This is the historical choice. This operation would require our forces to be in an outdated state.';if(id==='cyprus_roadmap_military.alternative'||id==='cyprus_roadmap_event.supply')return 'This is an alternative choice. This operation would require our forces to be in an adequate state.';return previous.choiceTooltip(id);};
+ c.choiceTooltip=function(id){if(id==='cyprus_phantom_convoy.continue')return 'Military action: a 10–50% base chance to save Kocatepe, plus the existing next-roll investment bonus (maximum +10 percentage points).';if(id==='cyprus_roadmap_military.historical'||id==='cyprus_roadmap_event.offensive')return 'This is the historical choice. This operation would require our forces to be in an outdated state.';if(id==='cyprus_roadmap_military.alternative'||id==='cyprus_roadmap_event.supply')return 'This is an alternative choice. This operation would require our forces to be in an adequate state.';return previous.choiceTooltip(id);};
  var api=Object.assign({},legacy,{active:function(Q){return active(Q)||legacy.active(Q);},initialize:initialize,pending:pending,finishI:function(Q){return active(Q)?finishI(Q):legacy.finishI(Q);},federalEligible:function(Q){return active(Q)?gunesEligible(Q):legacy.federalEligible(Q);},canSettle:function(Q,p){return active(Q)?false:legacy.canSettle(Q,p);},diplomacyUnavailable:diplomacyUnavailable,diplomaticAction:diplomaticAction,beginII:beginII,resolveII:resolveII,settle:settle,opportunity:function(Q){return active(Q)?false:legacy.opportunity(Q);},countryName:function(k){return names[k];},attitudeName:function(Q,k){return stances[Math.floor(r.clamp(number(Q[k+'_attitude']),-2,k==='uk'?0:2))+2];}});
  r.cyprusCampaign=api;
- r.cyprusRoadmap={genevaSideEvent:genevaSideEvent,finishGenevaSideEvent:finishGenevaSideEvent,delegationRepresentative:delegationRepresentative,delegationText:delegationText,rallyEligible:rallyEligible,beginRally:beginRally,awardRally:awardRally,finishRally:finishRally,startEndingMusic:startEndingMusic,continuationLabel:continuationLabel,authoredEvents:authoredEvents,genevaResponse:genevaResponse,responseLabel:responseLabel,beginConstitution:beginConstitution,resolveConstitution:resolveConstitution,constitutionChoiceAvailable:constitutionChoiceAvailable,iiStep:iiStep,endingPraise:endingPraise,embargoReady:embargoReady,applyEmbargo:applyEmbargo,endingMap:endingMap,active:active,pending:pending,availableMilitary:availableMilitary,prepareEvent:prepareEvent,eventIs:eventIs,ceasefireAvailable:ceasefireAvailable,ordinaryEvent:ordinaryEvent,resolveEvent:resolveEvent,resolveMilitary:resolveMilitary,gunesEligible:gunesEligible,skip:skip,skipLabel:skipLabel,laterUnavailable:laterUnavailable,laterNegotiate:laterNegotiate,laterCanImplement:laterCanImplement,implementLater:implementLater,implementationReady:implementationReady,
+ r.cyprusRoadmap={incidentScene:incidentScene,incidentSeen:incidentSeen,kocatepeChance:kocatepeChance,resolveKocatepe:resolveKocatepe,gratitudePending:gratitudePending,finishIncident:finishIncident,genevaSideEvent:genevaSideEvent,finishGenevaSideEvent:finishGenevaSideEvent,delegationRepresentative:delegationRepresentative,delegationText:delegationText,rallyEligible:rallyEligible,beginRally:beginRally,awardRally:awardRally,finishRally:finishRally,startEndingMusic:startEndingMusic,continuationLabel:continuationLabel,authoredEvents:authoredEvents,genevaResponse:genevaResponse,responseLabel:responseLabel,beginConstitution:beginConstitution,resolveConstitution:resolveConstitution,constitutionChoiceAvailable:constitutionChoiceAvailable,iiStep:iiStep,endingPraise:endingPraise,embargoReady:embargoReady,applyEmbargo:applyEmbargo,endingMap:endingMap,active:active,pending:pending,availableMilitary:availableMilitary,prepareEvent:prepareEvent,eventIs:eventIs,ceasefireAvailable:ceasefireAvailable,ordinaryEvent:ordinaryEvent,resolveEvent:resolveEvent,resolveMilitary:resolveMilitary,gunesEligible:gunesEligible,skip:skip,skipLabel:skipLabel,laterUnavailable:laterUnavailable,laterNegotiate:laterNegotiate,laterCanImplement:laterCanImplement,implementLater:implementLater,implementationReady:implementationReady,
   militaryBrief:function(Q){Q.cyprus_roadmap_event_title=authoredEvents[3].title;Q.cyprus_roadmap_event_text=authoredEvents[3].body.replace(/\n\n/g,'<br><br>');},
   exit:function(Q){legacy.exit(Q);},
   roadmapEvents:events};
