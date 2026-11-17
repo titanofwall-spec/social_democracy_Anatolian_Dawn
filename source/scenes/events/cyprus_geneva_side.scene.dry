@@ -23,7 +23,7 @@ The opening session also had a few interesting moments. Coşkun Kırca glanced u
 
 With the Watergate scandal still dominating the news, nobody wanted confidential diplomatic discussions to be recorded without their knowledge. If we said anything foolish, it could be taken out of context and used to accuse us of selling out our country. The technicians were therefore ordered to stop, and with the recording equipment silenced, the conference could finally proceed.
 
-- @continue1: Just how İnönü did in Lausanne...
+- @continue1: We are following İnönü in his footsteps of annoying British regarding chairs
 
 @continue1
 on-arrival: {! AnatolianRules.cyprusRoadmap.finishGenevaSideEvent(Q,1); !}

@@ -1,0 +1,27 @@
+title: The Last Laugh
+view-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_last_laugh'; !}
+new-page: true
+on-arrival: {! if(typeof AnatolianCyprusPresentation!=='undefined')AnatolianCyprusPresentation.startEventSong(); !}
+
+= The Last Laugh
+
+For many years, there had been hope, but also a laughable situation in Cyprus. On more than one occasion, our army had stood ready to intervene, but due to diplomatic pressure and the international situation, it had been forced to stand down. During times of tension, Turkish Cypriot radio stations would play the popular song *Bir Gece Ansızın Gelebilirim* (I May Come Unexpectedly One Night) to remind Greek Cypriots that our army could arrive at any time.
+
+However, we never came.
+
+The Greek Cypriots had grown used to this, so they would play the song *Bekledim de Gelmedin* (I Waited, but You Never Came) on their radio stations to tease the Turkish Cypriots. This was a clever choice and must have been annoying for the Turkish Cypriots. After all, what is the point of saying you will come unexpectedly if they have been waiting for ages!
+
+However,
+
+Our soldiers have finally arrived on the shores of Cyprus. We now have our chance to get even! As Turkish soldiers began to set up camp on the island, the song *Bir Gece Ansızın Gelebilirim* could again be heard. This time, however, it was our soldiers and Turkish Cypriot fighters playing it in response to the Greek Cypriots.
+
+The Turkish Cypriots can finally enjoy the fact that they have gotten even after years of hearing *Bekledim de Gelmedin*. While it was funny when the Turkish Army was still across the sea, it is much less funny now that they are actually on Cypriot soil!
+
+We did arrive in the morning rather than at night, afterall, our Greek Cypriot friends have been waiting for us quite some time, it appears!
+
+- @continue: Well, here we are!
+
+@continue
+choose-if: {! return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_last_laugh'; !}
+on-arrival: {! AnatolianRules.cyprusRoadmap.finishIncident(Q,'last-laugh'); !}
+go-to: cyprus_campaign_continue

@@ -1,5 +1,6 @@
 title: The Weight of Gratitude
 new-page: true
+on-arrival: {! AnatolianRules.cyprusRoadmap.startEndingMusic(Q); !}
 view-if: {! return AnatolianRules.cyprusRoadmap.gratitudePending(Q); !}
 
 = The Weight of Gratitude

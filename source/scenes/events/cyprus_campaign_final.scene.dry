@@ -8,7 +8,7 @@ on-arrival: {! if(AnatolianRules.cyprusRoadmap.startEndingMusic)AnatolianRules.c
 [? if cyprus_campaign_resolved == 1 : <img class="cyprus-ending-map" src="[+ {! return AnatolianRules.cyprusRoadmap.endingMap(Q); !} +]" alt="Map of the final Cyprus settlement" style="display:block;width:100%;height:auto;margin:1em auto;background:#000;"> ?]
 
 [? if cyprus_final_result == "Non-Intervention" : CHP was not in power when the crisis began. Turkey did not undertake this intervention, and the opportunity to secure the Turkish Cypriot position was lost. ?]
-[? if cyprus_final_result == "Military Defeat" : <h2>MAĞLUP</h2> ?]
+[? if cyprus_final_result == "Military Defeat" : <h2 class="cyprus-ending-level">MAĞLUP</h2> ?]
 
 [? if cyprus_final_result == "Military Defeat" : The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ?]
 
@@ -20,15 +20,13 @@ on-arrival: {! if(AnatolianRules.cyprusRoadmap.startEndingMusic)AnatolianRules.c
 
 [? if cyprus_best_ending == 1 : The Güneş settlement has been achieved without Atilla II, with strong UN cooperation: the campaign's best diplomatic outcome. ?]
 
-[+ {! return Q.cyprus_atilla2_started || Q.cyprus_atilla2_complete ? "Atilla I" : "Atilla"; !} +] score: [+ cyprus_atilla1_score +] / 720.
 
-[? if cyprus_atilla2_complete == 1 : Atilla II score: [+ cyprus_atilla2_score +] / [? if cyprus_campaign_version == 2 : [+ {! return Q.cyprus_delayed_ceasefire ? 320 : 240; !} +] ?][? if cyprus_campaign_version != 2 : 240 ?]. ?]
 
 [? if cyprus_campaign_version == 2 and cyprus_final_result == "Historical Division" : Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ?]
 
 [+ {! return AnatolianRules.cyprusRoadmap.endingPraise ? AnatolianRules.cyprusRoadmap.endingPraise(Q).replace(/\n\n/g,'<br><br>') : ""; !} +]
 
-[? if cyprus_poll_reward_paid == 1 : The achievement adds to CHP's temporary Cyprus Prestige in National Coalition: + [? if cyprus_atilla2_complete == 1 : 5 ?][? if cyprus_atilla2_complete != 1 : 3 ?] percentage points. ?]
+[? if cyprus_poll_reward_paid == 1 : Our accomplishments in Cyprus has granted us a strong electoral effect in the polls, however, these gains will be temporary, and if we truly need to make use of them, an Early Election will be needed... ?]
 
 - @root: [+ {! return Q.cyprus_final_result==='Güneş Plan'?"We have done it!":"Let us return to our people."; !} +]
 

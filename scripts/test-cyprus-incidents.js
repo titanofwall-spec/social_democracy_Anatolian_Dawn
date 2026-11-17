@@ -64,5 +64,10 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
   const Q=q();Q.cyprus_day=23;assert.equal(rm.incidentScene(Q),null);assert(!rm.resolveKocatepe(Q,()=>{throw Error('Backdated roll');}));
   for(let tier=0;tier<5;tier++)for(let req=1;req<=3;req++)for(const draw of [0,.2,.5,.999999,1]){const minimum=tier>=req?50:0,maximum=tier>=req?80:60,expected=Math.min(80,minimum+Math.floor(Math.min(draw,1-Number.EPSILON)*(maximum-minimum+1))+Math.max(0,tier-req)*5);assert.equal(c.roll(tier,req,()=>draw),expected);}
  });
+ test('The Last Laugh follows the first actual military result exactly once without consuming its next bonus',()=>{
+  const e=fresh(),Q=e.state.qualities;Q.cyprus_day=20;e.random.random=()=>1;e.goToScene('cyprus_atilla1_20');pick(e,'cyprus_atilla1_20.historical');assert.equal(Q.cyprus_day,21);assert.notEqual(e.state.sceneId,'cyprus_last_laugh');
+  Q.cyprus_support_bonus=5;pick(e,'cyprus_atilla1_continue');assert.equal(e.state.sceneId,'cyprus_last_laugh');assert.equal(text(e.getCurrentChoices()[0].title),'Well, here we are!');assert(normalize(text(e.state.currentContent)).includes('We did arrive in the morning rather than at night, afterall'));
+  pick(e,'cyprus_last_laugh.continue');assert.equal(e.state.sceneId,'cyprus_phantom_convoy');assert.equal(Q.cyprus_support_bonus,5);assert.equal(Q.cyprus_day,21);assert(!rm.finishIncident(Q,'last-laugh'));
+ });
  output('PASS: '+count+' Cyprus incident groups, including 110 controlled Kocatepe outcomes.');
 });

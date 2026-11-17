@@ -1826,3 +1826,6 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 /* July 16 opposition meeting: full-width event photograph below the heading. */
 #content .cyprus-opposition-figure { float:none;width:fit-content;max-width:100%;box-sizing:border-box;margin:1em auto; }
 #content .cyprus-opposition-figure .face-img { display:block;width:auto;max-width:100%;height:auto;object-fit:contain; }
+
+/* Center campaign ending labels inside their result panels. */
+#content h2.cyprus-ending-level { text-align: center; width: 100%; }

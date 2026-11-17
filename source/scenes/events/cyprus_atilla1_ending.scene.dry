@@ -5,14 +5,12 @@ new-page: true
 
 = [+ cyprus_date_display +], Atilla I has ended, and our armies are...
 
-[? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : <h2>MUZAFFER</h2> ?]
-[? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : <h2>BAŞARILI</h2> ?]
-[? if cyprus_atilla1_ending == "Failure" and not cyprus_campaign_failed : <h2>YIPRANMIŞ</h2> ?]
-[? if cyprus_campaign_failed == 1 : <h2>MAĞLUP</h2> ?]
+[? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : <h2 class="cyprus-ending-level">MUZAFFER</h2> ?]
+[? if cyprus_atilla1_ending == "Successful" and not cyprus_campaign_failed : <h2 class="cyprus-ending-level">BAŞARILI</h2> ?]
+[? if cyprus_atilla1_ending == "Failure" and not cyprus_campaign_failed : <h2 class="cyprus-ending-level">YIPRANMIŞ</h2> ?]
+[? if cyprus_campaign_failed == 1 : <h2 class="cyprus-ending-level">MAĞLUP</h2> ?]
 
-Combined Atilla I Score: [+ cyprus_atilla1_score +] / 720.
 
-Operation results: [+ cyprus_operation_score +]. Military Readiness: +[+ cyprus_readiness_score +].
 
 Frontlines: [+ cyprus_atilla1_frontline +].
 
@@ -22,9 +20,7 @@ Airport: [+ cyprus_atilla1_access +].
 
 Diplomatic Position: [+ cyprus_atilla1_credibility +].
 
-[? if cyprus_campaign_version == 2 : Geneva I: [+ cyprus_geneva_leverage +] Leverage Points earned through the operation result and ceasefire record. ?]
 
-Diplomatic leverage earned: +[+ cyprus_atilla1_reward +]. Total: [+ leverage_points +].
 
 [? if cyprus_atilla1_ending == "Massive" and not cyprus_campaign_failed : The Greeks, the Brits, the Americans, the UN, no one had expected our government to stand so tall, and even fewer had expected our military power to act so decisively. The Greek Junta and Sampson's gambit ended terribly for the Greeks, for once again, the Turkish foot soldier marches across the plains and hills of Cyprus! We have not merely clashed with Greeks and won; we have achieved absolute military supremacy, so much so that the Greeks and the rest of the world believe more and more that the only factor that keeps us from sweeping across the island is our restraint! ?]
 

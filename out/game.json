@@ -3123,7 +3123,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "<h2>MUZAFFER</h2> ",
+                "content": "<h2 class=\"cyprus-ending-level\">MUZAFFER</h2> ",
                 "predicate": 1
               },
               ""
@@ -3134,7 +3134,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "<h2>BAŞARILI</h2> ",
+                "content": "<h2 class=\"cyprus-ending-level\">BAŞARILI</h2> ",
                 "predicate": 2
               },
               ""
@@ -3145,7 +3145,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "<h2>YIPRANMIŞ</h2> ",
+                "content": "<h2 class=\"cyprus-ending-level\">YIPRANMIŞ</h2> ",
                 "predicate": 3
               },
               ""
@@ -3156,7 +3156,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "<h2>MAĞLUP</h2> ",
+                "content": "<h2 class=\"cyprus-ending-level\">MAĞLUP</h2> ",
                 "predicate": 4
               },
               ""
@@ -3165,37 +3165,10 @@
           {
             "type": "paragraph",
             "content": [
-              "Combined Atilla I Score: ",
-              {
-                "type": "insert",
-                "insert": 5
-              },
-              " / 720."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Operation results: ",
-              {
-                "type": "insert",
-                "insert": 6
-              },
-              ". Military Readiness: +",
-              {
-                "type": "insert",
-                "insert": 7
-              },
-              "."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
               "Frontlines: ",
               {
                 "type": "insert",
-                "insert": 8
+                "insert": 5
               },
               "."
             ]
@@ -3206,7 +3179,7 @@
               "Opposing Forces: ",
               {
                 "type": "insert",
-                "insert": 9
+                "insert": 6
               },
               "."
             ]
@@ -3217,7 +3190,7 @@
               "Airport: ",
               {
                 "type": "insert",
-                "insert": 10
+                "insert": 7
               },
               "."
             ]
@@ -3228,41 +3201,7 @@
               "Diplomatic Position: ",
               {
                 "type": "insert",
-                "insert": 11
-              },
-              "."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "Geneva I: ",
-                  {
-                    "type": "insert",
-                    "insert": 13
-                  },
-                  " Leverage Points earned through the operation result and ceasefire record. "
-                ],
-                "predicate": 12
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              "Diplomatic leverage earned: +",
-              {
-                "type": "insert",
-                "insert": 14
-              },
-              ". Total: ",
-              {
-                "type": "insert",
-                "insert": 15
+                "insert": 8
               },
               "."
             ]
@@ -3273,7 +3212,7 @@
               {
                 "type": "conditional",
                 "content": "The Greeks, the Brits, the Americans, the UN, no one had expected our government to stand so tall, and even fewer had expected our military power to act so decisively. The Greek Junta and Sampson's gambit ended terribly for the Greeks, for once again, the Turkish foot soldier marches across the plains and hills of Cyprus! We have not merely clashed with Greeks and won; we have achieved absolute military supremacy, so much so that the Greeks and the rest of the world believe more and more that the only factor that keeps us from sweeping across the island is our restraint! ",
-                "predicate": 16
+                "predicate": 9
               },
               ""
             ]
@@ -3284,7 +3223,7 @@
               {
                 "type": "conditional",
                 "content": "The result of the campaign could not be downplayed even by a fraction; Atilla I will forever be studied and mentioned in military academies and history books for decades as one of the most formidable military operations, if not the most formidable, of the second half of the 20th century; the respect and adoration our military enjoys have risen, and similarly, our government and therefore our party's standing with the public has been rejuvenated on an unprecedented scale! We were finally being seen as <em>real</em> successors of our founding father Atatürk and his party. Our leadership had shown our people a reality: when the Empire collapsed and foreign powers sought our demise and division, it was Atatürk and his Society for the Defence of Rights of Anatolia and Rumelia that stopped them! When Hatay was left under the French, it was Atatürk and his CHP that brought it back! And now, when the lives of the Turks in Cyprus were in danger, it was Atatürk's party that he left that saved them! Let them all know: no one can teach CHP what it means to be a nationalist! ",
-                "predicate": 17
+                "predicate": 10
               },
               ""
             ]
@@ -3295,7 +3234,7 @@
               {
                 "type": "conditional",
                 "content": "Our forces have accomplished a difficult task. The troops who landed under uncertain conditions have established a connected position on the island, and Turkey has demonstrated that the safety of the Turkish Cypriot community cannot be dismissed with another appeal for patience. The Greek Junta and Sampson's government have fallen, while our army remains in Cyprus as a force that any settlement must now take into account. ",
-                "predicate": 18
+                "predicate": 11
               },
               ""
             ]
@@ -3306,7 +3245,7 @@
               {
                 "type": "conditional",
                 "content": "Yet this was a victory won through hard fighting rather than an effortless march. Delays, resistance and the demands of supplying our formations limited what could be achieved, and not every objective was secured as firmly as our commanders had hoped. Our position is stronger than it was when the crisis began, but strength on the battlefield alone cannot settle the questions that brought us here. ",
-                "predicate": 19
+                "predicate": 12
               },
               ""
             ]
@@ -3317,7 +3256,7 @@
               {
                 "type": "conditional",
                 "content": "At home, the government can point to an intervention that produced concrete results. CHP has shown that it was willing to act when diplomacy failed to protect the Turkish community. But the responsibility of victory is now ours as well: we must preserve what our soldiers have won and secure an agreement worthy of the sacrifices already made. ",
-                "predicate": 20
+                "predicate": 13
               },
               ""
             ]
@@ -3328,7 +3267,7 @@
               {
                 "type": "conditional",
                 "content": "Our soldiers have held on, but the campaign has fallen short of the position we had hoped to establish. A connected foothold survives, yet too many operations brought limited gains, uncertain security or a cost greater than their result. Turkey has prevented its intervention from becoming an outright military defeat, but it cannot present this outcome as the decisive triumph the country had awaited. ",
-                "predicate": 21
+                "predicate": 14
               },
               ""
             ]
@@ -3339,7 +3278,7 @@
               {
                 "type": "conditional",
                 "content": "The government will have to answer difficult questions. Why were our advantages not turned into firmer positions? Why did so much effort leave so many problems unresolved? The courage of the men on the island cannot relieve Ankara of responsibility for the direction of the campaign. ",
-                "predicate": 22
+                "predicate": 15
               },
               ""
             ]
@@ -3350,7 +3289,7 @@
               {
                 "type": "conditional",
                 "content": "Our delegation now approaches the negotiations with a weaker hand than it had intended. The territory already held must be preserved, the safety of the Turkish Cypriot community must still be secured, and the government must demonstrate that an incomplete military result need not become a permanent political failure. ",
-                "predicate": 23
+                "predicate": 16
               },
               ""
             ]
@@ -3361,7 +3300,7 @@
               {
                 "type": "conditional",
                 "content": "The operation has failed. Our forces could not establish a sustainable military position, or suffered a breakdown so serious that the campaign's objectives could no longer be secured. The men sent to protect the Turkish community have endured losses without obtaining the position from which Ankara intended to dictate the next stage of the crisis. ",
-                "predicate": 24
+                "predicate": 17
               },
               ""
             ]
@@ -3372,7 +3311,7 @@
               {
                 "type": "conditional",
                 "content": "There can be no triumphal account of this result. The government must confront the failure of the operation, safeguard the surviving troops and face the consequences of an intervention that did not achieve its essential purpose. The political settlement Turkey had hoped to secure through Atilla I is now beyond its reach. ",
-                "predicate": 25
+                "predicate": 18
               },
               ""
             ]
@@ -3383,7 +3322,7 @@
               {
                 "type": "conditional",
                 "content": "The end of Atilla I coincided with the end of the First Geneva Conference, and thus the military phase was over. What came next would be slower, more complicated and perhaps even more dangerous in its own way. Turkey would now have to turn the military position created by Atilla I into a permanent political settlement through a long game of diplomacy... ",
-                "predicate": 26
+                "predicate": 19
               },
               ""
             ]
@@ -3394,7 +3333,7 @@
               {
                 "type": "conditional",
                 "content": "On this alternative course, Geneva I concludes on July 28 after Turkey froze its military positions. ",
-                "predicate": 27
+                "predicate": 20
               },
               ""
             ]
@@ -3405,7 +3344,7 @@
               {
                 "type": "conditional",
                 "content": "Mavros wanted the conference to end with a signature as much as Güneş did. He extended his hand: ",
-                "predicate": 28
+                "predicate": 21
               },
               ""
             ]
@@ -3416,7 +3355,7 @@
               {
                 "type": "conditional",
                 "content": "“Agreed, Mr. Güneş.” ",
-                "predicate": 29
+                "predicate": 22
               },
               ""
             ]
@@ -3427,7 +3366,7 @@
               {
                 "type": "conditional",
                 "content": "It was not easy to believe, but the First Geneva Conference really had ended... ",
-                "predicate": 30
+                "predicate": 23
               },
               ""
             ]
@@ -3467,24 +3406,6 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return (Q['cyprus_atilla1_score'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_operation_score'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_readiness_score'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
               "$code": "return (Q['cyprus_atilla1_frontline'] || 0);"
             }
           },
@@ -3504,30 +3425,6 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['cyprus_atilla1_credibility'] || 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 2);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_geneva_leverage'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_atilla1_reward'] || 0);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['leverage_points'] || 0);"
             }
           },
           {
@@ -3839,21 +3736,10 @@
           {
             "type": "paragraph",
             "content": [
-              "Operation score: ",
-              {
-                "type": "insert",
-                "insert": 0
-              },
-              " / 240."
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
               "Frontlines: ",
               {
                 "type": "insert",
-                "insert": 1
+                "insert": 0
               },
               "."
             ]
@@ -3864,12 +3750,6 @@
           }
         ],
         "stateDependencies": [
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_atilla2_score'] || 0);"
-            }
-          },
           {
             "type": "insert",
             "fn": {
@@ -4416,6 +4296,12 @@
       ],
       "goTo": [
         {
+          "id": "cyprus_last_laugh",
+          "predicate": {
+            "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_last_laugh';"
+          }
+        },
+        {
           "id": "cyprus_phantom_convoy",
           "predicate": {
             "$code": "return !Q.cyprus_calendar_advance && AnatolianRules.cyprusCampaign.pending(Q)==='cyprus_phantom_convoy';"
@@ -4664,7 +4550,7 @@
             "content": [
               {
                 "type": "conditional",
-                "content": "<h2>MAĞLUP</h2> ",
+                "content": "<h2 class=\"cyprus-ending-level\">MAĞLUP</h2> ",
                 "predicate": 5
               },
               ""
@@ -4740,15 +4626,21 @@
             "type": "paragraph",
             "content": [
               {
-                "type": "insert",
-                "insert": 12
+                "type": "conditional",
+                "content": "Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ",
+                "predicate": 12
               },
-              " score: ",
+              ""
+            ]
+          },
+          {
+            "type": "paragraph",
+            "content": [
               {
                 "type": "insert",
                 "insert": 13
               },
-              " / 720."
+              ""
             ]
           },
           {
@@ -4756,78 +4648,8 @@
             "content": [
               {
                 "type": "conditional",
-                "content": [
-                  "Atilla II score: ",
-                  {
-                    "type": "insert",
-                    "insert": 15
-                  },
-                  " / ",
-                  {
-                    "type": "conditional",
-                    "content": [
-                      "",
-                      {
-                        "type": "insert",
-                        "insert": 17
-                      },
-                      " "
-                    ],
-                    "predicate": 16
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "240 ",
-                    "predicate": 18
-                  },
-                  ". "
-                ],
+                "content": "Our accomplishments in Cyprus has granted us a strong electoral effect in the polls, however, these gains will be temporary, and if we truly need to make use of them, an Early Election will be needed... ",
                 "predicate": 14
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": "Later diplomacy remains possible through Foreign Ministry → Manage Our Relations with the West → Cyprus Negotiations. The Güneş route requires Friendly US and Western Europe relations and four rounds; the Denktaş route requires Very Friendly relations with both and six rounds. ",
-                "predicate": 19
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "insert",
-                "insert": 20
-              },
-              ""
-            ]
-          },
-          {
-            "type": "paragraph",
-            "content": [
-              {
-                "type": "conditional",
-                "content": [
-                  "The achievement adds to CHP's temporary Cyprus Prestige in National Coalition: + ",
-                  {
-                    "type": "conditional",
-                    "content": "5 ",
-                    "predicate": 22
-                  },
-                  {
-                    "type": "conditional",
-                    "content": "3 ",
-                    "predicate": 23
-                  },
-                  " percentage points. "
-                ],
-                "predicate": 21
               },
               ""
             ]
@@ -4907,48 +4729,6 @@
             }
           },
           {
-            "type": "insert",
-            "fn": {
-              "$code": "return Q.cyprus_atilla2_started || Q.cyprus_atilla2_complete ? \"Atilla I\" : \"Atilla\";"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_atilla1_score'] || 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_atilla2_complete'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return (Q['cyprus_atilla2_score'] || 0);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) == 2);"
-            }
-          },
-          {
-            "type": "insert",
-            "fn": {
-              "$code": "return Q.cyprus_delayed_ceasefire ? 320 : 240;"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_campaign_version'] || 0) != 2);"
-            }
-          },
-          {
             "type": "predicate",
             "fn": {
               "$code": "return (((Q['cyprus_campaign_version'] || 0) == 2) && (Q['cyprus_final_result'] == \"Historical Division\"));"
@@ -4964,18 +4744,6 @@
             "type": "predicate",
             "fn": {
               "$code": "return ((Q['cyprus_poll_reward_paid'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_atilla2_complete'] || 0) == 1);"
-            }
-          },
-          {
-            "type": "predicate",
-            "fn": {
-              "$code": "return ((Q['cyprus_atilla2_complete'] || 0) != 1);"
             }
           }
         ]
@@ -5363,7 +5131,7 @@
       "options": [
         {
           "id": "@cyprus_geneva_side.continue1",
-          "title": "Just how İnönü did in Lausanne..."
+          "title": "We are following İnönü in his footsteps of annoying British regarding chairs"
         }
       ],
       "content": [
@@ -5439,6 +5207,11 @@
       "type": "scene",
       "title": "The Weight of Gratitude",
       "newPage": true,
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.startEndingMusic(Q);"
+        }
+      ],
       "viewIf": {
         "$code": "return AnatolianRules.cyprusRoadmap.gratitudePending(Q);"
       },
@@ -6283,6 +6056,108 @@
         {
           "type": "paragraph",
           "content": "We went to attack the Greek Navy... and somehow sank our own."
+        }
+      ]
+    },
+    "cyprus_last_laugh.continue": {
+      "id": "cyprus_last_laugh.continue",
+      "chooseIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_last_laugh';"
+      },
+      "onArrival": [
+        {
+          "$code": "AnatolianRules.cyprusRoadmap.finishIncident(Q,'last-laugh');"
+        }
+      ],
+      "goTo": [
+        {
+          "id": "cyprus_campaign_continue"
+        }
+      ],
+      "content": {
+        "content": "",
+        "type": "paragraph"
+      }
+    },
+    "cyprus_last_laugh": {
+      "id": "cyprus_last_laugh",
+      "type": "scene",
+      "title": "The Last Laugh",
+      "viewIf": {
+        "$code": "return AnatolianRules.cyprusRoadmap.incidentScene(Q)==='cyprus_last_laugh';"
+      },
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "if(typeof AnatolianCyprusPresentation!=='undefined')AnatolianCyprusPresentation.startEventSong();"
+        }
+      ],
+      "options": [
+        {
+          "id": "@cyprus_last_laugh.continue",
+          "title": "Well, here we are!"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Last Laugh"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "For many years, there had been hope, but also a laughable situation in Cyprus. On more than one occasion, our army had stood ready to intervene, but due to diplomatic pressure and the international situation, it had been forced to stand down. During times of tension, Turkish Cypriot radio stations would play the popular song ",
+            {
+              "type": "emphasis-1",
+              "content": "Bir Gece Ansızın Gelebilirim"
+            },
+            " (I May Come Unexpectedly One Night) to remind Greek Cypriots that our army could arrive at any time."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "However, we never came."
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "The Greek Cypriots had grown used to this, so they would play the song ",
+            {
+              "type": "emphasis-1",
+              "content": "Bekledim de Gelmedin"
+            },
+            " (I Waited, but You Never Came) on their radio stations to tease the Turkish Cypriots. This was a clever choice and must have been annoying for the Turkish Cypriots. After all, what is the point of saying you will come unexpectedly if they have been waiting for ages!"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "However,"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "Our soldiers have finally arrived on the shores of Cyprus. We now have our chance to get even! As Turkish soldiers began to set up camp on the island, the song ",
+            {
+              "type": "emphasis-1",
+              "content": "Bir Gece Ansızın Gelebilirim"
+            },
+            " could again be heard. This time, however, it was our soldiers and Turkish Cypriot fighters playing it in response to the Greek Cypriots."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "The Turkish Cypriots can finally enjoy the fact that they have gotten even after years of hearing ",
+            {
+              "type": "emphasis-1",
+              "content": "Bekledim de Gelmedin"
+            },
+            ". While it was funny when the Turkish Army was still across the sea, it is much less funny now that they are actually on Cypriot soil!"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "We did arrive in the morning rather than at night, afterall, our Greek Cypriot friends have been waiting for us quite some time, it appears!"
         }
       ]
     },
@@ -43462,12 +43337,12 @@
                     "type": "insert",
                     "insert": 3
                   },
-                  " ",
+                  "&nbsp;",
                   {
                     "type": "insert",
                     "insert": 4
                   },
-                  " (Week 1) "
+                  "&nbsp;(Week 1) "
                 ],
                 "predicate": 2
               },
@@ -43479,12 +43354,12 @@
                     "type": "insert",
                     "insert": 6
                   },
-                  " ",
+                  "&nbsp;",
                   {
                     "type": "insert",
                     "insert": 7
                   },
-                  " (Week 3) "
+                  "&nbsp;(Week 3) "
                 ],
                 "predicate": 5
               },

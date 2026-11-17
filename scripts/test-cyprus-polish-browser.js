@@ -1,0 +1,28 @@
+const fs=require('fs'),path=require('path'),http=require('http'),assert=require('assert');
+const {chromium}=require('C:/Users/umutc/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const root=path.resolve(__dirname,'../out/html');
+
+const server=http.createServer((req,res)=>{const rel=decodeURIComponent(new URL(req.url,'http://localhost').pathname),p=path.resolve(root,'.'+rel+(rel==='/'?'index.html':''));if(!p.startsWith(root+path.sep))return res.writeHead(403).end();try{res.setHeader('Content-Type',({'.svg':'image/svg+xml','.html':'text/html','.js':'text/javascript','.json':'application/json','.css':'text/css','.mp3':'audio/mpeg','.m4a':'audio/mp4','.png':'image/png'})[path.extname(p)]||'application/octet-stream');const data=fs.readFileSync(p),range=req.headers.range;if(range){const m=/bytes=(\d+)-(\d*)/.exec(range),start=Number(m[1]),end=m[2]?Number(m[2]):data.length-1;res.statusCode=206;res.setHeader('Accept-Ranges','bytes');res.setHeader('Content-Range','bytes '+start+'-'+end+'/'+data.length);res.setHeader('Content-Length',end-start+1);res.end(data.subarray(start,end+1));}else{res.setHeader('Accept-Ranges','bytes');res.end(data);}}catch{res.writeHead(404).end();}});
+
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;try{
+ browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+ const page=await browser.newPage({viewport:{width:1440,height:1100}}),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
+ await page.addInitScript(()=>{HTMLMediaElement.prototype.play=function(){this.dataset.playRequested='true';return Promise.resolve();};});
+ await page.goto('http://127.0.0.1:'+server.address().port);await page.waitForFunction(()=>window.dendryUI&&window.AnatolianCyprusPresentation);
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine;e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');jQuery.fx.off=true;Object.assign(e.state.qualities,{year:1974,month:9,week:1,cyprus_mode:0});e.goToScene('status');});
+ assert((await page.locator('#content').innerText()).replace(/\s+/g,' ').includes('September 1974 (Week 1)'));
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1974,month:7,week:2,CHP_in_government:1,prime_minister_party:'CHP'});e.goToScene('kibrisdarbe');Object.assign(Q,{cyprus_month:7,cyprus_day:30,cyprus_atilla1_ending:'Massive',cyprus_campaign_failed:0,cyprus_score_snapshot:1,cyprus_atilla1_complete:1,cyprus_atilla1_score:699,cyprus_atilla1_reward:14,cyprus_roadmap_seen:['geneva1']});e.goToScene('cyprus_atilla1_ending');});
+ let content=await page.locator('#content').innerText();for(const label of ['Combined Atilla','Operation results:','Military Readiness:','Diplomatic leverage earned:','Leverage Points earned through'])assert(!content.includes(label),label);
+ assert.equal(await page.locator('#content h2.cyprus-ending-level').first().evaluate(el=>getComputedStyle(el).textAlign),'center');
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine;Object.assign(e.state.qualities,{cyprus_campaign_resolved:1,cyprus_final_result:'Historical Division',cyprus_poll_reward_paid:1,cyprus_atilla2_complete:1,cyprus_rally_seen:0});e.goToScene('cyprus_campaign_final');window.endingTrack=dendryUI.currentAudio;});
+ content=await page.locator('#content').innerText();assert(!/score:|temporary Cyprus Prestige|percentage points/.test(content));assert(content.includes('Our accomplishments in Cyprus has granted us a strong electoral effect'));
+ assert.equal(await page.evaluate(()=>dendryUI.currentAudioURL),'music/karaoglan-rally.mp3');
+ await page.evaluate(()=>dendryUI.dendryEngine.goToScene('cyprus_gratitude'));assert(await page.evaluate(()=>endingTrack===dendryUI.currentAudio));
+ await page.evaluate(()=>{AnatolianCyprusPresentation.finishEndingMusic();dendryUI.dendryEngine.state.qualities.cyprus_mode=0;dendryUI.dendryEngine.goToScene('main');});assert(await page.evaluate(()=>endingTrack===dendryUI.currentAudio));
+ await page.evaluate(()=>endingTrack.onended());assert.notEqual(await page.evaluate(()=>dendryUI.currentAudioURL),'music/karaoglan-rally.mp3');
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;AnatolianRules.cyprusAtilla1.initialize(Q);AnatolianRules.cyprusCampaign.initialize(Q);Object.assign(Q,{cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:21,cyprus_calendar_advance:0,cyprus_campaign_resolved:0,cyprus_atilla1_results:[{day:20,score:80}]});e.goToScene('cyprus_campaign_continue');});
+ assert.equal(await page.evaluate(()=>dendryUI.dendryEngine.state.sceneId),'cyprus_last_laugh');assert.equal(await page.evaluate(()=>dendryUI.currentAudioURL),'music/bir-gece-event.mp3');
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine,i=e.getCurrentChoices().findIndex(x=>x.id==='cyprus_last_laugh.continue');e.choose(i);});await page.waitForFunction(()=>dendryUI.currentAudioURL!=='music/bir-gece-event.mp3',{},{timeout:8000});
+ const duration=await page.evaluate(async()=>{const a=new Audio();return await new Promise((resolve,reject)=>{a.onloadedmetadata=()=>resolve(a.duration);a.onerror=()=>reject(Error('New MP3 unreadable'));a.src='music/bir-gece-event.mp3';});});assert(duration>0);
+ assert.deepEqual(errors,[]);console.log('PASS Chrome: spaced September date, centered ending rank, hidden numeric breakdowns, revised electoral text, continuous Gratitude music, natural ending restoration, readable supplied MP3.');
+}finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);process.exitCode=1;});

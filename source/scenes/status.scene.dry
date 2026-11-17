@@ -118,7 +118,7 @@ Q.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg,
 
 = Status
 
-[? if cyprus_mode != 0: [+ cyprus_date_display +] ?][? if cyprus_mode = 0 and week == 1: [+ month : month +] [+ year +] (Week 1) ?][? if cyprus_mode = 0 and week == 2: [+ month : month +] [+ year +] (Week 3) ?]
+[? if cyprus_mode != 0: [+ cyprus_date_display +] ?][? if cyprus_mode = 0 and week == 1: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week 1) ?][? if cyprus_mode = 0 and week == 2: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week 3) ?]
 
 Resources available: [+ resources +]
 
