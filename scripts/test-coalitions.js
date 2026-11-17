@@ -39,5 +39,30 @@ test('Only Hostile relations block CHP talks; political choices remain available
 test('Relations dynamically modify R and elapsed dissent while coalition X remains exact',()=>{const Q=fresh();proposal(Q);C.form(Q);Q.MSP_relation=10;const low=C.factors(Q);Q.MSP_relation=90;const high=C.factors(Q);assert.equal(low.R,1.6);assert.equal(high.R,-1.6);assert.equal(low.X,high.X);Q.MSP_relation=10;Q.month=11;Q.week=2;const d=Q.coalition_dissent;C.update(Q);const lowDelta=Q.coalition_dissent-d;const saved=JSON.parse(JSON.stringify(Q));saved.MSP_relation=90;saved.month=12;const old=saved.coalition_dissent;C.update(saved);assert(saved.coalition_dissent-old<lowDelta);});
 test('NPC coalition talks do not use those parties relations with CHP as a veto',()=>{const Q=fresh({largest_party_key:'AP',AP_relation:0,MSP_relation:0,CGP_relation:0,CGP_seats:90});C.start(Q);assert(!C.candidate(Q).parties.includes('CHP'));assert(C.acceptable(Q));});
 test('Party tooltip labels use the seven requested bands and preserve foreign labels',()=>{const path=require('path'),root=path.join(__dirname,'..'),js=fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'),body=js.split('function getRelationshipText(value) {')[1].split('function getMilitancyText')[0],label=Function('value',body.slice(0,body.lastIndexOf('}')));for(const [n,name] of [[5,'Hostile'],[6,'Adversarial'],[15,'Uncooperative'],[30,'Uncooperative'],[40,'Neutral'],[55,'Cordial'],[65,'Cooperative'],[75,'Productive']])assert(label(n).includes('>'+name+'<'));const display=fs.readFileSync(path.join(root,'source/qdisplays/party_relationships.qdisplay.dry'),'utf8');for(const name of ['Hostile','Adversarial','Uncooperative','Neutral','Cordial','Cooperative','Productive'])assert(display.includes(name));assert(fs.readFileSync(path.join(root,'source/qdisplays/relationships.qdisplay.dry'),'utf8').includes('very friendly'));});
+test('İmam Hatip cuts honor CHP-negotiated rights instead of the old right-wing veto',()=>{
+ const source=fs.readFileSync(require('path').join(__dirname,'../source/scenes/government_affairs/education_science.scene.dry'),'utf8');
+ const section=source.split('@imamhatip\n')[1].split('@TRT')[0];
+ const condition=section.match(/^choose-if: \{!([\s\S]*?)!\}/m);
+ assert(condition,'Missing İmam Hatip choice predicate');
+ const allowed=Function('Q','AnatolianCoalitions',condition[1]);
+ assert(!condition[1].includes('powerAccess'),'Choice must use the authoritative coalition permission, not the legacy veto');
+ const ministry=(partner)=>{const Q=fresh({CGP_seats:60,imamhatipp:0});proposal(Q,partner);assert(C.toggleMinistry(Q,'defense'));assert(C.toggleMinistry(Q,'education'));return Q;};
+ const scene='education_science.imamhatip';
+ const Q=ministry('CGP');
+ const other=C.yellow(Q).find(a=>a.id!=='list-25'&&!C.koykentIds.includes(a.id));
+ assert(other,'Expected another yellow action to balance the concession');
+ assert(C.allocate(Q,'list-25','player'));assert(C.allocate(Q,other.id,'partner'));assert(C.form(Q));
+ Q.resources=0;
+ assert(C.description(Q,scene).includes('permanently assigned'));
+ assert.equal(C.reason(Q,scene),'');
+ assert.equal(allowed(Q,C),true,'CHP must be allowed to carry out the agreed İmam Hatip cuts');
+ assert(C.use(Q,scene));assert.equal(Q.resources,0,'A demanded power must not cost resources');
+ Q.imamhatipp=3;assert.equal(allowed(Q,C),false,'The existing three-cut limit must still apply');
+ const R=ministry('CGP');
+ const another=C.yellow(R).find(a=>a.id!=='list-25'&&!C.koykentIds.includes(a.id));
+ assert(C.allocate(R,'list-25','partner'));assert(C.allocate(R,another.id,'player'));assert(C.form(R));
+ assert(C.reason(R,scene).includes('binding agreement'));assert.equal(allowed(R,C),false);
+ const M=ministry('MSP');assert(C.form(M));assert(C.reason(M,scene).includes('Opposed'));assert.equal(allowed(M,C),false);
+});
 console.log(passed+' coalition scenarios passed');
 
