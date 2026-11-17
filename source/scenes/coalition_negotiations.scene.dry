@@ -337,11 +337,11 @@ Placeholder
 
 @chp_majority
 view-if: chp_seats >= 226
-title: CHP Forms a Majority Government
+title: [+ {! return Q.coalition_formation && Q.coalition_formation.year===1977 ? "We\'ve done it!" : "CHP Forms a Majority Government"; !} +]
 new-page: true
 on-arrival: {! AnatolianCoalitions.majority(Q,"CHP"); Q.coalition_formation.chpMajorityAnnouncementSeen=true; !}
 
-= CHP Forms a Majority Government
+= [+ {! return Q.coalition_formation && Q.coalition_formation.year===1977 ? "We\'ve done it!" : "CHP Forms a Majority Government"; !} +]
 
 [+ {! return AnatolianCoalitions.eventText(Q,"chp_majority"); !} +]
 
