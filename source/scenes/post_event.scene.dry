@@ -767,7 +767,7 @@ if(typeof AnatolianCoalitions!=="undefined")AnatolianCoalitions.update(Q);
 // Recalculate paramilitary force effectiveness (strength × militancy) every turn
 
 !}
-go-to: cyprus_campaign_continue if cyprus_mode != 0 and cyprus_campaign_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; game_over if coup_roll_success = 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0 and not cyprus_preop_resume and not cyprus_campaign_resume; main.main_easy if has_event = 0 and difficulty < 0 and not cyprus_preop_resume and not cyprus_campaign_resume
+go-to: cyprus_campaign_continue if cyprus_mode != 0 and cyprus_campaign_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; game_over if coup_roll_success = 1; endgame_1982 if {! return Q.started===1 && Q.year>=1982 && !Q.endgame_1982_ignored && !Q.game_over; !}; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0 and not cyprus_preop_resume and not cyprus_campaign_resume; main.main_easy if has_event = 0 and difficulty < 0 and not cyprus_preop_resume and not cyprus_campaign_resume
 
 = [? if cyprus_mode = 0 : [+ month : month +] [+ year +] ?]
 
