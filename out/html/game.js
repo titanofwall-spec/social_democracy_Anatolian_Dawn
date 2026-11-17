@@ -14,6 +14,7 @@
     game = ui.game;
     AnatolianCyprusPresentation.install(ui);
     AnatolianSaveStorage.install(ui);
+    AnatolianEndgame.install(ui);
     AnatolianCardActions.install(ui.dendryEngine);
     AnatolianCoalitions.install(ui.dendryEngine);
 
