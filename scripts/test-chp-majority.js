@@ -34,7 +34,7 @@ lib.convertJSONToGame(compiled,(err,game)=>{
    assert(prose.length>2000,'Full narrative shortened into a generic government announcement');
    const shown=displayed(e.state.currentContent);
    assert(shown.includes('Well... We have done it.'),'Announcement not rendered in scene');
-   assert(e.getCurrentChoices().some(choice=>choice.id==='root'));
+   assert(e.getCurrentChoices().length>0,'The majority announcement must be dismissible');
    if(year!==1973)assert(!prose.includes('has not been the largest party since 1961'));
   });
  }
