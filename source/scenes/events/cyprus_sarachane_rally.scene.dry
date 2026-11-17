@@ -5,17 +5,17 @@ on-arrival: {! AnatolianRules.cyprusRoadmap.awardRally(Q); AnatolianRules.cyprus
 
 = Kıbrıs'ın Dağlarına Yazdık!
 
-By the afternoon, there was hardly a patch of pavement left to see in front of İstanbul’s Belediye Sarayı. From the streets of Fatih, from the other side of the bridges, from neighbourhoods where our party had once struggled to fill a meeting hall, they had come to Saraçhane. Turkish flags rose above the crowd, blue shirts pressed against one another, and homemade banners carried a name which no longer seemed to belong to one man alone.
+There was very little pavement showing in front of İstanbul's Municipal Palace by the afternoon. People from Fatih, across various bridges and neighborhoods where we could barely get enough people into the room during our meetings, came to Saraçhane. Turkish flags were waving everywhere, and blue shirts were packed into the area. Banners were made, and everyone was chanting a name which no longer felt like just one person's.
 
-“Karaoğlan! Karaoğlan!”
+"Karaoğlan! Karaoğlan!"
 
-For weeks, our country had lived between the telephone and the radio. A mother had waited for a name that never came in the evening bulletin. A father had pretended not to worry while his son’s last letter lay folded in his pocket. In Cyprus, families had waited behind shuttered windows, wondering whether the next footsteps outside belonged to someone who had come to save them or someone from whom they had to hide. Now, beneath the afternoon sun, those weeks seemed to gather in the square with us.
+For weeks, our country had been in an uproar. Mothers were waiting to hear their sons' names on the evening news, fathers were acting like they didn't care but had their sons' last letters tucked away, and families in Cyprus were sitting behind closed windows, hoping the next person outside would be their savior.
 
-When Bülent Ecevit appeared, the applause rose before he could even reach the microphone. In his blue shirt and cap, he greeted the people, but for a moment there was no way to speak over them. They called him “Kıbrıs Fatihi”. They called him “Karaoğlan”. Somewhere near the front, an older woman held a flag against her chest and wiped her eyes with the back of her hand.
+As Bülent Ecevit walked up to the microphone, a huge round of applause broke out. He waved to the crowd of blue-shirted people, but no matter how hard he tried, he couldn't be heard as the crowd cheered "Kıbrıs Fatihi" and "Karaoğlan". An old lady at the front clutched her flag tightly and cried.
 
-Our army had crossed the sea. Our delegation had endured the arguments, the threats and the endless demands for more time. The Turkish Cypriots, who had so often been told to wait, had finally seen that they were not alone.
+Our army had crossed the sea and fought against the junta. After a long time of arguing, threatening and constant requests for more time, our delegation had finally shown the Turkish Cypriots that they weren't alone.
 
-[? if cyprus_final_result == "Güneş Plan" : We had brought back more than a military victory. The six Turkish cantons would give our people a place within an independent, federal Cyprus, and the agreement had been secured without sending the army into a second operation. Our soldiers had opened the road; Güneş and his delegation had carried us to its end. ?]
+[? if cyprus_final_result == "Güneş Plan" : Not only had we won militarily, but we had ensured our people would have a place in an independent federal Cyprus through the six Turkish cantons. This was achieved without our army having to launch a second operation, as our soldiers had cleared a path for us and Güneş and his delegation had taken us to the end. ?]
 
 [? if cyprus_final_result == "Denktaş Plan" : A Turkish region in the north would give our community the security and self-government for which it had struggled. The battlefield’s gains had been turned into a federal agreement. Our people would no longer have to ask, every morning, whether the promises of the previous evening would still protect them. ?]
 
@@ -23,33 +23,33 @@ Our army had crossed the sea. Our delegation had endured the arguments, the thre
 
 [? if cyprus_final_result == "Return to the 1960 Constitutional Order" : The agreement had kept Cyprus united while giving our community new constitutional safeguards. We had not obtained the territorial settlement with which we had entered the negotiations, but we had brought the crisis to a close without another offensive. In the square, the people welcomed the promise that the rights won at Geneva would now be made real. ?]
 
-Ecevit spoke of the men who had landed on the beaches, of the families on the island, and of the peace we had gone there to secure. He did not need to turn every sentence into a shout. The square listened. When he paused, the voices returned, and the words he had been trying to say were carried back to him by thousands of people who had already made them their own.
+Ecevit began talking about our soldiers arriving on the beaches, the families on the island and the peace we had come to achieve. He didn't have to shout, as the square was listening intently. When he stopped talking, the chanting would start again.
 
-Then he turned to those who had spent so long telling us that the left could never be nationalist. Demirel and Türkeş had not been forgotten. Neither had the accusations, the slogans on the walls, or the certainty with which our opponents had claimed that love of this country belonged to them alone.
+He then turned to talk to the people who had said for years we couldn't be left-nationalists. Demirel and Türkeş weren't forgotten about. For years, the CHP, and especially the new Democratic Left movement within it, had been accused of not being nationalist, of being traitors to the nation and the ideals our country was founded on. However, all of this was silenced today as the government made it happen...
 
 “We will not take lessons in nationalism from Demirel or Türkeş!”
 
-The answer from the square almost swallowed the next sentence. Ecevit waited, his hand raised, until the microphones could be heard again.
+The square erupted. He put his hand up and waited for the microphones.
 
 [? if cyprus_rally_poppy_lifted_late == 0 : The farmers of Western Anatolia had already seen what those words meant. The poppy ban had been lifted before the crisis, despite the pressure from abroad. Their fields, like our country’s decisions, would not be surrendered merely because someone more powerful demanded it. ?]
 
-[? if cyprus_rally_poppy_lifted_late == 1 : In the days after Cyprus, our government had also lifted the poppy cultivation ban. The farmers of Western Anatolia would return to their fields. We had sought a settlement on the island without surrendering our right to decide what our own people could grow at home. Now Ecevit could speak of those fields alongside the men who had crossed the sea. ?]
+[? if cyprus_rally_poppy_lifted_late == 1 : Following Cyprus, our government had also removed the ban on growing poppies. As we had worked with the USA during the Cyprus crisis, they couldn't really do much in the near future apart from frown. The farmers in Western Anatolia could return to their fields. We had fought for peace on the island and ensured we didn't lose our right to choose what our people could grow. ?]
 
 “We have written our nationalism not on street walls, but on the soil of Cyprus, on the seabed of the Aegean, and in the poppy fields of Western Anatolia!”
 
-There was no finishing the speech for several minutes.
+The speech couldn't continue for a few minutes.
 
-Flags shook above the square. People who had arrived as strangers embraced. A young man climbed onto a friend’s shoulders and shouted until his voice broke. The older woman near the front was crying openly now, but she was still holding her flag. Around her, the chant rose again, passed from one end of Saraçhane to the other, and came back louder.
+Flags were flying everywhere. People were hugging strangers. One young man jumped onto his friend's shoulders and screamed until he couldn't anymore. The old lady at the front was crying but still clutching her flag. Chanting filled the square.
 
-“Karaoğlan! Karaoğlan!”
+"Karaoğlan! Karaoğlan!"
 
-We had spent years arguing that our party had not forgotten the country it had helped to build. Today, in that square, we did not have to explain it in another leaflet. There were families on Cyprus who would sleep more safely because our soldiers had gone there. There were men returning home who had wondered whether they would ever see these streets again. And there were those who would not return, whose places in this celebration could never be filled by applause.
+We had argued for years that our party hadn't forgotten the country we helped build. However, we didn't need a leaflet today. Families in Cyprus would sleep more safely knowing our soldiers were there. Men who had wondered if they would ever see these streets again would return home. Some wouldn't return. Their place in this celebration would never be filled with applause.
 
-For them, too, we had to make the peace worth keeping.
+We had to ensure peace was worth keeping.
 
-When Ecevit finally finished, the crowd did not leave all at once. The songs continued, flags stayed aloft, and people lingered as though going home would mean letting the moment end. Tomorrow there would be disputes again. The coalition, the economy and the unfinished work on Cyprus would still be waiting for us. None of that had disappeared.
+Once Ecevit had finished speaking, the crowd didn't immediately leave. Songs were still being sung, flags were still flying and people were still hanging around. We knew tomorrow there would be arguments. The coalition, the economy and the unfinished work on Kıbrıs would all be there.
 
-But today, for a few hours in Saraçhane, our people could look at what we had done and stand a little taller.
+However, today, in Saraçhane, we could all stand a little taller knowing what our country had done.
 
 The rally adds one percentage point to CHP's temporary Cyprus Prestige in National Coalition.
 
