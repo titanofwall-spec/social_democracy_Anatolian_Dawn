@@ -92,8 +92,8 @@ Family income and place of birth have too often determined which children may co
 @imamhatip
 subtitle: +1 budget.
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 1; MSP_relation -= 10; imamhatipp += 1
-choose-if: {! return (Q.MSP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.imamhatip"))) && (Q.AP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.imamhatip"))) && (Q.DP_in_government == 0 || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.powerAccess(Q,"education_science.imamhatip"))) && Q.imamhatipp < 3; !}
-unavailable-subtitle: [? if imamhatipp < 3 : Our right-wing coalition partners will not let us cut funding for the religious schools! ?] [? if imamhatipp >= 3 : We have already cut their funding to oblivion! ?]
+choose-if: {! return Q.imamhatipp < 3 && (typeof AnatolianCoalitions !== "undefined" && AnatolianCoalitions.active(Q) ? !AnatolianCoalitions.reason(Q,"education_science.imamhatip") : Q.MSP_in_government != 1 && Q.AP_in_government != 1 && Q.DP_in_government != 1); !}
+unavailable-subtitle: [? if imamhatipp >= 3 : We have already cut their funding to oblivion! ?] [+ {! return Q.imamhatipp < 3 ? (typeof AnatolianCoalitions !== "undefined" && AnatolianCoalitions.active(Q) ? AnatolianCoalitions.reason(Q,"education_science.imamhatip") : "Our right-wing coalition partners will not let us cut funding for the religious schools!") : ""; !} +]
 
 Educational investment has been directed towards new İmam Hatip projects while general, technical and vocational schools remained neglected. We shall allow that no more by redirecting funds towards the genuine needs of national education.
 
