@@ -30,7 +30,7 @@
     "kind": "sea",
     "opacity": 100,
     "blend": "multiply",
-    "saturation": 52,
+    "saturation": 39,
     "contrast": 100,
     "color": "#3e3e79"
   },
