@@ -43,7 +43,8 @@
     }
     strokeCtx.putImageData(frame,0,0);outlineCtx.shadowColor='rgba(84,152,216,.22)';outlineCtx.shadowBlur=5;outlineCtx.drawImage(stroke,0,0);
     grid=canvas(w,h);const lines=grid.getContext('2d');
-    lines.save();globePath(lines,w,h);lines.clip();lines.strokeStyle='#5498d8';// Make the existing grid 40% more visible without changing its spacing or geometry.
+    lines.save();globePath(lines,w,h);lines.clip();lines.strokeStyle='#5498d8';
+    // Make the existing grid 40% more visible without changing its spacing or geometry.
     lines.globalAlpha=.168;lines.shadowColor='rgba(84,152,216,.7)';lines.shadowBlur=14;lines.lineWidth=1.6;lines.lineCap='round';
     const rad=Math.PI/180;
     function curve(coordinates){
