@@ -24,10 +24,10 @@
   function build(w,h,source){
     lighting=canvas(w,h);const light=lighting.getContext('2d');
     light.save();globePath(light,w,h);light.clip();
-    // Brighter upper-left daylight, fading into a deep navy lower-right terminator.
+    // Saturated #59b9e9 daylight from the upper left, fading into a deep navy lower-right terminator.
     // All lighting remains clipped to the globe; country colors and hit tests are untouched.
     const key=light.createRadialGradient(w*.23,h*.20,0,w*.30,h*.28,w*.76);
-    key.addColorStop(0,'rgba(231,244,255,.54)');key.addColorStop(.25,'rgba(201,229,255,.38)');key.addColorStop(.60,'rgba(162,208,247,.12)');key.addColorStop(1,'rgba(162,208,247,0)');
+    key.addColorStop(0,'rgba(89,185,233,.60)');key.addColorStop(.25,'rgba(89,185,233,.42)');key.addColorStop(.60,'rgba(89,185,233,.14)');key.addColorStop(1,'rgba(89,185,233,0)');
     light.fillStyle=key;light.fillRect(0,0,w,h);
     const shade=light.createLinearGradient(w*.16,h*.12,w*.91,h*.95);
     shade.addColorStop(0,'rgba(6,16,40,0)');shade.addColorStop(.28,'rgba(6,16,40,.01)');shade.addColorStop(.46,'rgba(6,16,40,.12)');shade.addColorStop(.68,'rgba(6,16,40,.38)');shade.addColorStop(.88,'rgba(6,16,40,.62)');shade.addColorStop(1,'rgba(6,16,40,.76)');
@@ -43,7 +43,8 @@
     }
     strokeCtx.putImageData(frame,0,0);outlineCtx.shadowColor='rgba(84,152,216,.22)';outlineCtx.shadowBlur=5;outlineCtx.drawImage(stroke,0,0);
     grid=canvas(w,h);const lines=grid.getContext('2d');
-    lines.save();globePath(lines,w,h);lines.clip();lines.strokeStyle='#5498d8';lines.globalAlpha=.12;lines.shadowColor='rgba(84,152,216,.7)';lines.shadowBlur=14;lines.lineWidth=1.6;lines.lineCap='round';
+    lines.save();globePath(lines,w,h);lines.clip();lines.strokeStyle='#5498d8';// Make the existing grid 40% more visible without changing its spacing or geometry.
+    lines.globalAlpha=.168;lines.shadowColor='rgba(84,152,216,.7)';lines.shadowBlur=14;lines.lineWidth=1.6;lines.lineCap='round';
     const rad=Math.PI/180;
     function curve(coordinates){
       lines.beginPath();let started=false;
