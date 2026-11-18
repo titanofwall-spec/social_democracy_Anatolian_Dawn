@@ -24,15 +24,16 @@
   function build(w,h,source){
     lighting=canvas(w,h);const light=lighting.getContext('2d');
     light.save();globePath(light,w,h);light.clip();
-    // Wide key light rather than a spotlight; dark side remains cool navy.
-    const key=light.createRadialGradient(w*.23,h*.18,0,w*.29,h*.25,w*.96);
-    key.addColorStop(0,'rgba(225,239,255,0.25)');key.addColorStop(.45,'rgba(168,207,243,0.10625)');key.addColorStop(1,'rgba(168,207,243,0)');
+    // Brighter upper-left daylight, fading into a deep navy lower-right terminator.
+    // All lighting remains clipped to the globe; country colors and hit tests are untouched.
+    const key=light.createRadialGradient(w*.23,h*.20,0,w*.30,h*.28,w*.76);
+    key.addColorStop(0,'rgba(231,244,255,.54)');key.addColorStop(.25,'rgba(201,229,255,.38)');key.addColorStop(.60,'rgba(162,208,247,.12)');key.addColorStop(1,'rgba(162,208,247,0)');
     light.fillStyle=key;light.fillRect(0,0,w,h);
-    const shade=light.createLinearGradient(w*.17,h*.1,w*.93,h*.96);
-    shade.addColorStop(0,'rgba(9,21,48,0)');shade.addColorStop(.40,'rgba(9,21,48,0.01875)');shade.addColorStop(.72,'rgba(9,21,48,0.1875)');shade.addColorStop(1,'rgba(9,21,48,0.425)');
+    const shade=light.createLinearGradient(w*.16,h*.12,w*.91,h*.95);
+    shade.addColorStop(0,'rgba(6,16,40,0)');shade.addColorStop(.28,'rgba(6,16,40,.01)');shade.addColorStop(.46,'rgba(6,16,40,.12)');shade.addColorStop(.68,'rgba(6,16,40,.38)');shade.addColorStop(.88,'rgba(6,16,40,.62)');shade.addColorStop(1,'rgba(6,16,40,.76)');
     light.fillStyle=shade;light.fillRect(0,0,w,h);
-    const limb=light.createRadialGradient(w*.45,h*.42,w*.24,w*.5,h*.5,w*.72);
-    limb.addColorStop(0,'rgba(7,20,46,0)');limb.addColorStop(.65,'rgba(7,20,46,.025)');limb.addColorStop(1,'rgba(7,20,46,.20)');
+    const limb=light.createRadialGradient(w*.45,h*.42,w*.22,w*.5,h*.5,w*.71);
+    limb.addColorStop(0,'rgba(7,20,46,0)');limb.addColorStop(.58,'rgba(7,20,46,.02)');limb.addColorStop(.82,'rgba(7,20,46,.14)');limb.addColorStop(1,'rgba(7,20,46,.32)');
     light.fillStyle=limb;light.fillRect(0,0,w,h);
     light.restore();
     outlines=canvas(w,h);const outlineCtx=outlines.getContext('2d');
