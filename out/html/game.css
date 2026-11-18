@@ -969,9 +969,10 @@ table {
 }
 
 body.cold-war-map-open { overflow:hidden; }
-#cold-war-map-overlay { position:fixed;inset:0;z-index:100000;overflow:hidden;color:#e2edf8;isolation:isolate;background:#050b18 url('img/cold-war-milky-way.png') center center/cover no-repeat; }
-#cold-war-map-overlay::before { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 24% 22%,rgba(122,176,225,.095),transparent 62%),radial-gradient(ellipse at 50% 65%,rgba(54,102,154,.07),transparent 62%),linear-gradient(135deg,rgba(5,13,30,.12),rgba(5,13,30,.28)); }
-#cold-war-map-overlay::after { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 48% 45%,transparent 37%,rgba(5,13,30,.13) 78%,rgba(5,13,30,.24) 100%); }
+#cold-war-map-overlay { position:fixed;inset:0;z-index:100000;overflow:hidden;color:#e2edf8;isolation:isolate;background:#050b18; }
+/* Only the starfield receives +25% contrast; the globe keeps its separate 135% renderer contrast. */
+#cold-war-map-overlay::before { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:url('img/cold-war-milky-way.png') center center/cover no-repeat;filter:contrast(125%); }
+#cold-war-map-overlay::after { content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 23% 17%,rgba(131,183,235,.16),transparent 58%),radial-gradient(ellipse at 65% 63%,rgba(56,105,168,.11),transparent 65%),linear-gradient(135deg,rgba(5,13,30,.08),rgba(5,13,30,.38)),radial-gradient(ellipse at 55% 45%,transparent 30%,rgba(5,13,30,.22) 78%,rgba(5,13,30,.38) 100%); }
 #cold-war-map-overlay[hidden], #cold-war-map-tooltip[hidden] { display:none; }
 .cold-war-map-panel { position:relative;z-index:1;width:100%;height:100%;min-height:0;box-sizing:border-box;padding:clamp(8px,1.3vw,20px);display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px; }
 .cold-war-map-panel header { display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:36px;padding:8px 14px;background:linear-gradient(100deg,rgba(16,32,54,.72),rgba(9,18,33,.42));border:1px solid rgba(115,164,207,.18);border-radius:5px;box-shadow:0 8px 24px rgba(4,12,28,.14);backdrop-filter:blur(7px); }
@@ -982,7 +983,8 @@ body.cold-war-map-open { overflow:hidden; }
 /* Keep the full-screen map area black until every globe layer finishes rendering. */
 #cold-war-map-overlay.is-loading { background:#000; }
 #cold-war-map-overlay.is-loading::before,
-#cold-war-map-overlay.is-loading::after { opacity:0; }
+#cold-war-map-overlay.is-loading::after,
+#cold-war-map-overlay.is-loading .cold-war-scene-body::after { opacity:0; }
 #cold-war-map-overlay.is-loading .cold-war-globe { visibility:hidden; }
 .cold-war-globe::before { content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:50%;box-shadow:0 0 1px 1px rgba(127,194,242,.49),0 0 7px 2px rgba(78,151,218,.16),-5px -5px 19px 3px rgba(125,187,236,.09),5px 7px 23px 2px rgba(28,66,115,.10); }
 .cold-war-map-panel #cold-war-map-message { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:2;max-width:80%;padding:12px 18px;background:rgba(9,20,39,.85);border:1px solid rgba(115,164,207,.3);border-radius:4px; }
@@ -1772,7 +1774,30 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 #cold-war-map-overlay .cold-war-map-panel > header h1 { color:var(--text-color);margin:0;font-size:1.4em; }
 #cold-war-map-close { color:var(--text-color);background:var(--tab-bg-color);border:1px solid var(--tooltip-border-color);border-radius:0;font-family:inherit; }
 #cold-war-map-close:hover { background:var(--tab-hover-color); }
-.cold-war-scene-body { display:grid;grid-template-columns:clamp(230px,22vw,310px) minmax(0,1fr);gap:20px;min-height:0; }
+.cold-war-scene-body { position:relative;display:grid;grid-template-columns:clamp(230px,22vw,310px) minmax(0,1fr);gap:20px;min-height:0; }
+/* Separate final composition light/shadow: spans the viewport, over globe AND starfield.
+   The controls/header are raised above it, and the overlay cannot intercept pointer events. */
+#cold-war-map-overlay .cold-war-scene-body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 0% 0%,
+      rgba(89,185,233,.58) 0%,
+      rgba(89,185,233,.38) 17%,
+      rgba(89,185,233,.16) 37%,
+      rgba(89,185,233,0) 65%),
+    radial-gradient(circle at 100% 100%,
+      rgba(6,16,40,.72) 0%,
+      rgba(6,16,40,.48) 22%,
+      rgba(6,16,40,.20) 47%,
+      rgba(6,16,40,0) 72%);
+}
+#cold-war-map-overlay .cold-war-map-stage { position:relative;z-index:0; }
+#cold-war-map-overlay .cold-war-map-panel > header,
+#cold-war-map-overlay .cold-war-sidebar { position:relative;z-index:2; }
 #cold-war-map-overlay .cold-war-status { align-self:start;width:100%;max-height:100%;box-sizing:border-box;margin:0;padding:18px 16px;overflow:auto;color:var(--text-color);background:var(--content-bg-color);border:4px double #888;border-radius:0; }
 .cold-war-status h2 { font-size:1.65em;line-height:1.25;margin:0 0 22px;font-weight:bold; }
 .cold-war-status h2 span { display:block;margin-top:6px; }
@@ -1780,8 +1805,6 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 .cold-war-status h3 { font-size:1.08em;line-height:1.35;margin:0 0 6px;font-weight:bold; }
 .cold-war-status section strong { font-size:1em;font-weight:normal;color:var(--effect-increase-color); }
 #cold-war-map-tooltip.choice-tooltip { border:2px solid var(--tooltip-border-color);background:var(--tooltip-bg-color);color:var(--text-color);box-shadow:2px 4px 12px var(--tooltip-shadow-color);padding:.6em .75em;line-height:1.35; }
-#cold-war-map-overlay::before { background:radial-gradient(ellipse at 23% 17%,rgba(131,183,235,.16),transparent 58%),radial-gradient(ellipse at 65% 63%,rgba(56,105,168,.11),transparent 65%),linear-gradient(135deg,rgba(5,13,30,.08),rgba(5,13,30,.38)); }
-#cold-war-map-overlay::after { background:radial-gradient(ellipse at 55% 45%,transparent 30%,rgba(5,13,30,.22) 78%,rgba(5,13,30,.38) 100%); }
 .cold-war-globe::before { box-shadow:0 0 1px 1px rgba(127,194,242,.58),0 0 9px 2px rgba(78,151,218,.22),-6px -7px 25px 4px rgba(125,187,236,.14),6px 8px 30px 3px rgba(28,66,115,.14); }
 @media(max-width:700px){.cold-war-scene-body{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:8px}#cold-war-map-overlay .cold-war-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:8px;font-size:.8em}.cold-war-status h2{grid-column:1/-1;font-size:1.35em;margin:0}.cold-war-status h2 span{display:inline;margin:0}.cold-war-status section{padding:5px 0}.cold-war-status h3{font-size:1em}.cold-war-status section strong{font-size:.95em}}
 .cold-war-status h3 span { display:block;margin-top:6px;color:var(--effect-increase-color);font-weight:inherit; }
