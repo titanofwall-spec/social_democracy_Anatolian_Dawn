@@ -45,7 +45,7 @@
     grid=canvas(w,h);const lines=grid.getContext('2d');
     lines.save();globePath(lines,w,h);lines.clip();lines.strokeStyle='#5498d8';
     // Make the existing grid 40% more visible without changing its spacing or geometry.
-    lines.globalAlpha=.168;lines.shadowColor='rgba(84,152,216,.7)';lines.shadowBlur=14;lines.lineWidth=1.6;lines.lineCap='round';
+    lines.globalAlpha=.168;lines.shadowColor='rgba(84,152,216,.77)';lines.shadowBlur=15.4;lines.lineWidth=2.4;lines.lineCap='round';
     const rad=Math.PI/180;
     function curve(coordinates){
       lines.beginPath();let started=false;
