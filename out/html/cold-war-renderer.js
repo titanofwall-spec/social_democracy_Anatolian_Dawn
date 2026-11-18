@@ -51,6 +51,7 @@
     "color": "#393649"
   }
 ];
+  const mapContrast='contrast(135%)'; // 35% boost to the completed map, before lighting and grid.
   const makeCanvas=(w,h)=>{const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;return canvas;};
   function create({width:w,height:h,source,texture,political,heightmap,insideGlobe}) {
     const mask=makeCanvas(w,h),maskCtx=mask.getContext('2d'),maskPixels=maskCtx.createImageData(w,h);
@@ -85,7 +86,7 @@
     return {render(target,mode='political',when=window.ColdWarModes.date()){
       if(cachedDate!==when.key){cache.clear();cachedDate=when.key;}
       if(!cache.has(mode))cache.set(mode,build(mode,when));
-      const composite=cache.get(mode);target.save();target.setTransform(1,0,0,1,0,0);target.globalAlpha=1;target.filter='none';target.globalCompositeOperation='source-over';target.clearRect(0,0,w,h);target.drawImage(composite,0,0);target.restore();}};
+      const composite=cache.get(mode);target.save();target.setTransform(1,0,0,1,0,0);target.globalAlpha=1;target.filter='none';target.globalCompositeOperation='source-over';target.clearRect(0,0,w,h);target.filter=mapContrast;target.drawImage(composite,0,0);target.restore();}};
   }
   window.ColdWarRenderer={create};
 }());

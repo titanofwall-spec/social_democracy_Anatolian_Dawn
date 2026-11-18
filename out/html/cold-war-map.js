@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  let ready, canvas, ctx, original, displayed, pixels, width, height, hoverCanvas, hoverCtx, active = 0;
+  let ready, mapReady=false, canvas, ctx, original, displayed, pixels, width, height, hoverCanvas, hoverCtx, active = 0;
   let selectedMode='political';
   function updateModeControls(){
     overlay().dataset.mapMode=selectedMode;
@@ -104,7 +104,10 @@
       img.onload=async ()=>{try {
         width=canvas.width=img.naturalWidth;height=canvas.height=img.naturalHeight;
         hoverCanvas=document.getElementById('cold-war-hover');hoverCanvas.width=width;hoverCanvas.height=height;hoverCtx=hoverCanvas.getContext('2d');
-        ctx.drawImage(img,0,0);original=ctx.getImageData(0,0,width,height);
+        // Read country IDs offscreen; never paint the raw ID map to the visible globe.
+        const sourceCanvas=document.createElement('canvas');sourceCanvas.width=width;sourceCanvas.height=height;
+        const sourceCtx=sourceCanvas.getContext('2d',{willReadFrequently:true});
+        sourceCtx.drawImage(img,0,0);original=sourceCtx.getImageData(0,0,width,height);
         pixels=new Uint16Array(width*height);
         const a=original.data;
         for(let p=0;p<pixels.length;p++) {
@@ -145,6 +148,8 @@
         }
         renderDisplay();
         fitGlobe();
+        mapReady=true;
+        overlay().classList.remove('is-loading');
         document.getElementById('cold-war-map-message').hidden=!!mapRenderer;
         resolve();
       }catch(error){reject(error);}};
@@ -163,6 +168,7 @@
   window.showColdWarMap=function(){
     selectMode('political');
     window.ColdWarDecorations.reset();
+    overlay().classList.toggle('is-loading',!mapReady);
     overlay().hidden=false;document.body.classList.add('cold-war-map-open');
     fitGlobe();
     document.getElementById('cold-war-map-close').focus();
