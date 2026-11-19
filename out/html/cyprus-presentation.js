@@ -28,7 +28,6 @@ function startEndingMusic(){startFeature(special,'ending');}
 function finishEndingMusic(){if(!feature||feature.kind!=='ending')return;feature.released=true;feature.audio.loop=false;if(feature.audio.ended)fadeFeature();}
 function startEventSong(){startFeature('music/bir-gece-event.mp3','event',ui?.dendryEngine?.state?.sceneId);}
 function sync(){if(!ui?.dendryEngine?.state)return;const state=ui.dendryEngine.state,Q=state.qualities,on=active(Q),celebrating=['cyprus_campaign_final','cyprus_sarachane_rally'].includes(state.sceneId)&&ui.currentAudioURL===special;
- if(on && rubiconAudio) ui.setBg(cyprusBackground);
  if(/^cyprus_(atilla1_ending|atilla2_ending|campaign_final)$/.test(state.sceneId)&&typeof document!=='undefined')document.querySelectorAll('#content h2').forEach(el=>el.classList.add('cyprus-ending-level'));
  const eventText=typeof document!=='undefined'?(document.querySelector('#content')?.textContent||''):'';
  if(!feature&&on&&/bir\s+gece\s+ans[ıi]z[ıi]n\s+gelebilirim/i.test(eventText))startEventSong();
@@ -38,63 +37,9 @@ function sync(){if(!ui?.dendryEngine?.state)return;const state=ui.dendryEngine.s
  else if(on&&inCampaign&&!tracks.includes(ui.currentAudioURL))playlist(tracks,tracks[0]);
  if(on!==lastBackgroundMode||(cyprusBg(state.bg)&&!on)){lastBackgroundMode=on;if(on||cyprusBg(state.bg))ui.setBg(on?(cyprusBg(state.bg)?state.bg:cyprusBackground):normalBackground);}
 }
-const rubiconBackground = 'img/rubicon-military-council.png';
-const rubiconTrack = 'music/memorandum-rubicon.mp3';
-let rubiconAudio, previousMusic;
-
-function syncRubicon(background, cyprusActive) {
- if (background === rubiconBackground) {
-  if (rubiconAudio) return;
-  if (feature) {
-   stop(feature.audio);
-   feature = null;
-  }
-  if (musicOwned || tracks.includes(ui.currentAudioURL) || ui.currentAudioURL === special ||
-      ui.currentAudioURL === 'music/bir-gece-event.mp3') resumeNormal();
-  const audio = ui.currentAudio;
-  previousMusic = {
-   audio, url: ui.currentAudioURL, playlist: ui.audioPlaylist, queue: ui.audioQueue,
-   loop: audio?.loop
-  };
-  if (audio) {
-   root.jQuery?.(audio).stop(true, false);
-   audio.pause();
-  }
-  rubiconAudio = new Audio(rubiconTrack);
-  ui.currentAudio = rubiconAudio;
-  ui.currentAudioURL = rubiconTrack;
-  ui.audioPlaylist = [rubiconTrack];
-  ui.audioQueue = [];
-  rubiconAudio.loop = true;
-  if (!ui.disable_audio) play(rubiconAudio);
-  return;
- }
- if (!rubiconAudio) return;
- stop(rubiconAudio);
- rubiconAudio = null;
- const saved = previousMusic;
- previousMusic = null;
- ui.currentAudio = saved.audio;
- ui.currentAudioURL = saved.url;
- ui.audioPlaylist = saved.playlist;
- ui.audioQueue = saved.queue;
- if (cyprusActive) return;
- if (!saved.audio) {
-  resumeNormal();
-  return;
- }
- saved.audio.volume = 1;
- saved.audio.loop = saved.loop;
- if (!ui.disable_audio) play(saved.audio);
-}
-
-function install(target){if(target._cyprusPresentationInstalled)return;ui=target;ui._cyprusPresentationInstalled=true;const rawAudio=ui.audio,rawBg=ui.setBg,rawRestore=ui.dendryEngine.setState,rawToggle=ui.toggle_audio;
- ui.audio=function(spec){if(feature||rubiconAudio)return;if(active(this.dendryEngine.state.qualities)){sync();return;}const result=rawAudio.call(this,spec);if(!musicOwned)rememberNormal();return result;};
- ui.setBg=function(url){const state=this.dendryEngine.state,on=active(state.qualities),related=cyprusBg(url)||cyprusBg(state.bg);let next=url;if(on&&!cyprusBg(next))next=cyprusBackground;else if(!on&&cyprusBg(next))next=normalBackground;if(on||related)state.bg=next;const animated=this.animate_bg;if(on||related){this.animate_bg=false;if(root.jQuery)root.jQuery('#bg1,#bg2').stop(true,false);}try{const result=rawBg.call(this,next);syncRubicon(next,on);if((on||related)&&root.jQuery)root.jQuery('#bg1').css('opacity',1);return result;}finally{this.animate_bg=animated;}};
- ui.toggle_audio=function(enable){
-  if (enable && rubiconAudio && this.currentAudio === rubiconAudio) rubiconAudio.loop = true;
-  return rawToggle.call(this,enable);
- };
+function install(target){if(target._cyprusPresentationInstalled)return;ui=target;ui._cyprusPresentationInstalled=true;const rawAudio=ui.audio,rawBg=ui.setBg,rawRestore=ui.dendryEngine.setState;
+ ui.audio=function(spec){if(feature)return;if(active(this.dendryEngine.state.qualities)){sync();return;}const result=rawAudio.call(this,spec);if(!musicOwned)rememberNormal();return result;};
+ ui.setBg=function(url){const state=this.dendryEngine.state,on=active(state.qualities),related=cyprusBg(url)||cyprusBg(state.bg);let next=url;if(on&&!cyprusBg(next))next=cyprusBackground;else if(!on&&cyprusBg(next))next=normalBackground;if(on||related)state.bg=next;const animated=this.animate_bg;if(on||related){this.animate_bg=false;if(root.jQuery)root.jQuery('#bg1,#bg2').stop(true,false);}try{const result=rawBg.call(this,next);if((on||related)&&root.jQuery)root.jQuery('#bg1').css('opacity',1);return result;}finally{this.animate_bg=animated;}};
  ui.dendryEngine.setState=function(state){const result=rawRestore.call(this,state);if(feature&&((feature.kind==='event'&&this.state.sceneId!==feature.scene)||(feature.kind==='ending'&&!/^cyprus_(campaign_final|gratitude|sarachane_rally)(\.|$)/.test(this.state.sceneId)))){stop(feature.audio);feature=null;}sync();return result;};sync();
 }
 const frontlineOrder=['pre-operation','july-20','july-21','july-22','july-23','july-24','july-25','july-26','july-27-28','july-30-31','august-1','atilla2-day1','atilla2-day2','atilla2-day3','atilla2-day4'].map(n=>'cyprusgame/frontlines/'+n+'.png');
