@@ -12125,7 +12125,7 @@
       "type": "scene",
       "title": "TKP/ML is formed!",
       "viewIf": {
-        "$code": "return ((((Q['year'] || 0) == 1972) && ((Q['month'] || 0)===5)) && ((Q['week'] || 0)===1));"
+        "$code": "return ((((Q['year'] || 0) == 1972) && ((Q['month'] || 0)===4)) && (((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['rubicon_week'] || 0)===3))) || (((!(((Q['rubicon_mode'] || 0)) !== 0)) && ((Q['week'] || 0)===2))))));"
       },
       "maxVisits": 1,
       "tags": [

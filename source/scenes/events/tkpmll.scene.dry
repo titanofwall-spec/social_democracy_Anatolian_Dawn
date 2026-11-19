@@ -1,5 +1,5 @@
 title: TKP/ML is formed!
-view-if: year == 1972 and month = 5 and week = 1
+view-if: year == 1972 and month = 4 and ((rubicon_mode and rubicon_week = 3) or (not rubicon_mode and week = 2))
 max-visits: 1
 tags: event
 new-page: true
