@@ -11,7 +11,7 @@ Erim has become increasingly frustrated by his failure to put the necessary chan
 
 Believing that the parliamentary system is no longer allowing him to pursue his ambitions, Erim has made new demands to President Cevdet Sunay. These include granting extraordinary powers to his government, allowing it to issue decrees with the force of law, and an agreement between the political parties to temporarily suspend political competition. Erim hopes that with these powers, he will be able to enact government policies more freely. However, granting extraordinary powers to a government so reliant on the military is far from reassuring for Turkish democracy.
 
-There has been much controversy surrounding these demands. In particular, the reaction from the DP has been strong. Since the March 12 Memorandum, the DP has taken a firm stance against participating in military-backed governments. The DP has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy. 
+There has been much controversy surrounding these demands. In particular, the reaction from the DP has been strong. Since the March 12 Memorandum, the DP has taken a firm stance against participating in military-backed governments. The DP has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy.
 
 However, this interpellation cannot pass by only DP MPs, and other parties are reluctant to go forward and support DP as its a popular belief among all parties that Erim's time is over as Erim himself literally issued his resignation just before DP's motion, though it is obvious for everyone that, just like previous times when Erim issued a resignation out of frustration, the president Sunay and military will very likely reject it one more time. Therefore, it would be unwise to do premature actions and anger the Military for no reason when the government is already on its last legs.
 
@@ -41,7 +41,6 @@ Both the MGP and the AP parliamentary factions have been induced into supporting
 
 @fail
 on-arrival: rubicon_interpellation = 2
-
 
 
 - @post_event: Continue...
