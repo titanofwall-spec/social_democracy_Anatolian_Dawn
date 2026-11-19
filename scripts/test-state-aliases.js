@@ -73,7 +73,8 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   assert(!/\bworker_chp\b/.test(fiscal));
   const media=scene('party_affairs/media.scene.dry');
   assert(!/\bI_government\b/.test(media));
-  assert(media.includes('view-if: I_in_government == 0'));
+  assert(media.includes('choose-if: CHP_party_leader == "Ecevit" and I_in_government == 0'));
+  assert(!media.includes('view-if: I_in_government == 0'), 'restricted Media actions must remain visible but unavailable');
   const parliament=scene('government_affairs/parliamentary_resolution.scene.dry');
   assert(!/Q\.chp_seats\s*=\s*Math\.round\(450/.test(parliament));
   for (const key of ['tip_seats','cgp_seats','dp_seats','msp_seats','mhp_seats'])
