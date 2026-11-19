@@ -1843,6 +1843,11 @@
           "$code": "Q['q0_lk_str'] = (Q['q0_lk_str'] || 0) + 1;\nQ['q1_lk_str'] = (Q['q1_lk_str'] || 0) + 1;"
         }
       ],
+      "goTo": [
+        {
+          "id": "post_event"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -8526,7 +8531,7 @@
       "id": "naimtalu.vote",
       "onArrival": [
         {
-          "$code": "AnatolianRules.resetCabinet(Q);\n  Q.AP_in_government = 1;\n  Q.CGP_in_government = 1;\n  Q.I_in_government = 1;\n  Q.prime_minister = \"Naim Talu\";\n  Q.prime_minister_party = \"I\";\n  if (Q.rubicon_mode) {\n    Q.rubicon_mode = 0;\n    this.state.bg = 'img/map_4.jpg';\n    this.ui.setBg(this.state.bg);\n  }"
+          "$code": "AnatolianRules.resetCabinet(Q);\n  Q.AP_in_government = 1;\n  Q.CGP_in_government = 1;\n  Q.I_in_government = 1;\n  Q.prime_minister = \"Naim Talu\";\n  Q.prime_minister_party = \"I\";\n  if (Q.rubicon_mode) {\n    Q.rubicon_mode = 0;\n    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);\n    this.state.bg = 'img/map_4.jpg';\n    this.ui.setBg(this.state.bg);\n  }"
         }
       ],
       "content": {
@@ -10227,15 +10232,15 @@
       "options": [
         {
           "id": "@rubicon_dp_motion.negotiate",
-          "title": "We convince the Party Groups of AP and MGP (-2 Resource)"
+          "title": "We secure the support of the AP and MGP parliamentary groups (2 Resources)."
         },
         {
           "id": "@rubicon_dp_motion.fail",
-          "title": "We fail to convince AP Party Group"
+          "title": "We fail to convince the AP parliamentary group."
         }
       ],
       "content": {
-        "content": "Ecevit gathers the Left of Center members and declared his decision to support this motion. Although they are not on the same side, his friends find this a good opportunity to put pressure on the military regime through the parliament. Since we are ready to support the motion, Ecevit will go to the chairmen of the MGP and AP groups to get the necessary votes in order to pass it.",
+        "content": "Ecevit gathers the members of the Left of the Center movement and declares his decision to support the motion. His colleagues see an opportunity to pressure the military regime through Parliament itself. With our support secured, Ecevit approaches the chairmen of the MGP and AP parliamentary groups in search of the votes necessary to pass it.",
         "type": "paragraph"
       }
     },
@@ -10311,6 +10316,9 @@
       "onArrival": [
         {
           "$code": "Q['inonu_relation'] = (Q['inonu_relation'] || 0) - 5;"
+        },
+        {
+          "$code": "Q.inonu_approval = Math.max(0, Q.inonu_approval - 5);"
         }
       ],
       "options": [
@@ -10348,7 +10356,7 @@
         },
         {
           "type": "paragraph",
-          "content": "With the extraordinary congress scheduled for May 5th, İnönü has taken it upon himself to organize the preparations. He has appointed three deputies to assist him: Ahmet Şener -Trabzon deputy and Party Assembly member-, Coşkun Karagözoğlu -İzmir deputy and Party Assembly member-, and Sadrettin Çanga -Bursa deputy-."
+          "content": "With the extraordinary congress scheduled for May 5, İnönü has taken it upon himself to organize the preparations. He has appointed three deputies to assist him: Ahmet Şener, a Trabzon deputy and Party Assembly member; Coşkun Karagözoğlu, an İzmir deputy and Party Assembly member; and Sadrettin Çanga, a Bursa deputy."
         },
         {
           "type": "paragraph",
@@ -10356,15 +10364,15 @@
         },
         {
           "type": "paragraph",
-          "content": "The issue that caused İnönü to leave the Party Assembly prior was precisely who could attend as delegates, therefore candidates he chose to decide that obviously brings anxiety to us. For indeed, İnönü believes that the congress should be held with the delegates of the previous, 20th Party Congress, we argue that delegates newly elected by the provincial party organizations must also be recognized. Many of these delegates were elected with the support of the Left of Center movement."
+          "content": "The issue that caused İnönü to leave the Party Assembly was precisely who should be allowed to attend as delegates. Entrusting that decision to deputies he has personally appointed naturally worries us. İnönü believes that the congress should be held with delegates from the previous, 20th Party Congress, while we argue that delegates newly elected by provincial party organizations must also be recognized. Many of these delegates were elected with the support of the Left of the Center movement."
         },
         {
           "type": "paragraph",
-          "content": "If the newly elected delegates are not recognized by İnönü's candidates, they may be unable to enter the congress, despite having been chosen by their respective party organizations! The reformists fear that the decision over who can represent the party is effectively being taken out of the hands of its elected leadership."
+          "content": "If the newly elected delegates are not recognized by İnönü's deputies, they may be unable to enter the congress, despite having been chosen by their respective party organizations! We fear that the decision over who can represent the party is effectively being taken out of the hands of its elected leadership."
         },
         {
           "type": "paragraph",
-          "content": "While nobody can doubt İnönü's immense contributions to our party and country, and while he has every right to organize an important congress as General Chairman, the we do not believe that three appointed individuals should have the final say over who represents our party. We believe that the legitimacy of delegates should be determined by the party's rules and the elections held within its organizations."
+          "content": "While nobody can doubt İnönü's immense contributions to our party and country, and while he has every right to organize an important congress as General Chairman, we do not believe that three appointed individuals should have the final say over who represents our party. We believe that the legitimacy of delegates should be determined by the party's rules and the elections held within its organizations."
         },
         {
           "type": "paragraph",
@@ -10372,7 +10380,7 @@
         },
         {
           "type": "paragraph",
-          "content": "As a result, another objection has been raised by our movement, causing further dissatisfaction for the General Chairman. However, this is not a conflict we can fight with him on..."
+          "content": "As a result, our movement raises another objection, further displeasing the General Chairman. Yet we cannot afford to let the question of entrance cards consume the entire struggle over the party's future."
         }
       ],
       "countVisitsMax": 1
@@ -10381,7 +10389,13 @@
       "id": "rubicon_inonu_walkout.continue_assembly",
       "onArrival": [
         {
-          "$code": "Q['rubicon_delegate_shift'] = 1;\nQ['inonu_relation'] = (Q['inonu_relation'] || 0) - 5;\nQ['orthodox_kemalists_dissent'] = (Q['orthodox_kemalists_dissent'] || 0) + 1;\nQ['right_kemalists_dissent'] = (Q['right_kemalists_dissent'] || 0) + 1;"
+          "$code": "Q['rubicon_delegate_shift'] = 1;\nQ['inonu_relation'] = (Q['inonu_relation'] || 0) - 5;"
+        },
+        {
+          "$code": "Q.inonu_approval = Math.max(0, Q.inonu_approval - 5);"
+        },
+        {
+          "$code": "Q['orthodox_kemalists_dissent'] = (Q['orthodox_kemalists_dissent'] || 0) + 1;\nQ['right_kemalists_dissent'] = (Q['right_kemalists_dissent'] || 0) + 1;"
         }
       ],
       "options": [
@@ -10409,6 +10423,11 @@
         "event"
       ],
       "priority": 100,
+      "onArrival": [
+        {
+          "$code": "Q.inonu_relation -= 4; Q.inonu_approval = Math.max(0, Q.inonu_approval - 4);"
+        }
+      ],
       "options": [
         {
           "id": "@post_event",
@@ -10422,7 +10441,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Despite managing to gain MGP to our side for the interpellation, we fail to convince the leadership of AP party group to go against Demirel's authority, therefore DP's motion lacks enough votes to pass and fails. While it is still obvious that Erim's time is very short, we've only succeeded in annoying the Military and making İnönü very angry, who is getting madder and madder at Ecevit and begins to truly sees him as a troublemaker delinquent."
+          "content": "Although we manage to bring the MGP to our side, we fail to convince the AP parliamentary group to defy its chairman, Süleyman Demirel. The DP's motion therefore falls short. Erim's position remains precarious, but our efforts have irritated the military leadership and angered İnönü, who regards Ecevit's unilateral initiative as another challenge to his authority."
         }
       ],
       "countVisitsMax": 1
@@ -10441,6 +10460,11 @@
         "event"
       ],
       "priority": 100,
+      "onArrival": [
+        {
+          "$code": "Q.inonu_relation -= 8; Q.inonu_approval = Math.max(0, Q.inonu_approval - 8);"
+        }
+      ],
       "options": [
         {
           "id": "@rubicon_melen_early",
@@ -10454,11 +10478,11 @@
         },
         {
           "type": "paragraph",
-          "content": "As the motion of interpellation comes to parliament, the votes of Ecevit’s supporters in CHP, MGP and many AP members join those of the DP to pass the motion. What was expected to be another unsuccessful attempt to challenge Erim's government has instead turned into a humiliating parliamentary defeat, shocking the entire political establishment in Ankara, for even many deputies from the AP, who had so far endorsed the military's attempts eroding the 1961 constitution, have went against their party leader. With his effectively non-existent authority so blatantly refused in parliament, Erim sees no reason to even entertain the idea of another day as a PM and issues his resignation."
+          "content": "As the motion of interpellation comes before Parliament, the votes of Ecevit's supporters in the CHP, the MGP, and a number of AP deputies join those of the DP to pass it. What was expected to be another unsuccessful challenge to Erim's government instead becomes a humiliating parliamentary defeat, shocking the political establishment in Ankara. Even deputies from the AP, which had largely supported the military's efforts to erode the 1961 Constitution, have defied their party chairman, Süleyman Demirel. With his authority so openly rejected by Parliament, Erim sees no reason to remain in office and submits his resignation."
         },
         {
           "type": "paragraph",
-          "content": "However, our unexpected parliamentary victory has come at a considerable political cost. Upon finding out Ecevit has formed an informal alliance with 3 other parties without informing the General Chairman, İnönü essentially raged in disbelief. Ecevit's actions has directly undermined the party leadership's efforts to maintain stability and keeping parliament intact as it considerably angered the Army. İnönü is increasingly starting to see Ecevit as a reckless, irresponsible delinquent that dares to act on the behalf of existing CHP leadership. The tensions between the 2 man at this point was neither ideological nor political, but directly revolved around İnönü's frustration at Ecevit's unruly and disrespectful behavior."
+          "content": "However, our unexpected parliamentary victory comes at a considerable political cost. Upon learning that Ecevit has formed an informal alliance with three other parties without consulting the General Chairman, İnönü is furious. In his view, Ecevit's actions have undermined the party leadership's attempts to preserve Parliament while avoiding an open confrontation with the armed forces. İnönü increasingly regards Ecevit as reckless and dismissive of the authority of the CHP leadership. Their disagreement over how best to defend parliamentary democracy, and what that duty demands of Kemalism, is becoming a bitter personal conflict. What İnönü considers Ecevit's unruly and disrespectful conduct is now as important to him as the political dispute itself."
         }
       ],
       "countVisitsMax": 1
@@ -10571,7 +10595,10 @@
       "id": "rubicon_melen_invitation.join",
       "onArrival": [
         {
-          "$code": "Q['rubicon_melen_join'] = 1;"
+          "$code": "Q['rubicon_melen_join'] = 1;\nQ['inonu_relation'] = (Q['inonu_relation'] || 0) + 5;"
+        },
+        {
+          "$code": "Q.inonu_approval = Math.min(100, Q.inonu_approval + 5);"
         }
       ],
       "options": [
@@ -10602,7 +10629,7 @@
       "options": [
         {
           "id": "@rubicon_melen_invitation",
-          "title": "Melen Invites the CHP into His Government"
+          "title": "Melen invites the CHP into his government"
         }
       ],
       "content": [
@@ -10690,6 +10717,11 @@
       "priority": 100,
       "newPage": true,
       "setBg": "img/rubicon-military-council.png",
+      "onArrival": [
+        {
+          "$code": "if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.begin(this.ui);"
+        }
+      ],
       "options": [
         {
           "id": "@post_event",
@@ -10819,7 +10851,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Ecevit had asked to meet with the President in private prior to Nihat Erim's resignation, and so an arrangement was made. At April 29, the designated day for their meeting, Ecevit is driven by the presidential vehicle to Çankaya Palace from his house, where he meets with Cevdet Sunay, now the President of the Republic and formerly Chief of the General Staff. Ecevit has had a tense relationship with members of the military, especially with his staunch criticism of the March 12 Memorandum and refusal to cooperate with it. Sunay has been very suspicious of Ecevit's increasingly outspoken views."
+          "content": "Ecevit had asked to meet with the President in private prior to Nihat Erim's resignation, and so an arrangement was made. On April 29, the designated day for their meeting, Ecevit is driven by the presidential vehicle to Çankaya Palace from his house, where he meets with Cevdet Sunay, now the President of the Republic and formerly Chief of the General Staff. Ecevit has had a tense relationship with members of the military, especially with his staunch criticism of the March 12 Memorandum and refusal to cooperate with it. Sunay has been very suspicious of Ecevit's increasingly outspoken views."
         },
         {
           "type": "paragraph",
@@ -15152,9 +15184,10 @@
             "We maintain our current dues.",
             {
               "type": "conditional",
-              "content": "Our membership in the Socialist International provides additional funding through international solidarity contributions.",
+              "content": "Our membership in the Socialist International provides additional funding through international solidarity contributions. ",
               "predicate": 0
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -15386,16 +15419,16 @@
     "relations_with_the_army.connections": {
       "id": "relations_with_the_army.connections",
       "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 1);"
+        "$code": "return ((Q['resources'] || 0) >= 2);"
       },
-      "subtitle": "Spend 1 Resource to reduce TSK pressure by up to 2 points.",
-      "unavailableSubtitle": "Requires 1 Resource.",
+      "subtitle": "Requires substantial resources and concessions that may anger the party left.",
+      "unavailableSubtitle": "We lack the resources needed for a sustained round of private talks.",
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2);"
         },
         {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+          "$code": "Q['resources'] = (Q['resources'] || 0) - 2;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 3;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) + 3;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
         }
       ],
       "goTo": [
@@ -15404,7 +15437,7 @@
         }
       ],
       "content": {
-        "content": "",
+        "content": "Our intermediaries reassure senior officers that the CHP will defend the constitutional order. The conversations ease some of the tension, but news of our concessions spreads through the party, where the Left of the Center movement fears we have given the generals too much ground.",
         "type": "paragraph"
       }
     },
@@ -15502,7 +15535,7 @@
       "newPage": true,
       "onArrival": [
         {
-          "$code": "AnatolianRules.ensureKurdishIssue(Q);\nif(typeof AnatolianDynamicDemographics!==\"undefined\" && Q.started) AnatolianDynamicDemographics.ensure(Q);\nif (Q.rubicon_mode && (Q.year > 1973 || (Q.year === 1973 && Q.month > 4))) {\n    Q.rubicon_mode = 0;\n}\nvar turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);\nif (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nif(typeof AnatolianMacro !== \"undefined\") AnatolianMacro.ensure(Q);\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nQ.last_advisor_action = 0;\nQ.last_cabinet_action = 0;\n// make sure no stat is below 0.\nfor (var c of Q.classes) {\n    for (var party of Q.parties) {\n        if (Q[c+'_'+party] < 0) {\n            Q[c+'_'+party] = 0;\n        }\n    }\n}\n\nQ.pro_republic = Math.round(Q.pro_republic);\nQ.nationalism = Math.round(Q.nationalism);\nQ.socialism = Math.round(Q.socialism);\n\nif (Q.pro_republic < 0) {\n    Q.pro_republic = 0;\n}\nif (Q.pro_republic >= 100) {\n    Q.pro_republic = 99;\n}\n// Utility helpers for economic model\nAnatolianRules.migrateStateAliases(Q);\nvar clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };\nvar FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);\nvar MONTHS_PER_YEAR = 12;\nvar FOREX_DRIFT_PER_MONTH = FOREX_DRIFT_PER_YEAR / MONTHS_PER_YEAR;\nvar forexFactors = Q.getForexFactors ? Q.getForexFactors() : {industry: 0.6, agriculture: 0.2, ratio: 3};\nvar FOREX_INDUSTRY_FACTOR = forexFactors.industry;\nvar AGRICULTURE_TO_INDUSTRY_RATIO = forexFactors.ratio;\nvar FOREX_AGRICULTURE_FACTOR = forexFactors.agriculture;\nvar INFLATION_DECAY_NEG = 0.5;\nvar INFLATION_DECAY_POS = 0.9;\nvar GROWTH_DECAY_POS = 0.8;\nvar GROWTH_DECAY_NEG = 0.95;\nvar UNEMPLOYMENT_DECAY_NEG = 0.7;\nvar UNEMPLOYMENT_DECAY_POS = 0.9;\nvar INFLATION_DECAY_NEG_MONTHLY = Math.pow(INFLATION_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar INFLATION_DECAY_POS_MONTHLY = Math.pow(INFLATION_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_POS_MONTHLY = Math.pow(GROWTH_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_NEG_MONTHLY = Math.pow(GROWTH_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_NEG_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_POS_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar preferNumber = function(candidate, fallback) {\n    return (typeof candidate === 'number') ? candidate : fallback;\n};\nvar applyDecay = function(value, negativeRate, positiveRate) {\n    return value < 0 ? value * negativeRate : value * positiveRate;\n};\nvar refreshBaseEconomicValues = function() {\n    var currentYear = Q.year;\n    if(currentYear>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);\n    if (currentYear <= 1976 && Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }\n    if (Q.historical_gdp_growth[currentYear] !== undefined) { Q.base_growth = Q.historical_gdp_growth[currentYear]; }\n    if (Q.historical_unemployment[currentYear] !== undefined) { Q.base_unemployment = Q.historical_unemployment[currentYear]; }\n    if (Q.historical_industrial_index[currentYear] !== undefined) { Q.base_industry_index = Q.historical_industrial_index[currentYear]; }\n    if (Q.historical_agricultural_index[currentYear] !== undefined) { Q.base_agriculture_index = Q.historical_agricultural_index[currentYear]; }\n};\n\nvar recalcProductionAndHeadlineValues = function() { AnatolianRules.refreshEconomy(Q); };\n\nvar runMonthlyEconomicSimulation = function() {\n    // This simulation now runs monthly; rates are scaled to preserve annual totals.\n    // Step 1: automatic forex pressure drift\n    var delayedReduction = (Q.forex_pressure_delayed_reduction || 0);\n    var forexAdjustment = FOREX_DRIFT_PER_MONTH - (delayedReduction / MONTHS_PER_YEAR);\n    Q.forex_pressure = clamp((Q.forex_pressure || 0) + forexAdjustment, 0, 100);\n    if (delayedReduction) {\n        // clear once applied to avoid repeated division\n        Q.forex_pressure_delayed_reduction = 0;\n    }\n    // Step 2: card effects already stored in modifiers\n    // Step 3: structural resistance with asymmetric decay\n    Q.inflation_modifier = applyDecay(Q.inflation_modifier, INFLATION_DECAY_NEG_MONTHLY, INFLATION_DECAY_POS_MONTHLY);\n    var sanctionPenalty=Q.cyprus_economic_sanctions_active ? -.5 : 0;\n    Q.growth_modifier = sanctionPenalty + applyDecay(Q.growth_modifier-sanctionPenalty, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);\n    Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);\n    // Step 4/5: one authoritative macro step per calendar month (not per half-month).\n    if(typeof AnatolianMacro !== \"undefined\") AnatolianMacro.step(Q);\n    recalcProductionAndHeadlineValues();\n};\n\nif (Q.last_economy_month === null) {\n    refreshBaseEconomicValues();\n    Q.last_economy_month = Q.month + Q.year * 12;\n}\n\n// Existing saves retain the persistent penalty only for economic sanctions actually imposed.\nif(Q.cyprus_embargo_applied && (Q.cyprus_atilla2_started||Q.cyprus_atilla2_complete) && ![\"Return to the 1960 Constitutional Order\",\"Güneş Plan\",\"Denktaş Plan\"].includes(Q.cyprus_final_result) && (Q.cyprus_poppy_penalty || Q.hashas_done===1 || Q.cyprus_delayed_ceasefire))Q.cyprus_economic_sanctions_active=1;\n// The Arab oil embargo is an external shock, not a later historical inflation target.\nif(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}\nif(Q.year>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);\n// 1. update dates\nif (turnAdvanced) {\n    Q.time += 1;\n    Q.month_actions = 0;\n\n    // Use four turns per Rubicon month and retain the legacy half-month field.\n    if (Q.rubicon_mode && Q.rubicon_week < 4) {\n        Q.rubicon_week += 1;\n        Q.week = Q.rubicon_week <= 2 ? 1 : 2;\n    } else if (!Q.rubicon_mode && Q.week == 1) {\n        // Move from week 1 to week 3 of same month\n        Q.week = 2;\n    } else {\n        // Move from week 3 to week 1 of next month\n        Q.week = 1;\n        if (Q.rubicon_mode) Q.rubicon_week = 1;\n        if (Q.rubicon_mode) Q.rubicon_week = 1;\n        Q.month += 1;\n        if (Q.month >= 13) {\n            Q.month = 1;\n            Q.year += 1;\n            if(typeof AnatolianDynamicDemographics!==\"undefined\") AnatolianDynamicDemographics.endYear(Q,Q.year-1);\n            if (Q.CHP_in_government) {\n                Q.budget += 4 + (Q.yearly_budget || 0);\n            }\n            if (Q.historical_mode) {\n                Q.resources += 2;\n            }\n        }\n    }\n\n    if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}\n    // Whole months tick at the month boundary. Any remaining half month ends at midmonth.\n    var newMonth = Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1);\n    var midMonth = Q.week == 2 && (!Q.rubicon_mode || Q.rubicon_week == 3);\n    if (newMonth || midMonth) {\n        for (var timer of new Set(Q.timers.concat(['campaigning_ecevit', 'koykent_rally']))) {\n            var timerKey = timer + '_timer';\n            var remaining = Q[timerKey];\n            if (remaining > 0 && (newMonth || remaining < 1)) {\n                Q[timerKey] = Math.max(0, remaining - (newMonth ? 1 : 0.5));\n            }\n        }\n    }\n\n    // Run monthly economic simulation to keep values current once per month (when the month flips)\n    if (Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1)) {\n        refreshBaseEconomicValues();\n            runMonthlyEconomicSimulation();\n        Q.last_economy_month = Q.month + Q.year * 12;\n    } else {\n        recalcProductionAndHeadlineValues();\n    }\n\n    // Switch the background music playlist when cyprus_mode changes\n    if (Q.cyprus_mode != Q._last_cyprus_mode) {\n        if (Q.cyprus_mode == 1) {\n            this.ui.audio('clear shuffle music/gercekkibris1.m4a music/12.mp3 music/notalarsavasinca.mp3 music/demirkirat.mp3');\n        } else {\n            this.ui.audio('clear shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3');\n        }\n        Q._last_cyprus_mode = Q.cyprus_mode;\n    }\n\n    // Cyprus Problem effects\n    // Check if Cyprus status has changed and apply immediate effects\n    if (Q.cyprus_problem != Q.cyprus_last_status) {\n        // Remove previous positive effects if any\n        if (Q.cyprus_confederation_timer > 0) {\n            Q.cyprus_confederation_timer = 0;\n        }\n        if (Q.cyprus_divided_timer > 0) {\n            Q.cyprus_divided_timer = 0;\n        }\n\n        // Apply new effects based on current status\n        if (Q.cyprus_problem == 1) { // Status Quo\n            // -3% votershare drop in all demographics except Kurds and Capitalists\n            Q.rural_chp -= 3;\n            Q.workers_chp -= 3;\n            Q.state_employees_chp -= 3;\n            Q.alevis_chp -= 3;\n            // -7% among petty bourgeoisie (total -10% for petty bourgeoisie)\n            Q.petty_bourgeoisie_chp -= 10;\n            // Coup timer goes up by 1\n            Q.coup_timer += 1;\n        } else if (Q.cyprus_problem == 2) { // Confederation\n            // Legacy settlements share the same temporary prestige ledger.\n            if(!Q.cyprus_poll_reward_paid&&!Q.cyprus_later_poll_reward_paid)AnatolianNationalCoalition.awardCyprusDemographics(Q,'legacy-status-2',2);\n            // Retire the old demographic-bonus timer.\n            Q.cyprus_confederation_timer = 0;\n        } else if (Q.cyprus_problem == 4) { // Negotiated federal settlement\n            // Legacy settlements share the same temporary prestige ledger.\n            if(!Q.cyprus_poll_reward_paid&&!Q.cyprus_later_poll_reward_paid)AnatolianNationalCoalition.awardCyprusDemographics(Q,'legacy-status-4',Q.cyprus_final_result==='Güneş Plan'?6:4);\n            Q.us_relation+=10;Q.west_relation+=10;\n        } else if (Q.cyprus_problem == 3) { // Divided\n            // Legacy settlements share the same temporary prestige ledger.\n            if(!Q.cyprus_poll_reward_paid&&!Q.cyprus_later_poll_reward_paid)AnatolianNationalCoalition.awardCyprusDemographics(Q,'legacy-status-3',10);\n            // Relations penalties\n            Q.us_relation -= 30;\n            Q.west_relation -= 20;\n            // Coup timer goes down by 1\n            Q.coup_timer -= 1;\n            if (Q.coup_timer < 0) Q.coup_timer = 0;\n            // Retire the old demographic-bonus timer.\n            Q.cyprus_divided_timer = 0;\n        }\n\n        Q.cyprus_last_status = Q.cyprus_problem;\n    }\n\n    // Prestige now decays in National Coalition, never by subtracting old demographic bonuses.\n    Q.cyprus_confederation_timer=0;Q.cyprus_divided_timer=0;\n\n    // DP Collapse - if enabled, DP loses 80% of its support to AP between 1974 and 1977\n    if (Q.DP_collapse && Q.year >= 1974 && Q.year <= 1977) {\n        // Transfer 80% of DP support to AP (AP) over 3 years (1974-1977 inclusive)\n        // Game runs in bi-weekly turns: 3 years × 24 turns/year = 72 turns\n        var TOTAL_TRANSFER_PERCENTAGE = 0.90;\n        var YEARS_OF_TRANSFER = 3;\n        var TURNS_PER_YEAR = 24;\n        var TOTAL_TURNS = YEARS_OF_TRANSFER * TURNS_PER_YEAR;\n        var dp_transfer_rate = TOTAL_TRANSFER_PERCENTAGE / TOTAL_TURNS;\n\n        // Calculate amount to transfer from each demographic\n        var rural_transfer = Q.rural_DP * dp_transfer_rate;\n        var workers_transfer = Q.workers_DP * dp_transfer_rate;\n        var petty_bourgeoisie_transfer = Q.petty_bourgeoisie_DP * dp_transfer_rate;\n        var state_employees_transfer = Q.state_employees_DP * dp_transfer_rate;\n        var capitalists_transfer = Q.capitalists_DP * dp_transfer_rate;\n        var alevis_transfer = Q.alevis_DP * dp_transfer_rate;\n        var kurds_transfer = Q.kurds_DP * dp_transfer_rate;\n\n        // Transfer support from DP to AP (AP)\n        Q.rural_DP -= rural_transfer;\n        Q.rural_AP += rural_transfer;\n\n        Q.workers_DP -= workers_transfer;\n        Q.workers_AP += workers_transfer;\n\n        Q.petty_bourgeoisie_DP -= petty_bourgeoisie_transfer;\n        Q.petty_bourgeoisie_AP += petty_bourgeoisie_transfer;\n\n        Q.state_employees_DP -= state_employees_transfer;\n        Q.state_employees_AP += state_employees_transfer;\n\n        Q.capitalists_DP -= capitalists_transfer;\n        Q.capitalists_AP += capitalists_transfer;\n\n        Q.alevis_DP -= alevis_transfer;\n        Q.alevis_AP += alevis_transfer;\n\n        Q.kurds_DP -= kurds_transfer;\n        Q.kurds_AP += kurds_transfer;\n    }\n\n    // Prices and their status are derived once by AnatolianRules.refreshEconomy.\n    // All ministry actions and monthly simulation use the same shared formula.\n\nif (Q.week === 1 && (!Q.rubicon_mode || Q.rubicon_week === 1)) {\n    // Increment agricultural price timer\n    Q.agricultural_price_timer += 1;\n\n    // Apply agricultural price effects based on timer intervals\n    if (Q.agricultural_product_prices > 1.20 && Q.agricultural_price_timer >= 2) {\n        // Very High: -2% to workers, petty bourgeoisie, state employees every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 0.1;\n            Q.petty_bourgeoisie_chp -= 0.1;\n            Q.state_employees_chp -= 0.1;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 2;\n            Q.petty_bourgeoisie_AP -= 2;\n            Q.state_employees_AP -= 2;\n        }\n    } else if (Q.agricultural_product_prices >= 1.10 && Q.agricultural_product_prices <= 1.20 && Q.agricultural_price_timer >= 3) {\n        // High: -1% to workers, petty bourgeoisie, state employees every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 0.05;\n            Q.petty_bourgeoisie_chp -= 0.05;\n            Q.state_employees_chp -= 0.05;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 1;\n            Q.petty_bourgeoisie_AP -= 1;\n            Q.state_employees_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices >= 0.80 && Q.agricultural_product_prices < 0.90 && Q.agricultural_price_timer >= 3) {\n        // Low: -1% to rural every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 0.05;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices < 0.80 && Q.agricultural_price_timer >= 2) {\n        // Very Low: -2% to rural every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 0.1;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 2;\n        }\n    }\n\n    // Reset timer if prices are sufficient (no effects)\n    if (Q.agricultural_product_prices >= 0.90 && Q.agricultural_product_prices < 1.10) {\n        Q.agricultural_price_timer = 0;\n    }\n\n}\n//////////////////////////////// Education & Science support/economic changes\n    if (Q.major_curriculum && Q.major_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.5;\n        }\n    }\n    if (Q.minor_curriculum && Q.minor_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.3;//\n        }\n    }\n    // science bonus to economic growth\n    // education bonus\n    Q.science_bonus = 0;\n    if (Q.education_science) {\n        Q.science_bonus += Q.education_science;\n    }\n    if (Q.science) {\n        if (Q.science >= 1) {\n            Q.science_bonus += 1;\n        } else if (Q.science >= 3) {\n            Q.science_bonus += 2;\n        } else if (Q.science >= 5) {\n            Q.science_bonus += 3;\n        }\n    }\n    if (Q.applied_research && Q.applied_research >= 1) {\n        Q.science_bonus += 0.5*Q.applied_research;\n    }\n    // cap the science bonus at 6\n    if (Q.science_bonus > 6) {\n        Q.science_bonus = 6;\n    }\n    console.log(Q.science_bonus);\n    // this is kinda messy but basically more science -> higher levels of baseline growth\n    if (Q.science_bonus >= 1) {\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus + 3) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.economic_growth < Q.science_bonus - 3) {\n            Q.growth_modifier += 0.1;\n        }\n    }\n    AnatolianRules.refreshEconomy(Q);\n    // accumulated economic growth/decline\n    // Maybe there should be differences for positive/negative growth?\n    if (Q.economic_growth < 0) {\n        if (Q.economic_expansion > 0) {\n            Q.economic_expansion = 0;\n        } else {\n            Q.economic_expansion += Q.economic_growth;\n        }\n    }\n else if (Q.economic_growth > 0 && Q.CHP_in_government) {\n        Q.economic_expansion += Q.economic_growth/2;\n    }\n    /////////////////////////////// update opinions based on economy\n    if (Q.unemployed > 15 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.unemployed > 30 && Q.pro_republic > 20) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.inflation >= 30 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n\n\n    ////////////////////////// annual support changes\n    AnatolianRules.ensureSecurity(Q);\n    var ohp_growth_before={};\n    ['grey_wolves_strength','grey_wolves_militancy','raiders_strength','raiders_militancy','tit_strength','tit_militancy'].forEach(function(k){ohp_growth_before[k]=AnatolianRules.number(Q[k]);});\n    // Economic health multiplier for paramilitary membership growth\n    var econ_paramilitary_multiplier;\n    if (Q.economy_health > 3) {\n        econ_paramilitary_multiplier = -0.5;\n    } else if (Q.economy_health >= 0) {\n        econ_paramilitary_multiplier = 1;\n    } else if (Q.economy_health >= -5) {\n        econ_paramilitary_multiplier = 1.5;\n    } else {\n        econ_paramilitary_multiplier = 2;\n    }\n    if (Q.year == 1974) {\n        // increase MHP vote share\n        Q.rural_MHP += 1/24;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (12/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1975) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1976) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n        Q.raiders_strength += (15/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1977) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.08/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1978) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/12) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.08/24\n    } else if (Q.year == 1979) {\n        Q.rural_MHP += 2/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.1/24\n    }\n    AnatolianRules.scaleFarRightGrowth(Q,ohp_growth_before);\n    // Ensure economic values remain tied to base paths and modifiers after all adjustments\n    recalcProductionAndHeadlineValues();\n\n    // Coalition pressure is calculated from current conditions below.\n}\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\n// Reset all control intensity flags first\nQ.far_right_paramilitary_highest = 0;\nQ.far_right_paramilitary_high = 0;\nQ.far_right_paramilitary_med = 0;\nQ.far_right_paramilitary_low = 0;\n\nQ.democracy_paramilitary_highest = 0;\nQ.democracy_paramilitary_high = 0;\nQ.democracy_paramilitary_med = 0;\nQ.democracy_paramilitary_low = 0;\n\nQ.state_paramilitary_highest = 0;\nQ.state_paramilitary_high = 0;\nQ.state_paramilitary_med = 0;\nQ.state_paramilitary_low = 0;\n\n// Set appropriate flags based on current control levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\nif (turnAdvanced) {\nif (Q.democracy_paramilitary_low == 1) Q.coup_timer += 2/12;\nif (Q.far_left_paramilitary == 1) Q.coup_timer += 1/12;\nif (Q.grand_coalition == 1) Q.coup_timer -= 1/12;\n\n// ── democracystatus modifiers ──────────────────────────────────────────────\n\n// 1. Economy: per-tick drain (−10/yr in crisis, −5/yr if unhealthy)\nif (Q.economy_health < -5) {\n    Q.democracystatus -= 10/24;\n} else if (Q.economy_health >= -5 && Q.economy_health < 0) {\n    Q.democracystatus -= 5/24;\n}\n\n// 2. Street fighting attrition: yearly decrease of democracystatus based on state control tier.\nif (Q.year >= 1972 && !Q.streetfighting_joever) {\n    if (Q.state_force_percent > 80) {\n        // street fightings are scarce: no decrease\n    } else if (Q.state_force_percent >= 70) {\n        // street fightings are under control: -1 per year\n        Q.democracystatus -= 1/24;\n    } else if (Q.state_force_percent >= 60) {\n        // street fightings are increasing: -2 per year\n        Q.democracystatus -= 2/24;\n    } else if (Q.state_force_percent >= 50) {\n        // street fightings are slipping out of control: -4 per year\n        Q.democracystatus -= 4/24;\n    } else if (Q.state_force_percent >= 30) {\n        // street fightings have split neighborhoods: -6 per year\n        Q.democracystatus -= 6/24;\n    } else if (Q.state_force_percent >= 20) {\n        // street fightings at critical levels: -8 per year\n        Q.democracystatus -= 8/24;\n    } else {\n        // street fightings are anarchic: -12 per year\n        Q.democracystatus -= 12/24;\n    }\n}\n\n// 3. DİSK vs TÜRK-İŞ balance\nif (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance → overwhelming DİSK weakness\n    Q.democracystatus -= 4/24;\n} else if (Q.disk_turkis_conflict >= 0.60) {\n    // TÜRK-İŞ leaning → slightly weaker DİSK\n    Q.democracystatus -= 2/24;\n} else if (Q.disk_turkis_conflict < 0.20) {\n    // Total DİSK Dominance → overwhelming DİSK strength\n    Q.democracystatus += 4/24;\n} else if (Q.disk_turkis_conflict < 0.40) {\n    // DİSK leaning → slightly stronger DİSK\n    Q.democracystatus += 2/24;\n}\n\n// DİSK-TÜRK-İŞ power dynamic yearly drift\nif (!Q.CHP_in_government) {\n    // CHP not in government: drift towards TÜRK-İŞ by 8/year\n    Q.disk_turkis_conflict += 0.08/24;\n} else if (Q.labor_minister_party == 'CHP') {\n    // CHP holds labour ministry: drift towards DİSK by 8/year\n    Q.disk_turkis_conflict -= 0.08/24;\n}\n// CHP in government but not controlling labour ministry: no change\nQ.disk_turkis_conflict = Math.max(0, Math.min(1, Q.disk_turkis_conflict));\n\n\n// Clamp democracystatus to [0, 100]\nQ.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));\n\n// ─────────────────────────────────────────────────────────────────────────\n}\n\nif(turnAdvanced)AnatolianNationalCoalition.governmentTurn(Q);\n\n// AGRICULTURAL_ECONOMY_REWORK_V1\n// Land redistribution runs for the stage-specific duration after the ministry pays for it.\n// Completion, not initiation, grants the economic effects and unlocks the next stage.\n// Stage 3 must be fully completed before the Köykent rural-concentration action.\nif (turnAdvanced && Q.land_distribution_pending_stage > 0 &&\n    Q.year*24 + (Q.month-1)*2 + (Q.week===2 ? 1 : 0) >= Q.land_distribution_due_tick) {\n    var finishedLandStage = Number(Q.land_distribution_pending_stage);\n    if (finishedLandStage === (Number(Q.landreform_done)||0)+1 && finishedLandStage <= 6) {\n        Q.landreform_done = finishedLandStage;\n        Q.land_reform_progress = Math.max(Number(Q.land_reform_progress)||0, finishedLandStage);\n        Q.unemployment_modifier -= 0.5;\n        Q.growth_modifier += 1.5;\n        // Each completed stage enlarges productive supply and lowers import dependence.\n        // Pay these effects at completion, never at the beginning of construction.\n        Q.agriculture_modifier = AnatolianRules.number(Q.agriculture_modifier) + 6;\n        Q.inflation_modifier = AnatolianRules.number(Q.inflation_modifier) - 0.8;\n        Q.forex_pressure = Math.max(0,AnatolianRules.number(Q.forex_pressure)-2);\n        Q.forex_pressure_drift = AnatolianRules.number(Q.forex_pressure_drift)-0.6;\n        Q.rural_chp += 4;\n        Q.AP_relation -= 5;\n        Q.DP_relation -= 5;\n        Q.MSP_relation -= 5;\n        AnatolianNationalCoalition.reform(Q,\"land\",finishedLandStage);\n        AnatolianRules.refreshEconomy(Q);\n    }\n    Q.land_distribution_pending_stage = 0;\n    Q.land_distribution_due_tick = 0;\n}\n\n// ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached\n\n// Oil effects (applied once)\nif (Q.oil >= 1 && !Q.oil_effect_applied) {\n    // Preserve the original once-only threshold benefit across baseline refreshes.\n    Q.oil_inflation_effect = 7.5 * Math.min(Q.oil, 4);\n    Q.oil_effect_applied = true;\n}\n\n// Land reform effects (applied once)\nif (Q.land_reform_progress >= 3 && !Q.land_reform_effect_applied) {\n    Q.rural_chp += 10;\n    Q.democracystatus += 5;\n    Q.land_reform_effect_applied = true;\n}\n\n// Cooperative effects (applied once)\nif (Q.cooperative_progress >= 3 && !Q.cooperative_effect_applied) {\n    Q.rural_chp += 5;\n    Q.cooperative_effect_applied = true;\n}\n\n// Köykent's +15 rural support / +10 democracy reward is awarded only by\n// events/achievement_of_koykent.scene.dry at progress 7 (exactly once).\n\n// Labour rights reform: set once when at least 3 one-time labour ministry reforms are passed\nif (!Q.labour_rights_reform) {\n    var labour_reforms_count = (Q.nationall ? 1 : 0) + (Q.kitt ? 1 : 0) + (Q.ikincilgrevv ? 1 : 0) + (Q.healthinspectionss ? 1 : 0) + (Q.lokavtt ? 1 : 0);\n    if (labour_reforms_count >= 3) {\n        Q.labour_rights_reform = 1;\n    }\n}\n\n// Tiger economic reform effects (year-specific, applied once per year)\nif (Q.Tiger >= 2 && Q.year == 1978 && !Q.tiger_1978_effect_applied) {\n    Q.tiger_1978_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1979 && !Q.tiger_1979_effect_applied) {\n    Q.tiger_1979_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {\n    Q.tiger_1980_effect_applied = true;\n}\n\n// ─────────────────────────────────────────────────────────────────────────\n\n// Coup trigger: fires automatically when TSK is mutinous and acting (coup_timer >= 15),\n// or with a 25% monthly chance when democracystatus drops below 10.\nQ.coup_roll_success = 0;\nif (turnAdvanced && Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1) && !Q.army_in_government && !Q.tsk_pacified) {\n    if (Q.coup_timer >= 15) {\n        Q.coup_roll_success = 1;\n    } else if (Q.democracystatus < 10 && Math.random() < 0.25) {\n        Q.coup_roll_success = 1;\n        Q.coup_timer = 15;\n    }\n}\nAnatolianPeoplesSector.update(Q);\nAnatolianRules.refreshEconomy(Q);\nQ.apply_economy_effects = turnAdvanced ? 1 : 0;\nthis._runActions(this.game.scenes['economy_health_calculator'].onArrival);\nif(turnAdvanced&&typeof AnatolianNationalCoalition!==\"undefined\")AnatolianNationalCoalition.update(Q);\nAnatolianRules.refreshVotes(Q);\nif(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);\nAnatolianRules.refreshFactions(Q);\nif (turnAdvanced) {\n    // Record weekly dates during Rubicon and half-month dates thereafter.\n    var recordDate = Q.rubicon_mode ? new Date(Q.year, Q.month - 1, 1 + (Q.rubicon_week - 1) * 7) : new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16);\n    var party_support_results = {'date': recordDate};\n    for (var party of Q.parties) {\n        party_support_results[party] = Q[party + '_normalized']*100;\n    }\n    Q.party_support_records.push(party_support_results);\n    Q.economic_records.push({'date': recordDate,\n                             'inflation': Q.inflation,\n                             'unemployment': Q.unemployed});\n\n}\nif(typeof AnatolianSenate!==\"undefined\")AnatolianSenate.update(Q);\nQ.has_event = 0;\nQ.calculate_economy_health = 0;\n// Apply economy health effects every turn for gradual changes\nQ.apply_economy_effects = 0;\n// check if there are any cards in #event, and then go to main if not.\nvar scene = this.game.scenes['post_event.events_choice'];\nvar choices = this._compileChoices(scene);\nif (choices && choices[0].title != \"Continue...\") {\n    Q.has_event = 1;\n} else {\n    Q.has_event = 0;\n}\n// Cyprus stories are dispatched by their daily dates, not the domestic pool.\nif (Q.cyprus_mode) Q.has_event = 0;\n// pre-load all of the event images\nif (this.ui && this.ui.show_portraits) {\n    for (var choice of choices) {\n        var cc = this.game.scenes[choice.id];\n        if (!cc || !cc.cardImage) continue;\n        if (cc.faceImage) {\n            var im = new Image();\n            im.url = cc.faceImage;\n        }\n    }\n}\n\nif (typeof window !== \"undefined\" && window.generateBar) {\n}\n\nif(typeof AnatolianCoalitions!==\"undefined\")AnatolianCoalitions.update(Q);\n// Recalculate paramilitary force effectiveness (strength × militancy) every turn"
+          "$code": "AnatolianRules.ensureKurdishIssue(Q);\nif(typeof AnatolianDynamicDemographics!==\"undefined\" && Q.started) AnatolianDynamicDemographics.ensure(Q);\nif (Q.rubicon_mode && (Q.year > 1973 || (Q.year === 1973 && Q.month > 4))) {\n    Q.rubicon_mode = 0;\n    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);\n}\nvar turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);\nif (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;\nQ.cyprus_calendar_advance = 0;\nif(typeof AnatolianMacro !== \"undefined\") AnatolianMacro.ensure(Q);\nAnatolianRules.refreshEconomy(Q);\nAnatolianRules.refreshFactions(Q);\nQ.last_advisor_action = 0;\nQ.last_cabinet_action = 0;\n// make sure no stat is below 0.\nfor (var c of Q.classes) {\n    for (var party of Q.parties) {\n        if (Q[c+'_'+party] < 0) {\n            Q[c+'_'+party] = 0;\n        }\n    }\n}\n\nQ.pro_republic = Math.round(Q.pro_republic);\nQ.nationalism = Math.round(Q.nationalism);\nQ.socialism = Math.round(Q.socialism);\n\nif (Q.pro_republic < 0) {\n    Q.pro_republic = 0;\n}\nif (Q.pro_republic >= 100) {\n    Q.pro_republic = 99;\n}\n// Utility helpers for economic model\nAnatolianRules.migrateStateAliases(Q);\nvar clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };\nvar FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);\nvar MONTHS_PER_YEAR = 12;\nvar FOREX_DRIFT_PER_MONTH = FOREX_DRIFT_PER_YEAR / MONTHS_PER_YEAR;\nvar forexFactors = Q.getForexFactors ? Q.getForexFactors() : {industry: 0.6, agriculture: 0.2, ratio: 3};\nvar FOREX_INDUSTRY_FACTOR = forexFactors.industry;\nvar AGRICULTURE_TO_INDUSTRY_RATIO = forexFactors.ratio;\nvar FOREX_AGRICULTURE_FACTOR = forexFactors.agriculture;\nvar INFLATION_DECAY_NEG = 0.5;\nvar INFLATION_DECAY_POS = 0.9;\nvar GROWTH_DECAY_POS = 0.8;\nvar GROWTH_DECAY_NEG = 0.95;\nvar UNEMPLOYMENT_DECAY_NEG = 0.7;\nvar UNEMPLOYMENT_DECAY_POS = 0.9;\nvar INFLATION_DECAY_NEG_MONTHLY = Math.pow(INFLATION_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar INFLATION_DECAY_POS_MONTHLY = Math.pow(INFLATION_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_POS_MONTHLY = Math.pow(GROWTH_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar GROWTH_DECAY_NEG_MONTHLY = Math.pow(GROWTH_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_NEG_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_NEG, 1/MONTHS_PER_YEAR);\nvar UNEMPLOYMENT_DECAY_POS_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_POS, 1/MONTHS_PER_YEAR);\nvar preferNumber = function(candidate, fallback) {\n    return (typeof candidate === 'number') ? candidate : fallback;\n};\nvar applyDecay = function(value, negativeRate, positiveRate) {\n    return value < 0 ? value * negativeRate : value * positiveRate;\n};\nvar refreshBaseEconomicValues = function() {\n    var currentYear = Q.year;\n    if(currentYear>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);\n    if (currentYear <= 1976 && Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }\n    if (Q.historical_gdp_growth[currentYear] !== undefined) { Q.base_growth = Q.historical_gdp_growth[currentYear]; }\n    if (Q.historical_unemployment[currentYear] !== undefined) { Q.base_unemployment = Q.historical_unemployment[currentYear]; }\n    if (Q.historical_industrial_index[currentYear] !== undefined) { Q.base_industry_index = Q.historical_industrial_index[currentYear]; }\n    if (Q.historical_agricultural_index[currentYear] !== undefined) { Q.base_agriculture_index = Q.historical_agricultural_index[currentYear]; }\n};\n\nvar recalcProductionAndHeadlineValues = function() { AnatolianRules.refreshEconomy(Q); };\n\nvar runMonthlyEconomicSimulation = function() {\n    // This simulation now runs monthly; rates are scaled to preserve annual totals.\n    // Step 1: automatic forex pressure drift\n    var delayedReduction = (Q.forex_pressure_delayed_reduction || 0);\n    var forexAdjustment = FOREX_DRIFT_PER_MONTH - (delayedReduction / MONTHS_PER_YEAR);\n    Q.forex_pressure = clamp((Q.forex_pressure || 0) + forexAdjustment, 0, 100);\n    if (delayedReduction) {\n        // clear once applied to avoid repeated division\n        Q.forex_pressure_delayed_reduction = 0;\n    }\n    // Step 2: card effects already stored in modifiers\n    // Step 3: structural resistance with asymmetric decay\n    Q.inflation_modifier = applyDecay(Q.inflation_modifier, INFLATION_DECAY_NEG_MONTHLY, INFLATION_DECAY_POS_MONTHLY);\n    var sanctionPenalty=Q.cyprus_economic_sanctions_active ? -.5 : 0;\n    Q.growth_modifier = sanctionPenalty + applyDecay(Q.growth_modifier-sanctionPenalty, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);\n    Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);\n    // Step 4/5: one authoritative macro step per calendar month (not per half-month).\n    if(typeof AnatolianMacro !== \"undefined\") AnatolianMacro.step(Q);\n    recalcProductionAndHeadlineValues();\n};\n\nif (Q.last_economy_month === null) {\n    refreshBaseEconomicValues();\n    Q.last_economy_month = Q.month + Q.year * 12;\n}\n\n// Existing saves retain the persistent penalty only for economic sanctions actually imposed.\nif(Q.cyprus_embargo_applied && (Q.cyprus_atilla2_started||Q.cyprus_atilla2_complete) && ![\"Return to the 1960 Constitutional Order\",\"Güneş Plan\",\"Denktaş Plan\"].includes(Q.cyprus_final_result) && (Q.cyprus_poppy_penalty || Q.hashas_done===1 || Q.cyprus_delayed_ceasefire))Q.cyprus_economic_sanctions_active=1;\n// The Arab oil embargo is an external shock, not a later historical inflation target.\nif(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}\nif(Q.year>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);\n// 1. update dates\nif (turnAdvanced) {\n    Q.time += 1;\n    Q.month_actions = 0;\n\n    // Use four turns per Rubicon month and retain the legacy half-month field.\n    if (Q.rubicon_mode && Q.rubicon_week < 4) {\n        Q.rubicon_week += 1;\n        Q.week = Q.rubicon_week <= 2 ? 1 : 2;\n    } else if (!Q.rubicon_mode && Q.week == 1) {\n        // Move from week 1 to week 3 of same month\n        Q.week = 2;\n    } else {\n        // Move from week 3 to week 1 of next month\n        Q.week = 1;\n        if (Q.rubicon_mode) Q.rubicon_week = 1;\n        if (Q.rubicon_mode) Q.rubicon_week = 1;\n        Q.month += 1;\n        if (Q.month >= 13) {\n            Q.month = 1;\n            Q.year += 1;\n            if(typeof AnatolianDynamicDemographics!==\"undefined\") AnatolianDynamicDemographics.endYear(Q,Q.year-1);\n            if (Q.CHP_in_government) {\n                Q.budget += 4 + (Q.yearly_budget || 0);\n            }\n            if (Q.historical_mode) {\n                Q.resources += 2;\n            }\n        }\n    }\n\n    if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}\n    // Whole months tick at the month boundary. Any remaining half month ends at midmonth.\n    var newMonth = Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1);\n    var midMonth = Q.week == 2 && (!Q.rubicon_mode || Q.rubicon_week == 3);\n    if (newMonth || midMonth) {\n        for (var timer of new Set(Q.timers.concat(['campaigning_ecevit', 'koykent_rally']))) {\n            var timerKey = timer + '_timer';\n            var remaining = Q[timerKey];\n            if (remaining > 0 && (newMonth || remaining < 1)) {\n                Q[timerKey] = Math.max(0, remaining - (newMonth ? 1 : 0.5));\n            }\n        }\n    }\n\n    // Run monthly economic simulation to keep values current once per month (when the month flips)\n    if (Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1)) {\n        refreshBaseEconomicValues();\n            runMonthlyEconomicSimulation();\n        Q.last_economy_month = Q.month + Q.year * 12;\n    } else {\n        recalcProductionAndHeadlineValues();\n    }\n\n    // Switch the background music playlist when cyprus_mode changes\n    if (Q.cyprus_mode != Q._last_cyprus_mode) {\n        if (Q.cyprus_mode == 1) {\n            this.ui.audio('clear shuffle music/gercekkibris1.m4a music/12.mp3 music/notalarsavasinca.mp3 music/demirkirat.mp3');\n        } else {\n            this.ui.audio('clear shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3');\n        }\n        Q._last_cyprus_mode = Q.cyprus_mode;\n    }\n\n    // Cyprus Problem effects\n    // Check if Cyprus status has changed and apply immediate effects\n    if (Q.cyprus_problem != Q.cyprus_last_status) {\n        // Remove previous positive effects if any\n        if (Q.cyprus_confederation_timer > 0) {\n            Q.cyprus_confederation_timer = 0;\n        }\n        if (Q.cyprus_divided_timer > 0) {\n            Q.cyprus_divided_timer = 0;\n        }\n\n        // Apply new effects based on current status\n        if (Q.cyprus_problem == 1) { // Status Quo\n            // -3% votershare drop in all demographics except Kurds and Capitalists\n            Q.rural_chp -= 3;\n            Q.workers_chp -= 3;\n            Q.state_employees_chp -= 3;\n            Q.alevis_chp -= 3;\n            // -7% among petty bourgeoisie (total -10% for petty bourgeoisie)\n            Q.petty_bourgeoisie_chp -= 10;\n            // Coup timer goes up by 1\n            Q.coup_timer += 1;\n        } else if (Q.cyprus_problem == 2) { // Confederation\n            // Legacy settlements share the same temporary prestige ledger.\n            if(!Q.cyprus_poll_reward_paid&&!Q.cyprus_later_poll_reward_paid)AnatolianNationalCoalition.awardCyprusDemographics(Q,'legacy-status-2',2);\n            // Retire the old demographic-bonus timer.\n            Q.cyprus_confederation_timer = 0;\n        } else if (Q.cyprus_problem == 4) { // Negotiated federal settlement\n            // Legacy settlements share the same temporary prestige ledger.\n            if(!Q.cyprus_poll_reward_paid&&!Q.cyprus_later_poll_reward_paid)AnatolianNationalCoalition.awardCyprusDemographics(Q,'legacy-status-4',Q.cyprus_final_result==='Güneş Plan'?6:4);\n            Q.us_relation+=10;Q.west_relation+=10;\n        } else if (Q.cyprus_problem == 3) { // Divided\n            // Legacy settlements share the same temporary prestige ledger.\n            if(!Q.cyprus_poll_reward_paid&&!Q.cyprus_later_poll_reward_paid)AnatolianNationalCoalition.awardCyprusDemographics(Q,'legacy-status-3',10);\n            // Relations penalties\n            Q.us_relation -= 30;\n            Q.west_relation -= 20;\n            // Coup timer goes down by 1\n            Q.coup_timer -= 1;\n            if (Q.coup_timer < 0) Q.coup_timer = 0;\n            // Retire the old demographic-bonus timer.\n            Q.cyprus_divided_timer = 0;\n        }\n\n        Q.cyprus_last_status = Q.cyprus_problem;\n    }\n\n    // Prestige now decays in National Coalition, never by subtracting old demographic bonuses.\n    Q.cyprus_confederation_timer=0;Q.cyprus_divided_timer=0;\n\n    // DP Collapse - if enabled, DP loses 80% of its support to AP between 1974 and 1977\n    if (Q.DP_collapse && Q.year >= 1974 && Q.year <= 1977) {\n        // Transfer 80% of DP support to AP (AP) over 3 years (1974-1977 inclusive)\n        // Game runs in bi-weekly turns: 3 years × 24 turns/year = 72 turns\n        var TOTAL_TRANSFER_PERCENTAGE = 0.90;\n        var YEARS_OF_TRANSFER = 3;\n        var TURNS_PER_YEAR = 24;\n        var TOTAL_TURNS = YEARS_OF_TRANSFER * TURNS_PER_YEAR;\n        var dp_transfer_rate = TOTAL_TRANSFER_PERCENTAGE / TOTAL_TURNS;\n\n        // Calculate amount to transfer from each demographic\n        var rural_transfer = Q.rural_DP * dp_transfer_rate;\n        var workers_transfer = Q.workers_DP * dp_transfer_rate;\n        var petty_bourgeoisie_transfer = Q.petty_bourgeoisie_DP * dp_transfer_rate;\n        var state_employees_transfer = Q.state_employees_DP * dp_transfer_rate;\n        var capitalists_transfer = Q.capitalists_DP * dp_transfer_rate;\n        var alevis_transfer = Q.alevis_DP * dp_transfer_rate;\n        var kurds_transfer = Q.kurds_DP * dp_transfer_rate;\n\n        // Transfer support from DP to AP (AP)\n        Q.rural_DP -= rural_transfer;\n        Q.rural_AP += rural_transfer;\n\n        Q.workers_DP -= workers_transfer;\n        Q.workers_AP += workers_transfer;\n\n        Q.petty_bourgeoisie_DP -= petty_bourgeoisie_transfer;\n        Q.petty_bourgeoisie_AP += petty_bourgeoisie_transfer;\n\n        Q.state_employees_DP -= state_employees_transfer;\n        Q.state_employees_AP += state_employees_transfer;\n\n        Q.capitalists_DP -= capitalists_transfer;\n        Q.capitalists_AP += capitalists_transfer;\n\n        Q.alevis_DP -= alevis_transfer;\n        Q.alevis_AP += alevis_transfer;\n\n        Q.kurds_DP -= kurds_transfer;\n        Q.kurds_AP += kurds_transfer;\n    }\n\n    // Prices and their status are derived once by AnatolianRules.refreshEconomy.\n    // All ministry actions and monthly simulation use the same shared formula.\n\nif (Q.week === 1 && (!Q.rubicon_mode || Q.rubicon_week === 1)) {\n    // Increment agricultural price timer\n    Q.agricultural_price_timer += 1;\n\n    // Apply agricultural price effects based on timer intervals\n    if (Q.agricultural_product_prices > 1.20 && Q.agricultural_price_timer >= 2) {\n        // Very High: -2% to workers, petty bourgeoisie, state employees every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 0.1;\n            Q.petty_bourgeoisie_chp -= 0.1;\n            Q.state_employees_chp -= 0.1;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 2;\n            Q.petty_bourgeoisie_AP -= 2;\n            Q.state_employees_AP -= 2;\n        }\n    } else if (Q.agricultural_product_prices >= 1.10 && Q.agricultural_product_prices <= 1.20 && Q.agricultural_price_timer >= 3) {\n        // High: -1% to workers, petty bourgeoisie, state employees every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.workers_chp -= 0.05;\n            Q.petty_bourgeoisie_chp -= 0.05;\n            Q.state_employees_chp -= 0.05;\n        } else if (Q.AP_in_government) {\n            Q.workers_AP -= 1;\n            Q.petty_bourgeoisie_AP -= 1;\n            Q.state_employees_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices >= 0.80 && Q.agricultural_product_prices < 0.90 && Q.agricultural_price_timer >= 3) {\n        // Low: -1% to rural every 3 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 0.05;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 1;\n        }\n    } else if (Q.agricultural_product_prices < 0.80 && Q.agricultural_price_timer >= 2) {\n        // Very Low: -2% to rural every 2 months\n        Q.agricultural_price_timer = 0;\n        if (Q.CHP_in_government) {\n            Q.rural_chp -= 0.1;\n        } else if (Q.AP_in_government) {\n            Q.rural_AP -= 2;\n        }\n    }\n\n    // Reset timer if prices are sufficient (no effects)\n    if (Q.agricultural_product_prices >= 0.90 && Q.agricultural_product_prices < 1.10) {\n        Q.agricultural_price_timer = 0;\n    }\n\n}\n//////////////////////////////// Education & Science support/economic changes\n    if (Q.major_curriculum && Q.major_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.5;\n        }\n    }\n    if (Q.minor_curriculum && Q.minor_curriculum == \"democratic\") {\n        if (Q.pro_republic < 60) {\n            Q.pro_republic += 0.3;//\n        }\n    }\n    // science bonus to economic growth\n    // education bonus\n    Q.science_bonus = 0;\n    if (Q.education_science) {\n        Q.science_bonus += Q.education_science;\n    }\n    if (Q.science) {\n        if (Q.science >= 1) {\n            Q.science_bonus += 1;\n        } else if (Q.science >= 3) {\n            Q.science_bonus += 2;\n        } else if (Q.science >= 5) {\n            Q.science_bonus += 3;\n        }\n    }\n    if (Q.applied_research && Q.applied_research >= 1) {\n        Q.science_bonus += 0.5*Q.applied_research;\n    }\n    // cap the science bonus at 6\n    if (Q.science_bonus > 6) {\n        Q.science_bonus = 6;\n    }\n    console.log(Q.science_bonus);\n    // this is kinda messy but basically more science -> higher levels of baseline growth\n    if (Q.science_bonus >= 1) {\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus + 3) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.return_to_normalcy && Q.economic_growth < Q.science_bonus) {\n            Q.growth_modifier += 0.1;\n        }\n        if (Q.economic_growth < Q.science_bonus - 3) {\n            Q.growth_modifier += 0.1;\n        }\n    }\n    AnatolianRules.refreshEconomy(Q);\n    // accumulated economic growth/decline\n    // Maybe there should be differences for positive/negative growth?\n    if (Q.economic_growth < 0) {\n        if (Q.economic_expansion > 0) {\n            Q.economic_expansion = 0;\n        } else {\n            Q.economic_expansion += Q.economic_growth;\n        }\n    }\n else if (Q.economic_growth > 0 && Q.CHP_in_government) {\n        Q.economic_expansion += Q.economic_growth/2;\n    }\n    /////////////////////////////// update opinions based on economy\n    if (Q.unemployed > 15 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.unemployed > 30 && Q.pro_republic > 20) {\n        Q.pro_republic -= 1;\n    }\n    if (Q.inflation >= 30 && Q.pro_republic > 40) {\n        Q.pro_republic -= 1;\n    }\n\n\n    ////////////////////////// annual support changes\n    AnatolianRules.ensureSecurity(Q);\n    var ohp_growth_before={};\n    ['grey_wolves_strength','grey_wolves_militancy','raiders_strength','raiders_militancy','tit_strength','tit_militancy'].forEach(function(k){ohp_growth_before[k]=AnatolianRules.number(Q[k]);});\n    // Economic health multiplier for paramilitary membership growth\n    var econ_paramilitary_multiplier;\n    if (Q.economy_health > 3) {\n        econ_paramilitary_multiplier = -0.5;\n    } else if (Q.economy_health >= 0) {\n        econ_paramilitary_multiplier = 1;\n    } else if (Q.economy_health >= -5) {\n        econ_paramilitary_multiplier = 1.5;\n    } else {\n        econ_paramilitary_multiplier = 2;\n    }\n    if (Q.year == 1974) {\n        // increase MHP vote share\n        Q.rural_MHP += 1/24;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (12/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1975) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n    } else if (Q.year == 1976) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (15/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.05/24;\n        Q.raiders_strength += (15/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1977) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.08/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n    } else if (Q.year == 1978) {\n        Q.rural_MHP += 1/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/12) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.08/24\n    } else if (Q.year == 1979) {\n        Q.rural_MHP += 2/12;\n        Q.petty_bourgeoisie_MHP += 2/12;\n        Q.grey_wolves_strength += (24/24) * econ_paramilitary_multiplier;\n        Q.grey_wolves_militancy += 0.1/24;\n        Q.raiders_strength += (20/24) * econ_paramilitary_multiplier;\n        Q.raiders_militancy += 0.05/24\n        Q.devyol_strength += (25/24) * econ_paramilitary_multiplier;\n        Q.devyol_militancy += 0.1/24\n    }\n    AnatolianRules.scaleFarRightGrowth(Q,ohp_growth_before);\n    // Ensure economic values remain tied to base paths and modifiers after all adjustments\n    recalcProductionAndHeadlineValues();\n\n    // Coalition pressure is calculated from current conditions below.\n}\nQ.far_left_force = 0;\nQ.far_right_force = 0;\nQ.state_force = 0;\nQ.democracy_force = 0;\n\n// Far left forces calculation (strength × militancy)\nif (!Q.thkpc_destroyed) {\n    Q.thkpc_force = Q.thkpc_strength * Q.thkpc_militancy;\n    Q.far_left_force += Q.thkpc_force;\n} else {\n    Q.thkpc_strength = 0;\n}\nif (Q.devyol_formed) {\n    Q.devyol_force = Q.devyol_strength * Q.devyol_militancy;\n    Q.far_left_force += Q.devyol_force;\n}\nif (Q.tkpml_formed) {\n    Q.tkpml_force = Q.tkpml_strength * Q.tkpml_militancy;\n    Q.far_left_force += Q.tkpml_force;\n}\n\n// Far right forces calculation (strength × militancy)\nQ.grey_wolves_force = Q.grey_wolves_strength * Q.grey_wolves_militancy;\nQ.far_right_force += Q.grey_wolves_force;\n\nif (Q.raiders_formed) {\n    Q.raiders_force = Q.raiders_strength * Q.raiders_militancy;\n    Q.far_right_force += Q.raiders_force;\n}\n\nQ.tit_force = Q.tit_strength * Q.tit_militancy;\nQ.far_right_force += Q.tit_force;\n\n// State forces calculation (strength × militancy)\nQ.police_force = Q.police_strength * Q.police_militancy;\n\nQ.state_force = Q.police_force;\n\n// Democratic forces (state forces when not controlled by extremists)\nQ.democracy_force = Q.state_force;\n\n// Total forces for percentage calculation\nQ.total_forces = Q.far_left_force + Q.far_right_force + Q.state_force;\n\n// Convert to percentages\nif (Q.total_forces > 0) {\n    Q.far_left_force_percent = Math.round((Q.far_left_force / Q.total_forces) * 100);\n    Q.far_right_force_percent = Math.round((Q.far_right_force / Q.total_forces) * 100);\n    Q.state_force_percent = Math.round((Q.state_force / Q.total_forces) * 100);\n    Q.democracy_force_percent = Q.state_force_percent;\n\n    // Individual organization force percentages\n    if (!Q.thkpc_destroyed) {\n        Q.thkpc_force_percent = Math.round((Q.thkpc_force / Q.total_forces) * 100);\n    }\n    if (Q.devyol_formed) {\n        Q.devyol_force_percent = Math.round((Q.devyol_force / Q.total_forces) * 100);\n    }\n    if (Q.tkpml_formed) {\n        Q.tkpml_force_percent = Math.round((Q.tkpml_force / Q.total_forces) * 100);\n    }\n    Q.grey_wolves_force_percent = Math.round((Q.grey_wolves_force / Q.total_forces) * 100);\n    if (Q.raiders_formed) {\n        Q.raiders_force_percent = Math.round((Q.raiders_force / Q.total_forces) * 100);\n    }\n    Q.tit_force_percent = Math.round((Q.tit_force / Q.total_forces) * 100);\n\n    Q.police_force_percent = Math.round((Q.police_force / Q.total_forces) * 100);\n}\n\n// Determine street control levels\nQ.far_right_paramilitary = Q.far_right_force_percent > Q.state_force_percent;\nQ.far_left_paramilitary = Q.far_left_force_percent > Q.state_force_percent;\nQ.democracy_paramilitary = Q.democracy_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\nQ.state_paramilitary = Q.state_force_percent >= Math.max(Q.far_left_force_percent, Q.far_right_force_percent);\n\n// Determine control intensity levels\n// Reset all control intensity flags first\nQ.far_right_paramilitary_highest = 0;\nQ.far_right_paramilitary_high = 0;\nQ.far_right_paramilitary_med = 0;\nQ.far_right_paramilitary_low = 0;\n\nQ.democracy_paramilitary_highest = 0;\nQ.democracy_paramilitary_high = 0;\nQ.democracy_paramilitary_med = 0;\nQ.democracy_paramilitary_low = 0;\n\nQ.state_paramilitary_highest = 0;\nQ.state_paramilitary_high = 0;\nQ.state_paramilitary_med = 0;\nQ.state_paramilitary_low = 0;\n\n// Set appropriate flags based on current control levels\nif (Q.far_right_paramilitary) {\n    if (Q.far_right_force_percent >= 70) Q.far_right_paramilitary_highest = 1;\n    else if (Q.far_right_force_percent >= 60) Q.far_right_paramilitary_high = 1;\n    else if (Q.far_right_force_percent >= 50) Q.far_right_paramilitary_med = 1;\n    else Q.far_right_paramilitary_low = 1;\n}\n\nif (Q.democracy_paramilitary) {\n    if (Q.democracy_force_percent >= 70) Q.democracy_paramilitary_highest = 1;\n    else if (Q.democracy_force_percent >= 60) Q.democracy_paramilitary_high = 1;\n    else if (Q.democracy_force_percent >= 50) Q.democracy_paramilitary_med = 1;\n    else Q.democracy_paramilitary_low = 1;\n}\n\nif (Q.state_paramilitary) {\n    if (Q.state_force_percent >= 70) Q.state_paramilitary_highest = 1;\n    else if (Q.state_force_percent >= 60) Q.state_paramilitary_high = 1;\n    else if (Q.state_force_percent >= 50) Q.state_paramilitary_med = 1;\n    else Q.state_paramilitary_low = 1;\n}\n\nif (turnAdvanced) {\nif (Q.democracy_paramilitary_low == 1) Q.coup_timer += 2/12;\nif (Q.far_left_paramilitary == 1) Q.coup_timer += 1/12;\nif (Q.grand_coalition == 1) Q.coup_timer -= 1/12;\n\n// ── democracystatus modifiers ──────────────────────────────────────────────\n\n// 1. Economy: per-tick drain (−10/yr in crisis, −5/yr if unhealthy)\nif (Q.economy_health < -5) {\n    Q.democracystatus -= 10/24;\n} else if (Q.economy_health >= -5 && Q.economy_health < 0) {\n    Q.democracystatus -= 5/24;\n}\n\n// 2. Street fighting attrition: yearly decrease of democracystatus based on state control tier.\nif (Q.year >= 1972 && !Q.streetfighting_joever) {\n    if (Q.state_force_percent > 80) {\n        // street fightings are scarce: no decrease\n    } else if (Q.state_force_percent >= 70) {\n        // street fightings are under control: -1 per year\n        Q.democracystatus -= 1/24;\n    } else if (Q.state_force_percent >= 60) {\n        // street fightings are increasing: -2 per year\n        Q.democracystatus -= 2/24;\n    } else if (Q.state_force_percent >= 50) {\n        // street fightings are slipping out of control: -4 per year\n        Q.democracystatus -= 4/24;\n    } else if (Q.state_force_percent >= 30) {\n        // street fightings have split neighborhoods: -6 per year\n        Q.democracystatus -= 6/24;\n    } else if (Q.state_force_percent >= 20) {\n        // street fightings at critical levels: -8 per year\n        Q.democracystatus -= 8/24;\n    } else {\n        // street fightings are anarchic: -12 per year\n        Q.democracystatus -= 12/24;\n    }\n}\n\n// 3. DİSK vs TÜRK-İŞ balance\nif (Q.disk_turkis_conflict >= 0.80) {\n    // Total TÜRK-İŞ Dominance → overwhelming DİSK weakness\n    Q.democracystatus -= 4/24;\n} else if (Q.disk_turkis_conflict >= 0.60) {\n    // TÜRK-İŞ leaning → slightly weaker DİSK\n    Q.democracystatus -= 2/24;\n} else if (Q.disk_turkis_conflict < 0.20) {\n    // Total DİSK Dominance → overwhelming DİSK strength\n    Q.democracystatus += 4/24;\n} else if (Q.disk_turkis_conflict < 0.40) {\n    // DİSK leaning → slightly stronger DİSK\n    Q.democracystatus += 2/24;\n}\n\n// DİSK-TÜRK-İŞ power dynamic yearly drift\nif (!Q.CHP_in_government) {\n    // CHP not in government: drift towards TÜRK-İŞ by 8/year\n    Q.disk_turkis_conflict += 0.08/24;\n} else if (Q.labor_minister_party == 'CHP') {\n    // CHP holds labour ministry: drift towards DİSK by 8/year\n    Q.disk_turkis_conflict -= 0.08/24;\n}\n// CHP in government but not controlling labour ministry: no change\nQ.disk_turkis_conflict = Math.max(0, Math.min(1, Q.disk_turkis_conflict));\n\n\n// Clamp democracystatus to [0, 100]\nQ.democracystatus = Math.max(0, Math.min(100, Q.democracystatus));\n\n// ─────────────────────────────────────────────────────────────────────────\n}\n\nif(turnAdvanced)AnatolianNationalCoalition.governmentTurn(Q);\n\n// AGRICULTURAL_ECONOMY_REWORK_V1\n// Land redistribution runs for the stage-specific duration after the ministry pays for it.\n// Completion, not initiation, grants the economic effects and unlocks the next stage.\n// Stage 3 must be fully completed before the Köykent rural-concentration action.\nif (turnAdvanced && Q.land_distribution_pending_stage > 0 &&\n    Q.year*24 + (Q.month-1)*2 + (Q.week===2 ? 1 : 0) >= Q.land_distribution_due_tick) {\n    var finishedLandStage = Number(Q.land_distribution_pending_stage);\n    if (finishedLandStage === (Number(Q.landreform_done)||0)+1 && finishedLandStage <= 6) {\n        Q.landreform_done = finishedLandStage;\n        Q.land_reform_progress = Math.max(Number(Q.land_reform_progress)||0, finishedLandStage);\n        Q.unemployment_modifier -= 0.5;\n        Q.growth_modifier += 1.5;\n        // Each completed stage enlarges productive supply and lowers import dependence.\n        // Pay these effects at completion, never at the beginning of construction.\n        Q.agriculture_modifier = AnatolianRules.number(Q.agriculture_modifier) + 6;\n        Q.inflation_modifier = AnatolianRules.number(Q.inflation_modifier) - 0.8;\n        Q.forex_pressure = Math.max(0,AnatolianRules.number(Q.forex_pressure)-2);\n        Q.forex_pressure_drift = AnatolianRules.number(Q.forex_pressure_drift)-0.6;\n        Q.rural_chp += 4;\n        Q.AP_relation -= 5;\n        Q.DP_relation -= 5;\n        Q.MSP_relation -= 5;\n        AnatolianNationalCoalition.reform(Q,\"land\",finishedLandStage);\n        AnatolianRules.refreshEconomy(Q);\n    }\n    Q.land_distribution_pending_stage = 0;\n    Q.land_distribution_due_tick = 0;\n}\n\n// ONE-TIME POLICY EFFECTS - Applied once when thresholds are reached\n\n// Oil effects (applied once)\nif (Q.oil >= 1 && !Q.oil_effect_applied) {\n    // Preserve the original once-only threshold benefit across baseline refreshes.\n    Q.oil_inflation_effect = 7.5 * Math.min(Q.oil, 4);\n    Q.oil_effect_applied = true;\n}\n\n// Land reform effects (applied once)\nif (Q.land_reform_progress >= 3 && !Q.land_reform_effect_applied) {\n    Q.rural_chp += 10;\n    Q.democracystatus += 5;\n    Q.land_reform_effect_applied = true;\n}\n\n// Cooperative effects (applied once)\nif (Q.cooperative_progress >= 3 && !Q.cooperative_effect_applied) {\n    Q.rural_chp += 5;\n    Q.cooperative_effect_applied = true;\n}\n\n// Köykent's +15 rural support / +10 democracy reward is awarded only by\n// events/achievement_of_koykent.scene.dry at progress 7 (exactly once).\n\n// Labour rights reform: set once when at least 3 one-time labour ministry reforms are passed\nif (!Q.labour_rights_reform) {\n    var labour_reforms_count = (Q.nationall ? 1 : 0) + (Q.kitt ? 1 : 0) + (Q.ikincilgrevv ? 1 : 0) + (Q.healthinspectionss ? 1 : 0) + (Q.lokavtt ? 1 : 0);\n    if (labour_reforms_count >= 3) {\n        Q.labour_rights_reform = 1;\n    }\n}\n\n// Tiger economic reform effects (year-specific, applied once per year)\nif (Q.Tiger >= 2 && Q.year == 1978 && !Q.tiger_1978_effect_applied) {\n    Q.tiger_1978_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1979 && !Q.tiger_1979_effect_applied) {\n    Q.tiger_1979_effect_applied = true;\n}\nif (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {\n    Q.tiger_1980_effect_applied = true;\n}\n\n// ─────────────────────────────────────────────────────────────────────────\n\n// Coup trigger: fires automatically when TSK is mutinous and acting (coup_timer >= 15),\n// or with a 25% monthly chance when democracystatus drops below 10.\nQ.coup_roll_success = 0;\nif (turnAdvanced && Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1) && !Q.army_in_government && !Q.tsk_pacified) {\n    if (Q.coup_timer >= 15) {\n        Q.coup_roll_success = 1;\n    } else if (Q.democracystatus < 10 && Math.random() < 0.25) {\n        Q.coup_roll_success = 1;\n        Q.coup_timer = 15;\n    }\n}\nAnatolianPeoplesSector.update(Q);\nAnatolianRules.refreshEconomy(Q);\nQ.apply_economy_effects = turnAdvanced ? 1 : 0;\nthis._runActions(this.game.scenes['economy_health_calculator'].onArrival);\nif(turnAdvanced&&typeof AnatolianNationalCoalition!==\"undefined\")AnatolianNationalCoalition.update(Q);\nAnatolianRules.refreshVotes(Q);\nif(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);\nAnatolianRules.refreshFactions(Q);\nif (turnAdvanced) {\n    // Record weekly dates during Rubicon and half-month dates thereafter.\n    var recordDate = Q.rubicon_mode ? new Date(Q.year, Q.month - 1, 1 + (Q.rubicon_week - 1) * 7) : new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16);\n    var party_support_results = {'date': recordDate};\n    for (var party of Q.parties) {\n        party_support_results[party] = Q[party + '_normalized']*100;\n    }\n    Q.party_support_records.push(party_support_results);\n    Q.economic_records.push({'date': recordDate,\n                             'inflation': Q.inflation,\n                             'unemployment': Q.unemployed});\n\n}\nif(typeof AnatolianSenate!==\"undefined\")AnatolianSenate.update(Q);\nQ.has_event = 0;\nQ.calculate_economy_health = 0;\n// Apply economy health effects every turn for gradual changes\nQ.apply_economy_effects = 0;\n// check if there are any cards in #event, and then go to main if not.\nvar scene = this.game.scenes['post_event.events_choice'];\nvar choices = this._compileChoices(scene);\nif (choices && choices[0].title != \"Continue...\") {\n    Q.has_event = 1;\n} else {\n    Q.has_event = 0;\n}\n// Cyprus stories are dispatched by their daily dates, not the domestic pool.\nif (Q.cyprus_mode) Q.has_event = 0;\n// pre-load all of the event images\nif (this.ui && this.ui.show_portraits) {\n    for (var choice of choices) {\n        var cc = this.game.scenes[choice.id];\n        if (!cc || !cc.cardImage) continue;\n        if (cc.faceImage) {\n            var im = new Image();\n            im.url = cc.faceImage;\n        }\n    }\n}\n\nif (typeof window !== \"undefined\" && window.generateBar) {\n}\n\nif(typeof AnatolianCoalitions!==\"undefined\")AnatolianCoalitions.update(Q);\n// Recalculate paramilitary force effectiveness (strength × militancy) every turn"
         }
       ],
       "goTo": [
@@ -15573,10 +15606,11 @@
                   "type": "insert",
                   "insert": 2
                 },
-                ""
+                " "
               ],
               "predicate": 0
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -17201,10 +17235,69 @@
           "$code": "Q['q0_lk_str'] = (Q['q0_lk_str'] || 0) - 1;\nQ['q1_lk_str'] = (Q['q1_lk_str'] || 0) - 1;"
         }
       ],
+      "goTo": [
+        {
+          "id": "post_event"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
       }
+    },
+    "ecevitandworker": {
+      "id": "ecevitandworker",
+      "type": "scene",
+      "title": "A Visit to Nazilli",
+      "newPage": true,
+      "onArrival": [
+        {
+          "$code": "if ((!(((Q['rubicon_mode'] || 0)) !== 0)) ) { Q['month_actions'] = (Q['month_actions'] || 0) + 1; }"
+        }
+      ],
+      "maxVisits": 1,
+      "isCard": true,
+      "cardImage": "img/ecevitnazilli.png",
+      "faceImage": "img/ecevitveisci.png",
+      "viewIf": {
+        "$code": "return (!(((Q['rubicon_mode'] || 0)) !== 0));"
+      },
+      "tags": [
+        "dovevsbayonet"
+      ],
+      "options": [
+        {
+          "id": "@ecevitandworker.yes",
+          "title": "Yes, I promise. I will risk it all."
+        },
+        {
+          "id": "@ecevitandworker.no",
+          "title": "Uh, um, my purpose is -uh, not to tread on the values of our party"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "A Visit to Nazilli"
+        },
+        {
+          "type": "paragraph",
+          "content": "As a part of his visits to the party organizations across the nation in preparation for a grassroots movement, Ecevit has arrived in the town of Nazilli."
+        },
+        {
+          "type": "paragraph",
+          "content": "During his speech, once he started stumbling over his words, a worker among the watching crowd went to him, took his microphone and asked Ecevit:"
+        },
+        {
+          "type": "paragraph",
+          "content": "\"Ecevit, leave the rhetoric aside. Will you, for the sake of democracy, be ready to struggle against İnönü or not? Tell us this.\""
+        },
+        {
+          "type": "paragraph",
+          "content": "After a long pause, Ecevit answered:"
+        }
+      ],
+      "countVisitsMax": 1
     },
     "election_simulation.scenario_1977": {
       "id": "election_simulation.scenario_1977",
@@ -20871,7 +20964,7 @@
         }
       ],
       "content": {
-        "content": "Both the MGP and the AP parliamentary factions have been induced into supporting the DP's interpellation. Although persuading the MGP was easy with the party having already contemplating in supporting DP, the AP Party Group required lengthy negotiations, political favors and some well-placed 'gifts'. Now that these two main parliamentary parties have been persuaded to back the interpellation, the Left of Centre movement has managed to form an unlikely coalition against Erim's military government. However even more importantly, our actions have led to weakening of Demirel's authority over his 14th term MPs from the last election.",
+        "content": "Both the MGP and the AP parliamentary factions have been convinced to support the DP's interpellation. Persuading the MGP was relatively easy, as the party had already been considering support for the motion. The AP parliamentary group, however, required lengthy negotiations, political favors, and some well-placed 'gifts'. With both groups now prepared to back the interpellation, the Left of the Center movement has managed to form an unlikely parliamentary coalition against Erim's military-backed government. More importantly, our actions have weakened the authority of AP Chairman Süleyman Demirel over the deputies elected in 1969.",
         "type": "paragraph"
       }
     },
@@ -20879,7 +20972,13 @@
       "id": "rubicon_inonu_walkout.end_assembly",
       "onArrival": [
         {
-          "$code": "Q['rubicon_delegate_shift'] = -1;\nQ['inonu_relation'] = (Q['inonu_relation'] || 0) + 5;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 1;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) + 1;"
+          "$code": "Q['rubicon_delegate_shift'] = -1;\nQ['inonu_relation'] = (Q['inonu_relation'] || 0) + 5;"
+        },
+        {
+          "$code": "Q.inonu_approval = Math.min(100, Q.inonu_approval + 5);"
+        },
+        {
+          "$code": "Q['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 1;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) + 1;"
         }
       ],
       "options": [
@@ -20924,35 +21023,35 @@
         },
         {
           "type": "paragraph",
-          "content": "While CHP was never under a dicta of İnönü through his leadership, with him even suffering defeats -like in the 1950 congress- and there even being calls for his resignation in 1965, the authority within the Republican People's Party has long revolved around him with his service during his leadership through Second World War, transition to democracy, struggles against coup attempts and many other political problems since taking over from Atatürk."
+          "content": "Although the CHP has never been a dictatorship under İnönü, its political life has long revolved around his authority. He has suffered defeats, including at the 1950 congress, and faced calls for his resignation as recently as 1965. Yet his leadership through the Second World War, Turkey's transition to multiparty democracy, and repeated threats to parliamentary government has given him a standing that few others could claim."
         },
         {
           "type": "paragraph",
-          "content": "However, despite it all, it is becoming increasingly clear that the Second Man of the Republic, the man that saved our democracy in both the 60s and now by managing to keep the parliament from being shut down by the 12th March, can no longer expect unconditional support from the party, and this couldn't be any more apparent then at the CHP Party Assembly in Ankara."
+          "content": "That standing, however, no longer guarantees unconditional support. İnönü believes that his accommodation of the governments formed after March 12 has helped preserve Parliament against an outright military takeover. Ecevit and the Left of the Center movement see such cooperation as giving legitimacy to military interference in civilian politics. These competing interpretations of the party's Kemalist duty have now come to a head at the CHP Party Assembly in Ankara."
         },
         {
           "type": "paragraph",
-          "content": "A special congress was called in order in response to the growing strength of the Left of Centre movement, led by Bülent Ecevit. However, confusion arose regarding who should be invited to the congress."
+          "content": "A special congress was called in response to the growing strength of the Left of the Center movement, led by Bülent Ecevit. However, confusion arose regarding who should be invited to the congress."
         },
         {
           "type": "paragraph",
-          "content": "İnönü wished for only party delegates from the previous congress to attend. On the other hand, Ecevit’s supporters wanted all newly elected delegates (many of which were sympathetic to the reformist movement) to attend. It became clear that this debate was not purely procedural, but was actually a fight for control of the party. And İnönü, having grown accustomed to be the primary heavy weight of the party, would not so easily cave in as a clash of influence between the 2 factions would emerge."
+          "content": "İnönü wished for only party delegates from the previous congress to attend. Ecevit's supporters wanted the newly elected delegates, many of whom were sympathetic to the Left of the Center movement, to attend as well. It became clear that this debate was not purely procedural, but a struggle over who could speak for the party. İnönü, long accustomed to being the CHP's most influential figure, was not prepared to concede the question so easily."
         },
         {
           "type": "paragraph",
-          "content": "Although İnönü agreed that the special congress should be held, he announced that it would be held in Ankara on the 5th of May. However, reformists within the party wished for the Party Assembly to consider this issue and decide what should be discussed in the special congress. İnönü however, believed that the issue had already been decided. Arguments rose in Ankara, and eventually, unwilling to continue the debate any further, İnönü concluded the meeting at his own will and left with his supporters."
+          "content": "Although İnönü agreed that the special congress should be held, he announced that it would take place in Ankara on May 5. Members of the Left of the Center movement wanted the Party Assembly to consider the matter and decide what should be discussed at the congress. İnönü, however, believed that the question had already been settled. Arguments erupted in Ankara, and eventually, unwilling to continue the debate, İnönü brought the meeting to an end and walked out with his supporters."
         },
         {
           "type": "paragraph",
-          "content": "Currently, İnönü remains the leader and no substantial changes had occured. What can be seen clearly from this confrontation however is just how split the party is. With the question of whenever we decide to continue this meeting without him or end it ourselves becoming our primary point of discussion."
+          "content": "İnönü remains the party leader, and no formal decision has yet been overturned, but his departure has exposed how deeply the CHP is divided. The immediate question is whether the Party Assembly should adjourn in deference to its chairman or continue its work without him."
         },
         {
           "type": "paragraph",
-          "content": "The man who helped create a multi-party democracy in Turkey now has his authority called into question by internal party members. And in this situation, perhaps leaving the room will no longer be enough..."
+          "content": "The man who helped establish multiparty democracy in Turkey now finds his own authority challenged in the name of representative government. And in this situation, perhaps leaving the room will no longer be enough..."
         },
         {
           "type": "paragraph",
-          "content": "Nevertheless, we must now make a decision; do we decide to accept İnönü's decree and end the meeting now, or insist in our decision and continue onward as CHP is a party of parliamentary structure, and its actions cannot be determined against its delegates. Which action we will take will either weaken or strengthen our delegate support at the cost or gain of İnönü's favor, and dissent of either political aisle of our party."
+          "content": "We must decide whether to accept İnönü's ruling or insist that the Party Assembly has the right to deliberate independently. Continuing the meeting would strengthen our position among delegates who want the party's decisions made by elected representatives, but it would further strain relations with İnönü and his supporters. Ending the meeting would avoid that confrontation, though at the cost of yielding ground in the struggle over the coming congress."
         }
       ],
       "countVisitsMax": 1
@@ -20961,7 +21060,10 @@
       "id": "rubicon_melen_invitation.refuse",
       "onArrival": [
         {
-          "$code": "Q['rubicon_melen_join'] = 0;"
+          "$code": "Q['rubicon_melen_join'] = 0;\nQ['inonu_relation'] = (Q['inonu_relation'] || 0) - 10;"
+        },
+        {
+          "$code": "Q.inonu_approval = Math.max(0, Q.inonu_approval - 10);"
         }
       ],
       "options": [
@@ -20985,11 +21087,11 @@
       "options": [
         {
           "id": "@rubicon_melen_invitation.join",
-          "title": "Ecevit Sways the Party to Join the Government"
+          "title": "We should join Melen's government."
         },
         {
           "id": "@rubicon_melen_invitation.refuse",
-          "title": "Ecevit Sways the Party to Vote Against Joining the Government"
+          "title": "We should remain in opposition."
         }
       ],
       "content": [
@@ -22154,6 +22256,7 @@
     },
     "fundraising.reduce": {
       "id": "fundraising.reduce",
+      "unavailableSubtitle": "Party dues are already at their minimum level.",
       "subtitle": {
         "content": [
           {
@@ -22198,9 +22301,10 @@
             "Our current members appreciate this, but no one decides to join a party because of the low dues.",
             {
               "type": "conditional",
-              "content": "Our membership in the Socialist International provides additional funding through international solidarity contributions.",
+              "content": "Our membership in the Socialist International provides additional funding through international solidarity contributions. ",
               "predicate": 0
-            }
+            },
+            ""
           ]
         },
         "stateDependencies": [
@@ -22434,13 +22538,13 @@
     },
     "relations_with_the_army.statements": {
       "id": "relations_with_the_army.statements",
-      "subtitle": "Reduce TSK pressure by up to 1 point at no cost.",
+      "subtitle": "May calm the officers, but disappoint our democratic base and deepen factional dissent.",
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 1);"
         },
         {
-          "$code": "Q['month_actions'] = (Q['month_actions'] || 0) + 1;"
+          "$code": "Q['workers_chp'] = (Q['workers_chp'] || 0) - 2;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 4;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
         }
       ],
       "goTo": [
@@ -22449,7 +22553,7 @@
         }
       ],
       "content": {
-        "content": "",
+        "content": "We publicly reaffirm the army's constitutional role while avoiding direct confrontation with its commanders. The conciliatory language offers some reassurance, but workers and party activists who looked to us for a firmer defense of civilian rule are disappointed.",
         "type": "paragraph"
       }
     },
@@ -24571,77 +24675,6 @@
         }
       ]
     },
-    "ecevitandworker.navigation_return_main": {
-      "id": "ecevitandworker.navigation_return_main",
-      "title": "Return",
-      "goTo": [
-        {
-          "id": "main"
-        }
-      ],
-      "content": {
-        "content": "",
-        "type": "paragraph"
-      }
-    },
-    "ecevitandworker": {
-      "id": "ecevitandworker",
-      "type": "scene",
-      "title": "A Visit to Nazilli",
-      "newPage": true,
-      "onArrival": [
-        {
-          "$code": "if ((!(((Q['rubicon_mode'] || 0)) !== 0)) ) { Q['month_actions'] = (Q['month_actions'] || 0) + 1; }"
-        }
-      ],
-      "maxVisits": 1,
-      "isCard": true,
-      "cardImage": "img/ecevitnazilli.png",
-      "faceImage": "img/ecevitveisci.png",
-      "viewIf": {
-        "$code": "return (!(((Q['rubicon_mode'] || 0)) !== 0));"
-      },
-      "tags": [
-        "dovevsbayonet"
-      ],
-      "options": [
-        {
-          "id": "@ecevitandworker.yes",
-          "title": "Yes, I promise. I will risk it all."
-        },
-        {
-          "id": "@ecevitandworker.no",
-          "title": "Uh, um, my purpose is -uh, not to tread on the values of our party"
-        },
-        {
-          "id": "@ecevitandworker.navigation_return_main",
-          "title": "Return"
-        }
-      ],
-      "content": [
-        {
-          "type": "heading",
-          "content": "A Visit to Nazilli"
-        },
-        {
-          "type": "paragraph",
-          "content": "As a part of his visits to the party organizations across the nation in preparation for a grassroots movement, Ecevit has arrived in the town of Nazilli."
-        },
-        {
-          "type": "paragraph",
-          "content": "During his speech, once he started stumbling over his words, a worker among the watching crowd went to him, took his microphone and asked Ecevit:"
-        },
-        {
-          "type": "paragraph",
-          "content": "\"Ecevit, leave the rhetoric aside. Will you, for the sake of democracy, be ready to struggle against İnönü or not? Tell us this.\""
-        },
-        {
-          "type": "paragraph",
-          "content": "After a long pause, Ecevit answered:"
-        }
-      ],
-      "countVisitsMax": 1
-    },
     "election_simulation.scenario_1979": {
       "id": "election_simulation.scenario_1979",
       "onArrival": [
@@ -26722,7 +26755,7 @@
       "title": "Congress Affairs",
       "cardImage": "img/dovevsbayonet.png",
       "viewIf": {
-        "$code": "return (Q['CHP_party_leader'] == \"İnönü\");"
+        "$code": "return ((Q['CHP_party_leader'] == \"İnönü\") || (Q['CHP_party_leader'] == \"Ecevit\"));"
       },
       "isDeck": true,
       "options": [
@@ -27000,11 +27033,14 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": "Because of the presently high unemployment, our members are feeling the extra burden hard.",
-              "predicate": 1
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": "Because of the presently high unemployment, our members are feeling the extra burden hard. ",
+                "predicate": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -27112,13 +27148,37 @@
       "id": "media.commercial",
       "title": "Make our newspapers more commercialized by broadening their appeal beyond party supporters.",
       "chooseIf": {
-        "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
+        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['I_in_government'] || 0) == 0));"
       },
-      "unavailableSubtitle": "Our media outlets are paralyzed by the intra-party crisis!",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "conditional",
+            "content": "The memorandum government has restricted our political media campaigns. ",
+            "predicate": 0
+          },
+          {
+            "type": "conditional",
+            "content": "Our media outlets are paralyzed by the intra-party crisis!",
+            "predicate": 1
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['I_in_government'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['CHP_party_leader'] != \"Ecevit\");"
+            }
+          }
+        ]
+      },
       "subtitle": "This might upset the hardliners, but it may bring in more funds.",
-      "viewIf": {
-        "$code": "return ((Q['I_in_government'] || 0) == 0);"
-      },
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commitAdvisor(Q);"
@@ -27199,7 +27259,7 @@
     },
     "relations_with_the_army.decline": {
       "id": "relations_with_the_army.decline",
-      "subtitle": "Discard this card and advance a turn.",
+      "subtitle": "We will offer no new assurances to the generals this month.",
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2);"
@@ -27214,7 +27274,7 @@
         }
       ],
       "content": {
-        "content": "",
+        "content": "We refuse to make concessions merely to satisfy the military leadership.",
         "type": "paragraph"
       }
     },
@@ -28738,7 +28798,7 @@
         }
       ],
       "content": {
-        "content": "However, Ecevit has decided not to back the DP's motion as he feels little can be gained by antagonising the military. As the DP motion did not receive a large enough majority in parliament, Erim remains in office for now.",
+        "content": "However, Ecevit has decided not to back the DP's motion as he feels little can be gained by antagonizing the military. As the DP motion did not receive a large enough majority in parliament, Erim remains in office for now.",
         "type": "paragraph"
       }
     },
@@ -28780,19 +28840,19 @@
         },
         {
           "type": "paragraph",
-          "content": "There has been much controversy surrounding these demands. In particular, the reaction from the DP has been strong. Since the March 12 Memorandum, the DP has taken a firm stance against participating in military-backed governments. The DP has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy."
+          "content": "There has been much controversy surrounding these demands. In particular, the reaction from the DP has been strong. Founded in 1970 by conservative deputies who broke with Demirel's AP, and led by Ferruh Bozbeyli, the DP draws upon the parliamentary and populist traditions of the earlier Democratic Party. Its leaders are especially determined to defend the authority of elected representatives against governments imposed from above. Since the March 12 Memorandum, the DP has taken a firm stance against participating in military-backed governments, regarding Erim's supposedly nonpartisan cabinet as a threat to Parliament's ability to hold the executive accountable. The DP has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy."
         },
         {
           "type": "paragraph",
-          "content": "However, this interpellation cannot pass by only DP MPs, and other parties are reluctant to go forward and support DP as its a popular belief among all parties that Erim's time is over as Erim himself literally issued his resignation just before DP's motion, though it is obvious for everyone that, just like previous times when Erim issued a resignation out of frustration, the president Sunay and military will very likely reject it one more time. Therefore, it would be unwise to do premature actions and anger the Military for no reason when the government is already on its last legs."
+          "content": "However, the motion cannot pass on the votes of DP deputies alone, and the other parties are reluctant to commit themselves. Erim has already submitted his resignation, and many in Parliament believe his government is nearing its end. Yet Sunay and the military have rejected Erim's offers to resign before, and they may well do so again. With the government already on its last legs, deputies are wary of provoking the generals through a parliamentary confrontation they consider unnecessary."
         },
         {
           "type": "paragraph",
-          "content": "Within our Left of the Center movement, however, there is an unusual possibility. While we do not share many political views with the DP, we do agree with them on the need to stop military interference in politics. Supporting the DP may not achieve much, seeing as Erim's government is already beginning to crumble, but it may simply hasten the inevitable. It also risks further conflict with the generals and disagreement with İnönü over the best way to defend parliamentary democracy."
+          "content": "Within our Left of the Center movement, however, there is an unusual possibility. The DP's parliamentary initiative offers us a means of challenging the military-backed government through the very institutions the generals claim to preserve. Supporting the motion may not achieve much, seeing as Erim's government is already beginning to crumble, but it may hasten the inevitable and reaffirm Parliament's authority. It also risks further conflict with the generals and disagreement with İnönü over the best way to defend parliamentary democracy."
         },
         {
           "type": "paragraph",
-          "content": "After refusing to recognize the memorandum governments as legitimate representations of democracy over the past year, Ecevit must now consider whether to sit on the sidelines of this conflict in Parliament or take a different approach from that of the party leadership and support the Democratic Party in its attempt to topple Erim."
+          "content": "After refusing to recognize the memorandum governments as legitimate expressions of democracy over the past year, Ecevit must now consider whether to sit on the sidelines of this conflict in Parliament or depart from the party leadership's approach by supporting the DP's attempt to topple Erim."
         },
         {
           "type": "paragraph",
@@ -29932,13 +29992,37 @@
       "id": "media.campaign",
       "title": "The purpose of our media is to increase our election chances.",
       "chooseIf": {
-        "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
+        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['I_in_government'] || 0) == 0));"
       },
-      "unavailableSubtitle": "Our media outlets are paralyzed by the intra-party crisis!",
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "conditional",
+            "content": "The memorandum government has restricted our political media campaigns. ",
+            "predicate": 0
+          },
+          {
+            "type": "conditional",
+            "content": "Our media outlets are paralyzed by the intra-party crisis!",
+            "predicate": 1
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['I_in_government'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['CHP_party_leader'] != \"Ecevit\");"
+            }
+          }
+        ]
+      },
       "subtitle": "Our newspapers will focus on the electoral campaign.",
-      "viewIf": {
-        "$code": "return ((Q['I_in_government'] || 0) == 0);"
-      },
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commitAdvisor(Q);"
@@ -30069,15 +30153,15 @@
       "options": [
         {
           "id": "@relations_with_the_army.connections",
-          "title": "Use our connections with the General Staff to ease the worries of the army"
+          "title": "Approach our contacts in the General Staff privately."
         },
         {
           "id": "@relations_with_the_army.statements",
-          "title": "Make statements against the slanders made to us"
+          "title": "Make a public statement reassuring the armed forces."
         },
         {
           "id": "@relations_with_the_army.decline",
-          "title": "No, we will not do any of these"
+          "title": "Maintain our position."
         },
         {
           "id": "@relations_with_the_army.navigation_return_main",
@@ -30091,7 +30175,7 @@
         },
         {
           "type": "paragraph",
-          "content": "We can speak privately with our contacts in the General Staff, or answer the accusations against us in public."
+          "content": "Our contacts in the General Staff remain uneasy about the course of civilian politics. We could seek to reassure them behind closed doors, or make a public gesture of conciliation. Neither course would come without a political cost, particularly when our supporters expect us to resist military interference in Parliament."
         }
       ]
     },
@@ -30137,7 +30221,7 @@
       "chooseIf": {
         "$code": "return ((Q['cyprus_problem'] || 0) == 3);"
       },
-      "unavailableSubtitle": "There are no prerequisites for such a shift!",
+      "unavailableSubtitle": "This appeal depends on a decisive victory in Cyprus, which we cannot yet claim.",
       "onArrival": [
         {
           "$code": "AnatolianNationalCoalition.awardCyprusDemographics(Q,\"patriotic-strategy\",1);"
@@ -30769,6 +30853,41 @@
           "content": "<br> Making the banner of the game"
         }
       ]
+    },
+    "credits": {
+      "id": "credits",
+      "type": "scene",
+      "title": "Credits",
+      "options": [
+        {
+          "id": "@credits.books",
+          "title": "Books"
+        },
+        {
+          "id": "@credits.articles",
+          "title": "Articles"
+        },
+        {
+          "id": "@credits.images",
+          "title": "Image sources"
+        },
+        {
+          "id": "@credits.music",
+          "title": "Music sources"
+        },
+        {
+          "id": "@credits.dev",
+          "title": "Special thanks."
+        },
+        {
+          "id": "@root",
+          "title": "Back"
+        }
+      ],
+      "content": {
+        "content": "Many works were referenced in the making of this game. In addition, many features invented by fellow developers have been used in accordance with their consent.",
+        "type": "paragraph"
+      }
     },
     "chp_fifth_congress.shufflement": {
       "id": "chp_fifth_congress.shufflement",
@@ -32925,7 +33044,7 @@
       "isCard": true,
       "cardImage": "img/chpleadership.jpg",
       "tags": [
-        "party_affairs"
+        "dovevsbayonet"
       ],
       "options": [
         {
@@ -32963,7 +33082,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Now that we as the reformists have gained power in the party, we have the chance to consolidate our hold over various segments of the party."
+          "content": "Now that our Left of the Center movement has gained power in the party, we have the chance to consolidate our hold over various segments of the party."
         }
       ]
     },
@@ -32972,11 +33091,35 @@
       "title": "We will motivate our theorists and politicians to write about their new policy ideas.",
       "subtitle": "A party without a vision is not a party but a gathering",
       "chooseIf": {
-        "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
+        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['I_in_government'] || 0) == 0));"
       },
-      "unavailableSubtitle": "Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the spread of unorthodox ideas.",
-      "viewIf": {
-        "$code": "return ((Q['I_in_government'] || 0) == 0);"
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "conditional",
+            "content": "The memorandum government has restricted our political media campaigns. ",
+            "predicate": 0
+          },
+          {
+            "type": "conditional",
+            "content": "Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the spread of unorthodox ideas.",
+            "predicate": 1
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['I_in_government'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['CHP_party_leader'] != \"Ecevit\");"
+            }
+          }
+        ]
       },
       "onArrival": [
         {
@@ -33349,58 +33492,6 @@
           "content": "Placeholder"
         }
       ]
-    },
-    "credits.ai": {
-      "id": "credits.ai",
-      "options": [
-        {
-          "id": "@credits",
-          "title": "Back"
-        }
-      ],
-      "content": {
-        "content": "The original Turkish adaptation was written by its human creators. The subsequent legacy cleanup used AI assistance to revise inherited text and code. No AI-generated images were added.",
-        "type": "paragraph"
-      }
-    },
-    "credits": {
-      "id": "credits",
-      "type": "scene",
-      "title": "Credits",
-      "options": [
-        {
-          "id": "@credits.books",
-          "title": "Books"
-        },
-        {
-          "id": "@credits.articles",
-          "title": "Articles"
-        },
-        {
-          "id": "@credits.images",
-          "title": "Image sources"
-        },
-        {
-          "id": "@credits.music",
-          "title": "Music sources"
-        },
-        {
-          "id": "@credits.ai",
-          "title": "AI usage in the making of the game."
-        },
-        {
-          "id": "@credits.dev",
-          "title": "Special thanks."
-        },
-        {
-          "id": "@root",
-          "title": "Back"
-        }
-      ],
-      "content": {
-        "content": "Many works were referenced in the making of this game. In addition, many features invented by fellow developers have been used in accordance with their consent.",
-        "type": "paragraph"
-      }
     },
     "chp_fifth_congress.inonu_wins": {
       "id": "chp_fifth_congress.inonu_wins",
@@ -34675,11 +34766,35 @@
       "title": "We will have vibrant ideological debate within our newspapers.",
       "subtitle": "There will be space for all factions to air their views.",
       "chooseIf": {
-        "$code": "return (Q['CHP_party_leader'] == \"Ecevit\");"
+        "$code": "return ((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['I_in_government'] || 0) == 0));"
       },
-      "unavailableSubtitle": "Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the different interpretations of Atatürk's path.",
-      "viewIf": {
-        "$code": "return ((Q['I_in_government'] || 0) == 0);"
+      "unavailableSubtitle": {
+        "content": [
+          {
+            "type": "conditional",
+            "content": "The memorandum government has restricted our political media campaigns. ",
+            "predicate": 0
+          },
+          {
+            "type": "conditional",
+            "content": "Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the different interpretations of Atatürk's path.",
+            "predicate": 1
+          }
+        ],
+        "stateDependencies": [
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return ((Q['I_in_government'] || 0) == 1);"
+            }
+          },
+          {
+            "type": "predicate",
+            "fn": {
+              "$code": "return (Q['CHP_party_leader'] != \"Ecevit\");"
+            }
+          }
+        ]
       },
       "onArrival": [
         {
@@ -36907,7 +37022,7 @@
       ],
       "isCard": true,
       "tags": [
-        "party_affairs"
+        "dovevsbayonet"
       ],
       "viewIf": {
         "$code": "return (((Q['CHP_party_leader'] == \"Ecevit\") && ((Q['remnants_of_inonu_timer'] || 0) == 0)) && ((Q['inonuu'] || 0) == 0));"
@@ -39830,18 +39945,21 @@
           },
           {
             "type": "paragraph",
-            "content": {
-              "type": "conditional",
-              "content": [
-                "The <span style=\"color: #E3000F;\">",
-                {
-                  "type": "emphasis-2",
-                  "content": "CHP"
-                },
-                "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage..."
-              ],
-              "predicate": 1
-            }
+            "content": [
+              {
+                "type": "conditional",
+                "content": [
+                  "The <span style=\"color: #E3000F;\">",
+                  {
+                    "type": "emphasis-2",
+                    "content": "CHP"
+                  },
+                  "</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... "
+                ],
+                "predicate": 1
+              },
+              ""
+            ]
           }
         ],
         "stateDependencies": [
@@ -44674,7 +44792,12 @@
                     "type": "insert",
                     "insert": 44
                   },
-                  "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A Right-Wing Kemalist and one of the founders of CGP, he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
+                  "<span class=\"wide_tooltip-tip\"><img src=\"img/melen.jpg\">Prime Minister Ferit Melen. A right-wing Kemalist and a leading figure in ",
+                  {
+                    "type": "insert",
+                    "insert": 45
+                  },
+                  ", he has been chosen by the military junta to lead the next government after the collapse of Nihat Erim's government. </span></span> "
                 ],
                 "predicate": 43
               },
@@ -44685,11 +44808,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 46
+                    "insert": 47
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/NaimTalu.jpg\">Prime Minister Naim Talu. Supported by CGP and AP, he has vowed to lead a \"nonpartisan\" government whose purpose is to lead the nation to the general elections. </span></span> "
                 ],
-                "predicate": 45
+                "predicate": 46
               },
               " ",
               {
@@ -44698,11 +44821,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 48
+                    "insert": 49
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim1.webp\">Karaoğlan Ecevit. The leader of our new CHP, a lot about the future of our country and democracy depends on his shoulders shaking with energy. Türk Halkına Layık Ol Karaoğlan! </span></span> "
                 ],
-                "predicate": 47
+                "predicate": 48
               },
               "  ",
               {
@@ -44711,11 +44834,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 50
+                    "insert": 51
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/ecevitim.jpg\">Karaoğlan Ecevit. Even though circumstances are deteriorating and the system is resisting not to change, he can't give up now. <br> \"the deer that was shot in the depths of the forest <br>the animals are silent with your pain <br> in their horns, hoofs and eyes, <br> is the love the hunter couldn't extinguish\"</span></span> "
                 ],
-                "predicate": 49
+                "predicate": 50
               },
               " ",
               {
@@ -44724,11 +44847,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 52
+                    "insert": 53
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/demirell.jpg\">Prime Minister Süleyman Demirel. An expert of political survival who by collaboration with the far right is currently killing the democracy for it.</span></span> "
                 ],
-                "predicate": 51
+                "predicate": 52
               },
               " ",
               {
@@ -44737,16 +44860,16 @@
                   "",
                   {
                     "type": "insert",
-                    "insert": 54
+                    "insert": 55
                   },
                   " "
                 ],
-                "predicate": 53
+                "predicate": 54
               },
               " (",
               {
                 "type": "insert",
-                "insert": 55
+                "insert": 56
               },
               ")"
             ]
@@ -44761,11 +44884,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 57
+                    "insert": 58
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Memduh Tağmaç. He is the man who coordinated the 12 March 1971 Memorandum as a reaction to the Socialist-Kemalist coup attempt on 9 March. Afterwards, he is known to have purged all the members of the Left Kemalist clique in the army. </span></span> "
                 ],
-                "predicate": 56
+                "predicate": 57
               },
               " ",
               {
@@ -44774,11 +44897,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 59
+                    "insert": 60
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/farukgurler.png\">Chief of Staff Faruk Gürler. Normally having leftist tendencies, he nevertheless refused to participate in the coup attempt on 9 March which made him a favourite of the junta.</span></span> "
                 ],
-                "predicate": 58
+                "predicate": 59
               },
               " ",
               {
@@ -44787,11 +44910,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 61
+                    "insert": 62
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/portraits/SemihSancar.jpg\">Chief of Staff Semih Sancar. </span></span> "
                 ],
-                "predicate": 60
+                "predicate": 61
               },
               " ",
               {
@@ -44800,11 +44923,11 @@
                   "<span class=\"wide_tooltip-wrap\">",
                   {
                     "type": "insert",
-                    "insert": 63
+                    "insert": 64
                   },
                   "<span class=\"wide_tooltip-tip\"><img src=\"img/tagmac1.png\">Chief of Staff Kenan Evren. Even though appointed on the premise of being a nonpartisan figure, not much is known about his true intentions. </span></span> "
                 ],
-                "predicate": 62
+                "predicate": 63
               },
               ""
             ]
@@ -44821,37 +44944,37 @@
               {
                 "type": "conditional",
                 "content": "is currently in government ",
-                "predicate": 64
-              },
-              {
-                "type": "conditional",
-                "content": "is currently pacified ",
                 "predicate": 65
               },
               {
                 "type": "conditional",
-                "content": "is currently hopeful ",
+                "content": "is currently pacified ",
                 "predicate": 66
               },
               {
                 "type": "conditional",
-                "content": "is currently observing the political situation ",
+                "content": "is currently hopeful ",
                 "predicate": 67
               },
               {
                 "type": "conditional",
-                "content": "TSK is currently irritated ",
+                "content": "is currently observing the political situation ",
                 "predicate": 68
               },
               {
                 "type": "conditional",
-                "content": "is currently agitated ",
+                "content": "TSK is currently irritated ",
                 "predicate": 69
               },
               {
                 "type": "conditional",
-                "content": "is currently alarmed ",
+                "content": "is currently agitated ",
                 "predicate": 70
+              },
+              {
+                "type": "conditional",
+                "content": "is currently alarmed ",
+                "predicate": 71
               },
               {
                 "type": "conditional",
@@ -44863,7 +44986,7 @@
                   },
                   " "
                 ],
-                "predicate": 71
+                "predicate": 72
               },
               {
                 "type": "conditional",
@@ -44875,7 +44998,7 @@
                   },
                   " "
                 ],
-                "predicate": 72
+                "predicate": 73
               },
               ""
             ]
@@ -44889,11 +45012,11 @@
                   "Budget: ",
                   {
                     "type": "insert",
-                    "insert": 74
+                    "insert": 75
                   },
                   " "
                 ],
-                "predicate": 73
+                "predicate": 74
               },
               ""
             ]
@@ -44904,12 +45027,12 @@
               "Next general election: ",
               {
                 "type": "insert",
-                "insert": 75
+                "insert": 76
               },
               " ",
               {
                 "type": "insert",
-                "insert": 76
+                "insert": 77
               },
               ""
             ]
@@ -44923,16 +45046,16 @@
                   "Next municipal election: ",
                   {
                     "type": "insert",
-                    "insert": 78
+                    "insert": 79
                   },
                   " ",
                   {
                     "type": "insert",
-                    "insert": 79
+                    "insert": 80
                   },
                   " "
                 ],
-                "predicate": 77
+                "predicate": 78
               },
               ""
             ]
@@ -44943,7 +45066,7 @@
               "Next Senate election: ",
               {
                 "type": "insert",
-                "insert": 80
+                "insert": 81
               },
               ""
             ]
@@ -45224,6 +45347,12 @@
             "type": "insert",
             "fn": {
               "$code": "return (Q['prime_minister'] || 0);"
+            }
+          },
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return (Q['CGP_name'] || 0);"
             }
           },
           {
@@ -68917,18 +69046,21 @@
       "satir": true,
       "eyuboglu": true
     },
+    "dovevsbayonet": {
+      "ecevitandworker": true,
+      "intrapartyinfluence": true,
+      "remnantsofinonu": true
+    },
     "party_affairs": {
       "komunizmlemucadeledernegi": true,
       "fundraising": true,
       "relations_with_the_army": true,
       "strategy": true,
-      "intrapartyinfluence": true,
       "culture": true,
       "party_organizations": true,
       "union_relations": true,
       "enemies": true,
       "international_relations": true,
-      "remnantsofinonu": true,
       "campaigning": true,
       "campaigning_ecevit": true,
       "media": true,
@@ -68969,9 +69101,6 @@
     },
     "orthodox_kemalist": {
       "inonu": true
-    },
-    "dovevsbayonet": {
-      "ecevitandworker": true
     },
     "government_affairs": {
       "land_reform": true
