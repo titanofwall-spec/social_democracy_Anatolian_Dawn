@@ -456,7 +456,7 @@ subtitle: The hero of the republic, right hand man of the Atatürk and former pr
 is-card: true
 card-image: img/portraits/IsmetInonu.jpg
 tags: orthodox_kemalist_advisor
-view-if: inonu_dead = 0 and inonu_advisor = 0 and n_advisors < 3 and party_leader_id != "inonu" and party_secretary_id != "inonu"
+view-if: inonu_advisor = 0 and n_advisors < 3 and party_leader_id != "inonu" and party_secretary_id != "inonu"
 on-arrival: inonu_advisor = 1; n_advisors += 1
 go-to: advisor_menu
 

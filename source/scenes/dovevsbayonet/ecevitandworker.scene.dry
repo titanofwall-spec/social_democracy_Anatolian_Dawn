@@ -27,7 +27,7 @@ subtitle: The battle begins...
 on-arrival: q0_lk_str += 1; q1_lk_str += 1
 
 @no
-on-arrival: inonu_stay += 1; q0_lk_str -= 1; q1_lk_str -= 1
+on-arrival: q0_lk_str -= 1; q1_lk_str -= 1
 @navigation_return_main
 title: Return
 go-to: main

@@ -7,6 +7,21 @@ async function read(ui,slot){let record;try{const db=await open();record=await n
 // Read a visible page (or autosave rotation) in one transaction. No save data is cached.
 async function readMany(ui,slots){let records;try{const db=await open();records=await new Promise((resolve,reject)=>{const tx=db.transaction(storeName),store=tx.objectStore(storeName),rows=new Array(slots.length);slots.forEach((slot,i)=>{const request=store.get(ui.save_prefix+'_'+slot);request.onsuccess=()=>{rows[i]=request.result;};});tx.oncomplete=()=>resolve(rows);tx.onerror=()=>reject(tx.error||new Error('Save storage read failed.'));tx.onabort=()=>reject(tx.error||new Error('Save storage read was interrupted.'));});}catch(error){return slots.map(slot=>{const old=legacy(ui,slot);if(old)return old;throw error;});}return slots.map((slot,i)=>records[i]||legacy(ui,slot));}
 function install(ui){if(ui._durableSavesInstalled)return;ui._durableSavesInstalled=true;let queue=Promise.resolve(),lastError='',population=0;
+ const engine=ui.dendryEngine;
+ const restoreState=engine.setState;
+ const removedScene=id=>typeof id==='string'&&/^(?:inonuresignation|nuribayar|cumhurbaskanligi1\.ariburun)(?:\.|$)/.test(id);
+ engine.setState=function(state){
+  const main=state.qualities.difficulty<0?'main.main_easy':'main';
+  const returnToMain=removedScene(state.sceneId);
+  if(removedScene(state.prevSpecialSceneId)) state.tempCurrentContent=[];
+  for(const key of ['sceneId','prevSceneId','prevTopSceneId','prevSpecialSceneId','jumpSceneId']){
+   if(removedScene(state[key])) state[key]=main;
+  }
+  if(returnToMain) state.currentContent=[];
+  const result=restoreState.call(this,state);
+  if(returnToMain&&!this.isGameOver()) this.goToScene(main);
+  return result;
+ };
  ui.max_slots=100;ui.savePage=0;ui.showAutosaves=false;
  const ids=()=>Array.from({length:10},(_,i)=>String(ui.savePage*10+i)).concat(['a0','a1','a2','a3','a4']);
  function layout(){const table=document.getElementById('saves_table');if(!table)return;const old=table.querySelector('#save-slot-rows');if(old)old.remove();else Array.from(table.querySelectorAll('tr')).filter(row=>row.querySelector('.save_button')).forEach(row=>row.remove());const body=document.createElement('tbody');body.id='save-slot-rows';

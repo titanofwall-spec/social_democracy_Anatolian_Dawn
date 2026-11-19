@@ -128,7 +128,6 @@ Q.left_split = 0;
 Q.reformists_resigned = 0;
 
 // Whether İnönü stays (0 = initial, 1 = undecided, 2 = stays, -1 = leaves)
-Q.inonu_stay = 0;
 
 // Status of the Turkish Democracy
 Q.democracystatus = 30

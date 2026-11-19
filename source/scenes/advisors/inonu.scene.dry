@@ -10,7 +10,7 @@ new-page: true
 İnönü is the old wolf at the helm of the party. Once the right-hand man of Atatürk, as a hero of the war of liberation he has been the party leader for the past 34 years. He is the primary representative of the old and elitist attitude of the party and is under increasing attack by the reformists, led by Ecevit. Will he be able to survive as the sole hegemon?
 
 - @campaign: Campaigning
-- @stay: Can we convince İnönü to stay in the party even if he loses the leadership?
+- @stay: Ask İnönü to reassure the party’s old guard
 - @improve_relations: Improve our relations with İnönü
 - @root: Return to main
 
@@ -22,10 +22,10 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: {! AnatolianCardActions.beginAdvisor(this,'campaigning'); !} last_advisor_action = 1
 
 @stay
-subtitle: Even if he doesn't believe it to be a possibility...
+subtitle: İnönü can help the old guard accept a change in leadership.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} orthodox_kemalists_dissent -= 5; inonu_stay += 1
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} orthodox_kemalists_dissent -= 5
 
 İnönü is an ambitious man, however he still does what he does with the good of the party and the nation in mind. He once said about losing the presidency to DP in the first free elections in 1950 "My biggest defeat is my biggest victory." Perhaps it can again be such a case here...
 
