@@ -126,7 +126,11 @@
         if (rubiconChoice && window.formatPartyLabel) {
           var li = document.querySelector('#content > ul.choices li:nth-child(' + (index + 1) + ')');
           var label = li && li.querySelector('a, .unavailable');
-          if (label) label.innerHTML = window.formatPartyLabel(label.innerHTML);
+          if (label) {
+            var decisionText = label.innerHTML.trim();
+            var quotes = decisionText.match(/^(?:&quot;|&#34;|"|“)([\\s\\S]+?)(?:&quot;|&#34;|"|”)$/);
+            label.innerHTML = window.formatPartyLabel(quotes ? quotes[1] : decisionText);
+          }
         }
         var tooltip = AnatolianRules.cyprusAtilla1.choiceTooltip(choiceId.replace(/^@/, '')) || tooltips[choiceId] || tooltips[choiceId.replace(/^@/, '')];
         if (!tooltip) return;

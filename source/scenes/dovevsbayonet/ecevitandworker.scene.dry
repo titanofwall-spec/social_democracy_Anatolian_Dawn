@@ -24,7 +24,9 @@ After a long pause, Ecevit answered:
 @yes
 subtitle: The battle begins...
 on-arrival: q0_lk_str += 1; q1_lk_str += 1
+go-to: post_event
 
 @no
 on-arrival: q0_lk_str -= 1; q1_lk_str -= 1
+go-to: post_event
 
