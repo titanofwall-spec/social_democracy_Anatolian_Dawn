@@ -58,7 +58,12 @@ Turkey has had a troubled past with its military and the military looms over the
 
 @kemalism
 go-to: menu
-set-bg: img/bigkemal.jpg
+on-arrival: {!
+if (!(Q.rubicon_mode && this.state.visits.rubicon_opening)) {
+    this.state.bg = 'img/bigkemal.jpg';
+    this.ui.setBg(this.state.bg);
+}
+!}
 new-page: true
 
 Kemalism, as the name suggests, is based on the principles laid out by the founding father of the republic, Mustafa Kemal Atatürk. Viewing itself as the antidote to the decadence of the Ottoman Empire, the ideals of Kemalism have given birth to the young Republic of Turkey

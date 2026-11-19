@@ -5,6 +5,11 @@ tags: event
 priority: 100
 new-page: true
 set-bg: img/rubicon-military-council.png
+on-arrival: {!
+if (this.ui.currentAudio) this.ui.currentAudio.pause();
+if (this.ui.audioQueue) this.ui.audioQueue.length = 0;
+this.ui.audio('clear shuffle music/memorandum-rubicon.mp3');
+!}
 
 = Memorandum Rubicon
 

@@ -10785,6 +10785,11 @@
       "priority": 100,
       "newPage": true,
       "setBg": "img/rubicon-military-council.png",
+      "onArrival": [
+        {
+          "$code": "if (this.ui.currentAudio) this.ui.currentAudio.pause();\nif (this.ui.audioQueue) this.ui.audioQueue.length = 0;\nthis.ui.audio('clear shuffle music/memorandum-rubicon.mp3');"
+        }
+      ],
       "options": [
         {
           "id": "@post_event",
@@ -14966,7 +14971,7 @@
       "isHand": true,
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.backAdvisor(this);\nif (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
+          "$code": "AnatolianCardActions.backAdvisor(this);\nif (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nif (Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved) {\n    this.state.bg = 'img/harekat2.jpg';\n} else if (Q.rubicon_mode && this.state.visits.rubicon_opening) {\n    this.state.bg = 'img/rubicon-military-council.png';\n} else {\n    this.state.bg = 'img/map_4.jpg';\n}\nthis.ui.setBg(this.state.bg);"
         }
       ],
       "maxCards": 4,
@@ -29559,7 +29564,11 @@
           "id": "library.menu"
         }
       ],
-      "setBg": "img/bigkemal.jpg",
+      "onArrival": [
+        {
+          "$code": "if (!(Q.rubicon_mode && this.state.visits.rubicon_opening)) {\n    this.state.bg = 'img/bigkemal.jpg';\n    this.ui.setBg(this.state.bg);\n}"
+        }
+      ],
       "newPage": true,
       "content": {
         "content": "Kemalism, as the name suggests, is based on the principles laid out by the founding father of the republic, Mustafa Kemal Atatürk. Viewing itself as the antidote to the decadence of the Ottoman Empire, the ideals of Kemalism have given birth to the young Republic of Turkey",
@@ -29592,7 +29601,7 @@
       "isHand": true,
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.backAdvisor(this);\nif (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nthis.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);"
+          "$code": "AnatolianCardActions.backAdvisor(this);\nif (Q.advisor_action_timer <= 0) {\n    Q.pinnedCardsDescription = 'Party Leadership - an action is available.';\n} else if (Q.advisor_action_timer == 1) {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in a month.';\n} else {\n    Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';\n}\nif (Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved) {\n    this.state.bg = 'img/harekat2.jpg';\n} else if (Q.rubicon_mode && this.state.visits.rubicon_opening) {\n    this.state.bg = 'img/rubicon-military-council.png';\n} else {\n    this.state.bg = 'img/map_4.jpg';\n}\nthis.ui.setBg(this.state.bg);"
         }
       ],
       "maxCards": 4,
@@ -41158,7 +41167,7 @@
       "id": "root.start_main",
       "onArrival": [
         {
-          "$code": "if (Q.cyprus_mode == 1) {\n    this.ui.audio('clear shuffle music/gercekkibris1.m4a music/cyprus.m4a music/cyprus1.m4a');\n} else if (Q.rubicon_mode) {\n    if (this.ui.currentAudio) this.ui.currentAudio.pause();\n    if (this.ui.audioQueue) this.ui.audioQueue.length = 0;\n    this.ui.audio('clear shuffle music/memorandum-rubicon.mp3');\n} else {\n    this.ui.audio('shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n}"
+          "$code": "if (Q.cyprus_mode == 1) {\n    this.ui.audio('clear shuffle music/gercekkibris1.m4a music/cyprus.m4a music/cyprus1.m4a');\n} else {\n    this.ui.audio('shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n}"
         }
       ],
       "newPage": true,

@@ -10,7 +10,14 @@ if (Q.advisor_action_timer <= 0) {
 } else {
     Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';
 }
-this.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);
+if (Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved) {
+    this.state.bg = 'img/harekat2.jpg';
+} else if (Q.rubicon_mode && this.state.visits.rubicon_opening) {
+    this.state.bg = 'img/rubicon-military-council.png';
+} else {
+    this.state.bg = 'img/map_4.jpg';
+}
+this.ui.setBg(this.state.bg);
 !}
 max-cards: 4
 
@@ -39,7 +46,14 @@ if (Q.advisor_action_timer <= 0) {
 } else {
     Q.pinnedCardsDescription = 'Party Leadership - next action available in ' + Q.advisor_action_timer + ' months.';
 }
-this.state.bg = Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved ? 'img/harekat2.jpg' : 'img/map_4.jpg';this.ui.setBg(this.state.bg);
+if (Q.cyprus_mode != 0 && !Q.cyprus_campaign_resolved) {
+    this.state.bg = 'img/harekat2.jpg';
+} else if (Q.rubicon_mode && this.state.visits.rubicon_opening) {
+    this.state.bg = 'img/rubicon-military-council.png';
+} else {
+    this.state.bg = 'img/map_4.jpg';
+}
+this.ui.setBg(this.state.bg);
 !}
 max-cards: 4
 
