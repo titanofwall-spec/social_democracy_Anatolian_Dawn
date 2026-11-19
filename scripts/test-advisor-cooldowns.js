@@ -4,7 +4,7 @@ const noop=()=>{},node={remove:noop,style:{setProperty:noop},appendChild:noop, i
 const output=console.log,errors=[];console.log=(...a)=>{if(String(a[0]).startsWith('Error'))errors.push(a.join(' '));};
 lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'utf8'),(err,game)=>{if(err)throw err;let count=0;
 function test(title,f){errors.length=0;f();assert.deepEqual(errors,[]);count++;output('PASS '+title);}
-function fresh(){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:1,week:1,CHP_in_government:1,economic_minister_party:'CHP',finance_minister_party:'CHP',agriculture_minister_party:'CHP',labor_minister_party:'CHP',justice_minister_party:'CHP',budget:100,cyprus_mode:0});return e;}
+function fresh(){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:1,week:1,rubicon_mode:0,CHP_in_government:1,economic_minister_party:'CHP',finance_minister_party:'CHP',agriculture_minister_party:'CHP',labor_minister_party:'CHP',justice_minister_party:'CHP',budget:100,cyprus_mode:0});return e;}
 const A=require('../out/html/card-actions.js');const originalFresh=fresh;const Qof=()=>fresh().state.qualities;const near=(a,b)=>assert(Math.abs(a-b)<1e-8,a+' != '+b);
 
 
@@ -19,7 +19,19 @@ for(const route of audit.routes)test(route.id+' browsing and cancellation are fr
  assert(!Q.advisor_pending);assert.equal(Q.advisor_action_timer,0);assert.equal(Q[timer],9);assert.equal(Q.month_actions,0);assert.equal(Q.economic_minister,minister);assert.equal(e.state.visits[route.target]||0,visits);
  }
 });
-test('Every effect-bearing advisor action commits exactly one cooldown',()=>{for(const id of audit.actions){const e=fresh(),Q=e.state.qualities;A.beginAdvisor(e,id.split('.')[0]);const first=game.scenes[id].onArrival[0];e._runActions([first]);assert.equal(Q.advisor_action_timer,3,id);assert(!Q.advisor_pending,id);A.backAdvisor(e);assert.equal(Q.advisor_action_timer,3,id);}});
+test('Every effect-bearing advisor action commits exactly one cooldown',()=>{for(const [rubiconMode,months] of [[0,3],[1,1]]) {
+ for(const id of audit.actions){
+  const e=fresh(),Q=e.state.qualities;
+  Q.rubicon_mode=rubiconMode;
+  A.beginAdvisor(e,id.split('.')[0]);
+  const first=game.scenes[id].onArrival[0];
+  e._runActions([first]);
+  assert.equal(Q.advisor_action_timer,months,id);
+  assert(!Q.advisor_pending,id);
+  A.backAdvisor(e);
+  assert.equal(Q.advisor_action_timer,months,id);
+ }
+}});
 test('Actual advisor policy effects survive returning to main',()=>{const e=fresh(),Q=e.state.qualities;Q.advisor_action_timer=0;Q.month_actions=0;Q.resources=100;const relation=Q.west_relation;e.goToScene('aksoy.internationalaffairs');e.goToScene('international_relations.fr_uk');assert.equal(Q.advisor_action_timer,3);assert.equal(Q.west_relation,relation+3);e.goToScene('main');assert.equal(Q.advisor_action_timer,3);assert.equal(Q.resources,99);});
 test('Topuz land reform is completely removed and direct advisor actions still charge',()=>{assert(!game.scenes['topuz.land']);assert(!game.scenes.topuz.options.some(o=>o.id==='topuz.land'));const e=fresh(),Q=e.state.qualities;e.goToScene('rahsan.resource');assert.equal(Q.advisor_action_timer,4);});
 console.log=output;output('PASS '+count+' advisor cooldown suites across '+audit.routes.length+' routes and '+audit.actions.length+' actions.');});
