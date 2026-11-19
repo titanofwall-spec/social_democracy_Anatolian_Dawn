@@ -10332,6 +10332,45 @@
       ],
       "countVisitsMax": 1
     },
+    "rubicon_condemned_to_rule": {
+      "id": "rubicon_condemned_to_rule",
+      "type": "scene",
+      "title": "Condemned to Rule",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===3)) && ((Q['rubicon_week'] || 0)===4));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Condemned to Rule"
+        },
+        {
+          "type": "paragraph",
+          "content": "As the dispute with the military prosecutors escalates, Muhsin Batur changes his stance. While he once supported İnönü and agreed with his view that the accusations were unjust, he now joins forces with Memduh Tağmaç, Faruk Gürler, and Celal Eyiceoğlu. All four commanders agree that they will not act against the prosecutors, and so İnönü's demands go unanswered and Erim's efforts to mediate break down. It is clear that the military has taken a firm stance and will not back down."
+        },
+        {
+          "type": "paragraph",
+          "content": "Erim becomes very frustrated. Unable to mediate between İnönü and the generals, and increasingly frustrated by his inability to exercise control over military institutions supposedly operating under his government, he submits his resignation as Prime Minister on March 27, before the martial law authorities issue their public statement. He feels that the balance between the military, political parties, and the presidency upon which he based his government is no longer sustainable. However, Cevdet Sunay does not accept his resignation, as he believes it would cause further political problems if the Prime Minister were to leave. Despite losing much faith in the arrangement that brought him to power, Erim has little choice but to continue as Prime Minister."
+        },
+        {
+          "type": "paragraph",
+          "content": "Things worsen further. On March 31, the Ankara Martial Law Command issues a public statement in response to İnönü's allegations. The military authorities state that they completely disagree with the claims made by the CHP, maintaining that the military prosecutors did nothing wrong. As İnönü has previously criticized these accusations in Parliament, he is now in direct conflict with the martial law authorities. Moreover, the very military whose political involvement he had reluctantly accepted in order to preserve parliamentary democracy appears increasingly unwilling to tolerate criticism from the man who helped found the Republic."
+        }
+      ],
+      "countVisitsMax": 1
+    },
     "rubicon_dp_motion.support": {
       "id": "rubicon_dp_motion.support",
       "subtitle": "Ecevit meets with his faction members!",
@@ -10444,6 +10483,80 @@
         {
           "type": "paragraph",
           "content": "March 13: Presidential election process begins."
+        }
+      ],
+      "countVisitsMax": 1
+    },
+    "rubicon_erim_between_inonu_and_generals": {
+      "id": "rubicon_erim_between_inonu_and_generals",
+      "type": "scene",
+      "title": "Erim Between İnönü and the Generals",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===3)) && ((Q['rubicon_week'] || 0)===3));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Stuck Between a Rock And a Hard Place, Except the Rock is Made Out Venom..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Erim Between İnönü and the Generals"
+        },
+        {
+          "type": "paragraph",
+          "content": "The investigation requested by Nihat Erim has concluded, but the results are far from what İnönü had hoped for. Ministry of National Defense, led by Ferit Melen, falls under incredible pressure from the entire military apparatus regarding the investigation, resulting in an unfair and biased report being sent to Erim who then has to publicize it. Reports claims that the military prosecutors did not exceed their authority and that the accusations were not aimed at swaying public opinion against the CHP. In response to this explanation, İnönü becomes enraged at this conclusion, unable to believe that such serious accusations could have been made against him and the CHP without righteous persecution. He again asserts that the military prosecutors must be dismissed from their posts in order to avoid setting a dangerous precedent for military interference in civilian affairs."
+        },
+        {
+          "type": "paragraph",
+          "content": "Within the top echelons of the Turkish Armed Forces, there is division. Muhsin Batur, the Air Force Commander shifts his supports to İnönü. He believes that the accusations leveled against such an important figure in the founding of the Republic were far too severe to have been made by military prosecutors. Desperate to resolve the problem, Erim approaches the generals of 12th March He reminds them of İnönü's brilliant contributions to the country, as well as his support for Parliament despite the March 12 Memorandum. He pleads with them to recognize the injustice that has been done to İnönü and encourage the military authorities to offer him an apology, in the hope that the situation may be resolved."
+        },
+        {
+          "type": "paragraph",
+          "content": "Despite Erim's attempts to resolve the issue, his efforts largely fail. Memduh Tağmaç (Chief of the General Staff), Faruk Gürler (Army Commander), and Celal Eyiceoğlu (Navy Commander) refuse to take action against the prosecutors. They state that the military judiciary acted within its authority. Though Muhsin Batur feels sympathy for İnönü, in the end, all members of the Big Four support the Ankara Martial Law Court. Therefore, Erim's demands for intervention go unheeded. In this situation, it appears increasingly difficult for Erim to satisfy İnönü without angering the very generals on whom his government depends."
+        }
+      ],
+      "countVisitsMax": 1
+    },
+    "rubicon_inonu_demands_justice": {
+      "id": "rubicon_inonu_demands_justice",
+      "type": "scene",
+      "title": "İnönü Demands Justice",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===3)) && ((Q['rubicon_week'] || 0)===2));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "The National Chief is Not Someone to Toy With!"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "İnönü Demands Justice"
+        },
+        {
+          "type": "paragraph",
+          "content": "İnönü is unwilling to let the accusations against him and the CHP go unanswered. He demands that the six military prosecutors responsible for the indictment be removed from their duties, insisting that they have exceeded their authority by making political accusations unrelated to the trial. This problem has now become so serious that both Prime Minister Nihat Erim and Chief of the General Staff Memduh Tağmaç meet with İnönü to try to find a solution. However, İnönü is not satisfied with personal apologies alone. Since the accusations were made publicly, he insists that those responsible should be properly held accountable."
+        },
+        {
+          "type": "paragraph",
+          "content": "Tağmaç insists during this meeting that since military prosecutors operate independently, there is nothing the General Staff can do to influence their decisions. Despite this, İnönü remains unconvinced. He does not believe that officials within the Turkish military should be able to make such accusations with impunity. Erim, who agrees with İnönü's assessment that the accusations are unfair, finds himself in a difficult situation. He is now between a rock and a hard place: İnönü wants certain actions to be taken, but the military is reluctant to take them. To resolve the issue legally, Erim asks the Ministries of Justice and National Defense to investigate and determine whether the prosecutors have exceeded their authority. He requests that they report their findings to him."
         }
       ],
       "countVisitsMax": 1
@@ -10777,6 +10890,59 @@
         {
           "type": "paragraph",
           "content": "Following Ürgüplü's failure to form a government, attention once again turns to President Sunay, who must find someone capable of resolving the continuing political crisis. MGP Chairman Turhan Feyzioğlu, having already been passed over in favor of Ürgüplü, eagerly anticipates that the responsibility will finally be entrusted to him. However, Sunay has other plans and instead gives the mandate to Ferit Melen, who has already been serving as acting Prime Minister since Erim's resignation. Unlike Feyzioğlu, whose repeated complaints about military interference, the weakened position of Parliament and the government's conduct have made his political intentions somewhat difficult for the military leadership to predict, Melen is a familiar and reliable figure. Having served as Defense Minister under Erim and already assumed responsibility for overseeing the outgoing government, Melen is someone whose views, intentions and political conduct are well understood by Sunay and the generals. With another failed attempt at forming a government behind them, the President and the military are unwilling to take further chances, leaving a disappointed Feyzioğlu to watch yet another opportunity slip through his fingers."
+        }
+      ],
+      "countVisitsMax": 1
+    },
+    "rubicon_military_prosecutors": {
+      "id": "rubicon_military_prosecutors",
+      "type": "scene",
+      "title": "The Military Prosecutors Turn Against the CHP",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===3)) && ((Q['rubicon_week'] || 0)===1));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "This conflict is only just beginning."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Military Prosecutors Turn Against the CHP"
+        },
+        {
+          "type": "paragraph",
+          "content": "The trial of TÖS has become politically sensitive due to the indictment prepared by six prosecutors from the Ankara Martial Law Command. Apart from allegations concerning the activities of the teachers' union, these prosecutors have included very serious accusations against the CHP and İsmet İnönü. The indictment accuses the party of having pursued misguided policies after the death of Atatürk, mismanaging the economy, interfering in the events following May 27, and failing to uphold the principles of the Republic. However, it is particularly alarming that such accusations have been made by military prosecutors who are supposed to administer justice impartially on behalf of the state."
+        },
+        {
+          "type": "paragraph",
+          "content": "Among the accusations attributed to the prosecutors are:"
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "magic",
+              "content": "<ul><li>İnönü and the Left of Center movement have deliberately attempted to legitimize communism in Turkey.</li><li>The CHP's leadership and members have engaged in widespread corruption and pursued their personal interests at the country's expense.</li><li>İnönü's administration was responsible for the economic stagnation and difficulties experienced during World War II, rather than the war itself.</li><li>İnönü deliberately divided the MBK following May 27 and interfered with its objectives for his own political benefit.</li><li>The CHP deliberately undermined Turkey's political and economic development during its coalition governments between 1961 and 1965.</li><li>The CHP has encouraged communist ideas and engaged in communist propaganda.</li><li>The CHP has sheltered members of Dev-Genç within its ranks, while Dev-Genç has allegedly carried out activities on behalf of the party.</li><li>The CHP established the Village Institutes as a means of spreading communism and political unrest throughout the country.</li></ul> "
+            },
+            ""
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": "İnönü becomes extremely furious at the accusations and considers them an attempt to besmirch him and his party. After guiding Turkey through the perils of World War II and overseeing its transition to multiparty democracy, he finds it unacceptable that military prosecutors are now portraying him as a traitor. İnönü, Atatürk's right-hand man, the man who won our first military victory in the War of Independence, our chief Prime Minister during Atatürk's presidency, the very same man who consistently placed the safety of democracy above the interests of himself and his party, just so our Republic could flourish, is now being slandered and potentially threatened by the fascist junta!"
+        },
+        {
+          "type": "paragraph",
+          "content": "İnönü claims that the accusations are entirely politically motivated and have no place in an indictment concerning the activities of a teachers' union. He questions what authority the military prosecutors believe they have to pass judgment on decades of Turkish political history. Under İnönü's leadership, the executive committees of the CHP's parliamentary groups and the Central Executive Committee issue a joint statement condemning the accusations and calling on the government to take responsibility for the actions of the military prosecutors. He makes it clear that although he holds the Turkish Armed Forces in high regard, he cannot accept these attacks on his party and the democratic institutions of Turkey..."
         }
       ],
       "countVisitsMax": 1
@@ -69246,13 +69412,17 @@
       "raiders": true,
       "rightkemalistsplit": true,
       "rubicon_ap_congress": true,
+      "rubicon_condemned_to_rule": true,
       "rubicon_election_concludes": true,
       "rubicon_election_starts": true,
+      "rubicon_erim_between_inonu_and_generals": true,
+      "rubicon_inonu_demands_justice": true,
       "rubicon_interpellation_fails": true,
       "rubicon_interpellation_passes": true,
       "rubicon_melen_acting": true,
       "rubicon_melen_cabinet": true,
       "rubicon_melen_mandate": true,
+      "rubicon_military_prosecutors": true,
       "rubicon_nazilli": true,
       "rubicon_oktem": true,
       "rubicon_opening": true,
