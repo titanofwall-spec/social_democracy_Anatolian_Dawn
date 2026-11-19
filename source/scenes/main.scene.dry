@@ -3,6 +3,7 @@ new-page: true
 is-hand: true
 on-arrival: {!
 AnatolianCardActions.backAdvisor(this);
+if (Q.rubicon_mode && Q.advisor_action_timer > 1) Q.advisor_action_timer = 1;
 if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Party Leadership - an action is available.';
 } else if (Q.advisor_action_timer == 1) {
@@ -39,6 +40,7 @@ new-page: true
 is-hand: true
 on-arrival: {!
 AnatolianCardActions.backAdvisor(this);
+if (Q.rubicon_mode && Q.advisor_action_timer > 1) Q.advisor_action_timer = 1;
 if (Q.advisor_action_timer <= 0) {
     Q.pinnedCardsDescription = 'Party Leadership - an action is available.';
 } else if (Q.advisor_action_timer == 1) {

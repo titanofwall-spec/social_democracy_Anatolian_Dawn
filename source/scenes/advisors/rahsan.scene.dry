@@ -16,7 +16,7 @@ The wife of our new party leader, Bülent Ecevit. While she isn't a politician h
 choose-if: advisor_action_timer = 0
 subtitle: She can help the party organizations with collecting dues.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 4; resources += dues; workers_chp -= 3; rural_chp -= 1; left_kemalists_dissent += 3; orthodox_kemalists_dissent += 3; right_kemalists_dissent += 3; kemalist_marxists_dissent += 3
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q, 4); !} resources += dues; workers_chp -= 3; rural_chp -= 1; left_kemalists_dissent += 3; orthodox_kemalists_dissent += 3; right_kemalists_dissent += 3; kemalist_marxists_dissent += 3
 
 We have gained +[+ dues +] resources. Many of our members are upset at the extra dues.
 

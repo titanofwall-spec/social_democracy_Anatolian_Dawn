@@ -6,7 +6,12 @@ if(typeof AnatolianDynamicDemographics!=="undefined" && Q.started) AnatolianDyna
 if (Q.rubicon_mode && (Q.year > 1973 || (Q.year === 1973 && Q.month > 4))) {
     Q.rubicon_mode = 0;
 }
-var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
+var eventMenu = this.game.scenes['post_event.events_choice'];
+var eventTurnPending = !Q.cyprus_mode && Q.domestic_event_turns > 0;
+// Resolve all events due on this date before spending their turns.
+var waitingForEvents = eventTurnPending && AnatolianCardActions.hasDomesticEvent(this, this._compileChoices(eventMenu));
+var turnAdvanced = !waitingForEvents && (Q.month_actions >= 1 || eventTurnPending)
+    && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
 Q.cyprus_calendar_advance = 0;
 if(typeof AnatolianMacro !== "undefined") AnatolianMacro.ensure(Q);
@@ -106,6 +111,7 @@ if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11
 if(Q.year>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);
 // 1. update dates
 if (turnAdvanced) {
+    if (eventTurnPending && Q.month_actions < 1) Q.domestic_event_turns -= 1;
     Q.time += 1;
     Q.month_actions = 0;
 
@@ -748,13 +754,8 @@ Q.calculate_economy_health = 0;
 // Apply economy health effects every turn for gradual changes
 Q.apply_economy_effects = 0;
 // check if there are any cards in #event, and then go to main if not.
-var scene = this.game.scenes['post_event.events_choice'];
-var choices = this._compileChoices(scene);
-if (choices && choices[0].title != "Continue...") {
-    Q.has_event = 1;
-} else {
-    Q.has_event = 0;
-}
+var choices = this._compileChoices(eventMenu);
+Q.has_event = AnatolianCardActions.hasDomesticEvent(this, choices) ? 1 : 0;
 // Cyprus stories are dispatched by their daily dates, not the domestic pool.
 if (Q.cyprus_mode) Q.has_event = 0;
 // pre-load all of the event images
@@ -776,12 +777,16 @@ if(typeof AnatolianCoalitions!=="undefined")AnatolianCoalitions.update(Q);
 // Recalculate paramilitary force effectiveness (strength × militancy) every turn
 
 !}
-go-to: cyprus_campaign_continue if cyprus_mode != 0 and cyprus_campaign_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; main if has_event = 0 and difficulty >= 0 and not cyprus_preop_resume and not cyprus_campaign_resume; main.main_easy if has_event = 0 and difficulty < 0 and not cyprus_preop_resume and not cyprus_campaign_resume; endgame_1982 if {! return Q.started===1 && Q.year>=1982 && !Q.endgame_1982_ignored && !Q.game_over && Q.coup_roll_success!==1 && !Q.cyprus_mode; !}; game_over if coup_roll_success = 1
+go-to: cyprus_campaign_continue if cyprus_mode != 0 and cyprus_campaign_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; cyprus_preop_continue if cyprus_mode != 0 and cyprus_preop_resume == 1 and calculate_economy_health != 1 and coup_roll_success != 1; economy_health_calculator if calculate_economy_health = 1; events_choice if has_event = 1; advance_event_turn if has_event = 0 and not cyprus_mode and domestic_event_turns > 0 and coup_roll_success != 1; main if has_event = 0 and (cyprus_mode or domestic_event_turns <= 0) and difficulty >= 0 and not cyprus_preop_resume and not cyprus_campaign_resume; main.main_easy if has_event = 0 and (cyprus_mode or domestic_event_turns <= 0) and difficulty < 0 and not cyprus_preop_resume and not cyprus_campaign_resume; endgame_1982 if {! return Q.started===1 && Q.year>=1982 && !Q.endgame_1982_ignored && !Q.game_over && Q.coup_roll_success!==1 && !Q.cyprus_mode; !}; game_over if coup_roll_success = 1
 
 = [? if cyprus_mode = 0 : [+ month : month +] [+ year +] ?]
 
 @events_choice
+on-arrival: {! AnatolianCardActions.install(this); !}
 
 - #event
+
+@advance_event_turn
+go-to: post_event
 
 # This scene is solely for updating numbers after events, and routing to special events.

@@ -1,0 +1,36 @@
+title: Relations With the Army
+new-page: true
+is-card: true
+tags: party_affairs
+card-image: img/tsk.jpg
+on-arrival: {! AnatolianCardActions.begin(this, 'relations_with_the_army'); !}
+
+= Relations With the Army
+
+We can speak privately with our contacts in the General Staff, or answer the accusations against us in public.
+
+- @connections: Use our connections with the General Staff to ease the worries of the army
+- @statements: Make statements against the slanders made to us
+- @decline: No, we will not do any of these
+- @navigation_return_main: Return
+
+@connections
+choose-if: resources >= 1
+subtitle: Spend 1 Resource to reduce TSK pressure by up to 2 points.
+unavailable-subtitle: Requires 1 Resource.
+on-arrival: {! AnatolianCardActions.commit(Q); Q.coup_timer = Math.max(0, Q.coup_timer - 2); !} resources -= 1; month_actions += 1
+go-to: post_event
+
+@statements
+subtitle: Reduce TSK pressure by up to 1 point at no cost.
+on-arrival: {! AnatolianCardActions.commit(Q); Q.coup_timer = Math.max(0, Q.coup_timer - 1); !} month_actions += 1
+go-to: post_event
+
+@decline
+subtitle: Discard this card and advance a turn.
+on-arrival: {! AnatolianCardActions.commit(Q); !} month_actions += 1
+go-to: post_event
+
+@navigation_return_main
+on-arrival: {! AnatolianCardActions.back(this); !}
+go-to: main.main_easy if difficulty < 0; main if difficulty >= 0

@@ -31,6 +31,6 @@ go-to: fiscal_policy
 subtitle: Baykal can help create or sustain coalitions with parties that would normally be unthinkable.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; workers_chp -= 2; state_employees_chp -= 2; MSP_relation += 5
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} workers_chp -= 2; state_employees_chp -= 2; MSP_relation += 5
 
 Erbakan and his boys are surprisingly receptive to our calls; it seems they want to break away from the fringes.

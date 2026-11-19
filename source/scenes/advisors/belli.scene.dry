@@ -19,7 +19,7 @@ subtitle: They might be in serious trouble...
 view-if: year == 1972 and month <= 3
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !}
 
 Belli reports that THKP-C militants may be planning an attack to prevent the execution of Deniz Gezmiş.
 
@@ -27,7 +27,7 @@ Belli reports that THKP-C militants may be planning an attack to prevent the exe
 view-if: year == 1972 or (year == 1973 and month <= 10)
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !}
 
 Many Socialists report undergoing horrible tortures after being arrested.
 
@@ -39,7 +39,7 @@ Many Socialists report undergoing horrible tortures after being arrested.
 view-if: (year == 1973 and month >= 10) or year == 1974
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; TIP_relation += 2
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} TIP_relation += 2
 
 With the army's pressure lessening, it seems many Socialist intellectuals are preparing to create a renewed TİP.
 

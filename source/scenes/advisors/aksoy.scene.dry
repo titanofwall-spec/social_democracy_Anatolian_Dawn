@@ -30,7 +30,7 @@ go-to: international_relations
 @europe
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; {!
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} {!
 if (Q.cyprus_problem == 0 || Q.cyprus_problem == 1 || Q.cyprus_problem == 2) {
     Q.west_relation += 5;
 }
@@ -43,7 +43,7 @@ if (Q.cyprus_problem == 0 || Q.cyprus_problem == 1 || Q.cyprus_problem == 2) {
 @AET
 choose-if: CHP_in_government = 1 and advisor_action_timer = 0
 unavailable-subtitle: CHP is not in government. [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 3; aet = 1; democracystatus += 3
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} aet = 1; democracystatus += 3
 max-visits: 1
 view-if: west_relation > 80
 

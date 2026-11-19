@@ -31,6 +31,6 @@ go-to: economic_policy
 @devrim
 choose-if: (year == 1973 and month >= 10) or year == 1974 or year == 1975 and advisor_action_timer = 0
 unavailable-subtitle: Due to the tortures he had endured during the memorandum period, Avcıoğlu is fed up with writing.
-on-arrival: advisor_action_timer = 3; ihtilal += 1; state_employees_chp += 1
+on-arrival: {! AnatolianCardActions.startAdvisorCooldown(Q); !} ihtilal += 1; state_employees_chp += 1
 
 Avcıoğlu has begun planning a new newspaper called "İhtilal", meaning revolution.
