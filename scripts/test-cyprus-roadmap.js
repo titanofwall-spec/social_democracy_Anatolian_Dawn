@@ -128,7 +128,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  test('Both embargo scenes use the supplied title and conditional economic prose',()=>{
   for(const id of ['cyprus_arms_embargo','cyprus_economic_embargo']){
    const source=fs.readFileSync(path.join(root,'source/scenes/events/'+id+'.scene.dry'),'utf8');
-   assert(source.startsWith('title: The Price Of Independence\n'),id);
+   assert(/^title: The Price Of Independence\r?\n/.test(source),id);
    assert(source.includes('= The Price Of Independence'),id);
    assert(source.includes('Then we shall learn to stand on our own feet.'),id);
    assert(source.includes('On February 5, 1975')||source.includes('on February 5, 1975'),id);
