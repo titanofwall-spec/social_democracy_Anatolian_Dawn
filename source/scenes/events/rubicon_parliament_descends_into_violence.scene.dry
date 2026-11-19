@@ -1,0 +1,12 @@
+title: Parliament Descends into Violence
+view-if: rubicon_mode and year = 1972 and month = 3 and rubicon_week = 4
+max-visits: 1
+tags: event
+priority: 100
+new-page: true
+
+= Parliament Descends into Violence
+
+Violence breaks out in Parliament. In a heated debate on March 25, İsmail Hakkı Şengüler, an AP deputy, makes an inflammatory statement, claiming that İnönü is the "root, trunk, branches, and cause" of the political violence within the country. This comment causes a furious reaction from CHP members. CHP deputies stand up from their seats and rush toward the podium. Members of the AP attempt to respond. A commotion ensues in the chamber as members from both parties begin shoving each other around the podium. Members of Parliament are forced to pull the deputies apart. CHP members quickly escort elderly İnönü out of the Assembly Hall so he will not be harmed. However, despite order finally being restored within the chamber, it is clear that the atmosphere in Ankara is extremely toxic. Even within Parliament itself, violence is spreading.
+
+- @post_event: Continue...

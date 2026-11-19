@@ -11118,6 +11118,37 @@
       ],
       "countVisitsMax": 1
     },
+    "rubicon_parliament_descends_into_violence": {
+      "id": "rubicon_parliament_descends_into_violence",
+      "type": "scene",
+      "title": "Parliament Descends into Violence",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===3)) && ((Q['rubicon_week'] || 0)===4));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "Parliament Descends into Violence"
+        },
+        {
+          "type": "paragraph",
+          "content": "Violence breaks out in Parliament. In a heated debate on March 25, İsmail Hakkı Şengüler, an AP deputy, makes an inflammatory statement, claiming that İnönü is the \"root, trunk, branches, and cause\" of the political violence within the country. This comment causes a furious reaction from CHP members. CHP deputies stand up from their seats and rush toward the podium. Members of the AP attempt to respond. A commotion ensues in the chamber as members from both parties begin shoving each other around the podium. Members of Parliament are forced to pull the deputies apart. CHP members quickly escort elderly İnönü out of the Assembly Hall so he will not be harmed. However, despite order finally being restored within the chamber, it is clear that the atmosphere in Ankara is extremely toxic. Even within Parliament itself, violence is spreading."
+        }
+      ],
+      "countVisitsMax": 1
+    },
     "rubicon_parties_law": {
       "id": "rubicon_parties_law",
       "type": "scene",
@@ -11148,6 +11179,104 @@
         }
       ],
       "countVisitsMax": 1
+    },
+    "rubicon_reprieve_ends": {
+      "id": "rubicon_reprieve_ends",
+      "type": "scene",
+      "title": "The Reprieve Comes to an End",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===4)) && ((Q['rubicon_week'] || 0)===4));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Reprieve Comes to an End"
+        },
+        {
+          "type": "paragraph",
+          "content": "Despite our victory in the Constitutional Court, the executions of Deniz Gezmiş, Yusuf Aslan and Hüseyin İnan are being discussed in parliament on the 24th of April in correct procedure. İnönü once again pleads with the deputies to reduce the sentences of the three young men to life imprisonment. He argues that capital punishment should not be given to people for political crimes. However, his arguments fell upon deaf ears. As the AP, MGP and even Satır and his allies from our party support the execution, the bill was passed with a huge majority: 273 to 48 (2 abstentions). We have not managed to do much apart from delay the executions. The bill will be sent to the Senate. With so many members of parliament so set on seeing these young men executed, it now seems very unlikely that they will be saved..."
+        }
+      ],
+      "countVisitsMax": 1
+    },
+    "rubicon_reprieve_from_the_gallows": {
+      "id": "rubicon_reprieve_from_the_gallows",
+      "type": "scene",
+      "title": "A Reprieve from the Gallows",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===4)) && ((Q['rubicon_week'] || 0)===1));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "A Reprieve from the Gallows"
+        },
+        {
+          "type": "paragraph",
+          "content": "Following Parliament's approval of the executions of Deniz Gezmiş, Yusuf Aslan, and Hüseyin İnan, İnönü and our party have refused to abandon their efforts to save the three young men. Under İnönü's leadership, the CHP has challenged the law authorizing their executions before the Constitutional Court, arguing that Parliament failed to follow the proper constitutional procedures when approving it."
+        },
+        {
+          "type": "paragraph",
+          "content": "On April 6, the Constitutional Court rules in our favor and annuls the law on procedural grounds. The decision brings considerable relief to the CHP and those who have campaigned against the executions. For the first time since the death sentences were approved, it appears that our efforts may have succeeded where our opposition in Parliament had failed."
+        },
+        {
+          "type": "paragraph",
+          "content": "However, this victory is far from decisive. The Court has not overturned the original death sentences, and the AP, alongside the other parties supporting the executions, still commands an overwhelming parliamentary majority. There is little preventing them from introducing the legislation again and securing its approval through the proper procedures. For now, we have managed to save three young men from the gallows, but whether we can prevent their eventual execution remains to be seen..."
+        }
+      ],
+      "countVisitsMax": 1
+    },
+    "rubicon_senate_approves_executions.hijacking": {
+      "id": "rubicon_senate_approves_executions.hijacking",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@rubicon_senate_approves_executions.executions",
+          "title": "A foolishly desperate attempt..."
+        }
+      ],
+      "content": [
+        {
+          "type": "paragraph",
+          "content": "However, just when everything appeared to be over for these men, on the 3rd of May, four armed revolutionaries board the Turkish Airlines passenger plane Boğaziçi, which was on a flight from Ankara to Istanbul. They force the pilot to change course and fly to Sofia, Bulgaria! They demand that Deniz Gezmiş, Yusuf Aslan, Hüseyin İnan, and three other prisoners be released immediately! Otherwise, they threaten to explode the plane and kill everyone on board!"
+        },
+        {
+          "type": "paragraph",
+          "content": "This shocking news causes a big stir in Ankara with efforts made to defuse this crisis, however, what really matters is that many innocent people are still held hostage on the plane. Perhaps most surprisingly, one of the people being held hostage is Ömer İnönü, the son of İsmet İnönü! Despite İnönü working so hard to prevent these executions, he now has his own son’s life on the line as part of the life-or-death struggle for the lives of these three youths! What seemed as a concluded affairs now appears to be a national crisis!"
+        },
+        {
+          "type": "paragraph",
+          "content": "However, the situation was resolved in a rather anti-climactic way. After pressure from the Bulgarian authorities, the four terrorists surrendered on the 4th of May after landing, and released the 61 hostages without further violence. Throughout this situation, İnönü remained extremely calm. When he discovered that his son was one of the hostages, he merely commented on it with \"Let us hope for the best,\" he also stated that under no circumstances should the government negotiate with the terrorists. He stressed that the government could not give in. Even with his son in danger, İnönü did not compromise his values. He supported the opposition to the executions, but in a legal, political manner."
+        },
+        {
+          "type": "paragraph",
+          "content": "Whilst Ömer and all other hostages returned home safely, greatly relieving the İnönüs, the 3 young saplings who İnönü had worked so hard to save were not so lucky. Now that the hijacking had been a failure, it seems that they will inevitably be executed. And fate of the militant Left in Turkey, the 68' Generation, is to be squashed..."
+        }
+      ]
     },
     "rubicon_sunay": {
       "id": "rubicon_sunay",
@@ -11189,6 +11318,41 @@
         {
           "type": "paragraph",
           "content": "However, Ecevit does not completely abandon the principles that have caused friction with the military in the first place. Whether Ecevit and Sunay changed their opinions of each other during the meeting is unclear. Neither man revealed exactly what was discussed, and so even İsmet İnönü, who is still Chairman of the CHP, has no knowledge of what passed between his former protégé and the President in private."
+        }
+      ],
+      "countVisitsMax": 1
+    },
+    "rubicon_three_death_sentences": {
+      "id": "rubicon_three_death_sentences",
+      "type": "scene",
+      "title": "The Three Death Sentences",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===3)) && ((Q['rubicon_week'] || 0)===2));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Three Death Sentences"
+        },
+        {
+          "type": "paragraph",
+          "content": "On March 10, Parliament begins debating the execution of Deniz Gezmiş, Yusuf Aslan, and Hüseyin İnan, three revolutionary students sentenced to death by the Ankara Martial Law Court. İnönü, Ecevit, and many of our fellow CHP deputies strongly oppose the executions, arguing that taking the lives of these young men will do little to resolve the political violence that has troubled Turkey. However, the debate quickly turns into another confrontation between the CHP and AP when an AP spokesman, Seyfi Öztürk, accuses the Left of Center movement of helping create the political unrest that led to the March 12 Memorandum."
+        },
+        {
+          "type": "paragraph",
+          "content": "CHP deputy Necdet Uğur responds furiously, condemning the attempt to hide behind military prosecutors in order to intimidate and discredit our party. Despite our objections, the parliamentary majority remains firmly in favor of the executions, with AP, MGP, and several CHP deputies supporting them. When the votes are finally counted, the death sentences are approved by 238 votes to 53, with six abstentions. Yet İnönü has no intention of allowing the matter to end here."
         }
       ],
       "countVisitsMax": 1
@@ -21532,6 +21696,81 @@
       ],
       "countVisitsMax": 1
     },
+    "rubicon_senate_approves_executions.executions": {
+      "id": "rubicon_senate_approves_executions.executions",
+      "newPage": true,
+      "options": [
+        {
+          "id": "@post_event",
+          "title": "Continue..."
+        }
+      ],
+      "content": [
+        {
+          "type": "paragraph",
+          "content": "On the 5th of May, the law allowing execution is published in the Official Gazette. There are no further impediments to the executions proceeding, and no information is given to the families of the men. However, the two lawyers representing them, Halit Çelenk and Mükerrem Erdoğan, are woken in the middle of the night and taken to witness the executions. Deniz Gezmiş has continually denied the validity of the military court which sentenced him to death. Previously, he had stated he would not wear the white clothing and would go to the scaffold wearing his own clothes. However, on the day of execution, it appears that Gezmiş was forced to wear the long white clothes in front of the prison guards (Çelenk). Before their death, the three saplings are given a final chance to see each other..."
+        },
+        {
+          "type": "paragraph",
+          "content": "Deniz Gezmiş is taken outside first. Before ascending the scaffold he requests that the laces of his boots be tied so that they do not come off. Having reached the scaffold, Deniz Gezmiş shouts his last words. He states that he believes in an entirely free Turkey, Marxism-Leninism, and the struggle of the Turkish and Kurdish people against imperialism. At 1.25AM Deniz Gezmiş is executed. Yusuf Aslan is executed next at 2.20AM, stating that he has died with honor in the name of the freedom and happiness of his people. Last of all, Hüseyin İnan is taken to the scaffold, at around 3AM. He states that he has fought without expecting any personal gain and entrusts the fight for which he has lived in to the Turkish people. Thus, the last sentence is completed."
+        },
+        {
+          "type": "paragraph",
+          "content": "Deniz Gezmiş was 25 years old, Yusuf Aslan was 25 years old, and Hüseyin İnan was only 23 years old. Regardless of their crimes, political beliefs and whether one agrees with their methods, three young saplings have been killed by the Republic they hoped to change. Now that the executions have taken place, we can see that there are many divisions within the country. For those in favor of the sentences being carried out, justice has been done. However, for those against it, an injustice has been carried out by the Republic herself, an injustice of which that cannot be rectified by any future governments."
+        },
+        {
+          "type": "paragraph",
+          "content": "Three Saplings were gone, with only their memories remaining with us..."
+        },
+        {
+          "type": "paragraph",
+          "content": "Dad;"
+        },
+        {
+          "type": "paragraph",
+          "content": "By the time this letter reaches you, I will be dead. I know that you will be saddened no matter how much I would tell you not to. However I want you to face this situation with fortitude. People are born, they live, and they die. What is important is not to live long, but to live meaningfully. For this reason I don't regret going away this quickly and my friends who have gone the same path before never feared death. You can be sure that I won't fear it either. Your son is not helpless or desperate in the face of death. He went through this path willingly and he knew that this would be his end. Our beliefs are different, however I think you will understand me. And not only you, I believe the entire Turkish and Kurdish peoples living in Turkey will do so too. I gave the necessary orders for my funeral to my lawyers. Also I will tell the prosecutor too. I want to be buried in Ankara alongside my friend Taylan Özgür who died in 1969. For this reason don't try to take my funeral to İstanbul. It's up to you now to comfort my mom. I am leaving my books to my little brother. Warn him especially, I want him to become a man of science. He shall work with science and should never forget, working for science is too in some way service for humanity."
+        },
+        {
+          "type": "paragraph",
+          "content": "I would like to express I have no regrets for what I did in the end, and I salute you, my mother, my older brother and younger brother with the burning passion of my revolutionary beliefs."
+        },
+        {
+          "type": "paragraph",
+          "content": "Your son Deniz Gezmiş - Central Prison"
+        }
+      ]
+    },
+    "rubicon_senate_approves_executions": {
+      "id": "rubicon_senate_approves_executions",
+      "type": "scene",
+      "title": "The Senate Approves the Executions",
+      "viewIf": {
+        "$code": "return ((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['year'] || 0)===1972)) && ((Q['month'] || 0)===5)) && ((Q['rubicon_week'] || 0)===1));"
+      },
+      "maxVisits": 1,
+      "tags": [
+        "event"
+      ],
+      "priority": 100,
+      "newPage": true,
+      "options": [
+        {
+          "id": "@rubicon_senate_approves_executions.hijacking",
+          "title": "It's over..."
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "content": "The Senate Approves the Executions"
+        },
+        {
+          "type": "paragraph",
+          "content": "The execution of Deniz Gezmiş, Yusuf Aslan and Hüseyin İnan has been approved by the Senate on May 2. Although there is still opposition from the CHP and İnönü, as the death penalties have been approved in both houses of parliament, it appears that no hope remains for saving the lives of the three saplings. Now only the President Cevdet Sunay has to approve the executions, and there appears to be little hope that he won't do so... After long debates in parliament, numerous legal cases and our desperate pleas, it seems as that there is no way to stop the executions. It appears certain that the lives of the three youths will be taken..."
+        }
+      ],
+      "countVisitsMax": 1
+    },
     "senate_election.done": {
       "id": "senate_election.done",
       "goTo": [
@@ -29121,7 +29360,7 @@
       "title": "The THKO-1 Case",
       "subtitle": "Gezmiş and his friends' fate at hand",
       "viewIf": {
-        "$code": "return ((((Q['year'] || 0) == 1972) && ((Q['month'] || 0)===5)) && ((Q['week'] || 0)===1));"
+        "$code": "return ((((!(((Q['rubicon_mode'] || 0)) !== 0)) && ((Q['year'] || 0) == 1972)) && ((Q['month'] || 0)===5)) && ((Q['week'] || 0)===1));"
       },
       "maxVisits": 1,
       "tags": [
@@ -69426,8 +69665,12 @@
       "rubicon_nazilli": true,
       "rubicon_oktem": true,
       "rubicon_opening": true,
+      "rubicon_parliament_descends_into_violence": true,
       "rubicon_parties_law": true,
+      "rubicon_reprieve_ends": true,
+      "rubicon_reprieve_from_the_gallows": true,
       "rubicon_sunay": true,
+      "rubicon_three_death_sentences": true,
       "satirannouncement": true,
       "semihsencer": true,
       "senate_president_death": true,
@@ -69447,6 +69690,7 @@
       "lokavt": true,
       "poppy_campaign": true,
       "rubicon_inonu_walkout": true,
+      "rubicon_senate_approves_executions": true,
       "senate_election": true,
       "cumhurbaskanligi1": true,
       "cyprusintro": true,

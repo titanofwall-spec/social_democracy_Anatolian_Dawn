@@ -1,0 +1,12 @@
+title: The Reprieve Comes to an End
+view-if: rubicon_mode and year = 1972 and month = 4 and rubicon_week = 4
+max-visits: 1
+tags: event
+priority: 100
+new-page: true
+
+= The Reprieve Comes to an End
+
+Despite our victory in the Constitutional Court, the executions of Deniz Gezmiş, Yusuf Aslan and Hüseyin İnan are being discussed in parliament on the 24th of April in correct procedure. İnönü once again pleads with the deputies to reduce the sentences of the three young men to life imprisonment. He argues that capital punishment should not be given to people for political crimes. However, his arguments fell upon deaf ears. As the AP, MGP and even Satır and his allies from our party support the execution, the bill was passed with a huge majority: 273 to 48 (2 abstentions). We have not managed to do much apart from delay the executions. The bill will be sent to the Senate. With so many members of parliament so set on seeing these young men executed, it now seems very unlikely that they will be saved...
+
+- @post_event: Continue...
