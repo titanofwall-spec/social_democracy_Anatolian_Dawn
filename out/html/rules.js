@@ -34,6 +34,8 @@
     };
     /** @param {GameState} Q */
     function migrateStateAliases(Q) {
+        if (Q.rubicon_mode && Q.rubicon_week > 4) Q.rubicon_week = 4;
+        if (Q.rubicon_mode && Q.rubicon_week > 4) Q.rubicon_week = 4;
         if (Q.state_aliases_version === 1) return;
         Object.keys(legacyStateAliases).forEach(function(oldKey) {
             if (!Object.prototype.hasOwnProperty.call(Q, oldKey)) return;

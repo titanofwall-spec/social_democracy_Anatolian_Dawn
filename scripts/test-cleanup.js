@@ -42,7 +42,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  assert.equal(Q.inonu_approval,45);
  assert.equal(Q.rubicon_mode,1);
  engine.goToScene('root.start_main');
- for(let i=0;i<52;i++){Q.month_actions=1;engine.goToScene('post_event');}
+ for(let i=1;i<=48;i++){
+  Q.month_actions=1;
+  engine.goToScene('post_event');
+  assert.equal(Q.rubicon_week,i%4+1);
+  assert.equal(Q.month,Math.floor(i/4)%12+1);
+ }
  assert.equal(Q.year,1973); assert.equal(Q.month,1); assert.equal(Q.rubicon_week,1);
  engine.goToScene('root.start');
  Q.rubicon_mode=0;

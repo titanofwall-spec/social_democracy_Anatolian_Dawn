@@ -38,7 +38,6 @@ Q.rubicon_week = 1;
 Q.inonu_approval = 45;
 Q.inonu_relation = 0;
 Q.rubicon_delegate_shift = 0;
-Q.rubicon_week_start = Date.UTC(1972, 0, 3);
 Q.rubicon_interpellation = 0;
 Q.rubicon_melen_join = 0;
 Q.year = 1972;
