@@ -5,19 +5,7 @@ const timerAliases={municipalities:'municipality',intrapartyinfluence:'intrapart
 const timerKey=id=>(timerAliases[id]||id)+'_timer';
 const navigation=(id,title='')=>/\.navigation_return_/.test(id)||/^Return$/i.test(String(title))||/^(root|main|easy_discard|cancel_advisor_action)$/.test(id)||/\.(root|no|none|back|return|back_to_main|decline|easy_discard|cancel_advisor_action)$/.test(id)||/^(?:Take no action|We will not take|We (?:either )?won.t|Choosing not|Do nothing|Return to|Back to)/i.test(String(title));
 function available(e,id,seen=new Set(),compile=e._cardCompile||e._compileChoices){if(seen.has(id)||navigation(id))return false;seen.add(id);const s=e.game.scenes[id];if(!s)return false;if(root.AnatolianCoalitions&&root.AnatolianCoalitions.reason(e.state.qualities,id))return false;if(id.includes('.')&&s.onArrival)return true;const children=(s.goTo||[]).filter(t=>t.id&&t.id.startsWith(id.split('.')[0]+'.')&&(!t.predicate||e._runPredicate(t.predicate)));if(children.length)return children.some(t=>available(e,t.id,new Set(seen),compile));if(s.options){const choices=compile.call(e,s)||[];return choices.some(c=>c.canChoose&&!navigation(c.id,c.title)&&available(e,c.id,new Set(seen),compile));}return !!s.onArrival;}
-function isDomesticEvent(e,id){return e.game.scenes[id]?.tags?.includes('event');}
-function hasDomesticEvent(e,choices){
- return choices.some(choice=>choice.canChoose&&isDomesticEvent(e,choice.id));
-}
-function install(e){if(e._cardCompile)return;e._cardCompile=e._compileChoices;e._compileChoices=function(s){const choices=this._cardCompile(s)||[];/* RETURN_SAFETY_HAND_PRESERVATION_V1: Never mutate currentHands while rendering or returning to an is-hand scene. A drawn hand is player state. Deck offers still use available() to block exhausted cards. */if(!s.isDeck&&s.id!=='cabinet')return choices;return choices.filter(c=>!this.game.scenes[c.id]?.isCard||this.game.scenes[c.id]?.isPinnedCard||available(this,c.id));};const changeScene=e.__changeScene;
-e.__changeScene=function(id){
- if(this.state.sceneId==='post_event.events_choice'&&isDomesticEvent(this,id)){
-  const Q=this.state.qualities;
-  Q.domestic_event_turns=(Q.domestic_event_turns||0)+1;
- }
- return changeScene.call(this,id);
-};
-const play=e.playCard;e.playCard=function(id){if(managed.includes(id)){const Q=this.state.qualities,hand=this.state.currentHands[this.state.sceneId]||[];const index=hand.findIndex(c=>c.id===id);Q.card_pending={id,origin:this.state.sceneId,card:hand[index],index,timer:Q[timerKey(id)]||0,actions:Q.month_actions||0};}return play.call(this,id);};}
+function install(e){if(e._cardCompile)return;e._cardCompile=e._compileChoices;e._compileChoices=function(s){const choices=this._cardCompile(s)||[];/* RETURN_SAFETY_HAND_PRESERVATION_V1: Never mutate currentHands while rendering or returning to an is-hand scene. A drawn hand is player state. Deck offers still use available() to block exhausted cards. */if(!s.isDeck&&s.id!=='cabinet')return choices;return choices.filter(c=>!this.game.scenes[c.id]?.isCard||this.game.scenes[c.id]?.isPinnedCard||available(this,c.id));};const play=e.playCard;e.playCard=function(id){if(managed.includes(id)){const Q=this.state.qualities,hand=this.state.currentHands[this.state.sceneId]||[];const index=hand.findIndex(c=>c.id===id);Q.card_pending={id,origin:this.state.sceneId,card:hand[index],index,timer:Q[timerKey(id)]||0,actions:Q.month_actions||0};}return play.call(this,id);};}
 function begin(e,id){install(e);const Q=e.state.qualities;if(Q.card_pending?.id!==id)Q.card_pending={id,timer:Q[timerKey(id)]||0,actions:Q.month_actions||0};}
 function back(e){const Q=e.state.qualities,p=Q.card_pending;if(!p)return;if(Q[timerKey(p.id)]!==undefined)Q[timerKey(p.id)]=p.timer;Q.month_actions=p.actions;if(p.card&&p.origin){const hand=e.state.currentHands[p.origin]||(e.state.currentHands[p.origin]=[]);if(!hand.some(c=>c.id===p.id))hand.splice(p.index??hand.length,0,p.card);}delete Q.card_pending;}
 function commit(Q){delete Q.card_pending;}
@@ -26,5 +14,5 @@ function beginAdvisor(e,id){const Q=e.state.qualities;backAdvisor(e);const keys=
 function backAdvisor(e){const Q=e.state.qualities,p=Q.advisor_pending;if(!p)return false;for(const [key,saved]of Object.entries(p.values)){if(saved.exists)Q[key]=saved.value;else delete Q[key];}e.state.visits[p.id]=p.visits;delete Q.advisor_pending;if(Q.card_pending?.id===p.id)delete Q.card_pending;return true;}
 function startAdvisorCooldown(Q,months=3){Q.advisor_action_timer=Q.rubicon_mode?1:months;}
 function commitAdvisor(Q){if(!Q.advisor_pending)return;startAdvisorCooldown(Q);delete Q.advisor_pending;}
-const api={hasDomesticEvent,startAdvisorCooldown,beginAdvisor,backAdvisor,commitAdvisor,install,available,begin,back,commit,timerKey};root.AnatolianCardActions=api;if(typeof module!=='undefined')module.exports=api;
+const api={startAdvisorCooldown,beginAdvisor,backAdvisor,commitAdvisor,install,available,begin,back,commit,timerKey};root.AnatolianCardActions=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);

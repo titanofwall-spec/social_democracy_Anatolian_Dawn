@@ -34,7 +34,6 @@ Q.started = 1;
 // time elapsed (in half-months/bi-weekly periods)
 Q.time = 1;
 Q.rubicon_mode = 1;
-Q.domestic_event_turns = 0;
 Q.rubicon_week = 1;
 Q.inonu_approval = 45;
 Q.inonu_relation = 0;
