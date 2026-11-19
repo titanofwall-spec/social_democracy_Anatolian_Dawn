@@ -32,6 +32,16 @@ test('Every effect-bearing advisor action commits exactly one cooldown',()=>{for
   assert.equal(Q.advisor_action_timer,months,id);
  }
 }});
+test('Talu cabinet formation restores normal advisor cooldown at the event, not the date',()=>{
+ const e=fresh(),Q=e.state.qualities;
+ Object.assign(Q,{year:1973,month:4,rubicon_week:2,rubicon_mode:1,prime_minister:'Ferit Melen',advisor_action_timer:0});
+ A.startAdvisorCooldown(Q);assert.equal(Q.advisor_action_timer,1);
+ Q.advisor_action_timer=0;
+ e.goToScene('naimtalu.vote');
+ assert.equal(Q.prime_minister,'Naim Talu');
+ assert.equal(Q.rubicon_mode,0);
+ A.startAdvisorCooldown(Q);assert.equal(Q.advisor_action_timer,3);
+});
 test('Actual advisor policy effects survive returning to main',()=>{const e=fresh(),Q=e.state.qualities;Q.advisor_action_timer=0;Q.month_actions=0;Q.resources=100;const relation=Q.west_relation;e.goToScene('aksoy.internationalaffairs');e.goToScene('international_relations.fr_uk');assert.equal(Q.advisor_action_timer,3);assert.equal(Q.west_relation,relation+3);e.goToScene('main');assert.equal(Q.advisor_action_timer,3);assert.equal(Q.resources,99);});
 test('Topuz land reform is completely removed and direct advisor actions still charge',()=>{assert(!game.scenes['topuz.land']);assert(!game.scenes.topuz.options.some(o=>o.id==='topuz.land'));const e=fresh(),Q=e.state.qualities;e.goToScene('rahsan.resource');assert.equal(Q.advisor_action_timer,4);});
 console.log=output;output('PASS '+count+' advisor cooldown suites across '+audit.routes.length+' routes and '+audit.actions.length+' actions.');});

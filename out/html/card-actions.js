@@ -12,7 +12,7 @@ function commit(Q){delete Q.card_pending;}
 // Advisor menus are provisional until an actual action is chosen.
 function beginAdvisor(e,id){const Q=e.state.qualities;backAdvisor(e);const keys=['advisor_action_timer','last_advisor_action','month_actions','economic_minister','economic_minister_party',timerKey(id)];const values={};for(const key of keys)values[key]={exists:Object.prototype.hasOwnProperty.call(Q,key),value:Q[key]};Q.advisor_pending={id,values,visits:e.state.visits[id]||0};}
 function backAdvisor(e){const Q=e.state.qualities,p=Q.advisor_pending;if(!p)return false;for(const [key,saved]of Object.entries(p.values)){if(saved.exists)Q[key]=saved.value;else delete Q[key];}e.state.visits[p.id]=p.visits;delete Q.advisor_pending;if(Q.card_pending?.id===p.id)delete Q.card_pending;return true;}
-function startAdvisorCooldown(Q,months=3){Q.advisor_action_timer=(Q.rubicon_mode && (Q.year<1973 || (Q.year===1973 && (Q.month<4 || (Q.month===4 && (Q.rubicon_week||1)<3)))))?1:months;Q.month_actions=Math.max(1,Q.month_actions||0);}
+function startAdvisorCooldown(Q,months=3){Q.advisor_action_timer=Q.rubicon_mode?1:months;Q.month_actions=Math.max(1,Q.month_actions||0);}
 function commitAdvisor(Q){if(!Q.advisor_pending)return;startAdvisorCooldown(Q);delete Q.advisor_pending;}
 const api={startAdvisorCooldown,beginAdvisor,backAdvisor,commitAdvisor,install,available,begin,back,commit,timerKey};root.AnatolianCardActions=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
