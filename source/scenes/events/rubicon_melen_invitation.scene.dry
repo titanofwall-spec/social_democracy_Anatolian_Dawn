@@ -11,18 +11,18 @@ Ecevit emphasizes the importance of restoring normal parliamentary democracy and
 
 Joining Melen's government would finally allow us to resume rallies and campaigning, although the gains would remain limited due to military supervision, and many of our supporters would undoubtedly be disappointed to see the CHP participating in another military-backed administration. Refusing would spare us this loss of popularity, but leave our political activities restricted for as long as the government remains in power. More importantly, such a decision would deeply anger İnönü, who, despite no longer serving as Chairman, remains an enormously influential figure within the party and believes that participating in these governments is necessary to preserve parliamentary democracy against the threat of an outright military takeover. Whether İnönü remains within the CHP is still of tremendous importance to our future, and another confrontation with him could have consequences far beyond this government crisis.
 
-- @join: Ecevit Sways the Party to Join the Government
-- @refuse: Ecevit Sways the Party to Vote Against Joining the Government
+- @join: We should join Melen's government.
+- @refuse: We should remain in opposition.
 
 @join
-on-arrival: rubicon_melen_join = 1
+on-arrival: rubicon_melen_join = 1; inonu_relation += 5; {! Q.inonu_approval = Math.min(100, Q.inonu_approval + 5); !}
 
 The CHP parliamentary groups have voted in favor of joining Melen's government, securing the ministries of Labor, Energy, Health and Public Works. With our party now participating in the government, we are finally permitted to resume rallies and political campaigning, although considerable restrictions remain in place, limiting their effectiveness. However, the decision has provoked widespread unrest among our grassroots supporters, many of whom feel betrayed by Ecevit's decision to join a military-backed government after spending more than a year opposing the March 12 Memorandum.
 
 - @post_event: Continue...
 
 @refuse
-on-arrival: rubicon_melen_join = 0
+on-arrival: rubicon_melen_join = 0; inonu_relation -= 10; {! Q.inonu_approval = Math.max(0, Q.inonu_approval - 10); !}
 
 The CHP parliamentary groups have voted against joining Melen's government, maintaining our opposition to military-backed administrations. Although this decision has been welcomed by our grassroots supporters, we remain unable to organize rallies or conduct political campaigns while the restrictions imposed under the memorandum continue. More importantly, the decision has infuriated İnönü, who believes Ecevit is once again placing his political principles above the preservation of parliamentary democracy. With relations between the two men deteriorating further, İnönü's continued presence within the CHP has become increasingly uncertain.
 

@@ -8,31 +8,31 @@ new-page: true
 
 = İnönü Walks Out of the Party Assembly
 
-While CHP was never under a dicta of İnönü through his leadership, with him even suffering defeats -like in the 1950 congress- and there even being calls for his resignation in 1965, the authority within the Republican People's Party has long revolved around him with his service during his leadership through Second World War, transition to democracy, struggles against coup attempts and many other political problems since taking over from Atatürk.
+Although the CHP has never been a dictatorship under İnönü, its political life has long revolved around his authority. He has suffered defeats, including at the 1950 congress, and faced calls for his resignation as recently as 1965. Yet his leadership through the Second World War, Turkey's transition to multiparty democracy, and repeated threats to parliamentary government has given him a standing that few others could claim.
 
-However, despite it all, it is becoming increasingly clear that the Second Man of the Republic, the man that saved our democracy in both the 60s and now by managing to keep the parliament from being shut down by the 12th March, can no longer expect unconditional support from the party, and this couldn't be any more apparent then at the CHP Party Assembly in Ankara.
+That standing, however, no longer guarantees unconditional support. İnönü believes that his accommodation of the governments formed after March 12 has helped preserve Parliament against an outright military takeover. Ecevit and the Left of the Center movement see such cooperation as giving legitimacy to military interference in civilian politics. These competing interpretations of the party's Kemalist duty have now come to a head at the CHP Party Assembly in Ankara.
 
-A special congress was called in order in response to the growing strength of the Left of Centre movement, led by Bülent Ecevit. However, confusion arose regarding who should be invited to the congress.
+A special congress was called in response to the growing strength of the Left of the Center movement, led by Bülent Ecevit. However, confusion arose regarding who should be invited to the congress.
 
-İnönü wished for only party delegates from the previous congress to attend. On the other hand, Ecevit’s supporters wanted all newly elected delegates (many of which were sympathetic to the reformist movement) to attend. It became clear that this debate was not purely procedural, but was actually a fight for control of the party. And İnönü, having grown accustomed to be the primary heavy weight of the party, would not so easily cave in as a clash of influence between the 2 factions would emerge.
+İnönü wished for only party delegates from the previous congress to attend. Ecevit's supporters wanted the newly elected delegates, many of whom were sympathetic to the Left of the Center movement, to attend as well. It became clear that this debate was not purely procedural, but a struggle over who could speak for the party. İnönü, long accustomed to being the CHP's most influential figure, was not prepared to concede the question so easily.
 
-Although İnönü agreed that the special congress should be held, he announced that it would be held in Ankara on the 5th of May. However, reformists within the party wished for the Party Assembly to consider this issue and decide what should be discussed in the special congress. İnönü however, believed that the issue had already been decided. Arguments rose in Ankara, and eventually, unwilling to continue the debate any further, İnönü concluded the meeting at his own will and left with his supporters.
+Although İnönü agreed that the special congress should be held, he announced that it would take place in Ankara on May 5. Members of the Left of the Center movement wanted the Party Assembly to consider the matter and decide what should be discussed at the congress. İnönü, however, believed that the question had already been settled. Arguments erupted in Ankara, and eventually, unwilling to continue the debate, İnönü brought the meeting to an end and walked out with his supporters.
 
-Currently, İnönü remains the leader and no substantial changes had occured. What can be seen clearly from this confrontation however is just how split the party is. With the question of whenever we decide to continue this meeting without him or end it ourselves becoming our primary point of discussion.
+İnönü remains the party leader, and no formal decision has yet been overturned, but his departure has exposed how deeply the CHP is divided. The immediate question is whether the Party Assembly should adjourn in deference to its chairman or continue its work without him.
 
-The man who helped create a multi-party democracy in Turkey now has his authority called into question by internal party members. And in this situation, perhaps leaving the room will no longer be enough...
+The man who helped establish multiparty democracy in Turkey now finds his own authority challenged in the name of representative government. And in this situation, perhaps leaving the room will no longer be enough...
 
-Nevertheless, we must now make a decision; do we decide to accept İnönü's decree and end the meeting now, or insist in our decision and continue onward as CHP is a party of parliamentary structure, and its actions cannot be determined against its delegates. Which action we will take will either weaken or strengthen our delegate support at the cost or gain of İnönü's favor, and dissent of either political aisle of our party.
+We must decide whether to accept İnönü's ruling or insist that the Party Assembly has the right to deliberate independently. Continuing the meeting would strengthen our position among delegates who want the party's decisions made by elected representatives, but it would further strain relations with İnönü and his supporters. Ending the meeting would avoid that confrontation, though at the cost of yielding ground in the struggle over the coming congress.
 
 - @continue_assembly: The party belongs to its members, not its chairman!
 - @end_assembly: Though we disagree, this is not a hill worth dying on.
 
 @continue_assembly
-on-arrival: rubicon_delegate_shift = 1; inonu_relation -= 5; orthodox_kemalists_dissent += 1; right_kemalists_dissent += 1
+on-arrival: rubicon_delegate_shift = 1; inonu_relation -= 5; {! Q.inonu_approval = Math.max(0, Q.inonu_approval - 5); !} orthodox_kemalists_dissent += 1; right_kemalists_dissent += 1
 
 - @rubicon_inonu_preparations: Continue...
 
 @end_assembly
-on-arrival: rubicon_delegate_shift = -1; inonu_relation += 5; left_kemalists_dissent += 1; kemalist_marxists_dissent += 1
+on-arrival: rubicon_delegate_shift = -1; inonu_relation += 5; {! Q.inonu_approval = Math.min(100, Q.inonu_approval + 5); !} left_kemalists_dissent += 1; kemalist_marxists_dissent += 1
 
 - @rubicon_inonu_preparations: Continue...
