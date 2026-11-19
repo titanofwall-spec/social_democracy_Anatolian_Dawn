@@ -19,10 +19,10 @@ for(const route of audit.routes)test(route.id+' browsing and cancellation are fr
  assert(!Q.advisor_pending);assert.equal(Q.advisor_action_timer,0);assert.equal(Q[timer],9);assert.equal(Q.month_actions,0);assert.equal(Q.economic_minister,minister);assert.equal(e.state.visits[route.target]||0,visits);
  }
 });
-test('Every effect-bearing advisor action commits exactly one cooldown',()=>{for(const [rubiconMode,months] of [[0,3],[1,1]]) {
+test('Every effect-bearing advisor action commits exactly one cooldown',()=>{for(const [rubiconMode,leader,months] of [[0,'İnönü',3],[1,'İnönü',1],[1,'Ecevit',3],[0,'Ecevit',3]]) {
  for(const id of audit.actions){
   const e=fresh(),Q=e.state.qualities;
-  Q.rubicon_mode=rubiconMode;
+  Q.rubicon_mode=rubiconMode; Q.CHP_party_leader=leader;
   A.beginAdvisor(e,id.split('.')[0]);
   const first=game.scenes[id].onArrival[0];
   e._runActions([first]);
@@ -32,15 +32,18 @@ test('Every effect-bearing advisor action commits exactly one cooldown',()=>{for
   assert.equal(Q.advisor_action_timer,months,id);
  }
 }});
-test('Talu cabinet formation restores normal advisor cooldown at the event, not the date',()=>{
+test('Ecevit becoming CHP leader restores advisor cooldown immediately',()=>{
  const e=fresh(),Q=e.state.qualities;
- Object.assign(Q,{year:1973,month:4,rubicon_week:2,rubicon_mode:1,prime_minister:'Ferit Melen',advisor_action_timer:0});
- A.startAdvisorCooldown(Q);assert.equal(Q.advisor_action_timer,1);
+ Object.assign(Q,{year:1972,month:5,rubicon_week:1,rubicon_mode:1,CHP_party_leader:'İnönü',advisor_action_timer:0});
+ A.startAdvisorCooldown(Q);assert.equal(Q.advisor_action_timer,1,'pre-leadership Rubicon cooldown');
+ // The actual congress event is the trigger; calendar and Rubicon mode remain unchanged.
+ e.goToScene('chp_fifth_congress.inonu_resigns');
+ assert.equal(Q.CHP_party_leader,'Ecevit');
+ assert.equal(Q.rubicon_mode,1,'Memorandum Rubicon is still active');
+ assert.equal(Q.advisor_action_timer,1,'do not rewrite an existing cooldown');
  Q.advisor_action_timer=0;
- e.goToScene('naimtalu.vote');
- assert.equal(Q.prime_minister,'Naim Talu');
- assert.equal(Q.rubicon_mode,0);
- A.startAdvisorCooldown(Q);assert.equal(Q.advisor_action_timer,3);
+ A.startAdvisorCooldown(Q);assert.equal(Q.advisor_action_timer,3,'new advisor action after Ecevit victory');
+ A.startAdvisorCooldown(Q,4);assert.equal(Q.advisor_action_timer,4,'preserve actions with custom cooldown lengths');
 });
 test('Actual advisor policy effects survive returning to main',()=>{const e=fresh(),Q=e.state.qualities;Q.advisor_action_timer=0;Q.month_actions=0;Q.resources=100;const relation=Q.west_relation;e.goToScene('aksoy.internationalaffairs');e.goToScene('international_relations.fr_uk');assert.equal(Q.advisor_action_timer,3);assert.equal(Q.west_relation,relation+3);e.goToScene('main');assert.equal(Q.advisor_action_timer,3);assert.equal(Q.resources,99);});
 test('Topuz land reform is completely removed and direct advisor actions still charge',()=>{assert(!game.scenes['topuz.land']);assert(!game.scenes.topuz.options.some(o=>o.id==='topuz.land'));const e=fresh(),Q=e.state.qualities;e.goToScene('rahsan.resource');assert.equal(Q.advisor_action_timer,4);});
