@@ -17,4 +17,5 @@ Largely a continuation of the MGP in terms of its organization and Nationalist/C
 - @cgp: Damocles's sword finally falls.
 
 @cgp
+go-to: root
 on-arrival: state_employees_chp -= 4; state_employees_CGP += 4; petty_bourgeoisie_chp -= 2; petty_bourgeoisie_CGP += 2; other_seats -= 32; CGP_seats += 32

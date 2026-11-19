@@ -14,4 +14,5 @@ His replacement, General Semih Sancar is a well-known figure within the military
 - @sencer: The shadow of the army lingers over the nation.
 
 @sencer
+go-to: root
 on-arrival: {! Q.generalstaff = "Semih Sancar" !}

@@ -15,6 +15,7 @@ Naim Talu has announced the intention of his government to be purely leading the
 - @vote: The Naim Talu cabinet is approved in the parliament.
 
 @vote
+go-to: root
 on-arrival: {!
   AnatolianRules.resetCabinet(Q);
   Q.AP_in_government = 1;

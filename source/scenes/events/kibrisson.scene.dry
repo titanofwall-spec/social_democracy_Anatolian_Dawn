@@ -12,5 +12,6 @@ Hello! You have stumbled upon the game while I am still working on the Cyprus mi
 - @root: Continue
 
 @root
+go-to: .root
 title: Continue
 on-arrival: cyprus_mode = 0

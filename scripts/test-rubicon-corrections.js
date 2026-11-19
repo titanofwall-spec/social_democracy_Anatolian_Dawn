@@ -38,7 +38,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'u
   approval('rubicon_inonu_walkout.end_assembly',5);
   approval('rubicon_inonu_preparations.object',-5);
   approval('rubicon_interpellation_passes',-8);
-  approval('rubicon_interpellation_fails',-4);
+  approval('rubicon_interpellation_fails',-5);
+  approval('rubicon_dp_motion.fail',-5);
   approval('rubicon_melen_invitation.join',5);
   approval('rubicon_melen_invitation.refuse',-10);
   {
@@ -62,7 +63,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'u
   }
   {
     const e=fresh(),Q=e.state.qualities;
-    Q.resources=1;
+    Q.resources=0;
     const choice=e._compileChoices(game.scenes.relations_with_the_army).find(c=>c.id==='relations_with_the_army.connections');
     assert(choice && !choice.canChoose && /resources/i.test(choice.subtitle));
     const before=Q.coup_timer,workers=Q.workers_chp,dissent=Q.left_kemalists_dissent;
@@ -76,7 +77,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'u
     Q.resources=5;Q.coup_timer=10;
     const resources=Q.resources,dissent=Q.left_kemalists_dissent;
     e._runActions(game.scenes['relations_with_the_army.connections'].onArrival);
-    assert.equal(Q.resources,resources-2,'private concessions must cost two resources');
+    assert.equal(Q.resources,resources-1,'private concessions must cost one resource');
     assert(Q.left_kemalists_dissent>dissent,'private talks must also have a factional cost');
   }
   {
@@ -90,7 +91,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'u
     const mandate=fs.readFileSync(path.join(__dirname,'../source/scenes/events/rubicon_melen_mandate.scene.dry'),'utf8');
     assert(mandate.includes('Melen invites the CHP into his government'));
     const dp=fs.readFileSync(path.join(__dirname,'../source/scenes/events/rubicon_dp_motion.scene.dry'),'utf8');
-    assert(dp.includes('Both the MGP and the AP parliamentary factions have been convinced'));
+    assert(dp.includes('Both the **MGP** and the **AP** parliamentary factions have been convinced'));
   }
   console.log('PASS Rubicon branches, displayed approval, army trade-offs, congress cards, Nazilli progression, tooltips, and copy.');
 });

@@ -13,5 +13,6 @@ DEV-YOL formed
 - @devyol: Uyan artık uykundan uyan!
 
 @devyol
+go-to: root
 on-arrival: devyol_formed = 1
 

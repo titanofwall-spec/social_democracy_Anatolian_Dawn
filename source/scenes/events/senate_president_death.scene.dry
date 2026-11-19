@@ -9,4 +9,5 @@ Placeholder
 - @acknowledge: Continue
 
 @acknowledge
+go-to: root
 on-arrival: {! AnatolianSenate.acknowledgeDeath(Q); !}

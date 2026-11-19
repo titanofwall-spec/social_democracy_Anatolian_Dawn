@@ -30,4 +30,5 @@ For this reason, in 1969 Demirel, sensing the threat of an insurgent anti-monopo
 - @root: Out of the shadows.
 
 @root
+go-to: .root
 on-arrival:  MSP_party_leader = "Erbakan"

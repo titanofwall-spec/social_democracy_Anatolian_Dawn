@@ -11,43 +11,46 @@ Erim has become increasingly frustrated by his failure to put the necessary chan
 
 Believing that the parliamentary system is no longer allowing him to pursue his ambitions, Erim has made new demands to President Cevdet Sunay. These include granting extraordinary powers to his government, allowing it to issue decrees with the force of law, and an agreement between the political parties to temporarily suspend political competition. Erim hopes that with these powers, he will be able to enact government policies more freely. However, granting extraordinary powers to a government so reliant on the military is far from reassuring for Turkish democracy.
 
-There has been much controversy surrounding these demands. In particular, the reaction from the DP has been strong. Founded in 1970 by conservative deputies who broke with Demirel's AP, and led by Ferruh Bozbeyli, the DP draws upon the parliamentary and populist traditions of the earlier Democratic Party. Its leaders are especially determined to defend the authority of elected representatives against governments imposed from above. Since the March 12 Memorandum, the DP has taken a firm stance against participating in military-backed governments, regarding Erim's supposedly nonpartisan cabinet as a threat to Parliament's ability to hold the executive accountable. The DP has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy.
+There has been much controversy surrounding these demands. In particular, the reaction from the **DP** has been strong. Founded in 1970 by conservative deputies who broke with Demirel's **AP**, and led by Ferruh Bozbeyli, the **DP** draws upon the parliamentary and populist traditions of the earlier Democratic Party. Its leaders are especially determined to defend the authority of elected representatives against governments imposed from above. Since the March 12 Memorandum, the **DP** has taken a firm stance against participating in military-backed governments, regarding Erim's supposedly nonpartisan cabinet as a threat to Parliament's ability to hold the executive accountable. The **DP** has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy.
 
-However, the motion cannot pass on the votes of DP deputies alone, and the other parties are reluctant to commit themselves. Erim has already submitted his resignation, and many in Parliament believe his government is nearing its end. Yet Sunay and the military have rejected Erim's offers to resign before, and they may well do so again. With the government already on its last legs, deputies are wary of provoking the generals through a parliamentary confrontation they consider unnecessary.
+However, the motion cannot pass on the votes of **DP** deputies alone, and the other parties are reluctant to commit themselves. Erim has already submitted his resignation, and many in Parliament believe his government is nearing its end. Yet Sunay and the military have rejected Erim's offers to resign before, and they may well do so again. With the government already on its last legs, deputies are wary of provoking the generals through a parliamentary confrontation they consider unnecessary.
 
-Within our Left of the Center movement, however, there is an unusual possibility. The DP's parliamentary initiative offers us a means of challenging the military-backed government through the very institutions the generals claim to preserve. Supporting the motion may not achieve much, seeing as Erim's government is already beginning to crumble, but it may hasten the inevitable and reaffirm Parliament's authority. It also risks further conflict with the generals and disagreement with İnönü over the best way to defend parliamentary democracy.
+Within our Left of the Center movement, however, there is an unusual possibility. The **DP**'s parliamentary initiative offers us a means of challenging the military-backed government through the very institutions the generals claim to preserve. Supporting the motion may not achieve much, seeing as Erim's government is already beginning to crumble, but it may hasten the inevitable and reaffirm Parliament's authority. It also risks further conflict with the generals and disagreement with İnönü over the best way to defend parliamentary democracy.
 
-After refusing to recognize the memorandum governments as legitimate expressions of democracy over the past year, Ecevit must now consider whether to sit on the sidelines of this conflict in Parliament or depart from the party leadership's approach by supporting the DP's attempt to topple Erim.
+After refusing to recognize the memorandum governments as legitimate expressions of democracy over the past year, Ecevit must now consider whether to sit on the sidelines of this conflict in Parliament or depart from the party leadership's approach by supporting the **DP**'s attempt to topple Erim.
 
-\
-
-- @support: We should support the DP! We cannot let the generals run the country through Parliament! Ecevit meets with his faction members!
-- @abstain: Erim is clearly on his way out, and Ecevit should not risk conflict with the military, and his own party.
+- @support: We should support the **DP**! We cannot let the generals run the country through Parliament!
+- @abstain: Erim is clearly on his way out.
 
 @support
+subtitle: Ecevit meets with his faction members!
 
-Ecevit gathers the members of the Left of the Center movement and declares his decision to support the motion. His colleagues see an opportunity to pressure the military regime through Parliament itself. With our support secured, Ecevit approaches the chairmen of the MGP and AP parliamentary groups in search of the votes necessary to pass it.
+Ecevit gathers the members of the Left of the Center movement and declares his decision to support the motion. His colleagues see an opportunity to pressure the military regime through Parliament itself. With our support secured, Ecevit approaches the chairmen of the **MGP** and **AP** parliamentary groups in search of the votes necessary to pass it.
 
-- @negotiate: We secure the support of the AP and MGP parliamentary groups (2 Resources).
-- @fail: We fail to convince the AP parliamentary group.
+- @negotiate: We secure the support of the **AP** and **MGP** parliamentary groups (2 Resources).
+- @fail: We fail to convince the **AP** parliamentary group.
 
 @negotiate
 choose-if: resources >= 2
 on-arrival: resources -= 2; rubicon_interpellation = 1
 
-Both the MGP and the AP parliamentary factions have been convinced to support the DP's interpellation. Persuading the MGP was relatively easy, as the party had already been considering support for the motion. The AP parliamentary group, however, required lengthy negotiations, political favors, and some well-placed 'gifts'. With both groups now prepared to back the interpellation, the Left of the Center movement has managed to form an unlikely parliamentary coalition against Erim's military-backed government. More importantly, our actions have weakened the authority of AP Chairman Süleyman Demirel over the deputies elected in 1969.
+Both the **MGP** and the **AP** parliamentary factions have been convinced to support the **DP**'s interpellation. Persuading the **MGP** was relatively easy, as the party had already been considering support for the motion. The **AP** parliamentary group, however, required lengthy negotiations, political favors, and some well-placed 'gifts'.
+
+With both groups now prepared to back the interpellation, the Left of the Center movement has managed to form an unlikely parliamentary coalition against Erim's military-backed government. More importantly, our actions have weakened the authority of **AP** Chairman Süleyman Demirel over the deputies elected in 1969.
 
 - @post_event: Continue...
 
 @fail
-on-arrival: rubicon_interpellation = 2
+on-arrival: {! Q.rubicon_interpellation = 3; Q.inonu_relation -= 5; Q.inonu_approval = Math.max(0, Q.inonu_approval - 5); !}
 
+Despite managing to gain MGP to our side for the interpellation, we fail to convince the leadership of AP party group to go against Demirel's authority, therefore DP's motion lacks enough votes to pass and fails. While it is still obvious that Erim's time is very short, we've only succeeded in annoying the Military and making İnönü very angry, who is getting madder and madder at Ecevit and begins to truly sees him as a troublemaker delinquent.
 
 - @post_event: Continue...
 
 @abstain
+subtitle: Ecevit should not risk conflict with the military, and his own party...
 
-However, Ecevit has decided not to back the DP's motion as he feels little can be gained by antagonizing the military. As the DP motion did not receive a large enough majority in parliament, Erim remains in office for now.
+However, Ecevit has decided not to back the **DP**'s motion as he feels little can be gained by antagonizing the military. As the **DP** motion did not receive a large enough majority in parliament, Erim remains in office for now.
 
 - @post_event: Continue...
 

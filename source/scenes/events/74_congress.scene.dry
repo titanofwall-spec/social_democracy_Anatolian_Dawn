@@ -13,4 +13,5 @@ test
 - @tw: test2
 
 @tw
+go-to: root
 on-arrival: third_worldists_enabled = 1

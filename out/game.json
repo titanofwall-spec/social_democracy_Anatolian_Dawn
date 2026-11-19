@@ -1968,6 +1968,11 @@
     },
     "erbakan.root": {
       "id": "erbakan.root",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['MSP_party_leader'] = \"Erbakan\";"
@@ -2032,6 +2037,11 @@
     },
     "74_congress.tw": {
       "id": "74_congress.tw",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['third_worldists_enabled'] = 1;"
@@ -2111,6 +2121,11 @@
     },
     "anatoliandawn.yenibirturkiye": {
       "id": "anatoliandawn.yenibirturkiye",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -2368,6 +2383,11 @@
     },
     "cgpformation.cgp": {
       "id": "cgpformation.cgp",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['state_employees_chp'] = (Q['state_employees_chp'] || 0) - 4;\nQ['state_employees_CGP'] = (Q['state_employees_CGP'] || 0) + 4;\nQ['petty_bourgeoisie_chp'] = (Q['petty_bourgeoisie_chp'] || 0) - 2;\nQ['petty_bourgeoisie_CGP'] = (Q['petty_bourgeoisie_CGP'] || 0) + 2;\nQ['other_seats'] = (Q['other_seats'] || 0) - 32;\nQ['CGP_seats'] = (Q['CGP_seats'] || 0) + 32;"
@@ -2544,6 +2564,11 @@
     },
     "coup.root": {
       "id": "coup.root",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -6980,6 +7005,11 @@
     },
     "devletguvenlikmahkmesei.worry": {
       "id": "devletguvenlikmahkmesei.worry",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -7011,6 +7041,11 @@
     },
     "devyol_formation.devyol": {
       "id": "devyol_formation.devyol",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['devyol_formed'] = 1;"
@@ -7183,6 +7218,11 @@
     },
     "farukgurlerr.gurler": {
       "id": "farukgurlerr.gurler",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q.generalstaff = \"Faruk Gürler\""
@@ -7291,6 +7331,11 @@
     },
     "guzelistanbulrightko.yes": {
       "id": "guzelistanbulrightko.yes",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['AP_relation'] = (Q['AP_relation'] || 0) - 4;"
@@ -7483,6 +7528,11 @@
     },
     "karaoglan.karaoglann": {
       "id": "karaoglan.karaoglann",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -7622,6 +7672,11 @@
     },
     "kibrisson.root": {
       "id": "kibrisson.root",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "title": "Continue",
       "onArrival": [
         {
@@ -7784,6 +7839,11 @@
     },
     "kizildere.dust": {
       "id": "kizildere.dust",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['thkpc_destroyed'] = 1;\nQ['thkpc_strength'] = 0;\nQ['thkpc_militancy'] = 0;"
@@ -7800,7 +7860,7 @@
       "title": "The Battle of Kızıldere",
       "subtitle": "THKP-C makes their move.",
       "viewIf": {
-        "$code": "return ((((Q['year'] || 0) == 1972) && ((Q['month'] || 0)===4)) && ((Q['week'] || 0)===1));"
+        "$code": "return ((((Q['year'] || 0) == 1972) && ((Q['month'] || 0)===3)) && (((((((Q['rubicon_mode'] || 0)) !== 0) && ((Q['rubicon_week'] || 0)===3))) || (((!(((Q['rubicon_mode'] || 0)) !== 0)) && ((Q['week'] || 0)===2))))));"
       },
       "maxVisits": 1,
       "tags": [
@@ -7844,6 +7904,11 @@
     },
     "kurdish_independents_unlock.acknowledge": {
       "id": "kurdish_independents_unlock.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -7881,6 +7946,11 @@
     },
     "kurdish_org_founding_1965.acknowledge": {
       "id": "kurdish_org_founding_1965.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -7974,6 +8044,11 @@
     },
     "kurdish_org_founding_1975.acknowledge": {
       "id": "kurdish_org_founding_1975.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -8130,6 +8205,11 @@
     },
     "kurdish_org_founding_1979.acknowledge": {
       "id": "kurdish_org_founding_1979.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -8371,6 +8451,11 @@
     },
     "mp_died.acknowledge": {
       "id": "mp_died.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -8458,6 +8543,11 @@
     },
     "msp_formation.msp": {
       "id": "msp_formation.msp",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['rural_AP'] = (Q['rural_AP'] || 0) - 2;\nQ['rural_MSP'] = (Q['rural_MSP'] || 0) + 5;\nQ['petty_bourgeoisie_AP'] = (Q['petty_bourgeoisie_AP'] || 0) - 5;\nQ['petty_bourgeoisie_MSP'] = (Q['petty_bourgeoisie_MSP'] || 0) + 10;\nQ['rural_DP'] = (Q['rural_DP'] || 0) - 2;\nQ['petty_bourgeoisie_DP'] = (Q['petty_bourgeoisie_DP'] || 0) - 4;\nQ['rural_MHP'] = (Q['rural_MHP'] || 0) - 1;\nQ['petty_bourgeoisie_MHP'] = (Q['petty_bourgeoisie_MHP'] || 0) - 1;"
@@ -8529,6 +8619,11 @@
     },
     "naimtalu.vote": {
       "id": "naimtalu.vote",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "AnatolianRules.resetCabinet(Q);\n  Q.AP_in_government = 1;\n  Q.CGP_in_government = 1;\n  Q.I_in_government = 1;\n  Q.prime_minister = \"Naim Talu\";\n  Q.prime_minister_party = \"I\";\n  if (Q.rubicon_mode) {\n    Q.rubicon_mode = 0;\n    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);\n    this.state.bg = 'img/map_4.jpg';\n    this.ui.setBg(this.state.bg);\n  }"
@@ -9881,6 +9976,11 @@
     },
     "oilcrisis1.petrol": {
       "id": "oilcrisis1.petrol",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -10125,6 +10225,11 @@
     },
     "rightkemalistsplit.leave": {
       "id": "rightkemalistsplit.leave",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['chp_seats'] = (Q['chp_seats'] || 0) - 32;\nQ['other_seats'] = (Q['other_seats'] || 0) + 32;"
@@ -10229,19 +10334,51 @@
     },
     "rubicon_dp_motion.support": {
       "id": "rubicon_dp_motion.support",
+      "subtitle": "Ecevit meets with his faction members!",
       "options": [
         {
           "id": "@rubicon_dp_motion.negotiate",
-          "title": "We secure the support of the AP and MGP parliamentary groups (2 Resources)."
+          "title": [
+            "We secure the support of the ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            " and ",
+            {
+              "type": "emphasis-2",
+              "content": "MGP"
+            },
+            " parliamentary groups (2 Resources)."
+          ]
         },
         {
           "id": "@rubicon_dp_motion.fail",
-          "title": "We fail to convince the AP parliamentary group."
+          "title": [
+            "We fail to convince the ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            " parliamentary group."
+          ]
         }
       ],
       "content": {
-        "content": "Ecevit gathers the members of the Left of the Center movement and declares his decision to support the motion. His colleagues see an opportunity to pressure the military regime through Parliament itself. With our support secured, Ecevit approaches the chairmen of the MGP and AP parliamentary groups in search of the votes necessary to pass it.",
-        "type": "paragraph"
+        "type": "paragraph",
+        "content": [
+          "Ecevit gathers the members of the Left of the Center movement and declares his decision to support the motion. His colleagues see an opportunity to pressure the military regime through Parliament itself. With our support secured, Ecevit approaches the chairmen of the ",
+          {
+            "type": "emphasis-2",
+            "content": "MGP"
+          },
+          " and ",
+          {
+            "type": "emphasis-2",
+            "content": "AP"
+          },
+          " parliamentary groups in search of the votes necessary to pass it."
+        ]
       }
     },
     "rubicon_election_concludes": {
@@ -10425,7 +10562,7 @@
       "priority": 100,
       "onArrival": [
         {
-          "$code": "Q.inonu_relation -= 4; Q.inonu_approval = Math.max(0, Q.inonu_approval - 4);"
+          "$code": "Q.inonu_relation -= 5; Q.inonu_approval = Math.max(0, Q.inonu_approval - 5);"
         }
       ],
       "options": [
@@ -10441,7 +10578,7 @@
         },
         {
           "type": "paragraph",
-          "content": "Although we manage to bring the MGP to our side, we fail to convince the AP parliamentary group to defy its chairman, Süleyman Demirel. The DP's motion therefore falls short. Erim's position remains precarious, but our efforts have irritated the military leadership and angered İnönü, who regards Ecevit's unilateral initiative as another challenge to his authority."
+          "content": "Despite managing to gain MGP to our side for the interpellation, we fail to convince the leadership of AP party group to go against Demirel's authority, therefore DP's motion lacks enough votes to pass and fails. While it is still obvious that Erim's time is very short, we've only succeeded in annoying the Military and making İnönü very angry, who is getting madder and madder at Ecevit and begins to truly sees him as a troublemaker delinquent."
         }
       ],
       "countVisitsMax": 1
@@ -10725,7 +10862,7 @@
       "options": [
         {
           "id": "@post_event",
-          "title": "Continue..."
+          "title": "After almost a year of the military making decisions for us, it is finally time that we make a decision for ourselves..."
         }
       ],
       "content": [
@@ -10739,19 +10876,36 @@
         },
         {
           "type": "paragraph",
-          "content": "Following Demirel’s resignation, the formation of the new government fell to a former member of our party of great importance and merit, Nihat Erim, who had left the CHP to form a seemingly nonpartisan government. Erim was very driven at the beginning of his tenure, believing that now was finally his opportunity to make the changes in the country that previous governments had failed to make. Supported by professors, technocrats and experts, Erim’s government promised changes including land redistribution, economic development and social equality in order to provide stability."
+          "content": [
+            "Following Demirel’s resignation, the formation of the new government fell to a former member of our party of great importance and merit, Nihat Erim, who had left the ",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            " to form a seemingly nonpartisan government. Erim was very driven at the beginning of his tenure, believing that now was finally his opportunity to make the changes in the country that previous governments had failed to make. Supported by professors, technocrats and experts, Erim’s government promised changes including land redistribution, economic development and social equality in order to provide stability."
+          ]
         },
         {
           "type": "paragraph",
-          "content": "The army was optimistic, as after \"curbing down the excess of liberties\" the 1961 constitution had granted our people, they believed Erim's new technocratic government whose motto was reform, be the most preferable process for Turkey's progress... However, things very quickly got out of control as the Junta of 12th March would reap what they sowed."
+          "content": [
+            "Following the abduction and murder of Israeli Consul General Ephraim Elrom by the ",
+            {
+              "type": "emphasis-2",
+              "content": "THKP-C"
+            },
+            ", Operation Balyoz unleashed a widespread crackdown on Left movements and groups across the republic, with socialist intellectuals, journalists, trade unionists and students arrested and tortured, publications censored, universities brought under tighter control, and freedoms guaranteed by the 1961 Constitution increasingly curtailed."
+          ]
         },
         {
           "type": "paragraph",
-          "content": "Following the abduction of Israeli Consul General Ephraim Elrom by the THKP-C, Operation Balyoz was launched. Elrom would be murdered before the army could get him back, and this resulted in the crackdown intensifying, which in return resulted in widespread targeting of Left movements and groups across the republic. Many socialist intellectuals, journalists, trade unionists and students were arrested and tortured. Many publications were censored, and greater controls were placed over universities. Thus, freedoms in the country, as set out in the 1961 Constitution (which had been adopted following the 1960 military coup), were being increasingly limited under military pressure."
-        },
-        {
-          "type": "paragraph",
-          "content": "Erim’s attempts to bring reform to Turkey were steadily stifled by the military after Operation Balyoz as they would make Erim and his government effectively non-important and took the matters to their hands and even before it AP's filibuster behavior at every amendment and bill Erim's government would bring to the parliament had similarly severely killed the steam of Erim's government. By December, 11 of Erim’s ministers had resigned, bringing down his first cabinet. Erim was then tasked with forming another government, but the original cabinet of reformists was gone, instead chosen by the military behind the shadows, and Erim's reform agenda ended."
+          "content": [
+            "Erim’s attempts to bring reform to Turkey were steadily stifled by the military after Operation Balyoz as they would make Erim and his government effectively non-important and took the matters to their hands and even before it ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            "'s filibuster behavior at every amendment and bill Erim's government would bring to the parliament had similarly severely killed the steam of Erim's government. By December, 11 of Erim’s ministers had resigned, bringing down his first cabinet. Erim was then tasked with forming another government, but the original cabinet of reformists was gone, instead chosen by the military behind the shadows, and Erim's reform agenda ended."
+          ]
         },
         {
           "type": "paragraph",
@@ -10759,36 +10913,41 @@
         },
         {
           "type": "paragraph",
-          "content": "Meanwhile, Süleyman Demirel's AP endorsed constitutional changes under the military-backed government that increased executive powers and limited freedoms and deeply partnered with them with the best of their abilities. While CHP under İsmet İnönü's lead sought to preserve the parliament, as he believed the best way to prevent military taking complete control of the state was keeping the civil institutions of our republic functioning and keeping any new government being held accountable to the parliament, and therefore did not take a complete antagonistic approach to the Military actions."
-        },
-        {
-          "type": "paragraph",
-          "content": "However, Bülent Ecevit and the increasingly large Left of Center group disagreed with this approach, they argued that any agreement with the military in order to save parliamentary rule gave legitimacy to the intervention and therefore went against the interests of the people. As a result, Ecevit resigned as general secretary of the party. He was eventually replaced by Kâmil Kırıkoğlu. Alongside their allies, the Left of Center group seeks to move the CHP away from its traditional leadership."
-        },
-        {
-          "type": "paragraph",
-          "content": "The Rubicon of the memorandum has been reached. If İnönü is defeated in the coming leadership struggle, we will gain control of the CHP. However, in order to restore civilian rule, we must also challenge the generals' desire to control politics, their patience for democracy seems to be much less than their desire for power... In these next few months, CHP will either return to the people with the dove of democracy, or be the chief witness of the bayonet plunging at her republic's heart."
-        },
-        {
-          "type": "paragraph",
           "content": [
+            "Meanwhile, Süleyman Demirel's ",
             {
-              "type": "emphasis-1",
-              "content": ""
+              "type": "emphasis-2",
+              "content": "AP"
             },
-            " ",
-            {
-              "type": "emphasis-1",
-              "content": ""
-            }
+            " endorsed constitutional changes under the military-backed government that increased executive powers and limited freedoms, cooperating closely with the generals."
           ]
         },
         {
           "type": "paragraph",
-          "content": {
-            "type": "emphasis-1",
-            "content": "After almost a year of the military making decisions for us, it is finally time that we make a decision for ourselves."
-          }
+          "content": [
+            "However, Bülent Ecevit and the increasingly large Left of Center group disagreed with this approach, they argued that any agreement with the military in order to save parliamentary rule gave legitimacy to the intervention and therefore went against the interests of the people. As a result, Ecevit resigned as general secretary of the party. He was eventually replaced by Kâmil Kırıkoğlu. Alongside their allies, the Left of Center group seeks to move the ",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            " away from its traditional leadership."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "The Rubicon of the memorandum has been reached. If İnönü is defeated in the coming leadership struggle, we will gain control of the ",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            ". However, in order to restore civilian rule, we must also challenge the generals' desire to control politics, their patience for democracy seems to be much less than their desire for power... In these next few months, ",
+            {
+              "type": "emphasis-2",
+              "content": "CHP"
+            },
+            " will either return to the people with the dove of democracy, or be the chief witness of the bayonet plunging at her republic's heart."
+          ]
         }
       ],
       "countVisitsMax": 1
@@ -10928,6 +11087,11 @@
     },
     "satirannouncement.letsgo": {
       "id": "satirannouncement.letsgo",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "subtitle": "Boynuz kulağı geçmeli...",
       "content": {
         "content": "",
@@ -10978,6 +11142,11 @@
     },
     "semihsencer.sencer": {
       "id": "semihsencer.sencer",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q.generalstaff = \"Semih Sancar\""
@@ -11101,6 +11270,11 @@
     },
     "senate_president_death.acknowledge": {
       "id": "senate_president_death.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "AnatolianSenate.acknowledgeDeath(Q);"
@@ -11136,6 +11310,11 @@
     },
     "tip_1975.root": {
       "id": "tip_1975.root",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['socialist_left_formed'] = 1;\nQ['TIP_party_leader'] = \"Behice Boran\";\nQ['TIP_banned'] = 0;\nQ['disk_endorsement'] = false;"
@@ -11596,6 +11775,11 @@
     },
     "tkpmll.tkpml": {
       "id": "tkpmll.tkpml",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "onArrival": [
         {
           "$code": "Q['tkpml_formed'] = 1;"
@@ -11664,6 +11848,11 @@
     },
     "yomkippur1.yomkippur": {
       "id": "yomkippur1.yomkippur",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -15419,16 +15608,29 @@
     "relations_with_the_army.connections": {
       "id": "relations_with_the_army.connections",
       "chooseIf": {
-        "$code": "return ((Q['resources'] || 0) >= 2);"
+        "$code": "return Q.resources >= 1 && !(Q.army_private_talks_available_slot > (Q.year * 12 + Q.month) * 4 + (Q.rubicon_mode ? Q.rubicon_week - 1 : (Q.week - 1) * 2));"
       },
-      "subtitle": "Requires substantial resources and concessions that may anger the party left.",
-      "unavailableSubtitle": "We lack the resources needed for a sustained round of private talks.",
+      "subtitle": "(-1 Resource), will upset the Left greatly",
+      "unavailableSubtitle": {
+        "content": {
+          "type": "insert",
+          "insert": 0
+        },
+        "stateDependencies": [
+          {
+            "type": "insert",
+            "fn": {
+              "$code": "return Q.army_private_talks_available_slot > (Q.year * 12 + Q.month) * 4 + (Q.rubicon_mode ? Q.rubicon_week - 1 : (Q.week - 1) * 2) ? 'We cannot hope to repeatedly knock on the doors of Junta!' : 'We lack the resources needed for private talks.';"
+            }
+          }
+        ]
+      },
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2);"
+          "$code": "AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2); Q.army_private_talks_available_slot = (Q.year * 12 + Q.month) * 4 + (Q.rubicon_mode ? Q.rubicon_week - 1 : (Q.week - 1) * 2) + 12;"
         },
         {
-          "$code": "Q['resources'] = (Q['resources'] || 0) - 2;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 3;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) + 3;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
+          "$code": "Q['resources'] = (Q['resources'] || 0) - 1;\nQ['left_kemalists_dissent'] = (Q['left_kemalists_dissent'] || 0) + 3;\nQ['kemalist_marxists_dissent'] = (Q['kemalist_marxists_dissent'] || 0) + 3;\nQ['month_actions'] = (Q['month_actions'] || 0) + 1;"
         }
       ],
       "goTo": [
@@ -20575,6 +20777,11 @@
     },
     "kurdish_org_founding_1974.acknowledge": {
       "id": "kurdish_org_founding_1974.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -20641,6 +20848,11 @@
     },
     "kurdish_org_founding_1976.acknowledge": {
       "id": "kurdish_org_founding_1976.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -20963,10 +21175,50 @@
           "title": "Continue..."
         }
       ],
-      "content": {
-        "content": "Both the MGP and the AP parliamentary factions have been convinced to support the DP's interpellation. Persuading the MGP was relatively easy, as the party had already been considering support for the motion. The AP parliamentary group, however, required lengthy negotiations, political favors, and some well-placed 'gifts'. With both groups now prepared to back the interpellation, the Left of the Center movement has managed to form an unlikely parliamentary coalition against Erim's military-backed government. More importantly, our actions have weakened the authority of AP Chairman Süleyman Demirel over the deputies elected in 1969.",
-        "type": "paragraph"
-      }
+      "content": [
+        {
+          "type": "paragraph",
+          "content": [
+            "Both the ",
+            {
+              "type": "emphasis-2",
+              "content": "MGP"
+            },
+            " and the ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            " parliamentary factions have been convinced to support the ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            "'s interpellation. Persuading the ",
+            {
+              "type": "emphasis-2",
+              "content": "MGP"
+            },
+            " was relatively easy, as the party had already been considering support for the motion. The ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            " parliamentary group, however, required lengthy negotiations, political favors, and some well-placed 'gifts'."
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            "With both groups now prepared to back the interpellation, the Left of the Center movement has managed to form an unlikely parliamentary coalition against Erim's military-backed government. More importantly, our actions have weakened the authority of ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            " Chairman Süleyman Demirel over the deputies elected in 1969."
+          ]
+        }
+      ]
     },
     "rubicon_inonu_walkout.end_assembly": {
       "id": "rubicon_inonu_walkout.end_assembly",
@@ -21116,6 +21368,11 @@
     },
     "senate_election.done": {
       "id": "senate_election.done",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -22538,7 +22795,7 @@
     },
     "relations_with_the_army.statements": {
       "id": "relations_with_the_army.statements",
-      "subtitle": "May calm the officers, but disappoint our democratic base and deepen factional dissent.",
+      "subtitle": "Will help, but at the cost of dissent from the Left",
       "onArrival": [
         {
           "$code": "AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 1);"
@@ -25711,6 +25968,11 @@
     },
     "kurdish_org_founding_1978.acknowledge": {
       "id": "kurdish_org_founding_1978.acknowledge",
+      "goTo": [
+        {
+          "id": "root"
+        }
+      ],
       "content": {
         "content": "",
         "type": "paragraph"
@@ -25913,7 +26175,7 @@
       "id": "rubicon_dp_motion.fail",
       "onArrival": [
         {
-          "$code": "Q['rubicon_interpellation'] = 2;"
+          "$code": "Q.rubicon_interpellation = 3; Q.inonu_relation -= 5; Q.inonu_approval = Math.max(0, Q.inonu_approval - 5);"
         }
       ],
       "options": [
@@ -25923,7 +26185,7 @@
         }
       ],
       "content": {
-        "content": "",
+        "content": "Despite managing to gain MGP to our side for the interpellation, we fail to convince the leadership of AP party group to go against Demirel's authority, therefore DP's motion lacks enough votes to pass and fails. While it is still obvious that Erim's time is very short, we've only succeeded in annoying the Military and making İnönü very angry, who is getting madder and madder at Ecevit and begins to truly sees him as a troublemaker delinquent.",
         "type": "paragraph"
       }
     },
@@ -28791,6 +29053,7 @@
     },
     "rubicon_dp_motion.abstain": {
       "id": "rubicon_dp_motion.abstain",
+      "subtitle": "Ecevit should not risk conflict with the military, and his own party...",
       "options": [
         {
           "id": "@post_event",
@@ -28798,8 +29061,20 @@
         }
       ],
       "content": {
-        "content": "However, Ecevit has decided not to back the DP's motion as he feels little can be gained by antagonizing the military. As the DP motion did not receive a large enough majority in parliament, Erim remains in office for now.",
-        "type": "paragraph"
+        "type": "paragraph",
+        "content": [
+          "However, Ecevit has decided not to back the ",
+          {
+            "type": "emphasis-2",
+            "content": "DP"
+          },
+          "'s motion as he feels little can be gained by antagonizing the military. As the ",
+          {
+            "type": "emphasis-2",
+            "content": "DP"
+          },
+          " motion did not receive a large enough majority in parliament, Erim remains in office for now."
+        ]
       }
     },
     "rubicon_dp_motion": {
@@ -28818,11 +29093,18 @@
       "options": [
         {
           "id": "@rubicon_dp_motion.support",
-          "title": "We should support the DP! We cannot let the generals run the country through Parliament! Ecevit meets with his faction members!"
+          "title": [
+            "We should support the ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            "! We cannot let the generals run the country through Parliament!"
+          ]
         },
         {
           "id": "@rubicon_dp_motion.abstain",
-          "title": "Erim is clearly on his way out, and Ecevit should not risk conflict with the military, and his own party."
+          "title": "Erim is clearly on his way out."
         }
       ],
       "content": [
@@ -28840,23 +29122,67 @@
         },
         {
           "type": "paragraph",
-          "content": "There has been much controversy surrounding these demands. In particular, the reaction from the DP has been strong. Founded in 1970 by conservative deputies who broke with Demirel's AP, and led by Ferruh Bozbeyli, the DP draws upon the parliamentary and populist traditions of the earlier Democratic Party. Its leaders are especially determined to defend the authority of elected representatives against governments imposed from above. Since the March 12 Memorandum, the DP has taken a firm stance against participating in military-backed governments, regarding Erim's supposedly nonpartisan cabinet as a threat to Parliament's ability to hold the executive accountable. The DP has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy."
+          "content": [
+            "There has been much controversy surrounding these demands. In particular, the reaction from the ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            " has been strong. Founded in 1970 by conservative deputies who broke with Demirel's ",
+            {
+              "type": "emphasis-2",
+              "content": "AP"
+            },
+            ", and led by Ferruh Bozbeyli, the ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            " draws upon the parliamentary and populist traditions of the earlier Democratic Party. Its leaders are especially determined to defend the authority of elected representatives against governments imposed from above. Since the March 12 Memorandum, the ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            " has taken a firm stance against participating in military-backed governments, regarding Erim's supposedly nonpartisan cabinet as a threat to Parliament's ability to hold the executive accountable. The ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            " has now submitted a motion of interpellation against Erim, accusing him of undermining constitutional government and contributing to the political crisis. His demands for extraordinary powers and a suspension of political competition have only added to the controversy."
+          ]
         },
         {
           "type": "paragraph",
-          "content": "However, the motion cannot pass on the votes of DP deputies alone, and the other parties are reluctant to commit themselves. Erim has already submitted his resignation, and many in Parliament believe his government is nearing its end. Yet Sunay and the military have rejected Erim's offers to resign before, and they may well do so again. With the government already on its last legs, deputies are wary of provoking the generals through a parliamentary confrontation they consider unnecessary."
+          "content": [
+            "However, the motion cannot pass on the votes of ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            " deputies alone, and the other parties are reluctant to commit themselves. Erim has already submitted his resignation, and many in Parliament believe his government is nearing its end. Yet Sunay and the military have rejected Erim's offers to resign before, and they may well do so again. With the government already on its last legs, deputies are wary of provoking the generals through a parliamentary confrontation they consider unnecessary."
+          ]
         },
         {
           "type": "paragraph",
-          "content": "Within our Left of the Center movement, however, there is an unusual possibility. The DP's parliamentary initiative offers us a means of challenging the military-backed government through the very institutions the generals claim to preserve. Supporting the motion may not achieve much, seeing as Erim's government is already beginning to crumble, but it may hasten the inevitable and reaffirm Parliament's authority. It also risks further conflict with the generals and disagreement with İnönü over the best way to defend parliamentary democracy."
+          "content": [
+            "Within our Left of the Center movement, however, there is an unusual possibility. The ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            "'s parliamentary initiative offers us a means of challenging the military-backed government through the very institutions the generals claim to preserve. Supporting the motion may not achieve much, seeing as Erim's government is already beginning to crumble, but it may hasten the inevitable and reaffirm Parliament's authority. It also risks further conflict with the generals and disagreement with İnönü over the best way to defend parliamentary democracy."
+          ]
         },
         {
           "type": "paragraph",
-          "content": "After refusing to recognize the memorandum governments as legitimate expressions of democracy over the past year, Ecevit must now consider whether to sit on the sidelines of this conflict in Parliament or depart from the party leadership's approach by supporting the DP's attempt to topple Erim."
-        },
-        {
-          "type": "paragraph",
-          "content": "\\"
+          "content": [
+            "After refusing to recognize the memorandum governments as legitimate expressions of democracy over the past year, Ecevit must now consider whether to sit on the sidelines of this conflict in Parliament or depart from the party leadership's approach by supporting the ",
+            {
+              "type": "emphasis-2",
+              "content": "DP"
+            },
+            "'s attempt to topple Erim."
+          ]
         }
       ],
       "countVisitsMax": 1
@@ -30141,6 +30467,7 @@
       "tags": [
         "party_affairs"
       ],
+      "frequency": 50,
       "viewIf": {
         "$code": "return ((Q['time'] || 0) >= (Q['relations_with_the_army_available_time'] || 0));"
       },

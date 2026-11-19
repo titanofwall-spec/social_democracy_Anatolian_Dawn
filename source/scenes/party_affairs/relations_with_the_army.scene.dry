@@ -2,6 +2,7 @@ title: Relations With the Army
 new-page: true
 is-card: true
 tags: party_affairs
+frequency: 50
 view-if: time >= relations_with_the_army_available_time
 card-image: img/tsk.jpg
 on-arrival: {! AnatolianCardActions.begin(this, 'relations_with_the_army'); !}
@@ -16,16 +17,16 @@ Our contacts in the General Staff remain uneasy about the course of civilian pol
 - @navigation_return_main: Return
 
 @connections
-choose-if: resources >= 2
-subtitle: Requires substantial resources and concessions that may anger the party left.
-unavailable-subtitle: We lack the resources needed for a sustained round of private talks.
-on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2); !} resources -= 2; left_kemalists_dissent += 3; kemalist_marxists_dissent += 3; month_actions += 1
+choose-if: {! return Q.resources >= 1 && !(Q.army_private_talks_available_slot > (Q.year * 12 + Q.month) * 4 + (Q.rubicon_mode ? Q.rubicon_week - 1 : (Q.week - 1) * 2)); !}
+subtitle: (-1 Resource), will upset the Left greatly
+unavailable-subtitle: [+ {! return Q.army_private_talks_available_slot > (Q.year * 12 + Q.month) * 4 + (Q.rubicon_mode ? Q.rubicon_week - 1 : (Q.week - 1) * 2) ? 'We cannot hope to repeatedly knock on the doors of Junta!' : 'We lack the resources needed for private talks.'; !} +]
+on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2); Q.army_private_talks_available_slot = (Q.year * 12 + Q.month) * 4 + (Q.rubicon_mode ? Q.rubicon_week - 1 : (Q.week - 1) * 2) + 12; !} resources -= 1; left_kemalists_dissent += 3; kemalist_marxists_dissent += 3; month_actions += 1
 go-to: post_event
 
 Our intermediaries reassure senior officers that the CHP will defend the constitutional order. The conversations ease some of the tension, but news of our concessions spreads through the party, where the Left of the Center movement fears we have given the generals too much ground.
 
 @statements
-subtitle: May calm the officers, but disappoint our democratic base and deepen factional dissent.
+subtitle: Will help, but at the cost of dissent from the Left
 on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 1); !} workers_chp -= 2; left_kemalists_dissent += 4; month_actions += 1
 go-to: post_event
 
