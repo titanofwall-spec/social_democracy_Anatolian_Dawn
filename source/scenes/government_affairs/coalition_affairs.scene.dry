@@ -2,7 +2,7 @@ title: Coalition Affairs
 new-page: true
 is-card: true
 tags: govt_affairs
-on-arrival: month_actions += 1; coalition_affairs_timer = 5
+on-arrival: month_actions += 1; coalition_affairs_timer = 2.5
 view-if: CHP_in_government = 1 and not in_CHP_majority and chp_seats < majority_threshold and coalition_dissent >= 5 and coalition_affairs_timer = 0
 card-image: img/kabine.jpg
 #subtitle: There is dissent within our coalition.

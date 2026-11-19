@@ -1,11 +1,12 @@
 title: Campaigning
 new-page: true
-on-arrival: month_actions += 1; campaigning_ecevit_timer = 3
+on-arrival: month_actions += 1; campaigning_ecevit_timer = 1.5
 is-card: true
 frequency: 215
 tags: party_affairs
-view-if: CHP_party_leader == "Ecevit" and campaigning_ecevit_timer == 0 and (not rubicon_mode or (rubicon_melen_join and CHP_in_government and prime_minister = "Ferit Melen"))
+view-if: CHP_party_leader == "Ecevit" and campaigning_ecevit_timer == 0
 card-image: img/ecevit_campaigning.jpg
+go-to: memorandum_blocked if rubicon_mode and not (rubicon_melen_join and CHP_in_government and prime_minister = "Ferit Melen")
 
 = Campaigning
 
@@ -76,3 +77,7 @@ unavailable-subtitle: Not enough resources.
 on-arrival: left_kemalists_dissent += 5; kemalist_marxists_dissent += 10; capitalists_chp += 1.5; resources -= 1
 
 Not only does trying to appease the capitalists as a leftist party fail horribly, the Marxist and Left-Wing Kemalist factions strongly disapprove of this action.
+
+@memorandum_blocked
+on-arrival: {! AnatolianCardActions.backAdvisor(this); !}
+go-to: memorandum_campaign_blocked

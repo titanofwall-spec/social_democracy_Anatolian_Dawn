@@ -2,7 +2,7 @@ title: Fiscal Policy
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-on-arrival: fiscal_policy_timer += 6; month_actions += 1
+on-arrival: fiscal_policy_timer += 3; month_actions += 1
 view-if: {! return Q.CHP_in_government === 1 && (Q.finance_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"finance"))) && Q.fiscal_policy_timer === 0; !}
 card-image: img/portraits/DenizBaykal.jpg
 go-to: fiscal_menu

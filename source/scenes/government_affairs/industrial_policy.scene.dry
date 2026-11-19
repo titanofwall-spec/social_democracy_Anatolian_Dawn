@@ -2,7 +2,7 @@ title: Industrial Policy
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-on-arrival: industrial_policy_timer += 6; month_actions += 1
+on-arrival: industrial_policy_timer += 3; month_actions += 1
 view-if: {! return Q.CHP_in_government === 1 && (Q.industrial_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"industrial"))) && Q.industrial_policy_timer <= 0; !}
 card-image: img/portraits/TarhanErdem.jpg
 

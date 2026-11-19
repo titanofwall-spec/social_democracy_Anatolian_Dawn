@@ -103,8 +103,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         near(Q.economic_growth,Q.base_growth+Q.growth_modifier+3,'Tiger growth');
     });
     test('Cooldowns decrement once per month', (e,Q) => {
-        action(e,'intrapartyinfluence'); assert.equal(Q.intraparty_timer,8);
-        tick(e,Q); assert.equal(Q.intraparty_timer,8); tick(e,Q); assert.equal(Q.intraparty_timer,7);
+        action(e,'intrapartyinfluence'); assert.equal(Q.intraparty_timer,4);
+        tick(e,Q); assert.equal(Q.intraparty_timer,4); tick(e,Q); assert.equal(Q.intraparty_timer,3);
         for(let i=0;i<16;i++) tick(e,Q); assert.equal(Q.intraparty_timer,0);
         Q.CHP_party_leader='Ecevit'; assert(e._runPredicate(game.scenes.intrapartyinfluence.viewIf,true));
     });

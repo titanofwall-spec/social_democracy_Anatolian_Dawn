@@ -136,11 +136,15 @@ if (turnAdvanced) {
     }
 
     if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}
-    // decrement timers (only when month actually changes for monthly timers)
-    if (Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1)) {
+    // Whole months tick at the month boundary. Any remaining half month ends at midmonth.
+    var newMonth = Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1);
+    var midMonth = Q.week == 2 && (!Q.rubicon_mode || Q.rubicon_week == 3);
+    if (newMonth || midMonth) {
         for (var timer of new Set(Q.timers.concat(['campaigning_ecevit', 'koykent_rally']))) {
-            if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
-                Q[timer+'_timer'] -= 1;
+            var timerKey = timer + '_timer';
+            var remaining = Q[timerKey];
+            if (remaining > 0 && (newMonth || remaining < 1)) {
+                Q[timerKey] = Math.max(0, remaining - (newMonth ? 1 : 0.5));
             }
         }
     }

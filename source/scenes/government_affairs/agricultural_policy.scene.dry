@@ -1,7 +1,7 @@
 title: Agricultural Policy
 new-page: true
 is-card: true
-on-arrival: agricultural_policy_timer += 6; month_actions += 1
+on-arrival: agricultural_policy_timer += 3; month_actions += 1
 view-if: {! return Q.CHP_in_government === 1 && ((Q.agriculture_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"agriculture")))) && Q.agricultural_policy_timer <= 0; !}
 card-image: img/portraits/AliTopuz.jpeg
 go-to: agriculture_menu
@@ -68,7 +68,7 @@ on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} koykent_progress += 1; 
 subtitle: -1 budget. Six stages; each provides benefits only when its implementation period ends (3, 4, 6, 8, 10 and 12 months respectively).
 choose-if: {! return Q.land_reform>1 && Q.budget>=1 && (Q.landreform_done||0)<6 && !(Q.land_distribution_pending_stage||0); !}
 unavailable-subtitle: [? if land_reform == 0 : We have not adopted a land reform policy. ?][? if land_reform == 1 : Comprehensive land distribution is not in our agricultural policy. ?][? if budget < 1 : We don't have enough budget! ?][? if land_distribution_pending_stage > 0 : The current redistribution stage is still underway. Its benefits arrive at completion. ?][? if landreform_done >= 6 : All six stages of land distribution have been completed. ?]
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! var stage = (Q.landreform_done||0) + 1; var months = [0,3,4,6,8,10,12][stage]; Q.budget -= 1; Q.land_distribution_pending_stage = stage; Q.land_distribution_due_tick = Q.year*24 + (Q.month-1)*2 + (Q.week===2?1:0) + months*2; Q.agricultural_policy_timer = months; !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! var stage = (Q.landreform_done||0) + 1; var months = [0,3,4,6,8,10,12][stage]; Q.budget -= 1; Q.land_distribution_pending_stage = stage; Q.land_distribution_due_tick = Q.year*24 + (Q.month-1)*2 + (Q.week===2?1:0) + months*2; Q.agricultural_policy_timer = months / 2; !}
 
 We allocate funds to purchase and redistribute agricultural land among farmers and rural citizens. This stage is now underway. It requires the indicated months of implementation before farmers receive the land and the economic and political benefits take effect. The next stage can begin only after the current one finishes.
 

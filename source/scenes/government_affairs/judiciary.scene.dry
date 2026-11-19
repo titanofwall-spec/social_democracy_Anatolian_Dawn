@@ -2,7 +2,7 @@ title: Justice Ministry
 new-page: true
 is-card: true
 view-if: {! return Q.CHP_in_government === 1 && (Q.justice_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"justice"))) && Q.judiciary_timer === 0; !}
-on-arrival: month_actions += 1; judiciary_timer += 6
+on-arrival: month_actions += 1; judiciary_timer += 3
 card-image: img/portraits/MuammerAksoy.jpg
 tags: govt_affairs, cabinet
 

@@ -2,7 +2,7 @@ title: National Defense Ministry
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-on-arrival: military_policy_timer += 6; month_actions += 1
+on-arrival: military_policy_timer += 3; month_actions += 1
 view-if: {! return Q.CHP_in_government === 1 && (Q.defense_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"defense"))) && Q.military_policy_timer <= 0; !}
 card-image: img/portraits/Hasan_Esat_Isik.jpg
 go-to: menu

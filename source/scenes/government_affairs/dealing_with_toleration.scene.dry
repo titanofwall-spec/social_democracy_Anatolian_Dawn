@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 card-image: img/tbmm.jpeg
 view-if: dealing_with_toleration_timer == 0 and CHP_toleration and prime_minister_party == "AP"
-on-arrival: dealing_with_toleration_timer += 6; month_actions += 1
+on-arrival: dealing_with_toleration_timer += 3; month_actions += 1
 tags: govt_affairs
 #subtitle: Despite not being in government, we can still provide support.
 

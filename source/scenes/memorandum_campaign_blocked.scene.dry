@@ -1,0 +1,10 @@
+title: Memorandum government
+new-page: true
+
+Unfortunantly, the current memorandum government severely strict our abilities, we cannot hope to campaign under a memorandum government we are not a part of.
+
+- @acknowledge: Damn it...
+
+@acknowledge
+on-arrival: month_actions = 1
+go-to: post_event

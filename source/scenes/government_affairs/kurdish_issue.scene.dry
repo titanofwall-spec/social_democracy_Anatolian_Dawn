@@ -4,7 +4,7 @@ new-page: true
 tags: govt_affairs, cabinet
 view-if: {! return !!Q.CHP_in_government && !(Q.kurdish_issue_timer > 0); !}
 frequency: 100
-on-arrival: {! AnatolianCardActions.begin(this,"kurdish_issue"); if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=6; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("kurdish_issue"))Q.timers.push("kurdish_issue"); Q.month_actions=(Q.month_actions||0)+1;} !}
+on-arrival: {! AnatolianCardActions.begin(this,"kurdish_issue"); if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=3; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("kurdish_issue"))Q.timers.push("kurdish_issue"); Q.month_actions=(Q.month_actions||0)+1;} !}
 card-image: img/kurdish-issue.jpg
 
 = The Kurdish Issue

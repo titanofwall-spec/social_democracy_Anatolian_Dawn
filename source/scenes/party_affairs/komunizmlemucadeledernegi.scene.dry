@@ -1,7 +1,7 @@
 title: Association of Struggle Against Communism
 new-page: true
 view-if: kmd_timer <= 0 and kmd_prosecutions < 4
-on-arrival: month_actions += 1; kmd_timer = 12
+on-arrival: month_actions += 1; kmd_timer = 6
 is-card: true
 card-image: img/komunizmlemucadeledernegi.jpg
 tags: party_affairs

@@ -1,6 +1,6 @@
 title: Party Strategy
 new-page: true
-on-arrival: month_actions += 1; strategy_timer = 12
+on-arrival: month_actions += 1; strategy_timer = 6
 is-card: true
 frequency: 150
 tags: party_affairs

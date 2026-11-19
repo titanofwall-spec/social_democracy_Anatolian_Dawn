@@ -2,7 +2,7 @@ title: Shuffle Cabinet
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-on-arrival: shuffle_cabinet_timer = 6;
+on-arrival: shuffle_cabinet_timer = 3;
 view-if: {! return !Q.coalition_government && Q.CHP_in_government==1 && Q.shuffle_cabinet_timer==0 && Q.prime_minister_party==="CHP" && !Q.in_CHP_majority && !Q.in_emergency_government && !Q.in_left_front; !}
 card-image: img/tbmm.jpeg
 

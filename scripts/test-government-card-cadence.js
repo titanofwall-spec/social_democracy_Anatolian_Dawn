@@ -21,9 +21,9 @@ test('Education Ministry appears with ready actions in new games and older saves
  Q.education_science_timer=0;Q.education_minister_party='AP';assert(!available('main.govt'));
  Q.education_minister_party='CHP';Q.CHP_in_government=0;assert(!available('main.govt'));
  Q.CHP_in_government=1;delete Q.education_science_timer;e.goToScene('education_science');
- assert.equal(Q.education_science_timer,6);
+ assert.equal(Q.education_science_timer,3);
  assert(e.getCurrentChoices().some(c=>c.id==='education_science.onetime'));
- for(let i=0;i<12;i++){Q.month_actions=1;e.goToScene('post_event');}
+ for(let i=0;i<6;i++){Q.month_actions=1;e.goToScene('post_event');}
  assert.equal(Q.education_science_timer,0);assert(available('main.govt'));assert(available('cabinet'));
 });
 

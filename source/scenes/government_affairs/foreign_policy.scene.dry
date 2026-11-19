@@ -2,7 +2,7 @@ title: Foreign Policy
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-on-arrival: month_actions += 1; foreign_policy_timer += 6
+on-arrival: month_actions += 1; foreign_policy_timer += 3
 view-if: {! return Q.CHP_in_government === 1 && (Q.foreign_minister_party === "CHP" || (typeof AnatolianCoalitions!=="undefined"&&AnatolianCoalitions.ministryAccess(Q,"foreign"))) &&  Q.foreign_policy_timer <= 0; !}
 card-image: img/portraits/TuranGunes.jpg
 go-to: fp_menu
