@@ -8524,7 +8524,7 @@
       "id": "naimtalu.vote",
       "onArrival": [
         {
-          "$code": "AnatolianRules.resetCabinet(Q);\n  Q.AP_in_government = 1;\n  Q.CGP_in_government = 1;\n  Q.I_in_government = 1;\n  Q.prime_minister = \"Naim Talu\";\n  Q.prime_minister_party = \"I\";\n  if (Q.rubicon_mode) {\n    Q.rubicon_mode = 0;\n    this.state.bg = 'img/map_4.jpg';\n    this.ui.setBg(this.state.bg);\n    if (this.ui.currentAudio) this.ui.currentAudio.pause();\n    if (this.ui.audioQueue) this.ui.audioQueue.length = 0;\n    this.ui.audio('clear shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');\n  }"
+          "$code": "AnatolianRules.resetCabinet(Q);\n  Q.AP_in_government = 1;\n  Q.CGP_in_government = 1;\n  Q.I_in_government = 1;\n  Q.prime_minister = \"Naim Talu\";\n  Q.prime_minister_party = \"I\";\n  if (Q.rubicon_mode) {\n    Q.rubicon_mode = 0;\n    this.state.bg = 'img/map_4.jpg';\n    this.ui.setBg(this.state.bg);\n  }"
         }
       ],
       "content": {
@@ -10785,11 +10785,6 @@
       "priority": 100,
       "newPage": true,
       "setBg": "img/rubicon-military-council.png",
-      "onArrival": [
-        {
-          "$code": "if (this.ui.currentAudio) this.ui.currentAudio.pause();\nif (this.ui.audioQueue) this.ui.audioQueue.length = 0;\nthis.ui.audio('clear shuffle music/memorandum-rubicon.mp3');"
-        }
-      ],
       "options": [
         {
           "id": "@post_event",
