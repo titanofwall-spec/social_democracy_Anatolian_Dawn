@@ -5,6 +5,7 @@ AnatolianRules.ensureKurdishIssue(Q);
 if(typeof AnatolianDynamicDemographics!=="undefined" && Q.started) AnatolianDynamicDemographics.ensure(Q);
 if (Q.rubicon_mode && (Q.year > 1973 || (Q.year === 1973 && Q.month > 4))) {
     Q.rubicon_mode = 0;
+    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);
 }
 var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;

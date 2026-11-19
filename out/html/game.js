@@ -527,6 +527,7 @@ window.updateTitleScreenImages = function() {
 
   window.enableAudio = function() {
       window.dendryUI.toggle_audio(true);
+      if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.sync(window.dendryUI);
       window.dendryUI.saveSettings();
       window.updateMusicBtn();
   };
@@ -645,6 +646,7 @@ window.updateTitleScreenImages = function() {
 
   // This function runs on a new page. Right now, this auto-saves.
   window.onNewPage = function() {
+    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.sync(window.dendryUI);
     var scene = window.dendryUI.dendryEngine.state.sceneId;
     if (scene != 'root' && !window.justLoaded) {
       window.dendryUI.autosave();
@@ -1220,7 +1222,7 @@ window.openCyprusDiplomacy=function(country){
  e.goToScene('cyprus_diplomacy_'+country);
 };
 
-window.switchMusicTrack=function(direction){var ui=window.dendryUI;if(!ui)return;var tracks=Array.from(new Set((ui.audioPlaylist||[]).filter(function(t){return t&&t!=='none'&&t!=='null';})));if(tracks.length<2)return;var current=ui.currentAudioURL||'',index=tracks.findIndex(function(t){return current===t||(ui.currentAudio&&decodeURI(ui.currentAudio.src).endsWith(decodeURI(t)));});index=(index+direction+tracks.length)%tracks.length;var next=tracks[index];ui.audioQueue=[];if(!ui.currentAudio)ui.currentAudio=new Audio(next);else{ui.currentAudio.pause();ui.currentAudio.src=next;}ui.currentAudioURL=next;ui.currentAudio.loop=false;if(!ui.disable_audio)ui.currentAudio.play().catch(function(){});};
+window.switchMusicTrack=function(direction){var ui=window.dendryUI;if(!ui)return;var tracks=Array.from(new Set((ui.audioPlaylist||[]).filter(function(t){return t&&t!=='none'&&t!=='null';})));if(tracks.length<2)return;var current=ui.currentAudioURL||'',index=tracks.findIndex(function(t){return current===t||(ui.currentAudio&&decodeURI(ui.currentAudio.src).endsWith(decodeURI(t)));});index=(index+direction+tracks.length)%tracks.length;var next=tracks[index];ui.audioQueue=[];if(!ui.currentAudio)ui.currentAudio=new Audio(next);else{ui.currentAudio.pause();ui.currentAudio.src=next;}ui.currentAudioURL=next;ui.currentAudio.loop=false;if(!ui.disable_audio)ui.currentAudio.play().catch(function(){});if(window.AnatolianRubiconMusic)window.AnatolianRubiconMusic.sync(ui);};
 
 
 // A render can add both a whole panel and its children in the same mutation batch.

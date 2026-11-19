@@ -5,6 +5,9 @@ tags: event
 priority: 100
 new-page: true
 set-bg: img/rubicon-military-council.png
+on-arrival: {!
+if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.begin(this.ui);
+!}
 
 = Memorandum Rubicon
 

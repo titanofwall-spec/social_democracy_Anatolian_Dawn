@@ -24,6 +24,7 @@ on-arrival: {!
   Q.prime_minister_party = "I";
   if (Q.rubicon_mode) {
     Q.rubicon_mode = 0;
+    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);
     this.state.bg = 'img/map_4.jpg';
     this.ui.setBg(this.state.bg);
   }
