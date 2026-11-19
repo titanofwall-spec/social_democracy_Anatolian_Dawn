@@ -4,7 +4,7 @@ new-page: true
 tags: govt_affairs, cabinet
 view-if: {! return !!Q.CHP_in_government && !(Q.religious_affairs_directorate_timer > 0); !}
 frequency: 100
-on-arrival: {! AnatolianCardActions.begin(this,"religious_affairs_directorate"); if(!(Q.religious_affairs_directorate_timer>0)){Q.religious_affairs_directorate_timer=3; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("religious_affairs_directorate"))Q.timers.push("religious_affairs_directorate"); Q.month_actions=(Q.month_actions||0)+1;} !}
+on-arrival: {! AnatolianCardActions.begin(this,"religious_affairs_directorate"); if(!(Q.religious_affairs_directorate_timer>0)){Q.religious_affairs_directorate_timer=(Q.rubicon_mode ? 3 : 6); if(!Q.timers)Q.timers=[]; if(!Q.timers.includes("religious_affairs_directorate"))Q.timers.push("religious_affairs_directorate"); Q.month_actions=(Q.month_actions||0)+1;} !}
 card-image: img/religious-affairs.png
 
 = Directorate of Religious Affairs

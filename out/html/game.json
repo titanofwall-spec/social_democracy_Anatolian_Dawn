@@ -35962,7 +35962,7 @@
       "frequency": 100,
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.begin(this,\"religious_affairs_directorate\"); if(!(Q.religious_affairs_directorate_timer>0)){Q.religious_affairs_directorate_timer=3; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"religious_affairs_directorate\"))Q.timers.push(\"religious_affairs_directorate\"); Q.month_actions=(Q.month_actions||0)+1;}"
+          "$code": "AnatolianCardActions.begin(this,\"religious_affairs_directorate\"); if(!(Q.religious_affairs_directorate_timer>0)){Q.religious_affairs_directorate_timer=(Q.rubicon_mode ? 3 : 6); if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"religious_affairs_directorate\"))Q.timers.push(\"religious_affairs_directorate\"); Q.month_actions=(Q.month_actions||0)+1;}"
         }
       ],
       "cardImage": "img/religious-affairs.png",
@@ -40814,7 +40814,7 @@
       "frequency": 100,
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.begin(this,\"kurdish_issue\"); if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=3; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"kurdish_issue\"))Q.timers.push(\"kurdish_issue\"); Q.month_actions=(Q.month_actions||0)+1;}"
+          "$code": "AnatolianCardActions.begin(this,\"kurdish_issue\"); if(!(Q.kurdish_issue_timer>0)){Q.kurdish_issue_timer=(Q.rubicon_mode ? 3 : 6); if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"kurdish_issue\"))Q.timers.push(\"kurdish_issue\"); Q.month_actions=(Q.month_actions||0)+1;}"
         }
       ],
       "cardImage": "img/kurdish-issue.jpg",
@@ -49837,7 +49837,7 @@
       "frequency": 100,
       "onArrival": [
         {
-          "$code": "AnatolianCardActions.begin(this,\"economic_democracy\"); if(!(Q.economic_democracy_timer>0)){Q.economic_democracy_timer=3; if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"economic_democracy\"))Q.timers.push(\"economic_democracy\"); Q.month_actions=(Q.month_actions||0)+1;}"
+          "$code": "AnatolianCardActions.begin(this,\"economic_democracy\"); if(!(Q.economic_democracy_timer>0)){Q.economic_democracy_timer=(Q.rubicon_mode ? 3 : 6); if(!Q.timers)Q.timers=[]; if(!Q.timers.includes(\"economic_democracy\"))Q.timers.push(\"economic_democracy\"); Q.month_actions=(Q.month_actions||0)+1;}"
         }
       ],
       "cardImage": "img/peoples-sector.png",

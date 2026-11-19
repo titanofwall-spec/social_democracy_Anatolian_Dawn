@@ -4,10 +4,31 @@ const noop=()=>{},node={remove:noop,style:{setProperty:noop},appendChild:noop, i
 const output=console.log,errors=[];console.log=(...a)=>{if(String(a[0]).startsWith('Error'))errors.push(a.join(' '));};
 lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'utf8'),(err,game)=>{if(err)throw err;let count=0;
 function test(title,f){errors.length=0;f();assert.deepEqual(errors,[]);count++;output('PASS '+title);}
-function fresh(){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:1,week:1,CHP_in_government:1,economic_minister_party:'CHP',finance_minister_party:'CHP',agriculture_minister_party:'CHP',labor_minister_party:'CHP',budget:100,cyprus_mode:0});return e;}
+function fresh(){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:1,week:1,rubicon_mode:0,rubicon_week:1,CHP_in_government:1,economic_minister_party:'CHP',finance_minister_party:'CHP',agriculture_minister_party:'CHP',labor_minister_party:'CHP',budget:100,cyprus_mode:0});return e;}
 const Qof=()=>fresh().state.qualities;const near=(a,b)=>assert(Math.abs(a-b)<1e-8,a+' != '+b);
 
 test('All three cards match standard frequency and six-month cooldown in deck and Cabinet',()=>{for(const id of ['economic_democracy','religious_affairs_directorate','kurdish_issue']){const e=fresh(),Q=e.state.qualities;Object.assign(Q,{difficulty:-1,tsk_pacified:1});const available=scene=>e._compileChoices(game.scenes[scene]).some(c=>c.id===id);assert.equal(game.scenes[id].frequency,100);assert(available('main.govt'));assert(available('cabinet'));const baseline=Q.month_actions;e.goToScene(id);assert.equal(Q[id+'_timer'],6);assert.equal(Q.month_actions,baseline+1);assert(!available('main.govt'));assert(!available('cabinet'));const before=Q.month_actions;const S=require('../out/html/social-issues.js');if(id==='economic_democracy')P.apply(Q,'reform_meyak');else if(id==='religious_affairs_directorate')S.apply(Q,'sectarian_office');else{Q.interior_minister_party='CHP';S.apply(Q,'associations');}assert.equal(Q.month_actions,before);const serialized=JSON.parse(JSON.stringify(Q));assert.equal(serialized[id+'_timer'],6);for(let i=0;i<11;i++){Q.month_actions=1;e.goToScene('post_event');assert(!available('main.govt'));assert(!available('cabinet'));}Q.month_actions=1;e.goToScene('post_event');assert.equal(Q[id+'_timer'],0);assert(available('main.govt'));assert(available('cabinet'));}});
+test('Rubicon three-month government cooldowns expire after twelve weekly turns',()=>{
+ for(const id of ['economic_democracy','religious_affairs_directorate','kurdish_issue']){
+  const e=fresh(),Q=e.state.qualities;
+  Object.assign(Q,{rubicon_mode:1,rubicon_week:1,year:1972,month:1,week:1,difficulty:-1,tsk_pacified:1});
+  const available=scene=>e._compileChoices(game.scenes[scene]).some(c=>c.id===id);
+  assert(available('main.govt'));
+  assert(available('cabinet'));
+  e.goToScene(id);
+  assert.equal(Q[id+'_timer'],3);
+  for(let i=0;i<11;i++){
+   Q.month_actions=1;
+   e.goToScene('post_event');
+   assert(Q[id+'_timer']>0,id+' became available before three months elapsed');
+  }
+  Q.month_actions=1;
+  e.goToScene('post_event');
+  assert.equal(Q[id+'_timer'],0);
+  assert(available('main.govt'));
+  assert(available('cabinet'));
+ }
+});
 test('Pre-update saves acquire missing timer registration when opening a new card',()=>{for(const id of ['economic_democracy','religious_affairs_directorate','kurdish_issue']){const e=fresh(),Q=e.state.qualities;delete Q[id+'_timer'];Q.timers=Q.timers.filter(t=>t!==id);assert(e._compileChoices(game.scenes.cabinet).some(c=>c.id===id));e.goToScene(id);assert(Q.timers.includes(id));assert.equal(Q[id+'_timer'],6);}});
 test('Education Ministry appears with ready actions in new games and older saves',()=>{
  const e=fresh(),Q=e.state.qualities;Q.education_minister_party='CHP';
