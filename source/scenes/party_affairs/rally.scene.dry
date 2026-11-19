@@ -2,7 +2,7 @@ title: Political Rally
 new-page: true
 is-card: true
 tags: party_affairs
-view-if: rally_timer <= 0
+view-if: rally_timer <= 0 and (not rubicon_mode or (rubicon_melen_join and CHP_in_government and prime_minister = "Ferit Melen"))
 on-arrival: month_actions += 1; rally_timer = 6
 card-image: img/ecevitmiting3.jpg
 go-to: main_rally

@@ -1,0 +1,6 @@
+title: A Visit to Nazilli
+view-if: rubicon_mode and year = 1972 and month = 1 and rubicon_week = 3
+max-visits: 1
+tags: event
+priority: 100
+go-to: ecevitandworker

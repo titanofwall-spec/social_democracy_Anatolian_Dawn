@@ -1,0 +1,27 @@
+title: The Melen Government Takes Office
+subtitle: May 22, 1972
+new-page: true
+max-visits: 1
+view-if: rubicon_mode and year = 1972 and month = 5 and rubicon_week = 4
+tags: event
+priority: 100
+on-arrival: {!
+AnatolianRules.resetCabinet(Q);
+Q.CGP_in_government = 1;
+Q.AP_in_government = 1;
+Q.prime_minister = "Ferit Melen";
+Q.prime_minister_party = "CGP";
+if (Q.rubicon_melen_join) {
+    Q.CHP_in_government = 1;
+    Q.labor_minister_party = "CHP";
+    Q.energy_minister_party = "CHP";
+    Q.health_minister_party = "CHP";
+    Q.public_works_minister_party = "CHP";
+}
+!}
+
+= The Melen Government Takes Office
+
+After weeks of political uncertainty and negotiations between the parliamentary parties, Ferit Melen has finally succeeded in forming a new government. His cabinet has received the necessary parliamentary support and successfully passed its vote of confidence, bringing the prolonged government crisis to an end. However, with the military continuing to exercise considerable influence over political affairs, it remains uncertain whether Melen's administration will succeed where its predecessors have failed as the presidency elections loom over the nation and the military apparatus.
+
+- @post_event: Continue...

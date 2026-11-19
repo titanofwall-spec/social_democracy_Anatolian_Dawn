@@ -1,6 +1,6 @@
 title: Presidential Election of 1973
 subtitle: Sunay's term comes to an end.
-view-if: year == 1973 and month = 4 and week = 1
+view-if: not rubicon_mode and year == 1973 and month = 4 and week = 1
 max-visits: 1
 tags: event
 new-page: true

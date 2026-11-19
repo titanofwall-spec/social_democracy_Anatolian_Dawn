@@ -5,7 +5,7 @@ max-visits: 36
 is-card: true
 frequency: 143
 tags: party_affairs
-view-if: CHP_party_leader == "İnönü" and campaigning_timer <= 0
+view-if: CHP_party_leader == "İnönü" and campaigning_timer <= 0 and (not rubicon_mode or (rubicon_melen_join and CHP_in_government and prime_minister = "Ferit Melen"))
 card-image: img/inonu_campaigning.jpeg
 
 = Campaigning

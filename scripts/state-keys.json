@@ -1259,5 +1259,16 @@
   "year",
   "yearly_budget",
   "yes",
-  "youth"
+  "youth",
+  "energy_minister_party",
+  "health_minister_party",
+  "inonu_approval",
+  "inonu_relation",
+  "public_works_minister_party",
+  "rubicon_delegate_shift",
+  "rubicon_interpellation",
+  "rubicon_melen_join",
+  "rubicon_mode",
+  "rubicon_week",
+  "rubicon_week_start"
 ]

@@ -1,6 +1,6 @@
 title: Ferit Melen resigns from prime ministership!
 subtitle: Another cabinet to the dustbin of history.
-view-if: year = 1973 and month = 4 and week = 2 and prime_minister = "Ferit Melen"
+view-if: year = 1973 and month = 4 and ((rubicon_mode and rubicon_week = 2) or (not rubicon_mode and week = 2)) and prime_minister = "Ferit Melen"
 max-visits: 1
 tags: event
 new-page: true
@@ -22,4 +22,10 @@ on-arrival: {!
   Q.I_in_government = 1;
   Q.prime_minister = "Naim Talu";
   Q.prime_minister_party = "I";
+  if (Q.rubicon_mode) {
+    Q.rubicon_mode = 0;
+    if (this.ui.currentAudio) this.ui.currentAudio.pause();
+    if (this.ui.audioQueue) this.ui.audioQueue.length = 0;
+    this.ui.audio('clear shuffle music/50yilmarsi.mp3 music/Yeni_Bir_Turkiye.mp3 music/Oy_Gulum_Oy.mp3 music/Canim_Ecevit.mp3 music/Dısarda_Kar_Yagiyor.mp3 music/Sev_Kardesim_Senay.mp3 music/Neye_Geldim_Dunyaya.mp3 music/Kumsaldaki_Izler_Juanito.mp3 music/Semiramis_Pekkan_Senden_Vazgecemem.mp3 music/Genclik_Basimda_Duman.mp3 music/Ersan_Erdura_Acılar_Surekli_Olamaz.mp3 music/Juanito_Arkadasimin_Askisin.mp3 music/Nilufer_dunya_donuyor.mp3 music/Nilufer_selam_soyle.mp3 music/gozleri_aska_gulen.mp3 music/herkeskendinebenzer.mp3 music/helvaci.mp3 music/gecevakti.mp3 music/dostlarbenihatirlasin.mp3 music/sultanıyegah.mp3 music/omurbiteryolbitmez.mp3 music/Tamirci_Ciragi.mp3 music/bahceleregeldibahar.mp3 music/gozlerikaradilber.mp3 music/kecivurdumcayira.mp3');
+  }
 !}

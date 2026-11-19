@@ -118,7 +118,7 @@ Q.tw_strength_label = Q.third_worldists_enabled ? _strengthLabel(_twAvg, _twAvg,
 
 = Status
 
-[? if cyprus_mode != 0: [+ cyprus_date_display +] ?][? if cyprus_mode = 0 and week == 1: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week 1) ?][? if cyprus_mode = 0 and week == 2: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week 3) ?]
+[? if cyprus_mode != 0: [+ cyprus_date_display +] ?][? if cyprus_mode = 0 and rubicon_mode: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week [+ rubicon_week +]) · İnönü's Approval [+ inonu_approval +] ?][? if cyprus_mode = 0 and not rubicon_mode and week == 1: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week 1) ?][? if cyprus_mode = 0 and not rubicon_mode and week == 2: [+ month : month +]&nbsp;[+ year +]&nbsp;(Week 3) ?]
 
 Resources available: [+ resources +]
 
@@ -614,6 +614,14 @@ if (seat_diff !== 0) {
     } else {
         Q.km_congress_seats += seat_diff;
     }
+}
+
+// Apply the extraordinary congress delegate transfer after normal apportionment.
+if (Q.rubicon_mode && Q.year === 1972 && Q.congress_upcoming && Q.rubicon_delegate_shift) {
+    Q.lk_congress_seats += 14 * Q.rubicon_delegate_shift;
+    Q.km_congress_seats += 7 * Q.rubicon_delegate_shift;
+    Q.ok_congress_seats -= 14 * Q.rubicon_delegate_shift;
+    Q.rk_congress_seats -= 7 * Q.rubicon_delegate_shift;
 }
 
 // Calculate candidate seats

@@ -3,6 +3,9 @@ new-page: true
 on-arrival: {!
 AnatolianRules.ensureKurdishIssue(Q);
 if(typeof AnatolianDynamicDemographics!=="undefined" && Q.started) AnatolianDynamicDemographics.ensure(Q);
+if (Q.rubicon_mode && (Q.year > 1973 || (Q.year === 1973 && Q.month > 4))) {
+    Q.rubicon_mode = 0;
+}
 var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
 Q.cyprus_calendar_advance = 0;
@@ -106,8 +109,20 @@ if (turnAdvanced) {
     Q.time += 1;
     Q.month_actions = 0;
 
-    // Advance by 2 weeks (bi-weekly system)
-    if (Q.week == 1) {
+    // Keep the half-month field available to rules and saves that use it.
+    if (Q.rubicon_mode) {
+        Q.rubicon_week_start += 7 * 86400000;
+        var monday = new Date(Q.rubicon_week_start);
+        if (monday.getUTCFullYear() !== Q.year && Q.historical_mode) Q.resources += 2;
+        if (monday.getUTCFullYear() !== Q.year && Q.CHP_in_government) Q.budget += 4 + (Q.yearly_budget || 0);
+        if (monday.getUTCFullYear() !== Q.year && typeof AnatolianDynamicDemographics !== "undefined") {
+            AnatolianDynamicDemographics.endYear(Q, Q.year);
+        }
+        Q.year = monday.getUTCFullYear();
+        Q.month = monday.getUTCMonth() + 1;
+        Q.rubicon_week = Math.ceil(monday.getUTCDate() / 7);
+        Q.week = Q.rubicon_week <= 2 ? 1 : 2;
+    } else if (Q.week == 1) {
         // Move from week 1 to week 3 of same month
         Q.week = 2;
     } else {
@@ -129,7 +144,7 @@ if (turnAdvanced) {
 
     if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}
     // decrement timers (only when month actually changes for monthly timers)
-    if (Q.week == 1) {
+    if (Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1)) {
         for (var timer of new Set(Q.timers.concat(['campaigning_ecevit', 'koykent_rally']))) {
             if (Q[timer+'_timer'] && Q[timer+'_timer'] > 0) {
                 Q[timer+'_timer'] -= 1;
@@ -138,7 +153,7 @@ if (turnAdvanced) {
     }
 
     // Run monthly economic simulation to keep values current once per month (when the month flips)
-    if (Q.week == 1) {
+    if (Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1)) {
         refreshBaseEconomicValues();
             runMonthlyEconomicSimulation();
         Q.last_economy_month = Q.month + Q.year * 12;
@@ -251,7 +266,7 @@ if (turnAdvanced) {
     // Prices and their status are derived once by AnatolianRules.refreshEconomy.
     // All ministry actions and monthly simulation use the same shared formula.
 
-if(Q.week===1){
+if (Q.week === 1 && (!Q.rubicon_mode || Q.rubicon_week === 1)) {
     // Increment agricultural price timer
     Q.agricultural_price_timer += 1;
 
@@ -705,7 +720,7 @@ if (Q.Tiger >= 2 && Q.year == 1980 && !Q.tiger_1980_effect_applied) {
 // Coup trigger: fires automatically when TSK is mutinous and acting (coup_timer >= 15),
 // or with a 25% monthly chance when democracystatus drops below 10.
 Q.coup_roll_success = 0;
-if (turnAdvanced && Q.week == 1 && !Q.army_in_government && !Q.tsk_pacified) {
+if (turnAdvanced && Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1) && !Q.army_in_government && !Q.tsk_pacified) {
     if (Q.coup_timer >= 15) {
         Q.coup_roll_success = 1;
     } else if (Q.democracystatus < 10 && Math.random() < 0.25) {
@@ -722,13 +737,14 @@ AnatolianRules.refreshVotes(Q);
 if(typeof AnatolianKurdishOrganizations!=='undefined')AnatolianKurdishOrganizations.update(Q);
 AnatolianRules.refreshFactions(Q);
 if (turnAdvanced) {
-    // append to historical party support records
-    var party_support_results = {'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16)};
+    // Record weekly dates during Rubicon and half-month dates thereafter.
+    var recordDate = Q.rubicon_mode ? new Date(Q.rubicon_week_start) : new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16);
+    var party_support_results = {'date': recordDate};
     for (var party of Q.parties) {
         party_support_results[party] = Q[party + '_normalized']*100;
     }
     Q.party_support_records.push(party_support_results);
-    Q.economic_records.push({'date': new Date(Q.year, Q.month - 1, Q.week == 1 ? 1 : 16),
+    Q.economic_records.push({'date': recordDate,
                              'inflation': Q.inflation,
                              'unemployment': Q.unemployed});
 

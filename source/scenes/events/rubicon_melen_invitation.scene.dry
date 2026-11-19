@@ -1,0 +1,30 @@
+title: Melen Invites the CHP into His Government
+subtitle: May 17–19, 1972
+new-page: true
+max-visits: 1
+
+= Melen Invites the CHP into His Government
+
+Having received the mandate to form a new government, Ferit Melen has begun negotiations with the political parties in Parliament, hoping to secure the support necessary to establish a stable administration. As part of these efforts, Melen meets with CHP Chairman Bülent Ecevit, accompanied by Secretary General Kâmil Kırıkoğlu and CHP Parliamentary Group Deputy Chairman Kemal Demir. During their meeting, Melen explains the principles upon which he intends to form his government and formally invites the CHP to participate. Ecevit welcomes the opportunity to discuss the country's political future, but makes it clear that CHP's cooperation cannot come at the expense of its political principles or require unreasonable sacrifices from the party.
+
+Ecevit emphasizes the importance of restoring normal parliamentary democracy and bringing an end to the extraordinary political circumstances that have dominated Turkey since the March 12 Memorandum. Melen expresses his willingness to cooperate on these objectives, and the meeting ends on a positive note, with both sides finding considerable common ground. However, Ecevit cannot decide the matter alone, and the question of joining Melen's government must now be brought before the CHP's parliamentary groups for their approval. Although the new party leadership has consistently opposed military interference in politics, refusing to participate in another government may only prolong the restrictions imposed upon political life, leaving us with a difficult decision.
+
+Joining Melen's government would finally allow us to resume rallies and campaigning, although the gains would remain limited due to military supervision, and many of our supporters would undoubtedly be disappointed to see the CHP participating in another military-backed administration. Refusing would spare us this loss of popularity, but leave our political activities restricted for as long as the government remains in power. More importantly, such a decision would deeply anger İnönü, who, despite no longer serving as Chairman, remains an enormously influential figure within the party and believes that participating in these governments is necessary to preserve parliamentary democracy against the threat of an outright military takeover. Whether İnönü remains within the CHP is still of tremendous importance to our future, and another confrontation with him could have consequences far beyond this government crisis.
+
+- @join: Ecevit Sways the Party to Join the Government
+- @refuse: Ecevit Sways the Party to Vote Against Joining the Government
+
+@join
+on-arrival: rubicon_melen_join = 1
+
+The CHP parliamentary groups have voted in favor of joining Melen's government, securing the ministries of Labor, Energy, Health and Public Works. With our party now participating in the government, we are finally permitted to resume rallies and political campaigning, although considerable restrictions remain in place, limiting their effectiveness. However, the decision has provoked widespread unrest among our grassroots supporters, many of whom feel betrayed by Ecevit's decision to join a military-backed government after spending more than a year opposing the March 12 Memorandum.
+
+- @post_event: Continue...
+
+@refuse
+on-arrival: rubicon_melen_join = 0
+
+The CHP parliamentary groups have voted against joining Melen's government, maintaining our opposition to military-backed administrations. Although this decision has been welcomed by our grassroots supporters, we remain unable to organize rallies or conduct political campaigns while the restrictions imposed under the memorandum continue. More importantly, the decision has infuriated İnönü, who believes Ecevit is once again placing his political principles above the preservation of parliamentary democracy. With relations between the two men deteriorating further, İnönü's continued presence within the CHP has become increasingly uncertain.
+
+- @post_event: Continue...
+

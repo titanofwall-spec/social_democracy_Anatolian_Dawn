@@ -39,6 +39,13 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  engine._runActions(game.scenes['gezmis.commence'].onDisplay);
  assert.equal(Q.gezmisVoteAye,true);
  global.d3=null;
+ assert.equal(Q.inonu_approval,45);
+ assert.equal(Q.rubicon_mode,1);
+ engine.goToScene('root.start_main');
+ for(let i=0;i<52;i++){Q.month_actions=1;engine.goToScene('post_event');}
+ assert.equal(Q.year,1973); assert.equal(Q.month,1); assert.equal(Q.rubicon_week,1);
+ engine.goToScene('root.start');
+ Q.rubicon_mode=0;
  engine.goToScene('root.start_main');
  for(let i=0;i<24;i++){Q.month_actions=1;engine.goToScene('post_event');}
  finite(Q,['inflation','unemployed','economic_growth','forex_pressure','chp_support','AP_support']);

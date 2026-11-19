@@ -29,7 +29,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         const ui = new lib.NullUserInterface(); ui.show_portraits = false;
         const engine = new lib.DendryEngine(ui, game);
         window.dendryUI = global.dendryUI = {dendryEngine:engine};
-        engine.beginGame([1,2,3,4,5]); engine.goToScene('root.start'); engine.goToScene('root.start_main');
+        engine.beginGame([1,2,3,4,5]); engine.goToScene('root.start'); engine.state.qualities.rubicon_mode = 0; engine.goToScene('root.start_main');
         return engine;
     }
     function test(name, run) {

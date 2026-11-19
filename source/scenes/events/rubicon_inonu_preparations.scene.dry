@@ -1,0 +1,29 @@
+title: İnönü Takes Charge of the Congress Preparations
+subtitle: April 22, 1972
+new-page: true
+max-visits: 1
+
+= İnönü Takes Charge of the Congress Preparations
+
+The argument regarding delegate attendance at the congress has escalated beyond the Party Assembly and into the organization of the congress itself.
+
+With the extraordinary congress scheduled for May 5th, İnönü has taken it upon himself to organize the preparations. He has appointed three deputies to assist him: Ahmet Şener -Trabzon deputy and Party Assembly member-, Coşkun Karagözoğlu -İzmir deputy and Party Assembly member-, and Sadrettin Çanga -Bursa deputy-.
+
+These men will be responsible for reviewing the delegate lists and issuing the cards that will allow delegates to enter the congress. For İnönü, this is an appropriate way to ensure that the congress is well organized and that those attending have the authority to represent their party. This move, however, raises new concerns about the fairness of the congress among Ecevit and his supporters.
+
+The issue that caused İnönü to leave the Party Assembly prior was precisely who could attend as delegates, therefore candidates he chose to decide that obviously brings anxiety to us. For indeed, İnönü believes that the congress should be held with the delegates of the previous, 20th Party Congress, we argue that delegates newly elected by the provincial party organizations must also be recognized. Many of these delegates were elected with the support of the Left of Center movement.
+
+If the newly elected delegates are not recognized by İnönü's candidates, they may be unable to enter the congress, despite having been chosen by their respective party organizations! The reformists fear that the decision over who can represent the party is effectively being taken out of the hands of its elected leadership.
+
+While nobody can doubt İnönü's immense contributions to our party and country, and while he has every right to organize an important congress as General Chairman, the we do not believe that three appointed individuals should have the final say over who represents our party. We believe that the legitimacy of delegates should be determined by the party's rules and the elections held within its organizations.
+
+As the congress draws closer, questions regarding delegate legitimacy have become increasingly prominent. With neither side willing to compromise on its principles, even the issue of entry cards has developed into a political conflict.
+
+As a result, another objection has been raised by our movement, causing further dissatisfaction for the General Chairman. However, this is not a conflict we can fight with him on...
+
+- @object: A delegate's mandate comes from the party, not from a permission card!
+
+@object
+on-arrival: inonu_relation -= 5
+
+- @post_event: Continue...

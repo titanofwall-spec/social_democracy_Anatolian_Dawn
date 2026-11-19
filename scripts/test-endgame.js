@@ -59,7 +59,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  }
  function enter1982(e){
   const Q=e.state.qualities;
-  Object.assign(Q,{started:1,year:1981,month:12,week:2,month_actions:1,cyprus_mode:0,
+  Object.assign(Q,{started:1,rubicon_mode:0,year:1981,month:12,week:2,month_actions:1,cyprus_mode:0,
     cyprus_preop_resume:0,cyprus_campaign_resume:0,coup_timer:0,tsk_pacified:1,
     endgame_1982_ignored:0,game_over:0});
   e.goToScene('post_event');
@@ -100,7 +100,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
  test('A coup takes priority and still ends in the new report',()=>{
   const e=engine(),Q=e.state.qualities;
-  Object.assign(Q,{started:1,year:1981,month:12,week:2,month_actions:1,coup_timer:15,
+  Object.assign(Q,{started:1,rubicon_mode:0,year:1981,month:12,week:2,month_actions:1,coup_timer:15,
     tsk_pacified:0,army_in_government:0,cyprus_mode:0});
   e.goToScene('post_event');
   assert.equal(e.state.sceneId,'game_over');
@@ -109,7 +109,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
  test('Entering 1982 without advancing a turn does not launch the prompt mid-turn',()=>{
   const e=engine(),Q=e.state.qualities;
-  Object.assign(Q,{started:1,year:1981,month:12,week:2,month_actions:0,tsk_pacified:1});
+  Object.assign(Q,{started:1,rubicon_mode:0,year:1981,month:12,week:2,month_actions:0,tsk_pacified:1});
   e.goToScene('post_event');
   assert.equal(Q.year,1981);
   assert.notEqual(e.state.sceneId,'endgame_1982');

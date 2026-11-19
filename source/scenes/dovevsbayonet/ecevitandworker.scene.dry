@@ -1,10 +1,11 @@
 title: A Visit to Nazilli
 new-page: true
-on-arrival: month_actions += 1;
+on-arrival: month_actions += 1 if not rubicon_mode;
 max-visits: 1
 is-card: true
 card-image: img/ecevitnazilli.png
 face-image: img/ecevitveisci.png
+view-if: not rubicon_mode
 tags: dovevsbayonet
 
 = A Visit to Nazilli

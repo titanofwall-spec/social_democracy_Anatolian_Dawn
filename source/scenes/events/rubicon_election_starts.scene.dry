@@ -1,0 +1,12 @@
+title: The Presidential Election Begins
+view-if: rubicon_mode and year = 1973 and month = 3 and rubicon_week = 2
+max-visits: 1
+tags: event
+priority: 100
+new-page: true
+
+= The Presidential Election Begins
+
+March 13: Presidential election process begins.
+
+- @post_event: Continue...

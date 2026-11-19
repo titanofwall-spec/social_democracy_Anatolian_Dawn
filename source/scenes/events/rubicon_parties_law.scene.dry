@@ -1,0 +1,12 @@
+title: The Political Parties Law
+view-if: rubicon_mode and year = 1972 and month = 5 and rubicon_week = 5
+max-visits: 1
+tags: event
+priority: 100
+new-page: true
+
+= The Political Parties Law
+
+May 30: Political Parties Law decision.
+
+- @post_event: Continue...
