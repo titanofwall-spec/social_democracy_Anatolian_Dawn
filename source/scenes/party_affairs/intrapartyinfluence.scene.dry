@@ -4,11 +4,11 @@ view-if: CHP_party_leader = 'Ecevit' and intraparty_timer <= 0
 on-arrival: month_actions += 1; intraparty_timer = 4
 is-card: true
 card-image: img/chpleadership.jpg
-tags: party_affairs
+tags: dovevsbayonet
 
 = Intraparty Influence
 
-Now that we as the reformists have gained power in the party, we have the chance to consolidate our hold over various segments of the party.
+Now that our Left of the Center movement has gained power in the party, we have the chance to consolidate our hold over various segments of the party.
 
 - @q0: Increase reformist presence in the grassroots and the youth wing.
 - @q1: Propagate Social Democratic ideals among the electorate.

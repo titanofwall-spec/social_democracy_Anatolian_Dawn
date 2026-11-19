@@ -23,6 +23,7 @@ on-arrival: resources += dues; resources += 1 if socialist_international_member
 We maintain our current dues.[? if socialist_international_member : Our membership in the Socialist International provides additional funding through international solidarity contributions. ?]
 
 @reduce
+unavailable-subtitle: Party dues are already at their minimum level.
 subtitle: [+ dues - 1 +] resources gained.[? if socialist_international_member : (+1 from Socialist International) ?] This will lower our periodic resource gain.
 choose-if: dues > 1
 on-arrival: dues -= 1; resources += dues; resources += 1 if socialist_international_member; kemalist_marxists_dissent -= 8; left_kemalists_dissent -= 8; orthodox_kemalists_dissent -= 8; right_kemalists_dissent -= 8

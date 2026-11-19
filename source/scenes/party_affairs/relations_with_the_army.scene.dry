@@ -8,29 +8,35 @@ on-arrival: {! AnatolianCardActions.begin(this, 'relations_with_the_army'); !}
 
 = Relations With the Army
 
-We can speak privately with our contacts in the General Staff, or answer the accusations against us in public.
+Our contacts in the General Staff remain uneasy about the course of civilian politics. We could seek to reassure them behind closed doors, or make a public gesture of conciliation. Neither course would come without a political cost, particularly when our supporters expect us to resist military interference in Parliament.
 
-- @connections: Use our connections with the General Staff to ease the worries of the army
-- @statements: Make statements against the slanders made to us
-- @decline: No, we will not do any of these
+- @connections: Approach our contacts in the General Staff privately.
+- @statements: Make a public statement reassuring the armed forces.
+- @decline: Maintain our position.
 - @navigation_return_main: Return
 
 @connections
-choose-if: resources >= 1
-subtitle: Spend 1 Resource to reduce TSK pressure by up to 2 points.
-unavailable-subtitle: Requires 1 Resource.
-on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2); !} resources -= 1; month_actions += 1
+choose-if: resources >= 2
+subtitle: Requires substantial resources and concessions that may anger the party left.
+unavailable-subtitle: We lack the resources needed for a sustained round of private talks.
+on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 2); !} resources -= 2; left_kemalists_dissent += 3; kemalist_marxists_dissent += 3; month_actions += 1
 go-to: post_event
+
+Our intermediaries reassure senior officers that the CHP will defend the constitutional order. The conversations ease some of the tension, but news of our concessions spreads through the party, where the Left of the Center movement fears we have given the generals too much ground.
 
 @statements
-subtitle: Reduce TSK pressure by up to 1 point at no cost.
-on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 1); !} month_actions += 1
+subtitle: May calm the officers, but disappoint our democratic base and deepen factional dissent.
+on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); Q.coup_timer = Math.max(0, Q.coup_timer - 1); !} workers_chp -= 2; left_kemalists_dissent += 4; month_actions += 1
 go-to: post_event
 
+We publicly reaffirm the army's constitutional role while avoiding direct confrontation with its commanders. The conciliatory language offers some reassurance, but workers and party activists who looked to us for a firmer defense of civilian rule are disappointed.
+
 @decline
-subtitle: Discard this card and advance a turn.
+subtitle: We will offer no new assurances to the generals this month.
 on-arrival: {! AnatolianCardActions.commit(Q); Q.relations_with_the_army_available_time = Q.time + (Q.rubicon_mode ? 4 : 2); !} month_actions += 1
 go-to: post_event
+
+We refuse to make concessions merely to satisfy the military leadership.
 
 @navigation_return_main
 on-arrival: {! AnatolianCardActions.back(this); !}

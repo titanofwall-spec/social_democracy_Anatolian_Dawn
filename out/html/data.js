@@ -274,3 +274,23 @@ colourList.push({word:"PDK-T",style:"color:#c2d93f;font-weight:bold;"});
 
 // Expose the existing entity/party label registry to the map-design palette.
 globalThis.AnatolianGameColourEntries = colourList;
+
+
+// Rubicon figures reuse the portraits and biographical context already shown
+// in the Government tab. Using the shared tooltip list also covers decisions.
+[
+  ['Nihat Erim','<img src="img/nihaterim.jpg">Nihat Erim, a right-wing Kemalist and former CHP figure, leads the military-backed government established after the March 12, 1971 Memorandum.'],
+  ['Süleyman Demirel','<img src="img/demirell.jpg">Süleyman Demirel is chairman of the AP and a former prime minister. His parliamentary group remains a decisive force in the government crisis.'],
+  ['İsmet İnönü','<img src="img/portraits/IsmetInonu.jpg">İsmet İnönü, Atatürk\'s longtime colleague and the Republic\'s second president, has led the CHP since 1938. He believes preserving Parliament is essential to resisting direct military rule.'],
+  ['Bülent Ecevit','<img src="img/ecevitim1.webp">Bülent Ecevit leads the CHP\'s Left of the Center movement and opposes the military\'s interference in parliamentary politics.'],
+  ['Ferit Melen','<img src="img/melen.jpg">Ferit Melen is a right-wing Kemalist statesman and MGP politician who served as defense minister under Erim.'],
+  ['Cevdet Sunay','<img src="img/cevdetsunay.jpg">President Cevdet Sunay, a former chief of the General Staff, oversees Turkey\'s military-influenced political transition.'],
+  ['Turhan Feyzioğlu','<img src="img/cgplogo.png">Turhan Feyzioğlu, chairman of the MGP, is a leading right-wing Kemalist opponent of the CHP\'s Left of the Center movement.'],
+  ['Suat Hayri Ürgüplü','Suat Hayri Ürgüplü is an independent senator, former prime minister, and former president of the Senate.'],
+  ['Kâmil Kırıkoğlu','Kâmil Kırıkoğlu, CHP secretary general, is a prominent figure in the struggle over the party\'s direction.'],
+  ['İbrahim Öktem','İbrahim Öktem is a CHP Party Assembly member who acts as an intermediary in the 1972 government negotiations.'],
+  ['Çankaya Palace','<img src="img/cevdetsunay.jpg">Çankaya Palace in Ankara was the presidential residence and the setting for consultations over the formation of a new government.']
+].forEach(function(entry){
+  if (!tooltipList.some(function(t){return t.searchString===entry[0];}))
+    tooltipList.push({searchString:entry[0],explanationText:entry[1]});
+});

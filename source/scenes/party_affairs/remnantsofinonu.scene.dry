@@ -2,7 +2,7 @@ title: Remnants of İnönü
 new-page: true
 on-arrival: month_actions += 1; remnants_of_inonu_timer = 2
 is-card: true
-tags: party_affairs
+tags: dovevsbayonet
 view-if: CHP_party_leader == "Ecevit" and remnants_of_inonu_timer == 0 and inonuu == 0
 card-image: img/inonu2.png
 

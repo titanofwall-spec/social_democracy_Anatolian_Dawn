@@ -51,7 +51,56 @@
 
     // Permanent desk controls follow the four drawn-card slots.
     var drawHand=ui.displayHand.bind(ui);
-    ui.displayHand=function(hand){drawHand(hand,4);if(ui.dendryEngine.state.qualities.cyprus_mode)return;var e=ui.dendryEngine,Q=e.state.qualities,list=document.querySelector('#content ul.hand');if(!list)return;list.querySelectorAll('.permanent-desk-card').forEach(function(el){el.remove();});['cabinet','municipalities'].forEach(function(id){var scene=e.game.scenes[id],choice=e._compileChoices(e.getCurrentScene()).find(function(c){return c.id===id;}),enabled=choice&&choice.canChoose,li=document.createElement('li');li.className='card-in-hand permanent-desk-card'+(enabled?'':' unavailable-card');if(id==='municipalities'&&enabled)li.classList.add('municipality-ready');li.dataset.deskCard=id;var link=document.createElement('a');link.className='card';link.href='#';link.setAttribute('aria-disabled',String(!enabled));link.title=scene.title;var img=document.createElement('img');img.className='card-img';img.src=scene.cardImage;link.append(img);link.onclick=function(event){event.preventDefault();event.stopPropagation();if(enabled)e.playPinnedCard(id);};var caption=document.createElement('span');caption.className='card-caption';caption.textContent=scene.title;li.append(link,caption);list.append(li);});};
+    // A disabled pinned card needs the same visible explanation as a disabled menu action.
+    function pinnedCardReason(id,Q){
+      if(id==='cabinet'){
+        if(!Q.CHP_in_government)return 'Our party must first enter government to direct the Cabinet.';
+        if(Q.prime_minister_party!=='CHP')return 'The Cabinet is directed by the prime minister. We must first secure a CHP prime minister.';
+        if(!(Q.in_CHP_majority||Q.chp_seats>=Q.majority_threshold))return 'Cabinet affairs require a CHP parliamentary majority.';
+      }
+      if(id==='municipalities')return 'Municipal affairs are not available under the current political circumstances.';
+      return 'This card is currently unavailable.';
+    }
+    ui.displayHand=function(hand){
+      drawHand(hand,4);
+      if(ui.dendryEngine.state.qualities.cyprus_mode)return;
+      var e=ui.dendryEngine,Q=e.state.qualities,list=document.querySelector('#content ul.hand');
+      if(!list)return;
+      list.querySelectorAll('.permanent-desk-card').forEach(function(el){el.remove();});
+      var offers=e._compileChoices(e.getCurrentScene());
+      ['cabinet','municipalities'].forEach(function(id){
+        var scene=e.game.scenes[id],choice=offers.find(function(c){return c.id===id;});
+        if(!scene)return;
+        var enabled=!!(choice&&choice.canChoose),li=document.createElement('li');
+        li.className='card-in-hand permanent-desk-card'+(enabled?'':' unavailable-card');
+        if(id==='municipalities'&&enabled)li.classList.add('municipality-ready');
+        li.dataset.deskCard=id;
+        var link=document.createElement('a');
+        link.className='card';
+        link.href='#';
+        link.setAttribute('aria-disabled',String(!enabled));
+        var reason=enabled?'':(choice&&choice.subtitle||pinnedCardReason(id,Q));
+        link.title=enabled?scene.title:reason;
+        var img=document.createElement('img');
+        img.className='card-img';
+        img.src=scene.cardImage;
+        link.appendChild(img);
+        if(!enabled){
+          var tip=document.createElement('span');
+          tip.className='card-tooltip';
+          tip.setAttribute('role','tooltip');
+          tip.textContent=reason;
+          link.appendChild(tip);
+          link.setAttribute('aria-label',scene.title+'. '+reason);
+        }
+        link.onclick=function(event){event.preventDefault();event.stopPropagation();if(enabled)e.playPinnedCard(id);};
+        var caption=document.createElement('span');
+        caption.className='card-caption';
+        caption.textContent=scene.title;
+        li.append(link,caption);
+        list.appendChild(li);
+      });
+    };
 
     // Add optional styled tooltips to choice buttons without changing subtitles.
     window.buttonTooltips = {
@@ -73,6 +122,12 @@
       var tooltips = window.buttonTooltips || {};
       choices.forEach(function(choice, index) {
         var choiceId = String(choice.id || '');
+        var rubiconChoice = /^rubicon_|^ecevitandworker\./.test(ui.dendryEngine.state.sceneId || '');
+        if (rubiconChoice && window.formatPartyLabel) {
+          var li = document.querySelector('#content > ul.choices li:nth-child(' + (index + 1) + ')');
+          var label = li && li.querySelector('a, .unavailable');
+          if (label) label.innerHTML = window.formatPartyLabel(label.innerHTML);
+        }
         var tooltip = AnatolianRules.cyprusAtilla1.choiceTooltip(choiceId.replace(/^@/, '')) || tooltips[choiceId] || tooltips[choiceId.replace(/^@/, '')];
         if (!tooltip) return;
         var button = document.querySelector('#content > ul.choices a[data-choice="' + index + '"]');

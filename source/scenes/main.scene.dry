@@ -84,7 +84,7 @@ is-deck: true
 @dovevsbayonet
 title: Congress Affairs
 card-image: img/dovevsbayonet.png
-view-if: CHP_party_leader == "İnönü"
+view-if: CHP_party_leader == "İnönü" or CHP_party_leader == "Ecevit"
 is-deck: true
 
 - #dovevsbayonet
