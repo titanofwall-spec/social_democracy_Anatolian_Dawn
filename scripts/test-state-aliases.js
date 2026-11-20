@@ -69,7 +69,7 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   assert(cgp.includes('CGP_relation += 3;'));
   assert(!/\bcgp_relation\b/.test(cgp));
   const fiscal=scene('government_affairs/fiscal_policy.scene.dry');
-  assert(fiscal.includes('workers_chp += 4*(1 - dissent)'));
+  assert(fiscal.includes('workers_chp += 4*(dissent - 1)'));
   assert(!/\bworker_chp\b/.test(fiscal));
   const media=scene('party_affairs/media.scene.dry');
   assert(!/\bI_government\b/.test(media));
