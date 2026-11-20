@@ -101,7 +101,7 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
     const s=q.macro_model;
     for(const k of ['y','price','m2','potential','inflation','growth','expectation'])assert(Number.isFinite(s[k]),name+' '+k);
     assert(s.y>0 && s.price>0 && s.m2>0);assert(s.inflation>-100);
-    assert(Math.abs(s.demandGap)<=25);assert((q.price_control_coverage||0)<=.85);
+    assert(Math.abs(s.demandGap)<=25);
     if(t%2===1){
       ys.push(s.y);ps.push(s.price);const i=ys.length-1;
       if(i>=12){near(q.economic_growth,100*(s.y/ys[i-12]-1));near(q.inflation,100*(s.price/ps[i-12]-1));}
@@ -123,7 +123,7 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
       firstActions:actual.slice(0,8),lastActions:actual.slice(-6),
       potential:q.macro_model.potential,health:q.health_economy_status}));
   }
-  if(name==='repeatedControls'){assert(q.inflation>0);assert(q.black_market_risk>1);}
+  if(name==='repeatedControls')assert(q.black_market_risk>1);
   output(JSON.stringify({scenario:name,year:q.year,inflation:q.inflation,growth:q.economic_growth,
     unemployment:q.unemployed,health:q.health_economy_status}));
 });

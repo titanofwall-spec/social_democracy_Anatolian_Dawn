@@ -20,23 +20,8 @@ missing sector-capacity link and flat deflation health score were also present.
 
 ## Price controls
 
-The November 12 rebalancing strengthens coverage to:
-`coverage += (0.85 - coverage) * 0.75`.
-Successive actions without elapsed time reach 63.75%, 79.6875%, 83.671875%,
-approaching a hard 85% ceiling. Coverage decays with a two-year half-life.
-Enforcement is at least 92%, and controlled prices are permitted to rise by at
-most 3% annually, converted to monthly growth. With market monthly growth `g`,
-the observed basket grows by:
-
-`g - coverage * enforcement * max(0, g - monthlyCap)`.
-
-Thus controls only reduce increases above the ceiling. They never deepen an
-already falling price index. The action retains +1 black-market risk, -3
-capitalist support, advisor commitment and the existing action count. There is
-no cumulative price-gap variable, deferred-price state or release mechanic.
-Ending controls simply stops their suppression of subsequent increases.
-The twelve underlying monthly rates are ordinary rolling inflation history;
-they are never subtracted from observed prices or used to trigger a release.
+The action subtracts 6 from the inflation modifier. The monthly model applies
+the resulting policy pressure through its normal inflation calculation.
 
 ## November 12 structural recovery policy rebalance
 
@@ -163,8 +148,7 @@ Old saves did not record how much of their aggregate inflation modifier came
 from controls. The migration preserves that mixed modifier and its existing
 decay, rather than guessing and erasing IMF, oil or other policies. It cannot
 retroactively remove old control penalties, reconstruct a counterfactual CPI
-path or undo damage already present in the save. Coverage starts at zero until
-a new control action. A new campaign is recommended for clean economic balance;
+path or undo damage already present in the save. A new campaign is recommended for clean economic balance;
 old saves are supported for continuity, not exact historical reconstruction.
 
 ## Validation and limits
@@ -201,8 +185,4 @@ and the complete `npm test` suite passed. The final calendar update into January
 | Monetary changes and Tiger | 15.33% | 1.07% | 7.41% | In Crisis |
 
 The remaining crises reflect the existing FX drift and health multiplier.
-Controls lower observed inflation without erasing that separate constraint.
-
-## Price-control stabilization target
-
-Active enforcement now uses the rolling twelve-month price base to target 1% annual inflation. Coverage and enforcement determine convergence after an inflation shock. The controlled price level never falls below the level consistent with 1% annual inflation, and small residual overshoots settle at the target. The floor ends when coverage expires (below the model numerical threshold) or enforcement is zero. No restriction is imposed on inflation without active controls. Save/load preserves the existing coverage and price history.
+Changes to inflation policy leave that separate constraint in place.

@@ -9,56 +9,9 @@ const sample = extra => ({year:1973, month:1, inflation:15, economic_growth:5.5,
 const copy = q => JSON.parse(JSON.stringify(q));
 const near = (a,b,t=1e-8) => assert(Math.abs(a-b)<t, `${a} != ${b}`);
 function tick(q) { if (++q.month>12) {q.year++;q.month=1;} M.step(q); M.headlines(q); }
-function run(q,n,policy=()=>{}) { M.ensure(q);for(let i=0;i<n;i++){policy(q,i);tick(q);}return q.macro_model; }
+function run(q,n) { M.ensure(q);for(let i=0;i<n;i++)tick(q);return q.macro_model; }
 let count=0;
 function test(name,f){f();count++;console.log('PASS '+name);}
-test('Coverage saturates; monthly basket arithmetic; no ceiling-induced deflation',()=>{
-  const q=sample();M.ensure(q);M.applyPriceControls(q);near(q.price_control_coverage,.6375);
-  M.applyPriceControls(q);near(q.price_control_coverage,.796875);
-  for(let i=0;i<100;i++)M.applyPriceControls(q);
-  assert(q.price_control_coverage<=.85);assert.equal(q.inflation_modifier,undefined);
-  const b=copy(q);b.price_control_coverage=0;const p=q.macro_model.price;tick(q);tick(b);
-  const market=b.macro_model.price/p-1, cap=Math.pow(1.03,1/12)-1;
-  assert(q.inflation>=1-1e-8);assert(q.macro_model.price<=b.macro_model.price);
-  for(const rate of [0,-10]){
-    const a=sample({inflation:rate,macro_m2_growth:rate,macro_interest_rate:rate+3});
-    M.ensure(a);const b=copy(a);M.applyPriceControls(a);tick(a);tick(b);
-    assert(b.macro_model.price<100);near(a.inflation,1);assert(a.macro_model.price>b.macro_model.price);
-  }
-});
-test('Active controls stop at 1%, restrain renewed shocks and stop protecting after expiry',()=>{
- const q=sample({inflation:1,macro_m2_growth:0,inflation_modifier:-35});
- M.ensure(q);M.applyPriceControls(q);
- for(let i=0;i<24;i++){tick(q);near(q.inflation,1,1e-7);}
- q.inflation_modifier=0;q.macro_price_shock=10;
- tick(q);assert(q.inflation>1.01,'a new shock can raise inflation');
- const shocked=q.inflation;q.macro_price_shock=0;q.inflation_modifier=-35;
- for(let i=0;i<24;i++){tick(q);assert(q.inflation>=1-1e-7);}
- assert(q.inflation<shocked);near(q.inflation,1,1e-7);
- const saved=copy(q);tick(q);tick(saved);assert.deepEqual(q,saved);
- q.price_control_coverage=0;
- for(let i=0;i<12;i++)tick(q);
- assert(q.inflation<1,'uncontrolled deflation remains possible');
-});
-
-test('An initial enforcement round makes a substantial observable difference',()=>{
-  const controlled=sample(), market=sample();
-  M.ensure(controlled);M.ensure(market);
-  M.applyPriceControls(controlled);
-  for(let i=0;i<12;i++){tick(controlled);tick(market);}
-  assert(controlled.inflation<market.inflation-4,
-    'A single price-control intervention must reduce annual inflation by at least four points during its first year.');
-  assert(controlled.price_control_coverage>0&&controlled.price_control_coverage<.85);
-});
-test('Repeated controls remain bounded across nine years; expiry has no release shock',()=>{
-  const q=sample();run(q,108,q=>M.applyPriceControls(q));
-  assert(q.inflation>0 && q.inflation<25);assert(q.macro_model.underlyingInflation>q.inflation);
-  const b=copy(q);q.price_control_coverage=0;b.price_control_coverage=0;
-  // Equal current macro conditions with a different past-control history have equal
-  // next prices: no accumulated hidden price gap can feed a release.
-  b.macro_model.underlyingMonthlyHistory=Array(12).fill(q.macro_model.underlyingTrend/12);
-  tick(q);tick(b);near(q.macro_model.price,b.macro_model.price);
-});
 test('Monetary anchor stabilizes expectations; genuine inflation and deflation remain possible',()=>{
   const neutral=run(sample(),108), tight=run(sample({macro_m2_growth:0}),108);
   const loose=run(sample({macro_m2_growth:100}),108);
