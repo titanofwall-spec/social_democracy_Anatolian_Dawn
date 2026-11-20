@@ -21,7 +21,7 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   assert.equal(q.CHP_party_leader, 'Ecevit');
   assert.equal(q.industry_modifier, 7);
   for (const retired of ['cgp_relation','worker_chp','AP_workers','I_government',
-    'CHP_leader','land_reform_level']) {
+    'CHP_leader','industrial_player_modifier','agricultural_player_modifier','land_reform_level']) {
     assert.equal(Object.prototype.hasOwnProperty.call(q, retired), false, 'retired '+retired);
   }
   const previous = JSON.stringify(q);
@@ -40,8 +40,8 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   assert.equal(q.agricultural_production_index, 100);
   assert.equal(q.agricultural_product_prices, 1.21);
   assert.equal(q.agricultural_price_status, 'Very High');
-  assert.equal(q.industrial_player_modifier, 3);
-  assert.equal(q.agricultural_player_modifier, 0);
+  assert.equal(q.industrial_player_modifier, undefined);
+  assert.equal(q.agricultural_player_modifier, undefined);
   for (const [v,label] of [[1.20,'High'],[1.10,'High'],[0.90,'Sufficient'],
     [0.80,'Low'],[0.79,'Very Low']]) assert.equal(R.agriculturalPriceStatus(v), label);
 }
@@ -69,7 +69,7 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   assert(cgp.includes('CGP_relation += 3;'));
   assert(!/\bcgp_relation\b/.test(cgp));
   const fiscal=scene('government_affairs/fiscal_policy.scene.dry');
-  assert(fiscal.includes('workers_chp += 4*(dissent - 1)'));
+  assert(fiscal.includes('workers_chp += 4*(1 - dissent)'));
   assert(!/\bworker_chp\b/.test(fiscal));
   const media=scene('party_affairs/media.scene.dry');
   assert(!/\bI_government\b/.test(media));

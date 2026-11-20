@@ -532,8 +532,6 @@ Q.industrial_production_index = Q.historical_industrial_index[Q.year] || 100;
 Q.agricultural_production_index = Q.historical_agricultural_index[Q.year] || 100;
 
 // Player modifications to production indices (cumulative effects from player actions)
-Q.industrial_player_modifier = 0;
-Q.agricultural_player_modifier = 0;
 
 // Variables for making production changes (used by government actions)
 Q.industrial_change = 0;
@@ -560,6 +558,9 @@ Q.apply_economy_effects = 0;
 Q.forex_pressure = 45;
 // Onat monthly macro model inputs. Unspecified variables use explicit neutral defaults.
 Q.macro_model = null;
+Q.price_control_coverage = 0;
+Q.price_control_enforcement = 0.92;
+Q.price_control_allowed_growth = 3;
 Q.macro_savings_rate = 20;
 Q.macro_interest_rate = Q.base_inflation + 3;
 Q.macro_m2_growth = Q.base_inflation + Q.base_growth;

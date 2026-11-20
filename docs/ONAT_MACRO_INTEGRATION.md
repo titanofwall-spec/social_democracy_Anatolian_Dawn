@@ -2,6 +2,8 @@
 
 This integration replaces the headline GDP growth, CPI inflation, and unemployment baselines with a monthly stateful calculation, preserving existing display assets and Dendry scenes. The existing half-month turn system advances the macro state only when the calendar month changes. State is saved as `Q.macro_model`.
 
+Version 2 stabilization and save migration are documented in [ECONOMIC_REPAIRS.md](ECONOMIC_REPAIRS.md). That document supersedes the original formula notes below where specified.
+
 ## Existing policy effects
 
 - `growth_modifier` is interpreted as the fiscal demand impulse `f_t` (or explicit `macro_fiscal_impulse` if supplied).

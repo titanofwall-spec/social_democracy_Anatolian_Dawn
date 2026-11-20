@@ -12,7 +12,17 @@ AnatolianRules.refreshEconomy(Q);
 // Calculate Economic Health based on Inflation, Unemployment, and GDP Growth
 
 // Calculate Inflation Score
-if (Q.inflation < 0) {
+if (!Number.isFinite(Q.inflation) || Q.inflation <= -100) {
+    Q.inflation_score = -10;
+} else if (Q.inflation < -20) {
+    Q.inflation_score = -8;
+} else if (Q.inflation < -10) {
+    Q.inflation_score = -6;
+} else if (Q.inflation < -5) {
+    Q.inflation_score = -4;
+} else if (Q.inflation < -2) {
+    Q.inflation_score = -2;
+} else if (Q.inflation < 0) {
     Q.inflation_score = -1; // Deflation is assessed freshly, never a stale inflation score.
 } else if (Q.inflation <= 10) {
     Q.inflation_score = 1;
@@ -44,7 +54,11 @@ if (Q.unemployed >= 0 && Q.unemployed <= 3) {
 }
 
 // Calculate GDP Growth Score
-if (Q.economic_growth < 0) {
+if (!Number.isFinite(Q.economic_growth) || Q.economic_growth > 30) {
+    Q.growth_score = -5;
+} else if (Q.economic_growth > 15) {
+    Q.growth_score = 0; // Exceptional recovery is not an unlimited health bonus.
+} else if (Q.economic_growth < 0) {
     Q.growth_score = -5;
 } else if (Q.economic_growth >= 0 && Q.economic_growth <= 2) {
     Q.growth_score = -2;

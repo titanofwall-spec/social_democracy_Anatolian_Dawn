@@ -7,7 +7,6 @@ on-arrival: {!
 // Apply industrial production changes
 if (Q.industrial_change && Q.industrial_change !== 0) {
     Q.industry_modifier = (Q.industry_modifier || 0) + Q.industrial_change;
-    Q.industrial_player_modifier = Q.industry_modifier;
     // Reset the change variable
     Q.industrial_change = 0;
 }
@@ -15,7 +14,6 @@ if (Q.industrial_change && Q.industrial_change !== 0) {
 // Apply agricultural production changes
 if (Q.agricultural_change && Q.agricultural_change !== 0) {
     Q.agriculture_modifier = (Q.agriculture_modifier || 0) + Q.agricultural_change;
-    Q.agricultural_player_modifier = Q.agriculture_modifier;
     // Reset the change variable
     Q.agricultural_change = 0;
 }
@@ -35,18 +33,6 @@ if (Q.agricultural_consumption_change && Q.agricultural_consumption_change !== 0
 
 AnatolianRules.refreshEconomy(Q);
 
-// Update agricultural price status text
-if (Q.agricultural_product_prices > 1.20) {
-    Q.agricultural_price_status = "Very High";
-} else if (Q.agricultural_product_prices >= 1.10) {
-    Q.agricultural_price_status = "High";
-} else if (Q.agricultural_product_prices >= 0.90) {
-    Q.agricultural_price_status = "Sufficient";
-} else if (Q.agricultural_product_prices >= 0.80) {
-    Q.agricultural_price_status = "Low";
-} else {
-    Q.agricultural_price_status = "Very Low";
-}
 !}
 
 @return
