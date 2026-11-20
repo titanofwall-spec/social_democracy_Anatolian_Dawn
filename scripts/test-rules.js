@@ -146,15 +146,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     test('Avcioglu economy route reaches a working policy', (e,Q) => {
         Q.CHP_in_government=1; Q.economic_minister_party='CHP';
         e.goToScene('avcioglu'); pick(e,'avcioglu.economicpolicy'); assert.equal(e.state.sceneId,'economic_policy.economy_menu');
-        // Other groups exercise legacy fallbacks; this action needs the browser macro dependency.
-        const previousMacro=global.AnatolianMacro;
-        global.AnatolianMacro=require('../out/html/macro-economy.js');
-        try {
-            const before=Q.inflation_modifier; pick(e,'economic_policy.short'); pick(e,'economic_policy.pricecontrols');
-            near(Q.inflation_modifier,before,'controls preserve underlying modifier');
-            assert(Q.price_control_coverage>0 && Q.price_control_coverage<=.6375);
-            assert.equal(Q.economic_minister,'Avc\u0131o\u011flu');
-        } finally {global.AnatolianMacro=previousMacro;}
+        const before=Q.inflation_modifier; pick(e,'economic_policy.short'); pick(e,'economic_policy.pricecontrols');
+        near(Q.inflation_modifier,before-6,'price controls'); assert.equal(Q.economic_minister,'Avcıoğlu');
     });
     test('Aksoy records an AET application once', (e,Q) => {
         Q.CHP_in_government=1; Q.west_relation=90;

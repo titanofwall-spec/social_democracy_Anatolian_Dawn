@@ -1,4 +1,4 @@
-title: The Price Of Independence
+title: American Economic Sanctions and Weapons Embargo
 tags: event
 priority: 110
 max-visits: 1
@@ -6,22 +6,10 @@ new-page: true
 view-if: {! return AnatolianRules.cyprusRoadmap.embargoReady(Q,true); !}
 on-arrival: {! AnatolianRules.cyprusRoadmap.applyEmbargo(Q,true); !}
 
-= The Price Of Independence
+= American Economic Sanctions and Weapons Embargo
 
-It appears the Americans have finally decided to penalize us for our intervention in Cyprus. Citing outrage over the second Atilla Operation and our decision to postpone the ceasefire, the arms embargo imposed by the U.S. Congress officially came into effect on February 5, 1975.
+In this alternative outcome, the second operation, together with the lifting of the poppy ban or the deliberately delayed ceasefire, has led Washington to suspend economic assistance as well as arms deliveries. Importing replacement military equipment and financing essential purchases will put severe pressure on our scarce foreign exchange. The armed forces remain capable, but equipment shortages and the loss of support impose a painful cost.
 
-Our military forces have been reliant on U.S. hardware for many decades. Most of our troops use U.S. weapons, our pilots fly U.S. planes, and our sailors captain ships that were once under the Stars and Stripes. However, we can no longer receive these weapons and their spare parts because Congress has decided we shouldn't.
+Army, naval and aerial strength each fall by 0.15. Foreign-exchange pressure increases by 25 and the growth modifier falls by 0.5.
 
-Although the full effects won't be felt immediately, it will be a painful time for our forces. Our armed forces can still defend the republic, but all of our planes that need spare parts, our warships that need repairs, and our depleted stores of ammunition will cause us problems.
-
-[? if cyprus_poppy_penalty == 1 or (hashas_done == 1 and cyprus_rally_poppy_lifted_late != 1) or (cyprus_rally_poppy_lifted_late == 1 and cyprus_atilla1_complete == 1 and cyprus_atilla2_complete == 1) : The Americans aren't happy with us lifting the ban on growing poppies either. This was an important source of income for Anatolian farmers, and the ban was a sign of subjugation by the previous Junta governments that we sought to change. However, it appears that lifting the poppy ban has angered the Americans even more than their half-excuse of Atilla II. The tensions with America are placing additional pressure on our finances, and now the economy is also under threat, with our foreign currency reserves experiencing further painful losses. ?]
-
-[? if cyprus_poppy_penalty != 1 and (hashas_done != 1 or cyprus_rally_poppy_lifted_late == 1) and (cyprus_rally_poppy_lifted_late != 1 or cyprus_atilla1_complete != 1 or cyprus_atilla2_complete != 1) : The Americans haven't forgotten the ceasefire we chose to postpone at the end of Atilla II. The initial economic blow to our reserves was painful enough. Now Washington is restricting economic assistance as well, and our foreign currency reserves face further losses at the very moment our armed forces need new sources of supply. ?]
-
-One must wonder how an alliance can demand that we do whatever it wants. They want us to grow certain crops, buy certain weapons, and even decide whether to intervene to save our people according to their wishes. It appears the American fascination with Turkish sovereignty they so vehemently claimed to support lasts only if we abide by their orders at every turn.
-
-However, we won't be able to mend our planes or fill our coffers with anger. We will have to look for other sources of supply and boost our industries. But perhaps most importantly, maybe we should stop putting our defense in the hands of other countries.
-
-We have been told for over two decades that we are safe because we are part of the Western alliance. However, we are learning that we aren't as safe as we thought.
-
-- @post_event: Then we shall learn to stand on our own feet.
+- @post_event: Continue.

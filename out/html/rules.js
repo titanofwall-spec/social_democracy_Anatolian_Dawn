@@ -3,7 +3,7 @@
 (function (/** @type {any} */ root) {
     'use strict';
     /** @typedef {Record<string, any>} GameState */
-    /** @typedef {{year?:number,oil_inflation_effect?:number,tiger_1978_effect_applied?:boolean,tiger_1979_effect_applied?:boolean,tiger_1980_effect_applied?:boolean,base_inflation?:number,inflation_modifier?:number,inflation?:number,base_growth?:number,growth_modifier?:number,economic_growth?:number,base_unemployment?:number,unemployment_modifier?:number,unemployed?:number,base_industry_index?:number,industry_modifier?:number,industrial_production_index?:number,base_agriculture_index?:number,agriculture_modifier?:number,agricultural_production_index?:number,forex_pressure?:number,agricultural_consumption?:number,agricultural_product_prices?:number}} EconomyState */
+    /** @typedef {{year?:number,oil_inflation_effect?:number,tiger_1978_effect_applied?:boolean,tiger_1979_effect_applied?:boolean,tiger_1980_effect_applied?:boolean,base_inflation?:number,inflation_modifier?:number,inflation?:number,base_growth?:number,growth_modifier?:number,economic_growth?:number,base_unemployment?:number,unemployment_modifier?:number,unemployed?:number,base_industry_index?:number,industry_modifier?:number,industrial_production_index?:number,base_agriculture_index?:number,agriculture_modifier?:number,agricultural_production_index?:number,forex_pressure?:number,agricultural_consumption?:number,agricultural_product_prices?:number,industrial_player_modifier?:number,agricultural_player_modifier?:number}} EconomyState */
     /** @param {unknown} value @param {number} [fallback] */
     function number(value, fallback) {
         return typeof value === 'number' && Number.isFinite(value) ? value : (fallback === undefined ? 0 : fallback);
@@ -44,8 +44,7 @@
             delete Q[oldKey];
         });
         // These were redundant snapshots of the real production modifiers.
-        for (var key of ['industrial_player_modifier','agricultural_player_modifier',
-            'land_reform_level','natural_resources_level','workplace_democracy_level',
+        for (var key of ['land_reform_level','natural_resources_level','workplace_democracy_level',
             'peoples_sector_level','workplace_safety_level','judicial_reform_level',
             'education_funding_level','education_curriculum_level','university_freedom_level',
             'womens_legal_level','womens_workplace_level']) delete Q[key];
@@ -60,7 +59,7 @@
         return 'Very Low';
     }
     /** Derive headline values; policy actions change the modifiers, never these results.
-     * @param {GameState} Q */
+     * @param {EconomyState} Q */
     function refreshEconomy(Q) {
         migrateStateAliases(Q);
         var tigerActive = (Q.year === 1978 && Q.tiger_1978_effect_applied) ||
@@ -77,6 +76,8 @@
         Q.forex_pressure = clamp(number(Q.forex_pressure), 0, 100);
         Q.agricultural_product_prices = number(Q.agricultural_consumption) / Math.max(1, Q.agricultural_production_index);
         Q.agricultural_price_status = agriculturalPriceStatus(Q.agricultural_product_prices);
+        Q.industrial_player_modifier = number(Q.industry_modifier);
+        Q.agricultural_player_modifier = number(Q.agriculture_modifier);
     }
     // Status labels are projections of completed policies, not independent mutable levels.
     // Keeping these calculations here prevents dashboard values from drifting from actions.
