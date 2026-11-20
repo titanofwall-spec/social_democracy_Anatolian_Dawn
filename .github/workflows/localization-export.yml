@@ -1,0 +1,48 @@
+name: Export all Anatolian Dawn localization text
+
+on:
+  push:
+    branches:
+      - localization-export-2026-11-20
+    paths:
+      - .github/workflows/localization-export.yml
+      - scripts/export_all_localizations.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: anatolian-dawn-localization-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out all tracked game source files
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Generate exhaustive source-traceable ZIP
+        run: python3 scripts/export_all_localizations.py
+
+      - name: Upload ZIP as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Anatolian-Dawn-All-Localizations
+          path: Anatolian_Dawn_All_Localizations_2026-11-20.zip
+          compression-level: 0
+          if-no-files-found: error
+
+      - name: Commit only the finished ZIP to this isolated branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Anatolian_Dawn_All_Localizations_2026-11-20.zip
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish complete localization TXT archive [skip ci]"
+            git push origin HEAD:localization-export-2026-11-20
+          fi
