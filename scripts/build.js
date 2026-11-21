@@ -2,13 +2,9 @@
 const fs=require('fs'),path=require('path'),crypto=require('crypto'),{spawnSync}=require('child_process');
 const root=path.resolve(__dirname,'..');
 const compiler=require('dendrynexus/lib/parsers/compiler.js');
-const files=[];
-function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true})){
- const full=path.join(dir,e.name);
- if(e.isDirectory())walk(full);
- else if(e.name.endsWith('.dry'))files.push({name:path.relative(root,full).replace(/\\/g,'/'),contents:fs.readFileSync(full,'utf8')});
-}}
-walk(path.join(root,'source'));
+const { readGameSources, copyBrowserFiles } = require('./project-files.js');
+copyBrowserFiles(root);
+const files = readGameSources(root);
 compiler.compileGame(files,(err,game)=>{
  if(err)throw err;
  compiler.convertGameToJSON(game,2,(error,json)=>{

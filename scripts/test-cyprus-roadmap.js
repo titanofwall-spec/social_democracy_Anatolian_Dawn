@@ -127,7 +127,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
  test('Both embargo scenes use the supplied title and conditional economic prose',()=>{
   for(const id of ['cyprus_arms_embargo','cyprus_economic_embargo']){
-   const source=fs.readFileSync(path.join(root,'source/scenes/events/'+id+'.scene.dry'),'utf8');
+   const source=fs.readFileSync(require('./project-files.js').sceneSourcePath(root, 'source/scenes/events/'+id+'.scene.dry'),'utf8');
    assert(/^title: The Price Of Independence\r?\n/.test(source),id);
    assert(source.includes('= The Price Of Independence'),id);
    assert(source.includes('Then we shall learn to stand on our own feet.'),id);
@@ -135,8 +135,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
    assert(!source.includes('This remains the historical arms-embargo path'),id);
    assert(game.scenes[id],id);
   }
-  const standard=fs.readFileSync(path.join(root,'source/scenes/events/cyprus/aftermath/cyprus_arms_embargo.scene.dry'),'utf8');
-  const delayed=fs.readFileSync(path.join(root,'source/scenes/events/cyprus/aftermath/cyprus_economic_embargo.scene.dry'),'utf8');
+  const standard=fs.readFileSync(path.join(root,'features/cyprus/scenes/aftermath/cyprus_arms_embargo.scene.dry'),'utf8');
+  const delayed=fs.readFileSync(path.join(root,'features/cyprus/scenes/aftermath/cyprus_economic_embargo.scene.dry'),'utf8');
   assert(standard.includes('[? if cyprus_economic_sanctions_active == 1 : The Americans'));
   assert(delayed.includes('our decision to postpone the ceasefire'));
   assert(delayed.includes('initial economic blow'));
@@ -150,7 +150,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
 
 
- test('Authored anthology preserves all 47 supplied passages',()=>{const authored=JSON.parse(fs.readFileSync(path.resolve(root,'scripts/fixtures/cyprus/user-rewrites.json'),'utf8').replace(/^\uFEFF/,''));assert.deepEqual(rm.authoredEvents,authored);for(const [n,i] of [[17,0],[18,1],[19,2]])assert(fs.readFileSync(path.join(root,'source/scenes/events/cyprus/pre-operation/cyprus_briefing_'+n+'.scene.dry'),'utf8').replace(/\r\n/g,'\n').includes(authored[i].body));});
+ test('Authored anthology preserves all 47 supplied passages',()=>{const authored=JSON.parse(fs.readFileSync(path.resolve(root,'scripts/fixtures/cyprus/user-rewrites.json'),'utf8').replace(/^\uFEFF/,''));assert.deepEqual(rm.authoredEvents,authored);for(const [n,i] of [[17,0],[18,1],[19,2]])assert(fs.readFileSync(path.join(root,'features/cyprus/scenes/pre-operation/cyprus_briefing_'+n+'.scene.dry'),'utf8').replace(/\r\n/g,'\n').includes(authored[i].body));});
  test('Geneva responses grant leverage without improving American or British attitudes',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{cyprus_day:23,cyprus_month:7,cyprus_mode:1,cyprus_frontline_frozen:1,cyprus_campaign_phase:'ceasefire',cyprus_roadmap_seen:[],uk_attitude:-2,us_attitude:-2,leverage_points:0});for(const [day,days] of [[23,1],[24,1],[25,1],[26,1],[27,2],[29,2]]){assert.equal(Q.cyprus_day,day);e.goToScene('cyprus_roadmap_event');const choices=e.getCurrentChoices();assert.equal(choices.length,1);assert.equal(choices[0].id,'cyprus_roadmap_event.geneva_response');const before=Q.leverage_points;pick(e,choices[0].id);assert.equal(Q.leverage_points,before+days);}assert.equal(Q.leverage_points,8);assert.equal(Q.uk_attitude,-2);assert.equal(Q.us_attitude,-2);});
  test('Constitutional withdrawal shows authored transition before the single operation response',()=>{const [e,Q]=rejected();pick(e,'cyprus_roadmap_event.constitutional');next(e);pick(e,'cyprus_roadmap_event.war');assert.equal(e.state.sceneId,'cyprus_constitution_departure');next(e);assert.equal(e.state.sceneId,'cyprus_roadmap_event');assert.equal(e.getCurrentChoices().length,1);assert.equal(e.getCurrentChoices()[0].id,'cyprus_roadmap_event.ii_response');pick(e,'cyprus_roadmap_event.ii_response');assert.equal(Q.cyprus_day,15);assert.equal(e.getCurrentChoices().length,1);pick(e,'cyprus_roadmap_event.ii_response');assert.equal(Q.cyprus_day,16);assert.deepEqual(e.getCurrentChoices().map(x=>x.id),['cyprus_roadmap_event.ceasefire','cyprus_roadmap_event.delay']);});
 
@@ -162,7 +162,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  test('Late constitutional signing preserves the current year and month before the rally',()=>{const e=fresh(),Q=e.state.qualities;Object.assign(Q,{year:1975,month:2,week:1,cyprus_campaign_phase:'constitutional_treaty',cyprus_constitution_step:8,cyprus_constitution_score:8});assert(rm.resolveEvent(Q,'sign'));assert.deepEqual([Q.year,Q.month,Q.week],[1975,2,1]);assert(rm.beginRally(Q));assert.deepEqual([Q.year,Q.month,Q.week],[1975,2,2]);assert(!rm.embargoReady(Q,true));assert(!rm.embargoReady(Q,false));});
 
  test('Compiled narrative preserves approved punctuation and the rally title and quotes',()=>{// Approved descriptions may contain em dashes; exact prose is checked against the fixture above.
- const rally=fs.readFileSync(path.join(root,'source/scenes/events/cyprus/aftermath/cyprus_sarachane_rally.scene.dry'),'utf8');assert(rally.includes("= Kıbrıs'ın Dağlarına Yazdık!"));assert(rally.includes('We will not take lessons in nationalism from Demirel or Türkeş!'));assert(rally.includes('We have written our nationalism not on street walls'));assert(!rally.includes('Biz, Demirellerden'));for(const event of rm.authoredEvents){assert(!/^\s*:/m.test(event.body));}});
+ const rally=fs.readFileSync(path.join(root,'features/cyprus/scenes/aftermath/cyprus_sarachane_rally.scene.dry'),'utf8');assert(rally.includes("= Kıbrıs'ın Dağlarına Yazdık!"));assert(rally.includes('We will not take lessons in nationalism from Demirel or Türkeş!'));assert(rally.includes('We have written our nationalism not on street walls'));assert(!rally.includes('Biz, Demirellerden'));for(const event of rm.authoredEvents){assert(!/^\s*:/m.test(event.body));}});
  test('Greece remains Hostile after the junta falls, including old saved attitudes',()=>{for(const fallen of [0,1]){const Q=fresh().state.qualities;Object.assign(Q,{cyprus_month:7,cyprus_day:23,cyprus_juntas_fallen:fallen,greece_attitude:1,cyprus_geneva_advance_days:[]});cp.pending(Q);assert.equal(Q.greece_attitude,-2);assert.equal(Q.cyprus_juntas_fallen,1);assert.equal(cp.attitudeName(Q,'greece'),'Hostile');}});
  output('PASS: '+count+' full-roadmap scenarios.');
 });

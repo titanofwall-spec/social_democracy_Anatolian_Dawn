@@ -400,7 +400,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         let count=0;
         for(const [key,parts] of Object.entries(passages)) {
             const id=key==='ending'?'cyprus_atilla1_ending':/^\d+$/.test(key)?'cyprus_atilla1_'+key:'cyprus_history_'+key;
-            const source=fs.readFileSync(path.join(root,'source/scenes/events',id+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');
+            const source=fs.readFileSync(require('./project-files.js').sceneSourcePath(root, 'source/scenes/events/'+id+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');
             const authored=JSON.parse(fs.readFileSync(path.join(root,'scripts/fixtures/cyprus/authored-texts.json'),'utf8')).events[key];
             if(authored){for(const paragraph of authored.body.split('\n\n'))assert(source.includes(paragraph),id+' authored paragraph');}
             for(const part of authored?[]:parts) {

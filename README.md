@@ -20,3 +20,12 @@ The historical changes.txt file records upstream development and is retained as 
 ## Save compatibility
 
 The Weimar-remnant cleanup renames state and scene IDs. Start a new playthrough after updating; pre-cleanup saves are not supported.
+
+## Where to edit
+
+- `economy/` holds Onat's new equations and campaign defaults. `legacy-model.js` is the current game's model until the new economy is connected.
+- `actions/` holds ministry and agenda scenes. The shared turn flow and currently embedded policy hooks still live in their existing game code.
+- `features/` holds Cyprus, Rubicon, coalition and map source files.
+- `source/` holds shared Dendry scenes and definitions.
+- `scripts/feature-files.json` maps the feature files to their existing compiler and browser paths.
+- `out/html/` is the browser deployment tree. Edit feature-owned files in their source folders and build to refresh the deployed copies.

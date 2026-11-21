@@ -16,7 +16,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  function shown(e,id){const f=fixture[id],choices=e.getCurrentChoices();assert.equal(e.state.sceneId,f.scene);assert.equal(choices.length,1);assert.equal(text(choices[0].title),f.continue);const display=normalize(text(e.state.currentContent));for(const p of f.body.split(/\n\n+/))assert(display.includes(normalize(p)),id+' missing paragraph');}
  test('All six finalized descriptions, titles and Continue labels are stored unchanged',()=>{
   assert.equal(Object.keys(fixture).length,6);
-  for(const f of Object.values(fixture)){const s=fs.readFileSync(path.join(root,'source/scenes/events/'+f.scene+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');assert(s.startsWith('title: '+f.title+'\n'));assert(s.includes('\n= '+f.title+'\n\n'+f.body+'\n\n- @continue: '+f.continue+'\n'));assert(game.scenes[f.scene]);}
+  for(const f of Object.values(fixture)){const s=fs.readFileSync(require('./project-files.js').sceneSourcePath(root, 'source/scenes/events/'+f.scene+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');assert(s.startsWith('title: '+f.title+'\n'));assert(s.includes('\n= '+f.title+'\n\n'+f.body+'\n\n- @continue: '+f.continue+'\n'));assert(game.scenes[f.scene]);}
   assert.equal(fixture.saved.title,'A Last Minute Save');assert.equal(fixture.niki.title,'Operation Failure');
  });
  test('Every strength threshold uses the existing five military tiers and the specified 10–50% bases',()=>{

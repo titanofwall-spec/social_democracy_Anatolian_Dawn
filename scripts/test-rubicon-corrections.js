@@ -88,9 +88,9 @@ lib.convertJSONToGame(fs.readFileSync(path.join(__dirname,'../out/game.json'),'u
       assert(registry.includes("['"+name+"'"),'historical tooltip missing for '+name);
     const army=fs.readFileSync(path.join(__dirname,'../source/scenes/party_affairs/relations_with_the_army.scene.dry'),'utf8');
     assert(!/pressure by (?:up to )?\d+ points?/i.test(army),'visible action must not expose pressure numbers');
-    const mandate=fs.readFileSync(path.join(__dirname,'../source/scenes/events/rubicon_melen_mandate.scene.dry'),'utf8');
+    const mandate=fs.readFileSync(path.join(__dirname,'../features/rubicon/scenes/rubicon_melen_mandate.scene.dry'),'utf8');
     assert(mandate.includes('Melen invites the CHP into his government'));
-    const dp=fs.readFileSync(path.join(__dirname,'../source/scenes/events/rubicon_dp_motion.scene.dry'),'utf8');
+    const dp=fs.readFileSync(path.join(__dirname,'../features/rubicon/scenes/rubicon_dp_motion.scene.dry'),'utf8');
     assert(dp.includes('Both the **MGP** and the **AP** parliamentary factions have been convinced'));
   }
   console.log('PASS Rubicon branches, displayed approval, army trade-offs, congress cards, Nazilli progression, tooltips, and copy.');

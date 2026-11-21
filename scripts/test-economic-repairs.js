@@ -68,7 +68,7 @@ test('Version-one migration preserves levels and real histories, and survives JS
   const b=copy(q);tick(q);tick(b);assert.deepEqual(q,b);
 });
 test('Health cannot reward severe deflation or implausible GDP growth',()=>{
-  const source=fs.readFileSync(require.resolve('../source/scenes/economy_health_calculator.scene.dry'),'utf8');
+  const source=fs.readFileSync(require.resolve('../economy/scenes/economy_health_calculator.scene.dry'),'utf8');
   const block=source.slice(source.indexOf('var SYSTEMIC'),source.indexOf('// Hard threshold effects'));
   const score=(inflation,growth)=>{const Q={inflation,economic_growth:growth,unemployed:3,forex_pressure:20};
     vm.runInNewContext(block,{Q,AnatolianRules:{refreshEconomy(){}}});return Q;};

@@ -39,13 +39,7 @@ function unknownKeys(uses, known) { return [...uses.keys()].filter(key => !known
 module.exports = {stateKeys, collect, unknownKeys};
 if (require.main === module) {
     const compiler = require('dendrynexus/lib/parsers/compiler.js');
-    const files = [];
-    function walk(dir) { for (const entry of fs.readdirSync(dir, {withFileTypes:true})) {
-        const full = path.join(dir, entry.name);
-        if (entry.isDirectory()) walk(full);
-        else if (entry.name.endsWith('.dry')) files.push({name:path.relative(root, full).replace(/\\/g, '/'), contents:fs.readFileSync(full, 'utf8')});
-    }}
-    walk(path.join(root, 'source'));
+    const files = require('./project-files.js').readGameSources(root);
     compiler.compileGame(files, (err, game) => {
         if (err) throw err;
         const known = new Set(JSON.parse(fs.readFileSync(path.join(__dirname, 'state-keys.json'), 'utf8')));

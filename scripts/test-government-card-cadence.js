@@ -48,5 +48,5 @@ test('Education Ministry appears with ready actions in new games and older saves
  assert.equal(Q.education_science_timer,0);assert(available('main.govt'));assert(available('cabinet'));
 });
 
-test('Free Kurdish actions contain no budget subtitle',()=>{const text=fs.readFileSync(path.join(__dirname,'../source/scenes/government_affairs/kurdish_issue.scene.dry'),'utf8');assert(!text.includes('No budget cost'));for(const id of ['associations','public_discussion','meetings'])assert.equal(game.scenes['kurdish_issue.'+id].subtitle,undefined);assert(game.scenes['kurdish_issue.publishing'].subtitle);});
+test('Free Kurdish actions contain no budget subtitle',()=>{const text=fs.readFileSync(path.join(__dirname,'../actions/ministry/kurdish-issue/kurdish_issue.scene.dry'),'utf8');assert(!text.includes('No budget cost'));for(const id of ['associations','public_discussion','meetings'])assert.equal(game.scenes['kurdish_issue.'+id].subtitle,undefined);assert(game.scenes['kurdish_issue.publishing'].subtitle);});
 output('PASS '+count+' government-card cadence suites.');});

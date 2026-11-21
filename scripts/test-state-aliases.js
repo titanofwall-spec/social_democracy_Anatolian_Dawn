@@ -68,7 +68,7 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   const cgp=scene('events/cumhurbaskanligi1.scene.dry');
   assert(cgp.includes('CGP_relation += 3;'));
   assert(!/\bcgp_relation\b/.test(cgp));
-  const fiscal=scene('government_affairs/fiscal_policy.scene.dry');
+  const fiscal=fs.readFileSync(path.join(__dirname, '../actions/ministry/fiscal/fiscal_policy.scene.dry'), 'utf8');
   assert(fiscal.includes('workers_chp += 4*(1 - dissent)'));
   assert(!/\bworker_chp\b/.test(fiscal));
   const media=scene('party_affairs/media.scene.dry');
