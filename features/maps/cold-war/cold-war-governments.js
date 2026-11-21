@@ -80,7 +80,6 @@
     return {head_of_state:text(period?.head_of_state),head_of_government:text(period?.head_of_government),parties:describeGovernment(government)};
   }
   function render(name,tip){
-    if(normal(name)==='greenland')name='Denmark';
     const today = date();
     const historicalKey = name + ':' + today;
     const isTurkey = normal(name) === 'turkey';

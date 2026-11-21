@@ -12,9 +12,9 @@
   }
   function selectMode(mode){
     if(!['political','allegiance','divided'].includes(mode))return;
-    clear();selectedMode=mode;updateModeControls();if(mapRenderer)renderDisplay();
+    clear();selectedMode=mode;updateModeControls();setup();
   }
-  let terrainImage, politicalOverlay, mapRenderer;
+  let layersReady, requestedSource, loadRequest=0, mapRenderer;
   function insideGlobe(x,y) {
     const mask=window.ColdWarGlobeMask;
     const row=mask.rows[Math.min(mask.rows.length-1,Math.floor(y*mask.rows.length/height))];
@@ -38,7 +38,7 @@
     if (!choices) return 0;
     let name = choices[0];
     if (choices.length > 1) {
-      if (color === 0xab6fd8) name = 'Denmark';
+      if (color === 0xab6fd8) name = x < width * .55 ? 'Greenland' : 'Denmark';
       if (color === 0xce612c) name = x < width * .5 ? 'French Guiana' : 'France';
       if (color === 0xcda456) name = y > height * .62 ? 'Puerto Rico' : 'United States';
     }
@@ -104,7 +104,7 @@
     window.ColdWarDecorations.hide();
   }
   function move(event) {
-    if (!pixels) return;
+    if (!mapReady) return;
     const rect=canvas.getBoundingClientRect();
     const x=Math.floor((event.clientX-rect.left)*width/rect.width);
     const y=Math.floor((event.clientY-rect.top)*height/rect.height);
@@ -116,80 +116,106 @@
     tip.style.left=Math.max(8,Math.min(event.clientX+16,innerWidth-tipWidth-8))+'px';
     tip.style.top=Math.max(8,Math.min(event.clientY+16,innerHeight-tipHeight-8))+'px';
   }
-  function setup() {
-    if (ready) return ready;
-    ready=new Promise((resolve,reject)=>{
-      canvas=document.getElementById('cold-war-map');ctx=canvas.getContext('2d');
-      window.ColdWarCountries.forEach(entry=>{
-        const id=names.length;names.push(entry.name);keys.set(entry.name,id);fills[id]=[];borders[id]=[];
-        const color=parseInt(entry.hex,16);
-        if(!byColor.has(color))byColor.set(color,[]);
-        byColor.get(color).push(entry.name);
+  function loadImage(src) {
+    return new Promise((resolve,reject)=>{
+      const image=new Image();
+      image.onload=()=>resolve(image);
+      image.onerror=()=>reject(new Error('Could not load '+src.split('?')[0]+'.'));
+      image.src=src;
+    });
+  }
+  function initialize() {
+    if (canvas) return;
+    canvas=document.getElementById('cold-war-map');ctx=canvas.getContext('2d');
+    window.ColdWarCountries.forEach(entry=>{
+      const id=names.length;names.push(entry.name);keys.set(entry.name,id);fills[id]=[];borders[id]=[];
+      const color=parseInt(entry.hex,16);
+      if(!byColor.has(color))byColor.set(color,[]);
+      byColor.get(color).push(entry.name);
+    });
+    canvas.addEventListener('pointermove', event => {
+      queuedPointer = event;
+      if (pointerFrame) return;
+      pointerFrame = requestAnimationFrame(() => {
+        pointerFrame = 0;
+        const latest = queuedPointer;
+        queuedPointer = null;
+        if (latest) move(latest);
       });
-      const img=new Image();
-      img.onerror=()=>reject(new Error('The country map could not be loaded.'));
-      img.onload=async ()=>{try {
-        width=canvas.width=img.naturalWidth;height=canvas.height=img.naturalHeight;
-        hoverCanvas=document.getElementById('cold-war-hover');hoverCanvas.width=width;hoverCanvas.height=height;hoverCtx=hoverCanvas.getContext('2d');
-        // Read country IDs offscreen; never paint the raw ID map to the visible globe.
-        const sourceCanvas=document.createElement('canvas');sourceCanvas.width=width;sourceCanvas.height=height;
-        const sourceCtx=sourceCanvas.getContext('2d',{willReadFrequently:true});
-        sourceCtx.drawImage(img,0,0);original=sourceCtx.getImageData(0,0,width,height);
-        pixels=new Uint16Array(width*height);
-        const a=original.data;
-        for(let p=0;p<pixels.length;p++) {
-          const i=p*4;if(a[i+3]!==255 || !insideGlobe(p%width,Math.floor(p/width)))continue;
-          const id=country(number(a[i],a[i+1],a[i+2]),p%width,Math.floor(p/width));
-          if(id){pixels[p]=id;fills[id].push(p);}
-        }
-        // Eight immediate neighbors only; never flood-fill the connected border network.
-        for(let p=0;p<pixels.length;p++) {
-          const i=p*4;if(a[i]||a[i+1]||a[i+2]||a[i+3]!==255)continue;
-          const x=p%width,y=Math.floor(p/width),seen=[];
-          for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
-            if((!dx&&!dy)||x+dx<0||x+dx>=width||y+dy<0||y+dy>=height)continue;
-            const id=pixels[(y+dy)*width+x+dx];
-            if(id&&!seen.includes(id)){borders[id].push(p);seen.push(id);}
-          }
-        }
-        canvas.addEventListener('pointermove', event => {
-          queuedPointer = event;
-          if (pointerFrame) return;
-          pointerFrame = requestAnimationFrame(() => {
-            pointerFrame = 0;
-            const latest = queuedPointer;
-            queuedPointer = null;
-            if (latest) move(latest);
-          });
-        });
-        canvas.addEventListener('pointerleave',event=>{
-          if(event.relatedTarget && tooltip().contains(event.relatedTarget))return;
-          clear();
-        });
-        canvas.addEventListener('pointerdown',move);
-        try {
-          const loadImage=src=>new Promise((resolve,reject)=>{
-            const image=new Image();image.onload=()=>resolve(image);image.onerror=reject;image.src=src;
-          });
-          let heightImage;
-          [terrainImage,politicalOverlay,heightImage]=await Promise.all([
-            loadImage('img/cold-war-world-texture-base.png?v=1'),
-            loadImage('img/cold-war-political-overlay.png?v=1'),
-            loadImage('img/cold-war-world-heightmap.png?v=1')
-          ]);
-          mapRenderer=window.ColdWarRenderer.create({width,height,source:original,texture:terrainImage,political:politicalOverlay,heightmap:heightImage,insideGlobe});
-        }catch(error){
-          throw new Error('The globe layers could not be loaded. '+error.message);
-          
-        }
-        renderDisplay();
-        fitGlobe();
-        mapReady=true;
-        overlay().classList.remove('is-loading');
-        document.getElementById('cold-war-map-message').hidden=!!mapRenderer;
-        resolve();
-      }catch(error){reject(error);}};
-      img.src='img/cold-war-country-ids-detailed.png?v=1';
+    });
+    canvas.addEventListener('pointerleave',event=>{
+      if(event.relatedTarget && tooltip().contains(event.relatedTarget))return;
+      clear();
+    });
+    canvas.addEventListener('pointerdown',move);
+  }
+  function setGeometry(img, terrainImage, politicalOverlay, heightImage) {
+    width=canvas.width=img.naturalWidth;height=canvas.height=img.naturalHeight;
+    hoverCanvas=document.getElementById('cold-war-hover');hoverCanvas.width=width;hoverCanvas.height=height;hoverCtx=hoverCanvas.getContext('2d');
+    // Read country IDs offscreen; never paint the raw ID map to the visible globe.
+    const sourceCanvas=document.createElement('canvas');sourceCanvas.width=width;sourceCanvas.height=height;
+    const sourceCtx=sourceCanvas.getContext('2d',{willReadFrequently:true});
+    sourceCtx.drawImage(img,0,0);original=sourceCtx.getImageData(0,0,width,height);
+    pixels=new Uint16Array(width*height);
+    fills.forEach(list=>{list.length=0;});
+    borders.forEach(list=>{list.length=0;});
+    const a=original.data;
+    for(let p=0;p<pixels.length;p++) {
+      const i=p*4;if(a[i+3]!==255 || !insideGlobe(p%width,Math.floor(p/width)))continue;
+      const id=country(number(a[i],a[i+1],a[i+2]),p%width,Math.floor(p/width));
+      if(id){pixels[p]=id;fills[id].push(p);}
+    }
+    // Eight immediate neighbors only; never flood-fill the connected border network.
+    for(let p=0;p<pixels.length;p++) {
+      const i=p*4;if(a[i]||a[i+1]||a[i+2]||a[i+3]!==255)continue;
+      const x=p%width,y=Math.floor(p/width),seen=[];
+      for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+        if((!dx&&!dy)||x+dx<0||x+dx>=width||y+dy<0||y+dy>=height)continue;
+        const id=pixels[(y+dy)*width+x+dx];
+        if(id&&!seen.includes(id)){borders[id].push(p);seen.push(id);}
+      }
+    }
+    mapRenderer=window.ColdWarRenderer.create({
+      width,height,source:original,texture:terrainImage,political:politicalOverlay,heightmap:heightImage,insideGlobe
+    });
+    renderDisplay();
+    fitGlobe();
+  }
+  function setup() {
+    const source=window.ColdWarModes.countryIdImage();
+    if (ready && requestedSource===source) {
+      if (mapReady) renderDisplay();
+      return ready;
+    }
+    requestedSource=source;
+    const request=++loadRequest;
+    initialize();
+    const message=document.getElementById('cold-war-map-message');
+    message.hidden=false;
+    message.textContent='Loading map…';
+    clear();
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    mapReady=false;
+    overlay().classList.add('is-loading');
+    if (!layersReady) {
+      layersReady=Promise.all([
+        loadImage('img/cold-war-world-texture-base.png?v=1'),
+        loadImage('img/cold-war-political-overlay.png?v=1'),
+        loadImage('img/cold-war-world-heightmap.png?v=1')
+      ]).catch(error=>{layersReady=null;throw error;});
+    }
+    ready=Promise.all([loadImage(source),layersReady]).then(([img,layers])=>{
+      if (request!==loadRequest) return;
+      setGeometry(img,...layers);
+      mapReady=true;
+      message.hidden=true;
+    }).catch(error=>{
+      if (request!==loadRequest) return;
+      ready=null;
+      message.hidden=false;
+      message.textContent=error.message;
+    }).finally(()=>{
+      if (request===loadRequest) overlay().classList.remove('is-loading');
     });
     return ready;
   }
@@ -202,13 +228,13 @@
     globe.style.width=fitWidth+'px';globe.style.height=(fitWidth/ratio)+'px';
   }
   window.showColdWarMap=function(){
-    selectMode('political');
+    clear();selectedMode='political';updateModeControls();
     window.ColdWarDecorations.reset();
     overlay().classList.toggle('is-loading',!mapReady);
     overlay().hidden=false;document.body.classList.add('cold-war-map-open');
     fitGlobe();
     document.getElementById('cold-war-map-close').focus();
-    setup().catch(error=>{const msg=document.getElementById('cold-war-map-message');msg.hidden=false;msg.textContent=error.message;});
+    setup();
   };
   window.hideColdWarMap=function(){
     clear();window.ColdWarDecorations.reset();overlay().hidden=true;document.body.classList.remove('cold-war-map-open');

@@ -76,6 +76,10 @@ window.ColdWarCountries = [
     "hex": "C3CE3B"
   },
   {
+    "name": "Turkish Cyprus",
+    "hex": "D45C56"
+  },
+  {
     "name": "Cyprus",
     "hex": "D382B9"
   },
@@ -397,7 +401,11 @@ window.ColdWarCountries = [
   },
   {
     "name": "United Arab Emirates",
-    "hex": "BD65A2"
+    "hex": "F4D03F"
+  },
+  {
+    "name": "Qatar",
+    "hex": "D68CBB"
   },
   {
     "name": "Bahrain",

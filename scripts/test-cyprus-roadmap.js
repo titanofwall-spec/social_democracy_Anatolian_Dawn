@@ -2,12 +2,30 @@ const fs=require('fs'),path=require('path'),assert=require('assert');
 const rules=require('../out/html/rules.js');require('../out/html/cyprusgame/js/atilla-i.js');require('../out/html/cyprusgame/js/campaign.js');require('../out/html/cyprusgame/js/roadmap.js');
 const lib=require('dendrynexus/lib/engine.js'),root=path.resolve(__dirname,'..'),c=rules.cyprusAtilla1,rm=rules.cyprusRoadmap,cp=rules.cyprusCampaign;
 const noop=()=>{},node={remove:noop,style:{setProperty:noop},appendChild:noop, insertAdjacentElement:noop, insertBefore:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
-global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};global.Image=function(){return {...node};};global.window={};global.d3=null;global.updateCyprusWidth=noop;global.localStorage={getItem:()=>null,setItem:noop};
+global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};global.Image=function(){return {...node};};global.window={};require('../out/html/cold-war-modes.js');global.d3=null;global.updateCyprusWidth=noop;global.localStorage={getItem:()=>null,setItem:noop};
 const output=console.log,errors=[];console.log=(...args)=>{if(String(args[0]).startsWith('Error'))errors.push(args.join(' '));};
 lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(err,game)=>{
  if(err)throw err;let count=0;
  function test(label,run){errors.length=0;run();assert.deepEqual(errors,[],label);count++;output('PASS '+label);}
  function fresh(options={}){const e=new lib.DendryEngine(new lib.NullUserInterface(),game);window.dendryUI=global.dendryUI={dendryEngine:e};e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');Object.assign(e.state.qualities,{year:1974,month:7,week:2,flavour_events:0,CHP_in_government:1,prime_minister_party:'CHP',army_land_strength:.8,army_naval_strength:.8,army_aerial_strength:.8,us_relation:80,west_relation:80,hashas_done:0},options);e.goToScene('kibrisdarbe');e.random.random=()=>1;return e;}
+ test('Cold War atlas follows division and a later federal settlement',()=>{
+  const Q=fresh().state.qualities;
+  const {countryIdImage}=window.ColdWarModes;
+  const base=/country-ids-detailed\.png/;
+  const divided=/country-ids-detailed-post-cyprus\.png/;
+  assert.match(countryIdImage(),base);
+  assert.match(countryIdImage({cyprus_final_result:'Historical Division'}),divided);
+  Object.assign(Q,{cyprus_mode:0,cyprus_problem:3,cyprus_final_result:'Historical Division',
+    cyprus_campaign_resolved:1,cyprus_atilla2_complete:1,foreign_minister_party:'CHP',
+    us_relation:80,west_relation:80,cyprus_selected_plan:'denktas',cyprus_later_negotiations:6});
+  assert.match(countryIdImage(),divided);
+  assert(rm.implementLater(Q));
+  assert.match(countryIdImage(),base);
+  for(const image of ['cold-war-country-ids-detailed.png','cold-war-country-ids-detailed-post-cyprus.png']){
+   const source=fs.readFileSync(path.join(root,'features/maps/cold-war/img',image));
+   assert.deepEqual(fs.readFileSync(path.join(root,'out/html/img',image)),source);
+  }
+ });
  // Existing campaign scenarios continue through the new narrative-only screens.
  function readGenevaInterludes(e){
   for(let i=0;/^cyprus_(last_laugh|phantom_convoy|kocatepe_saved|kocatepe_sunk|operation_failure|taskent|gratitude)$/.test(e.state.sceneId);i++){assert(i<6,'Incident loop');const choices=e.getCurrentChoices();assert.equal(choices.length,1);e.choose(0);}

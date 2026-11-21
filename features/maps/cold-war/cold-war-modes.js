@@ -3,13 +3,21 @@
   const colors={nato:'#385DAF',warsaw:'#A92E2E',american:'#5B7DC5',soviet:'#CA4949',neutral:'#777777'};
   const nato=new Set(['United Kingdom','France','Portugal','Belgium','Netherlands','Luxembourg','West Germany','Denmark','Norway','Iceland','Italy','Greece','Turkey','United States','Canada']);
   const warsaw=new Set(['Soviet Union','East Germany','Poland','Czechoslovakia','Hungary','Romania','Bulgaria']);
-  const western=new Set(['Spain','Israel','Saudi Arabia','Jordan','Kuwait','Oman','Bahrain','United Arab Emirates','Guatemala','Honduras','El Salvador','Costa Rica','Dominican Republic','Colombia','Venezuela','Brazil','Morocco','Tunisia','Liberia','Zaire','Kenya']);
+  const western=new Set(['Spain','Israel','Saudi Arabia','Jordan','Kuwait','Oman','Bahrain','Qatar','United Arab Emirates','Turkish Cyprus','Guatemala','Honduras','El Salvador','Costa Rica','Dominican Republic','Colombia','Venezuela','Brazil','Morocco','Tunisia','Liberia','Zaire','Kenya']);
   const eastern=new Set(['Cuba','Mongolia','Syria','South Yemen','People’s Republic of the Congo']);
   const dependencies={Greenland:'Denmark','Puerto Rico':'United States','French Guiana':'France'};
   // Half-month boundaries match Q.week: 1 = first half, 2 = second half.
   const stamp=(year,month,half=1)=>year*24+(month-1)*2+(half-1);
+  function qualities(){return window.dendryUI?.dendryEngine?.state?.qualities||{};}
+  function countryIdImage(q=qualities()){
+    // Status 3 represents military division in current and legacy saves.
+    const divided=q.cyprus_problem==null
+      ? q.cyprus_final_result==='Historical Division'
+      : Number(q.cyprus_problem)===3;
+    return divided?'img/cold-war-country-ids-detailed-post-cyprus.png?v=1':'img/cold-war-country-ids-detailed.png?v=2';
+  }
   function date(){
-    const q=window.dendryUI?.dendryEngine?.state?.qualities||{};
+    const q=qualities();
     const year=Number(q.year)||1972,month=Math.max(1,Math.min(12,Number(q.month)||1)),half=Number(q.week)===2?2:1;
     return {year,month,half,key:stamp(year,month,half)};
   }
@@ -56,6 +64,6 @@
     }
     ctx.putImageData(frame,0,0);return c;
   }
-  window.ColdWarModes={date,classify,color,overlay};
+  window.ColdWarModes={date,countryIdImage,classify,color,overlay};
 }());
 

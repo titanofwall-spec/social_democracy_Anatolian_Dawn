@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  let lighting, grid, outlines, cachedWidth=0,cachedHeight=0;
+  let lighting, grid, outlines, cachedSource;
   // Same camera fit used to reproject the texture and heightmap.
   const camera=[-.3094103493438249,1.140392782715497,.0014731136752282041,1743.0073649127287,1419.418613913839,1416.0282656985542,4.74177463922032];
   function canvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
@@ -54,10 +54,10 @@
     }
     for(let lon=-180;lon<180;lon+=15){const points=[];for(let lat=-90;lat<=90;lat+=.5)points.push([lon,lat]);curve(points);}
     for(let lat=-75;lat<=75;lat+=15){const points=[];for(let lon=-180;lon<=180;lon+=.5)points.push([lon,lat]);curve(points);}
-    lines.restore();cachedWidth=w;cachedHeight=h;
+    lines.restore();cachedSource=source;
   }
   function apply(ctx,w,h,source){
-    if(cachedWidth!==w||cachedHeight!==h)build(w,h,source);
+    if(cachedSource!==source)build(w,h,source);
     ctx.save();ctx.globalCompositeOperation='source-atop';ctx.globalAlpha=1;ctx.filter='none';
     ctx.drawImage(lighting,0,0);ctx.drawImage(outlines,0,0);ctx.drawImage(grid,0,0);ctx.restore();
   }
