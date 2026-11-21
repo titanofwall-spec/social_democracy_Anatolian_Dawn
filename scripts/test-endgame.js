@@ -6,6 +6,9 @@ require('../out/html/cyprusgame/js/atilla-i.js');
 require('../out/html/cyprusgame/js/campaign.js');
 require('../out/html/cyprusgame/js/roadmap.js');
 const END=require('../out/html/endgame.js'),lib=require('dendrynexus/lib/engine.js');
+const P=require('../out/html/provinces.js'),M=require('../out/html/macro-economy.js');
+const DD=require('../out/html/dynamic-demographics.js'),N=require('../out/html/national-coalition.js');
+require('../out/html/save-storage.js');
 const noop=()=>{},node={style:{},appendChild:noop,insertAdjacentElement:noop,insertBefore:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],innerHTML:'',textContent:''};
 global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};
 global.Image=function(){return {...node};};global.window={};global.d3=null;global.updateCyprusWidth=noop;global.localStorage={getItem:()=>null,setItem:noop};
@@ -35,6 +38,8 @@ test('Endgame HTML has accessible expandable categories and no vanilla ending te
  assert(html.includes('Interior Affairs'));
  assert(html.includes('5/6'));
  assert(html.includes('4/5'));
+ assert(html.includes('1981 · Final policy record'));
+ assert(!html.includes('1982 · Final policy record'));
  assert(html.includes('Not completed'));
  assert(!html.includes('Hitler Does Not Yet Control Germany'));
  assert(!html.includes('Game Over (reload to read again)'));
@@ -65,28 +70,54 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
   e.goToScene('post_event');
   return Q;
  }
- test('December 1981 advances to January 1982 and offers exactly Game over / Nah',()=>{
+ test('The final 1981 turn opens an ending screen with no continuation option',()=>{
   const e=engine(),Q=enter1982(e);
   assert.equal(Q.year,1982);assert.equal(Q.month,1);assert.equal(Q.week,1);
   assert.equal(e.state.sceneId,'endgame_1982');
-  assert.deepEqual(e.getCurrentChoices().map(x=>x.id),['endgame_1982.finish','endgame_1982.nah']);
+  const destinations=game.scenes.post_event.goTo.filter(x=>!x.predicate||e._runPredicate(x.predicate)).map(x=>x.id);
+  assert.deepEqual(destinations,['endgame_1982'],'Ending must be the only destination, independent of random seed');
+  assert.deepEqual(e.getCurrentChoices().map(x=>x.id),['endgame_1982.finish']);
+  assert(Q.macro_model.lastMonth<120,'No January 1982 economy update');
+  assert(Q.dynamic_demographic_state.year<=1981);
+  assert(Q.party_support_records.every(r=>new Date(r.date).getFullYear()<=1981));
+  assert(Q.economic_records.every(r=>new Date(r.date).getFullYear()<=1981));
   assert.equal(e.state.gameOver,false);
  });
- test('Nah permanently disables the date-triggered ending without ending or skipping turns',()=>{
-  const e=engine(),Q=enter1982(e);
-  const choice=e.getCurrentChoices().findIndex(c=>c.id==='endgame_1982.nah');
-  e.choose(choice);
-  assert.equal(Q.endgame_1982_ignored,1);assert.equal(e.state.gameOver,false);
-  assert.equal(Q.year,1982);assert.equal(Q.month,1);assert.equal(Q.week,1);
-  const snapshot=JSON.parse(JSON.stringify(e.getExportableState()));
-  e.setState(snapshot);
-  const restored=e.state.qualities;
-  for(const [year,month,week] of [[1982,1,1],[1982,12,2],[1983,2,1]]){
-   Object.assign(restored,{year,month,week,month_actions:1});
-   e.goToScene('post_event');
-   assert.notEqual(e.state.sceneId,'endgame_1982');
-   assert.equal(restored.endgame_1982_ignored,1);
-  }
+ test('Older continuation saves cannot advance any post-1981 simulation',()=>{
+  const e=engine(),Q=e.state.qualities;
+  Object.assign(Q,{year:1983,month:2,week:1,month_actions:1,endgame_1982_ignored:1,tsk_pacified:1});
+  const before={time:Q.time,model:JSON.stringify(Q.macro_model),demographics:JSON.stringify(Q.dynamic_demographic_state),
+    pools:JSON.stringify(Q.province_pools),coalition:JSON.stringify(Q.national_coalition),
+    elections:JSON.stringify(Q.province_election_history),records:Q.party_support_records.length};
+  e.goToScene('post_event');
+  assert.equal(e.state.sceneId,'endgame_1982');assert.equal(Q.endgame_1982_ignored,0);
+  assert.equal(Q.time,before.time);assert.equal(Q.party_support_records.length,before.records);
+  assert.equal(M.step(Q),null);assert.equal(DD.endYear(Q,1982),false);
+  N.update(Q);P.applyElection(Q,'general');P.applyElection(Q,'local');
+  assert.equal(JSON.stringify(Q.macro_model),before.model);
+  assert.equal(JSON.stringify(Q.dynamic_demographic_state),before.demographics);
+  assert.equal(JSON.stringify(Q.province_pools),before.pools);
+  assert.equal(JSON.stringify(Q.national_coalition),before.coalition);
+  assert.equal(JSON.stringify(Q.province_election_history),before.elections);
+  e.setState(JSON.parse(JSON.stringify(e.getExportableState())));e.goToScene('post_event');
+  assert.equal(e.state.sceneId,'endgame_1982');
+ });
+ test('Loading a legacy post-1981 save opens the ending before any action',()=>{
+  const e=engine();
+  const saved=JSON.parse(JSON.stringify(e.getExportableState()));
+  Object.assign(saved.qualities,{year:1983,month:2,week:1,month_actions:1,endgame_1982_ignored:1,tsk_pacified:1});
+  saved.sceneId='main';
+  const model=JSON.stringify(saved.qualities.macro_model),time=saved.qualities.time;
+  AnatolianSaveStorage.install({dendryEngine:e});
+  e.setState(saved);
+  assert.equal(e.state.sceneId,'endgame_1982');
+  assert.equal(e.state.qualities.time,time);
+  assert.equal(JSON.stringify(e.state.qualities.macro_model),model);
+  assert.deepEqual(e.getCurrentChoices().map(x=>x.id),['endgame_1982.finish']);
+ });
+ test('The retired Nah scene redirects legacy saves to game over',()=>{
+  const e=engine();enter1982(e);e.goToScene('endgame_1982.nah');
+  assert.equal(e.state.gameOver,true);assert.equal(e.state.sceneId,'game_over');
  });
  test('Game over finishes the engine, awards achievements, and cannot resume gameplay',()=>{
   const e=engine(),Q=enter1982(e);

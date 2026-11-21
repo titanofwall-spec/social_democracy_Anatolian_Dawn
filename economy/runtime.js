@@ -115,7 +115,7 @@
 
   function ensure(Q) {
     const month = monthOf(Q);
-    if (!Number.isInteger(month) || month < 0 || !Q.started) return null;
+    if (!Number.isInteger(month) || month < 0 || month >= 120 || !Q.started) return null;
     // Preserve the complete played history in existing version 3 saves.
     if (Q.macro_model?.version !== 3) Q.macro_model = initialize(Q, month);
     return Q.macro_model;

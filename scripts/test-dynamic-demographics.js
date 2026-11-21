@@ -20,11 +20,19 @@ vm.runInNewContext(fs.readFileSync(path.join(root,'out/html/mission.js'),'utf8')
 const model=ctx.AnatolianDynamicDemographics,mission=ctx.AnatolianMission;
 assert.ok(model&&mission);
 const Q={started:1,year:1972,month:1,week:1,classes:CL,parties:['chp'],land_reform:0,koykent_progress:0,
- economic_growth:5,unemployed:8,industrial_production_index:100,agricultural_production_index:100,
+ economic_growth:5,unemployed:8,industrial_production_index:1,agricultural_production_index:1,
  industry_modifier:0,agriculture_modifier:0,demiryoluu:0,yatirimm:0,spreadd:0,koykentegitimm:0,koykenttt:0};
 P.ensure(Q);
 const initial=model.ensure(Q);assert.strictEqual(initial.year,1972);
 assert.strictEqual(Object.keys(initial.provinces).length,4);
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,a+' != '+b);
+const baseOp=model.annualOpportunities(Q,initial).industrial;
+near(baseOp.jobs,.0184);
+const growingOp=model.annualOpportunities({...Q,industrial_production_index:1.2,agricultural_production_index:1.2},initial).industrial;
+near(growingOp.jobs,.022816);near(growingOp.ruralImprovement,.03);near(growingOp.displaced,.0034);
+const decliningOp=model.annualOpportunities({...Q,industrial_production_index:.8},initial).industrial;
+assert.ok(decliningOp.jobs<baseOp.jobs);
+near(model.annualOpportunities({...Q,industrial_production_index:undefined},initial).industrial.jobs,baseOp.jobs);
 assert.strictEqual(Q.province_pools.siirt.demographics.kurds,.788,'Legacy Siirt correction');
 for(const p of rows)assert.ok(Math.abs(Object.values(model.shares(initial.provinces[p.id])).reduce((a,b)=>a+b,0)-1)<1e-10);
 assert.strictEqual(mission.levels(Q)['Köykent Programme'],'Not Adopted');
@@ -51,6 +59,15 @@ assert.strictEqual(model.endYear(Q,1973),true);
 assert.ok(Q.dynamic_demographics_last_summary.urbanization>0);
 assert.ok(s.koykentConstruction>0&&s.koykentMaturity>=0);
 for(const p of rows)assert.ok(Math.abs(Object.values(Q.province_pools[p.id].demographics).reduce((a,b)=>a+b,0)-1)<1e-8);
-for(let completed=1974;completed<=1998;completed++){Q.year=completed+1;assert.strictEqual(model.endYear(Q,completed),true);}
-assert.ok(s.koykentMaturity>.9,'Long-term Köykent maturation should approach convergence by the late 1990s');
-console.log('PASS: mission statuses, Siirt correction, annual updates, conservation, regional jobs and long-run Köykent maturation');
+const earlyMaturity=s.koykentMaturity;
+for(let completed=1974;completed<=1980;completed++){Q.year=completed+1;assert.strictEqual(model.endYear(Q,completed),true);}
+assert.strictEqual(s.year,1981);
+assert.ok(s.koykentMaturity>earlyMaturity&&s.koykentMaturity<=1,'Köykent matures within the campaign');
+const finalDemographics=JSON.stringify(Q.province_pools),finalState=JSON.stringify(s);
+Q.year=1982;
+assert.strictEqual(model.endYear(Q,1981),false);
+assert.strictEqual(model.ensure(Q),null);
+assert.strictEqual(JSON.stringify(s),finalState);
+assert.strictEqual(JSON.stringify(Q.province_pools),finalDemographics);
+assert.deepStrictEqual(model.baselinePop(1982),model.baselinePop(1981));
+console.log('PASS: 1.00-based production indices, annual demographic updates, conservation, Köykent maturation, and the 1981 campaign cutoff');

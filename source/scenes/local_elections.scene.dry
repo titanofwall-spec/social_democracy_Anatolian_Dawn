@@ -2,7 +2,7 @@ title: Municipal Elections
 new-page: true
 tags: event
 priority: -1
-view-if: (year > next_local_election_year) or (year = next_local_election_year and month > next_local_election_month) or (year = next_local_election_year and month = next_local_election_month and week >= next_local_election_week)
+view-if: year <= 1981 and ((year > next_local_election_year) or (year = next_local_election_year and month > next_local_election_month) or (year = next_local_election_year and month = next_local_election_month and week >= next_local_election_week))
 on-departure: month_actions += 1; local_elections_held += 1; next_local_election_year += 4; next_local_election_month = 12; next_local_election_week = 2; next_local_election_time = time + 48;
 set-jump: local_results
 

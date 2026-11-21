@@ -129,7 +129,7 @@ function render(Q){
  const heading=Q && Q.coup_roll_success ? 'Military Coup — End of the Playthrough' : 'End of the Playthrough';
  return '<section class="anatolian-endgame" aria-label="Endgame progress report">'+
   '<h1>'+escape(heading)+'</h1>'+
-  '<p class="endgame-date">'+escape(Q&&Q.year||'1982')+' · Final policy record</p>'+
+  '<p class="endgame-date">'+escape(Math.min(Number(Q&&Q.year)||1981,1981))+' · Final policy record</p>'+
   '<div class="endgame-sections">'+data.map(s=>'<details class="endgame-section game-choice-panel"><summary>'+
    '<span>'+escape(s.title)+'</span><span class="endgame-section-count">'+s.items.filter(i=>i.done).length+'/'+s.items.length+' completed</span></summary>'+
    '<ul class="endgame-items game-record-items">'+s.items.map(i=>'<li><span class="endgame-action">'+escape(i.label)+'</span>'+

@@ -22,12 +22,14 @@ const kMaturity=Q=>clamp((num(Q.koykent_progress)/7),0,1);
 const kc=Q=>num(Q.land_reform)===3?kMaturity(Q):0;
 const percentage=(v,max)=>clamp(num(v)/max,0,1);
 const histNat=y=>{
+  y=clamp(num(y,1970),1970,1981);
   const n=D.nationalPopulation;
   if(n[y]!==undefined)return n[y];
   if(y>1980)return n[1980]+(y-1980)*(n[1980]-n[1979]);
   return n[1970];
 };
 function baselinePop(y){
+  y=clamp(num(y,1972),1970,1981);
   const from=y<=1975?1970:1975,to=from+5,t=(y-from)/5;
   const estimates=Object.fromEntries(provinceRows.map(p=>[p.id,Math.max(1,p.population[from]+t*(p.population[to]-p.population[from]))]));
   const wanted=histNat(y),denom=sum(estimates);
@@ -68,7 +70,7 @@ function seed(Q){
     Object.assign(siirt,{workers:.022,capitalists:.003,petty_bourgeoisie:.016,state_employees:.012,rural:.149,alevis:.010,kurds:.788});
     delete Q.province_aggregate_mirror;P.sync(Q);
   }
-  const year=Math.max(1972,num(Q.year,1972)),baseline=baselinePop(year);
+  const year=clamp(num(Q.year,1972),1972,1981),baseline=baselinePop(year);
   const demographics=Object.fromEntries(provinceRows.map(p=>[p.id,P.demographics(Q,p.id)]));
   const urban=buildBaselineUrban(baseline,demographics),provinces={};
   provinceRows.forEach(p=>{
@@ -88,7 +90,7 @@ function seed(Q){
   return Q.dynamic_demographic_state;
 }
 function ensure(Q){
-  if(!Q||!Q.started||!Q.province_pools)return null;
+  if(!Q||!Q.started||!Q.province_pools||num(Q.year,1972)>1981)return null;
   const st=Q.dynamic_demographic_state;
   if(st&&st.version===1&&st.provinces&&keys(st.provinces).length===provinceRows.length)return st;
   return seed(Q);
@@ -149,8 +151,9 @@ function municipality(Q,id){
 function annualOpportunities(Q,st){
   const result={},nationalGrowth=clamp(num(Q.economic_growth)/100,-.15,.20),
     employment=clamp(1-num(Q.unemployed,8)/100,0,1),
-    production=clamp((num(Q.industrial_production_index,100)-100)/100,-.4,1.5),
-    farm=clamp((num(Q.agricultural_production_index,100)-100)/100,-.4,1.5),
+    // The economy publishes production indices with 1972 = 1.00.
+    production=clamp(num(Q.industrial_production_index,1)-1,-.4,1.5),
+    farm=clamp(num(Q.agricultural_production_index,1)-1,-.4,1.5),
     koykent=kc(Q),municipal=municipality(Q),
     road=percentage(Q.demiryoluu,1);
   for(const p of provinceRows){
@@ -276,7 +279,7 @@ function transitionIdentity(prov,Q,op){
   for(const[k,delta]of Object.entries(changes))prov.cells[k]=Math.max(0,num(prov.cells[k])+delta);
 }
 function endYear(Q,completedYear){
-  if(!Q||!Q.started)return false;
+  if(!Q||!Q.started||completedYear>=1981||num(Q.year,1972)>1981)return false;
   const st=ensure(Q);if(!st)return false;
   const nextYear=completedYear+1;
   if(st.year>=nextYear||st.lastYearProcessed>=completedYear)return false;

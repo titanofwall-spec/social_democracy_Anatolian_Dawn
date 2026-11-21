@@ -96,9 +96,10 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
   const start=(q.year-1972)*12+q.month-1;
   for(let t=0;t<216;t++){
     policy(q,t,e);q.month_actions=1;e.goToScene('post_event');
-    const expected=start+Math.floor((t+1)/2);
+    const expected=Math.min(119,start+Math.floor((t+1)/2));
     assert.equal(q.macro_model.lastMonth,expected,'exactly one update per calendar month');
     const model=q.macro_model, s=model.history.at(-1);
+    if(q.year>1981){assert.equal(t,215);assert.equal(e.state.sceneId,'endgame_1982');assert.equal(s.month,119);continue;}
     for(const k of ['realGdp','cpi','moneySupply','potentialGdp','inflation','realGdpGrowth','nextExpectedInflation'])assert(Number.isFinite(s[k]),name+' '+k);
     assert(s.realGdp>0 && s.cpi>0 && s.moneySupply>0);assert(s.inflation>-100);
     assert(s.unmetDemand>=0 && s.unemployment>=0 && s.unemployment<=100);
@@ -114,7 +115,7 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
       }
     }
   }
-  assert.equal(q.year,1982);assert.equal(q.month,1);assert.equal(snapshots,9);
+  assert.equal(q.year,1982);assert.equal(q.month,1);assert.equal(snapshots,8);
   if(name.startsWith('ministry')) {
     const actual=ministryActionLogs[name]||[];
     assert(actual.length>=5,name+' did not exercise real ministry actions: '+JSON.stringify(actual));

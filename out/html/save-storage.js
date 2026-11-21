@@ -13,6 +13,7 @@ function install(ui){if(ui._durableSavesInstalled)return;ui._durableSavesInstall
  engine.setState=function(state){
   const main=state.qualities.difficulty<0?'main.main_easy':'main';
   const Q=state.qualities;
+  const campaignEnded=Q.started===1&&Number(Q.year)>1981&&!state.gameOver;
   const retiredCabinet=Q.TIP_in_government||Q.in_left_front||Q.in_popular_front;
   if(retiredCabinet){
    root.AnatolianRules.resetCabinet(Q);
@@ -30,8 +31,16 @@ function install(ui){if(ui._durableSavesInstalled)return;ui._durableSavesInstall
    for(let i=hand.length-1;i>=0;i--) if(removedScene(hand[i]?.id)) hand.splice(i,1);
   }
   if(returnToMain) state.currentContent=[];
+  if(campaignEnded){
+   state.sceneId='post_event';
+   state.currentContent=[];
+   state.tempCurrentContent=[];
+   state.prevSpecialSceneId=null;
+   state.jumpSceneId=null;
+  }
   const result=restoreState.call(this,state);
-  if(returnToMain&&!this.isGameOver()) this.goToScene(main);
+  if(campaignEnded) this.goToScene('post_event');
+  else if(returnToMain&&!this.isGameOver()) this.goToScene(main);
   return result;
  };
  ui.max_slots=100;ui.savePage=0;ui.showAutosaves=false;

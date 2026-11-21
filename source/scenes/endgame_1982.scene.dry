@@ -1,16 +1,16 @@
 title: The End of 1981
 new-page: true
-view-if: {! return Q.started===1 && Q.year>=1982 && !Q.endgame_1982_ignored && !Q.game_over; !}
+view-if: {! return Q.started===1 && Q.year>=1982 && !Q.game_over; !}
 
 = Game over bro
 
 - @finish: Game over
-- @nah: Nah
 
 @finish
 on-arrival: endgame_1982_chosen = 1
 go-to: game_over
 
 @nah
-on-arrival: endgame_1982_ignored = 1
-go-to: post_event
+# Legacy saved scene ID: continuation now ends the campaign.
+on-arrival: endgame_1982_ignored = 0
+go-to: finish
