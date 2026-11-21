@@ -5,11 +5,11 @@ on-arrival: {!
 AnatolianRules.refreshPartyNames(Q,this.state.visits);
 AnatolianRules.ensureKurdishIssue(Q);
 // Format economic indicators with proper fallbacks only for display
-Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : AnatolianEconomyBaseline.settings.initialUnemployment.toFixed(1);
-Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : AnatolianEconomyBaseline.settings.initialInflation.toFixed(1);
-Q.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : AnatolianEconomyBaseline.settings.initialGrowth.toFixed(1);
+Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(2) : AnatolianEconomyBaseline.settings.initialUnemployment.toFixed(2);
+Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(2) : AnatolianEconomyBaseline.settings.initialInflation.toFixed(2);
+Q.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(2) : AnatolianEconomyBaseline.settings.initialGrowth.toFixed(2);
 
-Q.central_bank_interest_rate_formatted = AnatolianRules.number(Q.central_bank_interest_rate).toFixed(1);
+Q.central_bank_interest_rate_formatted = AnatolianRules.number(Q.central_bank_interest_rate).toFixed(2);
 
 // Format production indices
 Q.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 1.0).toFixed(2);
@@ -19,7 +19,7 @@ Q.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production
 Q.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);
 
 // Format forex pressure and determine status
-Q.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure).toFixed(1);
+Q.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure).toFixed(2);
 if (Q.forex_pressure <= 20) {
     Q.forex_pressure_status = "Low";
 } else if (Q.forex_pressure > 20 && Q.forex_pressure <= 40) {
