@@ -2,46 +2,83 @@
   'use strict';
   const normal=s=>String(s||'').normalize('NFKC').replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim().toLowerCase();
   const database=new Map(window.ColdWarGovernmentData.countries.map(c=>[normal(c.name),c]));
-  const colorCache=new Map();
   const text=value=>value===null||value===undefined||value===''?'Not available':String(value);
   function date(){
     const q=window.dendryUI?.dendryEngine?.state?.qualities||{};
     const year=Number(q.year)||1972,month=Math.max(1,Math.min(12,Number(q.month)||1)),day=Number(q.week)===2?16:1;
     return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
   }
-  function hash(s){let n=2166136261;for(const c of s)n=Math.imul(n^c.charCodeAt(0),16777619);return n>>>0;}
-  function hue(ideology){
-    const s=normal(ideology);
-    if(/marx|lenin|mao|hoxha|tito|communis/.test(s))return 5;
-    if(/social democ|center left/.test(s))return 343;
-    if(/democratic social|african social|military social|arab social|ba.ath|left wing/.test(s))return 15;
-    if(/islam/.test(s))return 145;
-    if(/christian democ|christian.*conserv/.test(s))return 225;
-    if(/conserv|center right|gaull|right wing|right-wing/.test(s))return 215;
-    if(/social liberal/.test(s))return 175;
-    if(/liberal/.test(s))return 48;
-    if(/agrarian/.test(s))return 95;
-    if(/military|authoritarian|dictatorship/.test(s))return 277;
-    if(/monarch|royal/.test(s))return 295;
-    if(/national|republican|z ion|z ionism|zionism|populis|mobut/.test(s))return 30;
-    if(/center|centr|big tent|broad front|transition|independent/.test(s))return 180;
-    if(/social/.test(s))return 355;
-    return 200;
-  }
   function ideologyLabel(value){
     const primary=String(value||'').split('/')[0].trim();
     const aliases={'social liberal':'Social Liberalism','social liberalism':'Social Liberalism','social democracy':'Social Democracy','conservative':'Conservatism','conservatism':'Conservatism','liberal':'Liberalism','liberalism':'Liberalism','independent':'Independent','independents':'Independent','center':'Centrism','centrism':'Centrism'};
     return aliases[normal(primary)]||primary;
   }
-  function color(name,ideology){
-    const key=normal(ideologyLabel(ideology));
-    const fixed={'independent':'#808080','national catholicism':'#DF3D24','social liberalism':'#66CDB5','liberalism':'#F2CD5E','conservatism':'#6B97DE','social democracy':'#F275A3','democratic socialism':'#EB7771','marxism-leninism':'#E56464','centrism':'#75BFCB'};
-    if(fixed[key])return fixed[key];
-    if(!colorCache.has(key)){
-      const n=hash(key),h=(hue(key)+(n%23)-11+360)%360;
-      colorCache.set(key,`hsl(${h} ${58+((n>>>5)%19)}% ${65+((n>>>12)%9)}%)`);
+  const ideologyGroups = [
+    {
+      name: 'Social democracy and center-left',
+      color: '#e3000f',
+      ideologies: ['Social Democracy', 'Center Left']
+    },
+    {
+      name: 'Socialism and left-wing movements',
+      color: '#b90202',
+      ideologies: ['African Socialism', 'Arab Socialism', 'Ba’athism', 'Cooperative Socialism',
+        'Democratic Socialism', 'Left Wing', 'Military Socialism', 'Sandinismo', 'Third International Theory']
+    },
+    {
+      name: 'Communist and communist currents',
+      color: '#780000',
+      ideologies: ['Hoxhaism', 'Maoism', 'Marxism-Leninism', 'National Communism', 'Post-Mao transition',
+        'Scientific Socialism', 'Socialism with Chinese characteristics, emerging', 'Titoism']
+    },
+    {
+      name: 'Liberalism and centrism',
+      color: '#ebbd33',
+      ideologies: ['Centrism', 'Liberalism', 'National Liberalism', 'Reformism', 'Social Liberalism',
+        'Agrarianism', 'Bourguibism']
+    },
+    {
+      name: 'Conservatism and center-right',
+      color: '#315fac',
+      ideologies: ['Authoritarian Conservatism', 'Center Right', 'Christian Democracy', 'Conservatism',
+        'Gaullism', 'Liberal Conservatism', 'Modernizing Conservatism', 'National Catholicism', 'Right Wing']
+    },
+    {
+      name: 'Nationalism and nationalist movements',
+      color: '#954b00',
+      ideologies: ['African Nationalism', 'Arab Nationalism', 'Authoritarian Nationalism', 'Cypriot Nationalism',
+        'Greek Nationalism', 'Hutu Nationalism', 'Institutional Revolutionary Nationalism', 'Labor Zionism',
+        'Mobutism', 'Nationalism', 'One-party Nationalism']
+    },
+    {
+      name: 'Islamic political movements',
+      color: '#054521',
+      ideologies: ['Islamic Conservatism', 'Islamic Republicanism', 'Islamism']
+    },
+    {
+      name: 'Monarchism',
+      color: '#84257f',
+      ideologies: ['Monarchism', 'Monarchism; contested sovereignty', 'Personalist Monarchy', 'Traditional Monarchy']
+    },
+    {
+      name: 'Authoritarian and military rule',
+      color: '#5b7387',
+      ideologies: ['Authoritarianism', 'Military Authoritarianism', 'Military Populism', 'One-party rule',
+        'Personalist Authoritarianism', 'Personalist Dictatorship', 'Right-wing Authoritarianism', 'Torrijismo']
+    },
+    {
+      name: 'Coalitions, transitions, and nonpartisan government',
+      color: '#808080',
+      ideologies: ['Big Tent', 'Broad Front', 'Consociational', 'Democratic Transition', 'Independent',
+        'Multi-faction coalition', 'Technocracy', 'Transitional']
     }
-    return colorCache.get(key);
+  ];
+  const ideologyColors = new Map();
+  ideologyGroups.forEach(group => {
+    group.ideologies.forEach(ideology => ideologyColors.set(normal(ideology), group.color));
+  });
+  function color(name, ideology) {
+    return ideologyColors.get(normal(ideologyLabel(ideology))) || '#808080';
   }
   function describeGovernment(value){
     if(!value)return [{name:'Not available',ideology:''}];
