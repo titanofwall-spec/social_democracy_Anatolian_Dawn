@@ -4,7 +4,7 @@ view-if: year == 1974 and month = 10 and week = 1
 max-visits: 1
 tags: event
 new-page: true
-face-image: img/DP.png
+face-image: img/party-dp.png
 
 = Decay of the Democratic Party
 

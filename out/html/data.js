@@ -1,38 +1,38 @@
-const tooltipList = [{searchString: "MGP", explanationText: "<img src=img/cgplogo.png> Milli Güven Partisi (National Trust Party)"}, {
+const tooltipList = [{searchString: "MGP", explanationText: "<img src=img/party-mgp.png> Milli Güven Partisi (National Trust Party)"}, {
     searchString: "CHP",
-    explanationText: "<img src=img/chp5_20251125_200815_0000.svg> Republican People's Party, our party."
+    explanationText: "<img src=img/party-chp.png> Republican People's Party, our party."
 },
 {
     searchString: "AP",
-    explanationText: "<img src=img/AP.jpg> Justice Party, our primary adversary."
+    explanationText: "<img src=img/party-ap.png> Justice Party, our primary adversary."
 },
 {
     searchString: "TIP",
-    explanationText: "<img src=img/TİP_1970'ler.png> Workers' Party of Turkey"
+    explanationText: "<img src=img/party-tip.png> Workers' Party of Turkey"
 },
 {
     searchString: "TİP",
-    explanationText: "<img src=img/TİP_1970'ler.png> Workers' Party of Turkey"
+    explanationText: "<img src=img/party-tip.png> Workers' Party of Turkey"
 },                    
 {
     searchString: "TKP",
-    explanationText: "<img src=img/tkp.png>Communist Party of Turkey"
+    explanationText: "<img src=img/party-tkp.png>Communist Party of Turkey"
 },
 {
     searchString: "TSİP",
-    explanationText: "<img src=img/tsip.gif>Socialist Workers' Party of Turkey"
+    explanationText: "<img src=img/party-tsip.png>Socialist Workers' Party of Turkey"
 },
 {
     searchString: "TEP",
-    explanationText: "<img src=img/tep.jpeg>Labourers' Party of Turkey"
+    explanationText: "<img src=img/party-tep.png>Labourers' Party of Turkey"
 },
 {
     searchString: "SDP",
-    explanationText: "<img src=img/sdp.jpg>Socialist Revolution Party"
+    explanationText: "<img src=img/party-sdp.png>Socialist Revolution Party"
 },
 {
     searchString: "DP",
-    explanationText: "<img src=img/DP.png> Democratic Party"
+    explanationText: "<img src=img/party-dp.png> Democratic Party"
 },
 {
     searchString: "THKO",
@@ -52,11 +52,11 @@ const tooltipList = [{searchString: "MGP", explanationText: "<img src=img/cgplog
 },                     
 {
     searchString: "CGP",
-    explanationText: "<img src=img/cgp-party-logo.png> Cumhuriyetçi Güven Partisi (Republican Trust Party)"
+    explanationText: "<img src=img/party-cgp.png> Cumhuriyetçi Güven Partisi (Republican Trust Party)"
 },
 {
     searchString: "MSP",
-    explanationText: "<img src=img/MSP.png> National Salvation Party"
+    explanationText: "<img src=img/party-msp.png> National Salvation Party"
 },
 {
     searchString: "MNP",
@@ -226,8 +226,8 @@ colourList.push({word:"Kurdish Independents",style:"color: #c2d93f; font-weight:
 
 colourList.push({word:'Independents',style:'color:#808080;'});
 
-tooltipList.push({searchString:'TBP',explanationText:'<img src="img/tbp-logo.jpg">Türkiye Birlik Partisi (Turkey Unity Party).'});
-tooltipList.push({searchString:'MP',explanationText:'<img src="img/mp-logo.png">Millet Partisi (National Party).'});
+tooltipList.push({searchString:'TBP',explanationText:'<img src="img/party-tbp.png">Türkiye Birlik Partisi (Turkey Unity Party).'});
+tooltipList.push({searchString:'MP',explanationText:'<img src="img/party-mp.png">Millet Partisi (National Party).'});
 colourList.push({word:'TBP',style:'color:#c51b32;'});
 colourList.push({word:'MP',style:'color:#242018;'});
 
@@ -285,7 +285,7 @@ globalThis.AnatolianGameColourEntries = colourList;
   ['Bülent Ecevit','<img src="img/ecevitim1.webp">Bülent Ecevit leads the CHP\'s Left of the Center movement and opposes the military\'s interference in parliamentary politics.'],
   ['Ferit Melen','<img src="img/melen.jpg">Ferit Melen is a right-wing Kemalist statesman who served as defense minister under Erim and subsequently became prime minister.'],
   ['Cevdet Sunay','<img src="img/cevdetsunay.jpg">President Cevdet Sunay, a former chief of the General Staff, oversees Turkey\'s military-influenced political transition.'],
-  ['Turhan Feyzioğlu','<img src="img/cgplogo.png">Turhan Feyzioğlu, chairman of the MGP and later the CGP, is a leading right-wing Kemalist opponent of the CHP\'s Left of the Center movement.'],
+  ['Turhan Feyzioğlu','<img src="img/party-mgp.png">Turhan Feyzioğlu, chairman of the MGP and later the CGP, is a leading right-wing Kemalist opponent of the CHP\'s Left of the Center movement.'],
   ['Suat Hayri Ürgüplü','Suat Hayri Ürgüplü is an independent senator, former prime minister, and former president of the Senate.'],
   ['Kâmil Kırıkoğlu','Kâmil Kırıkoğlu, CHP secretary general, is a prominent figure in the struggle over the party\'s direction.'],
   ['İbrahim Öktem','İbrahim Öktem is a CHP Party Assembly member who acts as an intermediary in the 1972 government negotiations.'],

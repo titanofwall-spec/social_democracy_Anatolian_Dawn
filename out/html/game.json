@@ -2173,7 +2173,7 @@
         "event"
       ],
       "newPage": true,
-      "faceImage": "img/DP.png",
+      "faceImage": "img/party-dp.png",
       "options": [
         {
           "id": "@DP_decay.dp",
