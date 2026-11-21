@@ -174,7 +174,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     });
     test('Zero displays, deflation and minimum unemployment remain valid', (e,Q) => {
         Q.forex_pressure=0; Q.industrial_production_index=0; Q.agricultural_production_index=0; action(e,'status');
-        assert.equal(Q.forex_pressure_formatted,'0.0'); assert.equal(Q.industrial_index_formatted,'0.00'); assert.equal(Q.agricultural_index_formatted,'0.00');
+        assert.equal(Q.forex_pressure_formatted,'0.00'); assert.equal(Q.industrial_index_formatted,'0.00'); assert.equal(Q.agricultural_index_formatted,'0.00');
         Q.inflation_score=-6; Q.apply_economy_effects=0;
         Object.assign(Q.macro_model.history.at(-1), {inflation:-1, unemployment:0});
         action(e,'economy_health_calculator'); assert.equal(Q.inflation_score,-1); assert.equal(Q.unemployed,0);

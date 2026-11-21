@@ -15,7 +15,9 @@
     initialAgriculturalProduction: 1,
     initialIndustrialProduction: 1,
     creditDemandCoefficient: 0.10,
-    creditCapacityCoefficient: 0.20
+    creditCapacityCoefficient: 0.20,
+    lendingAdjustment: 0.50,
+    targetRealLendingRate: 2.5
   });
 
   const clip = (value, min, max) => Math.max(min, Math.min(max, value));
@@ -23,10 +25,52 @@
   const percentChange = (current, previous) => 100 * (current / previous - 1);
   const annualize = (current, previous) => 100 * (Math.pow(current / previous, 12) - 1);
 
+  // Calendar months are zero-based from January 1972: April is month 3 modulo 12.
+  // The April rule uses March's expected inflation, not April's updated expectation.
+  function calculateCentralBankRate({ month, previous, comparison, previousMoneyGrowth,
+    referenceUnemployment = defaults.referenceUnemployment }) {
+    if (month % 12 !== 3) return previous.centralBankRate;
+    const expectedInflation = previous.expectedInflation ?? previous.inflation;
+    const adjustment =
+      0.20 * (previous.inflation - (comparison.inflation + expectedInflation) / 2) +
+      0.06 * (previous.inflation - previous.centralBankRate) +
+      0.10 * (previousMoneyGrowth - previous.realGdpGrowth - previous.inflation) +
+      0.08 * (previous.realGdpGrowth - 5.5) -
+      0.15 * (previous.unemployment - referenceUnemployment) +
+      0.25 * previous.fxStress / (1 + previous.fxStress);
+    const positiveInflation = Math.max(0, previous.inflation);
+    const minimumChange = -Math.max(0.5, 0.05 * positiveInflation);
+    const maximumChange = Math.max(1, 0.20 * positiveInflation);
+    return Math.max(0, previous.centralBankRate + clip(adjustment, minimumChange, maximumChange));
+  }
+
+  function calculateLendingRate({ previousLendingRate, centralBankRate, lendingSpread,
+    adjustment = defaults.lendingAdjustment }) {
+    return clip((1 - adjustment) * previousLendingRate +
+      adjustment * (centralBankRate + lendingSpread), centralBankRate, 2 * centralBankRate);
+  }
+
+  function calculateMoneySupply({ previousMoneySupply, previousMoneyGrowth, previousGdpGrowth,
+    expectedInflation, creditDemand, realLendingRate, annualGrowthLimit = Infinity,
+    referenceRealRate = defaults.targetRealLendingRate }) {
+    const growth = 0.70 * previousMoneyGrowth +
+      0.30 * (previousGdpGrowth + expectedInflation) + 1.50 * creditDemand -
+      0.10 * (realLendingRate - referenceRealRate);
+    // Existing monetary-policy restrictions cap the annual growth driver.
+    const limitedGrowth = Math.min(growth, annualGrowthLimit);
+    if (!Number.isFinite(limitedGrowth)) throw new RangeError('Annual M2 growth must be finite.');
+    // Approved domain floor: keep M2 positive if deflation pushes the driver to -100% or below.
+    const moneySupplyGrowthRate = Math.max(-99.999999, limitedGrowth);
+    const moneySupply = previousMoneySupply * Math.pow(1 + moneySupplyGrowthRate / 100, 1 / 12);
+    return { moneySupply, moneySupplyGrowthRate };
+  }
+
   // Required inputs: savingsRate, cooperativization, cooperativeBank,
   // peoplesSectorIntegration, koykentInvestment, cooperativeUnions,
-  // highTechPolicy, stateEnterpriseRestructuring, centralBankRate, lendingSpread,
-  // nominalCredit, and moneySupply. The four optional shocks default to zero.
+  // highTechPolicy, stateEnterpriseRestructuring, and nominalCredit.
+  // TCMB rates, the monthly lending margin, and M2 are calculated here by default.
+  // Optional centralBankRate/lendingSpread/moneySupply inputs permit explicit overrides;
+  // moneyGrowthLimit preserves monetary-policy caps. The four shocks default to zero.
   // At t > 0, initialRealCreditToPotential is the ratio returned by month 0.
   function calculateMonth({ month, history, inputs, initialRealCreditToPotential, parameters = {} }) {
     if (!Number.isInteger(month) || month < 0 || history.length < 24) {
@@ -40,7 +84,7 @@
     const {
       savingsRate, cooperativization, cooperativeBank, peoplesSectorIntegration,
       koykentInvestment, cooperativeUnions, highTechPolicy, stateEnterpriseRestructuring,
-      centralBankRate, lendingSpread, nominalCredit, moneySupply,
+      nominalCredit,
       fiscalContribution = 0, publicEmployment = 0, outputShock = 0, costShock = 0
     } = inputs;
     const { referenceUnemployment, marginalPropensityToConsume } = settings;
@@ -90,9 +134,29 @@
       -settings.creditCapacityCoefficient * Math.max(0, -previous.creditAdequacy) / 100
     );
     const outputCeiling = Math.min(potentialGdp * Math.exp(-0.10 * Math.pow(fxStress, 3)), creditCeiling);
-    const lendingRate = Math.min(2 * centralBankRate, 0.50 * previous.lendingRate + 0.50 * (centralBankRate + lendingSpread));
+    // Both policy rules use observed annual M2 growth through t-1, including source history.
+    const previousMoneyGrowth = percentChange(previous.moneySupply, lag(13).moneySupply);
+    const centralBankRate = inputs.centralBankRate ?? calculateCentralBankRate({
+      month, previous, comparison: lag(13), previousMoneyGrowth, referenceUnemployment
+    });
     const expectedInflation = previous.nextExpectedInflation;
+    // A +2.5% real target implies i_CB + s_faiz = expected inflation + 2.5.
+    const lendingSpread = inputs.lendingSpread ??
+      expectedInflation + settings.targetRealLendingRate - centralBankRate;
+    const lendingRate = calculateLendingRate({
+      previousLendingRate: previous.lendingRate, centralBankRate, lendingSpread,
+      adjustment: settings.lendingAdjustment
+    });
     const realLendingRate = lendingRate - expectedInflation;
+    const monetary = inputs.moneySupply == null ? calculateMoneySupply({
+      previousMoneySupply: previous.moneySupply, previousMoneyGrowth,
+      previousGdpGrowth: previous.realGdpGrowth, expectedInflation, creditDemand, realLendingRate,
+      annualGrowthLimit: inputs.moneyGrowthLimit, referenceRealRate: settings.targetRealLendingRate
+    }) : {
+      moneySupply: inputs.moneySupply,
+      moneySupplyGrowthRate: annualize(inputs.moneySupply, previous.moneySupply)
+    };
+    const { moneySupply, moneySupplyGrowthRate } = monetary;
     const consumptionShare = previous.consumption / previous.realGdp;
     const targetConsumptionGrowth = 5.5 +
       0.45 * marginalPropensityToConsume / consumptionShare * (previous.realGdpGrowth - 5.5) -
@@ -157,11 +221,11 @@
       averageSavings, averageUnemployment, investmentEfficiency, effectiveInvestment, laborFactor,
       investmentFxFactor, capacityGrowth, potentialGdp, fx, effectiveFx, fxSeverity, fxStress, averageSectorFx,
       agriculturalProduction, industrialProduction, creditDemand, creditCeiling, outputCeiling,
-      centralBankRate, lendingRate, expectedInflation, realLendingRate, consumptionShare,
+      centralBankRate, lendingSpread, lendingRate, expectedInflation, realLendingRate, consumptionShare,
       targetConsumptionGrowth, baselineConsumptionGrowth, consumptionGrowth, deflationEffect,
       baselineDemandGrowth, demandGrowth, desiredOutput, realGdp, realGdpGrowth, desiredConsumption, consumption,
       stableEmploymentGrowth, unemployment, counterfactualGdp, counterfactualGrowth, counterfactualUnemployment,
-      unmetDemand, smoothedUnmetDemand, moneySupply, moneyGrowth, circulationPressure, unboundedInflationTrend,
+      unmetDemand, smoothedUnmetDemand, moneySupply, moneySupplyGrowthRate, moneyGrowth, circulationPressure, unboundedInflationTrend,
       inflationTrend, fxPriceShock, cpi, inflation, nextExpectedInflation, nominalCredit, realCredit,
       initialRealCreditToPotential: initialCreditRatio, creditAdequacy, realAgriculturalPrice, nominalAgriculturalPrice
     };
@@ -186,7 +250,8 @@
     };
   }
 
-  const economy = Object.freeze({ defaults, calculateMonth, calculateCalendarYear });
+  const economy = Object.freeze({ defaults, calculateCentralBankRate, calculateLendingRate,
+    calculateMoneySupply, calculateMonth, calculateCalendarYear });
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = economy;
   } else {

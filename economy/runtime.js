@@ -158,19 +158,17 @@
       const fx = month === 0 ? equations.defaults.initialFx :
         Math.max(0, previous.fx + equations.defaults.monthlyFxChange + policyFxDrift +
           model.pendingFx - number(Q.forex_pressure_delayed_reduction) / 12);
-      const annualMoneyGrowth = number(Q.macro_m2_growth, settings.annualMoneySupplyGrowth);
-      const moneySupply = positive(Q.macro_m2_level, month === 0 ? model.initialMoneySupply :
-        baseline.moneySupplyForMonth(1, previous.moneySupply, annualMoneyGrowth));
       const row = equations.calculateMonth({
         month,
         history: model.history,
         initialRealCreditToPotential: model.initialRealCreditToPotential,
         inputs: {
           ...sectors(Q),
-          fx, moneySupply,
+          fx,
+          // Monthly equations derive M2 and rates; retain explicit policy limits and one-off M2 levels.
+          moneySupply: positive(Q.macro_m2_level),
+          moneyGrowthLimit: Number.isFinite(Q.macro_m2_growth) ? Q.macro_m2_growth : undefined,
           savingsRate: number(Q.macro_savings_rate, settings.savingsRate),
-          centralBankRate: settings.centralBankRate,
-          lendingSpread: settings.lendingSpread,
           nominalCredit: baseline.nominalCreditForMonth(month, previous, older),
           fiscalContribution: number(Q.macro_fiscal_impulse, number(Q.growth_modifier)) +
             settings.agriculturalDemandPerConsumptionPoint * (number(Q.agricultural_consumption, 100) - 100) +
