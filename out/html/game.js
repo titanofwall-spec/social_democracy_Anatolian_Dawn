@@ -865,16 +865,23 @@ function getPartyIdeology(party, Q) {
         return baseTooltip.explanationText;
     }
 
-    function applyWholesome(str) {
-        const allWords = new Set([
-            ...tooltipList.map(t => t.searchString),
-            ...colourList.map(c => c.word)
-        ]);
-
+    let partyLabels;
+    function getPartyLabelIndex() {
+        if (partyLabels?.tooltipCount === tooltipList.length && partyLabels?.colourCount === colourList.length) return partyLabels;
+        const tooltips = new Map(), colours = new Map();
+        for (const entry of tooltipList) if (!tooltips.has(entry.searchString)) tooltips.set(entry.searchString, entry);
+        for (const entry of colourList) if (!colours.has(entry.word)) colours.set(entry.word, entry);
+        const allWords = new Set([...tooltips.keys(), ...colours.keys()]);
         const special='^$.*+?()[]{}|';
         const words=[...allWords].sort((a,b)=>b.length-a.length).map(w=>Array.from(w).map(ch=>special.includes(ch)||ch.charCodeAt(0)===92?String.fromCharCode(92)+ch:ch).join(''));
         const regex=new RegExp('(?<![\\p{L}\\p{N}_])('+words.join('|')+')(?![\\p{L}\\p{N}_])','gu');
 
+        partyLabels = {tooltips, colours, regex, tooltipCount: tooltipList.length, colourCount: colourList.length};
+        return partyLabels;
+    }
+
+    function applyWholesome(str) {
+        const {tooltips, colours, regex} = getPartyLabelIndex();
         return str.replace(/(<(?:span|strong)[^>]*>.*?<\/(?:span|strong)>|<[^>]+>|[^<]+)/g, (segment) => {
             if (segment.startsWith('<')) {
                 // Plain styled spans and bold text still receive party tooltips.
@@ -887,8 +894,8 @@ function getPartyIdeology(party, Q) {
             }
 
             return segment.replace(regex, (match) => {
-                const tooltip = tooltipList.find(t => t.searchString === match);
-                const colour = colourList.find(c => c.word === match);
+                const tooltip = tooltips.get(match);
+                const colour = colours.get(match);
 
                 let style = colour ? colour.style : '';
                 let innerText = match === 'TIP' ? 'TİP' : match;

@@ -1,7 +1,8 @@
 (function () {
   'use strict';
-  let ready, mapReady=false, canvas, ctx, original, displayed, pixels, width, height, hoverCanvas, hoverCtx, active = 0;
+  let ready, mapReady=false, canvas, ctx, original, pixels, width, height, hoverCanvas, hoverCtx, active = 0;
   let selectedMode='political';
+  let halo, haloCtx, hoverBounds, queuedPointer, pointerFrame = 0;
   function updateModeControls(){
     overlay().dataset.mapMode=selectedMode;
     document.querySelectorAll('[data-cold-war-mode]').forEach(button=>{
@@ -23,7 +24,6 @@
   function renderDisplay() {
     mapRenderer.render(ctx,selectedMode,window.ColdWarModes.date());
     window.ColdWarPresentation.apply(ctx,width,height,original);
-    displayed=ctx.getImageData(0,0,width,height);
   }
   const fills = [], borders = [], names = [''];
   const byColor = new Map();
@@ -46,8 +46,15 @@
   }
   function clear() {
     const wasActive=!!active;
-    if (active && displayed) ctx.putImageData(displayed,0,0);
-    if(hoverCtx)hoverCtx.clearRect(0,0,width,height);
+    if (pointerFrame) cancelAnimationFrame(pointerFrame);
+    pointerFrame = 0;
+    queuedPointer = null;
+    if (hoverBounds) {
+      const { left, top, w, h } = hoverBounds;
+      const padding = 64; // Include the blurred border beyond the country rectangle.
+      hoverCtx.clearRect(left - padding, top - padding, w + 2 * padding, h + 2 * padding);
+      hoverBounds = null;
+    }
     active = 0;
     tooltip().hidden = true;
     if(wasActive)window.ColdWarDecorations.release();
@@ -56,24 +63,43 @@
     if (id === active) return;
     clear();
     if (!id) return;
-    const frame = hoverCtx.createImageData(width,height);
-    const a = frame.data;
-    fills[id].forEach(p => {
-      const i=p*4;
-      a[i]=84;
-      a[i+1]=152;
-      a[i+2]=216;a[i+3]=51;
-    });
-    borders[id].forEach(p => {const i=p*4;a[i]=84;a[i+1]=152;a[i+2]=216;a[i+3]=255;});
-    hoverCtx.putImageData(frame,0,0);
-    const halo=document.createElement('canvas');halo.width=width;halo.height=height;
-    const haloCtx=halo.getContext('2d'),haloPixels=haloCtx.createImageData(width,height);
-    borders[id].forEach(p=>{const i=p*4;haloPixels.data[i]=84;haloPixels.data[i+1]=152;haloPixels.data[i+2]=216;haloPixels.data[i+3]=255;});
-    haloCtx.putImageData(haloPixels,0,0);
-    hoverCtx.save();hoverCtx.globalCompositeOperation='source-over';hoverCtx.shadowColor='rgba(84,152,216,.85)';hoverCtx.shadowBlur=14;hoverCtx.drawImage(halo,0,0);hoverCtx.restore();
+    let left = width, top = height, right = -1, bottom = -1;
+    function include(p) {
+      const x = p % width, y = Math.floor(p / width);
+      left = Math.min(left, x); top = Math.min(top, y);
+      right = Math.max(right, x); bottom = Math.max(bottom, y);
+    }
+    fills[id].forEach(include);
+    borders[id].forEach(include);
+    if (right < left) return;
+    const w = right - left + 1, h = bottom - top + 1;
+    hoverBounds = { left, top, w, h };
+    const frame = hoverCtx.createImageData(w, h);
+    const rgba = frame.data;
+    function ink(p, alpha) {
+      const i = ((Math.floor(p / width) - top) * w + (p % width - left)) * 4;
+      rgba[i] = 84; rgba[i + 1] = 152; rgba[i + 2] = 216; rgba[i + 3] = alpha;
+    }
+    fills[id].forEach(p => ink(p, 51));
+    borders[id].forEach(p => ink(p, 255));
+    hoverCtx.putImageData(frame, left, top);
+    if (!halo) {
+      halo = document.createElement('canvas');
+      haloCtx = halo.getContext('2d');
+    }
+    if (halo.width !== w) halo.width = w;
+    if (halo.height !== h) halo.height = h;
+    rgba.fill(0);
+    borders[id].forEach(p => ink(p, 255));
+    haloCtx.putImageData(frame, 0, 0);
+    hoverCtx.save();
+    hoverCtx.globalCompositeOperation = 'source-over';
+    hoverCtx.shadowColor = 'rgba(84,152,216,.85)';
+    hoverCtx.shadowBlur = 14;
+    hoverCtx.drawImage(halo, left, top);
+    hoverCtx.restore();
     active=id;
     const tip=tooltip();
-    window.ColdWarGovernments.render(names[id],tip);
     tip.hidden=false;
     window.ColdWarDecorations.hide();
   }
@@ -86,8 +112,9 @@
     if (!active) return;
     const tip=tooltip();
     window.ColdWarGovernments.render(names[active],tip);
-    tip.style.left=Math.max(8,Math.min(event.clientX+16,innerWidth-tip.offsetWidth-8))+'px';
-    tip.style.top=Math.max(8,Math.min(event.clientY+16,innerHeight-tip.offsetHeight-8))+'px';
+    const tipWidth = tip.offsetWidth, tipHeight = tip.offsetHeight;
+    tip.style.left=Math.max(8,Math.min(event.clientX+16,innerWidth-tipWidth-8))+'px';
+    tip.style.top=Math.max(8,Math.min(event.clientY+16,innerHeight-tipHeight-8))+'px';
   }
   function setup() {
     if (ready) return ready;
@@ -125,7 +152,16 @@
             if(id&&!seen.includes(id)){borders[id].push(p);seen.push(id);}
           }
         }
-        canvas.addEventListener('pointermove',move);
+        canvas.addEventListener('pointermove', event => {
+          queuedPointer = event;
+          if (pointerFrame) return;
+          pointerFrame = requestAnimationFrame(() => {
+            pointerFrame = 0;
+            const latest = queuedPointer;
+            queuedPointer = null;
+            if (latest) move(latest);
+          });
+        });
         canvas.addEventListener('pointerleave',event=>{
           if(event.relatedTarget && tooltip().contains(event.relatedTarget))return;
           clear();

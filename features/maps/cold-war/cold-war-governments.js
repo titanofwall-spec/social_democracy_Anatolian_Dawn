@@ -70,10 +70,10 @@
     const parties=[...new Set(codes)].map(code=>({name:turkish[code]?.[0]||String(code),ideology:ideologyLabel(turkish[code]?.[1]||'Independent')}));
     return {head_of_state:text(q.president),head_of_government:text(q.prime_minister),parties:parties.length?parties:[{name:'Not available',ideology:''}]};
   }
-  function record(name){
+  function record(name, today = date()){
     if(normal(name)==='greenland')name='Denmark';
     if(normal(name)==='turkey')return turkey();
-    const entry=database.get(normal(name)),today=date();
+    const entry=database.get(normal(name));
     const period=entry?.periods.find(p=>p.start<=today && p.end>=today);
     const government=normal(name)==='canada' && period?.head_of_government==='Pierre Trudeau'
       ? 'Liberal Party (Social Liberalism)' : period?.government;
@@ -81,7 +81,13 @@
   }
   function render(name,tip){
     if(normal(name)==='greenland')name='Denmark';
-    const data=record(name),key=JSON.stringify([name,data]);if(tip.dataset.governmentKey===key)return;
+    const today = date();
+    const historicalKey = name + ':' + today;
+    const isTurkey = normal(name) === 'turkey';
+    if (!isTurkey && tip.dataset.governmentKey === historicalKey) return;
+    const data = record(name, today);
+    const key = isTurkey ? JSON.stringify([name, data]) : historicalKey;
+    if (tip.dataset.governmentKey === key) return;
     tip.dataset.governmentKey=key;tip.replaceChildren();
     const title=document.createElement('strong');title.textContent=name;tip.append(title);
     for(const [label,value] of [['Head of State',data.head_of_state],['Head of Government',data.head_of_government]]){

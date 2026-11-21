@@ -35,7 +35,8 @@ function koykentRally(Q){
    const next={...values};setShare(next,n(values.chp)+(1-n(values.chp))*fraction);
    trial.province_pools[id].preferences.rural=next;
   }
-  delete trial.province_aggregate_mirror;p.sync(trial);
+  // Polling reads the edited provincial cells directly. Synchronize only
+  // after committing the winning preferences to the live game.
   return p.pollingTotals(trial).fractions.chp;
  }
  let lo=0,hi=1;for(let i=0;i<28;i++){const mid=(lo+hi)/2;if(apply(mid)<target)lo=mid;else hi=mid;}

@@ -174,43 +174,71 @@ function setupAtlas(canvas,allowMargin=true,snapshot=null){
    };
    syncDetailButtons();
  function layout(){
-  if(!svg.isConnected||!svg.getBoundingClientRect().width)return;
-  const occupied=[...svg.querySelectorAll('.atlas-seat-markers .atlas-seat-marker')].map(g=>g.getBoundingClientRect()).filter(b=>b.width&&b.height),rect=svg.getBoundingClientRect(),fontScale=home.w/rect.width;
-  for(const c of candidates){
-   const t=c.text;t.style.display='';
-   const baseSize=c.sea?c.size:atlasShowAllNames?9.25:10.5;
-   t.setAttribute('font-size',baseSize*fontScale);t.setAttribute('x',c.x);t.setAttribute('y',c.y);
-   if(!c.sea&&!c.major&&!atlasShowAllNames){t.style.display='none';continue;}
-   let accepted=false;
+  if(!svg.isConnected)return;
+  const rect=svg.getBoundingClientRect();
+  if(!rect.width)return;
+  const fontScale=home.w/rect.width;
+  const occupied=[...svg.querySelectorAll('.atlas-seat-markers .atlas-seat-marker')]
+    .map(marker=>marker.getBoundingClientRect()).filter(box=>box.width&&box.height);
+  const visible=candidates.filter(c=>{
+   const show=c.sea||c.major||atlasShowAllNames;
+   c.text.style.display=show?'':'none';
+   if(show){
+    const size=c.sea?c.size:atlasShowAllNames?9.25:10.5;
+    c.text.setAttribute('font-size',size*fontScale);
+    c.text.setAttribute('x',c.x);
+    c.text.setAttribute('y',c.y);
+   }
+   return show;
+  });
+  // Read each SVG geometry once. Coordinate candidates differ by translation.
+  const measurements=visible.map(c=>({c,box:c.text.getBoundingClientRect(),matrix:c.text.getScreenCTM()}));
+  const inverse=svg.getScreenCTM()?.inverse();
+  const positions=[];
+  for(const {c,box,matrix} of measurements){
    const offsets=c.sea?[[0,0]]:[[0,0],[0,-14],[0,14],[-17,0],[17,0],[0,-28],[0,28],[-24,-14],[24,-14],[-24,14],[24,14],...(occupied.length?[[0,-44],[0,44],[-44,0],[44,0],[-34,-34],[34,-34],[-34,34],[34,34],[0,-64],[0,64],[-64,0],[64,0]]:[])];
-   for(const [dx,dy] of offsets){
-    t.setAttribute('x',c.x+dx*fontScale);t.setAttribute('y',c.y+dy*fontScale);
-    const b=t.getBoundingClientRect(),pad=2;
-    if(b.left<rect.left+pad||b.right>rect.right-pad||b.top<rect.top+pad||b.bottom>rect.bottom-pad)continue;
-    if(occupied.some(a=>b.left<a.right+pad&&b.right>a.left-pad&&b.top<a.bottom+pad&&b.bottom>a.top-pad))continue;
-    if(c.sea){const matrix=svg.getScreenCTM();if(!matrix)continue;let land=false;
-     for(let sx=b.left;sx<=b.right;sx+=Math.max(2,b.width/30)){for(const sy of [b.top,b.top+b.height/2,b.bottom]){const point=new DOMPoint(sx,sy).matrixTransform(matrix.inverse());if(paths.some(p=>p.isPointInFill(point))){land=true;break;}}if(land)break;}if(land)continue;}
-    occupied.push(b);accepted=true;break;
+   const options=offsets.map(([dx,dy])=>{
+    const ox=dx*fontScale,oy=dy*fontScale;
+    const sx=matrix?matrix.a*ox+matrix.c*oy:0,sy=matrix?matrix.b*ox+matrix.d*oy:0;
+    return {x:c.x+ox,y:c.y+oy,dx,dy,b:{left:box.left+sx,right:box.right+sx,top:box.top+sy,bottom:box.bottom+sy,width:box.width}};
+   });
+   function onLand(b){
+    if(!inverse)return true;
+    for(let x=b.left;x<=b.right;x+=Math.max(2,b.width/30)){
+     for(const y of [b.top,(b.top+b.bottom)/2,b.bottom]){
+      const point=new DOMPoint(x,y).matrixTransform(inverse);
+      if(paths.some(p=>p.isPointInFill(point)))return true;
+     }
+    }
+    return false;
    }
-   if(!accepted){
-    if(c.major||(!c.sea&&atlasShowAllNames)){
-      // If dense seat markers leave no collision-free position, choose the least
-      // obstructed valid candidate instead of dropping required province names.
-      let best=null,bestScore=Infinity;
-      for(const [dx,dy] of offsets){
-       t.setAttribute('x',c.x+dx*fontScale);t.setAttribute('y',c.y+dy*fontScale);
-       const b=t.getBoundingClientRect();
-       if(b.left<rect.left||b.right>rect.right||b.top<rect.top||b.bottom>rect.bottom)continue;
-       let score=(dx*dx+dy*dy)*.02;
-       for(const a of occupied)score+=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top))*5;
-       if(score<bestScore){bestScore=score;best=[c.x+dx*fontScale,c.y+dy*fontScale];}
-      }
-      t.setAttribute('x',best?best[0]:c.x);t.setAttribute('y',best?best[1]:c.y);
-      occupied.push(t.getBoundingClientRect());
-     }else t.style.display='none';
+   const pad=2;
+   let chosen=options.find(({b})=>
+    b.left>=rect.left+pad&&b.right<=rect.right-pad&&b.top>=rect.top+pad&&b.bottom<=rect.bottom-pad&&
+    !occupied.some(a=>b.left<a.right+pad&&b.right>a.left-pad&&b.top<a.bottom+pad&&b.bottom>a.top-pad)&&
+    (!c.sea||!onLand(b)));
+   if(!chosen&&(c.major||(!c.sea&&atlasShowAllNames))){
+    let bestScore=Infinity;
+    for(const option of options){
+     const {b,dx,dy}=option;
+     if(b.left<rect.left||b.right>rect.right||b.top<rect.top||b.bottom>rect.bottom)continue;
+     let score=(dx*dx+dy*dy)*.02;
+     for(const a of occupied)score+=Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top))*5;
+     if(score<bestScore){bestScore=score;chosen=option;}
+    }
+    chosen=chosen||options[0];
    }
+   if(chosen)occupied.push(chosen.b);
+   positions.push({text:c.text,chosen});
+  }
+  for(const {text,chosen} of positions){
+   if(chosen){
+    text.setAttribute('x',chosen.x);
+    text.setAttribute('y',chosen.y);
+   }else text.style.display='none';
   }
  }
+
    if(electionPanel)all.onclick=()=>{atlasShowAllNames=!atlasShowAllNames;syncDetailButtons();layout();};
    else all.onchange=()=>{atlasShowAllNames=all.checked;layout();};
  const margin=controls.querySelector('[data-atlas="margin"]');

@@ -34,24 +34,26 @@ compiler.compileGame(files,(err,game)=>{
   if(!versioned.includes('src="color-palette.js'))versioned=versioned.replace(/(<script src="map-design\.js[^>]*><\/script>)/,'<script src="color-palette.js"></script>\n    $1');
   // Preserve the macro model include when Dendry regenerates index.html.
   if(!versioned.includes('src="macro-economy.js')) {
-    versioned=versioned.replace(/(<script src="rules\.js(?:\?[^"]*)?"\s*><\/script>)/,
+    versioned=versioned.replace(/(<script src="rules\.js(?:\?[^"]*)?"(?:\s+defer)?\s*><\/script>)/,
       '<script src="macro-economy.js"></script>\n    $1');
   }
   if(!versioned.includes('src="dynamic-demographics.js')) {
-    versioned=versioned.replace(/(<script src="provinces\.js(?:\?[^"]*)?"\s*><\/script>)/,
+    versioned=versioned.replace(/(<script src="provinces\.js(?:\?[^"]*)?"(?:\s+defer)?\s*><\/script>)/,
       '$1\n     <script src="dynamic-demographics.js"></script>\n     <script src="mission.js"></script>');
   }
   if(!versioned.includes('id="mission_tab"')) {
     versioned=versioned.replace(/(<button[^>]*id="social_issues_tab"[^>]*>Social Issues<\/button>)/,
       '$1\n                     <button class="tab_button" id="mission_tab" onclick="window.changeTab(\'status.mission\', \'mission_tab\');">Land Reform</button>');
   }
-  for(const name of ['header-layout.js','cyprusgame/js/presentation.js','sandbox-menu.js','save-storage.js','endgame.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprusgame/js/atilla-i.js','cyprusgame/js/campaign.js','cyprusgame/js/roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','province-map.js','data/map-design-default.js']){
+  for(const name of ['header-layout.js','cyprusgame/js/presentation.js','sandbox-menu.js','save-storage.js','endgame.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprusgame/js/atilla-i.js','cyprusgame/js/campaign.js','cyprusgame/js/roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','province-map.js','data/map-design-default.js','cold-war-map.js','cold-war-governments.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;
     const version=crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex').slice(0,12);
     const escaped=name.replace(/\./g,'\\.');
     versioned=versioned.replace(new RegExp('src="'+escaped+'(?:\\?[^"]*)?"','g'),'src="'+name+'?v='+version+'"');
   }
   for(const name of ['province-map.css','map-design.css','endgame.css','game.css']){const version=crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'out/html',name))).digest('hex').slice(0,12);versioned=versioned.replace(new RegExp('href="'+name.replace(/\./g,'\\.')+'(?:\\?[^"]*)?"','g'),'href="'+name+'?v='+version+'"');}
+  // Preserve execution order while allowing the document to parse in parallel.
+  versioned=versioned.replace(/<script src="[^"]+">/g, tag=>tag.slice(0,-1)+' defer>');
   fs.writeFileSync(indexPath,versioned);
 
  });
