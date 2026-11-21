@@ -23,9 +23,7 @@ on-arrival: {!
   Q.I_in_government = 1;
   Q.prime_minister = "Naim Talu";
   Q.prime_minister_party = "I";
-  if (Q.rubicon_mode) {
-    Q.rubicon_mode = 0;
-    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);
+  if (AnatolianRules.exitRubicon(Q, window.AnatolianRubiconMusic, this.ui)) {
     this.state.bg = 'img/map_4.jpg';
     this.ui.setBg(this.state.bg);
   }

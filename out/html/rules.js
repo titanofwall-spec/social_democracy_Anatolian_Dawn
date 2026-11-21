@@ -35,7 +35,6 @@
     /** @param {GameState} Q */
     function migrateStateAliases(Q) {
         if (Q.rubicon_mode && Q.rubicon_week > 4) Q.rubicon_week = 4;
-        if (Q.rubicon_mode && Q.rubicon_week > 4) Q.rubicon_week = 4;
         if (Q.state_aliases_version === 1) return;
         Object.keys(legacyStateAliases).forEach(function(oldKey) {
             if (!Object.prototype.hasOwnProperty.call(Q, oldKey)) return;
@@ -192,11 +191,48 @@
     function mpFactor(Q){var y=number(Q.year,1972),m=number(Q.month,1),w=number(Q.week,1);return clamp((1974+1/12-(y+(m-1+(w-1)/2)/12))/(4/12),0,1);}
     /** Retain raw voter totals while moving MP's lost support equally to AP and MHP. @param {GameState} Q @param {Record<string,number>} values */
     function mpVotes(Q,values){var out=Object.assign({},values),total=Object.values(out).reduce(function(a,b){return a+number(b);},0),old=number(out.MP);if(!Object.prototype.hasOwnProperty.call(out,'MP'))return out;out.MP=Math.min(old,total*.0069)*mpFactor(Q);var lost=old-out.MP;out.AP=number(out.AP)+lost/2;out.MHP=number(out.MHP)+lost/2;return out;}
-    /** D'Hondt fallback for standalone simulations without a provincial model. @param {Record<string,number>} votes @param {number} seats */
-    function dhondt(votes,seats){
-        /** @type {Record<string,number>} */
-        var out={};
-        var keys=Object.keys(votes).filter(function(k){return votes[k]>0;} );Object.keys(votes).forEach(function(k){out[k]=0;});for(var i=0;i<seats&&keys.length;i++){keys.sort(function(a,b){return votes[b]/(out[b]+1)-votes[a]/(out[a]+1)||a.localeCompare(b);});out[keys[0]]++;}return out;}
+    /**
+     * Allocate seats using D'Hondt. Provincial elections can restrict
+     * eligibility and award seats to the strongest list if none qualify.
+     * @param {Record<string,number>} votes
+     * @param {number} seats
+     * @param {(party:string) => boolean} [eligible]
+     * @param {boolean} [fallbackToLargest]
+     */
+    function dhondt(votes, seats, eligible, fallbackToLargest = false) {
+        const parties = Object.keys(votes);
+        const allocation = Object.fromEntries(parties.map(party => [party, 0]));
+        let qualified = parties.filter(party => number(votes[party]) > 0 && (!eligible || eligible(party)));
+        if (!qualified.length && fallbackToLargest) {
+            qualified = parties.sort((a, b) => votes[b] - votes[a]).slice(0, 1);
+        }
+        for (let seat = 0; seat < seats && qualified.length; seat++) {
+            let best = qualified[0];
+            for (let i = 1; i < qualified.length; i++) {
+                const party = qualified[i];
+                const difference = votes[party] / (allocation[party] + 1) -
+                    votes[best] / (allocation[best] + 1);
+                if (difference > 0 || (difference === 0 && party.localeCompare(best) < 0)) best = party;
+            }
+            allocation[best]++;
+        }
+        return allocation;
+    }
+
+    /** @param {GameState} Q @param {{finish: (ui:any) => void}|undefined} music @param {any} ui */
+    function exitRubicon(Q, music, ui) {
+        if (!Q.rubicon_mode) return false;
+        Q.rubicon_mode = 0;
+        if (music) music.finish(ui);
+        return true;
+    }
+
+    /** @param {GameState} Q */
+    function applyOilEmbargo(Q) {
+        if (Q.oil_crisis_effect_applied || !(Q.year > 1973 || (Q.year === 1973 && Q.month >= 11))) return;
+        Q.oil_crisis_effect_applied = 1;
+        if (Q.year <= 1976) Q.inflation_modifier = number(Q.inflation_modifier) + 8;
+    }
     /** @param {GameState} Q @param {string} party */
     function partyAvailable(Q,party){if(party==='MP')return number(Q.year,1972)<1975||(number(Q.year)===1975&&number(Q.month,1)<2);return socialistMembers.indexOf(party)>=0?!!Q.socialist_left_formed:party==='KI'?!!(Q.kurdish_independents_unlocked||Q.Amnesty):true;}
     /** @param {GameState} Q */
@@ -428,7 +464,7 @@
     }
     root.AnatolianRules = {number: number, clamp: clamp, migrateStateAliases: migrateStateAliases, agriculturalPriceStatus: agriculturalPriceStatus, interiorPolicyStatuses: interiorPolicyStatuses, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
-        mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
+        mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,applyOilEmbargo:applyOilEmbargo,exitRubicon:exitRubicon,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) { module.exports = root.AnatolianRules; require('./' + 'data/province-data.js'); require('./' + 'provinces.js'); require('./' + 'national-coalition.js'); require('./' + 'senate.js'); require('./' + 'peoples-sector.js'); require('./' + 'social-issues.js'); require('./' + 'municipalities.js'); require('./' + 'card-actions.js'); }
 }(typeof globalThis !== 'undefined' ? globalThis : window));
 

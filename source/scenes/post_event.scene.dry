@@ -4,8 +4,7 @@ on-arrival: {!
 AnatolianRules.ensureKurdishIssue(Q);
 if(typeof AnatolianDynamicDemographics!=="undefined" && Q.started) AnatolianDynamicDemographics.ensure(Q);
 if (Q.rubicon_mode && (Q.year > 1973 || (Q.year === 1973 && Q.month > 4))) {
-    Q.rubicon_mode = 0;
-    if (window.AnatolianRubiconMusic) window.AnatolianRubiconMusic.finish(this.ui);
+    AnatolianRules.exitRubicon(Q, window.AnatolianRubiconMusic, this.ui);
 }
 var turnAdvanced = Q.month_actions >= 1 && (!Q.cyprus_mode || Q.cyprus_calendar_advance == 1);
 if (Q.cyprus_mode && !turnAdvanced) Q.month_actions = 0;
@@ -103,7 +102,7 @@ if (Q.last_economy_month === null) {
 // Existing saves retain the persistent penalty only for economic sanctions actually imposed.
 if(Q.cyprus_embargo_applied && (Q.cyprus_atilla2_started||Q.cyprus_atilla2_complete) && !["Return to the 1960 Constitutional Order","Güneş Plan","Denktaş Plan"].includes(Q.cyprus_final_result) && (Q.cyprus_poppy_penalty || Q.hashas_done===1 || Q.cyprus_delayed_ceasefire))Q.cyprus_economic_sanctions_active=1;
 // The Arab oil embargo is an external shock, not a later historical inflation target.
-if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}
+AnatolianRules.applyOilEmbargo(Q);
 if(Q.year>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);
 // 1. update dates
 if (turnAdvanced) {
@@ -121,7 +120,6 @@ if (turnAdvanced) {
         // Move from week 3 to week 1 of next month
         Q.week = 1;
         if (Q.rubicon_mode) Q.rubicon_week = 1;
-        if (Q.rubicon_mode) Q.rubicon_week = 1;
         Q.month += 1;
         if (Q.month >= 13) {
             Q.month = 1;
@@ -136,7 +134,7 @@ if (turnAdvanced) {
         }
     }
 
-    if(!Q.oil_crisis_effect_applied && (Q.year>1973 || (Q.year===1973 && Q.month>=11))){Q.oil_crisis_effect_applied=1;if(Q.year<=1976)Q.inflation_modifier=AnatolianRules.number(Q.inflation_modifier)+8;}
+    AnatolianRules.applyOilEmbargo(Q);
     // Whole months tick at the month boundary. Any remaining half month ends at midmonth.
     var newMonth = Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1);
     var midMonth = Q.week == 2 && (!Q.rubicon_mode || Q.rubicon_week == 3);

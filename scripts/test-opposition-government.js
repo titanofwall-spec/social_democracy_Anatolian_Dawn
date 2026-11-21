@@ -15,7 +15,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
 
 
  function near(a,b,label,tolerance=1e-7){assert(Math.abs(a-b)<tolerance,label+': '+a+' vs '+b);}
- const N=global.AnatolianNationalCoalition;
+ const N=global.AnatolianNationalCoalition, A=global.AnatolianCardActions;
  const tick=(Q,months)=>{const t=Q.year*24+(Q.month-1)*2+(Q.week===2?1:0)+months*2;Q.year=Math.floor(t/24);Q.month=Math.floor(t%24/2)+1;Q.week=t%2+1;N.update(Q);};
 
  const copy=x=>JSON.parse(JSON.stringify(x));
@@ -23,13 +23,13 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  function advance(Q,periods=6){const t=Q.year*24+(Q.month-1)*2+Q.week-1+periods;Q.year=Math.floor(t/24);Q.month=Math.floor((t%24)/2)+1;Q.week=t%2+1;}
  test('Shared player actions preserve their original effects, prices and rewards',()=>{
  const expected=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/government-policy-effects.json'),'utf8'));
- for(const p of expected){const Q=opposition().state.qualities;Q.CHP_in_government=1;const before=copy(Q);assert(N.applyGovernmentPolicy(Q,p.id));for(const [k,v]of Object.entries(p.effects))near(Q[k]-(before[k]||0),v,p.id+' '+k);for(const [k,v]of Object.entries(p.sets))assert.equal(Q[k],v);for(const [c,v]of Object.entries(p.support))near(Q[c+'_chp']-before[c+'_chp'],v,p.id+' reward '+c);}
+ for(const p of expected){const Q=opposition().state.qualities;Q.CHP_in_government=1;const before=copy(Q);assert(A.applyGovernmentPolicy(Q,p.id));for(const [k,v]of Object.entries(p.effects))near(Q[k]-(before[k]||0),v,p.id+' '+k);for(const [k,v]of Object.entries(p.sets))assert.equal(Q[k],v);for(const [c,v]of Object.entries(p.support))near(Q[c+'_chp']-before[c+'_chp'],v,p.id+' reward '+c);}
  });
  test('Non-CHP cabinets cannot execute player policies or alter the economy and voters',()=>{
  for(const party of ['AP','MSP','DP','CGP']){
   const Q=opposition(party).state.qualities;N.governmentTurn(Q);
   const before=JSON.stringify(Q);
-  for(const p of N.governmentPolicies)assert.equal(N.applyGovernmentPolicy(Q,p.id,party),false);
+  for(const p of A.governmentPolicies)assert.equal(A.applyGovernmentPolicy(Q,p.id,party),false);
   for(let i=0;i<24;i++)N.governmentTurn(Q);
   assert.equal(JSON.stringify(Q),before);
   assert(!Q.national_coalition.governmentPolicies);
@@ -45,7 +45,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  });
  test('Normal post-event progression no longer completes automatic ministry actions',()=>{
  const e=opposition(),Q=e.state.qualities;Q.cyprus_mode=0;Q.month_actions=1;
- const flags=N.governmentPolicies.filter(p=>p.flag).map(p=>[p.flag,Q[p.flag]]);
+ const flags=A.governmentPolicies.filter(p=>p.flag).map(p=>[p.flag,Q[p.flag]]);
  e.goToScene('post_event');
  for(const [key,value]of flags)assert.equal(Q[key],value,key);
  assert(!Q.national_coalition.governmentPolicies);
