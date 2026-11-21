@@ -32,7 +32,7 @@ if (process.env.UPDATE_PERFORMANCE_FIXTURES === '1') {
     );
   });
   fs.writeFileSync(fixturePath, JSON.stringify(updated, null, 2) + '\n');
-  output('Updated performance fixtures for the corrected Siirt demographics.');
+  output('Updated performance fixtures for the current province demographics and preferences.');
   return;
 }
  const fixtures=JSON.parse(fs.readFileSync(fixturePath,'utf8'));
