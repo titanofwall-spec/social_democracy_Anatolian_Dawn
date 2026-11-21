@@ -111,7 +111,7 @@
     const outputShockMultiplier = Math.exp(outputShock / 100);
     const realGdp = Math.min(desiredOutput, outputCeiling) * outputShockMultiplier;
     const realGdpGrowth = annualize(realGdp, previous.realGdp);
-    const desiredConsumption = previous.consumption * Math.pow(Math.max(Number.EPSILON, 1 + consumptionGrowth / 100), 1 / 12);
+    const desiredConsumption = previous.consumption * Math.pow(1 + consumptionGrowth / 100, 1 / 12);
     const consumption = desiredConsumption * Math.min(1, realGdp / desiredOutput);
 
     const stableEmploymentGrowth = 5.5 + 0.40 * (capacityGrowth - 5.5);
