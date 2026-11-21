@@ -1,7 +1,7 @@
 const fs=require('fs'),assert=require('assert');
-const r=require('../out/html/rules.js');require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');require('../out/html/cyprus-roadmap.js');
-const rm=r.cyprusRoadmap,loc=require('../docs/GENEVA_FLAVOR_LOCALIZATION.json');
-const source=fs.readFileSync('source/scenes/events/cyprus_geneva_side.scene.dry','utf8').replace(/\r\n/g,'\n');
+const r=require('../out/html/rules.js');require('../out/html/cyprusgame/js/atilla-i.js');require('../out/html/cyprusgame/js/campaign.js');require('../out/html/cyprusgame/js/roadmap.js');
+const rm=r.cyprusRoadmap,loc=require('./fixtures/cyprus/geneva-flavor-localization.json');
+const source=fs.readFileSync('source/scenes/events/cyprus/geneva/cyprus_geneva_side.scene.dry','utf8').replace(/\r\n/g,'\n');
 for(const [i,e] of loc.events.entries()){
  const block=source.split('@event'+(i+1)+'\n')[1].split('\n@continue')[0];
  assert(block.includes('title: '+e.title+'\n'));

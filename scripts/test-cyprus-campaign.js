@@ -1,6 +1,6 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const lib=require('dendrynexus/lib/engine.js'),rules=require('../out/html/rules.js');
-require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');
+require('../out/html/cyprusgame/js/atilla-i.js');require('../out/html/cyprusgame/js/campaign.js');
 // This suite deliberately exercises the retained version-1 save format.
 rules.cyprusRoadmap={active:()=>false,embargoReady:()=>false,implementationReady:()=>false,endingMap:()=>''};
 const c=rules.cyprusAtilla1, campaign=rules.cyprusCampaign,root=path.resolve(__dirname,'..'),noop=()=>{};
@@ -35,7 +35,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  test('Atilla II is an explicit August 14 decision and opens historical division only afterward',()=>{const e=fresh(),Q=full(e);continueOne(e);Q.cyprus_month=8;Q.cyprus_day=14;Q.cyprus_date_display='August 14, 1974';Q.year=1974;Q.month=8;Q.week=1;Q.cyprus_calendar_advance=0;e.goToScene('cyprus_campaign_continue');pick(e,'cyprus_geneva_deadline.second');assert.equal(e.state.sceneId,'cyprus_atilla2_14');assert(!campaign.settle(Q,'Historical Division'));for(let day=14;day<=16;day++){assert.equal(e.state.sceneId,'cyprus_atilla2_'+day);if(day===14){assert(c.useSupport(Q,'reinforce','turkish'));assert(c.cooldown(Q,'reinforce')>0);}pick(e,'cyprus_atilla2_'+day+'.historical');continueOne(e);}assert.equal(e.state.sceneId,'cyprus_atilla2_ending');assert.equal(Q.cyprus_atilla2_score,240);const leverage=Q.leverage_points;assert(!campaign.awardII(Q));assert.equal(Q.leverage_points,leverage);continueOne(e);assert.equal(Q.cyprus_day,17);assert.equal(Q.month,8);assert.equal(Q.week,2);assert.equal(e.state.sceneId,'cyprus_diplomatic_meeting');assert(campaign.settle(Q,'Historical Division'));e.goToScene('cyprus_campaign_continue');assert.equal(e.state.sceneId,'cyprus_campaign_final');continueOne(e);assert.equal(Q.cyprus_problem,3);});
  test('Federal proposals remain possible after Atilla II',()=>{const e=fresh(),Q=early(e);continueOne(e);Q.cyprus_month=8;Q.cyprus_day=14;Q.cyprus_date_display='August 14, 1974';assert(campaign.beginII(Q));for(let day=14;day<=16;day++)assert(campaign.resolveII(Q,day,'historical',()=>1));campaign.awardII(Q);campaign.continueII(Q);Q.uk_attitude=Q.us_attitude=1;Q.greece_attitude=-1;Q.cyprus_un_support=2;Q.cyprus_negotiation_progress=3;Q.leverage_points=10;for(const country of ['greece','uk','us'])assert(campaign.diplomaticAction(Q,country,'gunes'));assert(campaign.canSettle(Q,'gunes'));assert(campaign.settle(Q,'Güneş Plan'));assert.equal(Q.cyprus_best_ending,0);});
  test('July 21 fails only for forces below Adequate, and otherwise establishes the junction',()=>{
-  const author=require('../CYPRUS_AUTHORED_TEXTS.json');
+  const author=require('./fixtures/cyprus/authored-texts.json');
   for(const strength of [.2,.4])for(const action of ['historical','alternative']){
    const e=fresh({army_land_strength:strength,army_naval_strength:strength,army_aerial_strength:strength});prepare(e);pick(e,'cyprus_atilla1_20.historical');continueOne(e);
    const prior=c.roll;c.roll=()=>0;try{pick(e,'cyprus_atilla1_21.'+action);}finally{c.roll=prior;}
@@ -45,7 +45,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
   }
  });
  test('July 23, 24 and 25 halt branches end military play at every outcome level',()=>{
-  const author=require('../CYPRUS_AUTHORED_TEXTS.json');
+  const author=require('./fixtures/cyprus/authored-texts.json');
   for(const stop of [23,24,25])for(const score of [0,20,45,70]){
    const e=fresh();prepare(e);for(let day=20;day<Math.min(stop,25);day++){pick(e,'cyprus_atilla1_'+day+'.historical');continueOne(e);}
    const prior=c.roll;c.roll=()=>score;try{pick(e,stop===25?'cyprus_history_july25.alternative':'cyprus_atilla1_'+stop+'.alternative');}finally{c.roll=prior;}
@@ -57,7 +57,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
   }
  });
  test('All supplied action outcomes survive resolution without replacement or extra prose',()=>{
-  const author=require('../CYPRUS_AUTHORED_TEXTS.json');
+  const author=require('./fixtures/cyprus/authored-texts.json');
   for(const [key,actions] of Object.entries(author.actions))for(const [action,entry] of Object.entries(actions))for(const score of [0,20,45,70]){
    const e=fresh();prepare(e);const day=key==='july25'?25:Number(key);for(let n=20;n<day;n++){pick(e,'cyprus_atilla1_'+n+'.historical');continueOne(e);}
    const Q=e.state.qualities;if(day===21){Q.army_land_strength=Q.army_naval_strength=Q.army_aerial_strength=.2;}

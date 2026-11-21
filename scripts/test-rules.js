@@ -1,9 +1,9 @@
 const fs = require('fs'), path = require('path'), assert = require('assert'), vm = require('vm');
 const lib = require('dendrynexus/lib/engine.js');
 const rules = require('../out/html/rules.js');
-require('../out/html/cyprus-atilla1.js');
-require('../out/html/cyprus-campaign.js');
-require('../out/html/cyprus-roadmap.js');
+require('../out/html/cyprusgame/js/atilla-i.js');
+require('../out/html/cyprusgame/js/campaign.js');
+require('../out/html/cyprusgame/js/roadmap.js');
 require('../out/html/coalitions.js');
 // Preserve the legacy campaign fixture; current-campaign tests use the real initializer.
 rules.cyprusCampaign.initialize = () => {};
@@ -396,12 +396,12 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert.equal(c.mapImage({cyprus_mode:0}),'cyprusgame/cyprus_map.png');
     });
     test('Military tooltips match requirements and descriptions retain passages without attribution notes', () => {
-        const c=rules.cyprusAtilla1, passages=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_MILITARY_SOURCE_PASSAGES.json'),'utf8'));
+        const c=rules.cyprusAtilla1, passages=JSON.parse(fs.readFileSync(path.join(root,'scripts/fixtures/cyprus/military-source-passages.json'),'utf8'));
         let count=0;
         for(const [key,parts] of Object.entries(passages)) {
             const id=key==='ending'?'cyprus_atilla1_ending':/^\d+$/.test(key)?'cyprus_atilla1_'+key:'cyprus_history_'+key;
             const source=fs.readFileSync(path.join(root,'source/scenes/events',id+'.scene.dry'),'utf8').replace(/\r\n/g,'\n');
-            const authored=JSON.parse(fs.readFileSync(path.join(root,'CYPRUS_AUTHORED_TEXTS.json'),'utf8')).events[key];
+            const authored=JSON.parse(fs.readFileSync(path.join(root,'scripts/fixtures/cyprus/authored-texts.json'),'utf8')).events[key];
             if(authored){for(const paragraph of authored.body.split('\n\n'))assert(source.includes(paragraph),id+' authored paragraph');}
             for(const part of authored?[]:parts) {
                 for(const paragraph of key==='ending'?part.text.split('\n\n'):[part.kind==='quotation'?part.text.replace(/\n\n/g,' … '):part.text])assert(source.includes(paragraph),id);

@@ -1,8 +1,8 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
 const root=path.resolve(__dirname,'..'),rules=require('../out/html/rules.js');
-require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');require('../out/html/cyprus-roadmap.js');
+require('../out/html/cyprusgame/js/atilla-i.js');require('../out/html/cyprusgame/js/campaign.js');require('../out/html/cyprusgame/js/roadmap.js');
 const lib=require('dendrynexus/lib/engine.js'),c=rules.cyprusAtilla1,rm=rules.cyprusRoadmap,cp=rules.cyprusCampaign;
-const fixture=require('./fixtures/cyprus-incidents.json'),noop=()=>{},node={remove:noop,appendChild:noop,insertAdjacentElement:noop,insertBefore:noop,setAttribute:noop,addEventListener:noop,style:{setProperty:noop},classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',offsetWidth:600};
+const fixture=require('./fixtures/cyprus/incidents.json'),noop=()=>{},node={remove:noop,appendChild:noop,insertAdjacentElement:noop,insertBefore:noop,setAttribute:noop,addEventListener:noop,style:{setProperty:noop},classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',offsetWidth:600};
 global.document={createElement:()=>({...node}),getElementById:()=>node,querySelector:()=>node,querySelectorAll:()=>[],addEventListener:noop,body:node};global.Image=function(){return {...node};};global.window={};global.localStorage={getItem:()=>null,setItem:noop};global.d3=null;global.updateCyprusWidth=noop;
 const output=console.log,errors=[];console.log=(...args)=>{if(String(args[0]).startsWith('Error'))errors.push(args.join(' '));};
 function q(strength=.8,bonus=0){const Q={army_land_strength:strength,army_aerial_strength:strength,army_naval_strength:strength,year:1974,month:7,week:2,CHP_in_government:1,prime_minister_party:'CHP',hashas_done:0,us_relation:80,west_relation:80};c.initialize(Q);cp.initialize(Q);Object.assign(Q,{cyprus_mode:1,cyprus_year:1974,cyprus_month:7,cyprus_day:21,cyprus_operation_started:1,military_strength:100,cyprus_support_bonus:bonus});return Q;}

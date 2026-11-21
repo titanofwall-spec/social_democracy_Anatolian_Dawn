@@ -1293,3 +1293,5 @@ function installPrecision(){var observer=new MutationObserver(function(records){
 if(document.body)installPrecision();else document.addEventListener('DOMContentLoaded',installPrecision,{once:true});})();
 
 /* Anatolian Dawn: Options, victory margins and provincial tooltip fixes (v7). */
+
+window.AnatolianCyprusPresentation.installDayControls();

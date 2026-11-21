@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path'),vm=require('vm'),assert=require('ass
 let now=0,content='',nextTimer=1;const timers=new Map();
 class AudioStub{constructor(src){this.src=src;this.paused=true;this.volume=1;this.loop=false;this.currentTime=0;this.duration=120;this.ended=false;this.plays=0;}play(){this.paused=false;this.plays++;return Promise.resolve();}pause(){this.paused=true;}getAttribute(){return this.src;}}
 const ctx={Audio:AudioStub,Date:{now:()=>now},setInterval:cb=>{const id=nextTimer++;timers.set(id,cb);return id;},clearInterval:id=>timers.delete(id),document:{querySelector:()=>({textContent:content}),querySelectorAll:()=>[]}};
-vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../out/html/cyprus-presentation.js'),'utf8'),ctx);
+vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../out/html/cyprusgame/js/presentation.js'),'utf8'),ctx);
 const api=ctx.AnatolianCyprusPresentation,normal='music/50yilmarsi.mp3',ui={currentAudio:new AudioStub(normal),currentAudioURL:normal,audioPlaylist:[normal],audioQueue:[],disable_audio:false,setBg:()=>{},audio:()=>{},dendryEngine:{state:{sceneId:'main',qualities:{cyprus_mode:0}},setState(state){this.state=state;}}};
 api.install(ui);const state=ui.dendryEngine.state,Q=state.qualities;
 Object.assign(Q,{cyprus_mode:1,cyprus_campaign_resolved:0});api.sync();assert.equal(ui.currentAudioURL,api.tracks[0]);

@@ -1,5 +1,5 @@
 const fs=require('fs'),path=require('path'),assert=require('assert');
-const rules=require('../out/html/rules.js');require('../out/html/cyprus-atilla1.js');require('../out/html/cyprus-campaign.js');require('../out/html/cyprus-roadmap.js');
+const rules=require('../out/html/rules.js');require('../out/html/cyprusgame/js/atilla-i.js');require('../out/html/cyprusgame/js/campaign.js');require('../out/html/cyprusgame/js/roadmap.js');
 const lib=require('dendrynexus/lib/engine.js'),root=path.resolve(__dirname,'..'),c=rules.cyprusAtilla1,rm=rules.cyprusRoadmap,cp=rules.cyprusCampaign;
 require('../out/html/data/province-data.js');const provinces=require('../out/html/provinces.js');
 const noop=()=>{},node={remove:noop,style:{setProperty:noop},appendChild:noop, insertAdjacentElement:noop, insertBefore:noop,setAttribute:noop,addEventListener:noop,offsetWidth:600,classList:{add:noop,remove:noop,toggle:noop},querySelector:()=>node,querySelectorAll:()=>[],getAttribute:()=>'',innerHTML:'',textContent:''};
