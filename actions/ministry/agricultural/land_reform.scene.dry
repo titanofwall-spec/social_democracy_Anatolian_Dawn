@@ -9,11 +9,11 @@ tags: government_affairs
 
 = Land Reform
 
-One of the most pressing issues of the republic is that of agriculture and the overwhelming control of the large landowners over Turkish agriculture. Severely hindering development in the rural areas and causing uncontrollable migration from the countryside to the cities, an answer needs to be found to the question of land ownership.
+Agriculture remains one of the most pressing issues facing the republic, particularly due to the overwhelming control exerted by large landowners over Turkish agriculture. This concentration of land ownership severely hinders rural development and contributes to significant migration from the countryside to urban centers. Addressing the question of land ownership is therefore essential.
 
-Since the foundation of the republic, CHP always viewed land reform and distribution to be a necessary prerequisite for the development of the countryside. However, Atatürk didn't live long enough to achieve one of his perhaps most influential reforms and now it falls upon our shoulders to turn his dream into reality.
+Since the foundation of the republic, our party has consistently regarded land reform and equitable distribution as necessary prerequisites for rural development. Although Atatürk did not live long enough to implement what may have been one of his most influential reforms, it is now the responsibility of the current generation to realize this vision.
 
-However, we first need to decide on a policy platform among the ones that are circulating in the party.
+However, it is first necessary to determine a unified policy platform from among the proposals currently circulating within the party.
 
 Current status: [? if land_reform == 0 : No concrete land reform policy has been adopted. ?][? if land_reform == 1 : We have committed to establishing rural cooperatives. ?][? if land_reform == 2 : We have promised comprehensive land distribution programs. ?][? if land_reform == 3 : We have announced the ambitious Köykent village-city project. ?]
 
@@ -28,27 +28,27 @@ view-if: land_reform < 3
 subtitle: Radical reform
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} land_reform = 3; left_kemalists_dissent -= 5; kemalist_marxists_dissent -= 5
 
-The Köykent project is a comprehensive reform proposed by Ecevit that aims to reorganize the countryside and the dispersed villages into larger city-like structures that specialize in agriculture. The Left-Wing Kemalist and Marxist Kemalist factions voice their support.
+The Köykent project, proposed by Ecevit, constitutes a comprehensive reform intended to reorganize rural areas and dispersed villages into larger, city-like entities specializing in agriculture. Both the Leftist Kemalist and Marxist Kemalist factions have expressed support for this initiative.
 
-The party leadership has announced its intention to put the Köykent project in its policy platform, however convincing the rest of the party will take both effort and time.
+The party leadership has announced its intention to include the Köykent project in its policy platform. However, persuading the remainder of the party to our plans is expected to require significant effort and time.
 
 @land_distribution
 view-if: land_reform < 2
 subtitle: Significant reform
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} land_reform = 2; left_kemalists_dissent -= 3;
 
-We have committed to comprehensive land distribution, promising to break up large estates and redistribute land to small farmers. The Left-Wing Kemalist and the Reformist Kemalist factions voice their support.
+The party has committed to an extensive land distribution program, pledging to break up large estates and allocate land to small-scale farmers. This initiative has received public endorsement from both the Leftist Kemalist and Reformist Kemalist factions.
 
-The party leadership has announced its intention to focus on land distribution in its policy platform, however convincing the rest of the party will take both effort and time.
+The party leadership has stated that land distribution will be prioritized within the policy platform. However, achieving broader party consensus is anticipated to require significant effort and time.
 
 @cooperatives
 view-if: land_reform < 1
 subtitle: Modest reform
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} land_reform = 1; orthodox_kemalists_dissent -= 5
 
-We have announced support for establishing agricultural cooperatives to help small farmers access credit, equipment, and markets. While modest, this cooperative approach demonstrates our commitment to rural development. Reformist Kemalist and Right-Wing Kemalist factions voice their support.
+We have announced support for the establishment of agricultural cooperatives to enable small farmers to access credit, equipment, and markets. Although the scale is modest, this cooperative strategy reflects our ongoing commitment to rural development. Both Reformist Kemalist and Right Kemalist factions have expressed their support.
 
-The party leadership has announced its intention to put rural cooperatives in its policy platform, however convincing the rest of the party will take both effort and time.
+The party leadership has announced its intention to include rural cooperatives in the policy platform. However, persuading the remainder of the party, particularly those on the Left due to how minimal it is, will require sustained effort and time.
 
 @root
 

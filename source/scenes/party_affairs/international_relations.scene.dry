@@ -9,13 +9,13 @@ card-image: img/sosyalistenternasyonal.jpg
 
 = International Relations
 
-Even though the "Left of Center" movement that is dominating our party is an indigenous left movement molded into existence to suit the needs of the Turkish nation, it still was influenced a lot by the Social Democratic movements of Europe.
+Although the "Left of Center" movement currently dominating the party is an indigenous leftist movement shaped to address the needs of the Turkish nation, it has been significantly influenced by European Social Democratic movements.
 
-- @fr_uk: The Western European Social Democrats, SPD, Labour and many others, have inspired us in many ways. Stronger ties can both help our nation and our party.
-- @baath: Even though we are firmly opposed to undemocratic forms of Socialism, Kemalism is still seen as a guide by many Baathists in the Arabian world. 
-- @international: The Socialist International is a wide organization of Democratic Left parties and stronger ties, perhaps even membership, can benefit our party.
+- @fr_uk: The Western European Social Democrats, including the SPD and Labour, have provided significant inspiration for our movement. Strengthening these relationships could benefit both our nation and our party.
+- @baath: Although we remain firmly opposed to undemocratic forms of socialism, it is notable that Kemalism continues to serve as a model for many Baathists in the Arab world.
+- @international: The Socialist International is a broad coalition of Democratic Left parties. Developing closer ties, and potentially pursuing membership, could offer significant advantages for our party.
 - @join_socialist_international: [? if western_socialist_contacts >= 4 : We have built enough contacts to formally join the Socialist International! ?]
-- @america: İnönü once called <span style="color: #E3000F;">**CHP**</span> the Democrats of Turkey, can we salvage our relations with our "allies" over in the United States?
+- @america: İnönü once referred to the <span style="color: #E3000F;">**CHP**</span> as the Democrats of Turkey. It is worth considering whether we can restore our relationship with our allies in the United States.
 - @return: We do not need international contacts at the moment.
 - @easy_discard
 - @cancel_advisor_action

@@ -11,7 +11,7 @@ card-image: img/cumhuriyet4.jpg
 
 [? if I_in_government: The media is heavily restricted under the military-appointed governments. ?]
 
-[? if I_in_government == 0: The <span style="color: #E3000F;">**CHP**</span> is affiliated with many progressive newspaper outlets. Perhaps we can use this to our advantage... ?]
+[? if I_in_government == 0: The <span style="color: #E3000F;">**CHP**</span> maintains affiliations with numerous progressive newspaper outlets. We may leverage these connections to advance our strategic objectives. ?]
 
 - @critique
 - @silence
@@ -19,17 +19,17 @@ card-image: img/cumhuriyet4.jpg
 - @campaign
 - @ideological
 - @newideas
-- @return: We should not do anything with media at the moment.
+- @return: At present, we should refrain from taking any action regarding media operations
 - @navigation_return_main: Return
 - @easy_discard
 - @cancel_advisor_action
 
 @silence
-title: National Chief İnönü doesn't want to go into a conflict with the junta. Perhaps we should keep our silence...
+title: National Chief İnönü prefers to avoid direct confrontation with the junta. Accordingly, maintaining our silence may be advisable.
 view-if: CHP_party_leader == "İnönü"
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp -= 2; petty_bourgeoisie_chp -= 2; rural_chp -= 1; left_kemalists_dissent += 5; coup_timer -= 1
 
-We keep our silence in the face of atrocities and injustice. The nation is overwhelmingly against the coup and Ecevit critiques the party attitude heavily, perhaps he has a good point...
+We remain silent in the face of atrocities and injustice. The nation is overwhelmingly opposed to the coup, and Ecevit offers a strong critique of the party's stance; his arguments warrant serious consideration.
 
 @critique
 title: The military government needs to go. Defy the laws and protest against the recent actions of the Junta.
@@ -41,44 +41,44 @@ on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp += 2; petty
 We direct our media attention to the authoritarian actions of the junta governments, such as the banning of worker strikes and the torture of left-wing intellectuals in prisons. We will not bow to the whims of the appointed.
 
 @commercial
-title: Make our newspapers more commercialized by broadening their appeal beyond party supporters.
+title: We should commercialize our newspapers by expanding their appeal to audiences beyond existing party supporters.
 choose-if: CHP_party_leader == "Ecevit" and I_in_government == 0
-unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets are paralyzed by the intra-party crisis! ?]
+unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets currently face paralysis due to the ongoing intra-party crisis. ?]
 subtitle: This might upset the hardliners, but it may bring in more funds.
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} resources += 1; commercialized_media += 1; petty_bourgeoisie_chp += 3*(1 - dissent)
 
 Our commercialized newspapers are able to bring in more funds. However, this will limit our ability to influence the media.
 
 @campaign
-title: The purpose of our media is to increase our election chances.
+title: The primary objective of our media operations is to enhance our prospects in upcoming elections.
 choose-if: CHP_party_leader == "Ecevit" and I_in_government == 0
-unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets are paralyzed by the intra-party crisis! ?]
+unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets currently face paralysis due to the ongoing intra-party crisis. ?]
 subtitle: Our newspapers will focus on the electoral campaign.
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} campaign_media += 1; workers_chp += 2*(1 - dissent); petty_bourgeoisie_chp += 2*(1 - dissent); state_employees_chp += 2*(1 - dissent)
 
 The outlets print out news about the problems the nation faces and how a left-wing government could be the solution our people have been waiting for so long.
 
 @newideas
-title: We will motivate our theorists and politicians to write about their new policy ideas.
+title: We will motivate our theorists and politicians to write about this.
 subtitle: A party without a vision is not a party but a gathering
 choose-if: CHP_party_leader == "Ecevit" and I_in_government == 0
-unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the spread of unorthodox ideas. ?]
+unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets are currently paralyzed by the intra-party crisis. The old guard resists the dissemination of unorthodox ideas. ?]
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} {! AnatolianRules.adjustFactionStrength(Q, 'km', 5); !}  workers_chp += 1; newideas += 1
 
 We are happy to hear new voices raising their visions for a new Turkey.
 
 @ideological
-title: We will have vibrant ideological debate within our newspapers.
+title: We intend to foster vibrant ideological debate within our newspapers.
 subtitle: There will be space for all factions to air their views.
 choose-if: CHP_party_leader == "Ecevit" and I_in_government == 0
-unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets are paralyzed by the intra-party crisis! The old guard is opposed to the different interpretations of Atatürk's path. ?]
+unavailable-subtitle: [? if I_in_government == 1: The memorandum government has restricted our political media campaigns. ?][? if CHP_party_leader != "Ecevit": Our media outlets are currently paralyzed by the intra-party crisis. The old guard opposes alternative interpretations of Atatürk's path. ?]
 on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} kemalist_marxists_dissent -= 6; left_kemalists_dissent -= 6; orthodox_kemalists_dissent -= 6; right_kemalists_dissent -= 6;
 
 This has been our media course historically, and it has successfully paved over the many tensions in our party.
 
 @return
 choose-if: CHP_party_leader == "Ecevit"
-unavailable-subtitle: Inaction in the face of atrocities equals silence.
+unavailable-subtitle: Remaining inactive in response to atrocities constitutes tacit silence.
 @navigation_return_main
 title: Return
 view-if: {! return Q.CHP_party_leader !== "Ecevit" && !((Q.difficulty <= 0 && Q.last_advisor_action == 0 && Q.last_cabinet_action == 0) || Q.last_advisor_action == 1 || Q.last_cabinet_action == 1); !}
