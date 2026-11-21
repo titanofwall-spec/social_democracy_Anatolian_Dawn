@@ -9,13 +9,25 @@ async function readMany(ui,slots){let records;try{const db=await open();records=
 function install(ui){if(ui._durableSavesInstalled)return;ui._durableSavesInstalled=true;let queue=Promise.resolve(),lastError='',population=0;
  const engine=ui.dendryEngine;
  const restoreState=engine.setState;
- const removedScene=id=>typeof id==='string'&&/^(?:inonuresignation|nuribayar|cumhurbaskanligi1\.ariburun)(?:\.|$)/.test(id);
+ const removedScene=id=>typeof id==='string'&&/^(?:inonuresignation|nuribayar|cumhurbaskanligi1\.ariburun|TIP_goals(?:_followup)?|(?:TIP_)?vote_of_no_confidence|coalition_affairs|dealing_with_toleration|set_next_election_time|national_elections\.(?:left_coalition|forward|ecevitleft|kirikoglu|no_govt(?:_goals|_2)?|majority|trap|socialism|right_coalition(?:_sure|_2|_post_chp)?|new_elections_chp|bye))(?:\.|$)/.test(id);
  engine.setState=function(state){
   const main=state.qualities.difficulty<0?'main.main_easy':'main';
-  const returnToMain=removedScene(state.sceneId);
+  const Q=state.qualities;
+  const retiredCabinet=Q.TIP_in_government||Q.in_left_front||Q.in_popular_front;
+  if(retiredCabinet){
+   root.AnatolianRules.resetCabinet(Q);
+   Q.I_in_government=1;
+   delete Q.coalition_formation;
+  }
+  Q.CHP_toleration=0;
+  const returnToMain=removedScene(state.sceneId)||(retiredCabinet&&/^national_elections\./.test(state.sceneId));
+  if(returnToMain) state.sceneId=main;
   if(removedScene(state.prevSpecialSceneId)) state.tempCurrentContent=[];
   for(const key of ['sceneId','prevSceneId','prevTopSceneId','prevSpecialSceneId','jumpSceneId']){
    if(removedScene(state[key])) state[key]=main;
+  }
+  for(const hand of Object.values(state.currentHands||{})){
+   for(let i=hand.length-1;i>=0;i--) if(removedScene(hand[i]?.id)) hand.splice(i,1);
   }
   if(returnToMain) state.currentContent=[];
   const result=restoreState.call(this,state);

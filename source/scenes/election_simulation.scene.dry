@@ -176,7 +176,6 @@ if (Q.largest_party_key) {
 }
 
 // Coalition options mirrored from the actual Grand National Assembly election scene (national_elections.scene.dry).
-Q.left_coalition = (Q.chp_seats || 0) + (Q.TIP_seats || 0);
 Q.kemalist_coalition = (Q.chp_seats || 0) + (Q.CGP_seats || 0);
 Q.grand_coalition = (Q.chp_seats || 0) + (Q.AP_seats || 0);
 Q.unholy_coalition = (Q.chp_seats || 0) + (Q.MSP_seats || 0);
@@ -218,7 +217,6 @@ TBP: [+ TBP_r +]%, MP: [+ MP_r +]%, Independents: [+ IND_r +]%, Kurdish Independ
 
 **Potential coalitions** *(226 seats needed for a majority)*:
 
-**Left Coalition** (CHP + TİP): [+ left_coalition +] seats
 
 **Kemalist Coalition** (CHP + [+ CGP_name +]): [+ kemalist_coalition +] seats
 

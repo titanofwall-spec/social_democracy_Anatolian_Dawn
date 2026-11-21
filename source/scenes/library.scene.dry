@@ -415,12 +415,8 @@ DP: [+ DP_r +]%
 MHP: [+ MHP_r +]%
 [+ {! return AnatolianRules.partyVoteRows(Q,"results"); !} +]
 
-<span style="color: #E3000F;">**CHP**</span> position: [? if CHP_toleration : toleration ?][? if CHP_in_government : in government - ?][? if CHP_toleration == 0 and CHP_in_government == 0 and CHP_caretaker == 0 : opposition ?][? if CHP_caretaker : caretaker government ?]
-[? if in_democratic_coalition and CHP_in_government: Kemalist Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_popular_front and CHP_in_government: Popular Front ?][? if in_left_front and CHP_in_government: Left Front ?][? if in_msp_coalition and CHP_in_government: Forced Marriage ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
-
-[? if CHP_in_government and not in_CHP_majority and not in_left_front : Coalition dissent: [+ coalition_dissent : dissent +] ?]
-
-[? if CHP_in_government and (in_left_front or in_popular_front): TİP coalition dissent: [+ TIP_coalition_dissent : dissent +] ?]
+<span style="color: #E3000F;">**CHP**</span> position: [? if CHP_in_government : in government - ?][? if CHP_in_government == 0 and CHP_caretaker == 0 : opposition ?][? if CHP_caretaker : caretaker government ?]
+[? if in_democratic_coalition and CHP_in_government: Kemalist Coalition ?][? if in_grand_coalition and CHP_in_government: Grand Coalition ?][? if in_msp_coalition and CHP_in_government: Forced Marriage ?][? if in_CHP_majority and CHP_in_government: <span style="color: #E3000F;">**CHP**</span> majority ?][? if in_minority_government and CHP_in_government: minority government ?][? if in_emergency_government and CHP_in_government: emergency government ?]
 
 @cabinet
 go-to: menu
@@ -566,25 +562,25 @@ go-to: menu
 
 **Paramilitary groups:**
 
-[? if not thkpc_destroyed: {!<span class="tooltip-text" title="THKP-C (People's Liberation Party-Front of Turkey) is a far-left revolutionary organization that advocates for a revolution led by the urban workers.">THKP-C</span>!} Strength: [+ thkpc_strength_2 +] thousand ?]
+[? if not thkpc_destroyed: {!<span class="wide_tooltip-wrap" tabindex="0">THKP-C<span class="wide_tooltip-tip">THKP-C (People's Liberation Party-Front of Turkey) is a far-left revolutionary organization that advocates for a revolution led by the urban workers.</span></span>!} Strength: [+ thkpc_strength_2 +] thousand ?]
 
 [? if not thkpc_destroyed: THKP-C Militarization: [+ thkpc_militancy : militancy +] ?]
 
-[? if devyol_formed: {!<span class="tooltip-text" title="DEV-YOL (Revolutionary Path) is a left-wing militant organization.">DEV-YOL</span>!} Strength: [+ devyol_strength_2 +] thousand ?]
+[? if devyol_formed: {!<span class="wide_tooltip-wrap" tabindex="0">DEV-YOL<span class="wide_tooltip-tip">DEV-YOL (Revolutionary Path) is a left-wing militant organization.</span></span>!} Strength: [+ devyol_strength_2 +] thousand ?]
 
 [? if devyol_formed: DEV-YOL Militarization: [+ devyol_militancy : militancy +] ?]
 
-{!<span class="tooltip-text" title="Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.">Grey Wolves</span>!} Strength: [+ grey_wolves_strength_2 +] thousand
+{!<span class="wide_tooltip-wrap" tabindex="0">Grey Wolves<span class="wide_tooltip-tip">Grey Wolves (Bozkurtlar) are the militant wing of the Nationalist Movement Party.</span></span>!} Strength: [+ grey_wolves_strength_2 +] thousand
 
 Grey Wolves Militarization: [+ grey_wolves_militancy : militancy +]
 
-{!<span class="tooltip-text" title="Turkish Revenge Brigade (TİT) is a highly militant far-right organization.">Turkish Revenge Brigade (TİT)</span>!} Strength: [+ tit_strength_2 +] thousand
+{!<span class="wide_tooltip-wrap" tabindex="0">Turkish Revenge Brigade (TİT)<span class="wide_tooltip-tip">Turkish Revenge Brigade (TİT) is a highly militant far-right organization.</span></span>!} Strength: [+ tit_strength_2 +] thousand
 
 TİT Militarization: [+ tit_militancy : militancy +]
 
 Strength of ÖHD: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength : 100; !} +]%
 
-[? if raiders_formed: {!<span class="tooltip-text" title="Raiders are a far-right paramilitary organization.">Raiders</span>!} Strength: [+ raiders_strength_2 +] thousand ?]
+[? if raiders_formed: {!<span class="wide_tooltip-wrap" tabindex="0">Raiders<span class="wide_tooltip-tip">Raiders are a far-right paramilitary organization.</span></span>!} Strength: [+ raiders_strength_2 +] thousand ?]
 
 [? if raiders_formed: Raiders Militarization: [+ raiders_militancy : militancy +] ?]
 
@@ -592,7 +588,7 @@ Strength of ÖHD: [+ {! return typeof Q.ohp_strength==='number' ? Q.ohp_strength
 
 **Official military/paramilitary groups:**
 
-{!<span class="tooltip-text" title="Police forces maintain order and state security.">Police Forces</span>!} Strength: [+ police_strength_2 +] thousand
+{!<span class="wide_tooltip-wrap" tabindex="0">Police Forces<span class="wide_tooltip-tip">Police forces maintain order and state security.</span></span>!} Strength: [+ police_strength_2 +] thousand
 
 Police Militarization: [+ police_militancy : militancy +]
 
@@ -616,7 +612,7 @@ Dissent: [+ kemalist_marxists_dissent : dissent +]
 
 [? if third_worldists_enabled : **Third Worldists**?]
 
-[? if third_worldists_enabled : The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor detachment from the right-wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so-called "shackles of the US".?]
+[? if third_worldists_enabled : The Third Worldists are Democratic Socialists who desire swaying the Democratic Left movement towards the firmly Socialist camp. In terms of party strategy, they favor closer ties with the Socialist movements and favor detachment from the right-wing parties. Internationally they favor closer ties with the non-aligned movement and favor greater political independence from the so-called &quot;shackles of the US&quot;.?]
 
 [? if third_worldists_enabled : Strength: [+ tw_strength_label +]?]
 

@@ -122,7 +122,7 @@ title: Raise consumption taxes, which disproportionately affect the poor.
 subtitle: +1 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: lower_tax_rates <= 5
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 1; yearly_budget += 1; workers_chp -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; TIP_coalition_dissent += 1; lower_tax_rates += 1; workers_chp -= 5 if lower_tax_rates >= 2; inflation_modifier -= 0.5; growth_modifier -= 0.3; unemployment_modifier += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 1; yearly_budget += 1; workers_chp -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; lower_tax_rates += 1; workers_chp -= 5 if lower_tax_rates >= 2; inflation_modifier -= 0.5; growth_modifier -= 0.3; unemployment_modifier += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 We have raised taxes for the poor and working class. This hurts our support among the workers.
 
@@ -159,7 +159,7 @@ We have reduced income and property taxes for the rich and middle class. The bou
 subtitle: +2 budget
 unavailable-subtitle: Tax rates are already too high.
 choose-if: upper_tax_rates <= 5 and lower_tax_rates <= 5
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 2; yearly_budget += 2; state_employees_chp -= 4; petty_bourgeoisie_chp -= 4; workers_chp -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp -= 3; unemployment_modifier += 2; TIP_coalition_dissent += 1; lower_tax_rates += 1; upper_tax_rates += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 2; workers_chp -= 5 if lower_tax_rates > 1; inflation_modifier -= 1.1; growth_modifier -= 0.6; state_employees_chp -= 2 if upper_tax_rates > 1; petty_bourgeoisie_chp -= 2 if upper_tax_rates > 1;; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} budget += 2; yearly_budget += 2; state_employees_chp -= 4; petty_bourgeoisie_chp -= 4; workers_chp -= 4; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp -= 3; unemployment_modifier += 2; lower_tax_rates += 1; upper_tax_rates += 1; capital_strike_progress += 1 if upper_tax_rates > 1; capital_strike_progress += 1 if upper_tax_rates > 2; workers_chp -= 5 if lower_tax_rates > 1; inflation_modifier -= 1.1; growth_modifier -= 0.6; state_employees_chp -= 2 if upper_tax_rates > 1; petty_bourgeoisie_chp -= 2 if upper_tax_rates > 1;; {! AnatolianRules.refreshEconomy(Q); !}
 
 Raising taxes hurts our support among all those who pay taxes. [? if in_grand_coalition or in_democratic_coalition : However, our coalition partners are more supportive of the idea of "shared sacrifice" than simply taxing the rich. ?] Increasing taxes also decreases economic demand, which may lead to more unemployment.
 
@@ -167,7 +167,7 @@ Raising taxes hurts our support among all those who pay taxes. [? if in_grand_co
 title: Lower taxes on the rich, while increasing consumption taxes (which affect the working class more).
 subtitle: This does not change overall revenue. [? if upper_tax_rates < -5 : Rich tax rates are too low to cut anymore. ?] [? if lower_tax_rates > 5 : Lower-class tax rates are too high to increase. ?]
 choose-if: lower_tax_rates <= 5 and upper_tax_rates >= -5
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp -= 6; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp += 5*(1-dissent); DP_relation += 5;AP_relation += 4; coalition_dissent -= 1 if in_grand_coalition and coalition_dissent > 0; TIP_coalition_dissent += 1; upper_tax_rates -= 1; lower_tax_rates += 1; workers_chp -= 5 if lower_tax_rates >= 2; capital_strike_progress -= 1 if upper_tax_rates < 0
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} workers_chp -= 6; rural_chp -= 3; state_employees_chp -= 3; petty_bourgeoisie_chp -= 3; capitalists_chp += 5*(1-dissent); DP_relation += 5;AP_relation += 4; coalition_dissent -= 1 if in_grand_coalition and coalition_dissent > 0; upper_tax_rates -= 1; lower_tax_rates += 1; workers_chp -= 5 if lower_tax_rates >= 2; capital_strike_progress -= 1 if upper_tax_rates < 0
 
 Our regressive taxation policy benefits the rich while hurting the poor and working-class. Our bourgeois coalition partners approve of this orthodox economic course.
 

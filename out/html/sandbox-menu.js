@@ -111,7 +111,7 @@
     root.updatePartySidebar?.();
     U()?.autosave?.();
   }
-  const nonCooldown=/^(?:coup|cyprus_|paramilitary_pressure|kurdish_issue|TIP_ultimatum|streetfighting|economic_reform|election)/i;
+  const nonCooldown=/^(?:coup|cyprus_|paramilitary_pressure|kurdish_issue|streetfighting|economic_reform|election)/i;
   function action(q,kind) {
     if (kind==='temporary-polling'&&!root.AnatolianNationalCoalition) {
       root.alert('National Coalition is not available.');return false;

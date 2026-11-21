@@ -87,8 +87,6 @@
     "features/rubicon/scenes/rubicon_urguplu.scene.dry": "source/scenes/events/rubicon_urguplu.scene.dry",
     "features/rubicon/scenes/rubicon_urguplu_rejected.scene.dry": "source/scenes/events/rubicon_urguplu_rejected.scene.dry",
     "actions/ministry/agricultural/agricultural_policy.scene.dry": "source/scenes/government_affairs/agricultural_policy.scene.dry",
-    "features/coalitions/scenes/coalition_affairs.scene.dry": "source/scenes/government_affairs/coalition_affairs.scene.dry",
-    "actions/ministry/dealing-with-toleration/dealing_with_toleration.scene.dry": "source/scenes/government_affairs/dealing_with_toleration.scene.dry",
     "actions/agenda/peoples-sector/economic_democracy.scene.dry": "source/scenes/government_affairs/economic_democracy.scene.dry",
     "actions/ministry/economic/economic_policy.scene.dry": "source/scenes/government_affairs/economic_policy.scene.dry",
     "actions/ministry/education-science/education_science.scene.dry": "source/scenes/government_affairs/education_science.scene.dry",

@@ -1867,3 +1867,17 @@ h1,h2,h3,h4,h5,h6,button,input,select,textarea{font-family:inherit}
 
 /* Center campaign ending labels inside their result panels. */
 #content h2.cyprus-ending-level { text-align: center; width: 100%; }
+
+/* Non-party tooltips use the same neutral panel as illustrated glossary entries. */
+body .mytooltip:not(.party-tooltip) .mytooltiptext,
+body .wide_tooltip-tip,
+body .choice-tooltip,
+body .card-tooltip,
+body .province-group-tip,
+body #cold-war-map-tooltip.choice-tooltip {
+  background: var(--content-bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: 2px 4px 12px var(--tooltip-shadow-color);
+}

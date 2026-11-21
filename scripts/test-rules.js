@@ -116,19 +116,15 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert.equal(Q.CHP_in_government,1); assert.equal(Q.AP_in_government,0); assert.equal(Q.MSP_in_government,0);
         assert.equal(Q.TIP_in_government,0); assert.equal(Q.in_left_front,0);
         assert(e._runPredicate(game.scenes['industrial_policy.kredi'].chooseIf,true));
-        action(e,'vote_of_no_confidence.caretaker');
-        for(const minister of ['foreign','interior','justice','labor','defense','economic','finance','agriculture','education','trade','industrial'])
-            assert.equal(Q[minister+'_minister_party'],'I',minister);
-        assert.equal(Q.prime_minister_party,'I'); assert.equal(Q.CHP_in_government,0);
     });
-    test('Coalition collapses clear ministries and reopen negotiations without forcing elections', (e,Q) => {
-        Q.education_minister_party='CHP'; Q.TIP_in_government=1;
-        Q.year=1974; Q.month=11; Q.next_election_time=Q.time+100;
-        action(e,'coalition_affairs.bring_down2');
-        assert.equal(Q.next_election_time-Q.time,100); assert.equal(Q.coalition_formation.stage,'mandate');
-        assert.equal(Q.education_minister_party,'I'); assert.equal(Q.TIP_in_government,0);
-        Q.education_minister_party='CHP'; action(e,'coalition_affairs.bring_down');
-        assert.equal(Q.education_minister_party,'I'); assert.equal(Q.AP_in_government,0); assert.equal(Q.coalition_formation.stage,'mandate');
+    test('Retired election paths are absent and cabinet reshuffles remain', () => {
+        for (const id of ['coalition_affairs','dealing_with_toleration','vote_of_no_confidence',
+            'TIP_goals','TIP_goals_followup','TIP_vote_of_no_confidence','set_next_election_time',
+            'national_elections.left_coalition','national_elections.no_govt','national_elections.right_coalition'])
+            assert(!game.scenes[id], id);
+        assert(game.scenes.shuffle_cabinet);
+        assert(game.scenes.national_elections);
+        assert(game.scenes.coalition_negotiations);
     });
     test('Action gates use canonical economic, cabinet and leader fields', (e,Q) => {
         Q.economicreform=1; Q.inflation=10; Q.economic_growth=8; Q.unemployed=4;

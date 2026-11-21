@@ -880,6 +880,8 @@ function getPartyIdeology(party, Q) {
         return partyLabels;
     }
 
+    const partyTooltipLabels = new Set(['CHP', 'AP', 'DP', 'TIP', 'TİP', 'TKP', 'TSİP', 'TEP', 'SDP', 'CGP', 'MGP', 'MSP', 'MNP', 'MHP', 'CKMP', 'TBP', 'MP', 'T-KDP', 'Socialist Left']);
+
     function applyWholesome(str) {
         const {tooltips, colours, regex} = getPartyLabelIndex();
         return str.replace(/(<(?:span|strong)[^>]*>.*?<\/(?:span|strong)>|<[^>]+>|[^<]+)/g, (segment) => {
@@ -906,7 +908,7 @@ function getPartyIdeology(party, Q) {
 
                 if (tooltip) {
                     var tooltipContent = getDynamicTooltipContent(match, tooltip);
-                    return `<span class='mytooltip' style='${style}'>${innerText}<span  class='mytooltiptext'>${tooltipContent}</span></span>`;
+                    return `<span class='mytooltip${partyTooltipLabels.has(match) ? ' party-tooltip' : ''}' style='${style}'>${innerText}<span class='mytooltiptext'>${tooltipContent}</span></span>`;
                 } else if (colour) {
                     return `<span style='${style}'>${innerText}</span>`;
                 }
@@ -1234,7 +1236,7 @@ function getPartyIdeology(party, Q) {
   function hide(){if(frame)cancelAnimationFrame(frame);frame=0;pendingTarget=null;if(layer)layer.remove();layer=null;owner=null;box=null;}
   function show(target,x,y){
     var tip=target.querySelector('.mytooltiptext,.wide_tooltip-tip,.province-group-tip');if(!tip)return;
-    if(owner!==target){hide();owner=target;layer=document.createElement('div');layer.id='leader-tooltip-layer';layer.className='mytooltip wide_tooltip-wrap';layer.setAttribute('role','tooltip');
+    if(owner!==target){hide();owner=target;layer=document.createElement('div');layer.id='leader-tooltip-layer';layer.className='mytooltip wide_tooltip-wrap';layer.classList.toggle('party-tooltip',target.classList.contains('party-tooltip'));layer.setAttribute('role','tooltip');
       var clone=tip.cloneNode(true),computed=getComputedStyle(tip);
       ['width','max-width','padding','font-size','font-family','line-height','font-weight','background-color','color','border','border-radius','box-shadow','text-align'].forEach(function(k){clone.style.setProperty(k,computed.getPropertyValue(k));});
       clone.style.cssText+=';position:static;display:block;visibility:visible;opacity:1;transform:none;margin:0;transition:none;';layer.appendChild(clone);document.body.appendChild(layer);box=layer.getBoundingClientRect();

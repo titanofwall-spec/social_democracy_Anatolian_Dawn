@@ -390,7 +390,6 @@ Q.electoral_threshold = 0;
 // constitutional reform level
 Q.constitutional_reform = 0;
 // constructive vote of no confidence
-Q.constructive_vonc = 0;
 // reduction in presidential powers
 Q.presidential_powers = 0;
 // allows banning of non-constitutional parties
@@ -567,12 +566,10 @@ Q.bourgeois_coalition = Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;
 Q.center_right_coalition = Q.AP_seats + Q.CGP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;
 Q.right_coalition = Q.AP_seats + Q.DP_seats + Q.other_seats + Q.MSP_seats;
 Q.far_right_coalition = Q.MSP_seats + Q.MHP_seats;
-Q.left_coalition = Q.chp_seats + Q.TIP_seats;
 Q.popular_front_coalition = Q.chp_seats + Q.TIP_seats + Q.AP_seats + Q.CGP_seats;
 Q.anti_democratic_coalition = Q.TIP_seats + Q.MHP_seats + Q.MSP_seats;
 Q.national_unity_coalition = Q.chp_seats + Q.CGP_seats + Q.AP_seats + Q.DP_seats + Q.other_seats;
 Q.nationalist_front_strength = Q.AP_seats + Q.MSP_seats + Q.MHP_seats;
-Q.progressive_coalition = Q.chp_seats + Q.TIP_seats + Q.CGP_seats;
 Q.leverage = Q.chp_seats/1.5;
 
 // Socialist Left: TİP hasn't splintered into the Socialist Left bloc yet, but it may in the future.
@@ -647,10 +644,8 @@ Q.in_minority_government = 0;
 // if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
 Q.coalition_dissent = 0;
 // dissent from the TIP, in a popular front or left front government
-Q.TIP_coalition_dissent = 0;
 
 // does the <span style="color: #E3000F;">**CHP**</span> tolerate the government even if it is not a participant?
-Q.CHP_toleration = 0;
 
 // is the current government a presidential minority government?
 Q.minority_government = 0;
@@ -778,15 +773,14 @@ Q.timers = ['advisor_action',  'crisis_program',
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
             'foreign_policy', 'industrial_policy', 'judiciary', 'labor_affairs', 'military_policy',
             'police',  'shuffle_cabinet',
-            'homosexual_rights', 'economic_policy', 'coalition_affairs',
+            'homosexual_rights', 'economic_policy',
             'womens_rights', 'economic_democracy', 'religious_affairs_directorate', 'kurdish_issue',
-            'dealing_with_toleration',
             'constitutional_reform', 'labor_rights',
             'education_science', 'curriculum', 'avans', 'cutspending',
             // events
             'emergency_cuts', 'unemployment_insurance',
 
-            'TIP_policy', 'TIP_ultimatum', 'popular_front_dispute',
+
             'high_inflation', 'banking_crisis',
             'understanding_enemy', ];
 Q.advisor_action_timer = 0;
@@ -856,7 +850,6 @@ Q.municipality_timer = 0;
 Q.economic_democracy_timer = 0;
 Q.religious_affairs_directorate_timer = 0;
 Q.kurdish_issue_timer = 0;
-Q.coalition_affairs_timer = 0;
 Q.industrial_policy_timer = 0;
 Q.education_science_timer = 0;
 // Economic policy state
@@ -877,7 +870,6 @@ Q.tiger_1980_effect_applied = false;
 // event timers
 Q.emergency_cuts_timer = 0;
 Q.unemployment_insurance_timer = 0;
-Q.TIP_ultimatum_timer = 0;
 
 //Cyprus attitudes
 Q.greece_attitude = 4;

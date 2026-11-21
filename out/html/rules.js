@@ -166,7 +166,6 @@
         Q.prime_minister = 'Independent caretaker';
         Q.prime_minister_party = 'I';
         Q.coalition_dissent = 0;
-        Q.TIP_coalition_dissent = 0;
         Q.minority_government = 0;
     }
 
@@ -311,7 +310,7 @@
         var keys=['TIP','TKP','TSIP','TEP','SDP'],total=keys.reduce(function(n,p){return n+number(Q[p+'_poll_votes']);},0);
         /** @type {Record<string,string>} */ var colors={TIP:'#8B0000',TKP:'#820b09',TSIP:'#abab1a',TEP:'#ad673b',SDP:'#a83a32'};
         var rows=keys.map(function(p){var name=p==='TIP'?'TİP':p==='TSIP'?'TSİP':p;return '<span style="display:block;text-align:left;white-space:nowrap"><b style="color:'+colors[p]+'">'+name+'</b>: '+number(Q[p+'_poll_votes']).toFixed(3)+'%</span>';}).join('');
-        return Q.socialist_left_formed?'<span class="mytooltip" style="color:#8B0000;font-weight:bold">Socialist Left<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid var(--tooltip-border-color);border-radius:0;background-color:var(--tooltip-bg-color);box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+rows+'</span></span>: '+total.toFixed(3)+'%':'<b style="color:#8B0000">TİP</b>: '+number(Q.TIP_poll_votes).toFixed(3)+'%';
+        return Q.socialist_left_formed?'<span class="mytooltip party-tooltip" style="color:#8B0000;font-weight:bold">Socialist Left<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid var(--tooltip-border-color);border-radius:0;background-color:var(--tooltip-bg-color);box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+rows+'</span></span>: '+total.toFixed(3)+'%':'<b style="color:#8B0000">TİP</b>: '+number(Q.TIP_poll_votes).toFixed(3)+'%';
     }
     var otherPollParties=['MP','TBP','IND','KI'];
     /** @param {GameState} Q */
@@ -321,7 +320,7 @@
         var total=otherPollParties.reduce(function(n,p){return n+number(Q[p+'_poll_votes']);},0);
         var row=function(/** @type {string} */p,/** @type {boolean} */indent){return '<span style="display:block;text-align:left;white-space:nowrap;'+(indent?'padding-left:12px;':'')+'"><b style="color:'+colors[p]+'">'+labels[p]+'</b>: '+number(Q[p+'_poll_votes']).toFixed(3)+'%</span>';};
         var content=otherPollParties.filter(function(p){return partyAvailable(Q,p)&&(!Q.demographic_context||(Q.demographic_context==='kurds'?p!=='IND':p!=='KI'));}).map(function(p){return row(p,false);}).join('');
-        return '<span class="mytooltip" style="color:#808080;font-weight:bold">Others<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid var(--tooltip-border-color);border-radius:0;background-color:var(--tooltip-bg-color);box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+content+'</span></span>: '+total.toFixed(3)+'%';
+        return '<span class="mytooltip party-tooltip" style="color:#808080;font-weight:bold">Others<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid var(--tooltip-border-color);border-radius:0;background-color:var(--tooltip-bg-color);box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+content+'</span></span>: '+total.toFixed(3)+'%';
     }
     /** @param {GameState} Q @param {string} mode */
     function partyVoteRows(Q,mode){

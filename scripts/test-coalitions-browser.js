@@ -52,7 +52,16 @@ assert.deepEqual(await page.evaluate(()=>AnatolianCoalitions.counts(dendryUI.den
 assert(await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;return !AnatolianCoalitions.powerAccess(Q,'education_science.koykent')&&!e._runPredicate(e.game.scenes.education_science.viewIf,true);}));
 const result=await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities,C=AnatolianCoalitions;Q.resources=10;Q.budget=100;Q.speculativee=0;const a=C.data.find(a=>a.row===6),before=Q.resources;e.goToScene(a.scenes[0]);const paid=before-Q.resources;const Y=Q.coalition_government.yellowUses;const blocked=C.data.find(a=>a.row===parseInt(Object.keys(Q.coalition_government.rights).find(k=>Q.coalition_government.rights[k]==='partner').split('-')[1]));const previous=e.state.sceneId;e.goToScene(blocked.scenes[0]);return {paid,Y,blocked:e.state.sceneId===previous,parties:C.ensure(Q).partners,active:C.active(Q),gov:Q.CHP_in_government,majority:Q.in_CHP_majority,seats:Q.chp_seats,installed:e._coalitionInstalled,scene:e.state.sceneId,resources:Q.resources,hook:e.__changeScene.toString().slice(0,180),mapped:Object.keys(C.byScene).length,reason:C.reason(Q,a.scenes[0]),id:a.scenes[0]};});
 assert.equal(result.paid,1);assert.equal(result.Y,1);assert(result.blocked);assert.deepEqual(result.parties,['MSP']);
-for(const dark of [false,true]){await page.evaluate(dark=>{document.body.classList.toggle('dark-mode',dark);const e=dendryUI.dendryEngine;e.state.qualities.coalition_dissent=20;e.goToScene('coalition_affairs');},dark);assert((await page.locator('#content').innerText()).includes('Unresolved uses: 1'));}
+assert(await page.evaluate(()=>!dendryUI.dendryEngine.game.scenes.coalition_affairs));
+const style=()=>page.locator('#leader-tooltip-layer > span').evaluate(el=>{
+ const css=getComputedStyle(el);return {radius:css.borderTopLeftRadius,width:css.borderTopWidth,party:el.parentElement.classList.contains('party-tooltip')};
+});
+await page.evaluate(()=>{const sample=document.createElement('div');sample.id='tooltip-fixture';sample.innerHTML=formatPartyLabel('CHP and Blue Mosque');document.querySelector('#content').prepend(sample);});
+await page.locator('#tooltip-fixture .party-tooltip').hover();
+assert.deepEqual(await style(),{radius:'8px',width:'1px',party:true});
+await page.locator('#tooltip-fixture .mytooltip:not(.party-tooltip)').hover();
+assert.deepEqual(await style(),{radius:'0px',width:'1px',party:false});
+await page.evaluate(()=>document.querySelector('#tooltip-fixture').remove());
 await page.screenshot({path:path.resolve(__dirname,'../../tmp/coalition-browser.png'),fullPage:true});
 await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities;Object.assign(Q,{year:1973,chp_seats:150,AP_seats:200,CGP_seats:50,MSP_seats:40,DP_seats:10,largest_party_key:'AP',CGP_relation:60});AnatolianCoalitions.start(Q);e.goToScene('coalition_negotiations');});
 assert((await page.locator('#content').innerText()).includes('the mandate to form the government is given'));
