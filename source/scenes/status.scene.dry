@@ -5,9 +5,9 @@ on-arrival: {!
 AnatolianRules.refreshPartyNames(Q,this.state.visits);
 AnatolianRules.ensureKurdishIssue(Q);
 // Format economic indicators with proper fallbacks only for display
-Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : '4.6';
-Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';
-Q.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : '9.2';
+Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemployed.toFixed(1) : AnatolianEconomyBaseline.settings.initialUnemployment.toFixed(1);
+Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : AnatolianEconomyBaseline.settings.initialInflation.toFixed(1);
+Q.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : AnatolianEconomyBaseline.settings.initialGrowth.toFixed(1);
 
 Q.central_bank_interest_rate_formatted = AnatolianRules.number(Q.central_bank_interest_rate).toFixed(1);
 

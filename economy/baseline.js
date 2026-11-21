@@ -6,23 +6,26 @@
 
   // Original annual benchmarks. Only the 1972 starting values seed the model.
   const historical = Object.freeze({
-    inflation: Object.freeze({ 1972: 15.3, 1973: 15.8, 1974: 15.4, 1975: 19.0, 1976: 16.4, 1977: 22.5, 1978: 53.3, 1979: 62.0 }),
-    realGdpGrowth: Object.freeze({ 1972: 9.2, 1973: 4.9, 1974: 3.3, 1975: 6.1, 1976: 9.0, 1977: 3.0, 1978: 1.2, 1979: -0.5 }),
-    unemployment: Object.freeze({ 1972: 4.6, 1973: 6.5, 1974: 8.0, 1975: 7.5, 1976: 8.5, 1977: 9.7, 1978: 10.1, 1979: 8.9 }),
+    inflation: Object.freeze({ 1972: 23.40, 1973: 15.8, 1974: 15.4, 1975: 19.0, 1976: 16.4, 1977: 22.5, 1978: 53.3, 1979: 62.0 }),
+    realGdpGrowth: Object.freeze({ 1972: 9.54, 1973: 4.9, 1974: 3.3, 1975: 6.1, 1976: 9.0, 1977: 3.0, 1978: 1.2, 1979: -0.5 }),
+    unemployment: Object.freeze({ 1972: 6.8, 1973: 6.5, 1974: 8.0, 1975: 7.5, 1976: 8.5, 1977: 9.7, 1978: 10.1, 1979: 8.9 }),
     industrialProduction: Object.freeze({ 1972: 100, 1973: 110, 1974: 120, 1975: 132, 1976: 145, 1977: 158, 1978: 150, 1979: 142 }),
     agriculturalProduction: Object.freeze({ 1972: 100, 1973: 102, 1974: 105, 1975: 108, 1976: 111, 1977: 113, 1978: 115, 1979: 117 })
   });
 
   const settings = Object.freeze({
-    savingsRate: 20,
-    annualMoneySupplyGrowth: 24.5,
-    initialNominalCredit: 100,
-    centralBankRate: 15.3,
-    lendingSpread: 3,
-    initialRealGdp: 100,
+    savingsRate: 17.89,
+    annualMoneySupplyGrowth: 28.51,
+    // Monetary amounts are in billions of TL; consumption share is a ratio.
+    initialNominalCredit: 38.6,
+    centralBankRate: 9.00,
+    lendingSpread: 2.50,
+    initialRealGdp: 141.31,
+    // Historical reference; the equations do not take nominal GDP as a separate input.
+    initialNominalGdp: 229.07,
     initialCpi: 1,
-    initialMoneySupply: 100,
-    initialConsumptionShare: 0.75,
+    initialMoneySupply: 86.99,
+    initialConsumptionShare: 0.7092,
     initialGrowth: historical.realGdpGrowth[1972],
     initialInflation: historical.inflation[1972],
     initialUnemployment: historical.unemployment[1972],
