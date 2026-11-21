@@ -417,7 +417,7 @@ Q.socialism_disp = Math.round(Q.socialism);
 
 Current voter preferences:
 
-[+ {! return AnatolianRules.partyVoteRows(Q,"polls"); !} +]
+[+ {! return AnatolianRules.projectedPollsHtml(Q); !} +]
 
 {!<button class="province-map-open-button" onclick="openProvinceElectionMap()">See in-map results</button>!}
 

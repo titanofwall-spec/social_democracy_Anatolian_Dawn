@@ -313,14 +313,34 @@
         return Q.socialist_left_formed?'<span class="mytooltip party-tooltip" style="color:#8B0000;font-weight:bold">Socialist Left<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid var(--tooltip-border-color);border-radius:0;background-color:var(--tooltip-bg-color);box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+rows+'</span></span>: '+total.toFixed(3)+'%':'<b style="color:#8B0000">TİP</b>: '+number(Q.TIP_poll_votes).toFixed(3)+'%';
     }
     var otherPollParties=['MP','TBP','IND','KI'];
-    /** @param {GameState} Q */
-    function othersPollHtml(Q){
+    /** @param {GameState} Q @param {string[]} [excluded] */
+    function othersPollHtml(Q,excluded){
         /** @type {Record<string,string>} */ var colors={MP:'#242018',TBP:'#c51b32',IND:'#808080',KI:'#c2d93f',TIP:'#8B0000',TKP:'#820b09',TSIP:'#abab1a',TEP:'#ad673b',SDP:'#a83a32'};
         /** @type {Record<string,string>} */ var labels={MP:'MP',TBP:'TBP',IND:'Independents',KI:'Kurdish Independents',TIP:'TİP',TKP:'TKP',TSIP:'TSİP',TEP:'TEP',SDP:'SDP'};
-        var total=otherPollParties.reduce(function(n,p){return n+number(Q[p+'_poll_votes']);},0);
+        var members=otherPollParties.filter(function(p){return !excluded||excluded.indexOf(p)<0;});
+        var total=members.reduce(function(n,p){return n+number(Q[p+'_poll_votes']);},0);
         var row=function(/** @type {string} */p,/** @type {boolean} */indent){return '<span style="display:block;text-align:left;white-space:nowrap;'+(indent?'padding-left:12px;':'')+'"><b style="color:'+colors[p]+'">'+labels[p]+'</b>: '+number(Q[p+'_poll_votes']).toFixed(3)+'%</span>';};
-        var content=otherPollParties.filter(function(p){return partyAvailable(Q,p)&&(!Q.demographic_context||(Q.demographic_context==='kurds'?p!=='IND':p!=='KI'));}).map(function(p){return row(p,false);}).join('');
+        var content=members.filter(function(p){return partyAvailable(Q,p)&&(!Q.demographic_context||(Q.demographic_context==='kurds'?p!=='IND':p!=='KI'));}).map(function(p){return row(p,false);}).join('');
         return '<span class="mytooltip party-tooltip" style="color:#808080;font-weight:bold">Others<span class="mytooltiptext" style="width:max-content;max-width:none;padding:8px;text-align:left;border:1px solid var(--tooltip-border-color);border-radius:0;background-color:var(--tooltip-bg-color);box-shadow:3px 3px 6px rgba(0,0,0,.4)">'+content+'</span></span>: '+total.toFixed(3)+'%';
+    }
+    /** Flag presentation for the sidebar; vote calculations and other reports stay shared.
+     * @param {GameState} Q */
+    function projectedPollsHtml(Q){
+        var order=['chp','AP','CGP','DP','TIP','TBP','MHP','MSP'];
+        /** @type {Record<string,string>} */
+        var names={chp:'CHP',AP:'AP',CGP:Q.CGP_name==='CGP'?'CGP':'MGP',DP:'DP',TIP:'TİP',TBP:'TBP',MHP:'MHP',MSP:Q.MSP_name==='MSP'?'MSP':'MNP'};
+        /** @type {Record<string,string>} */
+        var flags={chp:'img/party-chp.png',AP:'img/party-ap.png',CGP:names.CGP==='MGP'?'img/party-mgp.png':'img/party-cgp.png',DP:'img/party-dp.png',TIP:'img/party-tip.png',TBP:'img/party-tbp.png',MHP:'img/MHP.png',MSP:names.MSP==='MNP'?'img/mnp.png':'img/party-msp.png'};
+        var social=['TIP'].concat(socialistMembers);
+        var tiles=order.filter(function(p){return Q.parties.indexOf(p)>=0&&partyAvailable(Q,p);}).map(function(p){
+            var bloc=p==='TIP'&&Q.socialist_left_formed;
+            var value=bloc?social.reduce(function(total,k){return total+number(Q[k+'_poll_votes']);},0):number(Q[p+'_poll_votes']);
+            var name=bloc?'Socialist Left':names[p],percent=value.toFixed(1)+'%';
+            var tooltip=typeof root.partyTooltipHtml==='function'?root.partyTooltipHtml(names[p]):name;
+            if(bloc)tooltip='<b>Socialist Left</b>'+social.map(function(k){return '<br>'+(k==='TIP'?'TİP':k==='TSIP'?'TSİP':k)+': '+number(Q[k+'_poll_votes']).toFixed(1)+'%';}).join('');
+            return '<div class="projected-poll-party" role="listitem" data-party="'+p+'"><span class="projected-poll-flag mytooltip party-tooltip" tabindex="0" aria-label="'+name+': '+percent+'"><img src="'+flags[p]+'" alt="'+name+'"><span class="mytooltiptext">'+tooltip+'</span></span><span class="projected-poll-percent">'+percent+'</span></div>';
+        }).join('');
+        return '<div class="projected-poll-grid" role="list" aria-label="Current voter preferences">'+tiles+'</div><div class="projected-poll-others">'+othersPollHtml(Q,['TBP'])+'</div>';
     }
     /** @param {GameState} Q @param {string} mode */
     function partyVoteRows(Q,mode){
@@ -451,7 +471,7 @@
     }
     root.AnatolianRules = {number: number, clamp: clamp, migrateStateAliases: migrateStateAliases, agriculturalPriceStatus: agriculturalPriceStatus, interiorPolicyStatuses: interiorPolicyStatuses, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
-        mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,applyOilEmbargo:applyOilEmbargo,exitRubicon:exitRubicon,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
+        mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,applyOilEmbargo:applyOilEmbargo,exitRubicon:exitRubicon,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,projectedPollsHtml:projectedPollsHtml,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
     if (typeof module !== 'undefined' && module.exports) { module.exports = root.AnatolianRules; require('./' + 'macro-economy.js'); require('./' + 'data/province-data.js'); require('./' + 'provinces.js'); require('./' + 'national-coalition.js'); require('./' + 'senate.js'); require('./' + 'peoples-sector.js'); require('./' + 'social-issues.js'); require('./' + 'municipalities.js'); require('./' + 'card-actions.js'); }
 }(typeof globalThis !== 'undefined' ? globalThis : window));
 

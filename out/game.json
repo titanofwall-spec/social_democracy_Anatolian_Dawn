@@ -27488,7 +27488,7 @@
           {
             "type": "insert",
             "fn": {
-              "$code": "return AnatolianRules.partyVoteRows(Q,\"polls\");"
+              "$code": "return AnatolianRules.projectedPollsHtml(Q);"
             }
           },
           {

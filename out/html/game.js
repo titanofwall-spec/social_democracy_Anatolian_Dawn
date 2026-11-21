@@ -918,6 +918,10 @@ function getPartyIdeology(party, Q) {
         });
     }
   window.formatPartyLabel = applyWholesome;
+  window.partyTooltipHtml = function(name) {
+      const entry = getPartyLabelIndex().tooltips.get(name);
+      return entry ? getDynamicTooltipContent(name, entry) : name;
+  };
   // TODO: have some code for tabbed sidebar browsing.
   window.updateSidebar = function() {
       var scene = dendryUI.game.scenes[window.statusTab];

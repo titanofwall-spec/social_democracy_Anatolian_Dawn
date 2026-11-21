@@ -1881,3 +1881,12 @@ body #cold-war-map-tooltip.choice-tooltip {
   border-radius: 0;
   box-shadow: 2px 4px 12px var(--tooltip-shadow-color);
 }
+
+/* Projected election results: two rows of party flags with vote shares below. */
+.projected-poll-grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 6px;margin:12px 0;text-indent:0; }
+.projected-poll-party { display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0;text-align:center; }
+.projected-poll-flag { display:flex;align-items:center;justify-content:center;width:100%;max-width:56px;height:38px;padding:0; }
+.projected-poll-flag > img { display:block;width:100%;height:100%;object-fit:contain; }
+.projected-poll-flag:focus-visible { outline:2px solid var(--text-color);outline-offset:3px; }
+.projected-poll-percent { font-size:.85em;line-height:1.2;font-variant-numeric:tabular-nums;white-space:nowrap; }
+.projected-poll-others { margin:4px 0 12px; }
