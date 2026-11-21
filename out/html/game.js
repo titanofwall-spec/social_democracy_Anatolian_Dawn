@@ -1294,4 +1294,4 @@ if(document.body)installPrecision();else document.addEventListener('DOMContentLo
 
 /* Anatolian Dawn: Options, victory margins and provincial tooltip fixes (v7). */
 
-window.AnatolianCyprusPresentation.installDayControls();
+window.AnatolianCyprusPresentation?.installDayControls();
