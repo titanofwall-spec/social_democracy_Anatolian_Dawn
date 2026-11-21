@@ -33,77 +33,13 @@ if (Q.pro_republic < 0) {
 if (Q.pro_republic >= 100) {
     Q.pro_republic = 99;
 }
-// Utility helpers for economic model
-AnatolianRules.migrateStateAliases(Q);
-var clamp = function(val, min, max) { return Math.max(min, Math.min(max, val)); };
-var FOREX_DRIFT_PER_YEAR = AnatolianRules.number(Q.forex_pressure_drift, 2);
-var MONTHS_PER_YEAR = 12;
-var FOREX_DRIFT_PER_MONTH = FOREX_DRIFT_PER_YEAR / MONTHS_PER_YEAR;
-var forexFactors = Q.getForexFactors ? Q.getForexFactors() : {industry: 0.6, agriculture: 0.2, ratio: 3};
-var FOREX_INDUSTRY_FACTOR = forexFactors.industry;
-var AGRICULTURE_TO_INDUSTRY_RATIO = forexFactors.ratio;
-var FOREX_AGRICULTURE_FACTOR = forexFactors.agriculture;
-var INFLATION_DECAY_NEG = 0.5;
-var INFLATION_DECAY_POS = 0.9;
-var GROWTH_DECAY_POS = 0.8;
-var GROWTH_DECAY_NEG = 0.95;
-var UNEMPLOYMENT_DECAY_NEG = 0.7;
-var UNEMPLOYMENT_DECAY_POS = 0.9;
-var INFLATION_DECAY_NEG_MONTHLY = Math.pow(INFLATION_DECAY_NEG, 1/MONTHS_PER_YEAR);
-var INFLATION_DECAY_POS_MONTHLY = Math.pow(INFLATION_DECAY_POS, 1/MONTHS_PER_YEAR);
-var GROWTH_DECAY_POS_MONTHLY = Math.pow(GROWTH_DECAY_POS, 1/MONTHS_PER_YEAR);
-var GROWTH_DECAY_NEG_MONTHLY = Math.pow(GROWTH_DECAY_NEG, 1/MONTHS_PER_YEAR);
-var UNEMPLOYMENT_DECAY_NEG_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_NEG, 1/MONTHS_PER_YEAR);
-var UNEMPLOYMENT_DECAY_POS_MONTHLY = Math.pow(UNEMPLOYMENT_DECAY_POS, 1/MONTHS_PER_YEAR);
-var preferNumber = function(candidate, fallback) {
-    return (typeof candidate === 'number') ? candidate : fallback;
-};
-var applyDecay = function(value, negativeRate, positiveRate) {
-    return value < 0 ? value * negativeRate : value * positiveRate;
-};
-var refreshBaseEconomicValues = function() {
-    var currentYear = Q.year;
-    if(currentYear>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);
-    if (currentYear <= 1976 && Q.historical_inflation[currentYear] !== undefined) { Q.base_inflation = Q.historical_inflation[currentYear]; }
-    if (Q.historical_gdp_growth[currentYear] !== undefined) { Q.base_growth = Q.historical_gdp_growth[currentYear]; }
-    if (Q.historical_unemployment[currentYear] !== undefined) { Q.base_unemployment = Q.historical_unemployment[currentYear]; }
-    if (Q.historical_industrial_index[currentYear] !== undefined) { Q.base_industry_index = Q.historical_industrial_index[currentYear]; }
-    if (Q.historical_agricultural_index[currentYear] !== undefined) { Q.base_agriculture_index = Q.historical_agricultural_index[currentYear]; }
-};
-
+// The economy module owns the monthly tick and published values.
 var recalcProductionAndHeadlineValues = function() { AnatolianRules.refreshEconomy(Q); };
-
-var runMonthlyEconomicSimulation = function() {
-    // This simulation now runs monthly; rates are scaled to preserve annual totals.
-    // Step 1: automatic forex pressure drift
-    var delayedReduction = (Q.forex_pressure_delayed_reduction || 0);
-    var forexAdjustment = FOREX_DRIFT_PER_MONTH - (delayedReduction / MONTHS_PER_YEAR);
-    Q.forex_pressure = clamp((Q.forex_pressure || 0) + forexAdjustment, 0, 100);
-    if (delayedReduction) {
-        // clear once applied to avoid repeated division
-        Q.forex_pressure_delayed_reduction = 0;
-    }
-    // Step 2: card effects already stored in modifiers
-    // Step 3: structural resistance with asymmetric decay
-    Q.inflation_modifier = applyDecay(Q.inflation_modifier, INFLATION_DECAY_NEG_MONTHLY, INFLATION_DECAY_POS_MONTHLY);
-    var sanctionPenalty=Q.cyprus_economic_sanctions_active ? -.5 : 0;
-    Q.growth_modifier = sanctionPenalty + applyDecay(Q.growth_modifier-sanctionPenalty, GROWTH_DECAY_NEG_MONTHLY, GROWTH_DECAY_POS_MONTHLY);
-    Q.unemployment_modifier = applyDecay(Q.unemployment_modifier, UNEMPLOYMENT_DECAY_NEG_MONTHLY, UNEMPLOYMENT_DECAY_POS_MONTHLY);
-    // Step 4/5: one authoritative macro step per calendar month (not per half-month).
-    if(typeof AnatolianMacro !== "undefined") AnatolianMacro.step(Q);
-    recalcProductionAndHeadlineValues();
-};
-
-if (Q.last_economy_month === null) {
-    refreshBaseEconomicValues();
-    Q.last_economy_month = Q.month + Q.year * 12;
-}
 
 // Existing saves retain the persistent penalty only for economic sanctions actually imposed.
 if(Q.cyprus_embargo_applied && (Q.cyprus_atilla2_started||Q.cyprus_atilla2_complete) && !["Return to the 1960 Constitutional Order","Güneş Plan","Denktaş Plan"].includes(Q.cyprus_final_result) && (Q.cyprus_poppy_penalty || Q.hashas_done===1 || Q.cyprus_delayed_ceasefire))Q.cyprus_economic_sanctions_active=1;
 // The Arab oil embargo is an external shock, not a later historical inflation target.
 AnatolianRules.applyOilEmbargo(Q);
-if(Q.year>1976)Q.base_inflation=AnatolianRules.number(Q.historical_inflation[1976],16.4);
 // 1. update dates
 if (turnAdvanced) {
     Q.time += 1;
@@ -150,9 +86,8 @@ if (turnAdvanced) {
 
     // Run monthly economic simulation to keep values current once per month (when the month flips)
     if (Q.week == 1 && (!Q.rubicon_mode || Q.rubicon_week == 1)) {
-        refreshBaseEconomicValues();
-            runMonthlyEconomicSimulation();
-        Q.last_economy_month = Q.month + Q.year * 12;
+        AnatolianMacro.step(Q);
+        recalcProductionAndHeadlineValues();
     } else {
         recalcProductionAndHeadlineValues();
     }

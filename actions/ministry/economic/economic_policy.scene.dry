@@ -86,7 +86,7 @@ The Turkish capital has long lacked any sort of competitive capability against f
 subtitle: Union relations slight decrease; Exchange Pressure ↓; Industrial Production ↑; Unemployment ↑
 choose-if: imf_agreement == 0
 unavailable-subtitle: We have agreed with the IMF to not pursue state interventions!
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} forex_pressure -= 2; disk_relation -= 4; industry_modifier += 3; unemployment_modifier += 0.5; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} forex_pressure -= 2; disk_relation -= 4; {! Q.onat_kit_restructuring = (Q.onat_kit_restructuring || 0) + 1; !} industry_modifier += 3; unemployment_modifier += 0.5; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 
 Turkey has a mixed market with huge state presence. However, as these corporations tend to be heavily corrupt and malfunctioning, reforms getting rid of the inefficient employees and restructuring the outdated business models are necessary to uphold the economy as a whole.
 

@@ -57,8 +57,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         const dissent = Q.dissent; tick(e,Q); near(Q.dissent, dissent, 'dissent');
     });
     test('Unhealthy economy changes support only when time passes', (e,Q) => {
-        Q.CHP_in_government=1; Q.prime_minister_party='CHP'; Q.base_inflation=100; Q.inflation_modifier=0;
-        Q.base_growth=-3; Q.base_unemployment=15; Q.last_economy_month=Q.year*12+Q.month;
+        Q.CHP_in_government=1; Q.prime_minister_party='CHP';
+        Object.assign(Q.macro_model.history.at(-1), {inflation:100, realGdpGrowth:-3, unemployment:15});
         e.goToScene('post_event'); const before=Q.workers_chp;
         for(let i=0;i<5;i++) e.goToScene('post_event'); near(Q.workers_chp,before,'workers support');
         tick(e,Q); assert(Q.workers_chp < before);
@@ -76,31 +76,33 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     test('Industrial investment survives turns and charges stated costs', (e,Q) => {
         Q.budget=10; const population=Q.petty_bourgeoisie, supporters=Q.capitalists_chp;
         action(e,'industrial_policy.industry1'); assert.equal(Q.budget,7);
-        assert.equal(Q.industrial_production_index,110); assert.equal(Q.capitalists_chp,supporters+5);
-        near(Q.petty_bourgeoisie,population,'demographic weight'); tick(e,Q); assert.equal(Q.industrial_production_index,110);
+        assert.equal(Q.industrial_production_index,1); assert.equal(Q.capitalists_chp,supporters+5);
+        near(Q.petty_bourgeoisie,population,'demographic weight'); tick(e,Q); assert.equal(Q.industrial_production_index,1);
         action(e,'industrial_policy.elektronik'); assert.equal(Q.budget,5);
         action(e,'industrial_policy.koykentindustry'); assert.equal(Q.budget,4);
     });
     test('Economic and military modifier aliases reach production', (e,Q) => {
         const before=Q.industrial_production_index;
-        action(e,'economic_policy.importban'); assert.equal(Q.industrial_production_index,before+3);
-        tick(e,Q); assert.equal(Q.industrial_production_index,before+3);
+        action(e,'economic_policy.stateplanning'); assert.equal(Q.onat_kit_restructuring,1); assert.equal(Q.industry_modifier,3); assert.equal(Q.industrial_production_index,before);
+        tick(e,Q); assert.equal(Q.industrial_production_index,before);
         assert(!('industrial_production_index_modifier' in Q));
     });
     test('Labour inflation is retained when the sidebar prepares its display', (e,Q) => {
-        const before=Q.inflation; action(e,'labor_affairs.national'); near(Q.inflation,before+0.5,'collective bargaining');
-        action(e,'status'); near(Q.inflation,before+0.5,'sidebar must not erase inflation');
+        const before=Q.inflation_modifier; action(e,'labor_affairs.national'); near(Q.inflation_modifier,before+0.5,'collective bargaining');
+        action(e,'status'); near(Q.inflation_modifier,before+0.5,'sidebar must not erase policy input');
         const dp=Q.DP_relation,msp=Q.MSP_relation; action(e,'labor_affairs.kit');
         near(Q.DP_relation,dp-8,'DP relations'); near(Q.MSP_relation,msp-4,'MSP relations');
     });
     test('Structural economic policy survives monthly baseline refresh', (e,Q) => {
         Q.oil=2; e.goToScene('post_event'); near(Q.oil_inflation_effect,15,'oil benefit');
         for(let i=0;i<4;i++) tick(e,Q);
-        near(Q.inflation,Q.base_inflation+Q.inflation_modifier-15,'persistent oil benefit');
+        near(Q.oil_inflation_effect,15,'persistent oil benefit');
         Q.year=1978; Q.Tiger=2; e.goToScene('post_event');
         for(let i=0;i<2;i++) tick(e,Q);
-        near(Q.inflation,Q.base_inflation+Q.inflation_modifier-45,'Tiger and oil inflation');
-        near(Q.economic_growth,Q.base_growth+Q.growth_modifier+3,'Tiger growth');
+        assert(Q.tiger_1978_effect_applied);
+        const row=Q.macro_model.history.at(-1);
+        near(Q.inflation,row.inflation,'published Onat inflation');
+        near(row.demandGrowth-row.baselineDemandGrowth,Q.growth_modifier/Math.pow(Q.growth_modifier<0?0.95:0.8,1/12)+3,'Tiger fiscal input');
     });
     test('Cooldowns decrement once per month', (e,Q) => {
         action(e,'intrapartyinfluence'); assert.equal(Q.intraparty_timer,4);
@@ -176,9 +178,10 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
     });
     test('Zero displays, deflation and minimum unemployment remain valid', (e,Q) => {
         Q.forex_pressure=0; Q.industrial_production_index=0; Q.agricultural_production_index=0; action(e,'status');
-        assert.equal(Q.forex_pressure_formatted,'0.0'); assert.equal(Q.industrial_index_formatted,'0.0'); assert.equal(Q.agricultural_index_formatted,'0.0');
-        Q.inflation_score=-6; Q.base_inflation=-1; Q.inflation_modifier=0; Q.base_unemployment=-5; Q.apply_economy_effects=0;
-        action(e,'economy_health_calculator'); assert.equal(Q.inflation_score,-1); assert.equal(Q.unemployed,0.5);
+        assert.equal(Q.forex_pressure_formatted,'0.0'); assert.equal(Q.industrial_index_formatted,'0.00'); assert.equal(Q.agricultural_index_formatted,'0.00');
+        Q.inflation_score=-6; Q.apply_economy_effects=0;
+        Object.assign(Q.macro_model.history.at(-1), {inflation:-1, unemployment:0});
+        action(e,'economy_health_calculator'); assert.equal(Q.inflation_score,-1); assert.equal(Q.unemployed,0);
         Q.agriculture_modifier=-1000; action(e,'modify_production_indices'); assert(Number.isFinite(Q.agricultural_product_prices));
     });
     test('Cyprus suppresses domestic turn consumption and the domestic event pool', (e,Q) => {
@@ -197,6 +200,8 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         e.goToScene('cyprus_briefing_15'); pick(e,'cyprus_briefing_15.continue');
         Q.month=9;Q.week=2;
         const time=Q.time;
+        vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/cyprusgame/js/presentation.js'),'utf8'));
+        window.renderCyprusCommandPanel = global.renderCyprusCommandPanel;
         vm.runInThisContext(fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'));
         window.cyprusAdvanceDay();
         assert.equal(Q.time,time);

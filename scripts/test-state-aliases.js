@@ -29,17 +29,13 @@ const scene = p => fs.readFileSync(path.join(__dirname, '../source/scenes', p), 
   assert.equal(JSON.stringify(q), previous, 'migration must be idempotent');
 }
 {
-  const q = {
-    year: 1973, base_inflation: 15.8, base_growth: 5.2, base_unemployment: 6.5,
-    base_industry_index: 112, industry_modifier: 3,
-    base_agriculture_index: 100, agriculture_modifier: 0,
-    agricultural_consumption: 121, forex_pressure: 45
-  };
+  const q = {started: 1, year: 1972, month: 1, agricultural_consumption: 121};
   R.refreshEconomy(q);
-  assert.equal(q.industrial_production_index, 115);
-  assert.equal(q.agricultural_production_index, 100);
-  assert.equal(q.agricultural_product_prices, 1.21);
-  assert.equal(q.agricultural_price_status, 'Very High');
+  const row = q.macro_model.history.at(-1);
+  assert.equal(q.industrial_production_index, 1);
+  assert.equal(q.agricultural_production_index, 1);
+  assert.equal(q.agricultural_product_prices, row.realAgriculturalPrice);
+  assert.equal(q.agricultural_price_status, R.agriculturalPriceStatus(row.realAgriculturalPrice));
   assert.equal(q.industrial_player_modifier, undefined);
   assert.equal(q.agricultural_player_modifier, undefined);
   for (const [v,label] of [[1.20,'High'],[1.10,'High'],[0.90,'Sufficient'],

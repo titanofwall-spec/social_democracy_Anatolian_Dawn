@@ -3,7 +3,7 @@
 (function (/** @type {any} */ root) {
     'use strict';
     /** @typedef {Record<string, any>} GameState */
-    /** @typedef {{year?:number,oil_inflation_effect?:number,tiger_1978_effect_applied?:boolean,tiger_1979_effect_applied?:boolean,tiger_1980_effect_applied?:boolean,base_inflation?:number,inflation_modifier?:number,inflation?:number,base_growth?:number,growth_modifier?:number,economic_growth?:number,base_unemployment?:number,unemployment_modifier?:number,unemployed?:number,base_industry_index?:number,industry_modifier?:number,industrial_production_index?:number,base_agriculture_index?:number,agriculture_modifier?:number,agricultural_production_index?:number,forex_pressure?:number,agricultural_consumption?:number,agricultural_product_prices?:number}} EconomyState */
+    /** @typedef {{year?:number,oil_inflation_effect?:number,tiger_1978_effect_applied?:boolean,tiger_1979_effect_applied?:boolean,tiger_1980_effect_applied?:boolean,inflation_modifier?:number,inflation?:number,growth_modifier?:number,economic_growth?:number,unemployment_modifier?:number,unemployed?:number,industry_modifier?:number,industrial_production_index?:number,agriculture_modifier?:number,agricultural_production_index?:number,forex_pressure?:number,agricultural_consumption?:number,agricultural_product_prices?:number}} EconomyState */
     /** @param {unknown} value @param {number} [fallback] */
     function number(value, fallback) {
         return typeof value === 'number' && Number.isFinite(value) ? value : (fallback === undefined ? 0 : fallback);
@@ -62,19 +62,7 @@
      * @param {GameState} Q */
     function refreshEconomy(Q) {
         migrateStateAliases(Q);
-        var tigerActive = (Q.year === 1978 && Q.tiger_1978_effect_applied) ||
-            (Q.year === 1979 && Q.tiger_1979_effect_applied) || (Q.year === 1980 && Q.tiger_1980_effect_applied);
-        // Monthly macro output takes precedence after initialization; legacy policy modifiers
-        // remain INPUTS to the model, not a second, additive GDP/inflation calculation.
-        if (!(typeof root.AnatolianMacro !== 'undefined' && root.AnatolianMacro.headlines(Q))) {
-            Q.inflation = number(Q.base_inflation) + number(Q.inflation_modifier) - number(Q.oil_inflation_effect) - (tigerActive ? 30 : 0);
-            Q.economic_growth = number(Q.base_growth) + number(Q.growth_modifier) + (tigerActive ? 3 : 0);
-            Q.unemployed = Math.max(0.5, number(Q.base_unemployment) + number(Q.unemployment_modifier));
-        }
-        Q.industrial_production_index = Math.max(0, number(Q.base_industry_index, 100) + number(Q.industry_modifier));
-        Q.agricultural_production_index = Math.max(0, number(Q.base_agriculture_index, 100) + number(Q.agriculture_modifier));
-        Q.forex_pressure = clamp(number(Q.forex_pressure), 0, 100);
-        Q.agricultural_product_prices = number(Q.agricultural_consumption) / Math.max(1, Q.agricultural_production_index);
+        if (!root.AnatolianMacro?.headlines(Q)) return;
         Q.agricultural_price_status = agriculturalPriceStatus(Q.agricultural_product_prices);
     }
     // Status labels are projections of completed policies, not independent mutable levels.
@@ -465,7 +453,7 @@
     root.AnatolianRules = {number: number, clamp: clamp, migrateStateAliases: migrateStateAliases, agriculturalPriceStatus: agriculturalPriceStatus, interiorPolicyStatuses: interiorPolicyStatuses, refreshEconomy: refreshEconomy, factionModel: factionModel,
         refreshFactions: refreshFactions, adjustFactionStrength: adjustFactionStrength, resetCabinet: resetCabinet,
         mpFactor:mpFactor,mpVotes:mpVotes,dhondt:dhondt,applyOilEmbargo:applyOilEmbargo,exitRubicon:exitRubicon,partyAvailable:partyAvailable,consciousShares:consciousShares,updatePartyAvailability:updatePartyAvailability,otherPollParties:otherPollParties,othersPollHtml:othersPollHtml,partyVoteRows:partyVoteRows,socialistPollHtml:socialistPollHtml,kurdishParamilitaryHtml:kurdishParamilitaryHtml,ensureKurdishIssue:ensureKurdishIssue,kurdishModel:kurdishModel,demographicShares:demographicShares,kurdishIssueHtml:kurdishIssueHtml,kurdishGroups:kurdishGroups,consciousPartyShares:consciousPartyShares,extraPartyRows:extraPartyRows,extraPartyData:extraPartyData,demographicPollHtml:demographicPollHtml,ensureSecurity:ensureSecurity,securityAction:securityAction,investigateUnderground:investigateUnderground,ohpClampAvailable:ohpClampAvailable,clampOHP:clampOHP,scaleFarRightGrowth:scaleFarRightGrowth,ohpFundingReady:ohpFundingReady,projectVotes: projectVotes, refreshVotes: refreshVotes, refreshPolls: refreshPolls, refreshPartyNames: refreshPartyNames};
-    if (typeof module !== 'undefined' && module.exports) { module.exports = root.AnatolianRules; require('./' + 'data/province-data.js'); require('./' + 'provinces.js'); require('./' + 'national-coalition.js'); require('./' + 'senate.js'); require('./' + 'peoples-sector.js'); require('./' + 'social-issues.js'); require('./' + 'municipalities.js'); require('./' + 'card-actions.js'); }
+    if (typeof module !== 'undefined' && module.exports) { module.exports = root.AnatolianRules; require('./' + 'macro-economy.js'); require('./' + 'data/province-data.js'); require('./' + 'provinces.js'); require('./' + 'national-coalition.js'); require('./' + 'senate.js'); require('./' + 'peoples-sector.js'); require('./' + 'social-issues.js'); require('./' + 'municipalities.js'); require('./' + 'card-actions.js'); }
 }(typeof globalThis !== 'undefined' ? globalThis : window));
 
 

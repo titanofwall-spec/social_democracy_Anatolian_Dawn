@@ -92,20 +92,21 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
   Object.assign(q,{macro_model:null,last_economy_month:null,month_actions:0,week:1,
     flavour_events:0,forex_pressure_drift:2,oil_crisis_effect_applied:0,tsk_pacified:1});
   e.random.random=()=>1;M.ensure(q);let snapshots=0;
-  const ys=[q.macro_model.y],ps=[q.macro_model.price];
-  const start=q.year*12+q.month;
+  const initial=q.macro_model.history.at(-1), ys=[initial.realGdp], ps=[initial.cpi];
+  const start=(q.year-1972)*12+q.month-1;
   for(let t=0;t<216;t++){
     policy(q,t,e);q.month_actions=1;e.goToScene('post_event');
     const expected=start+Math.floor((t+1)/2);
     assert.equal(q.macro_model.lastMonth,expected,'exactly one update per calendar month');
-    const s=q.macro_model;
-    for(const k of ['y','price','m2','potential','inflation','growth','expectation'])assert(Number.isFinite(s[k]),name+' '+k);
-    assert(s.y>0 && s.price>0 && s.m2>0);assert(s.inflation>-100);
-    assert(Math.abs(s.demandGap)<=25);
+    const model=q.macro_model, s=model.history.at(-1);
+    for(const k of ['realGdp','cpi','moneySupply','potentialGdp','inflation','realGdpGrowth','nextExpectedInflation'])assert(Number.isFinite(s[k]),name+' '+k);
+    assert(s.realGdp>0 && s.cpi>0 && s.moneySupply>0);assert(s.inflation>-100);
+    assert(s.unmetDemand>=0 && s.unemployment>=0 && s.unemployment<=100);
     if(t%2===1){
-      ys.push(s.y);ps.push(s.price);const i=ys.length-1;
-      if(i>=12){near(q.economic_growth,100*(s.y/ys[i-12]-1));near(q.inflation,100*(s.price/ps[i-12]-1));}
-      const before=JSON.stringify(s);q.month_actions=0;e.goToScene('post_event');assert.equal(JSON.stringify(s),before,'navigation cannot advance economy');
+      ys.push(s.realGdp);ps.push(s.cpi);const i=ys.length-1;
+      near(q.economic_growth,100*(Math.pow(s.realGdp/ys[i-1],12)-1));
+      if(i>=12)near(q.inflation,100*(s.cpi/ps[i-12]-1));
+      const before=JSON.stringify(model);q.month_actions=0;e.goToScene('post_event');assert.equal(JSON.stringify(model),before,'navigation cannot advance economy');
       if(i%12===0){
         const saved=JSON.parse(JSON.stringify(q));
         assert.deepEqual(saved.macro_model,q.macro_model);
@@ -121,7 +122,7 @@ for(const [name,policy] of Object.entries(scenarios))test('1973-1981 half-month 
       'No real production-focused ministry action: '+name);
     output(JSON.stringify({actualCabinetPlaythrough:name,actions:actual.length,
       firstActions:actual.slice(0,8),lastActions:actual.slice(-6),
-      potential:q.macro_model.potential,health:q.health_economy_status}));
+      potential:q.macro_model.history.at(-1).potentialGdp,health:q.health_economy_status}));
   }
   if(name==='repeatedControls')assert(q.black_market_risk>1);
   output(JSON.stringify({scenario:name,year:q.year,inflation:q.inflation,growth:q.economic_growth,

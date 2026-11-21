@@ -78,13 +78,13 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
     const Q=fresh().state.qualities;
     Object.assign(Q,{cyprus_mode:0,cyprus_atilla1_junction:1,cyprus_atilla2_started:1,
       cyprus_poppy_penalty:poppy,hashas_done:poppy,cyprus_delayed_ceasefire:delayed,
-      year:1975,month:1,forex_pressure:10,cyprus_final_result:'Historical Division'});
+      year:1975,month:1,forex_pressure:110,cyprus_final_result:'Historical Division'});
     assert(!rm.embargoReady(Q,!!delayed));Q.month=2;
     assert.equal(rm.embargoReady(Q,true),!!delayed);
     assert.equal(rm.embargoReady(Q,false),!delayed);
     assert(rm.applyEmbargo(Q,!!delayed));
     assert(Math.abs(Q.army_land_strength-.65)<1e-6);
-    assert.equal(Q.forex_pressure,(delayed||poppy)?35:10);
+    assert.equal(Q.forex_pressure,(delayed||poppy)?135:110);
     assert.equal(!!Q.cyprus_economic_sanctions_active,!!(delayed||poppy));
     assert(!rm.applyEmbargo(Q,!!delayed));
     assert(!rm.embargoReady(Q,!delayed));

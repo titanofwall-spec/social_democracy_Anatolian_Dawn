@@ -306,7 +306,7 @@
   var sanctions=economic||poppySanctionsApply(Q);
   if(sanctions){
     Q.cyprus_economic_sanctions_active=1;
-    Q.forex_pressure=r.clamp(number(Q.forex_pressure)+25,0,100);
+    Q.forex_pressure=number(Q.forex_pressure)+25;
     Q.growth_modifier=number(Q.growth_modifier)-.5;
     r.refreshEconomy(Q);
   }
@@ -349,7 +349,7 @@
   Q.cyprus_atilla2_results.push({day:day,action:action,rawRoll:raw,baseScore:base,supportBonus:bonus,score:score,outcome:c.outcomes[index]});Q.cyprus_atilla2_score+=score;Q.cyprus_support_bonus=0;Q.cyprus_roadmap_seen.push(id);Q.cyprus_roadmap_outcome=c.outcomes[index];Q.cyprus_roadmap_report='Our formations secure their objectives and organize the new positions. The northern military position is now stronger.';
   Q.cyprus_frontline_quality=Math.max(2,number(Q.cyprus_frontline_quality));Q.cyprus_atilla1_frontline='A broad northern military position';
   if(step===2){Q.cyprus_delay_confirmation=0;if(action==='confirm-delay'){Q.cyprus_delayed_ceasefire=1;Q.cyprus_roadmap_report=authoredEvents[29].body;}else{Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_roadmap_report=authoredEvents[28].body;advance(Q,2);return true;}}
-  if(step===3){Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_airport_assured=0;Q.cyprus_un_confrontation=1;Q.cyprus_atilla1_access='Nicosia Airport seized in the extended offensive';shift(Q,'uk',-1);shift(Q,'us',-1);lowerForeignTier(Q,'west_relation');lowerForeignTier(Q,'us_relation');if(!Q.cyprus_immediate_sanction_applied){Q.cyprus_immediate_sanction_applied=1;Q.forex_pressure=r.clamp(number(Q.forex_pressure)+12,0,100);}r.refreshEconomy(Q);Q.cyprus_roadmap_report=authoredEvents[31].body;}
+  if(step===3){Q.cyprus_atilla2_complete=1;Q.cyprus_frontline_frozen=1;Q.cyprus_airport_assured=0;Q.cyprus_un_confrontation=1;Q.cyprus_atilla1_access='Nicosia Airport seized in the extended offensive';shift(Q,'uk',-1);shift(Q,'us',-1);lowerForeignTier(Q,'west_relation');lowerForeignTier(Q,'us_relation');if(!Q.cyprus_immediate_sanction_applied){Q.cyprus_immediate_sanction_applied=1;Q.forex_pressure=number(Q.forex_pressure)+12;}r.refreshEconomy(Q);Q.cyprus_roadmap_report=authoredEvents[31].body;}
   advance(Q);return true;
  }
  function lowerForeignTier(Q,key){var bounds=[0,5,14.9,29.9,39.9,54.9,64.9,74.9],v=number(Q[key]);for(var i=bounds.length-1;i>=0;i--)if(v>bounds[i]){Q[key]=i===0?0:Math.max(0,bounds[i]-.01);return;}Q[key]=0;}

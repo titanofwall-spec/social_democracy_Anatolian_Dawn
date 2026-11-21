@@ -35,7 +35,7 @@ compiler.compileGame(files,(err,game)=>{
   // Preserve the macro model include when Dendry regenerates index.html.
   if(!versioned.includes('src="macro-economy.js')) {
     versioned=versioned.replace(/(<script src="rules\.js(?:\?[^"]*)?"(?:\s+defer)?\s*><\/script>)/,
-      '<script src="macro-economy.js"></script>\n    $1');
+      '<script src="economy-equations.js"></script>\n    <script src="economy-baseline.js"></script>\n    <script src="macro-economy.js"></script>\n    $1');
   }
   if(!versioned.includes('src="dynamic-demographics.js')) {
     versioned=versioned.replace(/(<script src="provinces\.js(?:\?[^"]*)?"(?:\s+defer)?\s*><\/script>)/,
@@ -45,7 +45,7 @@ compiler.compileGame(files,(err,game)=>{
     versioned=versioned.replace(/(<button[^>]*id="social_issues_tab"[^>]*>Social Issues<\/button>)/,
       '$1\n                     <button class="tab_button" id="mission_tab" onclick="window.changeTab(\'status.mission\', \'mission_tab\');">Land Reform</button>');
   }
-  for(const name of ['header-layout.js','cyprusgame/js/presentation.js','sandbox-menu.js','save-storage.js','endgame.js','game.js','rules.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprusgame/js/atilla-i.js','cyprusgame/js/campaign.js','cyprusgame/js/roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','province-map.js','data/map-design-default.js','cold-war-map.js','cold-war-governments.js']){
+  for(const name of ['header-layout.js','cyprusgame/js/presentation.js','sandbox-menu.js','save-storage.js','endgame.js','game.js','rules.js','economy-equations.js','economy-baseline.js','macro-economy.js','kurdish-event-media.js','kurdish-organizations.js','peoples-sector.js','social-issues.js','municipalities.js','national-coalition.js','card-actions.js','coalitions.js','data/coalition-actions.js','data/coalition-texts.js','cyprusgame/js/atilla-i.js','cyprusgame/js/campaign.js','cyprusgame/js/roadmap.js','data.js','d3-linegraph.js','data/province-data.js','provinces.js','dynamic-demographics.js','mission.js','data/senate-data.js','senate.js','color-palette.js','map-design.js','province-map.js','data/map-design-default.js','cold-war-map.js','cold-war-governments.js']){
     const asset=path.join(root,'out/html',name);if(!fs.existsSync(asset))continue;
     const version=crypto.createHash('sha256').update(fs.readFileSync(asset)).digest('hex').slice(0,12);
     const escaped=name.replace(/\./g,'\\.');

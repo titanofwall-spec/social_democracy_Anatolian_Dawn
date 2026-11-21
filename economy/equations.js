@@ -58,7 +58,7 @@
       investmentFxFactor * laborFactor;
     const potentialGdp = previous.potentialGdp * Math.pow(1 + capacityGrowth / 100, 1 / 12);
 
-    const fx = settings.initialFx + settings.monthlyFxChange * month;
+    const fx = inputs.fx ?? settings.initialFx + settings.monthlyFxChange * month;
     const effectiveFx = Math.max(fx, 0.75 * averageLag('fx', 1, 6));
     const fxSeverity = Math.max(0, (effectiveFx - 40) / 60);
     const fxStress = fxSeverity >= previous.fxStress ? fxSeverity :
@@ -103,7 +103,7 @@
     const baselineConsumptionGrowth = 0.35 * previous.consumptionGrowth + 0.65 * targetConsumptionGrowth;
     const consumptionGrowth = baselineConsumptionGrowth +
       marginalPropensityToConsume / Math.max(consumptionShare, 0.05) * (fiscalContribution + creditDemand);
-    const deflationEffect = -0.50 * Math.max(0, -previous.inflation);
+    const deflationEffect = 0.50 * Math.min(0, previous.inflation);
     const baselineDemandGrowth = 5.5 + consumptionShare * (baselineConsumptionGrowth - 5.5) +
       0.35 * (capacityGrowth - 5.5) + deflationEffect + creditDemand;
     const demandGrowth = baselineDemandGrowth + fiscalContribution;
@@ -111,7 +111,7 @@
     const outputShockMultiplier = Math.exp(outputShock / 100);
     const realGdp = Math.min(desiredOutput, outputCeiling) * outputShockMultiplier;
     const realGdpGrowth = annualize(realGdp, previous.realGdp);
-    const desiredConsumption = previous.consumption * Math.pow(1 + consumptionGrowth / 100, 1 / 12);
+    const desiredConsumption = previous.consumption * Math.pow(Math.max(Number.EPSILON, 1 + consumptionGrowth / 100), 1 / 12);
     const consumption = desiredConsumption * Math.min(1, realGdp / desiredOutput);
 
     const stableEmploymentGrowth = 5.5 + 0.40 * (capacityGrowth - 5.5);

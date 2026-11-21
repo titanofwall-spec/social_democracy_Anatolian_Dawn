@@ -50,7 +50,7 @@ if (require.main === module) {
                 assert(fs.existsSync(path.join(root, 'out/html', match[1])), source.name + ': missing ' + match[1]);
             }
         }
-        for (const file of ['save-storage.js','rules.js','macro-economy.js', 'kurdish-event-media.js','kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'senate.js', 'card-actions.js', 'coalitions.js', 'cyprusgame/js/atilla-i.js', 'cyprusgame/js/campaign.js', 'cyprusgame/js/roadmap.js', 'game.js', 'data.js', 'd3-linegraph.js','provinces.js','province-map.js','data/province-data.js','data/senate-data.js','data/coalition-texts.js']) {
+        for (const file of ['save-storage.js','rules.js','economy-equations.js','economy-baseline.js','macro-economy.js', 'kurdish-event-media.js','kurdish-organizations.js', 'peoples-sector.js', 'social-issues.js', 'municipalities.js', 'national-coalition.js', 'senate.js', 'card-actions.js', 'coalitions.js', 'cyprusgame/js/atilla-i.js', 'cyprusgame/js/campaign.js', 'cyprusgame/js/roadmap.js', 'game.js', 'data.js', 'd3-linegraph.js','provinces.js','province-map.js','data/province-data.js','data/senate-data.js','data/coalition-texts.js']) {
             const result = spawnSync(process.execPath, ['--check', path.join(root, 'out/html', file)], {stdio:'inherit'});
             assert.equal(result.status, 0, 'Syntax check: ' + file);
         }

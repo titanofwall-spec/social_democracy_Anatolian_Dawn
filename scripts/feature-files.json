@@ -162,7 +162,6 @@
     "features/maps/cold-war/img/cold-war-world-texture.png": "img/cold-war-world-texture.png",
     "features/cyprus/assets/img/cyprus.svg": "img/cyprus.svg",
     "features/rubicon/assets/rubicon-military-council.png": "img/rubicon-military-council.png",
-    "economy/legacy-model.js": "macro-economy.js",
     "features/maps/electoral/map-design.css": "map-design.css",
     "features/maps/electoral/map-design.js": "map-design.js",
     "features/cyprus/assets/music/cyprus.m4a": "music/cyprus.m4a",
@@ -175,6 +174,9 @@
     "features/maps/electoral/province-map.js": "province-map.js",
     "features/rubicon/rubicon-music.js": "rubicon-music.js",
     "actions/agenda/womens-rights/social-issues.js": "social-issues.js",
-    "actions/card-actions.js": "card-actions.js"
+    "actions/card-actions.js": "card-actions.js",
+    "economy/equations.js": "economy-equations.js",
+    "economy/baseline.js": "economy-baseline.js",
+    "economy/runtime.js": "macro-economy.js"
   }
 }

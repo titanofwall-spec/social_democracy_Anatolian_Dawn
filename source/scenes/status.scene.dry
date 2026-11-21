@@ -9,15 +9,17 @@ Q.unemployed_2 = (Q.unemployed !== undefined && Q.unemployed !== null) ? Q.unemp
 Q.inflation_2 = (Q.inflation !== undefined && Q.inflation !== null) ? Q.inflation.toFixed(1) : '15.3';
 Q.economic_growth_2 = (Q.economic_growth !== undefined && Q.economic_growth !== null) ? Q.economic_growth.toFixed(1) : '9.2';
 
+Q.central_bank_interest_rate_formatted = AnatolianRules.number(Q.central_bank_interest_rate).toFixed(1);
+
 // Format production indices
-Q.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 100.0).toFixed(1);
-Q.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production_index, 100.0).toFixed(1);
+Q.industrial_index_formatted = AnatolianRules.number(Q.industrial_production_index, 1.0).toFixed(2);
+Q.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production_index, 1.0).toFixed(2);
 
 // Format agricultural market data
 Q.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);
 
 // Format forex pressure and determine status
-Q.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure, 45.0).toFixed(1);
+Q.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure).toFixed(1);
 if (Q.forex_pressure <= 20) {
     Q.forex_pressure_status = "Low";
 } else if (Q.forex_pressure > 20 && Q.forex_pressure <= 40) {
@@ -530,15 +532,17 @@ Inflation: [+ inflation_2 +]%
 
 Unemployment: [+ unemployed_2 +]%
 
-Real GDP Growth: [+ economic_growth_2 +]%
+Real GDP Growth (Annualized): [+ economic_growth_2 +]%
 
-Industrial Production Index (1972=100): [+ industrial_index_formatted +]
+Central Bank Interest Rate: [+ central_bank_interest_rate_formatted +]%
 
-Agricultural Production Index (1972=100): [+ agricultural_index_formatted +]
+Industrial Production Index (1972=1.00): [+ industrial_index_formatted +]
 
-Agricultural Product Prices: [+ agricultural_prices_formatted +] ([+ agricultural_price_status +])
+Agricultural Production Index (1972=1.00): [+ agricultural_index_formatted +]
 
-{!<span style="color: #7A3C00;">The economic values are updated monthly.</span>!}
+Real Agricultural Product Prices: [+ agricultural_prices_formatted +] ([+ agricultural_price_status +])
+
+{!<span style="color: #7A3C00;">The economy updates monthly. Actions can change foreign exchange pressure immediately.</span>!}
 
 [+ {! return AnatolianPeoplesSector.html(Q); !} +]
 
