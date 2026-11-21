@@ -41,7 +41,7 @@ test('NPC coalition talks do not use those parties relations with CHP as a veto'
 test('Party tooltip labels use the seven requested bands and preserve foreign labels',()=>{const path=require('path'),root=path.join(__dirname,'..'),js=fs.readFileSync(path.join(root,'out/html/game.js'),'utf8'),body=js.split('function getRelationshipText(value) {')[1].split('function getMilitancyText')[0],label=Function('value',body.slice(0,body.lastIndexOf('}')));for(const [n,name] of [[5,'Hostile'],[6,'Adversarial'],[15,'Uncooperative'],[30,'Uncooperative'],[40,'Neutral'],[55,'Cordial'],[65,'Cooperative'],[75,'Productive']])assert(label(n).includes('>'+name+'<'));const display=fs.readFileSync(path.join(root,'source/qdisplays/party_relationships.qdisplay.dry'),'utf8');for(const name of ['Hostile','Adversarial','Uncooperative','Neutral','Cordial','Cooperative','Productive'])assert(display.includes(name));assert(fs.readFileSync(path.join(root,'source/qdisplays/relationships.qdisplay.dry'),'utf8').includes('very friendly'));});
 test('İmam Hatip cuts honor CHP-negotiated rights instead of the old right-wing veto',()=>{
  const source=fs.readFileSync(require('path').join(__dirname,'../actions/ministry/education-science/education_science.scene.dry'),'utf8');
- const section=source.split('@imamhatip\n')[1].split('@TRT')[0];
+ const section=source.split(/@imamhatip\r?\n/)[1].split('@TRT')[0];
  const condition=section.match(/^choose-if: \{!([\s\S]*?)!\}/m);
  assert(condition,'Missing İmam Hatip choice predicate');
  const allowed=Function('Q','AnatolianCoalitions',condition[1]);

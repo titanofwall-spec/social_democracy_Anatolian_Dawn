@@ -32,6 +32,11 @@ function copyBrowserFiles(root) {
 
 const sceneLocations = new Map(Object.entries(manifest.scenes).map(([source, name]) => [name, source]));
 
+for (const [source, name] of Object.entries(manifest.scenes)) {
+    if (name.startsWith('source/scenes/events/cyprus/')) {
+        sceneLocations.set('source/scenes/events/' + path.posix.basename(name), source);
+    }
+}
 function sceneSourcePath(root, name) {
     return path.join(root, sceneLocations.get(name) ?? name);
 }
