@@ -25,7 +25,45 @@
     };
   }
 
+  function initialHistory() {
+    const neutralSectors = sectors({});
+    return baseline.pregameHistory.map((source, index, history) => {
+      // GDP and consumption growth are annualized from adjacent observed levels.
+      // The first row has no earlier observation; its unused growth rates use the next pair.
+      const earlier = history[index - 1] || source;
+      const later = index === 0 ? history[1] : source;
+      const growth = key => 100 * (Math.pow(later[key] / earlier[key], 12) - 1);
+      return {
+        ...neutralSectors,
+        ...source,
+        realGdpGrowth: growth('realGdp'),
+        consumptionGrowth: growth('consumption'),
+        // These series are absent from the workbook; retain neutral pre-game assumptions.
+        fx: equations.defaults.initialFx, fxStress: 0,
+        investmentEfficiency: equations.defaults.initialInvestmentEfficiency,
+        unmetDemand: 0, smoothedUnmetDemand: 0,
+        counterfactualGdp: source.realGdp,
+        agriculturalProduction: equations.defaults.initialAgriculturalProduction,
+        industrialProduction: equations.defaults.initialIndustrialProduction,
+        realAgriculturalPrice: 1, nominalAgriculturalPrice: source.cpi,
+        realCredit: source.nominalCredit / source.cpi
+      };
+    });
+  }
+
   function initialize(Q, month) {
+    if (month === 0) {
+      const history = initialHistory();
+      const previous = history.at(-1);
+      return {
+        version: 3, lastMonth: -1, history,
+        initialMoneySupply: settings.initialMoneySupply,
+        lastPublishedFx: number(Q.forex_pressure, equations.defaults.initialFx), pendingFx: 0,
+        lastEmploymentModifier: 0,
+        initialRealCreditToPotential: previous.nominalCredit / (previous.cpi * previous.potentialGdp)
+      };
+    }
+    // Legacy saves without monthly history still migrate from their saved economy.
     const old = Q.macro_model || {};
     const migrating = month > 0;
     const growth = migrating ? number(old.growth, number(Q.economic_growth, settings.initialGrowth)) : settings.initialGrowth;
@@ -78,6 +116,7 @@
   function ensure(Q) {
     const month = monthOf(Q);
     if (!Number.isInteger(month) || month < 0 || !Q.started) return null;
+    // Preserve the complete played history in existing version 3 saves.
     if (Q.macro_model?.version !== 3) Q.macro_model = initialize(Q, month);
     return Q.macro_model;
   }
