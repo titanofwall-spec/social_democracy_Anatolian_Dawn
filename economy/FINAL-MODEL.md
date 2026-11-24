@@ -24,22 +24,38 @@ Where twelve-month GDP growth was absent it is reconstructed from available leve
 
 ## Calibration and policy inputs
 
-The uploaded equations do not supply numeric initial trade, reserves, external
-debt, amortization maturity, import coefficients, elasticities, or pass-through.
-`externalDefaults` and `importDefaults` expose the chosen starting calibration.
-External money uses billions of USD, domestic real/nominal money uses the existing
-billions-of-TL scale. The conversion coefficients are USD per real TL; annualized
-real trade is divided by twelve to obtain monthly foreign-currency payments.
+The 1972 starting-value workbook now supplies the calibration in the existing
+baseline and equations files. Its t=0 is 31 December 1971; engine month 0 remains
+January 1972 (workbook t=1), so April and the campaign calendar are unchanged.
+Domestic amounts remain billions of TL and foreign amounts remain billions of
+USD. The workbook's million-USD stocks and flows are divided by 1,000; price
+conversion coefficients remain USD per real TL and are not divided again.
 
-Defaults: exchange rate 14, foreign price index 1, export capacity 0.08 of potential
-GDP, export and import conversion prices 1/14, reserves 1.2 billion USD, external
-debt 2 billion USD, 5% effective annual debt interest, and 60-month repayment.
-Remittances are 0.08 billion USD/month; export/remittance collection is 90%.
-Debt is limited to twice trailing-year collected foreign income. Reserve cover
-target is three months, import forecast log growth is bounded at ±0.1/month,
-and final imports receive a 25% priority weight. Pass-through is 0.5 with imported
-cost weight 0.25. Government consumption begins at 12% of GDP. These settings are
-calibration choices, not an assertion of historical accuracy.
+Starting reserves are 0.748 billion USD and external debt 2.210 billion USD.
+Initial legacy principal is 0.007583333333333333 billion USD/month, separate from
+120-month new-loan amortization. The legacy schedule continues until its original
+principal is exhausted; it is not incorrectly amortized over the new-loan term.
+Annual external interest is 2.1475494633550474%. Monthly remittances are 0.03925
+billion USD; collection is 100%. The debt-income multiple is 2.1, minimum reserve
+buffer 0.2571839059936105 billion USD, import forecast bound 0.06, and final-goods
+priority 0.5. Import elasticities, all eight mandatory/flexible import cells,
+shortage sensitivities, export capacity and its ceiling, pass-through and imported
+cost weight now use the supplied workbook values. The bank lending margin is
+2.5 percentage points; it is no longer an automatically inferred real-rate target.
+
+Initial investment, government consumption, absorption, exports, imports,
+agricultural prices, import cover and lagged receipts use the workbook anchors.
+Missing monthly pre-game government consumption is reconstructed from its annual
+means and growth rates. Missing historical investment is reconstructed using
+expenditure accounting and calibrated to the supplied January lag-average check;
+this is synthetic history, not a claim of observed monthly investment. Historical
+export cash totals are anchored to the supplied annual totals and December model
+receipt. Import-need history uses the supplied initial monthly log trend. These
+backfills preserve all existing workbook observations of GDP, CPI, M2 and credit.
+The unrelated alternative-model coefficients labelled AYRI MODEL are not installed
+into these equations. The exported workbook description contains references to
+other sheets, but its flattened numeric import coefficients are supplied in the
+same sheet and are used directly.
 
 Runtime inputs include `macro_external_parameters`, `macro_import_coefficients`,
 `macro_world_demand`, `macro_remittances`, `macro_export_price`,
@@ -76,9 +92,9 @@ authored fiscal, employment, production and price interventions remain active.
 
 ## Save compatibility and validation
 
-Version 3 histories are upgraded in place to version 4; no played GDP, CPI, money,
+Version 3 histories are upgraded in place to version 5; no played GDP, CPI, money,
 or observation row is discarded. Financial fields are initialized at migration,
-with a new separate initial-debt repayment schedule. Older aggregate saves retain
+with a new separate initial-debt repayment schedule. Existing version 4 financial saves advance to version 5 without resetting balances, loan schedules or played history. Older aggregate saves retain
 the previous migration path. Monthly updates remain idempotent and JSON replay
 remains deterministic. The normal game still ends after December 1981.
 

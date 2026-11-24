@@ -78,3 +78,19 @@ assert.notEqual(seeded.history[0].savingsRate,0);
 assert.notEqual(B.pregameHistory[0].savingsRate,0);
 require('./test-final-economy.js');
 console.log('PASS: historical workbook observations and monetary formula fixtures.');
+
+// Workbook anchors: sheet Tum Baslangic Degerleri, rows 28,45-60,81-102,377-407.
+const wbq=fresh(),wb=M.ensure(wbq),w0=wb.history.at(-1);
+near(w0.investment,23.988160248085684);near(w0.government,19.95799698131127);
+near(w0.absorption,144.15914962142645);near(w0.exports,9.576725051229309);near(w0.realImports,12.42163045029764);
+near(w0.reserves,.748);near(w0.externalDebt,2.210);near(w0.realAgriculturalPrice,1.03);
+near(w0.exportDollars,.07844284605420857);near(w0.importCover,5.816849208430511);
+M.step(wbq);const w1=wb.history.at(-1);
+near(w1.effectiveInvestment,10.93932894601649);near(w1.capacityGrowth,3.6630121048846176);
+near(w1.reservesBeforeService,.8656928460542085);near(w1.debtLimit,2.40996);
+near(w1.principalDue,.007583333333333333);near(w1.interestDue,.0039166666666666528);near(w1.lendingRate,11.5);
+const financial=JSON.parse(JSON.stringify(wbq));financial.macro_model.version=4;
+const priorHistory=JSON.stringify(financial.macro_model.history);
+M.ensure(financial);assert.equal(financial.macro_model.version,5);assert.equal(JSON.stringify(financial.macro_model.history),priorHistory);
+near(financial.macro_model.legacyPrincipalMonthly,financial.macro_model.initialDebt/financial.macro_model.initialDebtMonths);
+console.log('PASS: supplied 1972 workbook anchors, USD scale conversion, legacy principal schedule, January checks and financial-save preservation.');

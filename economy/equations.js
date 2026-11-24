@@ -69,25 +69,83 @@
   // Scenario calibration, not additional historical observations. Amounts use the
   // baseline's billion-TL scale and billion USD for external flows. All are policy inputs.
   const externalDefaults = Object.freeze({
-    epsilon: 1e-8, exchangeRate: 14, foreignPrice: 1, exportCapacity: 0.08,
-    maxExportCapacity: 0.5, exportElasticity: 0.6, exportPrice: 1 / 14,
-    finalImportPrice: 1 / 14, intermediateImportPrice: 1 / 14,
-    exportCollection: 0.9, remittanceCollection: 0.9, remittances: 0.08,
-    initialDebt: 2, initialReserves: 1.2, debtRate: 5, debtMonths: 60,
-    debtIncomeMultiple: 2, minimumReserves: 0, importCoverTarget: 3,
-    importForecastBound: 0.1, finalImportPriority: 0.25,
-    passThrough: 0.5, importedCostWeight: 0.25, exportActionLag: 12,
-    governmentShare: 0.12
-  });
+    "epsilon": 1e-9,
+    "exchangeRate": 14,
+    "foreignPrice": 1,
+    "exportCapacity": 0.06776900024430885,
+    "maxExportCapacity": 0.1355380004886177,
+    "exportElasticity": 0.5,
+    "exportPrice": 0.09829186361883406,
+    "finalImportPrice": 0.09829186361883406,
+    "intermediateImportPrice": 0.09829186361883406,
+    "exportCollection": 1,
+    "remittanceCollection": 1,
+    "remittances": 0.03925,
+    "initialDebt": 2.21,
+    "initialReserves": 0.748,
+    "debtRate": 2.1475494633550474,
+    "debtMonths": 120,
+    "legacyPrincipal": 0.007583333333333333,
+    "debtIncomeMultiple": 2.1,
+    "minimumReserves": 0.2571839059936105,
+    "importCoverTarget": 3,
+    "importForecastBound": 0.06,
+    "finalImportPriority": 0.5,
+    "passThrough": 1,
+    "importedCostWeight": 0.08616609131586751,
+    "exportActionLag": 12,
+    "governmentShare": 0.1412313181246424,
+    "lendingSpread": 2.5
+});
   const spending = ['C', 'I', 'G', 'EX'];
   const importKinds = ['final', 'intermediate'];
   // Mandatory/flexible shares of each expenditure category; configurable by scenario.
   const importDefaults = Object.freeze({
-    C: { final: [0.02, 0.03], intermediate: [0.02, 0.03], beta: 0.5 },
-    I: { final: [0.08, 0.07], intermediate: [0.08, 0.07], beta: 0.8 },
-    G: { final: [0.01, 0.02], intermediate: [0.02, 0.03], beta: 0.4 },
-    EX: { final: [0, 0], intermediate: [0.05, 0.05], beta: 0.7 }
-  });
+    "C": {
+        "final": [
+            0.004059411216141547,
+            0.0021858368086916024
+        ],
+        "intermediate": [
+            0.03159643932156663,
+            0.00789910983039166
+        ],
+        "beta": 0.5
+    },
+    "I": {
+        "final": [
+            0.14687876930888716,
+            0.07908856808940076
+        ],
+        "intermediate": [
+            0.04739465898234996,
+            0.01184866474558749
+        ],
+        "beta": 0.65
+    },
+    "G": {
+        "final": [
+            0,
+            0
+        ],
+        "intermediate": [
+            0.012638575728626656,
+            0.003159643932156663
+        ],
+        "beta": 0.3
+    },
+    "EX": {
+        "final": [
+            0,
+            0
+        ],
+        "intermediate": [
+            0.056873590778819955,
+            0.014218397694704982
+        ],
+        "beta": 0.75
+    }
+});
 
   function calculateMonth({ month, history, inputs, initialRealCreditToPotential, parameters = {} }) {
     if (!Number.isInteger(month) || month < 0 || history.length < 24)
@@ -133,7 +191,7 @@
       previous:{...previous,realGdpGrowth12:previousGrowth12},comparison:lag(13),previousMoneyGrowth,referenceUnemployment});
     const expectedInflation = previous.nextExpectedInflation;
     if (!(expectedInflation > -100)) throw new RangeError('Expected inflation must exceed -100%.');
-    const lendingSpread = inputs.lendingSpread ?? (100*((1+expectedInflation/100)*1.025-1)-centralBankRate);
+    const lendingSpread = inputs.lendingSpread ?? x.lendingSpread;
     const lendingRate = calculateLendingRate({previousLendingRate:previous.lendingRate,centralBankRate,lendingSpread,adjustment:settings.lendingAdjustment});
     const realLendingRate = 100*((1+lendingRate/100)/(1+expectedInflation/100)-1);
     const circulationPressure = Math.min(18,Math.max(0,-realLendingRate));
@@ -173,7 +231,7 @@
     const plans={C:desiredConsumption,I:desiredInvestment,G:desiredGovernment,EX:desiredExports};
     const imports={}, valueAdded={}, adjustedValueAdded={}, coefficients={};
     const plannedRealByKind={final:0,intermediate:0},plannedDollarsByKind={final:0,intermediate:0};
-    const elasticity=inputs.importElasticities ?? {final:0.6,intermediate:0.3};
+    const elasticity=inputs.importElasticities ?? {final:0.5,intermediate:0.3};
     for(const j of spending){
       const cfg=inputs.importCoefficients?.[j] ?? importDefaults[j];
       const forced=importKinds.map(k=>nonneg(cfg[k][0],'mandatory import share'));
@@ -195,7 +253,7 @@
     if(!Number.isInteger(debtMonths)||debtMonths<=0)throw new RangeError('Debt maturity must be a positive integer.');
     const initialDebt=nonneg(parameters.initialDebt ?? x.initialDebt,'initial debt');
     // Initial debt is separate from the new-loan schedule. No inherited loan is registered twice.
-    const legacyPrincipal=nonneg(inputs.legacyPrincipal ?? (month<debtMonths?initialDebt/debtMonths:0),'legacy principal');
+    const legacyPrincipal=nonneg(inputs.legacyPrincipal ?? Math.min(x.legacyPrincipal,Math.max(0,initialDebt-month*x.legacyPrincipal)),'legacy principal');
     const priorSchedule=previous.loanSchedule ?? [];
     const scheduledNewPrincipal=priorSchedule.reduce((sum,l)=>sum+(l.remainingMonths>0?l.installment:0),0);
     const previousDebt=previous.externalDebt ?? initialDebt;
@@ -291,8 +349,8 @@
     const inflation=percentChange(cpi,yearAgo.cpi),nextExpectedInflation=0.55*expectedInflation+0.45*inflation;
     const realExchangeRate=100*exchangeRate/exchangeBase*foreignPrice/(parameters.initialForeignPrice ?? x.foreignPrice)*cpiBase/cpi;
     const realCredit=nominalCredit*cpiBase/cpi;
-    const creditAdequacy=month===0?0:100*Math.log((realCredit/potentialGdp)/initialRatio);
-    const initialCreditRatio=month===0?realCredit/potentialGdp:initialRatio;
+    const creditAdequacy=100*Math.log((realCredit/potentialGdp)/initialRatio);
+    const initialCreditRatio=initialRatio;
     const agriculturalPriceFactor=Math.pow((moneySupply/(cpi*realGdp))/(previous.moneySupply/(previous.cpi*previous.realGdp)),0.35)
       *Math.pow((consumption/realGdp)/(previous.consumption/previous.realGdp),0.25)*Math.pow(previous.agriculturalProduction/agriculturalProduction,0.65);
     const realAgriculturalPrice=previous.realAgriculturalPrice*agriculturalPriceFactor;

@@ -138,6 +138,39 @@
       unemployment: 6.8, centralBankRate: 9.0, lendingRate: 11.5,
       capacityGrowth: 3.3051934739550366, creditAdequacy: 0.0, nextExpectedInflation: 23.968830083061974 },
   ].map(row => Object.freeze(row)));
+  // Uploaded workbook anchors are 31 December 1971 (t=0); engine month 0 is January.
+  const starting = Object.freeze({
+    "source": "Turkiye_1972_Baslangic_Degiskenleri_Umut_Stili.xlsx; sheet Tum Baslangic Degerleri; domestic money in billion TL; USD amounts converted from million to billion",
+    "investment": 23.988160248085684,
+    "government": 19.95799698131127,
+    "absorption": 144.15914962142645,
+    "exports": 9.576725051229309,
+    "realImports": 12.42163045029764,
+    "exportDollars": 0.07844284605420858,
+    "exportCash": 0.06789172322316356,
+    "plannedImportDollars": 0.101745433845351,
+    "importForecastGrowth": 0.04077855722999281,
+    "importCover": 5.816849208430511,
+    "nominalAgriculturalPrice": 1.03,
+    "realAgriculturalPrice": 1.03,
+    "initialEffectiveInvestment": 10.93932894601649,
+    "governmentMeans": {
+        "1970": 15.524411122651278,
+        "1971": 18.45852482483237
+    },
+    "governmentGrowth": {
+        "1970": 6.5,
+        "1971": 18.9
+    },
+    "annualExportCash": {
+        "1970": 0.5885,
+        "1971": 0.6766
+    },
+    "initialDebtLimit": 2.40996,
+    "initialAnnualRealInterest": -3.815268914088605,
+    "initialAnnualGdp": 135.578,
+    "initialAnnualCpi": 0.9167904117626081
+});
   const lastPregameMonth = pregameHistory.at(-1);
   const previousPregameMonth = pregameHistory.at(-2);
 
@@ -181,7 +214,7 @@
   }
 
   const baseline = Object.freeze({
-    historical, pregameHistory, settings, initialLendingRate, moneySupplyForMonth, nominalCreditForMonth
+    historical, pregameHistory, starting, settings, initialLendingRate, moneySupplyForMonth, nominalCreditForMonth
   });
   if (typeof module !== 'undefined' && module.exports) {
     module.exports = baseline;

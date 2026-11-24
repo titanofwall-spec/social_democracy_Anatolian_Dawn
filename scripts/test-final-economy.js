@@ -27,7 +27,7 @@ near(r.desiredInvestment,20);near(r.consumptionShare,0.65);
 near(r.nominalCredit,30*Math.pow(1-0.5*(100*(1.12/1.1-1)-2.5)/100,1/12));
 near(r.realGdp,r.consumption+r.investment+r.government+r.exports-r.realImports);
 near(r.domesticSavings,r.investment+r.netExports);
-near(r.exportCash,0.9*0.05);
+near(r.exportCash,E.externalDefaults.exportCollection*0.05);
 near(r.exportDollars,r.exportPrice*r.exports/12);
 near(r.reserves,100+r.exportCash+r.availableRemittances-r.importDollars);
 near(r.unboundedInflationTrend,r.expectedInflation+0.60/12*(r.moneyGrowth-r.counterfactualGrowth12-r.expectedInflation)
@@ -45,9 +45,9 @@ assert.equal(noImports.importShortage,0);assert.equal(noImports.fx,0);
 assert.equal(JSON.parse(JSON.stringify(noImports)).importCover,null);
 const shares=Object.fromEntries(['C','I','G','EX'].map(j=>[j,{final:[0.1,5],intermediate:[0.2,5],beta:0.5}]));
 const scaled=calc({importCoefficients:shares});
-for(const v of Object.values(scaled.coefficients)){assert(v.final>=0.1);assert(v.intermediate>=0.2);assert(v.final+v.intermediate<=1-1e-8+1e-12);}
-const devaluation=calc({exchangeRateChange:0.2});near(devaluation.fxPriceShock,0.5*0.25*Math.log(1.2));
-const imported=calc({finalImportPrice:2/14,intermediateImportPrice:2/14});near(imported.importPriceIndex,200);
+for(const v of Object.values(scaled.coefficients)){assert(v.final>=0.1);assert(v.intermediate>=0.2);assert(v.final+v.intermediate<=1-E.externalDefaults.epsilon+1e-12);}
+const devaluation=calc({exchangeRateChange:0.2});near(devaluation.fxPriceShock,E.externalDefaults.passThrough*E.externalDefaults.importedCostWeight*Math.log(1.2));
+const imported=calc({finalImportPrice:2*E.externalDefaults.finalImportPrice,intermediateImportPrice:2*E.externalDefaults.intermediateImportPrice});near(imported.importPriceIndex,200);
 const crisisHistory=fixture();Object.assign(crisisHistory.at(-1),{externalDebt:10,reserves:0});
 const crisis=calc({legacyPrincipal:1,remittances:0,exportCollection:0},crisisHistory);
 assert(crisis.debtServiceGap>1);assert.equal(crisis.importBudget,0);assert.equal(crisis.externalDebt,10);
@@ -62,7 +62,7 @@ for(let month=1;month<=3;month++){
 const exportHistory=fixture();exportHistory[12].exportCapacityAction=0.02;
 near(calc({},exportHistory).exportCapacity,0.10);
 const q=fresh();M.step(q);const first=q.macro_model.history.at(-1);
-assert.equal(q.macro_model.version,4);
+assert.equal(q.macro_model.version,5);
 const saved=JSON.stringify(q.macro_model);M.step(q);assert.equal(JSON.stringify(q.macro_model),saved);
 const reload=JSON.parse(JSON.stringify(q));advance(q);advance(reload);assert.deepEqual(q,reload);
 // Real version-3 saves retain all played data while receiving financial fields.
@@ -70,7 +70,7 @@ const v3=JSON.parse(JSON.stringify(q));v3.macro_model.version=3;
 for(const row of v3.macro_model.history){delete row.reserves;delete row.externalDebt;delete row.loanSchedule;}
 const observations=v3.macro_model.history.map(row=>[row.month,row.realGdp,row.cpi,row.moneySupply]);
 M.ensure(v3);assert.deepEqual(v3.macro_model.history.map(row=>[row.month,row.realGdp,row.cpi,row.moneySupply]),observations);
-assert.equal(v3.macro_model.version,4);advance(v3);
+assert.equal(v3.macro_model.version,5);advance(v3);
 const legacy={started:1,year:1976,month:8,macro_model:{version:1,y:120,potential:130,price:2,m2:215}};
 M.ensure(legacy);near(legacy.macro_model.history.at(-1).realGdp,120);advance(legacy);
 for(let month=2;month<120;month++){

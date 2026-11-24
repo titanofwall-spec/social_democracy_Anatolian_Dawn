@@ -47,7 +47,7 @@ test('Export transition requires both stages, excludes IMF and builds devalued e
   assert(!e._runPredicate(game.scenes['economic_policy.standby'].chooseIf,true));
   for(let i=0;i<72;i++){Q.month_actions=1;e.goToScene('post_event');}
   const financial=Q.macro_model.history.at(-1);
-  assert(financial.exportCapacity>=0.18-1e-10,'both stages must build real export capacity after the lag');
+  assert(financial.exportCapacity>=require('../out/html/economy-equations.js').externalDefaults.maxExportCapacity-1e-10,'both stages must build real export capacity after the lag');
   near(financial.exchangeRate,14*1.3*1.4);
   assert(financial.fx>=0&&financial.fx<=100,'pressure is derived from financing, within the final model domain');
 });

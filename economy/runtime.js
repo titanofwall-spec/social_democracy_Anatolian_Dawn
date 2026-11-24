@@ -113,9 +113,39 @@
     };
   }
 
+  function seedWorkbookHistory(model,x) {
+    const b=baseline.starting, rows=model.history;
+    const sums=Object.fromEntries(Object.entries(equations.importDefaults).map(([j,c])=>[j,c.final[0]+c.final[1]+c.intermediate[0]+c.intermediate[1]]));
+    for(const r of rows){
+      const year=r.month< -12?1970:1971,m=(r.month+24)%12+1,rate=b.governmentGrowth[year]/100;
+      const norm=Array.from({length:12},(_,i)=>Math.pow(1+rate,(i-11)/12)).reduce((a,b)=>a+b,0)/12;
+      r.government=b.governmentMeans[year]*Math.pow(1+rate,(m-12)/12)/norm;
+      r.desiredGovernment=r.government;r.exports=x.exportCapacity*r.potentialGdp;
+      r.investment=(r.realGdp-r.consumption*(1-sums.C)-r.government*(1-sums.G)-r.exports*(1-sums.EX))/(1-sums.I);
+      r.exportCash=year===1971?(m===12?b.exportCash:(b.annualExportCash[1971]-b.exportCash)/11):b.annualExportCash[1970]/12;
+      r.fx=0;r.fxStress=0;r.realAgriculturalPrice=b.realAgriculturalPrice;r.nominalAgriculturalPrice=b.nominalAgriculturalPrice*r.cpi;
+    }
+    // Missing monthly investment observations are reconstructed to match the
+    // workbook's independently supplied January lag average, not labelled actuals.
+    const window=rows.slice(1,13), avg=window.reduce((a,r)=>a+100*r.investment/r.realGdp,0)/12;
+    for(const r of window)r.investment*=b.initialEffectiveInvestment/(0.52*avg);
+    for(const r of rows){r.realizedInvestmentShare=100*r.investment/r.realGdp;r.absorption=r.consumption+r.investment+r.government;
+      r.realImports=r.absorption+r.exports-r.realGdp;
+      r.exportDollars=x.exportPrice*r.exports/12;
+      r.plannedImportDollars=b.plannedImportDollars*Math.exp(b.importForecastGrowth*(r.month+1));
+    }
+    Object.assign(rows.at(-1),{investment:b.investment,realizedInvestmentShare:100*b.investment/rows.at(-1).realGdp,
+      government:b.government,desiredGovernment:b.government,absorption:b.absorption,exports:b.exports,realImports:b.realImports,
+      exportDollars:b.exportDollars,exportCash:b.exportCash,plannedImportDollars:b.plannedImportDollars,importCover:b.importCover,
+      importForecastGrowth:b.importForecastGrowth,importPriceIndex:100,
+      importPrices:{final:x.finalImportPrice,intermediate:x.intermediateImportPrice},
+      plannedRealByKind:{final:b.realImports*0.48676345004269855,intermediate:b.realImports*0.5132365499573015}});
+  }
+
   // Seed new financial fields without discarding any observed or played history.
   function upgrade(model,Q) {
     const x={...equations.externalDefaults,...Q.macro_external_parameters};
+    if(model.lastMonth===-1)seedWorkbookHistory(model,x);
     for(let i=0;i<model.history.length;i++) {
       const r=model.history[i], prior=model.history[Math.max(0,i-12)];
       r.investment ??= r.savingsRate/100*r.realGdp;
@@ -140,10 +170,11 @@
       r.realLendingRate ??= 100*((1+r.lendingRate/100)/(1+(r.expectedInflation ?? r.inflation)/100)-1);
       r.plannedImportDollars ??= Math.max(1e-8,x.finalImportPrice*r.realImports/12);
     }
-    model.version=4;
+    model.version=5;
     model.financialStartMonth ??= Math.max(0,model.lastMonth+1);
     model.initialDebt ??= x.initialDebt;
     model.initialDebtMonths ??= x.debtMonths;
+    model.legacyPrincipalMonthly ??= x.legacyPrincipal;
     model.initialImportDollars ??= model.history.at(-1).plannedImportDollars;
     model.initialExchangeRate ??= x.exchangeRate;
     model.initialCpi ??= settings.initialCpi;
@@ -155,8 +186,10 @@
     const month = monthOf(Q);
     if (!Number.isInteger(month) || month < 0 || month >= 120 || !Q.started) return null;
     // Version 3 histories migrate in place; older aggregate saves use initialize.
-    if (![3,4].includes(Q.macro_model?.version)) Q.macro_model = initialize(Q, month);
-    if(Q.macro_model.version!==4)upgrade(Q.macro_model,Q);
+    if (![3,4,5].includes(Q.macro_model?.version)) Q.macro_model = initialize(Q, month);
+    if(Q.macro_model.version===3)upgrade(Q.macro_model,Q);
+    // Existing financial saves keep their stocks, schedules and pending actions.
+    if(Q.macro_model.version===4){Q.macro_model.legacyPrincipalMonthly=Q.macro_model.initialDebt/Q.macro_model.initialDebtMonths;Q.macro_model.version=5;}
     return Q.macro_model;
   }
 
@@ -215,7 +248,7 @@
           external: Q.macro_external_parameters,
           reserveAdjustment:-fxDelta*liquidityUnit,
           requestedLoan,
-          legacyPrincipal:month-model.financialStartMonth<model.initialDebtMonths?model.initialDebt/model.initialDebtMonths:0,
+          legacyPrincipal:Math.min(model.legacyPrincipalMonthly,Math.max(0,model.initialDebt-(month-model.financialStartMonth)*model.legacyPrincipalMonthly)),
           exchangeRateChange:number(Q.macro_exchange_rate_change),
           governmentGrowth:number(Q.macro_government_growth),
           worldDemand:number(Q.macro_world_demand,1),
