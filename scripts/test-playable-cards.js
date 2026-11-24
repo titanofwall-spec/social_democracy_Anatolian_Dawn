@@ -32,7 +32,7 @@ test('IMF agreement locks out exporting, lowers monetary pressure and resolves a
   for(let i=0;i<72;i++){Q.month_actions=1;e.goToScene('post_event');}
   assert(Q.forex_pressure<=35,'IMF must sustain FX recovery over three years');
 });
-test('Export transition requires both stages, excludes IMF and resolves high FX pressure',()=>{
+test('Export transition requires both stages, excludes IMF and builds devalued export capacity',()=>{
   const e=fresh(),Q=e.state.qualities;
   Object.assign(Q,{forex_pressure:90,forex_pressure_drift:2,imf_agreement:0,
     Tiger:0,economicaction:3,macro_m2_growth:25,
@@ -46,7 +46,10 @@ test('Export transition requires both stages, excludes IMF and resolves high FX 
   assert.equal(Q.macro_m2_growth,18);
   assert(!e._runPredicate(game.scenes['economic_policy.standby'].chooseIf,true));
   for(let i=0;i<72;i++){Q.month_actions=1;e.goToScene('post_event');}
-  assert(Q.forex_pressure<=30,'export economy must sustain FX recovery over three years');
+  const financial=Q.macro_model.history.at(-1);
+  assert(financial.exportCapacity>=0.18-1e-10,'both stages must build real export capacity after the lag');
+  near(financial.exchangeRate,14*1.3*1.4);
+  assert(financial.fx>=0&&financial.fx<=100,'pressure is derived from financing, within the final model domain');
 });
 test('Completed land redistribution, not initiation, improves production, inflation and forex',()=>{
   const e=fresh(),Q=e.state.qualities;

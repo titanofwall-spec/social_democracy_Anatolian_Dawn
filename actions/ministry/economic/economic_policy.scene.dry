@@ -45,7 +45,7 @@ Price floors and ceilings are implemented to control the rampant inflation. Whil
 choose-if: west_relation >= 40 and us_relation >= 40
 subtitle: Budget ↑ Exchange Pressure(short term) ↓ Exchange Pressure(long-term) ↑↑ Growth ↑
 unavailable-subtitle: The general air of coldness between the western governments and us prevent us from taking debt from the international organizations!
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} forex_pressure -= 5; growth_modifier += 0.5; budget += 1; forex_pressure_drift += 1; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianMacro.requestLoan(Q,0.2); !} growth_modifier += 0.5; budget += 1; economicaction += 1; {! AnatolianRules.refreshEconomy(Q); !}
 max-visits: 4
 
 We once again reach out to the global market for hot cash to fuel our economy. While our economic pain is temporarily alleviated, this only prolongs the fundamental issue of our economy rather than resolving it.
@@ -113,7 +113,7 @@ view-if: Tiger == 0
 choose-if: imf_agreement == 0
 unavailable-subtitle: This course of action cannot be taken at the same time as committing to the privatization demands of the IMF.
 subtitle: First export transition: +11 inflation pressure initially, -12 exchange pressure immediately, -7 annual exchange drift, industrial capacity and growth ↑.
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} Tiger += 1; forex_pressure -= 12; inflation_modifier += 11; disk_relation -= 15; forex_pressure_drift -= 7; growth_modifier += 2; industry_modifier += 4; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianMacro.transitionExports(Q); !} Tiger += 1; forex_pressure -= 12; inflation_modifier += 11; disk_relation -= 15; forex_pressure_drift -= 7; growth_modifier += 2; industry_modifier += 4; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! AnatolianRules.refreshEconomy(Q); !}
 
 The situation is dire for the average Turk; we had promised them economic stability and now there is rampant inflation due to our own policies. However, the Turkish economy cannot survive in its current state and we need to keep our course in this radical transformation.
 
@@ -122,7 +122,7 @@ view-if: Tiger == 1
 choose-if: imf_agreement == 0
 unavailable-subtitle: This course of action cannot be taken at the same time as committing to the privatization demands of the IMF.
 subtitle: Complete the export transition: +8 inflation pressure initially, -18 exchange pressure immediately, -9 annual exchange drift; lasting export capacity and growth ↑.
-on-arrival: {! AnatolianCardActions.commitAdvisor(Q); !} Tiger += 1; forex_pressure -= 18; inflation_modifier += 8; disk_relation -= 15; forex_pressure_drift -= 9; growth_modifier += 2; industry_modifier += 6; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! Q.macro_m2_growth=Math.min(18,AnatolianRules.number(Q.macro_m2_growth,20)); AnatolianRules.refreshEconomy(Q); !}
+on-arrival: {! AnatolianCardActions.commitAdvisor(Q); AnatolianMacro.transitionExports(Q); !} Tiger += 1; forex_pressure -= 18; inflation_modifier += 8; disk_relation -= 15; forex_pressure_drift -= 9; growth_modifier += 2; industry_modifier += 6; state_employees_chp -= 3; rural_chp -= 3; kurds_chp -= 3; workers_chp -= 3; alevis_chp -= 3; petty_bourgeoisie_chp -= 3; {! Q.macro_m2_growth=Math.min(18,AnatolianRules.number(Q.macro_m2_growth,20)); AnatolianRules.refreshEconomy(Q); !}
 
 Finally, we are seeing the Turkish companies abandon their inactive stance and move to the global markets. Our citizens have suffered a great deal, but the light at the end of the tunnel is now beginning to shine through. Let's hope our citizens will forgive us for prescribing the painful medicine.
 

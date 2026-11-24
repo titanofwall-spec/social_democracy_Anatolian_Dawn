@@ -1,0 +1,21 @@
+'use strict';
+const fs=require('fs'),path=require('path'),http=require('http'),assert=require('assert');
+const {chromium}=require('C:/Users/umutc/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const root=path.resolve(__dirname,'../out/html');
+const server=http.createServer((req,res)=>{let p=path.join(root,decodeURIComponent(new URL(req.url,'http://localhost').pathname));if(p===root+path.sep)p=path.join(root,'index.html');try{res.setHeader('Content-Type',({'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json'})[path.extname(p)]||'application/octet-stream');res.end(fs.readFileSync(p));}catch{res.writeHead(404).end();}});
+(async()=>{let browser;await new Promise(r=>server.listen(0,'127.0.0.1',r));try{
+ browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];
+ page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
+ await page.addInitScript(()=>{HTMLMediaElement.prototype.play=function(){return Promise.resolve();};});
+ await page.goto('http://127.0.0.1:'+server.address().port+'/');await page.waitForFunction(()=>window.dendryUI);
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine;e.beginGame([1,2,3,4,5]);e.goToScene('root.start');e.goToScene('root.start_main');dendryUI.animate=false;jQuery.fx.off=true;e.goToScene('status');e.goToScene('status.economy');});
+ assert((await page.locator('body').innerText()).includes('Foreign reserves:'));
+ await page.evaluate(()=>{const e=dendryUI.dendryEngine,Q=e.state.qualities,m=Q.macro_model,r=m.history.at(-1);r.reserves=0;r.externalDebt=100;Q.macro_remittances=0;Q.macro_external_parameters={exportCollection:0};Q.month=2;AnatolianMacro.step(Q);e.goToScene('status');e.goToScene('status.economy');});
+ assert((await page.locator('body').innerText()).includes('External financing crisis:'));
+ const result=await page.evaluate(()=>{const q=dendryUI.dendryEngine.state.qualities,r=q.macro_model.history.at(-1);return{version:q.macro_model.version,gap:r.debtServiceGap,reserves:r.reserves,pressure:q.forex_pressure};});
+ assert(result.gap>0);assert.equal(result.reserves,0);assert.equal(result.pressure,100);
+ await page.screenshot({path:path.resolve(__dirname,'../../anatolian-economy-crisis.png'),fullPage:true});
+ await page.setViewportSize({width:390,height:844});assert((await page.locator('body').innerText()).includes('Foreign reserves:'));
+ assert.deepEqual(errors,[]);console.log('PASS browser economy screen, crisis warning, mobile rendering, and browser console.',JSON.stringify(result));
+ }finally{if(browser)await browser.close();server.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -18,6 +18,8 @@ Q.agricultural_index_formatted = AnatolianRules.number(Q.agricultural_production
 // Format agricultural market data
 Q.agricultural_prices_formatted = AnatolianRules.number(Q.agricultural_product_prices, 1.00).toFixed(2);
 
+Q.external_finance_summary = Q.macro_model && Q.macro_model.version >= 4 ?
+  "Foreign reserves: " + AnatolianRules.number(Q.external_reserves).toFixed(3) + " billion USD. External debt: " + AnatolianRules.number(Q.external_debt).toFixed(3) + " billion USD. Import cover: " + (Q.import_cover_months == null ? "no imports required" : Q.import_cover_months.toFixed(2) + " months") + "." : "";
 // Format forex pressure and determine status
 Q.forex_pressure_formatted = AnatolianRules.number(Q.forex_pressure).toFixed(2);
 if (Q.forex_pressure <= 20) {
@@ -523,6 +525,11 @@ Cyprus Problem: [? if cyprus_problem == 0: Unresolved ?][? if cyprus_problem == 
 [? if health_economy_status: Health of the Economy: [+ health_economy_status +] ?]
 
 [? if forex_pressure_formatted: Foreign Exchange Pressure: [+ forex_pressure_formatted +] ([+ forex_pressure_status +]) ?]
+
+[? if external_financing_crisis: **External financing crisis:** scheduled debt service exceeds available foreign currency. Imports are unfunded; unpaid debt is retained as arrears. ?]
+
+[? if external_finance_summary: [+ external_finance_summary +] ?]
+
 
 Inflation: [+ inflation_2 +]%
 

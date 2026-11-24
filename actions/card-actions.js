@@ -20,6 +20,7 @@ function applyGovernmentPolicy(Q,id,party='CHP'){
  // Non-CHP cabinets no longer execute player ministry actions.
  if(party!=='CHP')return false;
  const p=governmentPolicies.find(p=>p.id===id);if(!p)return false;
+ if(id==='economic_policy.export'&&root.AnatolianMacro)root.AnatolianMacro.promoteExports(Q);
  for(const [key,amount]of Object.entries(p.effects))Q[key]=root.AnatolianRules.number(Q[key])+amount;
  for(const [key,value]of Object.entries(p.sets))Q[key]=value;
  for(const [c,amount]of Object.entries(p.support))Q[c+'_chp']=root.AnatolianRules.number(Q[c+'_chp'])+amount;

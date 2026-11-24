@@ -102,7 +102,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root, 'out/game.json'), 'utf8'),
         assert(Q.tiger_1978_effect_applied);
         const row=Q.macro_model.history.at(-1);
         near(Q.inflation,row.inflation,'published Onat inflation');
-        near(row.demandGrowth-row.baselineDemandGrowth,Q.growth_modifier/Math.pow(Q.growth_modifier<0?0.95:0.8,1/12)+3,'Tiger fiscal input');
+        near(row.fiscalContribution,Q.growth_modifier/Math.pow(Q.growth_modifier<0?0.95:0.8,1/12)+3,'Tiger fiscal input');
     });
     test('Cooldowns decrement once per month', (e,Q) => {
         action(e,'intrapartyinfluence'); assert.equal(Q.intraparty_timer,4);

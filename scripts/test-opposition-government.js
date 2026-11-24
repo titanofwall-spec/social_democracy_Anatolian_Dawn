@@ -23,7 +23,7 @@ lib.convertJSONToGame(fs.readFileSync(path.join(root,'out/game.json'),'utf8'),(e
  function advance(Q,periods=6){const t=Q.year*24+(Q.month-1)*2+Q.week-1+periods;Q.year=Math.floor(t/24);Q.month=Math.floor((t%24)/2)+1;Q.week=t%2+1;}
  test('Shared player actions preserve their original effects, prices and rewards',()=>{
  const expected=JSON.parse(fs.readFileSync(path.join(__dirname,'fixtures/government-policy-effects.json'),'utf8'));
- for(const p of expected){const Q=opposition().state.qualities;Q.CHP_in_government=1;const before=copy(Q);assert(A.applyGovernmentPolicy(Q,p.id));for(const [k,v]of Object.entries(p.effects))near(Q[k]-(before[k]||0),v,p.id+' '+k);for(const [k,v]of Object.entries(p.sets))assert.equal(Q[k],v);for(const [c,v]of Object.entries(p.support))near(Q[c+'_chp']-before[c+'_chp'],v,p.id+' reward '+c);}
+ for(const p of expected){const Q=opposition().state.qualities;Q.CHP_in_government=1;Q.forex_pressure=50;const before=copy(Q);assert(A.applyGovernmentPolicy(Q,p.id));for(const [k,v]of Object.entries(p.effects))near(Q[k]-(before[k]||0),v,p.id+' '+k);for(const [k,v]of Object.entries(p.sets))assert.equal(Q[k],v);for(const [c,v]of Object.entries(p.support))near(Q[c+'_chp']-before[c+'_chp'],v,p.id+' reward '+c);}
  });
  test('Non-CHP cabinets cannot execute player policies or alter the economy and voters',()=>{
  for(const party of ['AP','MSP','DP','CGP']){
